@@ -1,0 +1,132 @@
+%
+% sprachen.tex
+%
+% (c) 2011 Prof Dr Andreas Mueller, Hochschule Rapperswil
+%
+\lhead{Sprachen}
+\rhead{}
+\chapter{Sprachen}
+Diese Vorlesung betrachtet Computer in erster Linie als
+Maschinen, die Zeichenketten verarbeiten. Nat"urlich wird man
+nicht jede Zeichenkette als sinnvollen Input oder Output betrachten,
+nur eine Teilmenge aller m"oglichen Zeichenketten w"urden wir
+eine ``Sprache'' nennen. Diese intuitive Vorstellung wollen wir
+jetzt formalisieren.
+
+\index{Alphabet}
+Die Basis einer Sprachdefinition muss die Auswahl eines geeigneten
+Alphabetes sein. W"ahrend in der Informatik das Alphabet meist 
+durch die Maschine vorgegeben ist (sie verarbeitet zum Bespiel
+einzelne Bytes, also Zahlen zwischen 0 und 255), m"ochten wir f"ur
+unsere theoretischen "Uberlegungen mehr Freiheit, und akzeptieren
+jede beliebige nichtleere endliche Menge als Alphabet. Alphabete
+bezeichnen wir h"aufig mit grossen griechischen Buchstaben, zum
+Beispiel
+\begin{align*}
+\Sigma&=\{{\tt 0},{\tt 1}\}\\
+\Sigma&=\{{\tt 1}\}\\
+\Gamma&=\{{\tt 0},{\tt 1},\sqcup\}\\
+\Delta&=\{{\tt a},\dots,{\tt z}\}
+\end{align*}
+Zeichenketten sind Tupel aus Elementen eines Alphabets.
+\begin{definition}\label{def_wort}
+\index{Wort}
+\index{leeres Wort}
+Ein Wort $w$ der L"ange $n$ "uber dem Alphabet $\Sigma$ ist ein $n$-Tupel,
+$w\in\Sigma^n$. Es gibt genau ein Wort der L"ange $0$, es heisst das
+leere Wort und wird mit $\varepsilon$ bezeichnet, $\Sigma^0=\{\varepsilon\}$.
+Die Menge aller W"orter
+ist die Vereinigung aller $\Sigma^n$ und wird mit $\Sigma^*$ bezeichnet:
+\[
+\Sigma^*=\{\varepsilon\}\cup \Sigma^1\cup\Sigma^2\cup\Sigma^3\cup\dots
+=\bigcup_{k=0}^\infty\Sigma^k.
+\]
+\end{definition}
+
+Nat"urlich kann man von jedem Wort $w\in\Sigma^*$ auch wieder bestimmen,
+aus welchem $\Sigma^k$ es stammt, indem man die L"ange der Zeichenkette
+ausz"ahlt. Wir bezeichnen die L"ange von $w$ mit $|w|$. Es ist $|{\tt 1111}|=4$
+und $|\varepsilon|=0$. Manchmal ist es wichtig zu wissen, wie oft ein bestimmtes
+Zeichen in einem Wort vorkommt. Wir bezeichnent mit
+$|w|_{a}$ die Anzahl Vorkommnisse des Zeichens $a$, also zum Beispiel
+$|{\tt 0010111}|_{\tt 0}=3$ und $|{\tt 0110011}|_{\tt 1}=4$.
+
+Eine Sprache muss nicht alle m"oglichen W"orter umfassen, oft wird sogar
+nur eine endliche Menge von W"ortern aus der unendlichen Menge $\Sigma^*$
+ausgew"ahlt.
+
+\begin{definition}
+\index{Sprache}
+Eine Sprache $L$ "uber dem Alphabet $\Sigma$ ist eine Teilmenge
+von $\Sigma^*$, also $L\subset \Sigma^*$. "Uber jedem Alphabet
+gibt es die leere Sprache $\emptyset$ und die Sprache, die nur
+aus dem leeren Wort besteht $\{\varepsilon\}$.
+\end{definition}
+
+{\parindent0pt Beispiele:}
+\begin{enumerate}
+\item Sei $\Sigma=\{{\tt 1}\}$, dann ist
+\[
+\Sigma^*=\{\varepsilon, {\tt 1}, {\tt 11}, {\tt 111}, {\tt 1111},\dots\}
+\]
+Die W"orter "uber $\Sigma$ sind also durch ihre L"ange charakterisiert.
+Es gibt eine Abbildung
+\[
+\mathbb N\to\Sigma^*\colon n\mapsto \underbrace{1\dots 1}_{\text{$n$ Zeichen}}=1^n
+\]
+Eine Sprache "uber dem Alphabet $\{{\tt 1}\}$ entspricht unter dieser
+Abbildung genau einer Teilmenge der nat"urlichen Zahlen. Die Darstellung
+einer Zahl $n$ als Folge von $n$ Zeichen {\tt 1} heisst
+{\em un"are Darstellung}
+\index{unaere Darstellung@un\"are Darstellung}
+von $n$.
+\item Sei $\Sigma=\{{\tt (}, {\tt )}\}$. $\Sigma^*$ besteht aus allen
+Ketten von Klammern. Die korrekt geschachtelten Klammerausdr"ucke bilden
+darin eine Teilmenge, also eine Sprache.
+\item Sei $\Sigma=\{{\tt 0},{\tt 1},\dots,{\tt 9}\}$. $\Sigma^*$ besteht
+aus allen Ziffernfolgen. Jede solche Ziffernfolge hat nat"urlich auch
+einen numerischen Wert, indem man die Ziffernfolge als Zehnersystemdarstellung
+einer Zahl interpretiert. Wegen m"oglicher f"uhrender Nullen k"onnen verschiedene
+Ziffernfolgen den gleichen Wert haben. Es gibt also eine Abbildung
+\[
+v\colon\Sigma^*\to \mathbb N,
+\]
+die den Wert einer Ziffernfolge ermittelt. Damit k"onnen wir die Sprache
+der Ziffernfolgen mit Zweierpotenzwerten definieren:
+\[
+\{w\in\Sigma^*\,|\, \exists k (v(w)=2^k)\}=\{
+{\tt 1},
+{\tt 2},
+{\tt 4},
+{\tt 8},\dots
+{\tt 01},
+{\tt 02},
+{\tt 04},
+{\tt 08},\dots
+{\tt 001},
+{\tt 002},
+{\tt 004},
+{\tt 008},\dots\}
+\]
+\item Sei $\Sigma=\{{\tt 0}, {\tt 1}\}$. $\Sigma^*$ besteht dann aus den
+bin"aren Zeichenketten. Darin k"onnen wir eine Reihe von Sprachen auszeichnen:
+\begin{align*}
+L_1&=\{ {\tt 0}^n{\tt 1}^n\,|\,n\ge 0\}\\
+L_2&=\{ w\in\Sigma^*\,|\, |w|_{\tt 0}=|w|_{\tt 1}\}
+L_3&=\{ w\in\Sigma^*\,|\, \text{Zahlenwert von $w$ ist durch 3 teilbar}\}
+\end{align*}
+\item Sei $\Sigma$ die Menge der ASCII-Zeichen. Dann ist $\Sigma^*$ die
+Menge aller ASCII-Texte, wie unsinnig sie auch immer sein m"ogen. Interessant
+ist die Sprache
+\[
+C=\{w\in\Sigma^*\,|\,\text{$w$ wird von GCC akzeptiert}\}.
+\]
+Die Sprache $C$ heisst GNU-Dialekt von C.
+\item Sei $\Sigma$ die Menge der Unicode-Zeichen. $\Sigma^*$ besteht
+dann aus allen Unicode-Zeichenfolgen. Darin k"onnen wir zum Beispiel die
+Sprache Java ausw"ahlen
+\[
+J
+=\{w\in\Sigma^*\,|\, {\text{$w$ wird von einem Java-Compiler akzeptiert}}\}.
+\]
+\end{enumerate}

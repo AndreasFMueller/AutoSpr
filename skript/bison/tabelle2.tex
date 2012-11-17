@@ -1,0 +1,20 @@
+\begin{center}
+\begin{tabular}{|r|l|c|l|l|}
+\hline
+Input&Stack&Zustand&Reduktion&Operation\\
+\hline
+$000111$&&&&Schiebe $0$\\
+$00111$&$\boxed{0}$&$\boxed{0}$&&Schiebe $0$\\
+$0111$&$\boxed{0}\,\boxed{0}$&$\boxed{0}$&&Schiebe $0$\\
+$111$&$\boxed{0}\,\boxed{0}\,\boxed{0}$&$\boxed{0}$&&Schiebe $1$\\
+$11$&$\boxed{0}\,\boxed{0}\,\boxed{0}\,\boxed{01}$&$\boxed{01}$&&Reduziere, Regel 2\\
+$11$&$\boxed{0}\,\boxed{0}$&$\boxed{0}$&$w$&Schiebe $w$\\
+$11$&$\boxed{0}\,\boxed{0}\,\boxed{0w}$&$\boxed{0w}$&&Schiebe $1$\\
+$1$&$\boxed{0}\,\boxed{0}\,\boxed{0w}\,\boxed{0w1}$&$\boxed{0w1}$&&Reduziere, Regel 1\\
+$1$&$\boxed{0}$&$\boxed{0}$&$w$&Schiebe $w$\\
+$1$&$\boxed{0}\,\boxed{0w}$&$\boxed{0w}$&&Schiebe $1$\\
+&$\boxed{0}\,\boxed{0w}\,\boxed{0w1}$&$\boxed{0w1}$&&Reduziere, Regel 1\\
+&&$\boxed{\phantom{0}}$&$w$&zum Endzustand\\
+\hline
+\end{tabular}
+\end{center}

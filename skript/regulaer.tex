@@ -1,0 +1,2625 @@
+%
+% Regulaere Sprachen und endliche Automaten
+%
+\lhead{Regul"are Sprachen}
+\chapter{Endliche Automaten und regul"are Sprachen\label{chapter-regular}}
+Endliche Automaten stellen das einfachste Berechnungsmodell
+dar, welches in diesem Skript untersucht werden soll. Ausser 
+"uber seine Zust"ande verf"ugt ein Automat "uber keinen weiteren
+Speicher.
+Trotzdem defineren endliche Automaten eine Menge von Sprachen, die 
+mathematisch und f"ur die Praxis sehr zweckm"assige Eigenschaften
+haben.
+Ausserdem gibt es eine besonders einfach Syntax, um
+solche Sprachen zu beschreiben: die regul"aren Ausdr"ucke.
+Es geht in diesem Kapitel allerdings nicht darum, das Arbeiten
+mit regul"aren Ausdr"ucken zu lernen.
+Vielmehr geht es vor allem um das Verst"andnis, welche Eigenschaften
+eine Sprache hat, die mit einem endlichen Automaten oder einem
+regul"aren Ausdruck beschrieben werden kann.
+
+\rhead{Deterministische endliche Automaten}
+\section{Deterministische endliche Automaten}
+Ein endlicher Automat modelliert ein System, welches
+in einer endlichen Zahl verschiedener Zust"ande sein kann. Der
+"Ubergang zwischen den Zust"ande geschieht determinstisch beim
+Eintreffen neuer Daten.
+
+Als Beispiel betrachten wir ein Drehkreuz an einem Skilift.
+Es hat zwei m"ogliche Zust"ande: {\it  verriegelt} ($V$)
+und  {\it entriegelt} ($E$).
+Ausserdem gibt es zwei Inputs: {\tt Fahrkarte} ($F$)
+und {\tt Drehen} ($D$). Zu Beginn befindet sich das Drehkreuz
+in verriegeltem Zustand. Wenn ein Skifahrer durch will, es zu drehen
+versucht, "andert sich daran nichts. Erst wenn er eine Fahrkarte einschiebt,
+wird das Drehkreuz entriegelt. Jetzt n"utzt es nichts, noch weitere
+Fahrkarten einzuschieben, das Drehkreuz bleibt entriegelt.
+Versucht der Skifahrer jetzt, das Drehkreuz zu drehen, wird es
+ihn durchlassen, dabei aber wieder in den verriegelten Zustand "ubergehen.
+Schematisch k"onnen wird das wie folgt darstellen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{} \ar[r]
+	&{V}\ar@/^/[r]^{F} \ar@(ur,ul)_{D}
+		&{E}\ar@/^/[l]^{D} \ar@(ur,ul)_{F}
+}
+\]
+Wir sehen hier bereits eine M"oglichkeit, Inputfolgen zu beobachten, 
+aber es kann noch nicht entschieden werden, welche Inputs akzeptabel
+sind. Dazu m"ussen die einzelne Zust"ande ausgezeichnet werden.
+Zum Beispiel k"onnte man verlangen, dass nur Abl"aufe akzeptabel
+sind, bei denen das Drehkreuz am Ende im verriegelten Zustand steht,
+also nicht offen stehen bleibt. Symbolisch bezeichnen wir dies durch
+einen Doppelkreis:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{} \ar[r]
+	&*++[o][F=]{V}\ar@/^/[r]^{F} \ar@(ur,ul)_{D}
+		&{E}\ar@/^/[l]^{D} \ar@(ur,ul)_{F}
+}
+\]
+Damit haben wir alle Elemente zusammen, die einen deterministischen
+endlichen Automaten ausmachen.
+\subsection{Definition}
+\index{Automat!endlicher}
+\index{Automat!deterministischer endlicher}
+\index{DEA|see{deterministischer endlicher Automat}}
+Eine abstrakte Definition muss die Menge der erlaubten Inputs
+festlegen, wir brauchen also ein Alphabet $\Sigma$. Die Zust"ande
+bilden eine Menge. Ausserdem m"ussen wir festlegen, in welchem Zustand
+sich der Automat zu beginn befindet, und wie er auf ein Input-Zeichen
+reagiert. Dies wird erreicht durch die folgende Definition
+\begin{definition}
+Ein deterministischer endlicher Automat (DEA) ist ein Quintupel
+$(Q,\Sigma,\delta, q_0,F)$ mit
+\begin{compactenum}
+\item $Q$ ist eine beliebige endliche Menge von Zust"anden
+\item $\Sigma$ ist eine endliche Menge, genannt das Alphabet.
+\index{Ubergangsfunktion@\"Ubergangsfunktion!eines endlichen Automaten}
+\item $\delta\colon Q\times\Sigma\to Q$ heisst "Ubergangsfunktion
+\index{Startzustand}
+\item $q_0\in Q$ heisst Startzustand
+\index{Akzeptierzustand}
+\item $F\subset Q$ heisst die Menge der Akzeptierzust"ande.
+\end{compactenum}
+\end{definition}
+Die Abbildung $\delta\colon Q\times \Sigma\to Q$ berechnet
+aus einem Ausgangszustand $q\in Q$ und einem Input-Zeichen $a\in\Sigma$
+einen neuen Zustand $\delta(q,a)\in Q$, in den der Automat durch
+die Verarbeitung von $a$ "ubergeht.
+
+\subsubsection{Gerichteter beschrifteter Graph eines DEA}
+\index{Graph!gerichteter!beschrifteter!eines DEA}
+Eine Visualisierung ist h"aufig "ubersichtlicher.
+Die Zust"ande von $Q$ werden durch Kreise dargestellt. Die
+"Ubergangsfunktion wird durch mit Buchstaben des Alphabets $\Sigma$
+angeschriebene Kreise symbolisiert. Akzeptierzust"ande werden durch
+doppelte Kreise markiert. Der Startzustand wird durch einen
+Pfeil angezeigt, der nicht einen Zustand als Ausgangspunkt hat.
+
+Damit haben wir einen gerichteten beschrifteten Graphen definiert.
+Die Vertizes des Graphen sind die Zust"ande, also $V=Q$.
+Vom Zustand $q$ aus verl"auft eine mit $a\in\Sigma$ beschriftete
+Kante zum Zustand $\delta(q,a)$, 
+die Kantenmenge
+ist also
+\[
+E=\{(q,\delta(q,a),a)\;|\; q\in Q\wedge a\in\Sigma\}.
+\]
+Darin nicht enthalten ist der Startzustand, den wir zwar auch als
+Pfeil zeichnen, der aber nicht eine Kante des Graphen ist, weil
+er nicht zwei Zust"ande verbindet.
+Zus"atzlich sind in diesem Graphen jedoch einzelne Zust"ande ausgezeichnet,
+was wir in einem gew"ohnlichen gerichteten Graphen nicht vorgesehen
+haben. Ein DEA ist also ein gerichteter beschrifteter Graph, aber nicht
+nur.
+
+Wichtig: von jedem Zustand aus gibt es genau einen Pfeil, der mit jedem m"oglichen
+Zeichen des Alphabets angeschrieben sind. Insbesondere kann man von jedem
+Zustand aus mit jedem beliebigen Zeichen auf genau eine Art fortfahren.
+\index{deterministisch}
+In diesem Sinne ist der Automat deterministisch.
+
+\subsubsection{Beispiele}
+\begin{beispiel}[\bf Drehkreuz]
+Der Drehkreuz-DEA besteht aus den Elementen $Q={V,E}$, $q_0=V$,
+$F=\{V\}$, $\Sigma=\{F,D\}$.
+Die "Ubergangsfunktion definiert zu jedem Zustand, und jedem m"oglichen
+Eingabewert, welcher zugeh"orige Zielwert erreicht wird:
+\begin{center}
+\begin{tabular}{|cc|c|}
+\hline
+$q$&$a$&$\delta(q,a)$\\
+\hline
+$V$&$D$&$V$\\
+$V$&$F$&$E$\\
+$E$&$D$&$V$\\
+$E$&$F$&$E$\\
+\hline
+\end{tabular}
+\end{center}
+\end{beispiel}
+\begin{beispiel}[\bf Gerade Zahlen]
+Ein DEA, welcher erkennen kann, ob eine Bitfolge einer geraden Zahl entspricht.
+Dieser DEA braucht zwei Zust"ande, denn eine Bitfolge, interpretiert
+als Zahl, kann entweder gerade (Zustand $q_0$, Rest $0$ bei Teilung durch 2)
+oder ungerade (Zustand $q_1$, Rest $1$) sein. Die leere
+Bitfolge entspricht der Zahl $0$, also einer geraden Zahl.
+Hinzuf"ugen eines weiteren
+Bits "andert den Zustand m"oglicherweise: h"angt man eine $0$ an, entsteht
+eine gerade Zahl, h"ange man eine $1$ an, entsteht eine ungerade Zahl.
+Wir haben also $\Sigma=\{0,1\}$, $q_0$ als Startzustand,  $F=\{q_0\}$. Die
+"Ubergangsfunktion ist
+\begin{center}
+\begin{tabular}{|cc|c|}
+\hline
+$q$&$a$&$\delta(q,a)$\\
+\hline
+$q_0$&$0$&$q_0$\\
+$q_0$&$1$&$q_1$\\
+$q_1$&$0$&$q_0$\\
+$q_1$&$1$&$q_1$\\
+\hline
+\end{tabular}
+\end{center}
+Die graphische Form ist wiederum
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&*++[o][F=]{q_0} \ar@/^/[r]^1 \ar@(ur,ul)_0
+		&{q_1} \ar@/^/[l]^0 \ar@(ur,ul)_1
+}
+\]
+\end{beispiel}
+\begin{beispiel}[\bf Ganzzahlen]
+Ein Automat, der Ganzzahlen ohne f"uhrende Nullen erkennt.
+Das Alphabet besteht aus den Ziffern und dem optionalen Minus, also
+\[
+\Sigma=\{
+{\tt 0},
+{\tt 1},
+{\tt 2},
+{\tt 3},
+{\tt 4},
+{\tt 5},
+{\tt 6},
+{\tt 7},
+{\tt 8},
+{\tt 9},
+{\tt -}
+\}
+\]
+Eine ganze Zahl kann mit einem {\tt -} beginnen, darf
+aber nicht mit einer {\tt 0} Anfangen. Danach d"urfen beliebige
+Ziffern folgen, aber kein {\tt -}. Sobald ein {\tt -} eingegeben
+wird, muss der Automat den Input als Illegal erkennen. Offenbar
+gibt es also folgende F"alle: Zahl mit Minus, Zahl ohne Minus,
+f"uhrende Null oder andere Illegalit"aten. Zusammen mit dem
+Startzustand sollten wir also mit vier Zust"anden auskommen.
+Sei $Q={q_0, m,p,e}$, dann wird das Zustandsdiagramm:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{q_0}  \ar[dl]_{{\tt 1},\dots,{\tt 9}} \ar[d]^{\tt 0} \ar[dr]^{\tt -}
+\\
+*++[o][F=]{p}\ar[r]^{\tt -} \ar@(ul,dl)_{{\tt 0},\dots,{\tt 9}}
+	&{e} \ar@(dr,dl)^{\Sigma}
+		&{m}\ar[l]_{{\tt 0},{\tt -}} \ar@/^40pt/[ll]^{{\tt 1},\dots,{\tt 9}}
+}
+\]
+\end{beispiel}
+\begin{beispiel}[\bf Ganzzahlen, diesmal richtig]
+Der eben gezeigte Automat ist insofern eine w"ortliche Realisierung
+der Anforderungen, dass er keine f"uhrende $0$ akzeptiert. Allerdings
+m"ochten wir in der Praxis auch eine einzelne $0$ akzeptieren k"onnen.
+Dazu ist es n"otig, den Automaten um einen Zustand zu erweitern:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{q_0}  \ar[ddl]_{{\tt 1},\dots,{\tt 9}} \ar[d]^{\tt 0} \ar[ddr]^{\tt -}
+\\
+*+\txt{}
+	&*++[o][F=]{0}\ar[d]^{\Sigma}
+\\
+*++[o][F=]{p}\ar[r]^{\tt -} \ar@(ul,dl)_{{\tt 0},\dots,{\tt 9}}
+	&{e} \ar@(dr,dl)^{\Sigma}
+		&{m}\ar[l]_{{\tt 0},{\tt -}} \ar@/^40pt/[ll]^{{\tt 1},\dots,{\tt 9}}
+}
+\]
+\end{beispiel}
+
+\subsubsection{Tabellenform}
+\index{Tabellenform eines DEA}
+Man kann alle Information eines DEA auch in einer einzigen Tabelle 
+darstellen. Die Zeilen werden mit den Zust"anden angeschrieben,
+die Spalten mit den Zeichen des Alphabetes. Akzeptierzust"ande werden
+mit {\tt /E} markiert, der Anfangszustand steht immer auf der ersten
+Zeile. Die oben betrachteten Beispiele haben folgende Tabellenform:
+
+\begin{beispiel}[\bf Drehkreuz] $V$ ist Startzustand und gleichzeitig
+Akzeptierzustand.
+
+\begin{center}
+\begin{tabular}{|c|cc|}
+\hline
+&$F$&$D$\\
+\hline
+$V{\tt /E}$&$E$&$V$\\
+$E$&$E$&$V$\\
+\hline
+\end{tabular}
+\end{center}
+
+\end{beispiel}
+
+\begin{beispiel}[\bf Gerade Zahlen] Die
+Zust"ande $q_0$ und $q_1$ stehen f"ur gerade und ungerade Zahlen:
+
+\begin{center}
+\begin{tabular}{|c|cc|}
+\hline
+&0&1\\
+\hline
+$q_0{\tt /E}$&$q_0$&$q_1$\\
+$q_1$&$q_0$&$q_1$\\
+\hline
+\end{tabular}
+\end{center}
+
+\end{beispiel}
+
+\begin{beispiel}[\bf Ganzzahl-Automat] Dieser Automat erkennt die $0$
+nicht korrekt.
+
+\begin{center}
+\begin{tabular}{|c|ccccccccccc|}
+\hline
+&\tt 0&\tt 1&\tt 2&\tt 3&\tt 4&\tt 5&\tt 6&\tt 7&\tt 8&\tt 9&\tt -\\
+\hline
+$q_0$&$e$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$m$\\
+$p{\tt /E}$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$e$\\
+$m$&$e$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$e$\\
+$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$\\
+\hline
+\end{tabular}
+\end{center}
+
+\end{beispiel}
+
+\begin{beispiel}[\bf Ganzzahl-Automat mit $0$] Um die $0$ richtig zu erkennen
+wird ein zus"atzlicher Zustand ben"otigt.
+
+\begin{center}
+\begin{tabular}{|c|ccccccccccc|}
+\hline
+&\tt 0&\tt 1&\tt 2&\tt 3&\tt 4&\tt 5&\tt 6&\tt 7&\tt 8&\tt 9&\tt -\\
+\hline
+$q_0$&$0$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$m$\\
+$0{\tt /E}$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$\\
+$p{\tt /E}$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$e$\\
+$m$&$e$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$p$&$e$\\
+$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$\\
+\hline
+\end{tabular}
+\end{center}
+
+\end{beispiel}
+
+\subsection{Von einem DEA akzeptierte Sprache}
+\index{akzeptierte Sprache eines DEA}
+Ein DEA definiert auf nat"urliche Weise eine Sprache: sie besteht aus
+allen W"ortern, die als Input f"ur den DEA angewendet, diesen vom
+Startzustand in einen Akzeptierzustand "uberf"uhren.
+
+\begin{definition}
+Sei $A$ ein endlicher Automat, dann ist $L(A)$ die Sprache
+\[
+L(A)=\{w\in\Sigma^*\;|\; \text{$w$ "uberf"uhrt $A$ in einen Akzeptierzustand}\}
+\]
+\end{definition}
+
+\begin{definition}
+\index{Sprache!regul\"are}
+Eine Sprache heisst regul"ar, wenn es einen DEA gibt, der sie
+akzeptiert.
+\end{definition}
+
+\subsubsection{Beispiele}
+\begin{beispiel}[\bf Durch drei teilbare Zahlen] 
+Man finde einen Automaten, der die durch drei teilbaren Zahlen in
+Bin"ardarstellung akzeptiert.
+Sei also $\Sigma=\{{\tt 0},{\tt 1}\}$,
+$L=\{w\in\Sigma^*\;|\; \text{$w$ stellt eine durch drei teilbare Zahl dar}\}.$
+Dabei soll das leere Wort f"ur als $0$
+interpretiert werden, und damit auch als durch drei teilbar gelten.
+Die Sprache $L$ ist regul"ar, weil sie
+von folgendem Automaten akzeptiert wird:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{} \ar[r]
+	&*++[o][F=]{0} \ar@/^/[rr]^{\tt 1} \ar@(ur,ul)_{\tt 0}
+		&*+\txt{}
+			&{1} \ar@/^/[dl]^{\tt 0}  \ar@/^/[ll]^{\tt 1}
+\\
+*+\txt{}
+	&*+\txt{}
+		&2\ar@/^/[ur]^{\tt 0} \ar@(dl,ul)^{\tt 1}
+}
+\]
+oder in Tabellenform
+\begin{center}
+\begin{tabular}{|c|cc|}
+\hline
+&\tt 0&\tt 1\\
+\hline
+0{\tt /E}&0&1\\
+1        &2&0\\
+2        &1&2\\
+\hline
+\end{tabular}
+\end{center}
+\end{beispiel}
+
+\begin{beispiel}[\bf W"orter mit einer geraden Anzahl $0$]
+Sei $\Sigma=\{{\tt a},{\tt b}\}$,
+$L=\{w\in\Sigma^*\;|\; |w|_{\tt a}\equiv 0\mod 2\}$. $L$ besteht aus
+den W"ortern, die  eine gerade Anzahl von {\tt a}s enthalten. Diese
+Sprache ist regul"ar, den sie wird vom Automaten
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{} \ar[r]
+	&*++[o][F=]{0}\ar@/^/[r]^{\tt a} \ar@(dl,dr)_{\tt b}
+		&1 \ar@/^/[l]^{\tt a} \ar@(dl,dr)_{\tt b}
+}
+\]
+\end{beispiel}
+
+\begin{beispiel}[\bf Bedingungen an einzelne Zeichen]
+Finde einen Automaten, der die Sprache $L$ "uber dem Alphabet
+$\Sigma=\{{\tt a},{\tt b}\}$ akzeptiert, deren W"orter mit 
+einem {\tt a} beginnen und genau ein {\tt b} enthalten.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{} \ar[r]
+	&{q_0} \ar[r]^{\tt a} \ar[dr]^{\tt b}
+		&{q_1} \ar@(ul,ur)^{\tt a} \ar[r]^{\tt b}
+			&*++[o][F=]{q_2}\ar@(ul,ur)^{\tt a}  \ar[dl]^{\tt b}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{e}\ar@(dl,dr)_{{\tt a},{\tt b}}
+}
+\]
+\end{beispiel}
+
+\subsection{Rekonstruktion des Automaten}
+Wenn eine Sprache regul"ar ist, dann muss es einen DEA geben, der
+diese Sprache erkennt. Doch wie findet man aus der Sprache, also 
+aus der Menge $L$, diesen DEA?
+
+Nehmen wir an, der DEA sei schon bekannt, und versuchen wir
+die Zust"ande zu charakterisieren. Befindet sich ein Automat
+im Zustand $q$, dann kann durch zus"atzlichen Input $w_e$ ein
+akzeptables Wort entstehen. Sei also
+$L(q)$ die Menge der W"orter, mit deren Hilfe man vom Zustand $q$
+aus einen Akzeptierzustand erreichen kann. Wenn man mit einem Wort
+$w_a$ den Zustand $q$ erreicht, dann ist $L(q)$ offenbar auch
+\[
+L(q)=\{ w_e\;|\; ww_e \in L\}= L(w)
+\]
+Die Mengen $L(w)$ k"onnen also ganz allein aus der Kenntnis der
+Sprache bestimmt werden, die $L(q)$ sind nicht mehr n"otig.
+
+Wir zeigen jetzt, dass wir mit den Mengen $L(w)$ als Zust"anden einen
+DEA bauen k"onnen, der genau die Sprache $L$ akzeptiert.
+Wir setzen als f"ur die Menge der Zust"ande 
+\[
+Q=\{L(w)\;|\;w\in\Sigma^*\}.
+\]
+
+Ein Wort muss offenbar genau dann akzeptiert werden, wenn
+man es ans leere Wort anh"angen kann, und damit zu einem Akzeptierzustand
+kommt, also $L=L(\varepsilon)$. Dies ist der Anfangszustand des Automaten,
+also
+\[
+q_0=L.
+\]
+
+Die "Ubergangsfunktion $\delta$ f"uhrt die Menge $L(w)$ bei Input
+$a$ in die Menge $L(wa)$ "uber, also
+\[
+\delta \colon Q\times\Sigma\to Q:(L(w),a)\mapsto L(wa).
+\]
+
+Akzeptierzustande sind offenbar diejenigen $L(w)$, von denen
+aus man nicht mehr weiter gehen muss, um einen Akzeptierzustand
+zu erreichen, also jene $L(w)$ die das leere Wort enthalten:
+\[
+F=\{L(w)\;|\;\varepsilon\in L(w)\}.
+\]
+
+Wir nennen den eben konstruierten Automaten $A$.
+Jetzt m"ussen wir nur noch zeigen, dass dieser Automat genau die
+W"orter in $L$ akzeptiert.
+Sei das Wort $w\in L$ zusammengesetzt aus den
+Zeichen $a_1,a_2,\dots,a_n$, also $w=a_1a_2\dots a_n$. Dann f"uhrt
+der Input $w$ den Anfangszustand $L$ schrittweise "uber in
+\[
+L(a_1)\to L(a_1a_2)\to L(a_1a_2a_3)\to \dots \to L(a_1a_2\dots a_n),
+\]
+da letzterer das leere Wort enth"alt, ist er ein Akzeptierzustand.
+Ein Wort in $L$ wird also automatisch vom Automaten $A$ akzeptiert.
+
+Jetzt m"ussen wir noch nachweisen, dass ein von $A$ akzeptiertes Wort $w$
+auch in $L$ drin liegt. Dass $A$ das
+Wort $w$ akzeptiert besagt, dass $\varepsilon \in L(w)$.
+Das ist aber gleichbedeuten damit, dass $w\in L$. Damit ist alles
+bewiesen, und wir haben folgenden Satz.
+
+\begin{satz}[Myhill-Nerode]\label{satz_dea_aus_sprache}
+\index{Myhill-Nerode!Satz von}
+Ist $L$ eine regul"are Sprache, dann wird $L$ von dem 
+endlichen Automat $A=(Q,\Sigma,\delta,q_0,F)$ akzeptiert mit
+\begin{align*}
+Q&=\{L(w)\;|\;w\in\Sigma^*\}\\
+q_0&=L\\
+F&=\{q\in Q\;|\; \varepsilon\in q\}\\
+\delta&\colon Q\times \Sigma\to Q:(L(w),a)\mapsto L(wa)
+\end{align*}
+\end{satz}
+
+\subsubsection{Beispiel}
+Wir rekonstruieren den Automaten f"ur die folgende Sprache "uber
+$\Sigma=\{{\tt a},{\tt b}\}$:
+\[
+L=\{w\in \Sigma^*\;|\; |w|_{\tt a}\equiv 0\mod 2\}.
+\]
+Dazu m"ussen wir die Menge der m"oglichen $L(w)$ ermitteln:
+\begin{center}
+\begin{tabular}{|c|l|}
+\hline
+$w$&$L(w)$\\
+\hline
+$\varepsilon$&$L$\\
+{\tt a}&$L({\tt a})=\{w\in L^*\;|\; \text{$|w|_a$ ungerade}\}$\\
+{\tt b}&$L({\tt b})=\{w\in L^*\;|\; \text{$|w|_a$ gerade}\}=L$\\
+$|w|_{\tt a}$ ungerade&$L({\tt a})$\\
+$|w|_{\tt a}$ gerade&$L$\\
+\hline
+\end{tabular}
+\end{center}
+Offenbar gibt es also genau die zwei Zust"ande $L$ und $L'=L({\tt a})$.
+Ein Zeichen {\tt a} f"uhrt $L$ in $L({\tt a})$ "uber und umgekehrt,
+das Zeichen {\tt b} "andert den Zustand nicht:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{} \ar[r]
+	&*++[o][F=]{L}\ar@/^/[r]^{\tt a} \ar@(ul,ur)^{\tt b}
+		&{L'} \ar@/^/[l]^{\tt a} \ar@(ul,ur)^{\tt b}
+}
+\]
+Dieser Automat ist identisch mit dem fr"uher gefundenen.
+
+Mit dem Satz von Myhill-Nerode erhalten wir damit auch einen Satz,
+der zu entscheiden erlaubt, ob eine Sprache regul"ar ist.
+
+\begin{satz}
+Sei $L$ eine Sprache "uber $\Sigma$ und $L(w)=\{ v\in\Sigma^*\;|\; wv\in L\}$.
+Falls die Menge 
+\[
+\{L(w)\;|\; w\in\Sigma^*\}
+\]
+endlich ist, ist $L$ regul"ar. Falls sie unendlich ist, kann $L$ nicht
+regul"ar sein.
+\end{satz}
+
+Als Anwendung dieses Satzes zeigen wir, dass die Sprache
+$\{ 0^n1^n \;|\; n\in\mathbb N\}$ "uber $\Sigma=\{0,1\}$
+nicht regul"ar ist. Wir m"ussen also
+die Mengen $L(w)$ f"ur alle denkbaren W"orter $w\in\Sigma^*$
+ermitteln. Dazu erstellen wir die folgende Tabelle:
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+$w$&$L(w)$\\
+\hline
+$\varepsilon$&$L$\\
+$1$&$\emptyset$\\
+$1^n$&$\emptyset$\\
+$0$&$\{0^n1^{n+1}\;|\; n\in\mathbb N\}$\\
+$0^2$&$\{0^n1^{n+2}\;|\; n\in\mathbb N\}$\\
+$0^k$&$\{0^n1^{n+k}\;|\; n\in\mathbb N\}$\\
+$0^k1^l$&$\{1^{k-l}\}$ falls $k\le l$\\
+$0^k1^l$&$\emptyset $ falls $k<l$\\
+\hline
+\end{tabular}
+\end{center}
+An den Zeilen vier bis sieben kann man ablesen, dass es unendlich
+viele verschiedene Mengen $L(w)$ gibt, somit kann $L$ nicht von
+einem endlichen Automaten erkannt werden.
+
+\subsection{Minimaler Automat}
+\index{Automat!minimaler}
+Zwei endliche Automaten k"onnen v"ollig verschieden aussehen,
+und trotzdem die gleiche Sprache akzeptieren. Kann man auf einfache
+Art herausfinden, ob zwei endliche Automaten die gleiche Sprache
+akzeptieren?
+
+G"abe es f"ur einen Automaten auf eine Standardform bringen, k"onnte
+man diese f"ur einen solchen Vergleich verwenden. Zun"achst m"usste
+man beide Automaten in die Standardform bringen. Wenn sie Standardformen
+"ubereinstimmen, akzeptieren die Automaten die gleiche Sprache.
+
+Eine Standardform eines Automaten k"onnen wir "uber die Konstruktion
+aus Satz \ref{satz_dea_aus_sprache} ermitteln: Zu einem Automaten
+$A$ ermitteln wir zun"achst die Sprache $L=L(A)$, f"ur die wir dann
+den Automaten aus Satz \ref{satz_dea_aus_sprache} bilden.
+
+\begin{satz}[Minimalautomat]\label{satz_minimalautomat}
+Sei $A$ ein DEA, und $A'$ der DEA, der nach
+Satz \ref{satz_dea_aus_sprache} gebildet wurde. Dann gibt es
+eine surjektive Abbildung der Zust"ande $f\colon Q\to Q'$, so dass
+\begin{compactenum}
+\item $f(q_0)=q_0'=L$
+\item $\delta'(f(q),a)=f(\delta(q,a))$
+\item $q\in F\Rightarrow f(q)\in F'$
+\end{compactenum}
+Insbesondere ist $A'$ der kleinste aller Automaten, der die Sprache
+$L$ akzeptieren kann.
+\end{satz}
+
+\begin{proof}[Beweis]
+Jedes Wort $w\in\Sigma^*$ f"uhrt den Automaten $A$ aus dem
+Anfangszustand in einen Zustand $q\in Q$. F"uhren zwei W"orter
+$w_1$ und $w_2$ den DEA $A$ in den gleichen Zustand $q$, werden
+von dort aus die gleichen W"orter akzeptiert, d.~h.~$L(w_1)=L(w_2)$.
+Die Abbildung
+\[
+f\colon Q\to Q': q\mapsto L(w)
+\]
+ist also unabh"angig von dem Wort $w$, mit welchem man den Zustand $q$
+erreicht hat. 
+
+Jetzt muss gezeigt werden, dass $f$ die genannten Eigenschaften hat:
+\begin{compactenum}
+\item
+$\varepsilon$ f"uhrt $A$ in den Anfangszustand "uber, also
+$f(q_0)=L(\varepsilon)=L=q_0'$.
+\item Falls $w$ den DEA in den Zustand $q$ f"uhrt, f"uhrt das Wort
+$wa$ den DEA in den Zustand, den man von $q$ mit Input $a$ erreicht.
+Also ist
+\[
+\delta'(f(q),a)=\delta'(L(w), a)=L(wa)=f(\delta(q,a))
+\]
+\item Sei $q\in F$, und sei $w$ ein Wort, welches den DEA in den Zustand 
+$q$ f"uhrt. Dann ist $f(q)=L(w)$, da aber $q$ ein Akzeptierzustand ist,
+ist $\varepsilon\in L(w)$, $f(q)$ ist also ein Akzeptierzustand von
+$A'$.
+\end{compactenum}
+
+\end{proof}
+
+Die Bestimmung des Automaten "uber den Satz \ref{satz_dea_aus_sprache}
+ist eher umst"andlich. Der Satz \ref{satz_minimalautomat} zeigt
+aber auch, dass wir einfach nach einem DEA suchen m"ussen, in dem
+m"oglichst viele Zust"ande zusammengelegt worden sind, bis sich die
+Anzahl der Zust"ande nicht mehr weiter verringern l"asst.
+
+Wir m"ussen also herausfinden, welche Zust"ande man zusammenlegen
+kann. Das sind nat"urlich genau diejenigen, die das gleiche $L(q)$
+haben.
+\index{aquivalent Zustande@\"aquivalent!Zust\"ande}
+Statt herauszufinden, welche Zust"ande in diesem Sinne "aquivalent
+sind, k"onnte man auch herauszufinden versuchen, welche nicht "aquivalent
+sind. Als Beispiel nehmen wir den folgenden Automaten\footnote{Aus [S]}
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+	&*+\txt{}
+		&{z_1}\ar@/_/[dd]_{0} \ar[dr]^{1}
+\\
+*+\txt{} \ar[r]
+	&{z_0}\ar[ur]^{0} \ar[dr]^1
+		&*+\txt{}
+			&*++[o][F=]{z_3}\ar@(ur,dr)^{0,1}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{z_2} \ar@/_/[uu]_{0} \ar[ur]^{1}
+}
+\]
+Von den zwei Zust"anden $z_1$ und $z_2$ aus kann man genau die gleichen
+akzeptierten W"orter bilden, also $L(z_1)=L(z_2)$, man m"usste diese
+also zusammenlegen k"onnen.
+
+\index{Algorithmus!f\"ur den Minimalautomaten}
+Um solche Zust"ande zu finden, erstellen wir jetzt eine Tabelle, in der
+wir aufzeichnen, welche Zust"ande "aquivalent sind oder auch nicht.
+"Aquivalente Zust"ande markieren wir mit dem Zeichen $\equiv$, nicht
+"aquivalente mit einem Kreuz $\times$.
+Zun"achst wissen wir nur, dass jeder Zustand zu sich selbst "aquivalent
+ist, also
+\begin{center}
+\begin{tabular}{ccccc}
+     &$z_0$   &$z_1$   &$z_2$   &$z_3$   \\
+$z_0$&$\equiv$&        &        &        \\
+$z_1$&        &$\equiv$&        &        \\
+$z_2$&        &        &$\equiv$&        \\
+$z_3$&        &        &        &$\equiv$
+\end{tabular}
+\end{center}
+Zwei Zust"ande k"onnen nicht "aquivalent sein, wenn der eine
+ein Akzeptierzustand ist, der andere hingegen nicht, wir markieren
+also alle solchen Paare mit einem $\times$, f"ullen aber nur den Teil unterhalb der
+Diagonalen aus.
+\begin{center}
+\begin{tabular}{ccccc}
+     &$z_0$   &$z_1$   &$z_2$   &$z_3$   \\
+$z_0$&$\equiv$&        &        &        \\
+$z_1$&        &$\equiv$&        &        \\
+$z_2$&        &        &$\equiv$&        \\
+$z_3$&$\times$&$\times$&$\times$&$\equiv$
+\end{tabular}
+\end{center}
+Falls man von den Zust"anden $p$ und $q$ mit einem "Ubergang
+ein bereits mit $\times$ markiertes Feld erreichen kann, k"onnen die
+Zust"ande $p$ und $q$ nicht "aquivalent sein, man muss also auch das
+Feld $(p,q)$ mit $\times$ markieren.
+Vom Paar $(z_0,z_1)$ aus kann man zum Beispiel mit einer $1$ das
+Paar $(z_2,z_3)$ erreichen, welche als nicht "aquivalent bekannt
+sind. Ebenso kann man von $(z_0,z_2)$ mit einer $1$ das Paar
+$(z_2,z_3)$ erreichen. So findet man die Tabelle
+\begin{center}
+\begin{tabular}{ccccc}
+     &$z_0$   &$z_1$   &$z_2$   &$z_3$   \\
+$z_0$&$\equiv$&        &        &        \\
+$z_1$&$\times$&$\equiv$&        &        \\
+$z_2$&$\times$&        &$\equiv$&        \\
+$z_3$&$\times$&$\times$&$\times$&$\equiv$
+\end{tabular}
+\end{center}
+Das verbleibende Paar $(z_1,z_2)$ wird aber immer in $(z_1,z_2)$ 
+oder $(z_3,z_3)$ "ubergef"uhrt, von beiden Paare k"onnen wir nicht
+schliessen, dass sie nicht "aquivalent sind, also m"ussen sie "aquivalent
+sein:
+\begin{center}
+\begin{tabular}{ccccc}
+     &$z_0$   &$z_1$   &$z_2$   &$z_3$   \\
+$z_0$&$\equiv$&        &        &        \\
+$z_1$&$\times$&$\equiv$&        &        \\
+$z_2$&$\times$&$\equiv$&$\equiv$&        \\
+$z_3$&$\times$&$\times$&$\times$&$\equiv$
+\end{tabular}
+\end{center}
+Man kann also die beiden Zust"ande $z_1$ und $z_2$ zusammenlegen,
+und erh"alt den minimalen Automaten:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{} \ar[r]
+	&{z_0}\ar[r]^{0,1} 
+		&{z_{1,2}}\ar@(ur,ul)_{0}\ar[r]^1
+			&*++[o][F=]{z_3}\ar@(ur,dr)^{0,1}
+}
+\]
+\subsection{Pumping Lemma f"ur regul"are Sprachen}
+\index{Pumping Lemma!f\"ur regul\"are Sprachen}
+Eine regul"are Sprache wird von einem DEA akzeptiert. Dadurch wird
+die Struktur der W"orter eingeschr"ankt. Ein Wort $w$ beschreibt
+einen Pfad durch den gerichteten beschriftenten Graphen des DEA.
+Wenn das Wort l"anger ist als die Anzahl der Zust"ande, dann muss
+mindestens ein Zustand mehrmals vorkommen. Wir k"onnen sogar
+sagen, dass die erste solche Wiederholung innerhalb der ersten
+$N = |Q|$ Zeichen des Wortes $w$ auftreten muss. Sei $x$ das Wort,
+das den Zustand in den ersten wiederholten Zustand $q$ f"uhrt.
+Sei $y$ das k"urzeste Wort, welches von $q$ wieder zu $q$ f"uhrt, und
+$z$ der Rest, also $w=xyz$. Dann k"onnen wir die Schleife $y$
+auch mehrmals wiederholen, und immer ein Wort erhalten welches
+vom Anfangszustand "uber den Zustand $q$ (evlt.~mehrmals) zu einem
+Endzustand f"uhrt. Die W"orter $xy^kz$ werden also alle auch von
+dem Automaten akzeptiert. Damit haben wir folgendes bewiesen:
+\begin{satz}[Pumping Lemma f"ur regul"are Sprachen]
+\index{pumping length!f\"ur regul\"are Sprachen}
+Ist $L$ eine regul"are Sprache, dann gibt es eine Zahl $N$, die Pumping Length, so dass
+jedes Wort $w\in L$ mit $|w|\ge L$ in drei Teile
+$w=xyz$ zerlegt werden kann, so dass
+\begin{compactenum}
+\item $|y| > 0$
+\item $|xy|\le N$
+\item $xy^kz\in L\quad\forall k\ge 0$
+\end{compactenum}
+\end{satz}
+
+Das Pumping Lemma dient in erster Linie dazu, von einer Sprache
+nachzuweisen, dass sie nicht regul"ar ist. Dazu nimmt man an, dass
+die Sprache regul"ar ist, f"ur sie also die Aussage des Pumping Lemma
+gilt. Dann leitet man daraus einen Widerspruch ab.
+
+\begin{figure}
+\begin{center}
+\begin{tabular}{l}
+\includegraphics[width=0.9\hsize]{images/pl-2.pdf}\\
+\includegraphics[width=0.9\hsize]{images/pl-1.pdf}\\
+\includegraphics[width=0.9\hsize]{images/pl-3.pdf}\\
+\includegraphics[width=0.9\hsize]{images/pl-4.pdf}
+\end{tabular}
+\end{center}
+\caption{Anwendung des Pumping-Lemmas. Ein gen"ugend langes Wort
+der Sprache $w=0^N1^N$ kann nach dem Pumping Lemma in $w=xyz$ 
+zerlegt werden (2.~Zeile). Das Pumping Lemma verspricht, dass
+abgepumpte W"orter (3.~Zeile) und aufgepumpte W"orter (4.~Zeile)
+auch zur Sprache geh"oren sollen.
+\label{plimage}}
+\end{figure}
+
+\begin{beispiel}[\bf Eine nicht regul"are Sprache]
+Wir f"uhren dies an dem Beispiel der Sprache $L=\{0^n1^n|n\ge 0\}$
+durch, welche wir bereits als nicht regul"ar erkannt haben. Wir nehmen
+jetzt also an, dass $L$ regul"ar sei. Dann gibt es nach dem Pumping
+Lemma eine Zahl $N$, so dass W"orter mit mindestens dieser L"ange
+interessante Eigenschaften haben. Wir w"ahlen das Wort
+\[
+0^N1^N\in L
+\]
+Nach dem Pumping Lemma muss $w$ in drei Teile aufgeteilt werden k"onnen
+(Abbildung~\ref{plimage}),
+$w=xyz$,
+wovon die ersten beiden Teile $x$ und $y$ zusammen eine L"ange $\le N$
+haben, also aus lauter Nullen bestehen m"ussen. Der Teil $y$ muss
+mindestens eine Null enthalten. Wenn man jetzt $xy^kz$ bildet, vermehrt
+man die Zahl der Nullen, nicht aber die Zahl der Einsen, man erh"alt
+also ein Wort, welches mehr Nullen als Einsen enth"alt. Das Pumping
+Lemma sagt, dass $xy^kz\in L$, aber die Definition von $L$ sagt,
+dass ein Wort in $L$ gleich viele Nullen wie Einsen haben muss, also
+$xy^kz\not\in L$ f"ur $k>1$. Dieser Widerspruch zeigt, dass die urspr"ungliche
+Annahme, $L$ sei regul"ar gewesen, nicht haltbar ist. Also ist
+die Sprache nicht regul"ar.
+\end{beispiel}
+
+\subsubsection{Beispiel}
+\index{Palindrom}
+Ein Palindrom ist ein Wort, welchesn ``vorw"arts'' und ``r"uckw"arts''
+gleich lautet. Zum Beispiel {\tt otto}, {\tt anna}, {\tt reittier} oder der
+Klassiker
+\begin{center}
+{\tt ein neger mit gazelle zagt im regen nie}
+\end{center}
+Formal k"onnen wir das so beschreiben: ist $w=a_1a_2\dots a_n\in\Sigma^*$
+ein Wort, dann sei $w^t=a_na_{n-1}\dots a_2a_1$ das ``r"uckw"arts
+geschriebene Wort:
+\[
+{\tt esel}^t={\tt lese},\quad {\tt reliefpfeiler}^t={\tt reliefpfeiler}.
+\]
+Palindrome sind offenbar W"orter, die sich bei Anwendung der
+$\mathstrut^t$-Operation nicht "andern: $w^t=w$. Die Menge der Palindrom
+ist nat"urlich eine Sprachen $L=\{w\in\Sigma^*\;|\;w^t=w\}$. 
+
+Wir zeigen jetzt, dass die Menge der Palindrome keine regul"are Sprache ist.
+Dazu verwenden wir das Pumping-Lemma, wir nehmen also an, die Sprache
+sei regul"ar, und f"uhren dies mit dem Pumping Lemma zu einem
+Widerspruch:
+\begin{compactenum}
+\item Das Pumping Lemma verspricht, dass es eine Zahl $N$ gibt, die
+Pumping Length.
+\item Wir bilden jetzt das Wort $0^N10^N$. Dieses Wort ist ein Palindrom,
+also in $L$.
+\item Das Pumping Lemma garantiert jetzt eine Zerlegung des Wortes
+in drei Teile $xyz$, mit den Eigenschaften $|xy|\le N$, $|y|\ge 1$ und
+$xy^kz\in L\forall k\in\mathbb N$.
+\item Wir pr"ufen dies nach f"ur $k=2$. Da $|xy|\le N$, bestehen
+sowohl $x$ als auch $y$ aus lauter Nullen. Die $1$ befindet sich im Teil $z$.
+Das Wort $xyyz$ hat daher $N+|y|$ Nullen vor der $1$, aber nur $N$ Nullen
+nach der $1$, ist also kein Palindrom mehr. Es ist also $xy^2z\not\in L$,
+im Widerspruch zur Ausssage des Pumping Lemma (vorangegangener Schritt).
+\end{compactenum}
+Der Widerspruch zeigt jetzt, dass die Annahme, $L$ sei regul"ar, nicht
+haltbar ist, $L$ ist also nicht regul"ar.
+
+\rhead{Nicht deterministische Automaten}
+\section{Nicht deterministische Automaten}
+Ein DEA sieht jeweils nur ein Zeichen weit, kann sich nicht an "altere
+Zeichen erinnern, und kann seine fr"uheren Entscheidungen beim Eintreffen
+neuer Zeichen nicht mehr revidieren. Es ist daher nicht unmittelbar klar,
+wie eine Bedingung wie ``wenn ein
+Wort mit einer {\tt 0} aufh"ort, dann muss es auch mit einer {\tt 0}
+beginnen'' implementiert werden m"usste.
+
+\index{Automat!nicht deterministischer}
+\index{NEA|see{nicht deterministischer endlicher Automat}}
+Nichtdeterminismus erweitert 
+die Definition eines endlichen Automaten, um solche F"alle leichter 
+zug"anglich zu machen. Es stellt sich daher die Frage, ob die Menge 
+der Sprachen, die von solchen nichtdeterministischen endlichen Automaten (NEA)
+erkannt werden k"onnen,
+gr"osser ist. Es wird sich zeigen, dass jeder NEA
+in einen "aquivalenten DEA umgewandelt werden kann, NEAs erkennen also
+die gleichen Sprachen wie DEAs.
+
+\subsection{Definition}
+In einem DEA gibt es zu jedem Zustand $q\in Q$
+und jedem Zeichen $a\in\Sigma$ genau
+einen "Ubergang in den Zustand $\delta(q,a)$.
+Ein nicht deterministischer
+Automat l"asst dagegen mehrere M"oglichkeiten zu. Das ``Resultat''
+von $\delta$ ist also nicht mehr ein (eindeutiger) neuer Zustand, sondern
+eine ganze Menge von Zustanden, also ein Element der Potenzmenge $P(Q)$.
+
+Zudem soll ein
+nicht deterministischer Automat auch einen "Ubergang durchf"uhren
+k"onnen, wenn gar kein Input anliegt.
+Ausser den Zeichen aus $\Sigma$ soll f"ur das zweite Argument
+von $\delta$ auch das leere Wort zul"assig sein.
+
+\begin{definition}\label{definition_nea}
+Ein nichtdeterministischer endlicher Automat (NEA) ist ein Quintupel
+$(Q,\Sigma,\delta, q_0,F)$ mit
+\begin{compactenum}
+\item $Q$ ist eine beliebige endliche Menge von Zust"anden
+\item $\Sigma$ ist eine endliche Menge, genannt das Alphabet.
+\item $\delta\colon Q\times(\Sigma\cup\{\varepsilon\})\to P(Q)$ heisst "Ubergangsfunktion
+\item $q_0\in Q$ heisst Startzustand
+\item $F\subset Q$ heisst die Menge der Akzeptierzust"ande.
+\end{compactenum}
+\end{definition}
+\index{e-Ubergange@$\varepsilon$-\"Uberg"ange}
+"Uberg"ange mit $\varepsilon$ als ``Input'' heissen $\varepsilon$-"Uberg"ange.
+Ein NEA kann einen solchen "Ubergang durchf"uhren ``wann er Lust hat''.
+
+Ein DEA ist ein Spezialfall eines NEA. Ein NEA ist
+ein DEA, wenn
+\begin{align}
+\delta(q,\varepsilon)&=\emptyset&&\forall q\in Q\label{deanea1}\\
+|\delta(q,a)|&=1&&\forall q\in Q, a\in\Sigma\label{deanea2}
+\end{align}
+Die erste Bedingung (\ref{deanea1}) bedeutet, dass keine
+$\varepsilon$-"Uberg"ange vorkommen. Die zweite Bedingung (\ref{deanea2})
+bedeutet, dass von jedem Zustand zu jedem Zeichen genau ein
+neuer Zustand m"oglich ist.
+
+\subsubsection{Gerichteter beschrifteter Graph eines NEA}
+\index{Graph!gerichteter!beschrifteter!eines NEA}
+Auch ein NEA kann durch einen gerichteten beschrifteten Graphen
+visualisiert werden. Die Vertizes sind die Zust"ande $V=Q$. Die
+Kanten sind mit Element aus $\Sigma\cup\{\varepsilon\}$ beschriftet.
+Von der Ecke $q\in Q$ aus f"uhrt zu jedem Element von $\delta(q,a)\in P(Q)$
+eine mit $a$ beschriftete Kante, wobei $a\in \Sigma\cup\{\varepsilon\}$, $a=\varepsilon$ ist also auch m"oglich.
+
+Es ist also durchaus denkbar, dass von einem Zustand $q$ aus f"ur ein
+bestimmtes Eingabezeichen $a$ kein "Ubergang m"oglich ist, n"amlich
+wenn $\delta(q,a)=\emptyset$. Der Automat ``verklemmt'' sich sozusagen
+in dieser Situation, und ist sicher nicht in der Lage, ein Wort, welches
+ihn in diese Situation gef"uhrt hat, zu akzeptieren.
+
+
+\subsection{Beispiele}
+\begin{beispiel}[\bf Ganzzahl-Automat]
+Im Ganzzahl-Automat f"uhren viele "Uberg"ange zum Zustand $e$, der
+alle fehlerhaften Inputs aufsammelt. Wir k"onnten diesen Zustand einfach
+weglassen, und erhalten folgenden, wesentlich "ubersichtlicheren NEA:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{q_0}  \ar[dl]_{{\tt 1},\dots,{\tt 9}} \ar[dr]^{\tt -}
+\\
+*++[o][F=]{p}\ar@(ul,dl)_{{\tt 0},\dots,{\tt 9}}
+	&*+\txt{}
+		&{m} \ar[ll]^{{\tt 1},\dots,{\tt 9}}
+}
+\]
+Aus Zustand $q_0$ ist kein "Ubergang mit dem Zeichen {\tt 0} m"oglich,
+dadurch werden f"uhrende Nullen verboten.
+Ein {\tt -} kann nur am Anfang
+stehen, befindet sich der Automat bereits im Zustand $m$ oder $p$, kann 
+er keine weiteren {\tt -} akzeptieren.
+Nach einem {\tt -} darf nur ein {\tt 0} folgen, denn vom Zustand $m$
+aus gibt es keinen mit {\tt 0} angeschrieben "Ubergang.
+\end{beispiel}
+
+\begin{beispiel}[\bf Bedingung an ein einzelnes Zeichen]
+Sei $\Sigma=\{{\tt a},{\tt b}\}$, man finde einen NEA, der die 
+Sprache akzeptiert, deren W"orter an der drittletzten Stelle
+eine {\tt a} haben.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{} \ar[r]
+	&{q_0} \ar[r]^{\tt a} \ar@(dr,dl)^{{\tt a},{\tt b}}
+		&{q_1}\ar[r]^{{\tt a},{\tt b}}
+			&{q_2}\ar[r]^{{\tt a},{\tt b}}
+				&*++[o][F=]{q_3}
+}
+\]
+Der Automat ist nicht deterministisch, weil im Zustand $q_0$ zwei verschiedene
+"Uberg"ange f"ur das Zeichen {\tt a} m"oglich sind. Der Automat bleibt
+sozusagen im Zustand $q_0$ bis er ``weiss'', dass jetzt das drittletzte
+Zeichen ansteht.
+\end{beispiel}
+
+\begin{beispiel}[\bf Teilbarkeit]
+F"ur $\Sigma=\{{\tt 0}\}$ finde einen NEA f"ur die Sprache 
+\[
+L=\{w\in \Sigma^*\;|\; \text{$|w|$ ist durch 2 oder 3 teilbar}\}.
+\]
+Das Problem bei der Konstruktion eines DEA ist, dass wird zu
+Beginn noch nicht wissen k"onnen, ob wir einen ankommenden
+String auf Teilbarkeit durch $2$ oder durch $3$ testen sollen.
+Also verwenden wir $\varepsilon$-"Uberg"ange aus dem Startzustand
+in zwei verschiedene Automaten, die die Teilbarkeit testen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+	&*+\txt{}
+		&*++[o][F=]{q_1} \ar@/^/[r]^{\tt 0}
+			&{q_2} \ar@/^/[l]^{\tt 0}
+\\
+*+\txt{} \ar[r]
+	&{q_0}\ar[ur]^{\varepsilon} \ar[dr]^{\varepsilon}
+\\
+*+\txt{}
+	&*+\txt{}
+		&*++[o][F=]{q_3}\ar[r]^{\tt 0}
+			&{q_4}\ar[dl]^{\tt 0}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{q_5}\ar[u]^{\tt 0}
+}
+\]
+\end{beispiel}
+
+\subsection{Erreichbare Zust"ande}
+\index{erreichbare Zust"ande}
+Im Folgenden werden wir berechnen m"ussen, welche Menge von Zust"anden
+durch einen "Ubergang oder mehrere verkettete "Uberg"ange erreicht werden
+k"onnen.  Es besteht ein Unterschied, ob der "Ubergang infolge eines
+Input-Zeichens $a\in\Sigma$ erfolgt, oder ob er spontan als
+$\varepsilon$-"Ubergang ausgef"uhrt werden kann.
+
+\subsubsection{"Ubergang zu Zeichen aus $\Sigma$}
+Die Menge $\delta(q,a)\subset Q$ gibt die in einem Schritt mit Inputzeichen $a$
+von $q$ aus erreichbaren Zust"ande von $Q$ an. F"ur den Input $a_1a_2$ kann
+man von jedem Zustand in $\delta(q,a_1)$ aus weiter Zust"ande mit einem
+"Uberang mit Inputzeichen $a_2$ erreichen. Die Menge der erreichbaren
+Zust"ande ist
+\begin{equation}
+\delta(q,a_1a_2)=\bigcup_{q_1\in\delta(q,a_1)}\delta(q_1, a_2)
+=\delta(\delta(q,a_1),a_2)
+\label{erreichbar}
+\end{equation}
+Dies kann man wiederholen:
+\begin{align*}
+\delta(q,a_1a_2a_3)&=
+\bigcup_{q_2\in\delta(q, a_1a_2)}\delta(q_2,a_3)
+=
+\delta(\delta(\delta(q,a_1),a_2),a_3)
+\\
+\delta(q,a_1\dots a_n)&=\bigcup_{q_{n-1}\in\delta(q,a_1\dots a_{n-1})}\delta(q_{n-1},a_n)
+=\delta(\dots \delta(q,a_1)\dots,a_n)
+\end{align*}
+Die so definierte Menge $\delta(q,a_1\dots a_n)$ umfasst alle von
+$q$ aus erreichbaren Zust"ande.
+
+Falls $q'\in\delta(q,a_1\dots a_n)$ gibt
+es insbesondere eine Folge von Zwischenzust"anden $q_1,\dots,q_{n-1}$
+mit $q_k\in\delta(q_{k-1},a_k)$ f"ur alle $k$. Ausserdem  ist
+nat"urlich $q_k\in\delta(q,a_1\dots a_k)$ f"ur alle $k$.
+
+Eine Menge $M$ von Zust"anden stellt man sich am besten vor, indem man die
+darin enthaltenen Zust"ande farbig markiert. In der Menge $\delta(M,a)$
+befinden sich alle Zust"ande, die von Zust"anden von $M$ aus mit Input
+$a$ erreichbar sind.
+
+\subsubsection{$\varepsilon$-"Uberg"ange}
+
+Einzelne Zust"ande kann man auch durch $\varepsilon$-"Uberg"ange
+erreichen. Die Menge der Zust"ande, die von $q\in Q$ aus durch
+$\varepsilon$-"Uberg"ange erreichbar sind, bezeichnen wir mit
+$E(q)$.
+Sie setzt sich zusammen aus Zust"anden, die in einem einzigen 
+Schritt erreichbar sind, und solchen, die durch wiederholte
+Schritte erreichbar werden. 
+\[
+E(q)=\{q\} \cup \delta(q,\varepsilon) \cup \delta(\delta(q,\varepsilon),\varepsilon)\cup\dots
+\]
+
+\subsection{``K"onnte''-Automat\label{Thompson-NEA}}
+Ein NEA hat bei jedem "Ubergang eventuell mehrere Zielst"ande zur Auswahl.
+Eine Implementation muss im Prinzip alle diese M"oglichkeiten 
+durchprobieren.
+Alternativ k"onnte er sich aber auch merken,
+welche m"oglichen Zust"ande im Laufe der Verarbeitung eines
+Wortes erreicht werden konnten.
+Die Menge der m"oglichen erreichten Zust"ande kann mit jedem
+neuen Zeichen des Inputwortes neu berechnet werden. 
+Eine separate Speicherung ist nicht erforderlich, wenn man die
+erreichten Zust"ande mit einer Markierung versieht.
+
+\begin{figure}
+\begin{center}
+\includegraphics{images/reg-1}
+\end{center}
+\caption{Beispiel eines NEA\label{koenntenea}}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\begin{tabular}{cccc}
+&%
+\includegraphics[width=0.35\hsize]{images/reg-2}&
+\raisebox{60pt}{$\overset{\displaystyle\text{\tt b}}\longrightarrow$}&
+\includegraphics[width=0.35\hsize]{images/reg-3}\\
+\raisebox{60pt}{$\overset{\displaystyle\text{\tt a}}\longrightarrow$}&
+\includegraphics[width=0.35\hsize]{images/reg-4}&
+\raisebox{60pt}{$\overset{\displaystyle\text{\tt a}}\longrightarrow$}&
+\includegraphics[width=0.35\hsize]{images/reg-5}
+\end{tabular}
+\end{center}
+\caption{Verarbeitung des Wortes {\tt baa} durch den NEA von
+Abbildung~\ref{koenntenea}. Die m"oglichen Zust"ande sind jeweils
+rot markiert.\label{koenntebeispiel}
+}
+\end{figure}
+Abbildung~\ref{koenntenea} zeigt einen NEA mit drei Zust"anden.
+Wir verfolgen die Verarbeitung des Wortes {\tt baa} in
+Abbildung~\ref{koenntebeispiel}.
+
+Bevor ein Zeichen verarbeitet wird,
+ist der NEA im Startzustand $q_0$, also ist genau dieser Zustand
+markiert. Die Verarbeitung des Zeichens {\tt b} ist deterministisch,
+sie bringt den NEA in den Zustand $q_1$. Das folgende Zeichen {\tt a}
+ist jedoch nicht mehr deterministisch, es sind sowohl $q_1$ als auch
+$q_2$ als Folgezust"ande m"oglich. Die markierte m"ogliche Menge
+von Zustanden nach Verarbeitung von {\tt ba} ist daher
+$\{q_1,q_2\}$. Bei der Verarbeitung des zweiten {\tt a} kommt noch
+der Zustand $q_0$ hinzu. Man berechnet also schrittweise die
+Menge der erreichbaren Zust"ande $\delta(q_0,{\tt baa})$.
+
+Nach Verarbeitung des ganzen Wortes kann der NEA in den Zust"anden
+$\{q_0,q_1,q_2\}$ sein. Da der Akzeptierzustand $q_0$ in diese Menge
+enthalten ist, gibt es eine Kombination von nichtdeterministischen
+Entscheidungen, die zu $q_0$ f"uhren, das Wort {\tt baa} kann also
+akzeptiert werden.
+
+\index{Thompson, Ken}
+\index{Thompson-NEA}
+Diese Implementation eines NEA geht auf Ken Thompson zur"uck, sie wurde in
+der Regex-Library der achten Edition von Unix von Rob Pike
+\index{Pike, Rob} implementiert, die allerdings nicht sehr weit
+verbreitet war. Sp"ater hat Henry Spencer die Regex-Library neu
+implementiert, allerdings ohne die Thompson-NEA Konstruktion, sondern
+mit Backtr"acking. Da er sie in den public domain freigab, hat sie sich
+rasch verbreitet und bildete die Basis Regex-Bibliotheken in Perl, PCRE,
+Python und vielen anderen.
+
+\subsection{Transformation NEA $\rightarrow$ DEA}
+NEAs f"uhren trotz der betr"achtlichen Erweiterung durch den
+Nichtdeterminismus nicht zu einer gr"osseren Klasse von akzeptierbaren
+Sprachen. Dazu gen"ugt es zu zeigen, dass sich jeder NEA ein einen DEA
+transformieren l"asst, der die gleiche Sprache akzeptiert.
+Dass dies m"oglich sein sollte, deutet bereits die Konstruktion
+des Thompson-NEA in \ref{Thompson-NEA} an. Der Thompson-NEA
+wird zu einem DEA, wenn man die Verteilung der ``roten Markierungen''
+als Zustand des DEA ansieht. Ziel dieses Abschnittes ist, dies
+mathematisch streng zu formalisieren.
+
+Ein NEA kann aus zwei Gr"unden kein DEA sein:
+er kann $\varepsilon$-"Uberg"ange haben, und er kann nicht eindeutige
+oder nicht existierende "Uberg"ange haben, also $|\delta(q,a)|\ne 1$
+f"ur gewisse $q\in Q$ und $a\in\Sigma$.  Wir transformieren einen 
+beliebigen NEA in zwei Schritten in einen DEA:
+\begin{enumerate}
+\item Wir bauen uns einen Algorithmus, mit dem man einen NEA ohne
+$\varepsilon$-"Uberg"ange in einen DEA umwandeln kann.
+\item Wir modifizieren den Algorithmus, so dass er auch mit NEAs mit
+$\varepsilon$-"Uberg"angen umgehen kann.
+\end{enumerate}
+
+\subsubsection{Transformation f"ur NEA ohne $\varepsilon$-"Uberg"ange}
+Der konstruierte DEA muss dar"uber Buch f"uhren, in welchen Zust"anden
+der NEA sein k"onnte. Seine Zust"ande sind als Megen von m"oglichen
+Zust"anden des NEA. Als Zustandsmenge des DEA wird man also $P(Q)$ 
+erwarten. Wie die "ubrigen Elemente des DEA konstruiert werden m"ussen,
+besagt der folgende Satz.
+
+\begin{satz}
+\label{satz_neadea_eps}
+Sei $A=(Q,\Sigma,\delta,q_0,F)$ ein NEA ohne $\varepsilon$-"Uberg"ange.
+Dann gibt es einen DEA $A'$, der die gleiche Sprache akzeptiert: $L(A)=L(A')$.
+Der DEA $A'$ setzt sich zusammen aus
+$(P(Q), \Sigma, \delta', \{q_0\}, F')$,
+die "Ubergangsfunktion ist
+\[
+\delta'\colon P(Q)\times \Sigma: (M, a)\mapsto \bigcup_{q\in M} \delta(q,a)
+=\delta(M,a),
+\]
+und die Akzeptierzust"ande sind die Teilmengen, die einen Akzeptierzustand
+enthalten:
+\[
+F'=\{M\in P(Q)\;|\;M\cap F\ne \emptyset\}.
+\]
+\end{satz}
+\begin{proof}[Beweis]
+Es ist klar, dass mit dieser "Ubergangsfunktion $\delta'$ und den
+Akzeptierzust"anden $F'$ ein NEA definiert ist, es muss nur noch
+bewiesen werden, dass er die gleiche Sprache akzeptiert, also
+$L(A)=L(A')$. Das wird zutreffen, wenn $L(A)\subset L(A')$ und
+$L(A')\subset L(A)$, also jedes Wort von $L(A)$ ist auch in $L(A')$,
+und umgekehrt.
+
+Wenn $w=a_1\dots a_n\in L(A)$, dann gibt es einen Pfad durch den gerichteten
+Graphen von $A$, der zu einem Akzeptierzustand f"uhrt. Also enth"alt
+die Menge der von $q_0$ aus erreichbaren Zust"ande einen Akzeptierzustand.
+Diese Menge ist aber die Menge der Zust"ande, die man durch Anwendung
+von $\delta'$ aus $\{q_0\}$ und den Inputzeichen $a_1,\dots,a_n$ erhalten
+wird. Da diese Menge einen Akzeptierzustand enth"alt, ist sie ein
+Akzeptierzustand von $A'$, und damit $w\in L(A')$.
+
+Sei jetzt umgekehrt $w\in L(A')$. Wir schreiben wieder $w=a_1\dots a_n$.
+Auf Grund der Konstruktion des Automaten $A'$, liefert die wiederholte
+Anwendung von $\delta'(\cdot, a_k)$ aus dem Anfangszustand $q_0'=\{q_0\}$
+die Menge $\delta(\dots\delta(q_0, a_1)\dots ,a_n)$. Da diese Menge ein
+Akzeptierzustand von $A'$ ist, gibt es darin einen Akzeptierzustand
+von $A$. Da also ein Akzeptierzustand erreichbar ist, ist $w\in L(A)$,
+also auch $L(A')\subset L(A)$.
+\end{proof}
+
+\subsubsection{Beispiel}
+Der NEA  von Abbildung~\ref{koenntenea}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[r]
+%	&*++[o][F=]{q_0} \ar[d]_{\tt b} 
+%		&{q_2}\ar[l]_{\tt a}
+%\\
+%*+\txt{}
+%	&{q_1}\ar[ur]_{{\tt a},{\tt b}} \ar@(ul,dl)_{\tt a}
+%}
+%\]
+soll in einen DEA umgewandelt werden. Er ist nicht deterministisch,
+weil vom Zustand $q_1$ aus zwei "Uberg"ange mit {\tt a} m"oglich sind.
+
+Aus dem Satz ist bekannt, dass die Zust"ande die Potenzmengen von $Q$
+sind. Diese entsprechen den dreistelligen Bin"arzahlen, wobei jede
+Stelle angibt, ob das zugeh"orige $q_i$ in der Menge dabei ist. Wir
+schreiben also
+\begin{align*}
+       &          &q_{001}&=\{\phantom{q_2q_1}q_0\}&q_{110}&=\{q_2,q_1\phantom{,q_0}\}&&\\
+q_{000}&=\emptyset&q_{010}&=\{\phantom{q_2}q_1\phantom{q_0}\}&q_{101}&=\{q_2,\phantom{q_1,}q_0\}&q_{111}&=\{q_2,q_1,q_0\}\\
+       &          &q_{100}&=\{q_2\phantom{q_1q_0}\}&q_{011}&=\{\phantom{q_2,}q_1,q_0\}&&\\
+\end{align*}
+Akzeptierzust"ande sind jene Mengen, die $q_0$ enthalten, also
+\[
+F'=\{ q_{001}, q_{011}, q_{101}, q_{111}\},
+\]
+Startzustand ist $q_{001}$.
+Damit k"onnen wir jetzt das Zustandsdiagramm zeichnen
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&*++[o][F=]{q_{001}} \ar[d]^{\tt b}\ar[dl]_{\tt a}
+		&{q_{110}}\ar[dr]^{\tt a} \ar[ddl]^{\tt b}
+\\
+{q_{000}}\ar@(ul,dl)_{{\tt a},{\tt b}}
+	&{q_{010}} \ar[ur]^{\tt a} \ar[d]^{\tt b}
+		&*++[o][F=]{q_{101}} \ar[ul]^{\tt a} \ar[l]^{\tt b}
+			&*++[o][F=]{q_{111}}\ar@(ur,dr)^{{\tt a}} \ar@/_20pt/[ul]_{\tt b}
+\\
+*+\txt{}
+	&{q_{100}}\ar@/^20pt/[uu]^{\tt a}  \ar[ul]^{\tt b}
+		&*++[o][F=]{q_{011}} \ar@/_20pt/[uu]_{{\tt a},{\tt b}}
+}
+\]
+Man erkennt sofort, dass die Zust"ande $q_{101}$ und $q_{011}$
+nicht erreicht werden k"onnen, also weggelassen werden k"onnten:
+\begin{equation}
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&*++[o][F=]{q_{001}} \ar[d]^{\tt b}\ar[dl]_{\tt a}
+		&{q_{110}}\ar[dr]^{\tt a} \ar[ddl]^{\tt b}
+\\
+{q_{000}}\ar@(ul,dl)_{{\tt a},{\tt b}}
+	&{q_{010}} \ar[ur]^{\tt a} \ar[d]^{\tt b}
+		&*+\txt{}
+			&*++[o][F=]{q_{111}}\ar@(ur,dr)^{{\tt a}} \ar@/_20pt/[ul]_{\tt b}
+\\
+*+\txt{}
+	&{q_{100}}\ar@/^20pt/[uu]^{\tt a}  \ar[ul]^{\tt b}
+		&*+\txt{}
+}
+\label{nea-eps}
+\end{equation}
+Man kann ebenfalls verifzieren, dass dies tats"achlich ein DEA ist, 
+von jedem Zustand gehen genau zwei Pfeile f"ur die "Uberg"ange mit
+den Zeichen ${\tt a}$ und ${\tt b}$ aus. Etwas "ubersichtlicher
+geschrieben lautet er
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&*++[o][F=]{1}\ar[r]^{\tt b} \ar[d]_{\tt a}
+		&2 \ar[r]^{\tt a} \ar[d]^{\tt b}
+			&6\ar@/_/[r]_{\tt a} \ar[dl]^{\tt b}
+				&7\ar@/_/[l]_{\tt b} \ar@(ur,dr)^{\tt a}
+\\
+*+\txt{}
+	&0 \ar@(l,d)_{{\tt a},{\tt b}}
+		&4 \ar[ul]_{\tt a} \ar[l]^{\tt b}
+}
+\]
+
+\subsubsection{NEA mit $\varepsilon$-"Uberg"angen}
+Wir erweitern die Konstruktion des DEA aus einem NEA jetzt, um eventuell
+vorhandenen $\varepsilon$-"Uberg"angen Rechnung zu tragen.
+
+\begin{satz}
+\label{satz_neadea}
+Sei $A=(Q,\Sigma,\delta,q_0,F)$ ein NEA, dann gibt es einen
+DEA $A'=(Q',\Sigma,\delta',q_0',F')$, der die gleiche Sprache
+akzeptiert, $L(A)=L(A')$. Es ist
+\begin{align*}
+Q'&=P(Q)\\
+\delta'(M,a)&=E(\delta(M, a))\quad M\in P(Q)\\
+q_0'&=E(q_0)\\
+F'&=\{M\in P(Q)\;|\, M\cap Q\ne \emptyset\}
+\end{align*}
+\end{satz}
+
+\begin{proof}[Beweis]
+Gegen"uber Satz \ref{satz_neadea} hat sich ge"andert, dass wir den
+Anfangszustand von $\{q_0\}$ auf $E(q_0)$ vergr"ossert haben. Dadurch
+erfassen wir alle Pfade durch den Automaten, die mit einem oder
+mehreren $\varepsilon$-"Uberg"angen beginnen. Falls $E(q_0)\cap F\ne \emptyset$
+wird der Anfangszustand auch zu einem Endzustand.
+
+Zudem erweitern wir in der Definition des Bildes in a um alle Zust"ande,
+die durch einen angeh"angten $\varepsilon$-"Ubergang erreicht werden
+k"onnen.
+\end{proof}
+
+\subsubsection{Beispiel}
+Der NEA 
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&*++[o][F=]{q_0} \ar[d]_{\tt b} \ar@/_/[r]_{\varepsilon}
+		&{q_2}\ar@/_/[l]_{\tt a}
+\\
+*+\txt{}
+	&{q_1}\ar[ur]_{{\tt a},{\tt b}} \ar@(ul,dl)_{\tt a}
+}
+\]
+soll in einen DEA umgewandelt werden.
+
+Den NEA ohne den $\varepsilon$-"Ubergang haben wir bereits in
+\ref{nea-eps} umgewandelt. Jetzt m"ussen wir nur die beiden
+im Satz \ref{satz_neadea} erw"ahnten Modifikationen durchf"uhren.
+
+Urspr"unglich war der Startzustand $q_{001}$. Da aus dem Startzustand
+des NEA mittels $\varepsilon$-"Ubergang auch der Zustand $q_2$
+erreichbar ist, muss der Anfangszustand des DEA um diesen Zustand
+erweitert werden, und ist jetzt $q_{101}$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+	&*++[o][F=]{q_{001}} \ar[d]^{\tt b}\ar[dl]_{\tt a}
+		&{q_{110}}\ar[dr]^{\tt a} \ar[ddl]^{\tt b}
+\\
+{q_{000}}\ar@(ul,dl)_{{\tt a},{\tt b}}
+	&{q_{010}} \ar[ur]^{\tt a} \ar[d]^{\tt b}
+		&*++[o][F=]{q_{101}} \ar[ul]^{\tt a} \ar[l]^{\tt b}
+			&*++[o][F=]{q_{111}}\ar@(ur,dr)^{{\tt a}} \ar@/_20pt/[ul]_{\tt b}
+\\
+*+\txt{}
+	&{q_{100}}\ar@/^20pt/[uu]^{\tt a} \ar[ul]^{\tt b}
+		&*++[o][F=]{q_{011}} \ar@/_20pt/[uu]_{{\tt a},{\tt b}}
+			&*+\txt{}\ar[ul]
+}
+\]
+
+
+Zus"atzlich m"ussen wir bei jedem "Ubergang die M"oglichkeit in
+Betracht ziehen, dass noch ein $\varepsilon$-"Ubergang angeh"angt
+wird. Dies bedeutet im vorliegenden Fall, dass bei jedem "Ubergang,
+der zu einem $q_0$ enthaltenden Zustand f"uhrt, auch noch der
+Zustand $q_2$ hinzugef"ugt werden muss.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+	&*++[o][F=]{q_{001}} \ar[d]^{\tt b}\ar[dl]_{\tt a}
+		&{q_{110}}\ar[dr]^{\tt a} \ar[ddl]^{\tt b}
+\\
+{q_{000}}\ar@(ul,dl)_{{\tt a},{\tt b}}
+	&{q_{010}} \ar[ur]^{\tt a} \ar[d]^{\tt b}
+		&*++[o][F=]{q_{101}} \ar@(ul,ur)^{\tt a} \ar[l]^{\tt b}
+			&*++[o][F=]{q_{111}}\ar@(ur,dr)^{{\tt a}} \ar@/_20pt/[ul]_{\tt b}
+\\
+*+\txt{}
+	&{q_{100}}\ar[ur]^{\tt a} \ar[ul]^{\tt b}
+		&*++[o][F=]{q_{011}} \ar@/_20pt/[uu]_{{\tt a},{\tt b}}
+			&*+\txt{}\ar[ul]
+}
+\]
+In diesem Automaten sind die Zust"ande $q_{001}$ und $q_{101}$ nicht
+mehr unerreichbar, man kann sie weglassen.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+	&*+\txt{}
+		&{q_{110}}\ar[dr]^{\tt a} \ar[ddl]^{\tt b}
+\\
+{q_{000}}\ar@(ur,dr)^{{\tt a},{\tt b}}
+	&{q_{010}} \ar[ur]^{\tt a} \ar[d]^{\tt b}
+		&*++[o][F=]{q_{101}} \ar@(ul,ur)^{\tt a} \ar[l]^{\tt b}
+			&*++[o][F=]{q_{111}}\ar@(ur,dr)^{{\tt a}} \ar@/_20pt/[ul]_{\tt b}
+\\
+*+\txt{}
+	&{q_{100}}\ar[ur]^{\tt a} \ar[ul]^{\tt b}
+		&*+\txt{}
+			&*+\txt{}\ar[ul]
+}
+\]
+Wie man mit dem Algorithmus "uber den Minimalautomaten kontrollieren
+kann, l"asst sich dieser Automat nicht mehr weiter reduzieren. Etwas
+"ubersichtlicher geschrieben lautet er
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&*++[o][F=]{5}\ar@(ul,ur)^{\tt a} \ar[r]^{\tt b}
+		&2\ar[r]^{\tt a} \ar[d]^{\tt b}
+			&6\ar@/_/[r]_{\tt a} \ar[dl]^{\tt b}
+				&*++[o][F=]{7}\ar@/_/[l]_{\tt b} \ar@(ur,dr)^{\tt a}
+\\
+*+\txt{}
+	&0\ar@(ul,dl)_{{\tt a},{\tt b}}
+		&4\ar[ul]^{\tt a} \ar[l]^{\tt b}
+}
+\]
+
+
+Satz \ref{satz_neadea} ist nicht nur ein theoretisch interessantes
+Resultat. Wenn man die endliche vielen Zust"ande mit den Zahlen
+$0,\dots,|Q|-1$ identifiziert, kann man die Teilmengen von $Q$ mit
+den $|Q|$-stelligen Bin"arzahlen identifizieren.
+Der Teilmenge $M\subset Q$ entspricht die Bin"arzahlen, die Einsen an
+den Stellen hat, der Nummer
+in $M$ enthalten sind.
+Die grosse Vereinigungen ist ebenfalls sehr einfach
+zu berechnen, sie entspricht der Oder-Verkn"pfung
+der einzelnen Mengen in (\ref{erreichbar}).
+Somit haben wir nicht nur ein Existenz-Resultat sondern einen
+Algorithmus, mit dem ein beliebiger NEA in einen DEA umgewandelt
+werden kann.
+Daraus k"onnen wir jetzt einen Vergleichsalgorithmus f"ur regul"are
+Sprachen ableiten: 
+
+\begin{satz}
+Es gibt einen Algorithmus, mit dem entschieden werden kann, ob
+zwei Automaten $A$ und $B$ die gleiche Sprache akzeptieren.
+\end{satz}
+
+\begin{proof}[Beweis]
+Um zu entscheiden, ob $L(A)=L(B)$, wendet man folgenden Algorithmus
+an:
+\begin{enumerate}
+\item Wandle $A$ und $B$
+mit dem Algorithmus des Satzes 
+\ref{satz_neadea} in einen DEAs $A'$ und $B'$ um.
+\item Reduziert anschliessend $A'$ und $B'$  mit dem Algorithmus
+von Satz \ref{satz_minimalautomat} in Minimalautomaten
+$A''$ und $B''$.
+\item Die von $A$ und $B$ akzeptierten Sprachen sind genau dann
+gleich, wenn $A''$ und $B''$ identisch sind.
+\end{enumerate}
+\end{proof}
+
+\subsection{Mengenoperationen}
+\index{Mengenoperationen}
+\index{Durchschnitt}
+\index{Vereinigung}
+\index{Differenz}
+Sprachen sind Mengen von W"ortern, also sind auch deren Vereinigung,
+Durchschnitt, Differenz usw.~Sprachen. Sind die Sprachen regul"ar,
+sind dann auch Vereinigung, Durchschnitt, Differenz etc.~regul"ar? 
+NEAs erlauben uns sehr elegant zu zeigen, dass Sie diese Operationen
+alle wieder regul"are Sprachen liefern.
+
+\begin{satz}
+\index{Vereinigung}
+\label{satz_union}
+Sind $L_1$ und $L_2$ regul"are Sprachen, dann
+ist auch $L_1\cup L_2$ regul"ar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Da die Sprachen regul"ar sind, gibt es endliche Automaten 
+\begin{align*}
+A_1&=(Q_1,\Sigma_1,\delta_1, q_{01}, F_1)\\
+A_2&=(Q_2,\Sigma_2,\delta_2, q_{02}, F_2)
+\end{align*}
+mit $L_1=L(A_1)$ und $L_2=L(A_2)$. Wir m"ussen
+jetzt einen Automaten
+\[
+A = (Q, \Sigma, \delta, q_0, F)
+\]
+konstruieren, der $L_1\cup L_2$ akzeptieren.
+
+F"ur die Vereinigung muss das Alphabet alle Zeichen enthalten,
+also $\Sigma = \Sigma_1\cup\Sigma_2$. Man kann jeden der Automaten 
+$A_1$ und $A_2$ auch als Automaten "uber dem Alphabet $\Sigma$
+betrachten, indem man setzt
+\[
+\delta_i(q, x)=\begin{cases}
+\delta_i(q,x)&\qquad q\in Q_i\text{ und }  x\in \Sigma_i\\
+\emptyset&\qquad q\in Q_i\text{ und } x\in \Sigma_{3-i}\setminus \Sigma_i\\
+\end{cases}
+\]
+Es ist also keine Einschr"ankung, wenn wir annehmen, dass
+$\Sigma=\Sigma_1=\Sigma_2$.
+
+Um den Automaten f"ur $L_1\cup L_2$ zu konstruieren, nehmen wir jetzt
+weiter an, dass $Q_1$ und $Q_2$ disjunkt sind.
+F"ur $A$ verwenden wir einen neuen Startzustand $q_0$.
+Ein Wort in $L_1\cup L_2$ muss von einem der beiden Automaten
+akzeptiert werden.
+Der Automat muss sich also zu Begin nichtdeterministisch
+daf"ur entscheiden, den einen oder anderen Automaten zum
+akzeptieren eines Wortes zu verwenden.
+Also verwenden wir 
+\begin{align*}
+Q&=Q_1\cup Q_1\cup \{q_0\}\\
+F&=F_1\cup F_2\\
+\delta(x,a)&=\begin{cases}
+\delta_1(x,a)&\qquad x\in Q_1\\
+\delta_2(x,a)&\qquad x\in Q_2\\
+\{q_{01}, q_{02}\}&\qquad x=q_0, a=\varepsilon\\
+\emptyset&\qquad x=q_0, a\ne\varepsilon
+\end{cases}
+\end{align*}
+\end{proof}
+
+\begin{satz}
+\index{Durchschnitt}
+\label{satz_intersection}
+Sind $L_1$ und $L_2$ regul"are Sprachen, dann
+ist auch $L_1\cap L_2$ regul"ar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Da die Sprachen regul"ar sind, gibt es endliche Automaten 
+\begin{align*}
+A_1&=(Q_1,\Sigma_1,\delta_1, q_{01}, F_1)\\
+A_2&=(Q_2,\Sigma_2,\delta_2, q_{02}, F_2)
+\end{align*}
+mit $L_1=L(A_1)$ und $L_2=L(A_2)$. Wir m"ussen
+jetzt einen Automaten
+\[
+A = (Q, \Sigma, \delta, q_0, F)
+\]
+konstruieren, der $L_1\cap L_2$ akzeptieren.
+
+F"ur die Schnittmenge brauchen wir einen Automaten, der die Abl"aufe 
+in beiden Teilautomaten gleichzeitig codiert.
+Dies ist m"oglich, indem man Zust"ande und "Uberg"ange nebeneinander
+simuliert.
+Als Zustandsmenge verwenden wir daher $Q=Q_1\times Q_2$. Als "Ubergangsfunktion
+verwenden wir
+\[
+\delta((q',q''),a)=\delta_1(q',a)\times \delta_2(q'',a).
+\]
+Akzeptiert werden kann ein Wort, wenn beide Komponenten des Paares 
+Akzeptierzust"ande ihrer Automaten sind.
+Akzeptierzust"ande von $A$ sind also $F=F_1\times F_2$.
+\end{proof}
+
+\index{Produktautomat}
+Wir nennen diesen mit Hilfe des kartesischen Produktes konstruierten
+Automaten auch den kartesischen Produktautomaten.
+
+\subsubsection{Beispiel}
+Zur Illustration wollen 
+wir einen Automaten f"ur die Schnittmenge von
+\begin{align*}
+L_1&=\{w\in\Sigma^*\;|\; \text{$|w|_0$ gerade}\}\qquad\text{und}\\
+L_2&=\{w\in\Sigma^*\;|\,\text{$w$ ist eine durch 3 teilbare Bin"arzahl}\}.
+\end{align*}
+konstruieren. Die einzelnen Teilautomaten sind $A_1$ f"ur $L_1$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&*++[o][F=]{} \ar@/^/[r]^{\tt 0} \ar@(ul,ur)^{\tt 1}
+		&{} \ar@/^/[l]^{\tt 0} \ar@(ul,ur)^{\tt 1}
+}
+\]
+und $A_2$ f"ur $L_2$
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&*++[o][F=]{0} \ar@/^/[r]^{\tt 1} \ar@(ul,ur)^{\tt 0}
+		&{1} \ar@/^/[l]^{\tt 1} \ar@/^/[r]^{\tt 0}
+			&{2}\ar@(ur,dr)^{\tt 1} \ar@/^/[l]^{\tt 0}
+}
+\]
+Der Produktautomat ist jetzt
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{} \ar[r] \ar[d] \ar[dr]
+	&*++[o][F=]{0} \ar@/^/[r]_{\tt 1} \ar@(ul,ur)^{\tt 0}
+		&{1} \ar@/^/[l] \ar@/^/[r]_{\tt 0}
+			&{2}\ar@(ur,dr)^{\tt 1} \ar@/^/[l]
+\\
+*++[o][F=]{} \ar@/^/[d] \ar@(ul,dl)_{\tt 1}
+	&*++[o][F=]{} \ar@/^/[d]{\tt 0} \ar@/^/[r]_{\tt 1}
+		&{} \ar@/^/[l] \ar@/^/[dr]_{\tt 0}
+			&{}\ar@(ur,dr)^{\tt 1} \ar@/^/[dl]
+\\
+{} \ar@/^/[u]_{\tt 0} \ar@(ul,dl)_{\tt 1}
+	&{} \ar@/^/[u]_{\tt 0} \ar@/^/[r]_{\tt 1}
+		&{} \ar@/^/[l] \ar@/^/[ur]
+			&{}\ar@(ur,dr)^{\tt 1} \ar@/^/[ul]
+}
+\]
+
+Man kann den Produktautomaten auch
+verwenden, einen Automaten zu bauen, der $L_1\cup L_2$
+akzeptiert. Der kartesische Produktautomat simuliert ja sozusagen
+beide Teilautomaten in den beiden Komponenten der Zust"ande. 
+Aktzeptabel ist ein Wort $w$, wenn es von $A_1$
+oder von $A_2$ akzueptiert ist, oder wenn der Produktautomat
+sich am Ende des Wortes in einem Zustand befindet, der ein
+Akzeptierzustand von $A_1$ ist oder von $A_2$. Verwendet
+man also $F_1\times Q_2\cup Q_1\times F_2$ als Akzeptierzust"ande,
+erh"alt man einen Automaten, der $L_1\cup L_2$ akzeptiert.
+Das zugeh"orige Zustandsdiagramm ist:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{} \ar[r] \ar[d] \ar[dr]
+	&*++[o][F=]{0} \ar@/^/[r]_{\tt 1} \ar@(ul,ur)^{\tt 0}
+		&{1} \ar@/^/[l] \ar@/^/[r]_{\tt 0}
+			&{2}\ar@(ur,dr)^{\tt 1} \ar@/^/[l]
+\\
+*++[o][F=]{} \ar@/^/[d] \ar@(ul,dl)_{\tt 1}
+	&*++[o][F=]{} \ar@/^/[d]{\tt 0} \ar@/^/[r]_{\tt 1}
+		&*++[o][F=]{} \ar@/^/[l] \ar@/^/[dr]_{\tt 0}
+			&*++[o][F=]{}\ar@(ur,dr)^{\tt 1} \ar@/^/[dl]
+\\
+{} \ar@/^/[u]_{\tt 0} \ar@(ul,dl)_{\tt 1}
+	&*++[o][F=]{} \ar@/^/[u]_{\tt 0} \ar@/^/[r]_{\tt 1}
+		&{} \ar@/^/[l] \ar@/^/[ur]
+			&{}\ar@(ur,dr)^{\tt 1} \ar@/^/[ul]
+}
+\]
+
+\begin{satz}
+\index{Differenz}
+\label{satz_regcomplement}
+Ist $L$ eine regul"are Sprache, dann ist auch $\bar L$ regul"ar.
+Sind $L_1$ und $L_2$ regul"ar, dann ist auch $L_1\setminus L_2$
+regul"ar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Da $L$ regul"ar ist, gibt es einen DEA, welcher $L=L(A)$ erf"ullt.
+Wir ersetzen in diesem DEA die Menge $F$ der Akzeptierzust"ande
+durch $Q\setminus F$, und erhalten einen neuen DEA $A'$. Dieser
+neue DEA akzeptiert genau diejenigen W"orter, die $A$ nicht
+akzeptiert hat, also $L(A')=\overline{L(A)}$. Somit ist $\bar L=L(A')$
+regul"ar.
+
+Die zweite Aussage folgt aus $L_1\setminus L_2=L_1\cap\bar L_2$ und
+Satz \ref{satz_intersection}
+\end{proof}
+Man beachte, dass in diesem Beweis unbedingt ein DEA verwendet werden
+muss. Die beiden NEAs
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}\ar@(ul,ur)^{\Sigma} \ar[r]^{\varepsilon}
+		&*++[o][F=]{}
+&
+*+\txt{}\ar[r]
+	&*++[o][F=]{}\ar@(ul,ur)^{\Sigma} \ar[r]^{\varepsilon}
+		&{}
+}
+\]
+gehen auseinander durch Ersetzung der Akzeptierzust"ande
+$F\leftrightarrow Q\setminus F$ hervor, aber beide akzeptieren
+$\Sigma^*$, also nicht das Komplement.
+
+\rhead{Regul"are Ausdr"ucke}
+\section{Regul"are Ausdr"ucke}
+\index{regul\"are Ausdr\"ucke}
+Endliche Automaten beschreiben regul"are Sprachen, sind aber f"ur die
+Anwendung eher unhandlich. In der Praxis haben sich regul"are Ausdr"ucke
+durchgesetzt, die mit einer einfachen Syntax ebenfalls Mengen von
+W"ortern zu spezifizieren erlauben. Ziel dieses Abschnittes ist
+zu zeigen, dass regul"are Ausdr"ucke genau gleich ausdrucksstark sind
+wie DEAs.
+
+\subsection{Regul"are Operationen}
+\index{regul\"are Operationen}
+Wir wissen bereits, dass wir die Mengenoperationen auf regul"are
+Sprachen anwenden d"urfen, ohne die Klasse der regul"aren Sprachen
+zu verlassen.
+Es sind jedoch noch zwei weitere Operationen m"oglich, die ebenfalls
+nicht aus der Klasse herausf"uhren:
+
+\begin{definition}
+\index{Verkettung}
+Seien $L_1$ und $L_2$ Sprachen, dann ist die
+Verkettung von $L_1$ und $L_2$ die Sprache
+\[
+L_1L_2=\{w_1w_2\;|\;w_1\in L_1,w_2\in L_2\}.
+\]
+Die mehrfache Verkettung von $L$ wird mit $L^n$ bezeichnet:
+\begin{align*}
+L^0&=\{\varepsilon\}\\
+L^n&=L^{n-1}L
+\end{align*}
+\end{definition}
+
+\begin{definition}
+\index{*-Operation@$*$-Operation}
+Sei $L$ eine Sprache, dann ist die Stern-Operation
+von $L$ die Sprache
+\[
+L^*=\bigcup_{k\in\mathbb N} L^k.
+\]
+\end{definition}
+
+Wir m"ochten jetzt zeigen, dass diese Operationen nicht aus den
+regul"aren Sprachen herausf"uhren. Dazu m"ussen wir zu gegebenen
+Automaten $A_1$ und $A_2$ f"ur zwei Sprachen $L_1$ und $L_2$
+neue Automaten konstruieren, welche
+die Sprachen $L_1L_2$ oder $L_1^*$ akzeptieren. Die Automaten
+$A_1$ und $A_2$ m"ussen wir dabei als ``Black Box'' betrachten,
+wir d"urfen daran nichts "andern.
+
+\subsubsection{Automat zu einer Verkettung $L_1L_2$}
+\index{Verkettung}
+F"ur die Verkettung $L_1L_2$
+zum Beispiel ist es nicht zul"assig, die Akzeptierzust"ande von
+$A_1$ mit dem Startzustand von $A_2$ zusammenzulegen. Dadurch
+w"urde es n"amlich m"oglich, auch Wege wieder zur"uck in
+den ersten Automaten zu verwenden.
+Im folgenden Beispiel akzeptiert der erste Automat Strings mit
+einer ungeraden Anzahl Nullen, der zweite Strings mit einer
+ungeraden Anzahl {\tt a}.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{} \ar@/^/[r]^{\tt 0}
+		&*++[o][F=]{} \ar@/^/[l]^{\tt 0}
+			&*\txt{}\ar[r]
+				&{} \ar@/^/[r]^{\tt a}
+					&*++[o][F=]{} \ar@/^/[l]^{\tt a }
+}
+\]
+Verkettet man die Automaten, indem man den Akzeptierzustand des
+ersten mit dem Startzustand des zweiten Automaten zusammenlegt,
+erh"alt man
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{} \ar@/^/[r]^{\tt 0}
+		&{} \ar@/^/[l]^{\tt 0}
+				 \ar@/^/[r]^{\tt a}
+					&*++[o][F=]{} \ar@/^/[l]^{\tt a }
+}
+\]
+Dieser Automat akzeptiert aber auch das Wort {\tt 0aa00a}, welches
+gar nicht in $L_1L_2$ ist! Die Verkettung muss also mit Hilfe
+einer ``Einbahnstrasse'' erfolgen, ein $\varepsilon$-"Ubergang
+ist ideal daf"ur geeignet. Die folgende Verkettung funktioniert:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{} \ar@/^/[r]^{\tt 0}
+		&{} \ar@/^/[l]^{\tt 0} \ar[r]^{\varepsilon}
+			&{} \ar@/^/[r]^{\tt a}
+				&*++[o][F=]{} \ar@/^/[l]^{\tt a }
+}
+\]
+
+F\"ur die allgemeine Konstruktion gehen wir aus
+von zwei Automaten $A_1$ und $A_2$:
+\begin{center}
+\includegraphics[width=0.6\hsize]{images/nea-1}
+\end{center}
+Ein Automat f"ur die Verkettung entsteht, indem man
+die Akzeptierzust"ande im ersten Automaten "uber
+$\varepsilon$-"Uberg"ange mit dem
+Startzustand des zweiten verbindet:
+\begin{center}
+\includegraphics[width=0.6\hsize]{images/nea-2}
+\end{center}
+Die $\varepsilon$-"Uberg"ange
+fungieren als Einbahnstrassen und stellen sicher, dass auch
+die Automaten selbst nicht ver"andert werden.
+
+Etwas formeller kann man das Resultat im folgenden Satz zusammenfassen.
+
+\begin{satz}
+\index{Verkettung}
+\label{satz_concat}
+Sind $L_1$ und $L_2$ regul"are Sprachen, dann ist auch $L_1L_2$
+regul"ar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Ein Wort $w\in L_1L_2$ besteht aus zwei Teilen, die von $L_1$
+bzw.~$L_2$ akzeptiert werden. Ein Automat $A$ f"ur $L=L_1L_2$
+kann aus Automaten $A_1$ und $A_2$ konstruiert werden, indem man
+die Akzeptierzust"ande von $A_1$ "uber $\varepsilon$-"Uberg"ange
+mit dem Startzustand von $A_2$ verbindet. Also verwenden
+wir $Q=Q_1\cup Q_2$.
+Startzustand ist der Startzustand $q_{01}$ von $L_1$, Akzeptierzust"ande
+sind die Akzeptierzust"ande $F_2$ von $A_2$. Also
+\begin{align*}
+Q&=Q_1\cup Q_2\\
+F&=F_2\\
+q_0&=q_{01}\\
+\delta(q,a)&=\begin{cases}
+\delta_1(q,a)\cup\{q_{02}\}&\qquad q\in F_1, a=\varepsilon\\
+\delta_1(q,a)&\qquad q\in Q_1\setminus F_1\\
+\delta_2(q,a)&\qquad q\in Q_2
+\end{cases}
+\end{align*}
+\end{proof}
+
+\subsubsection{Automat zur *-Operation $L^*$}
+\index{*-Operation@$*$-Operation}
+Die Stern-Operation verlangt, dass man einen Automaten mehrfach
+durchlaufen k"onnen muss.
+Dies k"onnte man mit einem $\varepsilon$-"Ubergang
+von den Akzeptierzust"anden direkt zum Startzustand realisieren.
+Dadurch "andert man aber den Automaten, und es ist a priori nicht
+klar, dass man dadurch die Sprache nicht ver"andert. Der folgende
+Automat akzeptiert genau die Strings aus einer ungeraden Anzahl Nullen:
+\begin{equation}
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}\ar@/^/[r]^{\tt 0}
+		&*++[o][F=]{}\ar@/^/[l]^{\tt 0}
+}
+\label{ungeradenullen}
+\end{equation}
+Verbindet man den Akzeptierzustand mit dem Startzustand mit einem
+$\varepsilon$-"Ubergang, dann entsteht:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}\ar@/^/[r]^{\tt 0}
+		&*++[o][F=]{}\ar@/^/[l]^{\tt 0}\ar@/^20pt/[l]^{\varepsilon}
+}
+\]
+Dieser Automat akzeptiert Strings beliebiger L"ange $>0$, was
+man von $L^*$ zwar erwartet, was aber im ersten Moment doch
+etwas "uberraschend ist.
+
+Es fehlt nun aber noch ein Akzeptierzustand, mit dem man
+das leere Wort akzeptieren kann. Das leere Wort wird genau
+dann akzeptiert, wenn der Startzustand ein Akzeptierzustand ist.
+Wir d"urfen aber den Startzustand des Automaten nicht einfach
+zu einem Akzeptierzustand machen, weil damit auch alle
+Strings akzeptabel w"urden, die zum Startzustand zur"uckf"uhren.
+Nehmen wir wieder den Automaten (\ref{ungeradenullen}) f"ur Strings
+ungerader L"ange, und verwandeln wir den Startzustand in einen
+Akzeptierzustand:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&*++[o][F=]{}\ar@/^/[r]^{\tt 0}
+		&*++[o][F=]{}\ar@/^/[l]^{\tt 0}
+}
+\]
+Da dieser Automat nur Akzeptierzust"ande hat, werden alle W"orter
+akzeptiert.
+
+Beide Schwierigkeiten k"onnen umgangen werden, wenn man einen
+neuen Startzustand hinzuf"ugt, der auch Akzeptierzustand
+ist, und die $\varepsilon$-"Uberg\"ange nicht zur"uck zum
+urspr"unglichen Startzustand, sondern zum neuen Startzustand
+f"uhrt:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&*++[o][F=]{}\ar[r]^{\varepsilon}
+		&{}\ar@/^/[r]^{\tt 0}
+			&{}\ar@/^/[l]^{\tt 0} \ar@/^20pt/[ll]^{\varepsilon}
+}
+\]
+
+Die allgemeine Konstruktion geht daher aus von einem Automaten $A$:
+\begin{center}
+\includegraphics[width=0.3\hsize]{images/nea-3}
+\end{center}
+Die Sprache $L^*$ wird dann akzeptiert von
+\begin{center}
+\includegraphics[width=0.5\hsize]{images/nea-4}
+\end{center}
+
+Formal kann man das Resultat wie folgt zusammenfassen:
+\begin{satz}
+\index{*-Operation@$*$-Operation}
+\label{satz_star}
+Ist $L$ eine regul"are Sprache, dann ist auch $L^*$ regul"ar.
+\end{satz}
+
+Zum Beweis reicht es nicht, den Satz \ref{satz_concat} zu verwenden
+um zu zeigen, dass $L^n$ regul"ar ist, und dann aus wiederholter
+Anwendung Satz \ref{satz_union} zu schliessen zu versuchen,
+dass die Vereinigung aller $L^n$ auch sei soll. Da dies eine unendliche
+Vereinigung ist, w"urde nach der Konstruktion im Beweis von Satz
+\ref{satz_union} ein Automat mit unendlich vielen
+Zust"anden entstehen, also kein NEA.
+
+\begin{proof}[Beweis]
+Aus dem Automaten
+\[
+A=(Q,\Sigma, \delta,q_0,F)
+\]
+mit $L(A)=L$ konstruieren wir einen neuen
+Automaten
+\[
+A'=(Q',\Sigma,\delta',q',F')
+\]
+mit einem neuen Anfangszustand $q'$, der auch
+ein Akzeptierzustand ist.
+Damit wird sichergestellt, dass der neue Automat das in $L^0$
+enthaltene leere Wort akzeptiert.
+Zus"atzlich wird der neue Anfangszustand mit einem $\varepsilon$-"Ubergang
+mit $q'$ verbunden. 
+Ebenso werden alle Akzeptierzust"ande "uber $\varepsilon$-"Uberg"ange
+mit dem neuen Startzustand verbunden:
+\begin{align*}
+Q'&=Q\cup \{q'\}\\
+F'&=\{q'\}\\
+\delta'(q',a)&=\emptyset\\
+\delta'(q',\varepsilon)&= \{q_0\}\\
+\delta'(q,a)&= \delta(q,a)\\
+\delta'(q,\varepsilon)&=\begin{cases}
+\delta(q,\varepsilon)          &\qquad q\not\in F\\
+\delta(q,\varepsilon)\cup\{q'\}&\qquad q\in F
+\end{cases}
+\end{align*}
+\end{proof}
+
+\subsubsection{Automat zur Alternative $L_1\cup L_2$}
+\index{Alternative}
+\index{Vereinigung}
+F"ur die Alternative $L_1\cup L_2$ hatten wir bei der Diskussion
+des Produkt-Automaten schon einen Automaten gefunden, auch
+hierf"ur l"asst sich ein etwas einfacherer Automat im gleichen
+Stil wie f"ur Verkettung und *-Operation finden. Ein neuer Startzustand
+wird dazu mit $\varepsilon$-"Uberg"angen mit den Startzust"anden
+der Automaten $A_1$ und $A_2$ verbunden, wie in Abbildung~\ref{neaalternative}.
+\begin{figure}
+\begin{center}
+\includegraphics[height=0.4\hsize]{images/nea-5}
+\qquad
+\qquad
+\includegraphics[height=0.4\hsize]{images/nea-6}
+\end{center}
+\caption{Automatenkonstruktion f"ur die Alternative, rechts der Automat
+f"ur die Sprache $L(A_1)\cup L(A_2)$\label{neaalternative}}
+\end{figure}
+
+\subsubsection{Regul"are Operationen}
+Damit haben wir alle drei regul"aren Operationen kennengelernt:
+
+\begin{definition}
+Die drei Operationen
+\begin{enumerate}
+\item Vereinigung $(L_1,L_2)\mapsto L_1\cup L_2$
+\item Verkettung $(L_1,L_2)\mapsto L_1L_2$ und
+\item Stern-Operation $L\mapsto L^*$
+\end{enumerate}
+heissen regul"are Operationen.
+\end{definition}
+
+Diese Operationen gen"ugen, um alle regul"aren Sprachen aus
+einelementigen Teilmengen von $\Sigma$ aufzubauen.
+Dazu werden wir im n"achsten Abschnitt eine pr"agnantere Notation,
+die regul"aren Ausdr"ucke definieren. Danach werden wir zeigen,
+dass sich jeder DEA in einen regul"aren Ausdruck umwandeln l"asst.
+
+\subsection{Regul"are Ausdr"ucke}
+\index{regul\"are Ausdr\"ucke}
+\index{Ausdr\"ucke!regul\"are}
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Ausdruck $r$&Bedeutung\\
+\hline
+{\tt a}&steht f"ur das Zeichen ${\tt a}\in \Sigma$\\
+{\tt .}&steht f"ur ein beliebiges Zeichen aus $\Sigma$\\
+{\tt [aeiou]}&steht f"ur ein Zeichen aus $\{{\tt a},{\tt e},{\tt i},{\tt o},{\tt u}\}\subset \Sigma$\\
+{\tt [1-9]}&steht f"ur die positiven Ziffern\\
+$\varepsilon$&steht f"ur das leere Wort\\
+$\emptyset$&steht f"ur die leere Sprache\\
+\hline
+\end{tabular}
+\end{center}
+\index{regul\"are Ausdr\"ucke!primitive}
+\index{Ausdr\"ucke!regul\"are!primitive}
+\caption{Primitive regul"are Ausdr"ucke.\label{regtab1}}
+\end{table}
+Regul"are Ausdr"ucke sind Zeichenketten, die (regul"are) Sprachen
+beschreiben. 
+Die einfachsten regul"aren Sprachen sind die Sprachen mit W"ortern,
+die nicht l"anger als 1 Zeichen sind. Regul"are Ausdr"ucke f"ur
+diese primitiven Sprachen werden in Tabelle~\ref{regtab1} zusammengestellt.
+
+Regul"are Ausdr"ucke bauen regul"are Sprachen aus einzelnen
+Zeichen und regul"aren Operationen aus.
+Ist $r$ ein regul"arer Ausdruck, dann schreiben wir  $L(r)$ f"ur die
+Sprache, die vom regul"aren Ausdruck $r$ beschrieben wird.
+F"ur die regul"aren Operation verwenden wir die Notation
+gem"ass Tabelle~\ref{regtab2}
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+&Ausdruck&regul"are Operation\\
+\hline
+\index{Verkettung}
+Verkettung&$r_1r_2$&$L(r_1)L(r_2)$\\
+\index{Alternative}
+Alternative&$r_1{\tt |}r_2$&$L(r_1)\cup L(r_2)$\\
+\index{*-Operation@$*$-Operation}
+Stern-Operation&$r{\mathstrut^{\tt *}}$&$L(r)^*$\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Notation f"ur regul"are Operationen\label{regtab2}}
+\end{table}
+Falls n"otig k"onnen Klammern verwendet werden, um anzuzeigen,
+welche Gruppen verkn"upft werden. Da mit regul"aren Operationen
+verkn"upfte Sprachen wieder regul"ar sind, k"onnen alle mit
+regul"aren Ausdr"ucken beschriebenen Sprachen von einem DEA
+akzeptiert werden.
+
+\subsubsection{Automaten f"ur die primitiven regul"aren Ausdr"ucke}
+Die primitiven regul"aren Ausdr"ucke aus Tabelle~\ref{regtab1} k"onnen
+von folgenden Automaten akzeptiert werden:
+\begin{enumerate}
+\item Ein einzelnes Zeichen {\tt a}:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}\ar[r]^{\tt a}
+		&*++[o][F=]{}
+}
+\]
+\item Sprache $L=\Sigma$, regul"arer Ausdruck $r={\tt .}$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}\ar[r]^{\Sigma}
+		&*++[o][F=]{}
+}
+\]
+\item Das leere Wort:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&*++[o][F=]{}
+}
+\]
+\item Die leere Sprache:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}
+}
+\]
+\end{enumerate}
+
+\subsubsection{Automat eines regul"aren Ausdrucks}
+Mit Hilfe der Automaten f"ur die primitven regul"aren Ausdr"ucke
+und den regul"aren Operationen kann man jetzt zu jedem regul"aren
+Ausdruck einen NEA aufbauen.
+
+\begin{beispiel}[\bf Beispiel 1] NEA des regul"aren Ausdrucks
+${\tt ab}|{\tt cd}$.
+
+Zun"achst brauchen wir einen NEA f"ur die Verkettung ${\tt ab}$.
+Diesen k"onnen wir mit der Verkettungskonstruktion aus primitiven
+NEAs f"ur {\tt a} und {\tt b} bilden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}\ar[r]^{\tt a}
+		&{}\ar[r]^{\varepsilon}
+			&{}\ar[r]^{\tt b}
+				&*++[o][F=]{}
+}
+\]
+Auf die gleiche Art kann auch ein NEA f"ur ${\tt cd}$ gebildet werden.
+Diese m"ussen jetzt mit Hilfe der Konstruktion f"ur die Alternative
+zu einem NEA f"ur den Gesamtausdruck zusammengesetzt werden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+	&*+\txt{}
+		&{}\ar[r]^{\tt a}
+			&{}\ar[r]^{\varepsilon}
+				&{}\ar[r]^{\tt b}
+					&*++[o][F=]{}
+\\
+*+\txt{} \ar[r]
+	&{}\ar[ur]^{\varepsilon} \ar[dr]^{\varepsilon}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{}\ar[r]^{\tt c}
+			&{}\ar[r]^{\varepsilon}
+				&{}\ar[r]^{\tt d}
+					&*++[o][F=]{}
+}
+\]
+\end{beispiel}
+
+\begin{beispiel}[\bf Beispiel 2] NEA f"ur den regul"aren Ausdruck
+$({\tt ab})^*{\tt c}$. 
+
+Die einzelnen Teile sind uns schon bekannt, wir m"ussen nur noch
+die *-Konstruktion auf den verketten Automaten anwenden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}\ar[r]^{\varepsilon}
+		&{}\ar[r]^{\varepsilon}
+			\ar[d]^{\varepsilon}
+			&\ar[r]_{\tt a}
+				&{}\ar[r]^{\varepsilon}
+					&{}\ar[r]_{\tt b}
+						&{}\ar@/_20pt/[llll]_{\varepsilon}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{}\ar[r]^{\tt c}
+			&*++[o][F=]{}
+}
+\]
+\end{beispiel}
+
+\begin{beispiel}[\bf Beispiel 3:] NEA f"ur den regul"aren Ausdruck
+$({\tt ab})+$.
+
+Das Zeichen ${\tt+}$ bedeutet bei regul"aren Ausdr"ucken ``mindestens ein''.
+Die einfachste Modifikation der *-Konstruktion, die dies leistet, besteht
+darin, den Akzeptierzustand ans Ende des Automaten zu verschieben:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}\ar[r]^{\varepsilon}
+		&{}\ar[r]^{\tt a}
+			&{}\ar[r]^{\varepsilon}
+				&{}\ar[r]^{\tt b}
+					&*++[o][F=]{}\ar@/^20pt/[llll]^{\varepsilon}
+}
+\]
+Alternativ k"onnte man auch einfach den NEA f"ur die Verkettung
+nehmen, und keinen neuen Startzustand hinzuf"ugen. Bei der
+*-Konstruktion wurde das ja gemacht, um auch das leere Wort
+akzeptieren zu k"onnen, was bei der {\tt +}-Operation nicht
+n"otig ist:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}\ar[r]^{\tt a}
+		&{}\ar[r]^{\varepsilon}
+			&{}\ar[r]^{\tt b}
+				&*++[o][F=]{}\ar@/^20pt/[lll]^{\varepsilon}
+}
+\]
+\end{beispiel}
+Diese Beispiel illustrieren, dass sich aus jedem regul"aren Ausdruck
+ein NEA bauen l"asst. Die Konstruktion hat die Form eines Algorithmus,
+l"asst sich also auch mit einem Computer implementieren, sie geht
+auf Ken Thompson zur"uck.
+\index{Thompson, Ken}
+
+\subsection{Regul"arer Ausdruck eines DEA}
+Zu jedem DEA gibt es einen regul"aren Ausdruck, der angibt,
+welche W"orter er akzeptiert.  In diesem Abschnitt geben
+wir einen Algorithmus an, der einen DEA in einen "aquivalenten
+regul"aren Ausdruck umwandelt. 
+
+\index{NEA!verallgemeinerter}
+\index{VNEA}
+Wir verwenden dazu den Begriff eines verallgemeinerten NEA (VNEA),
+dessen Pfeile nicht mehr nur mit Zeichen des Alphabets oder mit
+$\varepsilon$ angeschrieben sei k"onnen, sondern mit regul"aren
+Ausdr"ucken. Dann wandelt man einen DEA zun"achst um in einen
+VNEA, und reduziert ihn dann auf einen VNEA mit nur zwei Zust"anden,
+einem Startzustand und einem Akzeptierzustand:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{q_0}\ar[r]^{r}
+		&*++[o][F=]{q_1}
+}
+\]
+Offenbar werden genau diejenigen W"orter von diesem Automaten
+akzeptiert, welche auf den regul"aren Ausdruck $r$ passen.
+
+Sei jetzt also ein NEA $A$ gegeben. Da er m"oglicherweise viele
+Endzust"ande haben kann, wir aber am Schluss nur noch einen
+Endzustand haben wollen, f"ugen wir einen neuen Endzustand
+$q_{\text{accept}}$ hinzu.
+Da der Automat auch Pfeile haben kann, die im Startzustand enden,
+der endg"ultige VNEA aber keine solche Pfeile hat, f"ugen wir
+auch einen zus"atzlichen Startzustand $q_{\text{start}}$ hinzu.
+
+%Nat"urlich m"ussen wir jetzt auch noch Pfeile erg"anzen. Zus"atzlich
+%zu den urspr"unglichen Pfeilen des NEA erg"anzen wir darin
+%alle m"oglichen Pfeile, die es bis jetzt noch nicht gab, und
+%beschriften Sie mit dem regul"aren Ausdruck $\emptyset$, was bedeutet,
+%dass diese Pfeile gar nie ``genommen'' werden.
+
+Ausserdem f"ugen wir vom neuen Startzustand $q_{\text{start}}$
+aus einen Pfeil
+Pfeil zu urspr"unglichen Startzustand des NEA mit Beschriftung $\varepsilon$
+hinzu.
+
+Alle Akzeptierzust"ande des urspr"unglichen NEA werden jetzt noch mit
+$q_{\text{accept}}$ verbunden, beschriftet mit $\varepsilon$.
+
+Damit haben wir jetzt einen VNEA. Diesen
+m"ussen wir jetzt auf einen VNEA reduzieren, der nur noch
+die beiden Zust"ande $q_{\text{start}}$ und $q_{\text{accept}}$
+enth"alt. Dazu reissen wir nacheinander alle Zust"ande des urspr"unglichen
+NEA heraus.
+Die entstehenden L"ocher 
+m"ussen wir nat"urlich reparieren,
+indem wir die verbleibenden Pfeile mit erweiterten regul"aren Ausdr"ucken
+anschreiben, welche die verlorengegangenen Teile ersetzen.
+
+Nehmen wir also an, wir m"ochten den Zustand $q_ {\text{rip}}$
+herausreissen. Seien weiter $q_i$ und $q_j$ zwei Zust"ande, die
+"Uberg"ange haben, die "uber $q_{\text{rip}}$ f"uhren:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+{q_i}\ar[rr]^{r_4} \ar[dr]_{r_1}
+	&*+\txt{}
+		&{q_j}
+\\
+*+\txt{}
+	&{q_{\text{rip}}}\ar[ur]_{r_3} \ar@(dl,dr)_{r_2}
+}
+\]
+Der Weg "uber $q_{\text{rip}}$ entspricht einem "Ubergang
+von $q_i$ nach $q_j$ mit regul"arem Ausdruck $r_1r_2^*r_3$,
+der zus"atzlich zum Ausdruck $r_4$, m"oglich ist. Wenn $q_{\text{rip}}$
+entfernt wird, muss also $r_4$ durch 
+\[
+r_4{\tt |}r_1r_2^{\tt *}r_3
+\]
+ersetzt werden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+{q_i}\ar[rr]^{r_4|r_1r_2^*r_3}
+	&*+\txt{}
+		&{q_j}
+}
+\]
+Die vom VNEA akzeptierte Sprache "andert sich dabei nicht.
+Diese Operation wird wiederholt, bis die Zust"ande des urspr"unglichen
+NEA vollst"andig entfernt sind.
+
+Damit  haben wir jetzt folgenden Satz bewiesen.
+\begin{satz}
+Ist $A$ ein NEA, dann gibt es einen regul"aren Ausdruck $r$ mit
+$L(A)=L(r)$.
+\end{satz}
+
+\subsubsection{Beispiel}
+Wir wollen den DEA
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{1}\ar@/^/[r]^{\tt a} \ar@/^/[d]^{\tt b}
+		&*++[o][F=]{2} \ar@(ul,ur)^{\tt b} \ar@/^/[l]^{\tt a}
+\\
+*+\txt{}
+	&*++[o][F=]{3} \ar[ur]_{\tt a} \ar@/^/[u]^{\tt b}
+}
+\]
+in einen "aquivalenten regul"aren Ausdruck umwandeln.
+
+Im ersten Schritt f"ugen wir die neuen Start- und Akzeptierzust"ande 
+hinzu, die Zust"ande $2$ und $3$ sind damit nicht mehr Akzeptierzust"ande:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&S\ar[r]^{\varepsilon}
+		&{1}\ar@/^/[r]^{\tt a} \ar@/^/[d]^{\tt b}
+			&{2} \ar@(ul,ur)^{\tt b} \ar@/^/[l]^{\tt a}\ar[r]^{\varepsilon}
+				&*++[o][F=]{A}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{3} \ar[ur]_{\tt a} \ar@/^/[u]^{\tt b} \ar[urr]^{\varepsilon}
+}
+\]
+Jetzt entfernen wir nacheinander alle ``inneren'' Zust"ande. Wir beginnen mit
+dem Zustand $1$, dabei sind die Pfade
+$S$-$1$-$2$,
+$S$-$1$-$3$,
+$2$-$1$-$3$,
+$3$-$1$-$2$,
+$2$-$1$-$2$
+und $3$-$1$-$2$
+zu ber"ucksichtigen
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&S\ar[rr]^{\tt a} \ar[dr]_{\tt b}
+		&*+\txt{}
+			&{2} \ar@(ul,ur)^{\tt aa|b} \ar@/_/[dl]_{\tt ab} \ar[r]^{\varepsilon}
+				&*++[o][F=]{A}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{3} \ar@/_/[ur]_{\tt a|ba} \ar@/_20pt/[urr]_{\varepsilon} \ar@(dl,dr)_{\tt bb}
+}
+\]
+Jetzt wird der Zustand $2$ entfernt, dabei sind die Pfade 
+$S$-$2$-$A$,
+$S$-$2$-$3$,
+$3$-$2$-$A$,
+und
+$3$-$2$-$3$
+zu ber"ucksichtigen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&S\ar[rrr]^{\tt a(aa|b)^*} \ar[dr]_{\tt b|a(aa|b)^*ab}
+		&*+\txt{}
+			&*+\txt{}
+				&*++[o][F=]{A}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{3} \ar[urr]_{{\tt (a|ba)(aa|b)^*}|\varepsilon} \ar@(dl,dr)_{{\tt bb|(a|ba)(aa|b)^*ab}}
+}
+\]
+Jetzt muss nur noch der Zustand $3$ entfernt werden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&S\ar[rrrrrrrr]^{\tt (a(aa|b)^*)|(b|a(aa|b)^*ab)(bb|(a|ba)(aa|b)^*ab)^*(((a|ba)(aa|b)^*)|\varepsilon)}
+		&*+\txt{}
+			&*+\txt{}
+			&*+\txt{}
+			&*+\txt{}
+			&*+\txt{}
+			&*+\txt{}
+			&*+\txt{}
+				&*++[o][F=]{A}
+}
+\]
+Damit ist der regul"are Ausdruck gefunden, der die gleiche Sprache
+akzeptiert wie der urspr"ungliche DEA.
+entspricht.
+
+\section{Anhang: Regul"are Ausdr"ucke in der Praxis}
+\rhead{Regex in der Praxis}
+\subsection{Flex}
+\index{Flex}
+\index{Scanner}
+\index{Scannergenerator}
+Flex ist ein Scannergenerator. Er verarbeitet eine Spezifikation einer
+Sprache als Menge von regul"aren Ausdr"ucken in einen deterministischen 
+endlichen Automaten. Als Beispiel soll verfolgt werden, wie die
+Flex-Spezifikation
+\verbatiminput{lex/example4.l}
+in einen endlichen Automaten umgesetzt wird. Mit der Option {\tt -T}
+kann man sich die erzeugten Tabellen des NEA anzeigen lassen:
+\verbatiminput{lex/dumpnfa}
+Die Tabelle ist wie folgt zu lesen.
+In der mittleren Spalte steht das zu verarbeitende Zeichen, also
+die Beschriftung eines Pfeils. F"ur jedes Zeichen sind zwei Zielzust"ande
+m"oglich, die in den letzten beiden Spalten eingetragen werden. Einen
+Zustand {\tt 0} gibt es nicht, "Uberg"ange nach ${\tt 0}$ m"ussen als
+nicht verwendete Pfeile interpretiert werden. $\varepsilon$-"Uberg"ange
+werden durch mit dem Symbol {\tt 257} bezeichnet. Sind von einem Punkt
+aus mehr also zwei Alternativen m"oglich, wie im vorliegenden Fall
+bei der Alternative {\tt h|s|r}, dann muss dies mit Hilfe von zus"atzlichen
+$\varepsilon$-"Ubergangen aus Zweier-Alternativen zusammengesetzt werden.
+Zeichnet man diese NEA, ergibt sich das folgende Zustandsdiagramm:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{15} \ar[r]^{\varepsilon} \ar[d]^{\varepsilon}
+		&{13}\ar[r]^{{\tt EOF}}
+			&*++[o][F=]{14}
+\\
+*+\txt{}
+	&{12}\ar[d]^{\varepsilon} \ar[r]^{\varepsilon}
+		&{1}
+\\
+*+\txt{}
+	&{8}\ar[d]^{\varepsilon} \ar[r]^{\varepsilon}
+		&{7}\ar[dr]^{\tt r}
+\\
+*+\txt{}
+	&{5}\ar[dr]^{\varepsilon} \ar[r]^{\varepsilon}
+		&{3}\ar[r]^{\tt h}
+			&{6}\ar[r]^{\varepsilon}
+				&{9}\ar[r]^{\tt 1}
+					&{10}\ar[r]^{\tt 0}
+						&*++[o][F=]{11}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{4}\ar[ur]^{\tt s}
+\\
+*+\txt{}
+	&{2}
+}
+\]
+Man kan im unteren Teil sehr sch"on erkennen, wie der Automat, der
+die Dreier-Altenrative {\tt h|s|r} akzeptiert, "uber einen
+$\varepsilon$-"Ubergang mit dem Automaten verkettet wird, der 
+den String {\tt 10} akzeptiert. Zustand {\tt 14} wurde von Flex
+hinzugef"ugt, er erlaubt das Fileende zu erkennen, so dass das
+erzeugte Programm am Fileende auf jeden Fall terminieren kann.
+
+Der NEA kann nat"urlich auch in einen DEA umgewandelt werden.
+Auch dies protokolliert Flex: 
+\verbatiminput{lex/dumpdfa}
+Zu jedem Zustand wird jetzt aufgef"uhrt, welche Zeichen zu welchen
+"Uberg"angen f"uhren. Flex hat die Zeichen in Klassen zusammengefasst,
+die Ziffern bedeuten:
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Zeichenklasse&Inhalt\\
+\hline
+{\tt 1}&andere\\
+{\tt 2}&{\tt 0}\\
+{\tt 3}&{\tt 1}\\
+{\tt 4}&{\tt h}\\
+{\tt 5}&{\tt s}\\
+{\tt 6}&{\tt r}\\
+\hline
+\end{tabular}
+\end{center}
+Auch den DEA kann man in ein Zustandsdiagramm zur"uck"ubersetzen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+	&*+\txt{}\ar[d]
+\\
+*+\txt{}
+	&{1}\ar[dr]^{{\tt h},{\tt s},{\tt r}} \ar[dl]_{{\tt 0}, {\tt 1}, \text{andere}}
+\\
+*++[o][F=]{4}
+	&*+\txt{}
+		&*++[o][F=]{5}\ar[r]^{\tt 1}
+			&{6}\ar[r]^{\tt 0}
+				&*++[o][F=]{7}
+\\
+*+\txt{}
+	&{2}\ar[ur]_{{\tt h},{\tt s},{\tt r}} \ar[ul]^{{\tt 0}, {\tt 1}, \text{andere}}
+\\
+*+\txt{}
+	&*++[o][F=]{3}
+}
+\]
+Man kann sehen, dass Flex nicht alles wirklich aufr"aumt, es bleiben
+unerreichbare Zust"ande {\tt 2} und {\tt 3} stehen, einer davon sogar ein
+Akzeptierzustand. Die Zust"ande 4 und 5 sind als
+Akzeptierzust"ande markiert, aber nur 7 ist als Akzeptierzustand zu
+verstehen, der ein auf den regul"aren Ausdruck passendes Wort
+akzeptiert.
+
+\subsection{Performance}
+\index{Laufzeit!eines DEA}
+\index{Laufzeit!eines NEA}
+Ein DEA hat immer Laufzeit $O(n)$, d.~n.~ein Regex-Matcher auf der
+Basis eines DEA wird erkennen, ob ein Inputstring passt innerhalb 
+einer Zeit, die proportional zur L"ange des Strings ist.
+Die einfachste Implementation eines NEA hingegen wird alle M"oglichkeiten
+von nicht eindeutigen "Uberg"angen durchprobieren m"ussen, mit
+m"oglicherweise exponentieller Laufzeit. Normalerweise sind in der
+Praxis eingesetzte regul"are Ausdr"ucke klein, und die untersuchten
+Strings sind ebenfalls nicht allzu gross. Man kann allerdings auch
+Ausdr"ucke konstruieren, die den Unterschied zwischen DEA und simplistischer
+NEA-Implementation offensichtlich werden lassen. Ein solcher Ausdruck
+ist
+\begin{center}
+\tt a?a?a?a?a?aaaaa
+\end{center}
+Also $n$ fakultative {\tt a} gefolgt von $n$ obligatorischen {\tt a}.
+Um ein Wort bestehend aus $n$ {\tt a} zu akzeptieren, gibt es genau eine
+M"oglichkeit, die man erh"alt, wenn man in der Alternativen
+${\tt a?} = \varepsilon|{\tt a}$
+jeweils das leere Wort w"ahlt. Falls das immer die zweite ausprobierte 
+M"oglichkeit ist, ist die Laufzeit dieses Algorithmus proportional zu
+$2^n$, wird also bei langen Strings schnell sehr gross.
+
+Es ist einfach, einen geeigneten DEA f"ur den regul"aren
+Ausdruck {\tt a?a?a?aaa} hinzuschreiben:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&\ar[r]^{\tt a}
+		&\ar[r]^{\tt a}
+			&\ar[r]^{\tt a}
+				&*++[o][F=]{}\ar[r]^{\tt a}
+					&*++[o][F=]{}\ar[r]^{\tt a}
+						&*++[o][F=]{}\ar[r]^{\tt a}
+							&*++[o][F=]{}
+}
+\]
+Und auch einen NEA findet manh aus der Konstruktion eines Automaten
+aus einem regul"aren Ausdruck ohne Probleme:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&\ar@/^/[r]^{\tt a} \ar@/_/[r]_{\varepsilon}
+		&\ar@/^/[r]^{\tt a} \ar@/_/[r]_{\varepsilon}
+			&\ar@/^/[r]^{\tt a} \ar@/_/[r]_{\varepsilon}
+				&\ar[r]^{\tt a}
+					&\ar[r]^{\tt a}
+						&\ar[r]^{\tt a}
+							&*++[o][F=]{}
+}
+\]
+Auch die Vereinfachung der $\varepsilon$-"Uberg"ange ist noch sehr
+"ubersichtlich:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&\ar[r]^{\tt a}
+	\ar@/^20pt/[rr]^{\tt a}
+	\ar@/^20pt/[rrr]^{\tt a}
+	\ar@/^20pt/[rrrr]^{\tt a}
+		&\ar[r]^{\tt a}
+		\ar@/_20pt/[rr]_{\tt a}
+		\ar@/_20pt/[rrr]_{\tt a}
+			&\ar[r]^{\tt a} \ar@/_20pt/[rr]_{\tt a}
+				&\ar[r]^{\tt a}
+					&\ar[r]^{\tt a}
+						&\ar[r]^{\tt a}
+							&*++[o][F=]{}
+}
+\]
+Auch in diesem Beispiel kann man sich von Flex helfen lassen,
+einen NEA zu erstellen.  Unverkennbar sind auch hier wieder die
+Spuren der Konstruktionsschritte, mit denen man aus regul"aren
+Ausdr"ucken Teilautomaten baut und diese dann zum ganzen Automaten
+zusammenbaut.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{19}\ar[d]^{\varepsilon}\ar[r]^{\varepsilon}
+		&{17}\ar[r]^{\tt EOF}
+			&*++[o][F=]{18}
+\\
+*+\txt{}
+	&{16}\ar[d]^{\varepsilon} \ar[r]^{\varepsilon}
+		&{1}
+\\
+*+\txt{}
+	&{5} \ar[r]^{\varepsilon}
+	      \ar[dr]^{\varepsilon}
+		&{3} \ar[d]^{\tt a}
+			&{8} \ar[r]^{\varepsilon}
+			     \ar[dr]^{\varepsilon}
+				&{6} \ar[d]^{\tt a}
+					&{11} \ar[r]^{\varepsilon}
+					     \ar[dr]^{\varepsilon}
+						&{9} \ar[d]^{\tt a}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{4} \ar[ur]^{\varepsilon}
+			&*+\txt{}
+				&{7} \ar[ur]^{\varepsilon}
+					&*+\txt{}
+						&{10} \ar@/_10pt/[dlll]_{\varepsilon}
+\\
+*+\txt{}
+	&*+\txt{}
+		&*+\txt{}
+			&{12} \ar[r]^{\tt a}
+				&{13} \ar[r]^{\tt a}
+					&{14} \ar[r]^{\tt a}
+						&*++[o][F=]{15}
+}
+\]
+Daraus macht Flex dann den folgenden DEA:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[d]
+\\
+{1}\ar[r]^{\tt a} \ar[d]^{\text{andere}} \
+	&{5}\ar[r]^{\tt a}
+		&{6}\ar[r]^{\tt a}
+			&*++[o][F=]{7} \ar[r]^{\tt a}
+				&*++[o][F=]{8} \ar[r]^{\tt a}
+					&*++[o][F=]{9} \ar[r]^{\tt a}
+						&*++[o][F=]{10}
+\\
+{4}
+\\
+{3}
+}
+\]
+$3$ und $4$ sind wieder Zust"ande die ben"otigt werden, um andere Inputs
+wie zum Beispiel EOF zu erkennen. Der resultierend DEA entspricht genau
+dem oben vorgeschlagenen DEA.
+
+Nicht alle Implementationen verwenden jedoch diese Theorie. Die
+Regex-Funktionen in der C-Library verwenden dies, und sind entsprechend
+schnell. Alle Unix-Tools, die auf dieser Bibliothek basieren, sind
+entsprechend schnell. Perl hat seine eigene erweiterte Regex-Library,
+verwendet keinen DEA, und ist langsam. Ebenfalls langsam ist die
+die Implementation der {\tt matches} Methode in {\tt java.lang.String}.
+Man w"urde hoffen, dass wenigstens das Package {\tt java.util.regex} einen
+besseren Regex-Matcher beinhalten w"urde. Leider wurde da nur am
+Interface herumgebastelt, nicht an der Substanz. Vielleicht sollten
+die Implementatoren von {\tt java.util.regex} mal die Vorlesung MathI2
+besuchen.

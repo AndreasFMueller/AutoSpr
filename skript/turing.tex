@@ -1,0 +1,1317 @@
+%
+% Turing Maschinen und rekursiv aufzaehlbare Sprachen
+%
+% (c) 2009
+%
+\def\blank{\text{\textvisiblespace}}
+\lhead{Algorithmen}
+\chapter{Turing Maschinen}
+Die bisher entwickelten Modelle von Rechenmaschinen haben zwar
+interessante Sprachklassen hervorgebracht, sind aber offensichlich nicht
+geeignet, die M"oglichkeiten eines Computers abzubilden. Ein
+Computer verf"ugt, "uber einen Speicher, auf den er, im Gegensatz zum
+Stack eines Stackautomen, beliebigen Zugriff hat. Das Ziel dieses
+Abschnittes ist daher, einen endlichen Zustandsautomaten so zu
+erweitern, dass er mit einem solchen Speicher arbeiten kann.
+Weiterhin soll das Modell so formuliert sein, dass sich damit
+Sprachen akzeptieren lassen, und wir hoffen nat"urlich, dass dadurch
+eine nochmals gr"ossere Klasse von Sprachen entsteht, die diesmal
+aber alles umfasst, was wir mit modernen Computern abbilden k"onnen.
+
+\section{Turing Maschinen}
+\rhead{Turingmaschinen}
+\subsection{Definition}
+\index{Band}
+\index{Bandalphabet}
+\index{Schreib-/Lese-Kopf}
+Wir wollen einem endlichen Automaten statt eines Stacks einen unendlich
+grossen Speicher zur Verf"ugung stellen. Wir stellen uns diesen
+Speicher als ein in beide Richtungen unendlich langes Band vor,
+welches in einzelne Speicherzellen aufgeteilt ist, in die jeweils
+genau ein Zeichen geschrieben werden kann (Abbildung~\ref{turingfig}).
+Wie beim Stackautomaten gehen
+wir davon aus, dass dieser Speicher auch Dinge speichern kann, die nicht
+im Input vorkommen, wir verwenden daher ein Bandalphabet $\Gamma$, welches
+das Input-Alphabet umfasst: $\Gamma\subset \Sigma$.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.8\hsize]{images/turing-1}
+\end{center}
+\caption{Schematische Darstellung einer Turing-Maschine\label{turingfig}}
+\end{figure}
+
+Der Zugriff auf den Speicher erfolgt jeweils zellenweise, wir stellen
+uns einen Schreib-/Lese-Kopf vor, der auf dem Band positioniert werden
+kann, und genau ein Zeichen lesen kann, oder das auf dem Band vorhandene
+Zeichen "uberschreiben kann. Um zu Beginn einen wohldefinierten Zustand
+zu haben, brauchen wir ein zus"atzliches ``Blank''-Zeichen $\blank$,
+welches in $\Gamma$ aber nicht in $\Sigma$ enthalten ist\footnote{W"are
+das ``Blank''-Zeichen $\blank$ auch in $\Sigma$, k"onnte man das
+leere Band nicht vom Input unterscheiden.}.
+
+Da wir jetzt diesen unendlich grossen Speicher haben, gibt es keinen
+Grund mehr, sich vorzustellen, dass der Input Zeichen f"ur Zeichen
+in den endlichen Automaten gef"uttert wird. Stattdessen gehen wir
+davon aus, dass der Input auf das Band geschrieben wird, der 
+Schreib-/Lesekopf auf das erste Feld des Input positioniert wird,
+und man dann die Maschine arbeiten l"asst.
+
+Die Maschine muss jetzt Zeichen vom Band lesen, und zusammen mit
+ihrem aktuellen Zustand entscheiden, in welchem neuen Zustand
+sie nach der Verarbeitung dieses Zeichens sein soll, welches Zeichen
+an dieser Stelle auf dem Band stehen soll, und ob der Schreib-/Lesekopf
+bewegt werden soll. Wir erlauben nur zwei Bewegungen: L und R, insbesondere
+ist es nicht zul"assig, dass der Kopf nach der Verarbeitung stehen 
+bleibt.
+
+Im Gegensatz zu DEA oder Stackautomat ist die Berechnung in diesem
+Modell nach dem Ende des Input-String noch nicht zu Ende. Die Maschine
+kann mehrmals "uber die auf dem Band gespeicherten Daten fahren, und
+sie immer wieder modifizieren. Sie k"onnte also im Prinzip auch
+gar nie aufh"oren zu arbeiten. Daher brauchen wir Zust"ande, die
+die Maschine anhalten. Wenn die Maschine angehalten hat, m"ussen wir
+zudem wissen, ob das auf das Band geschriebene Input-Wort f"ur die
+Sprache akzeptabel war oder nicht. 
+
+All dies f"uhrt uns auf folgende formale Definition einer Turing-Maschine
+\begin{definition}
+\index{Turing-Maschine}
+Eine Turing-Maschine ist ein $7$-tupel
+$M=(Q,\Sigma,\Gamma,\delta,q_0,q_{\text{accept}},q_{\text{reject}})$,
+wobei $Q$, $\Sigma$ und $\Gamma$ endliche Mengen sind mit folgenden
+zus"atzlichen Eigenschaften
+\begin{compactenum}
+\index{Zustand}
+\item $Q$ heisst die Menge der Zust"ande
+\index{Inputalphabet}
+\index{Eingabe-Alphabet}
+\index{blank@Blank}
+\index{$\blank$|see{Blank}}
+\item $\Sigma$ heisst das Inputalphabet, es enth"alt das spezielle
+``Blank''-Zeichen $\blank$ nicht.
+\index{Bandalphabet}
+\item $\Gamma$ ist das Bandalphabet, es gilt $\blank\in\Gamma$ und
+$\Sigma\subset\Gamma$.
+\index{Uebergangsfunktion@\"Ubergangsfunktion}
+\item $\delta\colon Q\times \Gamma\to Q\times\Gamma\times\{\text{L},\text{R}\}$
+ist die "Ubergangsfunktion
+\index{Startzustand}
+\item $q_0\in Q$ ist der Startzustand
+\index{Akzeptierzustand}
+\item $q_{\text{accept}}\in Q$ ist der Akzeptierzustand
+\index{Ablehnungszustand}
+\item $q_{\text{reject}}\in Q$ ist der Ablehnungszustand
+\end{compactenum}
+\end{definition}
+Die "Ubergangsfunktion liefert also zu jedem Zustand und zum
+Inhalt des Feldes unter dem Schreib-/Lesekopf einen neuen
+Zustand, einen neuen Bandinhalt und die Information, ob
+der Kopf nach links (L) oder rechts (R) bewegt werden muss.
+
+\subsection{Sprache}
+Sei eine Turingmaschine 
+$M=(Q,\Sigma,\Gamma,\delta,q_0,q_{\text{accept}},q_{\text{reject}})$
+gegeben.
+Zu $M$ kann man auf folgende Weise eine Sprache konstruieren:
+Um zu entscheiden, ob ein Wort $w\in\Sigma^*$
+zu der Sprache geh"ort,
+schreibt man es auf das Band, platziert den Schreib-/Lesekopf auf
+das erste Zeichen und bringt die Maschine in den Zustand $q_0$.
+\index{Konfiguration}
+Man beschreibt diese Konfiguration der Maschine mit der Zeichenkette
+$q_0w$, die Maschine ist im Zustand $q_0$ und der Schreib-/Lesekopf
+steht "uber dem ersten Zeichen von $w$.
+
+Mit Hilfe der "Ubergangsfunktion wird dann der n"achste Zustand,
+der neue Inhalt des Feldes unter dem Schreib-/Lesekopf und die
+Kopfbewegung ermittelt. Auch diesen neuen Zustand kann man wieder
+als Konfiguration hinschreiben. Der Schreib-/Lesekopf steht
+jetzt wom"oglich mitten im Wort drin, und die Maschine befindet
+sich in irgend einem Zustand $q$: $w_1qw_2$.
+
+Nehmen wir an, die Maschine befindet sich zu Beginn eines Zyklus im 
+Zustand $q_1$ und hat den Kopf auf das Zeichen $a_k$ positioniert.
+Die Funktion $\delta$ berechnet daraus ein Tripel $(q_1,b_k,R)$ 
+oder $(q_2,b_k,L)$. Die Konfiguration "andert sich dabei wie
+folgt:
+\begin{align*}
+&\text{Ausgangskonfiguration:}&a_1\dots a_{k-1}&\;q_1\;a_k\dots a_n\\
+&\text{"Ubergang mit } \delta(q_1,a_k)=(q_2,b_k,L)&a_1\dots a_{k-2}&\;q_2\;a_{k-1}b_k\dots a_n\\
+&\text{"Ubergang mit } \delta(q_1,a_k)=(q_2,b_k,R)&a_1\dots a_{k-1}b_k&\;q_2\;a_{k+1}\dots a_n
+\end{align*}
+
+Die Maschine arbeit so immer weiter, bis einer der Zust"ande $q_{\text{accept}}$
+oder $q_{\text{reject}}$ erreicht wird, dann h"alt sie an.
+Das Inputwort gilt als akzeptiert, wenn der Zustand $q_{\text{accept}}$
+erreicht wurde, es gilt als verworfen, wenn $q_{\text{reject}}$ erreicht
+wurde.
+
+\index{Berechnungsgeschichte}
+Die Folge von Konfigurationen, die die Turing-Maschine
+w"ahrend der Berechnung durchl"auft, nennt man auch
+{\em Berechnungsgeschichte}.
+
+\begin{definition}
+\index{Sprache!von einer Turing-Maschine erkannte}
+Ist $M$ eine Turingmaschine, dann heisst
+\[
+L(M)=\{w\in\Sigma^*\;|\;\text{$M$ akzeptiert $w$}\}.
+\]
+die von $M$ erkannte Sprache.
+\end{definition}
+
+\begin{definition}
+\index{Turing-erkennbar}
+Eine Sprache $L$ heisst Turing-erkennbar, wenn es eine Turing-Maschine
+$M$ gibt mit $L=L(M)$.
+\end{definition}
+
+Die Definition der erkannten Sprache erlaubt, dass die zur Erkennung
+verwendete Turing-Maschine auf einigen W"ortern $w\in\Sigma^*$ nicht
+anh"alt. Diese W"orter werden nie akzeptiert, und geh"oren
+damit nicht zur Sprache. Testet man sie mit $M$, wird die Berechnung
+aber nie anhalten, man weiss also eigentlich nie, ob das Wort
+nicht zur Sprache geh"ort, oder ob man einfach noch etwas mehr
+Geduld braucht.
+
+Gewissheit hat man erst, wenn man sicher sein kann, dass $M$ auf
+jedem Input anh"alt. 
+
+\begin{definition}
+\index{Entscheider}
+Ein Entscheider ist eine Turingmaschine, die auf jedem Input $w\in\Sigma^*$
+anh"alt. Eine Sprache heisst entscheidbar, wenn ein Entscheider sie
+erkennt.
+\index{entscheidbar}
+\end{definition}
+
+\subsection{Zustandsdiagram}
+\index{Graph!gerichteter!beschrifteter!einer Turing-Maschine}
+Auch eine Turingmaschine kann man als gerichteten beschrifteten Graphen
+darstellen. "Uberg"ange zwischen zwei Zust"anden sind immer begleitet von
+einer "Anderung des Inhaltes des Feldes unter dem Schreib-/Lesekopf
+und von einer Kopfbewegung. Beide m"ussen mit der Beschriftung
+der Pfeile codiert werden. In Anlehnung an die bei den Stackoutomaten
+verwendete Notation schreiben wir f"ur den "Ubergang
+$\delta(q_1,a)=(q_2,b,\text{R})$
+die Notation
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+{q_1}\ar[r]^{a\to b,\text{R}}
+	&{q_2}
+}
+\]
+und f"ur den "Ubergang
+$\delta(q_1,a)=(q_2,b,\text{L})$
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+{q_1}\ar[r]^{a\to b,\text{L}}
+	&{q_2}
+}
+\]
+
+\subsection{Beispiel}
+Wir konstruieren eine Turingmaschine, welche die bereits als weder regul"ar
+noch kontextfrei erkannte Sprache $L=\{0^{2^n}\;|\; n\in\mathbb N\}$
+erkennt.
+
+Zweierpotenzen kann man daran erkennen, dass man die Zahl ohne
+Rest durch zwei teilen kann, bis nur noch 1 "ubrig bleibt. Genau
+diesen Prozess kann man mit einer Turingmaschine auf dem Band
+nachbilden. Die Maschine muss also folgendes tun:
+
+Auf dem Input $w$:
+\begin{compactenum}
+\item Fahre von links nach rechts "uber das Band und streiche jedes zweite $0$.
+\item Falls im Schritt 1 das Band genau eine $0$ enthielt, {\it akzeptiere}.
+\item Falls im Schritt 1 das Band eine ungerade Zahl und mehr als ein $0$
+enthielt, {\it verwerfe}.
+\item Fahre mit dem Kopf zur"uck zum linken Ende des Bandes
+\item Weiter bei Schritt 1
+\end{compactenum}
+In jedem Durchgang wird die Anzahl der Nullen halbiert, es sei denn,
+sie war nicht gerade. In diesem Fall bleibt nach dem Durchgang eine
+ungerade Anzahl $0$ auf dem Band stehen, was beim darauffolgenden Durchgang
+in Schritt~3 erkannt wird. Geht die Division immer auf, bleibt am Schluss
+nur genau eine $0$ stehen, was im Schritt~2 erkannt wird. Daher funktioniert
+dieser Algorithmus.
+
+Um den Algorithmus mit einer Turing-Maschine zu realisieren, brauchen wir
+ein neues Zeichen {\tt x}, mit dem wir gestrichene Zeichen markieren
+k"onnen. Es ist also $\Gamma = \{0,{\tt x},\blank\}$.
+Ausserdem brauchen wir
+Zust"ande, mit denen man die Parit"at der Anzahl $0$ bestimmen kann, und
+mit denen man die Aktivit"aten in Schritt 4 von den anderen unterscheiden
+kann. Schritt $4$ wird zum Beispiel implementiert durch das
+Zustandsdiagramm
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+{}\ar@(ul,ur)^{\genfrac{}{}{0pt}{1}{0\to 0,\text{L}}{{\tt x}\to{\tt x},\text{L}}}
+\ar[r]^{\blank\to\blank,\text{R}}
+	&
+}
+\]
+Jede zweite Null streichen wird implementiert durch
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[d]
+\\
+\ar@/^/[r]^{0\to{\tt x},\text{R}}
+\ar@(ul,dl)_{\tt x\to\tt x,\text{R}}
+	&\ar@/^/[l]^{0\to 0,\text{R}}
+         \ar@(ur,dr)^{\tt x\to\tt x,\text{R}}
+	 \ar[d]^{\blank\to\blank,?}
+\\
+*+\txt{}
+	&{}
+}
+\]
+Dass akzeptiert werden soll, wenn nach dem Ersetzen einer $0$ durch
+ein {\tt x} keine weiteren $0$ mehr gefunden werden k"onnen, kann durch
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+\ar[r]^{0\to{\tt x},\text{R}}
+	&{} \ar@(dl,dr)_{{\tt x}\to{\tt x},\text{R}}
+	    \ar[r]^{\blank\to\blank,\text{R}}
+		&*++[o][F=]{q_a}
+}
+\]
+ausgedr"uckt werden. Die Schleife beim mittleren Zustand
+bildet ab, dass {\tt x}-Zeichen "ubersprungen werden sollen.
+Mit solchen Elementen k"onnen wir die Turingmaschine jetzt schrittweise
+aufbauen.
+
+Zun"achst stellen wir sicher, dass der Input tats"achlich aus Nullen
+besteht:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[d]
+\\
+{q_1}\ar[d]_{\genfrac{}{}{0pt}{1}{\blank\to\blank,\text{R}}{{\tt x}\to{\tt x},\text{R}}}
+\\
+*++[o][F=]{q_r}
+}
+\]
+Jetzt h"angen wir das Segment an, welches pr"uft, ob es noch genau ein $0$
+auf dem Band hat:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[d]
+\\
+{q_1}\ar[d]_{\genfrac{}{}{0pt}{1}{\blank\to\blank,\text{R}}{{\tt x}\to{\tt x},\text{R}}}
+	\ar[r]^{0\to{\tt x},\text{R}}
+	&{q_2}\ar[d]^{\blank\to\blank,\text{R}}
+              \ar@(u,ul)_{{\tt x}\to {\tt x},\text{R}}
+\\
+*++[o][F=]{q_r}
+	&*++[o][F=]{q_a}
+}
+\]
+Falls dies nicht zutrifft, m"ussen weitere Nullen weggestrichen werden,
+wobei "uber die Parit"at der noch vorhandenen Nullen Buch gef"uhrt werden
+muss. Daf"ur braucht es die beiden Zust"ande $q_3$ und $q_4$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[d]
+\\
+{q_1}\ar[d]_{\genfrac{}{}{0pt}{1}{\blank\to\blank,\text{R}}{{\tt x}\to{\tt x},\text{R}}}
+	\ar[r]^{0\to\blank,\text{R}}
+	&{q_2}\ar[d]_{\blank\to\blank,\text{R}}
+	      \ar[r]^{0\to{\tt x},\text{R}}
+              \ar@(u,ul)_{{\tt x}\to {\tt x},\text{R}}
+		&{q_3}\ar@(u,r)^{{\tt x}\to{\tt x},\text{R}}
+		      \ar@/^/[d]^{0\to 0,\text{R}}
+\\
+*++[o][F=]{q_r}
+	&*++[o][F=]{q_a}
+		&{q_4}\ar@/^/[u]^{0\to {\tt x},\text{R}}
+		      \ar@(d,r)_{{\tt x}\to{\tt x},\text{R}}
+}
+\]
+Wenn die Maschine nach dem abarbeiten aller 0 und {\tt x} auf einen
+neuen Blank \textvisiblespace\ trifft, ist sie entweder im Zustand
+$q_3$ oder in $q_4$. Im letzten Fall hat sie ein ungerade Anzahl 
+von 0 gefunden, gem"ass Schritt 3 des Algorithmus muss also verworfen
+werden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[d]
+\\
+{q_1}\ar[d]_{\genfrac{}{}{0pt}{1}{\blank\to\blank,\text{R}}{{\tt x}\to{\tt x},\text{R}}}
+	\ar[r]^{0\to\blank,\text{R}}
+	&{q_2}\ar[d]_{\blank\to\blank,\text{R}}
+	      \ar[r]^{0\to{\tt x},\text{R}}
+              \ar@(u,ul)_{{\tt x}\to {\tt x},\text{R}}
+		&{q_3}\ar@(u,r)^{{\tt x}\to{\tt x},\text{R}}
+		      \ar@/^/[d]^{0\to 0,\text{R}}
+\\
+*++[o][F=]{q_r}
+	&*++[o][F=]{q_a}
+		&{q_4}\ar@/^/[u]^{0\to {\tt x},\text{R}}
+		      \ar@(d,r)_{{\tt x}\to{\tt x},\text{R}}
+		      \ar@/^20pt/[ll]^{\blank\to\blank,\text{R}}
+}
+\]
+Wenn sie dagegen im Zustand $q_3$ ist, muss sie nach links fahren,
+bis zum ersten Blank, und dann im Zustand $q_2$ ankommen. Dies erreicht
+man mit Hilfe eines weitere Zustands $q_5$.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[d]
+	&*+\txt{}
+		&{q_5}\ar@(ul,ur)^{\genfrac{}{}{0pt}{1}{0\to 0,\text{L}}{{\tt x}\to {\tt x},\text{L}}}
+		      \ar[dl]_{\blank\to\blank,\text{R}}
+\\
+{q_1}\ar[d]_{\genfrac{}{}{0pt}{1}{\blank\to\blank,\text{R}}{{\tt x}\to{\tt x},\text{R}}}
+	\ar[r]^{0\to\blank,\text{R}}
+	&{q_2}\ar[d]_{\blank\to\blank,\text{R}}
+	      \ar[rr]^{0\to{\tt x},\text{R}}
+              \ar@(u,ul)_{{\tt x}\to {\tt x},\text{R}}
+		&*+\txt{}
+			&{q_3}\ar@(u,r)^{{\tt x}\to{\tt x},\text{R}}
+			      \ar@/^/[d]^{0\to 0,\text{R}}
+			      \ar[ul]_{\blank\to\blank,\text{L}}
+\\
+*++[o][F=]{q_r}
+	&*++[o][F=]{q_a}
+		&*+\txt{}
+			&{q_4}\ar@/^/[u]^{0\to {\tt x},\text{R}}
+			      \ar@(d,r)_{{\tt x}\to{\tt x},\text{R}}
+			      \ar@/^20pt/[lll]^{\blank\to\blank,\text{R}}
+}
+\]
+Mit diesem Beispiel haben wir gezeigt, dass die Menge der
+Sprachen, die von einer Turingmaschine erkennbar sind, Sprachen
+enth"alt, die mit den bisherigen Mitteln nicht erkennbar waren.
+
+\begin{definition}
+Die von einer Turingmaschine $M$ erkannten W"orter bilden die
+Sprache $L(M)$.
+\end{definition}
+
+\section{Varianten von Turing Maschinen}
+\rhead{Varianten von Turingmaschinen}
+Turingmaschinen sollen als universelles Modell f"ur Computer gelten,
+dies ist jedoch nur m"oglich, wenn sich die Menge der erkannten Sprachen
+nicht "andert, wenn an dem Modell kleine Ver"anderungen vorgenommen
+werden.
+
+Das Band einer Turingmaschine k"onnen wir als den RAM-Speicher
+eines modernen Computers interpretieren. Moderne Computer verwenden
+jedoch verschiedene Wortl"ange bei der Arbeit mit ihrem Speicher,
+was auch das Bandalphabet $\Gamma$ ver"andert. Ein Computer mit
+Speicherwortl"ange $l$ hat als Bandalphabet die Menge $\Gamma_l=[2^l]$.
+
+\index{von Neumann-Architektur}
+\index{Harvard-Architektur}
+Computer mit von Neumann-Architektur verwenden nur einen einzigen RAM-Speicher,
+der Programm und Daten enth"alt. Computer mit Harvard-Architektur
+verwenden dagegen zwei verschiedene Speicher: einen Programm-Speicher
+und einen Datenspeicher. Die beiden Speicher k"onnen sogar verschiedene
+Wortl"ange haben. AVR-Microcontroller verwenden zum Beispiel
+den Flashspeicher, den sie als 16bit breiten Speicher adressieren, 
+w"ahrend sie das RAM als 8bit breiten Speicher adressieren.
+ARM-Microcontroller dagegen betrachten RAM und Flash einfach als
+verschiedene Bereich in einem einzigen grossen Adressraum.
+AVR-Microcontroller haben also ``zwei B"ander'' mit unterschiedlichen
+Bandalphabeten, ARM-Microcontroller verwenden dagegen ein einziges Band
+mit immer dem gleichen Alphabet.
+
+\subsection{Mehrspurige Turingmaschine}
+\index{Turing-Maschine!mehrspurige}
+\begin{satz}\label{mehrspurigeturingmaschine}
+Jede Sprache, die von einer mehrspurigen Turingmaschine 
+erkannt werden kann, kann auch von einer einspurigen Turingmaschine
+erkannten werden.
+\end{satz}
+
+\begin{proof}[Beweis]
+Sei $L$ eine Sprache, die von der Turingmaschine $M$ mit $n$ Spuren
+erkannten wird. Das Bandalphabet ist $\Gamma$. Wir konstruieren aus
+$M$ eine neue Turingmaschine $M'$, welches nur noch eine Spur hat,
+jedoch als Bandalphabet die Menge $\Gamma^n$. Dadurch wird die ``Wortbreite'' 
+des Bandes erh"oht, es wird nur noch eine breite Spur verwendet, um die
+gleiche Information unterzubringen. 
+\end{proof}
+
+\subsection{Turingmaschine mit mehreren B"andern}
+\index{Turing-Maschine!mit mehreren B\"andern}
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.9\hsize]{images/turing-2}
+\end{center}
+\caption{Turingmaschine mit mehreren B"andern\label{multitapetm}}
+\end{figure}
+\begin{satz}
+\label{mehrbandturingmaschine}
+Jede Sprache, die von einer Turingmaschine mit mehreren B"andern
+(Abbildung~\ref{multitapetm})
+erkannt
+wird, kann auch von einer Turing-Maschine mit nur einem Band erkannt
+werden.
+\end{satz}
+
+\begin{proof}[Beweis]
+Die Konfiguration einer Turingmaschine $M$ mit $n$ B"andern beinhaltet
+ausser dem Inhalt der zus"atzlichen B"ander auch noch die Position
+des Schreib-/Lesekopfes jedes einzelnen Bandes. Um diese Information
+zu codieren, konstruieren wir eine neue Turingmaschine $M'$ mit
+$2n$ Spuren. Spur $2i$ enth"alt dabei die Daten von Band $i$.
+Auf Spur $2i-1$ verwenden wir eine spezielle Marke $\uparrow$, um die Position
+des Schreib-/Lesekopfes auf Band $i$ zu markieren. Somit l"asst sich
+eine Turingmaschine mit $n$ B"andern auf einer Turingmaschine mit
+$2n$ Spuren und Bandalphabet $\Gamma\cup\{\uparrow\}$ codieren.
+Und nach Satz \ref{mehrspurigeturingmaschine} l"asst sich eine solche wiederum
+auf einer Standardturingmaschine simulieren.
+\end{proof}
+Die geraden Spuren werden also dazu verwendet, die Position des
+Schreib-/Lese-Kopfes zu speichern, w"ahrend die ungeraden Spuren
+die Daten enthalten: 
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c|c|c|c}
+\hline
+&a&b&c&d&e&f&c&\\
+\hline
+& & &$\uparrow$& & & & &\\
+\hline
+&1&2&3&4&5&6&7&\\
+\hline
+& & & & & &$\uparrow$& &\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Bandalphabet}
+Auch das Bandalphabet hat keinen Einfluss auf die M"oglichkeiten einer
+Turingmaschine. Die Festplatte eines modernen Computers ist eigentlich
+ein ``Band'' mit Bandalphabet $\{0,1,\blank\}$, erst zus"atzliche
+Logik im Controller macht daraus einzelne Bytes, also ein gr"ossers
+Bandalphabet.
+
+\begin{satz}
+Jede Turingmaschine mit Bandalphabet $\Gamma$ kann auf einer Turingmaschine
+mit Bandalphabet $\{0,1,\blank\}$ simuliert werden.
+\end{satz}
+
+\begin{proof}[Beweis]
+Sei also $M$ eine Turingmaschine mit Bandalphabet $\Gamma$ gegeben. Wir
+wollen daraus eine Turingmaschine $M'$ mit dem Alphabet
+$\Gamma_0= \{0,1,\blank\}$ konstruieren, die dieselbe
+Sprache erkennt. Dazu m"ussen wir die Zeichen aus $\Gamma$ als
+Bitfolgen codieren, eine beliebige injektive Abbildung
+\[
+e\colon\Gamma\to \Gamma_0^l
+\]
+l"ost dieses Problem, eine solche existiert, wenn $2^l>|\Gamma|$.
+Zus"atzlich k"onnen
+wir verlangen, dass $e(x)\in \{0,1\}^l$, die Zeichen $\ne\blank$ 
+also ausschliesslich mit $0$ und $1$ codiert werden, und
+$e(\blank)=(\blank,\dots,\blank)$.
+
+Mit der Codierung $e$ wird der Bandinhalt jetzt umcodiert. Der Inhalt
+$x$ 
+eines Feldes des Bandes von $M$ wird auf $l$ aufeinanderfolgende Felder
+des Bandes von $M'$ verteilt, die mit den einzelnen Komponenten
+von $e(x)$ gef"ullt werden. 
+
+In den folgenden Darstellungen verwenden wir der gr"osseren
+"Ubersichtlichkeit halber $\Gamma=\{0,1,2,3\}$, wobei eines der
+Zeichen die Rolle von $\blank$ "ubernimmt. Ausserdem ist $l=2$.
+
+Jetzt m"ussen auch die "Uberg"ange in $M$
+durch entsprechend erweiterte Konstruktionen in $M'$ ersetzt werden.
+In einem Zyklus m"ussen zun"achst die n"achsten $l$ Zeichen vom Band
+von $M'$ gelesen werden. Welches Zeichen dieser Bitfolge entspricht,
+muss in Zust"anden von $M'$ festgehalten werden. Ausgehend vom Zustand 
+$q$ von $M$ kann zur Decodierung 
+des Bandes folgender Automat verwendet werden, der $l$ Bits liest
+und den Kopf wieder auf den Anfang des Codewortes zur"uckf"ahrt:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+	&*+\txt{}
+		&*+\txt{}
+			&q\ar[dll]_{0\to 0,\text{R}} \ar[drr]^{1\to 1,\text{R}}
+\\
+*+\txt{}
+	&\ar[dl]_{0\to 0,\text{R}} \ar[dr]^{1\to 1,\text{R}}
+		&*+\txt{}
+			&*+\txt{}
+				&*+\txt{}
+					&\ar[dl]_{0\to 0,\text{R}} \ar[dr]^{1\to 1,\text{R}}
+						&*+\txt{}
+\\
+\ar[d]^{.\to .,\text{L}}
+	&*+\txt{}
+		&\ar[d]^{.\to .,\text{L}}
+			&*+\txt{}
+				&\ar[d]^{.\to .,\text{L}}
+					&*+\txt{}
+						&\ar[d]^{.\to .,\text{L}}
+\\
+\ar[d]^{.\to .,\text{L}}
+	&*+\txt{}
+		&\ar[d]^{.\to .,\text{L}}
+			&*+\txt{}
+				&\ar[d]^{.\to .,\text{L}}
+					&*+\txt{}
+						&\ar[d]^{.\to .,\text{L}}
+\\
+q_0
+	&*+\txt{}
+		&q_1
+			&*+\txt{}
+				&q_2
+					&*+\txt{}
+						&q_3
+}
+\]
+Die Zust"ande $q_i$ codieren jetzt zus"atzlich, welches 
+Zeichen $i\in\Gamma$ sich unter dem Schreib-/Lesekopf befindet.
+
+Ein "Ubergang
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+q\ar[r]^{a\to b,\text{R}}
+	&p
+}
+\]
+muss jetzt "ubersetzt werden in einen "Ubergang von $q_a$ in einen
+Zwischenzustand, von dem aus das Codewort von $b$ geschrieben.
+wird. Wird $b$ als $b_1\dots b_l$ codiert, wird daraus also
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+q_a\ar[r]^{.\to b_1,\text{R}}
+	&\ar[r]^{.\to b_2,\text{R}}
+		&p
+}
+\]
+Falls dem "Ubergang jedoch eine Kopfbewegung nach links folgt, wie in
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+q\ar[r]^{a\to b,\text{L}}
+	&p
+}
+\]
+dann muss diese ebenfalls noch angeh"angt werden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+q_a\ar[r]^{.\to b_1,\text{R}}
+	&\ar[r]^{.\to b_2,\text{R}}
+		&\ar[r]^{.\to .,\text{L}}
+			&\ar[r]^{.\to .,\text{L}}
+				&\ar[r]^{.\to .,\text{L}}
+					&\ar[r]^{.\to .,\text{L}}
+						&p
+}
+\]
+Diese Konstruktion zeigt, dass sich die Turingmaschine $M$ auf einer
+Turingmaschine $M'$ mit Bandalphabet $\{0,1,\blank\}$ simulieren
+l"asst.
+\end{proof}
+
+\subsection{Aufz"ahler}
+\begin{figure}
+\begin{center}
+\includegraphics[width=\hsize]{images/turing-3}
+\end{center}
+\caption{Schematische Darstellung eines Aufz"ahlers.\label{turing-aufzaehler}}
+\end{figure}
+Unser bisheriges Konzept einer Turingmaschine hat keine M"oglichkeit,
+Output zu produzieren. Solange die Turingmaschine arbeitet, wissen wir
+nicht, welcher Teil des Bandinhaltes m"oglicherweise schon ``fertig''
+berechnet ist. Erst wenn sie angehalten hat, weil sie $q_{\text{accept}}$
+oder $q_{\text{reject}}$ erreicht hat, ist die Berechnung fertig.
+
+F"ur die Praxis w"unschen wir uns jedoch auch eine M"oglichkeit,
+die Maschine ohne Ende weiterlaufen zu lassen, wobei sie immer neue
+Resultate produziert. Zum Beispiel k"onnte so eine Maschine der Reihe
+nach alle W"orter einer Sprache aufz"ahlen wollen. Zu diesem Zweck 
+f"ugen wir der Turingmaschine einen Drucker hinzu
+(Abbildung~\ref{turing-aufzaehler}). Die Turingmaschine
+kann jederzeit ein Wort auf den Drucker schreiben und dann
+weiterarbeiten.
+
+\begin{definition}
+\index{Aufzahler@Aufz\"ahler}
+Eine Turingmaschine mit einem Drucker, die auf einem leeren Band beginnt,
+heisst ein Aufz"ahler. Die von einem Aufz"ahler auf dem Drucker ausgegebene
+W"orter bilden eine Sprache, die vom Aufz"ahler aufgez"ahlte Sprache.
+\end{definition}
+
+Wieder haben wir das Berechnungsmodell erweitert, und es stellt sich
+die Frage, ob sich dadurch die Menge der Sprachen erweitert. 
+
+\begin{satz}
+\index{Turing-erkennbar}
+Eine Sprache ist genau dann Turing-erkennbar, wenn sie
+von einem Aufz"ahler aufgez"ahlt wird.\end{satz}
+
+\begin{proof}[Beweis]
+Da die "Aquivalenz der beiden Modelle zu zeigen ist, sind zwei Implikationen
+zu beweisen. Einerseits muss gezeigt werden, dass die von einem
+Aufz"ahler aufgez"ahlte Sprache auch von einer Turingmaschine
+erkannt werden kann, andererseits muss zu einer Turingmaschine, die
+die Sprache erkennt, ein Aufz"ahler konstruiert werden, der die Sprache 
+aufz"ahlt.
+
+Sei als $A$ ein Aufz"ahler. Wir konstruieren eine Turingmaschine $M$, die
+zum Inputwort $w$ folgenden Algorithmus implementiert.
+\begin{compactenum}
+\item Lasse $A$ laufen. Jedesmal, wenn $A$ ein Wort auf den Drucker schreibt,
+vergleiche das Wort mit $w$.
+\item Falls das Wort mit $w$ "ubereinstimmt, gehe in den Zustand
+$q_{\text{accept}}$.
+\end{compactenum}
+Falls das Wort zur Sprache geh"ort, wird der Aufz"ahler es fr"uher
+oder sp"ater aufz"ahlen, und der Algorithmus wird es akzeptieren.
+
+F"ur die umgekehrte Richtung m"ussen wir zur Turingmaschine $M$
+einen Aufz"ahler produzieren. 
+Ein erster Versuch besteht darin, der Reihe nach alle W"orter aus
+$\Sigma^*$ zu produzieren, und jedes mit $M$ zu testen.
+Ein Algorithmus, der die W"orter produziert, ist einfach herzustellen,
+man produziert zuerst alle W"orter der L"ange 1, dann alle der L"ange 2, 
+immer lexikographisch geordnet.
+Sei also $s_1,s_2,s_3,\dots$ eine Liste aller W"orter von $\Sigma^*$.
+
+Beim Testen der W"orter mit $M$
+haben wir die Schwierigkeit, dass $M$ auf einem Inputwort
+m"oglicherweise nicht anh"alt. Wir m"ussen also mit einem Trick
+simulieren, dass unsere Algorithmus nicht in einer ``Endlosschleife''
+in $M$ stecken bleibt. Wir lassen $M$ daher nur jeweils f"ur einige
+Schritte laufen. 
+Genauer: 
+\begin{compactenum}
+\item F"ur $n=1,2,3,\dots$ f"uhre die folgenden zwei Schritte aus:
+\item Lasse $M$ auf jedem Wort $s_i, i \le n$ w"ahrend $n$ Schritten
+laufen.
+\item Falls $M$ das Wort $s_i$ akzeptiert, schreibe es auf den Drucker.
+\end{compactenum}
+Dieser Algorithmus verhindert, dass $M$ in eine ``Endlosschleife'' 
+ger"at, und druckt alle W"orter aus, von der Turingmaschine erkannt
+werden, sogar unendlich oft.
+\end{proof}
+
+\subsection{Nicht deterministische Turingmaschinen}
+\index{Turing-Maschine!nicht deterministische}
+Sowohl bei endlichen Automaten wie auch bei Stackautomaten war
+Nichtdeterminismus ein Konzept, welches die Formulierung eines
+Automaten wesentlich vereinfachen konnte, ohne die M"oglichkeiten
+zu ver"andern. Die einzige "Anderung in der Definition ist die
+Definition von $\delta$, welche nicht mehr Werte in
+$Q\times \Gamma\times\{\text{L},\text{R}\}$ annimmt, sondern
+in der Potenzmenge:
+\[
+\delta\colon Q\times\Gamma\to
+P(Q\times \Gamma\times\{\text{L},\text{R}\}).
+\]
+Die Berechnung muss in jedem Schritt eine der M"oglichkeiten
+aus $\delta(q,a)$ ausw"ahlen.
+Eine deterministische Turingmaschine ist offenbar auch eine
+nichtdeterministische Turingmaschine, die den nichtdeterminismus
+gar nicht ausn"utzt, also $|\delta(q,a)|=1$.
+
+\begin{satz}
+\label{nichtdeterministischeturingmaschine}
+Jede nichtdeterministische Turingmaschine ist "aquivalent zu einer
+deterministischen Turingmaschine.
+\end{satz}
+
+\begin{proof}[Beweis]
+Die Behauptung ist bewiesen, wenn wir zu einer nicht deterministischen
+Turingmaschine $M$ eine deterministische Turingmaschine konstruiert haben,
+die die gleichen W"orter erkennt. 
+
+Die nicht deterministische Maschine kann viele verschiedene Berechnungswege
+verwenden, um ein Wort zu akzeptieren.
+Es ist aber auch m"oglich, dass ein solcher Weg in eine Endlosschleife f"uhrt. 
+Daher k"onnen wir nicht einfach die nichtdeterministische Turingmaschine
+auf einem Berechnungsweg laufen lassen, wir w"urden nie mit einem 
+anderen Weg beginnen, der m"oglicherweise das Wort akzeptiert.
+Wir d"urfen also die Maschine immer nur einige Schritte laufen lassen,
+und m"ussen dann die anderen Wege durchprobieren.
+
+Wir konstruieren jetzt eine Turingmaschine mit drei B"andern, die die
+nichtdeterministische Turingmaschine simuliert. Das erste Band 
+enth"alt das Input-Wort $w$.
+Das zweite Band dient als Arbeitsband f"ur die Maschine $M$. Das
+dritte Band hat Bandalphabet $S=Q\times \Gamma\times\{\text{L},\text{M}\}$
+und speichert die nicht deterministischen Auswahlen aus $\delta(q,a)$,
+die  in jedem Schritt n"otig sein k"onnen. Eine Folge von Auswahlen
+ist ein String aus $S^*$. Wir wissen bereits, dass die Strings aus $S^*$
+aufgez"ahlt werden k"onnen.
+
+Auf dieser Maschine f"uhren
+wir jetzt folgenden Algorithmus aus:
+
+\begin{compactenum}
+\item f"ur $n=1,2,3,\dots$ f"uhre die Schritte 2 bis 5 aus:
+\item Schreibe den String $s_i$  auf Band 3, 
+und f"uhre damit die Schritte 3 bis 5 aus.
+\item Kopiere $w$ von Band 1 auf Band 2
+\item Lasse $M$ f"ur $n$ Schritte auf Band 2 laufen, verwende f"ur die
+nichtdeterministischen Entscheidungen in jedem Schritt das entsprechende
+Feld auf Band 3.
+\item Falls $M$ akzeptiert, akzeptiere.
+\end{compactenum}
+Dieser Algorithmus probiert nacheinander alle m"oglichen Berechnungswege
+durch, l"asst $M$ aber immer nur eine beschr"ankte Anzahl Schritte lang
+rechnen. Falls $w$ akzeptiert werden kann, wir der dazu n"otige Berechnungsweg
+irgendwann auf Band 3 auftauchen, und in entsprechend vielen Schritten wird
+das Wort akzeptiert werden.
+\end{proof}
+
+\begin{satz}
+Eine Sprache ist Turing-erkennbar, wenn sie von einer nicht deterministischen
+Turingmaschine erkannt werden kann.
+\end{satz}
+
+Auch eine nicht deterministische Turingmaschine kann ein Entscheider sein.
+Da ein Entscheider aber niemals in eine ``Endlosschleife'' geraten darf,
+m"ussen wir verlangen, dass alle m"oglichen Berechnungsabl"aufe 
+irgenwann terminieren.
+
+\begin{definition}
+\index{Entscheider}
+\index{Berechnungsgeschichte}
+Eine nicht deterministische Turingmaschine ist ein Entscheider, wenn
+jede m"ogliche Berechnungsgeschichte terminiert.
+\end{definition}
+
+\begin{satz}
+Eine Sprache ist entscheidbar, wenn sie von einer nicht deterministischen
+Turingmaschine entschieden wird.
+\end{satz}
+
+Nichtdeterminismus "andert also die erkennbaren oder entscheidbaren Sprachen
+nicht. Doch der Algorithmus l"asst bereits vermuten, dass die Simulation
+einer nichtdeterministischen Turingmaschine auf einer deterministischen
+Maschine sehr zeitaufwendig ist. Wenn man also eine Performance-Vorgabe
+macht, kann die Menge der von einer deterministischen Turingmaschine
+erkennbaren Sprachen deutlich kleiner sein. Dies wird uns im Kapitel
+\ref{kapitel-komplexitaet} besch"aftigen.
+
+\section{Berechenbarkeit}
+\rhead{Berechenbarkeit}
+In diesem Abschnitt wollen wir kl"aren, welche Dinge "uberhaupt
+berechnet werden k"onnen. Dabei sehen wir die Tatsache, dass f"ur
+die Darstellung einer reellen Zahl eine unendliche Folge von Ziffern
+n"otig sein kann, nicht als Hindernis an. Wir nennen eine Zahl
+berechenbar, wenn wir ein Programm schreiben k"onnen, welches 
+m"oglicherweise unendlich lange l"auft und dabei eine Stelle der
+Zahl nach der anderen liefern kann. Die Turingmaschine
+funktioniert also als Aufz"ahler, der die Stellen der zu berechnenden
+Zahl aufz"ahlen soll.  In diesem Sinne ist die
+Zahl $1/3=0.3333\dots$ berechenbar, aber auch die Zahlen $\sqrt{2}$, $\pi$,
+$e$ und weitere. Wir werden allerdings sehen, dass die meisten
+Zahlen gar nicht berechenbar sind.
+
+\subsection{Abz"ahlbar und "uberabz"ahlbar}
+Unendlich ist nicht gleich unendlich, die Mengen $\mathbb N$ und
+$\mathbb R$ haben zwar beide unendlich viele Elemente, dennoch
+gibt es keine bijektive Abbildung $\mathbb N\to \mathbb R$.
+
+\begin{definition}
+\index{Machtigkeit@M\"achtigkeit}
+Zwei Mengen $A$ und $B$ heissen gleich m"achtig, wenn es eine bijektive
+Abbildung $A\to B$ gibt.
+\end{definition}
+
+Es ist bekannt, dass $\mathbb Q$ und $\mathbb N$ gleich m"achtig sind,
+aber die Menge $\mathbb R$ scheint wesentlich gr"osser
+zu sein als $\mathbb N$.
+Diese Unterschiede zwischen verschiedenen
+unendlichen Mengen wird illustriert von der nachfolgenden Geschichte,
+die David Hilbert als Illustration zu erz"ahlen pflegte.
+
+\subsubsection{Hotel ``Unendlich''}
+\index{Hotel ``Unendlich''}
+\index{Hilbert!-Hotel}
+In einem fernen Land gibt es ein Hotel, welches Hotel ``Unendlich'' 
+genannt wird. Unsere Geschichte beginnt kurz nachdem der Nachtportier
+die Nachtschicht "ubernommen hat. Ein versp"ateter Gast meldet sich
+am Eingang, als der Nachtportier die herumlungernden Besoffenen
+aus den naheliegenden Pubs vertreibt, die auch gerade geschlossen haben.
+Der Gast m"ochte im Hotel "ubernachten, doch der Nachtportier zeigt sich
+unnachgiebig: ``Du kommst hier nicht rein!''
+
+Zum Gl"uck hat der Hotelmanager den Wortwechsel mitbekommen und greift
+ein. Selbstverst"andlich haben wir noch ein Zimmer f"ur jeden noch so
+sp"aten Gast. Der Nachportier protestiert, es seien doch alle Zimmer
+belegt. ``Kein Problem'' sagt der Manager, und greift zum Mikrofon
+der Sprechanlage. Er bittet alle G"aste, aus ihrem aktuellen Zimmer
+ins n"achste Zimmer umzuziehen. Dieses Ansinnen zu sp"ater Stunden
+verursacht zwar bei einigen G"asten etwas Unmut, aber jeder ist damit
+einverstanden, denn h"atten sie sich selbst versp"atet, w"aren sie ja
+auch auf das Entgegenkommen der anderen G"aste angewiesen. Auf diese
+Weise wird das Zimmer mit der Nummer $0$ frei f"ur den neu angekommenen
+Gast.
+
+Kurze Zeit sp"ater kommt eine versp"atete Reisegruppe aus dreissig
+Touristen an, die ebenfalls
+Einlass verlangt. Der Nachtportier will nicht nochmals einen schlechten
+Eindruck hinterlassen und ruft den Manager. Dieser greift
+wieder zum Mikrofon, und bittet wieder alle G"aste, diesemal aus
+ihrem Zimmer mit der Nummer $n$ ins Zimmer mit der Nummer $n+30$
+umzuziehen. So werden die Zimmer mit den Nummern $0$ bis $29$ frei,
+Platz genug f"ur die neu angekommene Reisegruppe.
+
+Diese Nacht ist ziemlich viel los im Hotel ``Unendlich'', denn
+kaum waren die dreissig G"aste untergebracht, f"ahrt ein Hilbert-Bus
+vor: ein Bus mit undendlich vielen Sitzpl"atzen, numeriert mit den
+nat"urlichen Zahlen. Der Nachtportier ist schockiert: Unendlich
+viele G"aste, ohne Reservation. Dass man f"ur endlich viele G"aste
+immer noch Platz schaffen kann, hat er inzwischen verstanden, aber
+f"ur unendlich viele G"aste sei das unm"oglich, stellt er fest und
+will die Gesellschaft wegschicken. Doch der Hotelmanager m"ochte
+sich das Gesch"aft nicht entgehen lassen. Er greift erneut zum 
+Mikrofon und bitte die G"aste, vom Zimmer $n$ ins Zimmer $2n$ umzuziehen.
+So werden alle Zimmer mit ungeraden Nummer frei, Platz genug, f"ur alle
+Passagiere des Hilbert-Buses. Nur die Stimmung unter den Stammg"asten
+hat sich bereits deutlich verschlechtert.
+
+Schliesslich fahren gleich dreissig Hilbertbusse vor. Ein Hilbert-Jumbo
+hatte sich versp"atet, und so dass die Ferieng"aste erst sehr sp"at
+mit ihren Hilbertbussen vom Flughafen zum Hotel abfahren konnten.
+Der Nachtportier hat schon einen Verdacht, dass der Manager auch
+hierf"ur eine L"osung bereit hat. Tats"achlich: per Mikrofondurchsage
+gibt er wieder alle ungerade Zimmer frei. Dann bringt er die Neuank"ommlinge
+darin unter, und zwar sch"on nacheinander immer je einen aus jedem Bus,
+also in die ersten dreissig freien Zimmer die jeweils ersten G"aste
+aus jedem Bus, dann die zweiten aus jedem Bus in die zweiten dreissig
+freien Zimmer und so weiter.
+
+Man ahnt es schon, in dieser Nacht gibt es f"ur die G"aste im Hotel
+``Unendlich'' keine Ruhe. Als n"achstes findet sich ein Hilbert-Konvoi
+vor dem Hotel ein. Also ein Folge von Hilbert-Bussen, die mit nat"urlichen
+Zahlen numeriert waren. Der Nachtportier hat gar nicht erst gewagt, 
+den Neuank"ommlingen abschl"agigen Bescheid zu geben, sondern gleich
+den Manager gerufen. Der muss zwar auch einen Moment nachdenken, findet
+dann aber eine L"osung. Zun"achst wendet er nochmals den Trick an, 
+mit dem er jetzt schon mehrmals die ungeraden Zimmer frei bekommen hat.
+Dabei kommt es auch zu w"usten Szenen mit G"asten, die jetzt schon vier mal
+geweckt worden sind, und sich ihre Nachtruhe nicht von der Geldgier des 
+Managers ruinieren lassen wollen.
+
+Die G"aste aus dem Hilbert-Konvoi m"ussen sich in Einerkolonnen auf
+dem Vorplatz aufstellen, der Manager rief sie daraufhin in der
+eingezeichneten Reihenfolge ab. Auch dies tr"agt nicht  unbedingt
+zur Zufriedenheit der G"aste bei, hinter vorgehaltener Hand wird
+"uber den ``Kasernenton'' und ``Zust"ande wie in einem Konzentrationslager''
+geschimpft.
+Aber jeder kommt fr"uher oder sp"ater dran,
+am Ende hat jeder Gast ein Zimmer, was die Gem"uter wieder
+etwas bes"anftigt.
+
+\[
+\xymatrix{
+\ar[r]
+\cdot	     &\cdot\ar[dl] &\cdot\ar[r] &\cdot\ar[dl]  &\cdot\ar[r] &\cdot\ar[dl] &\cdot
+\\
+\cdot\ar[d]  &\cdot\ar[ur] &\cdot\ar[dl] &\cdot\ar[ur] &\cdot\ar[dl]&\cdot        &\cdot
+\\
+\cdot\ar[ur] &\cdot\ar[dl] &\cdot\ar[ur] &\cdot\ar[dl] &\cdot       &\cdot        &\cdot
+\\
+\cdot\ar[d]  &\cdot\ar[ur] &\cdot\ar[dl] &\cdot        &\cdot       &\cdot        &\cdot
+\\
+\cdot\ar[ur] &\cdot        &\cdot        &\cdot        &\cdot       &\cdot        &\cdot
+}
+\]
+
+Ein Ereignis steht allerdings noch bevor, und hier sollte sich die
+Geldgier des Managers r"achen. Gegen morgen n"amlich f"ahrt
+ein voller Cantor-Bus vor. Dieses hochmoderne Verkehrsmittel hat Sitze,
+\index{Cantor!-Bus}
+die mit den reellen Zahlen angeschrieben sind. Nat"urlich wollen auch
+diese G"aste im Hotel ``Unendlich'' untergebracht werden. Aber so sehr
+sich der Manager auch anstrengt, in seinem Hotel kann er diese
+G"aste nicht unterbringen. Daraufhin wird er zwar vom Verwaltungsrat
+entlassen, der noch weniger Mathematik versteht, was ihm dank "uppiger
+Abgangsentsch"adigung jedoch nicht weiter Sorgen macht. Unbest"atigten
+Ger"uchten zufolge soll er jetzt bei einer Hotelkette ``Cantor Hotels''
+arbeiten, die mit mit dem Spruch ``Present in uncountable locations
+throughout the Universe'' f"ur sich wirbt.
+
+\subsubsection{Lehren aus der Geschichte}
+Eine unendliche Menge ist offenbar so gross, dass man darin immer noch
+Platz genug f"ur eine Kopie der ganzen Menge finden kann. Oder anders
+herum: endliche Mengen sind solche, in denen man niemals Platz finden
+k"onnte:
+
+\begin{satz}
+Eine Menge ist endlich, wenn jede injektive Abbildung auch surjektiv ist.
+\end{satz}
+
+In der Geschichte kam eine ganze Reihe von unendlichen Mengen auf, die
+alle in $\mathbb N$ untergebracht werden konnten, die also nicht
+gr"osser waren als $\mathbb N$ selbst, und das obwohl sie aus nat"urlichen
+Zahlen konstruiert worden waren. Mit $\mathbb N$ vergleichbare Mengen
+bilden also eine robuste Klasse von Mengen.
+
+\begin{definition}
+\index{abzahlbar unendlich@abz\"ahlbar unendlich}
+\index{uberabzahlbar unendlich@\"uberabz\"ahlbar unendlich}
+Eine unendliche Menge $A$ heisst abz"ahlbar unendlich, wenn sie 
+gleichm"achtig ist wie die nat"urlichen Zahlen. $A$ heisst
+"uberabz"ahlbar unendlich, wenn es keine Bijektion zwischen
+$\mathbb N$ und $A$ gibt.
+\end{definition}
+Bildlich gesprochen ist eine abz"ahlbare Menge eine solche,
+bei der sich die Elemente in eine mit den nat"urlichen Zahlen numerierte
+Liste einordnen lassen.
+
+Auch die Menge der Paare $(k,l)\in \mathbb N^2$ ist abz"ahlbar.
+Ein Gast aus dem Hilbert-Konvoi wird durch seine Busnummer $k$ und
+seine Platz-Nummer $l$ identifiziert, der Konvoi hat also gleich
+viele G"aste wie $\mathbb N^2$ Paare enth"alt. Und alle diese Paare
+passen in die Menge $\mathbb N$, also die Zimmer des Hotels ``Unendlich''
+hinein. Somit sind $\mathbb N^2$ und $\mathbb N$ gleich m"achtig.
+
+Die Geschichte hat exemplarisch den folgenden Satz gezeigt:
+
+\begin{satz}Die Vereinigung von endlich vielen abz"ahlbaren
+Mengen ist abz"ahlbar. Das kartesische Produkt zweier abz"ahlbarer
+Mengen ist abz"ahlbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Sei $A_1,\dots,A_n$ eine endliche Familie abz"ahlbarer Mengen,
+je mit einer Funktion $f_i\colon \mathbb N\to A_i$, dann
+k"onnen wir eine Abz"ahlfunktion f"ur die Vereinigung konstruieren:
+\[
+f\colon \mathbb N\to\bigcup_{i=1}^n A_i\colon nk+l \mapsto f_l(k)
+\]
+wobei wir verwenden, dass wir jede Zahl eindeutig als $nk+l$
+schreiben k"onnen mit geeigneten Zahlen $k$ und $l$.
+
+F"ur das kartesische Produkt m"ussen wir zeigen, dass sich die
+Menge der Paare $\mathbb N^2$ aufz"ahlen l"asst, was mit dem
+Diagonaltrick des Hotelmanagers geschehen kann.
+\end{proof}
+
+Daraus folgen jetzt weitere S"atze "uber die Kardinalit"at
+der bekannten Zahlmengen.
+
+\begin{satz}
+Die Mengen $\mathbb Z$ und $\mathbb Q$ sind abz"ahlbar unendlich.
+\end{satz}
+
+\begin{proof}[Beweis]
+Die Menge $\mathbb Z$ ist abz"ahlbar, da sie die Vereinigung
+von zwei Mengen ist, die offensichtlich abz"ahlbar sind:
+\[
+\mathbb Z = \mathbb N\cup \{-n\;|\;n\in\mathbb N\}.
+\]
+Die rationalen Zahlen k"onnen durch Br"uche dargestellt werden,
+also durch Paare $(p,q)$ von ganzen Zahlen:
+\[
+\mathbb Q=\left\{\left.\frac{p}{q}\;\right|\;p\in \mathbb Z,q\in\mathbb N\setminus\{0\}\right\}
+\]
+Da sich einige Br"uche noch k"urzen lassen, ist $\mathbb Q$ noch
+kleiner als $\mathbb N^2$, aber insbesondere abz"ahlbar.
+\end{proof}
+
+\begin{satz}
+Die Menge $\mathbb R$ ist "uberabz"ahlbar unendlich.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir f"uhren den Beweis mit Hilfe eines Widerspruchs. Nehmen wir
+an, $\mathbb R$ w"are abz"ahlbar unendlich. Dann m"ussten auch
+die reellen Zahlen zwischen $0$ und $1$ abz"ahlbar sein,  es g"abe also eine
+Liste all dieser Zahlen, wir schreiben die Zahlen
+dieser Liste in Dezimaldarstellung
+\begin{align*}
+0.&r_{11}r_{12}r_{13}r_{14}\dots\\
+0.&r_{21}r_{22}r_{23}r_{24}\dots\\
+0.&r_{31}r_{32}r_{33}r_{34}\dots\\
+0.&r_{41}r_{42}r_{43}r_{44}\dots\\
+&\vdots
+\end{align*}
+Jetzt konstruieren wir eine Zahl $x$, die nicht in dieser Liste vorkommen
+kann. Um die $k$-te Stelle $x_k$ von $x$ zu konstruieren, betrachten
+wir die $k$-te Stelle der $k$-ten Zahl $r_{kk}$, und setzen
+\[
+x_k=\begin{cases}
+r_{kk}-1&\qquad r_{kk}>0\\
+5&\qquad r_{kk}=0
+\end{cases}
+\]
+$x_k$ ist also verschieden von $r_{kk}$, und zwar f"ur jedes $k$.
+Die Ziffer $9$ kommt in $x$ nicht vor, es kann also keine Zahl
+mit lauter $9$ am Ende sein, die gleichbedeutend mit einer anderen
+Zahl ist, die m"oglicherweise bereits in der Liste ist.
+Also unterscheidet sich $x$ von jeder der Zahlen aus der Liste, $x$
+kommt also in der Liste nicht vor. Wir hatten angenommen, dass die
+Liste alle reellen Zahlen zwischen $0$ und $1$ umfasst, dieser
+Widerspruch zeigt, dass es keine solche Liste geben kann, die
+reellen Zahlen sind also "uberabz"ahlbar.
+\end{proof}
+
+\index{Cantor!Georg}
+Georg Cantor (1845-1918) leistete wichtige Beitr"age zur Mengelehre,
+unter anderem entdeckte er den Unterschied der M"achtigkeit von
+nat"urlichen und reellen Zahlen. Daher haben wir in der Geschichte
+den Bus, dessen Sitzpl"atze mit reellen Zahlen angeschrieben waren,
+als Cantor-Bus bezeichnet.
+
+Verwandt damit und mit einem "ahnlichen Beweis kann man auch einsehen,
+dass die Potenzmenge einer abz"ahlbaren Menge "uberabz"ahlbar ist.
+
+\begin{satz}\label{powersetuncountable}
+Ist $A$ eine abz"ahlbar unendliche Menge, dann ist $P(A)$
+"uberabz"ahlbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Da $A$ abz"ahlbar ist gibt es eine bijektive Abbildung 
+$i\mapsto a_i\in A$. Nehmen wir an, es g"abe eine bijektive
+Abbildung von $\mathbb N$ in $P(M)$, also $i\mapsto A_i\subset A$.
+Dann kann man wie folgt eine Menge bilden, die unter den Mengen
+$A_i$ nicht vorkommt.
+\[
+a_i\in B\quad\Leftrightarrow\quad a_i\not\in A_i
+\]
+Die Menge $B$ unterscheidet sich von jeder Menge $A_i$. Falls
+$A_i$ das Elemente $a_i$ enth"alt, enth"alt $B$ es nicht und
+umgekehrt. Somit ist $B\ne A_i\forall i$, im Widerspruch zur Annahme
+dass $i\mapsto A_i$ eine Bijektion ist.
+\end{proof}
+
+Jetzt k"onnen wir auch einige Mengen aus der bisher betrachteten
+Theorie der Sprachen auf ihre M"achtigkeit untersuchen.
+
+\begin{satz}
+$\Sigma^*$ ist abz"ahlbar unendlich. Die Menge aller Sprachen "uber dem
+Alphabet $\Sigma$ ist "uberabz"ahlbar unendlich.
+\end{satz}
+
+\begin{proof}[Beweis]
+Eine Aufz"ahlung von $\Sigma^*$ kann man konstruieren, indem man
+die W"orter von $\Sigma^*$ der L"ange nach sortiert, und innerhalb
+der W"orter gleicher L"ange die lexikographische Ordnung verwendet.
+Dazu braucht man nat"urlich eine Anordnung der Zeichen des Alphabets $\Sigma$,
+da dieses aber endlich ist, kann man immer eine solche Anordnung finden.
+
+Die Menge aller Sprache ist die Potenzmenge der Menge $\Sigma^*$, welche
+abz"ahlbar unendlich ist. Nach Satz \ref{powersetuncountable} ist
+$P(\Sigma^*)$ "uberabz"ahlbar unendlich.
+\end{proof}
+
+\begin{satz}\label{countablefinite}
+Eine abz"ahlbare Vereinigung $\bigcup_{i\in\mathbb N}A_i$ von endlichen
+Mengen $(|A_i|<\infty)$ ist abz"ahlbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Endliche Mengen kann man immer abz"ahlen, also kann man eine Abz"ahlung
+von $\bigcup_{i\in\mathbb N}A_i$ einfach dadurch konstruieren, dass
+man zuerst die Elemente von $A_0$ durchz"ahlt, dann die von $A_1$, und
+so weiter. Weil keine der Mengen $A_i$ unendlich ist, kommt jede
+Menge irgend wann dran.
+\end{proof}
+
+\begin{satz} Sei $\Sigma$ ein festes Alphabet. Dann sind die folgenden
+Mengen alle abz"ahlbar unendlich:
+\begin{enumerate}
+\item Die Menge aller deterministischen endlichen Automaten.
+\item Die Menge aller nichtdeterministischen endlichen Automaten.
+\item Die Menge der regul"aren Sprachen.
+\item Die Menge aller kontextfreien Grammatiken.
+\item Die Menge aller kontextfreien Sprachen.
+\item Die Menge aller Stackautomaten.
+\item Die Menge aller Turingmaschinen.
+\end{enumerate}
+\end{satz}
+
+\begin{proof}[Beweis]
+\begin{enumerate}
+\item Es gen"ugt zu zeigen, dass die Menge der deterministischen
+endlichen Automaten mit $k$ Zust"anden endlich ist, dann ist nach
+Satz \ref{countablefinite} auch die Vereinigung abz"ahlbar. Ein
+deterministischer endlicher Automat ist aber durch die Tabellendarstellung
+gegeben. In der Tabelle sind $|Q|\cdot|\Sigma|$ Felder mit Zust"anden
+zu besetzen, daf"ur gibt es $|Q|^{|Q|\cdot|\Sigma|}$ M"oglichkeiten.
+F"ur jede solche M"oglichkeit ist ausserdem festzulegen, welche Zust"ande
+Akzeptierzust"ande sind, das sind $|P(Q)|=2^{|Q|}$ M"oglichkeiten. Es gibt
+also
+\[
+|Q|^{|Q|\cdot|\Sigma|}\cdot 2^{|Q|}
+\]
+DEAs mit $|Q|$ Zust"anden.
+\item Obwohl in der Definition der nichtdeterministischen endlichen
+Automaten auch die Potenzmenge vorkommt, wird dadurch die Menge
+noch nicht "uber\-abz"ahlbar. Der Funktionswert der "Ubergangsfunktion
+$\delta$ ist ja immer eine Teilmenge einer endlichen Menge, die Potenzmenge
+einer endlichen Menge ist aber auch endlich. Es "andert sich am Argument
+nur, dass in die Tabelle eines Automaten mit $|Q|$ Zust"anden und
+$|\Sigma|$ Zeichen im Alphabet an $|Q|\cdot|\Sigma|$ Stellen
+nicht $|Q|$ verschieden Objekte einf"ullen lassen, sondern $2^{|Q|}$.
+An der Abz"ahlbarkeit "andert dies nichts.
+\item Die regul"aren Sprachen werden von deterministischen endlichen
+Automaten akzeptiert, es gibt also eine surjektive Abbildung von
+den deterministischen endlichen Automaten auf die regul"aren Sprachen, 
+eine Aufz"ahlung der deterministischen endlichen Automaten liefert also
+auch automatisch eine Aufz"ahlung der regul"aren Sprachen.
+\item Es gibt nur endliche viele Grammatiken mit $n$ verschiedenen
+Variablen und h"ochstens $n$ Zeichen langen rechten Seiten der Regeln,
+einfach weil es nur endlich viele rechte Seiten gibt. Also ist die
+Menge aller kontextfreien Grammatiken abz"ahlbar.
+\item Kontextfreie Sprachen werden von einer kontextfreie Grammatik
+erzeugt. Die Abbildung $G\mapsto L(G)$ macht aus einer Aufz"ahlung
+der kontextfreien Grammatiken eine Aufz"ahlung der kontextfreien Sprachen.
+\item Stackautomaten sind nichtdeterministische endliche Automaten mit 
+zus"atzlicher Beschriftung der "Ubergangspfeile. Trotzdem bleibt die
+Anzahl der Stackautomaten mit $k$ Zust"anden endlich, also ist die
+Menge der Stackautomaten abz"ahlbar.
+\item Turingmaschinen sind im wesentlichen deterministsiche endliche Automaten
+mit zus"atzlichen Beschriftungen der Pfeile. Wie in 1.~gibt es nur endlich
+viele Turingmaschinen mit $k$ Zust"anden, also sind die Turingmaschinen
+abz"ahlbar unendlich.
+\end{enumerate}
+\end{proof}
+
+\subsection{Nicht berechenbare Zahlen}
+
+\begin{satz}
+Die rationalen Zahlen sind berechenbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Der Algorithmus der schriftlichen Division erlaubt alle Stellen
+zu finden, man kann sich gut vorstellen, dass er sich auf einer
+Turingmaschine als Aufz"ahler implementieren l"asst. Z"ahler und
+Nenner werden zu Beginn auf das Band geschrieben, der Algorithmus
+berechnet dann alle Stellen des Quotienten. Also sind die rationalen
+Zahlen berechenbar.
+\end{proof}
+
+\begin{satz}Die algebraischen Zahlen, also die Nullstellen von
+Polynomen mit rationalen Koeffizienten sind berechenbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Zun"achst k"onnen wir das Polynom mit dem gemeinsamen Nenner der
+Koeffizienten multiplizieren und erhalten ein Polynom mit ganzzahligen
+Koeffizienten.
+Die Nullstellen eines Polynoms k"onnen mit dem Newton-Algorithmus
+mit beliebiger Genauigkeit bestimmt werden. Dazu muss nur eine 
+Sch"atzung $\hat x_0$ f"ur die Nullstelle bekannt sein, dann k"onnen
+mit der Iteration
+\[
+x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)},\quad x_0 = \hat x_0
+\]
+immer genauere Approximationen berechnet werden. Alle Operationen
+in der Iterationsformel sind Operationen in rationalen Zahlen, sind
+also berechenbar.
+\end{proof}
+
+\begin{satz}
+Die Menge der nicht berechenbaren Zahlen ist "uberabz"ahlbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Die berechenbaren Zahlen sind abz"ahlbar. Wir k"onnen n"amlich
+eine Liste aller Turingmaschinen erstellen, zun"achst schreiben
+wir die Turingmaschinen mit nur einem Zustand hin, dann all jene
+mit genau zwei Zust"anden u.~s.~w. Da jede Turingmaschine genau eine
+Zahl berechnen kann, ist die Menge der berechnenbaren Zahlen abz"ahlbar,
+die Menge der reellen Zahlen ist also "uberabz"ahlbar, daher m"ussen die
+nicht berechenbaren Zahlen auch "uberabz"ahlbar sein.
+\end{proof}
+
+\subsection{Das 10.~Hilbertsche Problem}
+\index{Hilbert!David}
+\index{Hilbertsche Probleme}
+Im Jahre 1900 hielt der deutsche Mathematiker David Hilbert am
+\index{Internationaler Kongress}
+internationalen Mathematikerkongress in Paris einen ber"uhmten Vortrag,
+in dem er eine Reihe von Problemen zusammenstellte, deren L"osung
+nach seiner Meinung die Mathematik im zwanzigsten Jahrhundert
+entscheidend voranbringen w"urden. Einige dieser Probleme wurden
+inzwischen gel"ost, andere, darunter die Riemannsche Vermutung,
+sind immer noch offen.
+
+Von besonderem Interesse f"ur unser Thema war das zehnte Problem: 
+Gibt es ein Verfahren, das f"ur eine beliebige diophantische Gleichung
+entscheidet, ob sie l"osbar ist?
+
+Schon die Problemstellung wirft einige Fragen auf.
+Zun"achst zu den Begriffen:
+\index{Gleichung!diophantische}
+eine diophantische Gleichung ist eine
+Polynomgleichung mit mehreren Variablen aber ausschliesslich
+ganzzahligen Koeffizienten. Die Gleichung 
+\[
+x^2+y^2-z^2=0
+\]
+ist eine diophantische Gleichung, und es ist auch bekannt, dass sie
+L"osungen hat, zum Beispiel $x=3$, $y=4$ und $z=5$. Seit wenigen
+Jahren ist auch bekannt, dass 
+\[
+x^n+y^n-z^n=0,
+\]
+ebenfalls eine diophantische Gleichung, nur ganz wenige L"osungen hat.
+Dies ist die ber"uhmte Fermatsche Vermutung, die Andrew Wiles 1995
+\index{Fermatsche Vermutung}
+\index{Wiles, Andrew}
+vollst"andig bewiesen hat.
+
+Die schwierigerere Frage aber ist: Was f"ur eine Art von Verfahren
+ist gemeint? Hilbert hat keine Definition gegeben. Heute w"urden
+wir wohl fragen, ob ein Algorithmus angegeben werden kann, mit dem
+die Frage entschieden werden kann. Doch das f"uhrt uns nur wieder
+auf die Frage nach einer  mathematisch strengen Definition was
+ein Algorithmus ist.
+
+\index{Turing, Alan}
+Im Jahre 1936 gab Alan Turing eine Antwort: ein Algorithmus ist eine
+Rechenvorschrift, die sich mit einer Turingmaschine implementieren
+l"asst. Probleme, f"ur die es einen L"osungsalgorithmus sind
+also solche, deren Inputdaten man als Wort auf das Band einer
+Turingmaschine schreiben kann. Die Turingmaschine verarbeitet die
+Problembeschreibung, schreibt die L"osung auf das Band und h"alt im
+Zustand $q_{\text{accept}}$ an. Falls das Problem keine L"osung hat,
+h"alt die Maschine im Zustand $q_{\text{reject}}$ an. Solche
+Problem definieren also auch eine Sprache: $L(M)$ ist die
+Menge der Inputw"orter, f"ur die eine L"osung existiert.
+
+Ein Beispiel soll dies illustrieren. Wir m"ochten die Frage
+von einem Algorithmus beantworten lassen, ob es in einem Graphen $G$ 
+einen Weg gibt, der alle Knoten trifft.  Dazu m"ussen wir eine
+Beschreibung des Graphen erzeugen, wir nennen sie $\langle G\rangle$,
+diese auf das Band einer geeignet programmierten Turingmaschine $M$ schreiben,
+diese laufen lassen, und warten, bis sie die Frage beantwortet. $L(M)$
+besteht aus Beschreibungen $\langle G\rangle$ von Graphen $G$, die
+einen solchen Weg haben.
+
+Auf dieser Basis gelang es 1970 Yuri Matijasevi\v c "ubrigens,
+\index{Matijasevi\v c, Yuri}
+das zehnte Hilbertsche Problem etwas "uberraschend zu l"osen: es gibt
+keinen Algorithmus, mit dem entschieden werden kann, ob eine 
+diophantische Gleichung eine L"osung hat. Es ist also durchaus
+nicht selbstverst"andlich, wenn ein Problem eine algorithmische
+L"osung hat. Wir werden im n"achsten Kapitel sehen, dass es viele
+Probleme gibt, die keine algorithmische L"osung haben. Im "ubern"achsten
+werden wir dann Probleme kennenlernen, die zwar von einem Computer
+gel"ost werden k"onnen, deren L"osung aber l"anger dauert als man
+jeden realistischen Computer laufen lassen kann.
+Die im folgenden entwickelte Theorie zeigt also, wo die Grenzen
+der Berechenbarkeit mit Computern liegen.

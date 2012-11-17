@@ -1,0 +1,79 @@
+%
+% skript.tex -- Skript zur Vorlesung Mathematische Grundlagen der Informatik
+%               gehalten an der Hochschule Rapperswil im Wintersemester 09
+%
+% (c) 2009 Prof. Dr. Andreas Mueller, HSR
+% $Id: skript.tex,v 1.34 2008/11/02 22:46:16 afm Exp $
+%
+\documentclass[a4paper,12pt]{book}
+\usepackage{german}
+\usepackage{times}
+\usepackage{alltt}
+\usepackage{verbatim}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{picins}
+\usepackage{ifthen}
+\usepackage{multirow}
+\usepackage{txfonts}
+%\usepackage[basic]{circ}
+\usepackage[all]{xy}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{makeidx}
+\usepackage{paralist}
+\makeindex
+\begin{document}
+\pagestyle{fancy}
+\lhead{Mathematische Grundlagen}
+\rhead{}
+\frontmatter
+\newcommand\HRule{\noindent\rule{\linewidth}{1.5pt}}
+\begin{titlepage}
+\vspace*{\stretch{1}}
+\HRule
+\vspace*{2pt}
+\begin{flushright}
+{\Huge
+Mathematische Grundlagen\bigskip\\
+der Informatik 2}
+\end{flushright}
+\HRule
+\begin{flushright}
+\vspace{30pt}
+\LARGE
+Andreas M"uller
+\end{flushright}
+\vspace*{\stretch{2}}
+\begin{center}
+Hochschule f"ur Technik, Rapperswil, 2011-2012
+\end{center}
+\end{titlepage}
+\rhead{Inhaltsverzeichnis}
+\tableofcontents
+\newtheorem{satz}{Satz}[chapter]
+\newtheorem{hilfssatz}[satz]{Hilfssatz}
+\newtheorem{definition}[satz]{Definition}
+\newtheorem{annahme}[satz]{Annahme}
+\newenvironment{beispiel}[1][Beispiel]{%
+\begin{proof}[#1]%
+\renewcommand{\qedsymbol}{$\bigcirc$}
+}{\end{proof}}
+\mainmatter
+\input einleitung.tex
+\input grundlagen.tex
+\input sprachen.tex
+\input regulaer.tex
+\input cfg.tex
+\input turing.tex
+\input entscheidbarkeit.tex
+\input komplexitaet.tex
+\input vollstaendig.tex
+\input skript.ind
+\end{document}
