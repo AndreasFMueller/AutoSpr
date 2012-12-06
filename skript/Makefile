@@ -13,7 +13,7 @@ TEXFILES = cfg.tex grundlagen.tex komplexitaet.tex regulaer.tex \
 images/timestamp:
 	cd images; make timestamp
 
-skript.pdf:	$(TEXFILES) skript.ind
+skript.pdf:	images/timestamp skript.ind
 	pdflatex skript.tex
 
 skript.ind:	$(TEXFILES) 
@@ -22,5 +22,4 @@ skript.ind:	$(TEXFILES)
 	makeindex skript.idx
 
 clean:
-	rm -f $(FASZIKEL)
 	rm -f *.dvi *.log 
