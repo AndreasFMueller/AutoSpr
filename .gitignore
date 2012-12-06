@@ -31,5 +31,8 @@
 *.vrb
 *.xdy
 *.tdo
+*.swp
+*.swo
 skript/images/*.mpx
 skript/images/*.[0-9]
+skript/images/timestamp
