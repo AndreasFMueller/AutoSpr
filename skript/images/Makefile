@@ -17,7 +17,7 @@ REDFILES = red-1.pdf
 COMPFILES = comp-1.pdf comp-2.pdf comp-3.pdf comp-4.pdf comp-5.pdf \
 	comp-6.pdf comp-7.pdf
 
-timestamp:	$(REGFILES) $(NEAFILES) $(CFGFILES) $(TURINGFILES)
+timestamp:	$(REGFILES) $(NEAFILES) $(CFGFILES) $(TURINGFILES) \
 		$(LANGFILES) $(MINEFILES) $(PLFILES) $(REDFILES) $(COMPFILES)
 	touch timestamp
 
