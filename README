@@ -2,4 +2,14 @@ Skript zur Vorlesung Mathematische Grundlagen der Informatik 2
 an der Hochschule fuer Technik Rapperswil
 
 Zum Bauen dieses Skripts ist eine vollstaendige LaTeX Installation
-erforderlich, wie sie jeder typischen Linux Distrubition beiliegt.
+erforderlich, wie sie jeder typischen Linux Distribution beiliegt.
+
+Zusätzlich wird das Paket `picins` (http://tug.ctan.org/pkg/picins) benötigt.
+Mit MiKTeX sollte es automatisch installiert werden, unter TeXlive muss es aus
+lizenztechnischen Gründen manuell nachinstalliert werden.
+
+Sofern alle Abhängigkeiten erfüllt sind, kann das Skript folgendermassen
+gebuildet werden:
+
+    $ cd skript
+    $ make
