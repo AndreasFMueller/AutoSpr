@@ -9,7 +9,7 @@ Mit MiKTeX sollte es automatisch installiert werden, unter TeXlive muss es aus
 lizenztechnischen Gründen manuell nachinstalliert werden.
 
 Sofern alle Abhängigkeiten erfüllt sind, kann das Skript folgendermassen
-gebuildet werden:
+gebaut werden:
 
     $ cd skript
     $ make
