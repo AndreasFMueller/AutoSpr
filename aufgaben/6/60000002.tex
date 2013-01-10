@@ -1,0 +1,40 @@
+Zeigen Sie, dass eine regul"are Sprache $L$ Turing-entscheidbar ist.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Da $L$ regul"ar ist, gibt es einen DEA $A$, der $L$ akzeptiert.
+Aus diesem DEA konstruieren wir jetzt eine Turing-Maschine.
+Wir ersetzen dazu jeden "Ubergang
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+p\ar[r]^a
+        &q
+}
+\]
+des DEA durch einen Turing-Maschinen-"Ubergang
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+p\ar[r]^{a\to a,R}
+        &q
+}
+\]
+Ausserdem f"ugen wir zwei neue Akzeptierzust"andge $q_{\text{accept}}$ und
+$q_{\text{reject}}$ hinzu, zusammen mit "Uberg"angen
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*++[o][F=]{p}\ar[r]^{\blank\to\blank, R}
+        &q_{\text{accept}}
+                &{p}\ar[r]^{\blank\to\blank, R}
+                        &q_{\text{reject}}
+}
+\]
+Diese Turingmaschine verarbeitet den Input auf dem Band mit dem
+DEA, und erkennt am Ende des Wortes genau diejenigen W"orter, die
+vom DEA akzpetiert werden. Also ist $L(M)=L(A)$. Die TM h"alt genau
+nach $|w|+1$ Schritten an, also ist $M$ ein Entscheider.
+\end{loesung}
+}{}
+

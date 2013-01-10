@@ -1,0 +1,36 @@
+Betrachten Sie die Frage, ob ein vorgegebener endlicher Automat $A$ "uber dem
+Alphabet $\{{\tt 0},{\tt 1}\}$ keine Zeichenkette akzeptiert,
+die eine ungerade Anzahl {\tt 1} enth"alt. Ist dieses Problem
+entscheidbar?
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Der folgende Algorithmus entscheidet das Problem.
+\begin{enumerate}
+\item
+Man konstruiert einen endlichen Automaten $B$, der nur W"orter
+akzeptiert, die eine ungerade Anzahl von {\tt 1} enth"alt.
+Das Zustandsdiagramm
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*++\txt{}\ar[r]
+        &z_0\ar@/^/[r]^{1} \ar@(dr,dl)^{0}
+                &*++[o][F=]{z_1} \ar@/^/[l]^{1}
+                        \ar@(dr,ur)_{0}
+}
+\]
+beschreibt einen solchen Automaten.
+\item
+Man kann einen endlichen Automaten $R$ konstruieren, welcher
+die Sprache $L(R)=L(A)\cap L(B)$ akzeptiert.
+\item
+Der Automat $A$ akzeptiert genau dann kein Wort mit einer ungeraden
+Anzahl {\tt 1}, wenn $L(A)\cap L(B)$ leer ist. Das Leerheitsproblem
+ist aber entscheidebar, es gibt also einen Entscheider, der
+entscheidet, ob $L(R)=\emptyset$.
+\end{enumerate}
+\end{loesung}
+
+}{}
+

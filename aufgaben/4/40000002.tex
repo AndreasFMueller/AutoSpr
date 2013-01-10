@@ -1,0 +1,106 @@
+In der Aufgabe \ref{40000001} wurden Grammatiken f"ur verschiedene
+Sprachen formuliert.
+Wandeln Sie die Grammatiken von \ref{40000001}a) und \ref{40000001}d) in Chomsky Normalform um.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item[a)] Es muss die Grammatik
+\begin{align*}
+W&\rightarrow W{\tt 0}\\
+ &\rightarrow W{\tt 1}\\
+ &\rightarrow\varepsilon
+\end{align*}
+in CNF gebracht werden. Mit dem neuen Startsymbol wird daraus
+\begin{align*}
+S&\rightarrow W\\
+W&\rightarrow W{\tt 0}\\
+ &\rightarrow W{\tt 1}\\
+ &\rightarrow\varepsilon
+\end{align*}
+Elimination der $\varepsilon$-Regel:
+\begin{align*}
+S&\rightarrow W\\
+ &\rightarrow \varepsilon\\
+W&\rightarrow W{\tt 0}\\
+ &\rightarrow W{\tt 1}\\
+ &\rightarrow {\tt 0}\\
+ &\rightarrow {\tt 1}\\
+\end{align*}
+Elimination der Unit Rule $S\to W$:
+\begin{align*}
+S&\rightarrow \varepsilon\\
+S&\rightarrow W{\tt 0}\\
+ &\rightarrow W{\tt 1}\\
+ &\rightarrow {\tt 0}\\
+ &\rightarrow {\tt 1}\\
+W&\rightarrow W{\tt 0}\\
+ &\rightarrow W{\tt 1}\\
+ &\rightarrow {\tt 0}\\
+ &\rightarrow {\tt 1}\\
+\end{align*}
+Es m"ussen nur noch die Terminalsymbole in den Regeln 2, 3, 6 und 7
+entfernt werden:
+\begin{align*}
+S&\rightarrow \varepsilon\\
+S&\rightarrow WN\\
+ &\rightarrow WE\\
+ &\rightarrow {\tt 0}\\
+ &\rightarrow {\tt 1}\\
+W&\rightarrow WN\\
+ &\rightarrow WE\\
+ &\rightarrow {\tt 0}\\
+ &\rightarrow {\tt 1}\\
+N&\rightarrow {\tt 0}\\
+E&\rightarrow {\tt 1}\\
+\end{align*}
+\item[d)]
+\begin{align*}
+S&\rightarrow {\tt 0}S\\
+ &\rightarrow {\tt 0}S{\tt 1}\\
+ &\rightarrow {\tt 0}
+\end{align*}
+Neues Startsymbol $S_0\to S$:
+\begin{align*}
+S_0&\rightarrow S\\
+S&\rightarrow {\tt 0}S\\
+ &\rightarrow {\tt 0}S{\tt 1}\\
+ &\rightarrow {\tt 0}
+\end{align*}
+Elimination der Unit Rule $S_0\to S$
+\begin{align*}
+S&\rightarrow {\tt 0}S\\
+ &\rightarrow {\tt 0}S{\tt 1}\\
+ &\rightarrow {\tt 0}\\
+S_0&\rightarrow {\tt 0}S\\
+ &\rightarrow {\tt 0}S{\tt 1}\\
+ &\rightarrow {\tt 0}
+\end{align*}
+Aufl"osen der Folgen ${\tt 0}S{\tt 1}$ mit Hilfe einer neuen Variable
+$A_1$
+\begin{align*}
+S&\rightarrow {\tt 0}S\\
+ &\rightarrow {\tt 0}A_1\\
+ &\rightarrow {\tt 0}\\
+S_0&\rightarrow {\tt 0}S\\
+ &\rightarrow {\tt 0}A_1\\
+ &\rightarrow {\tt 0}\\
+A_1&\rightarrow S{\tt 1}
+\end{align*}
+Elimination der Terminalsymbole:
+\begin{align*}
+S&\rightarrow NS\\
+ &\rightarrow NA_1\\
+ &\rightarrow {\tt 0}\\
+S_0&\rightarrow NS\\
+ &\rightarrow NA_1\\
+ &\rightarrow {\tt 0}\\
+A_1&\rightarrow SE\\
+N&\rightarrow {\tt 0}\\
+E&\rightarrow {\tt 1}\\
+\end{align*}
+Damit ist CNF erreicht.
+\end{teilaufgaben}
+\end{loesung}
+}{}
+

@@ -1,0 +1,41 @@
+Mitglieder sogenannter Netzgruppen (netgroups) in Unix sind Tripel
+bestehend aus aus Hostname, Username und Domain. Es wird die "ubliche
+mathematische Notation f"ur Tripel verwendet, zum Beispiel sind
+\begin{center}
+\begin{tabular}{l}
+{\tt ( asterix, hans, )}\\
+{\tt ( obelix , heiri, )}\\
+{\tt ( asterix,, hsr.ch )}
+\end{tabular}
+\end{center}
+solche Tripel, sie werden auch Netgrouptriples genannt.
+Die Namen k"onnen Buchstaben, Ziffern, Punkt und Unterstrich
+enthalten, die Komponenten k"onnen auch leer sein.
+\begin{teilaufgaben}
+\item
+Ist die Sprache $L_1$ der Netgrouptriples regul"ar?
+\item
+Wenn zus"atzlich verlangt wird, dass mindestens eine der drei
+Komponenten nicht leer ist--wir nennen diese neue Sprache $L_2$-- ist $L_2$
+dann auch regul"ar?
+\end{teilaufgaben}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Es gibt einen regul"aren Ausdruck, der die W"orter der Sprache $L_1$
+akzeptiert:
+\verbatimainput{aufg1a.lsg}
+also ist die Sprache $L_1$ regul"ar.
+\item
+Die Sprache $L_\emptyset$ der leeren Netgrouptriples ist regul"ar, denn sie ist die
+Sprache der W"orter, die auf den regul"aren Ausdruck
+\verbatimainput{aufg1b.lsg}
+passen, $L_\emptyset = L(\text{\tt ( *, *, *)})$. Dann ist
+aber auch $L_2=L_1\setminus L_\emptyset$ als Differenz regul"arer
+Sprachen regul"ar.
+\end{teilaufgaben}
+\end{loesung}
+}{ }
+

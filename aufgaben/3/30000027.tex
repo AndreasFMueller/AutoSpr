@@ -1,0 +1,72 @@
+Sei $\Sigma=\{a,b\}$. Konstruieren Sie einen deterministischen
+endlichen Automaten, der die Sprache
+\[
+L=\{w|\;\text{$|w|_a$ ist ungerade und $w$ endet mit $ab$}\}
+\]
+akezptiert.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Wir betrachten die Sprache $L$ als Durchschnitt zweier Sprachen
+\begin{align*}
+L_1&=\{w|\;\text{$|w|_a$ ist ungerade}\}\\
+L_2&=\{w|\;\text{$w$ endet mit $ab$}\}
+\end{align*}
+und konstruieren f"ur die $L_i$ je einen Automaten $A_i$.
+
+F"ur $L_1$ verwenden wir den Automaten $A_1$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+&x_0 \ar@/^/[r]^{a} \ar@(dl,dr)_{b}
+&*++[o][F=]{x_1} \ar@/^/[l]^{a} \ar@(dl,dr)_{b}
+}
+\]
+
+F"ur $L_2$ funktioniert der Automat $A_2$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+&y_0 \ar@/^/[r]^{a} \ar@(dl,dr)_{b}
+&y_1 \ar@/^/[r]^{b} \ar@/^/[l]^{b} \ar@(dl,dr)_{a}
+&*++[o][F=]{y_2} \ar@/^/[l]^{a} \ar `u^l[ll]+/u0.8cm/ `^d[ll]_{b} [ll]
+}
+\]
+Die Zust"ande haben dabei eine einfache Bedeutung:
+\begin{itemize}
+\item[$y_0$:] ``Noch nichts gelesen, oder eine Folge von mehr als einem $b$
+gelesen. Um zu akzeptieren brauchen wir die Folge $ab$.''
+\item[$y_1$:] ``$a$ gelesen, um zu akzeptieren brauchen wir ein Zeichen $b$.''
+\item[$y_2$:] ``Soeben $ab$ gelesen, Wort w"are akzeptabel, wenn es hier zu
+Ende w"are.''
+\end{itemize}
+
+Die Standardkonstruktion f"ur $L_1\cap L_2$ kann jetzt auf die Automaten
+$A_1$ und $A_2$ angewendet werden, sie liefert den gesuchten Automaten.
+Dazu werden als Zust"ande die Paare $(x_i,j_i)$ gebildet, es ergibt sich
+das folgende Zustandsdiagram:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+3mm {
+*+\txt{} \ar[r]
+&x_0,y_0 \ar[dr]^{a} \ar@(ul,u)^{b}
+&x_0,y_1 \ar@/^/[d]^{a} \ar[r]^{b} \ar[l]_{b}
+&x_0,y_2 \ar `u^l[ll]+/u0.8cm/ `^d[ll]_{b} [ll] \ar[dl]_{a}
+\\
+*+\txt{}
+&x_1,y_0 \ar[ur]^{a} \ar@(d,dl)^{b}
+&x_1,y_1 \ar@/^/[u]^{a} \ar[l]^b \ar[r]_{b}
+&*++[o][F=]{x_1,y_2} \ar[ul]^{a}
+\ar `d[ll]+/d0.8cm/ `[ll]^{b} 
+}
+\]
+Die Zust"ande in der ersten Zeile sind nicht akzeptabel, weil sie eine
+Gerade Anzahl Zeichen $a$ im Wort anzeigen. Man kann leicht verifizieren,
+dass man nur mit einer Zeichenfolge $ab$ beim Zustand $(x_1,y_2)$
+ankommen kann.
+\end{loesung}
+
+}{}
+

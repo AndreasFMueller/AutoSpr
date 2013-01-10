@@ -1,0 +1,74 @@
+LDAP-Filter werden verwendet, um aus einem LDAP-Verzeichnis eine Menge
+von Knoten auf Grund von Werten einzelner Attribute auszuw"ahlen.
+Elementare LDAP-Suchfilter haben die Form
+\begin{verbatim}
+attribut=wert
+\end{verbatim}
+sie selektieren genau die Knoten, deren Attribut {\tt attribut}
+den Wert {\tt wert} hat.
+F"ur die Zwecke dieser Aufgabe sind Attribute und Werte nichtleere
+Strings aus Buchstaben und Ziffern. 
+Daraus lassen sich
+mit Hilfe von Klammern und logischen Verkn"upfungen
+beliebige LDAP-Filter aufbauen.
+Die logischen Verkn"upfungen verwenden eine Pr"afix-Notation: 
+\begin{center}
+\begin{tabular}{rl}
+UND:&\tt (\&(attr1=wert1)(attr2=wert2))\\
+ODER:&\tt (|(attr1=wert1)(attr2=wert2))\\
+NICHT:&\tt (!(attr=wert))
+\end{tabular}
+\end{center}
+Bei der UND- und der ODER-Verkn"upfung d"urfen beliebig viele 
+Filter miteinander verkn"upft werden.
+\begin{teilaufgaben}
+\item
+Gibt es einen regul"aren Ausdruck, der LDAP-Filter akzeptiert?
+\item
+Bilden die syntaktisch korrekten LDAP-Filter eine kontextfreie Sprache?
+\end{teilaufgaben}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Dazu m"usste die Sprache der LDAP-Filter regul"ar sein.
+Da LDAP-Filter beliebig tief geschachtelte Klammern verwenden d"urfen,
+kann man mit dem Pumping-Lemma wie in Aufgabe \ref{40000013} zeigen,
+dass die Sprache nicht regul"ar ist.
+\item
+Die Sprache der LDAP-Filter ist kontextfrei, denn man kann daf"ur
+eine Grammatik aufstellen.
+\begin{align*}
+\text{filter}
+        &\rightarrow\text{elementaryfilter}\\
+        &\rightarrow\text{pfilter}\\
+\text{elementaryfilter}
+        &\rightarrow \text{string} \;\text{'{\tt =}'}\; \text{string}\\
+\text{pfilter}
+        &\rightarrow \text{'{\tt (}'}\;\text{elementaryfilter}\;\text{'{\tt )}'} \\
+        &\rightarrow \text{'{\tt (}'}\;\text{pfilter}\;\text{'{\tt )}'} \\
+        &\rightarrow \text{'{\tt (}'}\; \text{'{\tt \&}'}\;
+                \text{pfiltersequence}\;\text{'{\tt )}'} \\
+        &\rightarrow \text{'{\tt (}'}\; \text{'{\tt |}'}\;
+                \text{pfiltersequence}\;\text{'{\tt )}'} \\
+        &\rightarrow \text{'{\tt (}'}\; \text{'{\tt !}'}\;
+                \text{pfilter}\;\text{'{\tt )}'} \\
+\text{pfiltersequence}
+        &\rightarrow \text{pfilter}\\
+        &\rightarrow \text{pfiltersequence}\;\text{pfilter}\\
+\text{string}
+        &\rightarrow \text{char}\\
+        &\rightarrow \text{string} \; \text{char}\\
+\text{char}
+        &\rightarrow
+\text{'{\tt a}'}\;|\;
+\text{'{\tt b}'}\;|\;
+\text{'{\tt c}'}\;|\;\dots\;|\;
+\text{'{\tt z}'}\;|\;
+\text{'{\tt 0}'}\;|\;\dots\;|\;
+\text{'{\tt 9}'}
+\end{align*}
+\end{teilaufgaben}
+\end{loesung}
+}{}

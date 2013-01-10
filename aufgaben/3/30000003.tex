@@ -1,0 +1,26 @@
+Untersuchen sie, welche der Zust"ande im Automaten
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{z_0}\ar[r]^{\tt 1} \ar@(ur,ul)_{\tt 0}
+                &*++[o][F=]{z_1} \ar@/^/[dl]^{\tt 0} \ar@(dr,ur)_{\tt 1}
+\\
+*+\txt{}
+        &{z_2} \ar@/^/[ur]^{\tt 1} \ar[u]^{\tt 0}
+}
+\]
+"aquivalent sind, und finden sie den minimalen Automaten.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+$z_0$ und $z_2$ sind "aquivalent, denn von beiden aus
+werden genau die W"orter akzeptiert, die mit beliebig
+vielen {\tt 0}  gefolgt von einer {\tt 1} beginnen.
+$z_1$ ist mit keinem anderen Zustand "aquivalent, weil im
+Zustand $z_1$ das leere Wort akzeptiert werden kann, nicht
+aber in den anderen Zust"anden.
+\end{loesung}
+}{}
+
+

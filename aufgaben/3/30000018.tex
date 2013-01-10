@@ -1,0 +1,54 @@
+Ein Wort $w\in\Sigma^*$ ($\Sigma=\{0,1\}$) heisst periodisch, wenn
+es von der Form $w^k$ mit $k\ge 2$  ist, also aus einem wiederholten
+Teil besteht. Sei $L$ die Sprache der periodischen W"orter, also
+\[
+L=\{w^k \,|\,w\in\Sigma^*,k\ge 2\}.
+\]
+Die folgenden W"orter sind periodisch (in Klammern jeweils die L"ange
+des wiederholten Teiles):
+\[
+\varepsilon\;(0),\quad
+\text{\tt 011011011}\;(3),\quad
+\text{\tt 1001010010}\;(5),\quad
+\text{\tt 11111}\;(1).
+\]
+Die folgenden W"orter sind nicht periodisch:
+\[
+\text{\tt 011011001},\quad
+\text{\tt 1001110010},\quad
+\text{\tt 11110}.
+\]
+Ist $L$ regul"ar?
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+$L$ ist nicht regul"ar, wie man mit dem Pumping Lemma zeigen kann. Zum Beweis
+nehmen wir an $L$ sei regul"ar, dann sagt das Pumping Lemma f"ur
+regul"are Sprachen, dass es
+eine Zahl $N$ g"abe, die Pumping Length, so dass f"ur W"orter mit
+L"ange $N$ oder gr"osser spezielle Eigenschaften gelten.
+Ein periodisches Wort dieser L"ange ist
+\[
+w=0^N1\quad\Rightarrow\quad
+W=w^2=\underbrace{0\dots 0}_N1\underbrace{0\dots 0}_N1
+\]
+$W$ ist ein Wort mit Periode $N+1$. Das Pumping Lemma besagt jetzt, dass
+sich $W$ in drei Teile $xyz$ aufteilen l"asst mit folgenden Eigenschaften.
+Zun"achst ist $|xy|\le N$, d.~h.~sowohl $x$ als auch $y$ bestehen aus
+lauter Nullen. Ausserdem ist $|y|>0$, es hat also mindestens eine Null
+in $y$. Das Pumping Lemma behauptet ausserdem, dass auch das Wort
+$xy^kz$ in der Sprache $L$ enthalten ist. Dieses Wort hat aber die
+Form
+\[
+xy^kz=\underbrace{0\dots0}_{N+(k-1)|y|}1\underbrace{0\dots 0}_N1
+\]
+Falls $k\ne 1$ ist, der Nuller-Teil vor der ersten $1$ verschieden vom
+Nullerteil danach,
+\[
+N+(k-1)|y|\ne N,
+\]
+das Wort kann also nicht mehr periodisch
+sein. Dies steht im Widerspruch zur Folgerung des Pumping-Lemmas, also
+konnte $L$ nicht regul"ar gewesen sein.
+\end{loesung}
+}{}

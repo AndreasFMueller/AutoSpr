@@ -1,0 +1,51 @@
+In der Vorlesung wurde ein Stackautomat konstruiert, welcher die
+Sprache
+\[
+\{{\tt a}^i{\tt b}^j{\tt c}^k|\text{$i,j,k\ge 0$ und $i=j$ oder $i=k$}\}
+\]
+akzeptiert.
+Formulieren sie eine Grammatik, die die selbe Sprache erzeugt.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+W"orter dieser Sprache bestehen entweder aus einem Wort mit gleich
+vielen {\tt a} und {\tt b}, dem eine beliebige Zahl von {\tt c}
+angeh"angt wurde, oder einer beliebigen Zahl von {\tt b}, um die
+symmetrisch {\tt a} und {\tt c} geschachtelt wurden.
+W"orter der ersten Art werden von den folgenden Regeln erzeugt:
+\begin{align*}
+S_1&\to P_1C\\
+P_1&\to\varepsilon\\
+   &\to {\tt a}P_1{\tt b}\\
+C  &\to\varepsilon\\
+   &\to C{\tt c}
+\end{align*}
+Die W"orter der zweiten Art werden dagegen von den Regeln
+\begin{align*}
+S_2&\to{\tt a}S_2{\tt c}\\
+   &\to B\\
+B  &\to B{\tt b}\\
+   &\to\varepsilon
+\end{align*}
+erzeugt.
+Gesucht ist aber die Vereinigungsmenge der beiden Sprachen, die
+nat"urlich mit Hilfe einer Alternativ-Regel $S\to S_1|S_2$
+konstruiert werden kann.
+Dies ergibt die Grammatik f"ur die Sprache $L$:
+\begin{align*}
+S  &\to S_1\\
+   &\to S_2\\
+S_1&\to P_1C\\
+P_1&\to\varepsilon\\
+   &\to {\tt a}P_1{\tt b}\\
+C  &\to\varepsilon\\
+   &\to C{\tt c}\\
+S_2&\to{\tt a}S_2{\tt b}\\
+   &\to B\\
+B  &\to B{\tt b}\\
+   &\to\varepsilon
+\end{align*}
+\end{loesung}
+}{}
+
+

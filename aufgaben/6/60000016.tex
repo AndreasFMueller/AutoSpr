@@ -1,0 +1,33 @@
+Es gibt verschiedene Algorithmen, mit denen man herausfinden kann, ob
+eine nat"urliche Zahl eine Quadratzahl ist.
+Ein Programm heisst Quadratzahldetektor, wenn es Quadratzahlen
+als Input meistens erkennt, aber niemals eine Nicht-Qua\-dratzahl
+als Quadratzahl ausgibt. Gibt es eine Software, mit der man automatisiert
+herausfinden kann, ob so ein Quadratzahldetektor korrekt arbeitet?
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Dies ist nicht m"oglich. 
+Nat"urliche Zahlen k"onnen mit Hilfe der Dezimaldarstellung als 
+Zeichenketten "uber dem Alphabet $\Sigma=\{0,1,2,3,\dots,9\}$
+betrachtet werden.
+Die Menge der Zeichenketten, die ein Programm $M$ als Quadratzahlen
+erkennt, bildet eine Teilmenge $L_M\subset\Sigma^*$, also eine Sprache
+"uber dem Alphabet $\Sigma$. Ein Quadratzahldetektor liegt vor, wenn
+die Menge $L_M$ ausschliesslich Quadratzahlen enth"alt, m"oglicherweise
+aber nicht alle. Quadratzahldetektoren $M$ sind also durch Eigenschaft
+$Q$ der Sprache $L_M$ charakterisiert, dass $L_M$ nur Quadratzahlen
+enth"alt. Eine Sprache $L$ hat die Eigenschaft $Q$ genau dann, wenn
+alle Zeichenketten in $L$ als Dezimalzahlen gelesen Quadratzahlen sind.
+
+Die Eigenschaft $Q$ ist nicht trivial, denn die Sprache 
+$L_2=\{2\}$ enth"alt eine Nichtquadratzahl, hat also die Eigenschaft $Q$
+nicht, $L_1=\{1\}$ enth"alt dagegen aus\-schliess\-lich Quadratzahlen, hat
+also die Eigenschaft $Q$.
+
+Nach dem Satz von Rice ist nicht entscheidbar, ob eine Turing-erkennbare
+Sprache die Eigenschaft $Q$ hat. Gleichbedeutend damit ist
+nicht entscheidbar, ob ein Programm $M$ ein Quadratzahldetektor ist.
+\end{loesung}
+}{ }
+

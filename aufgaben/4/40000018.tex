@@ -1,0 +1,51 @@
+Die Sprache Brainfuck besteht aus Strings der folgenden Zeichen:
+\begin{center}
+\begin{tabular}{|c|l|}
+\hline
+Brainfuck&C-"Aquivalent\\
+\hline
+{\tt >}&\verb/++ptr;/\\
+{\tt <}&\verb/--ptr;/\\
+{\tt +}&\verb/++*ptr;/\\
+{\tt -}&\verb/--*ptr;/\\
+{\tt .}&\verb/putchar(*ptr);/\\
+{\tt ,}&\verb/*ptr = getchar();/\\
+{\tt [}&\verb/while (*ptr) {/\\
+{\tt ]}&\verb/}/\\
+\hline
+\end{tabular}
+\end{center}
+Beschreiben sie einen Stackautomaten, der korrekte Brainfuck-Programme
+erkennt.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Der Stackautomat muss ausschliesslich pr"ufen, dass jede "offnene
+eckigen Klammer auch wieder geschlossen wird. Das Stackalphabet verwendet
+zus"atzlich zu den Zeichen von Brainfuck das Zeichen {\tt\$}, welches
+dabei hilft, zu erkennen, ob der Stack leer ist. Dann erkennt der
+folgende Automat die die korrekten Brainfuck Programme:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &q_0\ar[r]^{\varepsilon,\varepsilon\to{\tt\$}}
+                &q_1
+                        \ar@(ul,ur)^{.,\varepsilon\to\varepsilon}
+                        \ar@(d,dr)_{{\tt [},\varepsilon\to{\tt [}}
+                        \ar@(dl,d)_{{\tt ]},{\tt [}\to\varepsilon}
+                        \ar[r]^{\varepsilon,{\tt\$}\to\varepsilon}
+                        &*++[o][F=]{q_3}
+}
+\]
+Im "Ubergang $.,\varepsilon\to\varepsilon$ steht der Punkt f"ur die
+Zeichen
+`{\tt >}',
+`{\tt <}',
+`{\tt +}',
+`{\tt -}',
+`{\tt .}' und
+`{\tt ,}'.
+\end{loesung}
+}{}
+

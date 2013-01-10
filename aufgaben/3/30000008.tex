@@ -1,0 +1,162 @@
+Verwandeln sie die folgenden regul"aren Ausdr"ucke in NEAs "uber
+dem Alphabet $\Sigma =\{{\tt a},{\tt b}\}$:
+\begin{teilaufgaben}
+\item ${\tt a}({\tt abb})^*| {\tt b}$
+\item ${\tt a}^+|({\tt ab})^+$
+\end{teilaufgaben}
+
+\begin{hinweis}
+Das Zeichen {\tt +} bei regul"aren Ausdr"ucken bedeutet
+``mindestens ein mal''.
+\end{hinweis}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Wir wenden die Standardkonstruktionen f"ur die Umwandlung eines regul"aren
+Ausdrucks in einen NEA an. Die regul"aren Ausdr"ucke werden dabei
+``von innen nach aussen'' "ubersetzt.
+\begin{teilaufgaben}
+\item
+Der Teilausdruck {\tt abb} ist eine Verkettung von drei NEAs, die
+genau ein ein Zeichen langes Wort akzeptieren:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{}\ar[r]^{\tt a}
+                &\ar[r]^{\varepsilon}
+                        &{}\ar[r]^{\tt b}
+                                &\ar[r]^{\varepsilon}
+                                        &{}\ar[r]^{\tt b}
+                                                &*++[o][F=]{}
+}
+\]
+F"ur die $*$-Operation braucht man einen zus"atzlichen Akzeptierzustand und
+``R"uckw"arts''-Pfeile:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &*++[o][F=]{} \ar[r]^{\varepsilon}
+                &\ar[r]^{\tt a}
+                        &\ar[r]^{\varepsilon}
+                                &\ar[r]^{\tt b}
+                                        &\ar[r]^{\varepsilon}
+                                                &{}\ar[r]^{\tt b}
+                                                        &{}\ar@/^10pt/[llllll]^{\varepsilon}
+}
+\]
+Dem $({\tt abb})^*$ muss jetzt noch ein {\tt a} vorangehen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &\ar[r]^{\tt a}
+        &{} \ar[r]^{\varepsilon}
+        &*++[o][F=]{} \ar[r]^{\varepsilon}
+                &\ar[r]^{\tt a}
+                        &\ar[r]^{\varepsilon}
+                                &\ar[r]^{\tt b}
+                                        &\ar[r]^{\varepsilon}
+                                                &{}\ar[r]^{\tt b}
+                                                        &{}\ar@/^10pt/[llllll]^{\varepsilon}
+}
+\]
+Zum Schluss m"ussen wir eine Alternative zwischen diesem Ausdruck und dem
+Ausdruck {\tt b} bilden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}&*+\txt{}
+        &\ar[r]^{\tt a}
+        &{} \ar[r]^{\varepsilon}
+        &*++[o][F=]{} \ar[r]^{\varepsilon}
+                &\ar[r]^{\tt a}
+                        &\ar[r]^{\varepsilon}
+                                &\ar[r]^{\tt b}
+                                        &\ar[r]^{\varepsilon}
+                                                &{}\ar[r]^{\tt b}
+                                                        &{}\ar@/^10pt/[llllll]^{\varepsilon}
+\\
+*+\txt{} \ar[r]
+        &\ar[ur]^{\varepsilon} \ar[dr]^{\varepsilon}
+        &*+\txt{}
+        &*+\txt{}
+        &*+\txt{}
+        &*+\txt{}
+        &*+\txt{}
+        &*+\txt{}
+        &*+\txt{}
+\\
+*+\txt{}&*+\txt{}
+                &\ar[r]^{\tt b}
+                        &*++[o][F=]{}
+                                &*+\txt{}
+}
+\]
+\item
+Es stellt sich die Frage, wie man $r^+$ implementieren will. Man k"onnte
+einerseits $r^+$ als $r^*$ implementieren, welches aber das leere Wort
+doch nicht akzeptiert. Dazu w"urde man den neuen Start-/Akzeptierzustand,
+der in der Konstruktion von $r^*$ vorkommt, nur als Startzustand, nicht
+aber als Akzeptierzustand hinzuf"ugen. Dann sehe der Automat wie folgt
+aus:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+        &*+\txt{}
+%               &*++[o][F=]{} \ar[r]^{\varepsilon}
+                &{} \ar[r]^{\varepsilon}
+                        &{} \ar[r]^{\tt a}
+                                &*++[o][F=]{} \ar@/^10pt/[ll]^{\varepsilon}
+\\
+*+\txt{}\ar[r]
+        &\ar[ur]^{\varepsilon} \ar[dr]^{\varepsilon}
+\\
+*+\txt{}
+        &*+\txt{}
+%               &*++[o][F=]{} \ar[r]^{\varepsilon}
+                &{} \ar[r]^{\varepsilon}
+                        &\ar[r]^{\tt a}
+                                &\ar[r]^{\varepsilon}
+                                        &\ar[r]^{\tt b}
+                                                &*++[o][F=]{}\ar@/^10pt/[llll]^{\varepsilon}
+}
+\]
+Man k"onnte aber auch $r^+=rr^*$ implementieren, also als Verkettung
+eines Automaten, der $r$ akzeptiert mit einer $*$-Konstruktion von $r$.
+Dann s"ahe der Automat wie folgt aus:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+        &*+\txt{}
+%               &*++[o][F=]{} \ar[r]^{\varepsilon}
+                &{}\ar[r]^{\tt a}
+                        &{}\ar[r]^{\varepsilon}
+                &*++[o][F=]{} \ar[r]^{\varepsilon}
+                        &{} \ar[r]^{\tt a}
+                                &{} \ar@/^10pt/[ll]^{\varepsilon}
+\\
+*+\txt{}\ar[r]
+        &\ar[ur]^{\varepsilon} \ar[dr]^{\varepsilon}
+\\
+*+\txt{}
+        &*+\txt{}
+%               &*++[o][F=]{} \ar[r]^{\varepsilon}
+                        &\ar[r]^{\tt a}
+                                &\ar[r]^{\varepsilon}
+                                        &\ar[r]^{\tt b}
+                &{} \ar[r]^{\varepsilon}
+                        &*++[o][F=]{} \ar[r]^{\varepsilon}
+                        &\ar[r]^{\tt a}
+                                &\ar[r]^{\varepsilon}
+                                        &\ar[r]^{\tt b}
+                                                &{}\ar@/^10pt/[llll]^{\varepsilon}
+}
+\]
+\end{teilaufgaben}
+\end{loesung}
+}{}
+

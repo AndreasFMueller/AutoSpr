@@ -1,0 +1,279 @@
+Konstruieren Sie zu jeder der folgenden Sprachen einen
+endlichen Automaten, der genau diese Sprache akzeptiert.
+Die Sprachen verwenden die Alphabete
+$\Sigma_1=\{{\tt a},{\tt b}\}$ und
+$\Sigma_2=\{{\tt 0},{\tt 1}\}$.
+\begin{teilaufgaben}
+\item
+$L=\{w\in \Sigma_1^*|\text{
+$w$ beginnt mit $a$ und enth"alt h"ochstens ein $b$
+}\}$
+\item
+$L=\{w\in \Sigma_1^*|\text{
+$w$ enth"alt eine gerade Zahl {\tt a}s und mindestens
+zwei {\tt b}s
+}\}$
+\item
+$L=\{w\in \Sigma_1^*|\text{
+$w$ hat gerade L"ange und eine ungerade Anzahl {\tt b}s
+}\}$
+\item
+$L=\{w\in \Sigma_1^*|\text{
+$w$ enth"alt nicht genau zwei {\tt a}s
+}\}$
+\item
+$L=\{w\in \Sigma_2^*|\text{
+an jeder ungeraden Position von $w$ steht ein {\tt 1}
+}\}$
+\item
+$L=\{w\in \Sigma_2^*|\;|w|\le 5\}$
+\item
+$L=\emptyset\subset \Sigma_2^*$
+\end{teilaufgaben}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Die Zust"ande haben folgende Bedeutung:
+\begin{center}
+\begin{tabular}{c|l}
+Zustand&Bedeutung\\
+\hline
+$z_0$&noch kein {\tt a}
+\\
+$z_1$&beginnt mit {\tt a}, noch kein {\tt b}
+\\
+$z_2$&beginnt mit {\tt a}, genau ein {\tt b}
+\\
+$z_3$&beginnt mit {\tt b} oder mehr als ein {\tt b}
+\\
+\end{tabular}
+\end{center}
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+        &{z_0} \ar[r]^{\tt a} \ar[d]^{\tt b}
+                &*++[o][F=]{z_1} \ar[d]^{\tt b} \ar@(dr,ur)_{\tt a}
+\\
+*+\txt{}
+        &{z_3} \ar@(dr,dl)^{{\tt a},{\tt b}}
+                &*++[o][F=]{z_2} \ar@(dr,dl)^{\tt a} \ar[l]^{\tt b}
+}
+\]
+
+Selbstverst"andlich kann man diese Aufgabe auch mit Hilfe des Satzes~3.1
+aus der Vorlesung l"osen. Dazu m"ussen die Mengen $L(w)$ bestimmt
+werden:
+\begin{center}
+\begin{tabular}{|c|l|c|}
+\hline
+$w$&$L(w)$&$z_{?}$\\
+\hline
+$\varepsilon$&$L$&$z_0$\\
+\tt a&$\{w\in\Sigma^*\,|\,\text{$w$ enth"alt h"ochstens 1 {\tt b}}\}$&$z_1$\\
+\tt b&$\emptyset$&$z_3$\\
+\tt aa&$\{w\in\Sigma^*\,|\,\text{$w$ enth"alt h"ochstens 1 {\tt b}}\}$&$z_1$\\
+\tt ab&$\{w\in\Sigma^*\,|\,|w|_{\tt b} = 0\}$&$z_2$\\
+\tt ba&$\emptyset$&$z_3$\\
+\tt bb&$\emptyset$&$z_3$\\
+$\vdots$&$\vdots$&\\
+\hline
+\end{tabular}
+\end{center}
+Offenbar gibt es vier verschiedene Mengen, also kommte der DEA von $L$
+mit 4 Zust"anden aus. $L({\tt a})$ und $L({\tt ab})$ enth"alten das
+leere Wort, sind als Akzeptierzust"ande. Die "Uberg"ange k"onnen ebenfalls
+aus der Tabelle abgelesen werden, es ergibt sich der gleiche Automat.
+
+\item Die Zeilen z"ahlen die Anzahl {\tt b}, die bereits gelesen
+wurden, die Spalten f"uhren Buch "uber den Zweierrest der Anzahl
+{\tt a}.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+        &{z_0}\ar@/^/[r]^{\tt a} \ar[d]^{\tt b}
+                &{z_1}\ar@/^/[l]^{\tt a} \ar[d]^{\tt b}
+\\
+*+\txt{}
+        &{z_2}\ar@/^/[r]^{\tt a} \ar[d]^{\tt b}
+                &{z_3}\ar@/^/[l]^{\tt a} \ar[d]^{\tt b}
+\\
+*+\txt{}
+        &*++[o][F=]{z_4}\ar@/^/[r]^{\tt a} \ar@(dr,dl)^{\tt b}
+                &{z_5}\ar@/^/[l]^{\tt a} \ar@(dr,dl)^{\tt b}
+}
+\]
+L"osung mit Myhill-Nerorde: Startzustand ist $L$, weitere Mengen
+der Form $L(w)$ sind
+\begin{center}
+\begin{tabular}{c|ll|c}
+$w$&$L(w)$&$z_i$&$\varepsilon\in L(w)$\\
+\hline
+$\varepsilon$&$L$&$=L_0$&nein\\
+  {\tt a}&$\{w\in\Sigma^*\;|\;\text{$|w|$ ungerade, $|w|_b\ge 2$}\}$&$=L_1$&nein\\
+  {\tt b}&$\{w\in\Sigma^*\;|\;\text{$|w|$ gerade,   $|w|_b\ge 1$}\}$&$=L_2$&nein\\
+ {\tt aa}&$\{w\in\Sigma^*\;|\;\text{$|w|$ gerade,   $|w|_b\ge 2$}\}$&$=L_0$&nein\\
+ {\tt ab}&$\{w\in\Sigma^*\;|\;\text{$|w|$ ungerade, $|w|_b\ge 1$}\}$&$=L_3$&nein\\
+ {\tt bb}&$\{w\in\Sigma^*\;|\;\text{$|w|$ gerade,   $|w|_b\ge 0$}\}$&$=L_4$&nein\\
+{\tt aaa}&$\{w\in\Sigma^*\;|\;\text{$|w|$ ungerade, $|w|_b\ge 2$}\}$&$=L_1$&nein\\
+{\tt aab}&$\{w\in\Sigma^*\;|\;\text{$|w|$ gerade,   $|w|_b\ge 1$}\}$&$=L_2$&nein\\
+{\tt abb}&$\{w\in\Sigma^*\;|\;\text{$|w|$ ungerade, $|w|_b\ge 0$}\}$&$=L_5$&ja\\
+{\tt bbb}&$\{w\in\Sigma^*\;|\;\text{$|w|$ gerade,   $|w|_b\ge 0$}\}$&$=L_4$&nein\\
+\hline
+\end{tabular}
+\end{center}
+Die Zust"ande $L_i$ entsprechen den $z_i$ im Zustandsdiagramm.
+\item Die Zeilen codieren den Zweierrest der Anzahl {\tt b}s,
+die Spalten den Zweierrest der Anzahl {\tt a}s.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+        &{z_0} \ar@/^/[r]^{\tt a} \ar@/^/[dr]_{\tt b}
+                &{z_1} \ar@/^/[l]_{\tt a}\ar@/^/[dl]%^{\tt b}
+\\
+*+\txt{}
+        &*++[o][F=]{z_2}\ar@/^/[r]_{\tt a}\ar@/^/[ur]
+                &{z_3} \ar@/^/[l]^{\tt a}\ar@/^/[ul]
+}
+\]
+L"osung mit Myhill-Nerode: Als Zust"ande findet man die folgenden
+Mengen:
+\begin{center}
+\begin{tabular}{c|ll|c}
+$w$&$L(w)$&$z_i$&$\varepsilon\in L(w)$\\
+\hline
+$\varepsilon$&$L$&$=L_0$&nein\\
+  {\tt a}&$\{w\in\Sigma^*\;|\;\text{$|w|$ ungerade, $|w|_b$   gerade}\}$&$=L_1$&nein\\
+  {\tt b}&$\{w\in\Sigma^*\;|\;\text{$|w|$ ungerade, $|w|_b$ ungerade}\}$&$=L_3$&nein\\
+ {\tt aa}&$\{w\in\Sigma^*\;|\;\text{$|w|$ gerade,   $|w|_b$   gerade}\}$&$=L_0$&nein\\
+ {\tt ab}&$\{w\in\Sigma^*\;|\;\text{$|w|$ gerade,   $|w|_b$ ungerade}\}$&$=L_2$&ja\\
+ {\tt bb}&$\{w\in\Sigma^*\;|\;\text{$|w|$ gerade,   $|w|_b$   gerade}\}$&$=L_0$&nein\\
+{\tt aaa}&$\{w\in\Sigma^*\;|\;\text{$|w|$ ungerade, $|w|_b$   gerade}\}$&$=L_1$&nein\\
+{\tt aab}&$\{w\in\Sigma^*\;|\;\text{$|w|$ ungerade, $|w|_b$ ungerade}\}$&$=L_3$&nein\\
+{\tt abb}&$\{w\in\Sigma^*\;|\;\text{$|w|$ ungerade, $|w|_b$   gerade}\}$&$=L_1$&nein\\
+{\tt bbb}&$\{w\in\Sigma^*\;|\;\text{$|w|$ ungerade, $|w|_b$ ungerade}\}$&$=L_3$&nein\\
+\hline
+\end{tabular}
+\end{center}
+Die Zustande $L_i$ entsprechen wieder den $z_i$ von vorhin.
+\item
+In den Zust"anden $z_i,i <3$ hat das Worte genau $i$ {\tt a}s,
+im Zustand $z_3$ hat das Wort 3 oder mehr {\tt a}s.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+        &*++[o][F=]{z_0}\ar[r]^{\tt a} \ar@(dr,dl)^{\tt b}
+                &*++[o][F=]{z_1}\ar[r]^{\tt a} \ar@(dr,dl)^{\tt b}
+                        &{z_2} \ar@(dr,dl)^{\tt b} \ar[r]^{\tt a}
+                                &*++[o][F=]{z_3} \ar@(dr,dl)^{{\tt a},{\tt b}}
+}
+\]
+L"osung mit Myhill-Nerode:
+\begin{center}
+\begin{tabular}{c|ll|c}
+$w$&$L(w)$&$z_i$&$\varepsilon\in L(w)$\\
+\hline
+$\varepsilon$&$L$&$=L_0$&nein\\
+  {\tt a}&$\{w\in\Sigma^*\;|\;\text{$|w|_{\tt a}\ne 1$}\}$&$=L_1$&ja\\
+  {\tt b}&$\{w\in\Sigma^*\;|\;\text{$|w|_{\tt a}\ne 2$}\}$&$=L_0$&ja\\
+ {\tt aa}&$\{w\in\Sigma^*\;|\;\text{$|w|_{\tt a}\ne 0$}\}$&$=L_2$&nein\\
+ {\tt ab}&$\{w\in\Sigma^*\;|\;\text{$|w|_{\tt a}\ne 1$}\}$&$=L_1$&ja\\
+ {\tt ba}&$\{w\in\Sigma^*\;|\;\text{$|w|_{\tt a}\ne 1$}\}$&$=L_1$&ja\\
+ {\tt bb}&$\{w\in\Sigma^*\;|\;\text{$|w|_{\tt a}\ne 2$}\}$&$=L_0$&ja\\
+{\tt aaa}&$\{w\in\Sigma^*\;|\;\text{$|w|_{\tt a}\ne 1$}\}$&$=L_1$&ja\\
+{\tt aab}&$\Sigma^*$                                      &$=L_3$&ja\\
+{\tt aba}&$\{w\in\Sigma^*\;|\;\text{$|w|_{\tt a}\ne 0$}\}$&$=L_2$&nein\\
+{\tt abb}&$\{w\in\Sigma^*\;|\;\text{$|w|_{\tt a}\ne 1$}\}$&$=L_1$&ja\\
+{\tt baa}&$\{w\in\Sigma^*\;|\;\text{$|w|_{\tt a}\ne 0$}\}$&$=L_2$&nein\\
+{\tt bab}&$\{w\in\Sigma^*\;|\;\text{$|w|_{\tt a}\ne 1$}\}$&$=L_1$&ja\\
+{\tt bba}&$\{w\in\Sigma^*\;|\;\text{$|w|_{\tt a}\ne 1$}\}$&$=L_1$&ja\\
+{\tt bbb}&$\{w\in\Sigma^*\;|\;\text{$|w|_{\tt a}\ne 2$}\}$&$=L_0$&ja\\
+\hline
+\end{tabular}
+\end{center}
+\item Bedeutung der Zust"ande:
+\begin{center}
+\begin{tabular}{c|l}
+Zustand&Beschreibung\\
+\hline
+$z_0$&gerades Zeichen, Bedingung an ungeraden Stellen immer erf"ullt\\
+$z_1$&ungerades Zeichen war eine {\tt 1}\\
+$z_2$&{\tt 0} an gerader Stelle\\
+\end{tabular}
+\end{center}
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+        &*++[o][F=]{z_0}\ar@/^/[r]^{{\tt 1}} \ar[d]^{\tt 0}
+                &*++[o][F=]{z_1} \ar@/^/[l]^{{\tt 0},{\tt 1}}
+\\
+*+\txt{}
+        &{z_2}\ar@(ur,dr)^{{\tt 0},{\tt 1}}
+                &*+\txt{}
+}
+\]
+L"osung mit Myhill-Nerode: Die Zust"ande sind
+\begin{center}
+\begin{tabular}{c|ll|c}
+$w$&$L(w)$&$z_i$&$\varepsilon\in L(w)$\\
+\hline
+$\varepsilon$&$L$&$=L_0$&ja\\
+  {\tt 0}&$\emptyset$&$=L_0$&ja\\
+  {\tt 1}&$\{ w\in\Sigma^*\;|\; \text{an jeder geraden Stelle eine {\tt 1}}\}$&$=L_1$&nein\\
+ {\tt 00}&$\emptyset$&$=L_2$&nein\\
+ {\tt 01}&$\emptyset$&$=L_2$&nein\\
+ {\tt 10}&$L$&$=L_0$&ja\\
+ {\tt 11}&$L$&$=L_0$&ja\\
+{\tt 000}&$\emptyset$&$=L_2$&nein\\
+{\tt 001}&$\emptyset$&$=L_2$&nein\\
+{\tt 010}&$\emptyset$&$=L_2$&nein\\
+{\tt 011}&$\emptyset$&$=L_2$&nein\\
+{\tt 100}&$\emptyset$&$=L_2$&nein\\
+{\tt 101}&$L$&$=L_0$&ja\\
+{\tt 110}&$\emptyset$&$=L_2$&nein\\
+{\tt 111}&$\{ w\in\Sigma^*\;|\; \text{an jeder geraden Stelle eine {\tt 1}}\}$&$=L_1$&nein\\
+\hline
+\end{tabular}
+\end{center}
+\item Zustand $z_i, i <6$ bedeutet, dass das Wort genau $i$
+Zeichen lang ist. Zustand $z_6$ bedeutet, dass das Wort mindestens
+$6$ Zeichen lang ist.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+        &*++[o][F=]{z_0}\ar[r]^{{\tt 0},{\tt 1}}
+        &*++[o][F=]{z_1}\ar[r]^{{\tt 0},{\tt 1}}
+        &*++[o][F=]{z_2}\ar[r]^{{\tt 0},{\tt 1}}
+        &*++[o][F=]{z_3}\ar[r]^{{\tt 0},{\tt 1}}
+        &*++[o][F=]{z_4}\ar[r]^{{\tt 0},{\tt 1}}
+        &*++[o][F=]{z_5}\ar[r]^{{\tt 0},{\tt 1}}
+        &{z_6}\ar@(dr,ur)_{{\tt 0},{\tt 1}}
+}
+\]
+\item Kein Wort darf akzeptiert werden, d.~h.~die Menge der Endzust"ande
+ist leer. Der einfachste Automat, der dies erf"ullt, hat genau einen
+Zustand und eine triviale "Ubergangsfunktion:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+        &{z_0}\ar@(dr,ur)_{{\tt 0},{\tt 1}}
+}
+\]
+L"osung mit Myhill-Nerode: Startzustand ist die Menge $L=\emptyset$
+Da $\varepsilon\not\in\emptyset$ ist dieser Zustand kein Startzustand.
+Ausserdem sind die $L(w)$ f"ur jedes $w\in\Sigma^*$ weitere Zust"ande.
+Nach Definition ist $L(w)=\{w_e\in\Sigma^*\,|\,ww_e\in \emptyset\}=\emptyset$,
+es gibt also nur einen einzigen Zustand, damit ist der Automat bereits
+vollst"andig definiert.
+\end{teilaufgaben}
+\end{loesung}
+}{}
+

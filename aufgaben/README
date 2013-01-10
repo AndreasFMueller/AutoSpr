@@ -1,0 +1,22 @@
+Die Aufgaben in diesem Verzeichnis verwenden folgende systematische
+Numerierung, mit der sie einem Kapitel des Skriptes zugeordnet werden
+k"onnen:
+
+     CSSSPPPP.tex
+
+C    = Kapitelnummer
+SSS  = drei Stellen fuer eine Unterstrukturierung des Kaptels, sofern
+       notwendig und sinnvoll
+PPPP = Laufnummer der Aufgabe
+
+Kapitelnummern
+
+C  Kapitel
+1  Grundlagen
+2  Sprachen
+3  Regulaere Sprachen
+4  Stackautomaten und kontextfreie Sprachen
+5  Turing Maschinen
+6  Entscheidbarkeit
+7  Komplexitaetstheorie
+8  Turing-Vollstaendigkeit

@@ -1,0 +1,41 @@
+Was ist falsch an folgendem Beweis der Behauptung alle Pferde h"atten die
+gleiche Farbe?
+
+Beweis mit vollst"andiger Induktion. Die Induktionsverankerung
+erfolgt mit $n=1$. F"ur eine Menge mit genau einem Pferd ist
+die Behauptung sicher richtig. Wir nehmen jetzt also an, die
+Behauptung sei f"ur eine Menge mit $n$ Pferden bereits bewiesen.
+Sei also $H$ eine Menge von $n+1$ Pferden. Entfernen wir aus $H$
+ein Pferd, erhalten wir eine Menge $H_1$ von $n$ Pferden, nach
+Induktionsannahme haben alle diese Pferde die gleiche Farbe.
+Tauschen wir das vorher entfernte Pferd gegen ein anderes, erhalten
+wir die Menge $H_2$ mit ebenfalls genau $n$ Pferden. Nach Induktionsannahme
+haben auch alle Pferde in dieser Menge die gleiche Farbe. Somit
+haben die beiden entfernten Pferde die gleiche Farbe wie der Rest,
+somit haben alle Pferde die gleiche Farbe. Damit ist der Induktionsschritt
+vollzogen, und es ist gezeigt, dass alle Pferde in $H$ die gleiche Farbe
+haben.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Das Problem ist der Schritt von $n=1$ zu $n+1=2$.
+Aus der Menge mit $n+1$ Pferden soll man ein Pferd entfernen.
+Dieses Pferd tauscht man sp"ater aus, um zu zeigen dass die
+beiden gew"ahlten Pferde die gleiche Farbe haben. Der zentrale
+Schritt dabe ist, dass diese Pferde, wenn sie mit den anderen nicht
+gew"ahlten Pferden zusammen in der kleineren Menge drin sind,
+die gleiche Farbe haben m"ussen. Man vergleicht also das ausgew"ahlte
+Pferd mit den anderen Pferden, die immer in der Menge drin bleiben.
+Im Falle $n=1$ gibt es aber solche
+anderen Pferde nicht, man kann also auch nicht schliessen, dass
+sie die gleiche Farbe h"atten.
+
+Noch konkreter: in der Menge $H$ seien ein weisses und ein schwarzes Pferd.
+Entfernen wir das schwarze Pferd, bleibt in $H_1$ das weisse Pferde,
+in $H_1$ hat es also tats"achlich nur Pferde einer Farbe. Entfernen
+wir das weisse Pferd aus $H$, bleiben in $H_2$ nur schwarze
+Pferde. Die Aussagen sind also alle richtig, und trotzdem sind
+offenbar die beiden Pferde von verschiedener Farbe. Der Induktionsschritt
+ist f"ur $1\to 2$ nicht korrekt.
+\end{loesung}
+}{}

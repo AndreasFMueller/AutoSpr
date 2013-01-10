@@ -1,0 +1,35 @@
+Job-Parallelisierbarkeit:
+Gegeben sei eine Menge von $n$ Jobs $J_1,\dots,J_n$, die jeweils exklusiv
+auf $m$ Resourcen $r_1,\dots,r_m$ zugreifen, diese Jobs d"urfen
+nicht gleichzeitig laufen. Zeigen Sie, dass das Problem zu entscheiden,
+ob mit diesen Jobs zu irgend einem Zeitpunkt mehr als $k$ Prozessoren
+ausgelastet werden k"onnen, NP-vollst"andig ist.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Wir zeigen, dass das Problem "aquivalent ist mit dem $k$-Cliquen-Problem,
+welches in der Vorlesung bereits als NP-vollst"andig erkannt worden ist.
+
+Aus einem Job-Parallelisierbarkeitsproblem konstruieren wir einen Graphen $G$,
+dessen Ecken die Jobs sind. Zwischen je zwei Jobs f"ugen wir eine
+Kante hinzu, wenn die Jobs gleichzeitig laufen k"onnen, wenn also
+keine der Resourcen von beiden Jobs beansprucht wird. Eine $k$-Clique
+ist eine Auswahl von $k$ Prozessen, die gegenseitig keine Resourcen-Konflikte
+haben, also gleichzeitig laufen k"onnen. Gibt es eine $k$-Clique in $G$,
+lassen sich mit den Jobs der Clique $k$ Prozessoren auslasten.
+
+Sei umgekehrt ein Graph gegeben. Wir nennen die Ecken ``Jobs''. Die
+Paare $(J_i,J_j)$, f"ur die im Graph keine Kante existiert,  nennen
+wir Resourcen $r_{ij}$. Die Kanten des Graphen dr"ucken also aus, dass
+die beiden Jobs an den Enden der Kante gleichzeitig laufen k"onnen.
+Falls sich $k$ der Jobs gleichzeitig starten lassen, enth"alt der
+Graph jede Verbindung zwischen diesen Jobs, die $k$ Jobs bilden also
+eine $k$-Clique des Graphen.
+
+Somit sind das Job-Parallelit"ats-Problem und das Cliquen-Problem
+"aquivalent, insbesondere ist Job-Parallelit"at ein NP-vollst"andiges
+Problem.
+\end{loesung}
+}{
+}
+

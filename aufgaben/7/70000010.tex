@@ -1,0 +1,22 @@
+Ein Verkehrsnetz soll regelm"assig durch Mitarbeiter
+kontrolliert werden, die ihre Basis an einzelnen Knotenpunkten
+des Netzes haben.
+Kann man auf effiziente Art und Weise herausfinden, an welchen
+Knotenpunkten man Kontrolleure stationieren muss, damit jede
+Strecke in einem Knoten mit Kontrolleur endet?
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Dieses Problem is "aquivalent zu \textsl{VERTEX-COVER},
+und damit NP-vollst"andig, also nach aktuellem Wissen f"ur
+grosse Probleme nicht effizient l"osbar. Die Reduktionsabbildung
+bildet die Objekte wie folgt ab
+\begin{align*}
+\text{Knoten}&\mapsto \text{Knoten}\\
+\text{Strecke}&\mapsto \text{Kante}\\
+\text{Anzahl Kontrolleure}&\mapsto k\\
+\text{Knoten mit Kontrolleur}&\mapsto\text{Knoten aus dem Vertex-Cover}
+\end{align*}
+\end{loesung}
+}{}
+

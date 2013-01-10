@@ -1,0 +1,109 @@
+In einem endlichen Automaten
+\[
+A=(\{q_1,q_2,q_3,q_4,q_5\}, \{\text{\tt u},\text{\tt d}\}, \delta,
+q_3, \{q_3\})
+\]
+ist die Funktion $\delta$ durch die folgende Tabelle definiert:
+\begin{center}
+\begin{tabular}{>{$}c<{$}|>{$}c<{$}>{$}c<{$}}
+&\text{\tt u}&\text{\tt d}\\
+\hline
+q_1&q_1&q_2\\
+q_2&q_1&q_3\\
+q_3&q_2&q_4\\
+q_4&q_3&q_5\\
+q_5&q_4&q_5\\
+\end{tabular}
+\end{center}
+\begin{teilaufgaben}
+\item Zeichnen Sie das Zustandsdiagramm.
+\item Akzeptiert der Automat des leere Wort $\varepsilon$?
+\item Akzeptiert der Automat ein Wort der L"ange $3$?
+\item Bestimmen Sie alle W"orter der L"ange $\le 4$, die
+der Automat akzeptiert.
+\item Wieviele verschiedene W"orter akzeptiert der Automat?
+\end{teilaufgaben}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}&{q_1}\ar@/^/[d]^{\tt d} \ar@(ul,ur)^{\tt u}
+\\
+*+\txt{}&{q_2}\ar@/^/[u]^{\tt u}\ar@/^/[d]^{\tt d}
+\\
+*+\txt{}\ar[r]&*++[o][F=]{q_3}\ar@/^/[u]^{\tt u}\ar@/^/[d]^{\tt d}
+\\
+*+\txt{}&{q_4}\ar@/^/[u]^{\tt u}\ar@/^/[d]^{\tt d}
+\\
+*+\txt{}&{q_5}\ar@/^/[u]^{\tt u} \ar@(dr,dl)^{\tt d}
+}
+\]
+\item
+Das leere Wort "uberf"uhrt den Startzustand $q_3$ in den Zustand
+$q_3\in \{q_3\}$, also einen Endzustand, somit ist
+$\varepsilon\in L(A)$.
+\item
+Ein Wort der L"ange $3$ wird von diesem Automaten nicht akzeptiert.
+Man kann das zum Beispiel dadurch einsehen, dass man eine Liste
+aller W"orter der L"ange drei macht (es gibt nur 8 solche W"orter),
+und die dann einzeln pr"uft.
+
+Oder man sagt sich, dass ein Wort mit der L"ange $3$ niemals die kleine
+Schleife an den Zust"anden $q_1$ oder $q_5$ nutzen kann, weil das Wort
+zu kurz ist, um wieder $q_3$ zu erreichen. Die verbleibenden Pfeile,
+die das Wort nutzen kann, "andern also mit jedem Zeichen den Rest
+der Zustandsnummer bei Teilung durch zwei. Man kann das symbolisieren,
+in dem man die $q_1$, $q_2$ und $q_3$ schwarz einf"arbt, die anderen
+weiss. Ein Zeichen l"asst dann immer die Farbe wechseln. Mit drei Zeichen
+landet man auf weiss, aber der einzige Akzeptierzustand ist schwarz,
+also ist es nicht m"oglich, ein Wort der L"ange drei zu akzeptieren.
+
+Noch ein weiteres Argument verl"auft wie folgt:
+Zun"achst halten wir fest, dass der Automat auch keine W"orter der
+L"ange $1$ akzepiert, es gibt keine Pfeile, welche von $q_3$ nach
+$q_3$ zur"uck f"uhren. Ein Wort der L"ange drei muss also mindestens
+die Zust"ande $q_2$ oder $q_4$ erreichen. Eine Zustands"anderung von
+dort zur"uck zu $q_3$ ergibt zwar ein akzeptiertes Wort der L"ange
+$2$, es ist aber nicht m"oglich, dieses zu einem akzeptierten Wort
+der L"ange $3$ zu erg"anzen.
+Bleibt also nur ein Wort, welches
+sogar $q_1$ oder $q_5$ erreicht. Da es keine Pfeile von $q_1$
+oder $q_5$ direkt zum einzigen Akzeptierzustand $q_3$ gibt,
+braucht es also mindestens zwei zus"atzliche Zeichen, um den
+Akzeptierzustand $q_3$ zu erreichen. Somit muss ein solches
+Wort mindestens L"ange $4$ haben.
+\item Wir m"ussen alle W"orter finden, die gleich viele {\tt u} wie {\tt d}
+enhalten. Die Anzahl solcher W"orter kann man wie folgt bestimmmen.
+Man muss auf die vier Stellen eines solchen Wortes zwei Buchstaben
+{\tt u} verteilen, die anderen zwei Pl"atze werden dann mit {\tt d}
+gef"ullt. Das erste {\tt u} k"onnen wir auf Platz 1, 2 oder 3 setzen,
+dann bleiben jeweils 3, 2 bzw.~1 M"oglichkeiten f"ur das zweite {\tt u},
+insgesamt also $3+2+1=6$ M"oglichkeiten. Die sechs W"orter sind:
+{\tt udud}, {\tt dudu}, {\tt uddu}, {\tt duud}, {\tt uudd}, {\tt dduu}.
+Dazu kommen jetzt noch die zwei W"orter der L"ange $2$ und das leere Wort,
+welches L"ange $0$ hat. Insgesamt sind dies $9$ verschiedene W"orter
+\[
+\{
+{\tt udud}, {\tt dudu}, {\tt uddu}, {\tt duud}, {\tt uudd}, {\tt dduu},
+{\tt ud},{\tt du}, \varepsilon
+\}
+\]
+\item Der Automat akzepiert alle W"orter der Form
+\[
+\text{\tt uu}
+\text{\tt u}^n
+\text{\tt dd},
+\]
+f"ur jedes $n\in \mathbb N$,
+dies sind unendlich viele verschiedene W"orter. Alternativ kann
+man auch die W"orter der Form $({\tt ud})^n$, also die Sprache
+$\{{\tt ud}\}^*$ anf"uhren, welche ebenfalls unendlich viele W"orter
+umfasst.
+\end{teilaufgaben}
+\end{loesung}
+}{}
+

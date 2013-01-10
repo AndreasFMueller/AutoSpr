@@ -1,0 +1,44 @@
+Nach dem Erfolg im Erkennen von Tupel-Additionen in
+Aufgabe~\ref{40000023}
+will Heiri Muster nun den Parser erweitern, um Tupel-Gleichungen
+zu erkennen, also Gleichungen der Form
+\[
+(3,47,1291,4711)+(4,1848,2010,-1)=(7,1895,3301,4710)
+\]
+Ist dies m"oglich?
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Schreiben wir $m$ f"ur jede Zahl, m"ussen wir also in der Lage
+sein, einen Ausdruck der Form
+\begin{equation}
+(m,m,m,m)+(m,m,m,m)=(m,m,m,m)
+\label{tupelgleichungen}
+\end{equation}
+zu erkennen, wobei jede Klammer gleich viele $m$ enthalten muss.
+
+Nehmen wir an, die Sprache $L$ dieser Ausdr"ucke sei kontextfrei.
+Dann gibt
+es eine L"ange $N$, so dass in Tuppelausdruck $w$ mit mindestens
+$N$ Zeichen zerlegt werden kann in $w=uvxyz$ so, dass $|vxy|<N$,
+$|vy|>0$ und $uv^ixy^iz\in L$ f"ur beliebige $i$. W"ahlen wir jetzt
+einen Ausdruck mit mehr als $N$ Komponenten in jeder Klammer,
+dann muss das Teilwort $vxy$ ganz in dem Teil vor dem $=$ oder ganz
+in dem Teil nach dem $+$ enthalten sein. Da ausserdem $|vy|>0$
+muss mindestens $v$ oder $y$ eine $m$ enthalten, ein Komma alleine
+k"onnen beide nicht enthalten, denn dadurch w"urde f"ur $i>0$
+ein illegaler Ausdruck entstehen. Ist $vxy$ im Teil vor dem $=$
+enthalten, dann "andert sich durch das Aufpumpen mit $i>1$ also
+die Zahl der $m$ in den Klammern auf der linken Seite, auf
+der rechten Seite "andert sie sich jedoch nicht. Andernfalls,
+wenn $vxy$ in dem Teil nach dem $+$ enthalten ist, "andert
+sich beim Aufpumpen mit $i>1$ die Zahl der $m$ in der zweiten
+oder dritten Klammer, nicht aber in der ersten. In beiden F"allen
+entsteht ein inkorrekter Ausdruck. Dieser Widerspruch zeigt, dass
+die Sprache nicht kontextfrei ist. Es ist also nicht m"oglich
+eine kontextfreie Grammatik zu konstruieren, welche nur korrekte
+Tupelgleichungen (\ref{tupelgleichungen}) akzeptiert.
+\end{loesung}
+
+}{}
+

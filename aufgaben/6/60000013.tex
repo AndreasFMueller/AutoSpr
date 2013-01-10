@@ -1,0 +1,19 @@
+Sei
+\[
+\text{\it MIRROR}_{\text{DEA}}
+= \{M| \text{$M$ akzeptiert $w$ genau dann, wenn er $w^t$ akzeptiert}\}.
+\]
+Zeigen Sie: $\text{\it MIRROR}_\text{DEA}$ ist entscheidbar.
+
+\begin{hinweis}
+Verwenden Sie Aufgabe~\ref{60000012}
+\end{hinweis}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Die Bedingung bedeutet $L(A)=L(A)^t$, man muss also entscheiden,
+ob $L(A)=L(A)^t$. Dazu wendet man den Entscheider f"ur
+$\text{\it EQ}_{\text{DEA}}$ auf das Paar $(A,A^t)$ an.
+\end{loesung}
+}{}
+

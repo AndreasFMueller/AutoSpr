@@ -1,0 +1,36 @@
+Ersetzt man in einem XML-Dokument alle "offnenden Elemente durch {\tt <},
+alle schliessenden Elemente durch {\tt >} und alle leeren Elemente
+durch {\tt /}, und l"asst alles andere weg, bleibt ein Wort "uber
+dem Alphabet $\Sigma =\{{\tt <},{\tt >},{\tt /}\}$ "ubrig.
+Bilden die so konstruierten W"orter eine regul"are Sprache?
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Nein, wie wir mit dem Pumping Lemma zeigen k"onnen.
+
+Sei $L$ die Sprache der W"orter, die durch den genannten Prozess
+entstehen k"onnen. In so einem Wort muss die Anzahl `{\tt <}' und die
+Anzahl `{\tt >}' gleich gross sein. Wir zeigen, dass dies im Widerspruch
+steht zu der Annahme, $L$ sei regul"ar.
+
+Wir nehmen also an, $L$ sei regul"ar. Nach dem Pumping Lemma gibt
+es also eine Zahl $N$, die pumping length, so dass sich W"orter mit
+L"ange mindestens $N$ innerhalb der ersten $N$ Zeichen aufpumpen lassen.
+Wir w"ahlen als Wort $w=\text{\tt <}^N\text{\tt >}^N$. Dieses Wort
+kann sicher aus einem XML-File erzeugt werden. Nach dem Pumping
+Lemma kann man $w=xyz$ schreiben, mit $|y|>0$ und $|xy|\le N$, so dass
+alle W"orter $xy^kz\in L$ sind. Wegen $|xy|\le N$ besteht aber
+$y$ aus lauter `{\tt <}'. Das Wort $xy^kz$ ent"alt also mehr
+`{\tt <}' als `{\tt >}' und kann damit nicht in $L$ sein. Dieser
+Widerspruch zeigt, dass die Annahme, $L$ sei regul"ar, falsch gewesen
+sein muss. $L$ ist also nicht regul"ar.
+\end{loesung}
+{\bf Bewertung:}
+Ansatz mit Pumping Lemma 1 Punkt ({\bf PL}),
+Pumping Length 1 Punkt ({\bf N}),
+zweckm"assiges Beispielwort 1 Punkt ({\bf W}),
+Zerlegung des Wortes 1 Punkt ({\bf Z}),
+Aufpumpen zerst"ort das Wort 1 Punkt ({\bf A}),
+Schlussfolgerung 1 Punkt ({\bf F}).
+}{ }
+

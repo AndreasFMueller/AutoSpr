@@ -1,0 +1,88 @@
+Eine Sprache besteht aus denjenigen Strings
+"uber dem Alphabet $\Sigma=\{{\tt 0},{\tt 1}\}$, in welchen Folgen von
+aufeinanderfolgenden {\tt 0}
+immer gerade L"ange und Folgen von aufeinanderfolgenden
+{\tt 1} immer durch drei teilbare L"ange haben.
+Zur Sprache geh"oren also beispielsweise
+\[
+\text{\tt 001110000111},\;
+\text{\tt 111111},\;
+\text{\tt 001110011100},\;
+\text{\tt 00000000111000000},
+\]
+nicht dazu geh"oren dagegen
+\[
+\text{\tt 10101},\;
+\text{\tt 1100},\;
+\text{\tt 1110},\;
+\text{\tt 0}.
+\]
+Ist diese Sprache regul"ar? Wenn nein, warum nicht? Wenn ja, zeichnen
+Sie das Zustandsdiagramm eines DEA, der diese Sprache akzeptiert.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Der regul"are Ausdruck
+\[
+((\text{\tt 00})|(\text{\tt 111}))*
+\]
+beschreibt diese Sprache, woraus mindestens zu erkennen ist, dass die
+Sprache regul"ar ist, also auch ein deterministischer endlicher Automat
+existiert, der sie akzeptiert.
+
+Um das Zustandsdiagramm eines endlichen Automaten zu zeichnen,
+brauchen wir auf jeden Fall die folgenden
+Teilautomaten, die Folgen aus einer geraden Anzahl von {\tt 0}
+bzw.~aus einer durch drei teilbaren Anzahl von {\tt 1} erkennen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+        &*++[o][F=]{e}\ar@/^/[r]^{\tt 0}
+                &{o} \ar@/^/[l]^{\tt 0}
+\\
+*+\txt{}\ar[r]
+        &*++[o][F=]{0}\ar@/^/[r]^{\tt 1}
+                &{1}\ar@/^/[r]^{\tt 1}
+                        &{2} \ar@/^10pt/[ll]^{\tt 1}
+}
+\]
+Ein "Ubergang mit einer {\tt 1} ist im ersten Automaten nur
+zul"assig, wenn er im Zustand $e$ ist. Im zweiten Automaten ist
+ein "Ubergang mit {\tt 0} nur zul"assig, wenn er im Zustand $0$ ist.
+Wir brauchen also noch einen zus"atzlichen Zustand $x$, mit dem wir
+ausdr"ucken, dass das gelesene Wort niemals zur Sprache geh"oren
+kann:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}
+        &*+\txt{}
+                &{o} \ar@/^/[dl]^{\tt 0} \ar[dr]^{\tt 1}
+\\
+*+\txt{}\ar[r]
+        &*++[o][F=]{0/e}\ar@/^/[ur]^{\tt 0} \ar@/^/[dr]^{\tt 1}
+                &*+\txt{}
+                        &{x}\ar@(ur,dr)^{\tt 0,1}
+\\
+*+\txt{}
+        &*+\txt{}
+                &{1}\ar@/^/[dr]^{\tt 1} \ar[ur]^{\tt 0}
+\\
+*+\txt{}
+        &*+\txt{}
+                &*+\txt{}
+                        &{2} \ar@/^10pt/[uull]^{\tt 1} \ar[uu]^{\tt 0}
+}
+\]
+Dieser Automat ist deterministisch, in jedem Zustand entspringen
+zwei Pfeile f"ur {\tt 0} und {\tt 1}. Somit ist er der gesuchte DEA.
+
+Alternativ liesse sich der Automat durch Anwendung des Algorithmus zur
+Umwandlung eines regul"aren Ausdruck in einen DEA gewinnen. Oder
+indem man die Teil-NEAs zuerst in DEAs umwandelt und dann die
+Konstruktion des kartesischen Produkt-Automaten anwendet, um die
+W"orter zu akzeptieren, die beide Bedingungen erf"ullen.
+\end{loesung}
+}{ }
+

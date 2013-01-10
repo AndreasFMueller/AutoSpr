@@ -1,0 +1,102 @@
+Finden Sie zwei Ableitungsb"aume f"ur das Wort {\tt 000011} in der
+Grammatik von Aufgabe~\ref{40000001}d). Falls ihre Grammatik nicht zweideutig
+ist: warum?
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Der Ableitungsbaum wird nicht eindeutig sein. Grund daf"ur ist, dass
+Nullen mit drei verschiedene Regeln erzeugt werden k"onnen, es aber
+auf deren Reihenfolge nicht ankommt.
+Ableitungsbaum, die zuerst die Regeln $S\to {\tt 0}S$ verwendet:
+\[
+\xymatrix{
+&&&S\ar@/_/[ddddlll]\ar[d]
+\\
+&&&S\ar@/_/[dddll]\ar[d]\ar@/^/[dddrr]
+\\
+&&&S\ar@/_/[ddl]\ar[d]\ar@/^/[ddr]
+\\
+&&&S\ar[d]
+\\
+{\tt 0}&{\tt 0}&{\tt 0}&{\tt 0}&{\tt 1}&{\tt 1}
+}
+\]
+Ableitungsbaum, der zuerst die Regel $S\to {\tt 0}S{\tt 1}$
+verwendet:
+\[
+\xymatrix{
+&&&S\ar@/_/[ddddlll]\ar[d]\ar@/^/[ddddrr]
+\\
+&&&S\ar@/_/[dddll]\ar[d]\ar@/^/[dddr]&&
+\\
+&&&S\ar@/_/[ddl]\ar[d]&
+\\
+&&&S\ar[d]
+\\
+{\tt 0}&{\tt 0}&{\tt 0}&{\tt 0}&{\tt 1}&{\tt 1}
+}
+\]
+Die Grammatik ist als zweideutig. Ursache daf"ur ist die Tatsache,
+dass es zwei verschiedene Regeln gibt, mit denen man eine Null
+links anf"ugen kann. Eine eindeutige Grammatik m"usste zwischen
+diesen beiden Arten von Nullen besser unterscheiden. Dies kann
+man dadurch erreichen, dass man sich das Wort zusammengesetzt
+vorstellt aus einem Teil $N$ aus lauter Nullen und einem Wort $W$ aus
+der Sprache $\{{\tt 0}^n{\tt 1}^n\,|\,n\ge 0\}$. Die Grammatik dazu
+ist
+\begin{align*}
+S&\rightarrow NW
+\\
+N&\rightarrow N{\tt 0}\;|\; \varepsilon
+\\
+W&\rightarrow {\tt 0}W{\tt 1}\;|\;\varepsilon
+\end{align*}
+Damit ist der Ableitungsbaum eindeutig:
+\[
+\xymatrix{
+        &
+                &
+                        &S\ar[dl]\ar[drr]
+\\
+        &
+                &N\ar[dl]\ar[dddd]
+                        &
+                                &
+                                        &W \ar@/_/[ddddll] \ar[d] \ar@/^/[ddddrr]
+\\
+        &N\ar[dl]\ar[ddd]
+                &
+                        &
+                                &
+                                        &W \ar@/_/[dddl] \ar[d] \ar@/^/[dddr]
+                                                &
+\\
+N\ar[d]
+        &
+                &
+                        &
+                                &
+                                        &W \ar[d]
+                                                &
+\\
+\varepsilon
+        &
+                &
+                        &
+                                &
+                                        &\varepsilon
+                                                &
+                                                        &
+\\
+        &{\tt 0}
+                &{\tt 0}
+                        &{\tt 0}
+                                &{\tt 0}
+                                        &
+                                                &{\tt 1}
+                                                        &{\tt 1}
+}
+\]
+\end{loesung}
+}{}
+

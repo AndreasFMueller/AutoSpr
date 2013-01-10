@@ -1,0 +1,134 @@
+F"ur jede positive nat"urliche Zahl $0<p\in\mathbb N$ und jedes Zeichen
+$z\in \Sigma=\{\text{\tt 0},\text{\tt 1}\}$
+sei $L_{p,z}$ die Sprache "uber dem Alphabet
+$\Sigma$, deren W"orter das Zeichen $z$ eine Anzahl mal
+enthalten, die ein Vielfaches von $p$ ist. Zum Beispiel enth"alt
+$L_{3,\text{\tt 1}}$ die W"orter
+\[
+\text{\tt 00},
+\text{\tt 01011},
+\text{\tt 11000001},
+\text{\tt 110101101},
+\]
+nicht aber die W"orter
+\[
+\text{\tt 101},
+\text{\tt 000},
+\text{\tt 000000},
+\text{\tt 1010101},
+\text{\tt 11}.
+\]
+In Formeln kann man $L_{p,z}$ auch schreiben als
+\[
+L_{p,z}=\{w\in\Sigma^*|\; |w|_z\equiv 0\mod p\}
+\]
+(Zur Erinnerung: $|w|_z$ ist die Anzahl der Zeichen $z$ im Wort $w$.)
+Das leere Wort ist in jeder Sprache $L_{p,z}$ enthalten.
+\begin{teilaufgaben}
+\item Zeichnen Sie das Zustandsdiagramm je eines DEA, welcher
+$L_{2,\text{\tt 0}}$ bzw.~$L_{3,\text{\tt 1}}$ akzeptiert.
+\item Zeichnen Sie das Zustandsdiagramm eines DEA, welcher
+$L_{2,\text{\tt 0}}\cap L_{3,\text{\tt 1}}$ akzeptiert.
+\item
+Bestimmen Sie
+$L_{p,\text{\tt 0}} \cap L_{p,\text{\tt 0}}$
+f"ur zwei verschiedene Primzahlen $p$ und $q$.
+\item Welche W"orter enth"alt
+\[
+L_{\infty.\text{\tt 0}}
+=
+\bigcap_{\text{$p$ prim}}L_{p,\text{\tt 0}}
+=
+L_{2,\text{\tt 0}}\cap
+L_{3,\text{\tt 0}}\cap
+L_{5,\text{\tt 0}}\cap
+L_{7,\text{\tt 0}}\cap
+L_{11,\text{\tt 0}}\cap\dots
+\]
+\end{teilaufgaben}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item Als Zust"ande eines Automaten f"ur $L_{p,z}$ verwenden wir den Rest
+von $|w|_z$ modulo $p$, also f"ur $L_{2,\text{\tt 0}}$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+1mm {
+*+\txt{}\ar[r]
+        &*++[o][F=]{0} \ar@/^/[r]^{\tt 0} \ar@(ur,ul)^{\tt 1}
+                &{1}\ar@/^/[l]^{\tt 0} \ar@(ur,ul)^{\tt 1}
+}
+\]
+und f"ur $L_{3,\text{\tt 1}}$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+1mm {
+*+\txt{}\ar[r]
+        &*++[o][F=]{0}\ar[r]^{\tt 1} \ar@(ur,ul)^{\tt 0}
+                &{1}\ar[r]^{\tt 1} \ar@(ur,ul)^{\tt 0}
+                        &{2}\ar@/^10pt/[ll]^{\tt 1} \ar@(ur,ul)^{\tt 0}
+}
+\]
+\item Man kann einen Automaten zusammenbauen aus den beiden
+Automaten f"ur $L_{2,\text{\tt 0}}$ und $L_{3,\text{\tt 1}}$.
+Die Zust"ande sind Paare von Zust"ande der beiden Teilautomaten:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+1mm {
+*+\txt{}\ar[dr]
+\\
+*+\txt{}
+        &*++[o][F=]{0,0} \ar@/^/[d]^{\tt 0} \ar[r]_{\tt 1}
+                &{0,1} \ar@/^/[d]^{\tt 0} \ar[r]_{\tt 1}
+                        &{0,2} \ar@/^/[d]^{\tt 0} \ar@/_15pt/[ll]_{\tt 1}
+\\
+*+\txt{}
+        &{1,0} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
+                &{1,1} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
+                        &{1,2} \ar@/^/[u]^{\tt 0} \ar@/^15pt/[ll]^{\tt 1} 
+}
+\]
+\item
+Ein Wort in $L_{p,\text{\tt 0}} \cap L_{p,\text{\tt 0}}$ enth"alt
+eine Anzahl Nullen, die sowohl durch $p$ als auch durch $q$ teilbar
+ist, also ein Vielfaches von $pq$ ist. Es ist also
+\[
+L_{p,\text{\tt 0}} \cap L_{p,\text{\tt 0}}
+=
+L_{pq,\text{\tt 0}}
+\]
+Man kann dieses Resultat auch f"ur das Beispiel $p=2$, $q=3$ aus
+den oben gezeigten Automaten ableiten, und bekommt folgenden Automaten
+f"ur die Schnittsprache:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+1mm {
+*+\txt{}\ar[dr]
+\\
+*+\txt{}
+        &*++[o][F=]{0,0} \ar[dr]^{\tt 0} \ar@(ur,ul)_{\tt 1}
+                &{0,1} \ar[dr]^{\tt 0}\ar@(ur,ul)_{\tt 1}
+                        &{0,2} \ar[dll]^{\tt 0}\ar@(ur,ul)_{\tt 1}
+\\
+*+\txt{}
+        &{1,0} \ar[ur]^{\tt 0} \ar@(dr,dl)^{\tt 1}
+                &{1,1} \ar[ur]^{\tt 0}\ar@(dr,dl)^{\tt 1}
+                        &{1,2} \ar[ull]^{\tt 0}\ar@(dr,dl)^{\tt 1}
+}
+\]
+Indem man den Pfeilen folgt kann man verifizieren, dass man den
+Akzeptierzustand jeweils erst wieder erreicht, wenn man alle
+anderen Zust"ande besucht hat, also ein Vielfaches von $6$ Nullen
+gelesen hat.
+\item Ein Wort $w$ in $L_{\infty,\text{\tt 0}}$ muss eine Anzahl Nullen
+enthalten, die durch alle Primzahlen teilbar ist. Dies ist nur m"oglich,
+wenn $w$ gar keine Nullen enth"alt. $L_{\infty,\text{\tt 0}}$ besteht
+also aus den W"ortern, die ausschliesslich Einsen enthalten:
+\[
+L_{\infty,\text{\tt 0}}=\{\text{\tt 1}\}^*.
+\]
+\end{teilaufgaben}
+\end{loesung}
+}{ }
+

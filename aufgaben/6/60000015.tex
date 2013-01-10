@@ -1,0 +1,39 @@
+Zeigen Sie, dass die folgende  Sprache nicht entscheidbar ist
+\[
+\text{\textsl{USES-STATE}}_{\text{TM}}=
+\left\{
+(M,q,w)\left|
+\begin{minipage}{3truein}Die TM $M$ verwendet bei der Berechnung mit
+dem Input $w$ den Zustand $q$.
+\end{minipage}\right.
+\right\}
+\]
+
+\begin{hinweis}
+Dies ist eine Implementationseigenschaft, l"asst sich
+also nicht mit dem Satz von Rice behandeln.
+\end{hinweis}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Wir konstruieren eine Reduktion
+$A_{\text{TM}}\le \text{\textsl{USES-STATE}}_{\text{TM}}$.
+Dazu bilden wir
+$\langle M,w\rangle$
+auf
+\[
+f(\langle M,w\rangle)=
+\langle M,q_{\text{accept}},w\rangle
+\]
+ab. Es ist genau dann
+$\langle M,w\rangle\in A_{\text{TM}}$, wenn $M$ auf Input $w$ im
+Zustand $q_{\text{accept}}$ anh"alt. Andererseits it
+$\langle M,q_{\text{accept}},w\rangle\in 
+\text{\textsl{USES-STATE}}_{\text{TM}}$, wenn $M$ bei der Verarbeitung
+des Input $w$ den Zustand $q_{\text{accpet}}$ verwende, also
+$\langle M,w\rangle\in A_{\text{TM}}$. Damit ist die Reduktion
+konstuiert, und somit gezeigt, dass
+$\text{\textsl{USES-STATE}}_{\text{TM}}$ nicht entscheidbar ist.
+\end{loesung}
+}{}
+

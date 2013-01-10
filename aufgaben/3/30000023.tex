@@ -1,0 +1,93 @@
+Untersuchen Sie die Sprache $L_\infty$, die aus den W"ortern besteht, die
+in allen Sprachen $L_n$ aus Aufgabe \ref{30000022} vorkommen:
+$$
+L_{\infty} = \bigcap_{n>0}L_n.
+$$
+Sie besteht also aus W"ortern, f"ur die
+$|w|_{\tt 0}$ und
+$|w|_{\tt 1}$ immer den gleichen Rest bei Teilung durch jede beliebige
+Zahl $n$ haben.
+
+\begin{teilaufgaben}
+\item Warum haben die W"orter in $L_\infty$ gleich viele {\tt 0}
+wie {\tt 1}?
+\item Aus a) folgt, dass
+$$L_\infty = \{w\in\Sigma^*|\;|w|_0=|w|_1\}.$$
+Ist die Sprache $L_\infty$ regul"ar?
+\end{teilaufgaben}
+
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item Nehmen wir an, ein Wort $w$ habe $a$ {\tt 0}, also $a=|w|_{\tt 0}$ und
+$b$ {\tt 1}, also $|w|_{\tt 1}=b$.
+Sei $N=\max(a,b) + 1$. Das Wort $w$ ist auch in $L_N$ enthalten,
+die Anzahlen $n$ und $m$ m"ussen aber auch den gleichen Rest bei
+Teilung durch $N$ haben. Da $a<N$ ist $a$ auch gerade dieser Rest,
+und analog f"ur $b$. Somit muss $a=b$ sein. Die W"orter in
+$L_\infty$ haben also gleich viele {\tt 0} und {\tt 1},
+$$
+L_\infty=\{w|\,|w|_{\tt 0}=|w|_{\tt 1}\}.
+$$
+
+Man k"onnte auch wie folgt argumentieren. Wenn zwei Zahlen $a$ und $b$
+bei Teilung durch jede beliebige Zahl gleichen Rest ergeben m"ussen,
+dann m"ussen sie das auch bei Teilung durch $b$ und $a$ tun. In beiden
+F"allen ist der eine Rest $0$, also m"ussen beide Zahlen sowohl durch
+$b$ wie auch durch $a$ teilbar sein. $b$ muss also Vielfaches von $a$
+sein, und $a$ ein Vielfaches von $b$. Also einerseits $b\ge a$ und andererseits
+$b\le a$, also $b=a$. Allerdings muss man sich den Fall $b=0$ oder $a=0$
+noch separat "uberlegen, weil man nicht durch $0$ teilen darf. Wenn
+aber eine der Zahlen, sagen wir $b$, gleich $0$ ist, bedeutet das, dass
+die andere, also $a$, bei Teilung durch jede beliebige Zahl $0$ ergeben
+muss. Teilt man $a$ durch $a+1$ ergibt sich $a$ als Rest, also ist $a=0$.
+
+Schliesslich k"onnte man auch mit der Zifferndarstellung der Zahlen
+$a$ und $b$ operieren. Den Rest von $a$ und $b$ bei Teilung durch
+$10^k$ bekommt man, indem man nur die letzten $k$ Stellen der
+Dezimaldarstellung der beiden Zahlen ber"ucksichtigt. W"ahlt man
+jetzt $k$ gr"osser als die Stellenzahl von $a$ und $b$ folgt,
+dass alle Stellen von $a$ und $b$ "ubereinstimmen m"ussen.
+
+\item $L_\infty$ ist nicht regul"ar. W"are $L_\infty$ regul"ar,
+m"usste es nach dem Pumping Lemma eine Zahl $N$ geben, so dass
+W"orter $w$ mit L"ange $|w|\ge N$ ``aufgepumpt'' werden k"onnen.
+Das Wort $w={\tt 0}^N{\tt 1}^N$ k"onnte also geschrieben werden
+als $uxy=w$ mit $|ux|\le N$, $|x|>0$. Insbesondere d"urfte $x$ nur
+aus {\tt 0} bestehen. Nach dem Pumping Lemma m"ussten auch alle
+W"orter $ux^ky\in L_\infty$ sein, aber
+\begin{align*}
+|ux^kv|_{\tt 0}
+&=
+|uxv|_{\tt 0}
+(k-1) |x^k|_{\tt 0}
+=
+|w|_0+(k-1)|x|
+\\
+|ux^kv|_{\tt 1}
+&=
+|u|_{\tt 1} + k|x|_{\tt 1} + |v|_{\tt 1}
+=
+|v|_{\tt 1}
+=|w|_{\tt 1}
+\\
+|ux^kv|_{\tt 0}
+-
+|ux^kv|_{\tt 1}
+&=
+(k-1)|x|>0.
+\end{align*}
+Die aufgepumpten W"orter haben also nicht mehr gleich viele
+{\tt 0} und {\tt 1}. Dieser Widerspruch zeigt, dass $L_\infty$
+nicht regul"ar sein kann.
+
+Es reicht allerdings nicht zu argumentieren, $L=\{ 0^n1^n|n \ge 0\}$
+sei in $L_\infty$ enthalten und bekanntermassen nicht regul"ar,
+also m"usse auch $L_\infty$ nicht regul"ar sein. Denn $L$ ist auch
+in $\Sigma^*$ enhalten, welches offensichtlich regul"ar ist.
+\end{teilaufgaben}
+\end{loesung}
+}{}
+
+

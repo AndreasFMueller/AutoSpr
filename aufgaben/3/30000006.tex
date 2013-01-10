@@ -1,0 +1,65 @@
+Konstruieren sie einen nichtdeterministischen endlichen Automaten
+mit drei Zust"anden
+"uber dem Alphabet $\{{\tt 0},{\tt 1}\}$, welcher die Sprache
+$$
+L=\{w\in\Sigma^*\;|\; \text{$w$ endet mit {\tt 00}}\}.
+$$
+akzeptiert.
+Wandeln sie diesen anschliessend mit dem Standardalgorithmus
+in einen deterministischen endlichen Automaten um.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Ein besonders einfacher NEA ist
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{} \ar[r]
+        &{z_1} \ar[r]^{\tt 0} \ar@(dr,dl)^{\Sigma}
+                &{z_2} \ar[r]^{\tt 0}
+                        &*++[o][F=]{z_3}
+}
+\]
+Dabei haben die beiden explizit gezeigten Nullen eine spezielle
+Bedeutung: es sind ``Endnullen'', im Gegensatz zu gew"ohnlichen
+Nullen. Der Nichtdeterminismus besteht darin, dass man f"ur die
+Entscheidung, welcher "Ubergang bei der n"achsten Null zu w"ahlen
+ist, die Hilfe eines Orakels braucht, welches weiss, ob die
+n"achste Null bereits eine Endnull ist.
+
+Die Umwandlung mit Hilfe des Standardalgorithmus f"uhrt auf folgenden
+Zwischenautomaten
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{1} \ar@/^/[r]^{\tt 0} \ar@(ur,ul)_{\tt 1}
+                &{12}\ar[dr]^{\tt 0} \ar@/^/[l]^{\tt 1}
+                        &*+\txt{}
+\\
+{\emptyset}\ar@(ul,dl)_{\Sigma}
+        &{2}\ar[l]_{\tt 1} \ar[d]^{\tt 0}
+                &*++[o][F=]{13} \ar[u]^{\tt 0} \ar[ul]^{\tt 1}
+                        &*++[o][F=]{123} \ar@(ur,dr)^{\tt 0} \ar[ull]_{\tt 1}
+\\
+*+\txt{}
+        &*++[o][F=]{3} \ar[ul]^{\Sigma}
+                &*++[o][F=]{23} \ar[l]_{\tt 0} \ar[ull]_{\tt 1}
+                        &*+\txt{}
+}
+\]
+Offenbar werden nur die Zust"ande $\emptyset$, $1$, $12$  und $123$ ben"otigt,
+die anderen sind vom Startzustand aus nicht erreichbar. Der DEA
+ist daher
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*\txt{}\ar[r]
+        &{a} \ar@/^/[r]^{\tt 0} \ar@(dr,dl)^{\tt 1}
+                &{b} \ar[r]^{\tt 0} \ar@/^/[l]_{\tt 1}
+                        &*++[o][F=]{c} \ar@(ur,dr)^{\tt 0} \ar@/^15pt/[ll]^{\tt 1}
+}
+\]
+\end{loesung}
+}{}
+

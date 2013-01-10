@@ -1,0 +1,75 @@
+Es ist bekannt, dass es eine Sprache
+$L\subset \{\text{\tt 1}\}^*$ gibt, die nicht entscheidbar ist.
+Man kann dies zum Beispiel so einsehen:
+jede solche Sprache entspricht einer Teilmenge von $\mathbb N$,
+und man verwendet, dass die Menge der Teilmengen von $\mathbb N$,
+die Potenzmenge $P(\mathbb N)$ "uberabz"ahlbar ist.
+Verwenden Sie dieses
+Resultat um zu zeigen, dass es eine reelle Zahl $r$ gibt, die von keinem
+Computer berechnet werden kann in dem Sinne, dass es keine Turing-Maschine
+gibt, die nacheinander beliebig viele Stellen der Bin"ardarstellung von $r$
+berechnen
+kann.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Sei $L$ eine nicht entscheibare Sprache. Nat"urlich muss $L$ eine
+unendliche Sprache sein, denn endliche Sprachen sind ja alle regul"ar
+also erst recht entscheidbar.
+
+Wir ordnen die W"orter der Gr"osse nach, und bilden dann folgende
+Bin"arzahl $r$. Hinter dem Komma schreiben wir die W"orter von $L$
+getrennt durch jeweils eine {\tt 0} hin. Wenn also $L$ mit
+den W"ortern
+\[
+\{
+\text{\tt 1},
+\text{\tt 111},
+\text{\tt 111111},
+\text{\tt 1111111},
+\text{\tt 11111111111},
+\dots
+\}
+\]
+beginnt, dann ist
+\[
+r=\text{\tt 0},\text{\tt 101110111111011111110111111111110}\dots
+\]
+Nehmen wir an, eine Turing-Maschine $M$ k"onnte beliebig viele Stellen
+der Zahl ausrechnen. Dann k"onnen wir daraus einen Entscheider $M'$ f"ur
+die Sprache konstruieren. Dieser muss zu einem Wort $w=1^n$ sagen,
+ob es zur Sprache $L$ geh"ort. $M'$ arbeitet wie folgt:
+
+\begin{quote}
+Wir lassen daher die Maschine $M$ laufen, die die Stellen von $r$ berechnet.
+Jedesmal, wenn die Maschine eine
+{\tt 0} schreibt, vergleichen wir die L"ange $l$ der vorngegangenen
+{\tt 1}er-Folge mit $n$. Falls $l=n$, haben wir ein Wort der Sprache,
+und wir akzeptieren $w$. Falls $l<n$ sind wir sicher, m"ussen wir
+die Maschine noch l"anger laufen lassen. Falls aber $l>n$ haben wir
+das Wort nicht gefunden. Weil die {\tt 1}er-Folgen in $r$ immer
+l"anger werden, wird es auch nie mehr gefunden werden k"onnen, weshalb
+wir $w$ verwerfen m"ussen.
+\end{quote}
+
+Da die L"ange der {\tt 1}er-Folgen in $r$ immer zunimmt, muss $l=n$
+oder $l>n$ irgendwann eintreten, $M'$ wird als auf jeden Fall
+anhalten. $M'$ wird genau dann akzeptieren, wenn $w\in L$, somit
+ist $M'$ eine Entscheider.
+
+Somit haben wir einen Entscheider $M'$ f"ur die nicht entscheidbare Sprache
+$L$ gefunden. Dieser Widerspruch zeigt, dass die urspr"ungliche Annahme,
+n"amlich dass es eine die Maschine $M$ g"abe, nicht richtig sein kann.
+Es gibt also keine Turing-Maschine, welche die Stellen der Zahl $r$ berechnen
+kann.
+
+Ein noch einfacheres Argument ist das folgende. Zur Berechnung von
+rellen Zahlen braucht man Turing-Maschinen, denen man als Input auf
+dem Band die gew"unschte Anzahl stellen geben kann. Es gibt nur
+abz"ahlbar viele Turing-Maschinen, also k"onnen nur abz"ahlbar viele
+reelle Zahlen berechnet werden. Da es "uberabz"ahlbar viele reelle
+Zahl gibt, k"onnen die meisten gar nicht berechnet werden.
+\end{loesung}
+
+}{}
+

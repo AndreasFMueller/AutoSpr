@@ -1,0 +1,19 @@
+$\text{\it EQ}_{\text{DEA}}$ wurde in der Vorlesung als entscheidbar
+erkannt. Man kann die Gleichheit von $L(A)$ und $L(B)$ f"ur
+zwei endliche Automaten $A$ und $B$ auch dadurch entscheiden,
+dass man alle Strings bis zu einer gewissen L"ange $N$ mit
+beiden Automaten testet. Falls beide Automaten genau die
+gleichen Strings akzeptieren, sind die Sprachen gleich.
+Wie gross muss $N$ sein, damit dies funktioniert?
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Man muss $N$ so gross machen, dass man das k"urzeste Wort erkennen
+k"onnte, bei dem die beiden Automaten verschieden entscheiden
+w"urden. Wenn die beiden Automaten bei allen W"ortern gleich entscheiden,
+die h"ochstens so lange sind, wie der zugeh"orige minimale Automat Zust"ande
+hat, dann werden sie immer gleich entscheiden. $N$ ist also die gr"ossere
+der beiden Anzahlen der Zust"ande der Minimalautomaten von $A$ und $B$.
+\end{loesung}
+}{}
+

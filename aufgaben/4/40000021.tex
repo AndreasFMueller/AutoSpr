@@ -1,0 +1,54 @@
+Konstruieren Sie einen Pushdown-Automaten, der die durch folgende
+Grammatik definierte Sprache akzeptiert:
+\begin{align*}
+S&\rightarrow \varepsilon\\
+ &\rightarrow SS\\
+ &\rightarrow GSU\\
+G&\rightarrow {\tt 0}\;|\;{\tt 2}\;|\;{\tt 4}\;|\;{\tt 6}\;|\;{\tt 8}
+\\
+U&\rightarrow {\tt 1}\;|\;{\tt 3}\;|\;{\tt 5}\;|\;{\tt 7}\;|\;{\tt 9}
+\end{align*}
+
+\begin{hinweis}
+Versuchen sie zuerst die Sprache zu verstehen, die von
+dieser Grammatik erzeugt wird und erstellen Sie dann einen ``passenden''
+Pushdown-Automaten.
+\end{hinweis}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Die W"orter der Sprache entstehen aus korrekt geschachtelten
+Klammer-Ausdr"ucken, indem man die "offenenden Klammern durch gerade
+Ziffern, die schliessenden Klammern durch ungerade Ziffern ersetzt.
+Da zwischen den "offnenden und schliessenden Ziffern kein weiterer
+Zusammenhang besteht, gen"ugt es auf dem Stack "uber die Anzahl
+der geraden und ungeraden Ziffern Buch zu f"uhren. Der Automat legt
+also ein Symbol $G$ auf den Stack, wenn eine gerade Ziffer gelesen
+wird, und entfernt ein Symbol $G$ vom Stack, wenn eine ungerade
+Ziffer gelesen wird. Ein Wort wird akzeptiert, wenn am Ende des
+Wortes der Stack leer ist.
+
+Als Zustandsdiagramm kann man
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{z_0} \ar[dr]^{\varepsilon,\varepsilon\rightarrow \$}
+\\
+*+\txt{}
+        &*+\txt{}
+                &{z_1}\ar@(ur,dr)^{{G,\varepsilon \rightarrow G}\atop{U,G\rightarrow\varepsilon}} \ar[dl]^{\varepsilon,\$\rightarrow\varepsilon}
+\\
+*+\txt{}
+        &*++[o][F=]{z_2}
+}
+\]
+verwenden.
+
+Alternativ, jedoch einiges aufwendiger, kann auch der Algorithmus
+zur Konstruktion eines PDA aus einer
+Grammatik verwendet werden, der in der Vorlesung skizziert worden ist.
+\end{loesung}
+}{}
+
+

@@ -1,0 +1,51 @@
+Zeigen Sie, dass die Sprache
+\[
+L=\{
+0^m1^n|m\ne n
+\}
+\]
+"uber dem Alphabet $\Sigma=\{0,1\}$ nicht regul"ar ist.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+W"are $L$ regul"ar, m"usste auch das Komplement regul"ar sein.
+Das Komplement der Sprache $L$ ist die Sprache
+$$\{0^n1^n|n\ge 0\},$$
+von der in der Vorlesung gezeigt wurde, dass sie nicht regul"ar
+ist. Dieser Widerspruch zeigt, dass auch $L$ nicht regul"ar sein kann.
+
+Man kann die Behauptung aber auch direkt mit dem Pumping-Lemma beweisen.
+Wir nehmen also an, die Sprache sei regul"ar. Sei $N$ die Pumping Length.
+Jedes gen"ugend lange Wort $x$ der Sprache kann dann geschrieben werden als $uvw$,
+wobei $|uv|\le N$, und alle W"orter $uv^nw\in L$, f"ur alle $n\ge 1$.
+Dem Teilwort $v$ entspricht eine Schleife im endlichen Automaten, der
+$L$ akzeptiert.
+
+Wir w"ahlen jetzt ein Wort $x=0^N1^{N+b}$. Dieses Wort kann
+$x=uvw$ geschrieben werden, wobei dem Teilwort $v$ eine Schleife im
+Graphen des Automaten entspricht.
+Das Wort $v$ enth"alt nur Nullen, da $|uv|\le N$ sein muss. Vergr"ossert
+man $b$, ist der erste Teil des Wortes davon unber"uhrt, es gilt also immer
+noch die gleiche Aufteilung in $u$ und $v$, $w$ wird um einige Einsen l"anger.
+
+Versuchen wir jetzt, das Wort aufzupumpen, also $uv^nw$ zu bilden, wird es
+die Form
+$$uv^nw=0^{|u|+n|v|+|w|_0}1^{|w|_1}
+=
+0^{|u|+n|v|+N-|u|-|v|}1^{N+b}
+=
+0^{(n-1)|v|+N}1^{N+b}
+$$
+haben. Wir m"ussen zeigen, dass wir erreichen k"onnen, dass die beiden
+Exponenten "ubereinstimmen, also $(n-1)|v|=b$. Wenn $|v|=1$ ist, kann man
+einfach $b$ mal aufpumpen (also $n=b+1$ setzen), um ein Wort zu erhalten,
+welches nicht in $L$ ist.
+Wenn aber $|v|>1$ ist, dann m"ussen wir zum Beispiel $b=|v|$ w"ahlen,
+wie oben argumentiert "andert sich dadurch das $v$ nicht. Dann wird f"ur
+$n=2$ das Wort $0^{N+b}1^{N+b}\not\in L$ entstehen, ein Widerspruch. Somit
+kann $L$ nicht regul"ar sein.
+\end{loesung}
+
+}{}
+
+

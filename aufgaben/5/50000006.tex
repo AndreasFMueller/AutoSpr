@@ -1,0 +1,23 @@
+Beschreiben Sie eine Turing-Maschine, welche entscheidet, ob die
+Anzahl der $1$ in einem Wort $w\in\Sigma^*$ ($\Sigma=\{0,1\}$)
+mindestens so gross ist wie die Anzahl der $0$.
+Er soll also im Zustand $q_{\text{accept}}$
+genau dann anhalten, wenn $|w|_1\ge |w|_0$.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Der Turing-Maschinen-Algorithmus muss folgendes implementieren
+\begin{enumerate}
+\item Fahre nach rechts bis zur ersten {\tt 0}, falls keine  {\tt 0}
+gefunden $\to q_{\text{accept}}$
+\item Ersetze die {\tt 0} durch ein {\tt x}
+\item Fahre nach Rechts ans Ende des Bandes
+\item Fahre nach Links bis zur ersten {\tt 1}
+\item Ersetze die {\tt 1} durch {\tt x}, falls keine {\tt 1}
+gefunden: $\to q_{\text{reject}}$.
+\item Fahre nach links bis zum Anfang des Bandes
+\item Weiter bei 1.
+\end{enumerate}
+\end{loesung}
+}{}
+

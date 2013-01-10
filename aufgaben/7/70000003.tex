@@ -1,0 +1,26 @@
+Beim Spiel Mine-Sweeper, wird dem Spieler von einigen der noch nicht
+aufgedeckten Felder die Anzahl benachbarter Fehler angezeigt, unter
+denen sich eine Bombe befindet. Der Spieler soll dann nur diejenigen
+Felder betreten, unter denen sich keine Bombe versteckt, und alle
+Felder markieren, unter denen eine Bombe liegt. Betrachten Sie das
+Problem {\it MINE-SWEEPER-CONSISTENCY}, in dem zu einer Belegung der
+Felder mit Zahlen (der Anzahl Bomben auf Nachbarfeldern) entscheiden
+werden muss, ob diese Zahlen konsistent sind, ob also Bomben so
+auf dem Spielfeld verteilt werden k"onnen, dass die Zahlen stimmen.
+Zeigen sie, dass
+\[
+\text{\it MINE-SWEEPER-CONSISTENCY}\in \text{NP}.
+\]
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Als L"osungszertifikat brauchen wir die Verteilung der Bomben.
+Zur Verifikation m"ussen wir dann die Anzahl der Bomben auf den
+Nachbarfeldern z"ahlen, was in Laufzeit $O(n^2)$ m"oglich ist,
+wenn $n$ die L"ange der l"angeren Seite des Spielfeldes ist.
+Also hat
+{\it MINE-SWEEPER-CONSISTENCY} einen polynomiellen Verifizierer und
+ist damit in NP.
+\end{loesung}
+}{}
+

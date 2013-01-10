@@ -1,0 +1,22 @@
+Aus einer Menge von Fachleuten, die zum Teil in mehreren Gebieten
+$i=1,\dots,n$ t"atig sind, soll eine Expertenkommission gebildet werden.
+Da zwei Experten f"ur das gleiche Fachgebiet sich erfahrungsgem"ass
+immer streiten, will man in der Expertenkommission jedes Fachgebiet
+durch genau einen Experten vertreten haben. K"onnen Sie einen effizienten
+Algorithmus zur Auswahl der Mitglieder der Kommission angeben?
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Das Problem ist "Aquivalent zu \textsl{HITTING-SET}, ist also
+NP-vollst"andig. Nach aktuellem Wissen gibt es also keine
+effizienten Algorithmus, der das Problem l"osen w"urde. Die
+"Aquivalenz zu \textsl{HITTING-SET} wird durch die Abbildung
+\begin{align*}
+\text{Experte}&\mapsto \text{Punkt in $S$}\\
+\text{Fachgebiet $i$}&\mapsto \text{Teilmenge $U_i$ aller Experten f"ur dieses Gebiet}\\
+\text{Expertenkommission}&\mapsto \text{Hitting Set $H$}
+\end{align*}
+vermittelt.
+\end{loesung}
+}{}
+

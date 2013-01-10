@@ -1,0 +1,116 @@
+Finden Sie eine Grammatik in Chomsky Normalform f"ur eine Sprache
+$L$ "uber dem Alphabet
+$\Sigma=\{\text{\tt o},\text{\tt s}\}$, bestehen aus den W"ortern
+$w$ mit folgender Eigenschaft: Jedes Anfangsst"uck von $w$ enth"alt mindestens
+so viele {\tt o} wie {\tt s}. Zur Sprache geh"oren beispielsweise
+\[
+\varepsilon,
+\text{\tt o},
+\text{\tt oo},
+\text{\tt os},
+\text{\tt oos},
+\text{\tt oso}.
+\]
+Nicht dazu geh"oren dagegen beispielsweise
+\[
+\text{\tt s},
+\text{\tt sos},
+\text{\tt soso},
+\text{\tt oosss},
+\text{\tt osso}.
+\]
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Klammerausdr"ucke haben die gleiche Eigenschaft: in jedem Teilausdruck
+ist die Anzahl der "offnenden Klammern $\ge$ der Anzahl der schliessenden
+Klammern (was die Wahl der Zeichen {\tt o} und {\tt s} erkl"art). Es muss
+also nur eine Grammatik f"ur Klammerausdr"ucke gefunden werden, und darin
+muss zus"atzlich erlaubt werden, dass eine Klammer nicht geschlossen
+wird. Eine solche ist
+\begin{align*}
+S&\rightarrow \varepsilon\\
+ &\rightarrow SS\\
+ &\rightarrow {\tt o}S{\tt s}\\
+ &\rightarrow {\tt o}S
+\end{align*}
+Die letzte Produktionsregel kann man auch durch $S\rightarrow{\tt o}$
+ersetzen:
+\begin{align*}
+S&\rightarrow \varepsilon\\
+ &\rightarrow SS\\
+ &\rightarrow {\tt o}S{\tt s}\\
+ &\rightarrow {\tt o}
+\end{align*}
+
+Diese Grammatik hat noch nicht Chomsky Normalform. Zur Reduktion auf
+Chomsky-Normalform verwendet man den Standardalgorithmus:
+\begin{enumerate}
+\item Neuen Startzustand $S_0$ hinzuf"ugen, der auf der rechten Seite
+nicht vorkommt:
+\begin{align*}
+S_0&\rightarrow S\\
+S&\rightarrow \varepsilon\\
+ &\rightarrow SS\\
+ &\rightarrow {\tt o}S{\tt s}\\
+ &\rightarrow {\tt o}S
+\end{align*}
+\item Elimination der $\varepsilon$-Regeln:
+\begin{align*}
+S_0&\rightarrow S\\
+   &\rightarrow \varepsilon\\
+S&\rightarrow SS\\
+ &\rightarrow {\tt o}S{\tt s}\\
+ &\rightarrow {\tt o}{\tt s}\\
+ &\rightarrow {\tt o}
+\end{align*}
+worin wir eine ohnehin "uberfl"ussige Regel $S\rightarrow S$
+ausgelassen haben.
+\item Elimination von Unit-Rules:
+\begin{align*}
+S_0&\rightarrow \varepsilon\\
+S_0&\rightarrow SS\\
+   &\rightarrow {\tt o}S{\tt s}\\
+   &\rightarrow {\tt o}{\tt s}\\
+   &\rightarrow {\tt o}\\
+S&\rightarrow SS\\
+ &\rightarrow {\tt o}S{\tt s}\\
+ &\rightarrow {\tt o}{\tt s}\\
+ &\rightarrow {\tt o}
+\end{align*}
+\item Rechte Seiten mit mit mehr als 2 Termen aufl"osen
+\begin{align*}
+S_0&\rightarrow \varepsilon\\
+S_0&\rightarrow SS\\
+   &\rightarrow AB\\
+   &\rightarrow {\tt o}{\tt s}\\
+   &\rightarrow {\tt o}\\
+S&\rightarrow SS\\
+ &\rightarrow AB\\
+ &\rightarrow {\tt o}{\tt s}\\
+ &\rightarrow {\tt o}\\
+A&\rightarrow {\tt o}\\
+B&\rightarrow S{\tt s}
+\end{align*}
+\item Literale durch Regeln ersetzen, f"ur {\tt o} haben wir bereits
+eine daf"ur geeignete Variable  $A$, f"ur {\tt s} verwenden wir die
+Variable $Z$, und erhalten:
+\begin{align*}
+S_0&\rightarrow \varepsilon\\
+S_0&\rightarrow SS\\
+   &\rightarrow AB\\
+   &\rightarrow AZ\\
+   &\rightarrow {\tt o}\\
+S&\rightarrow SS\\
+ &\rightarrow AB\\
+ &\rightarrow AZ\\
+ &\rightarrow {\tt o}\\
+A&\rightarrow {\tt o}\\
+B&\rightarrow SZ\\
+Z&\rightarrow {\tt s}
+\end{align*}
+\end{enumerate}
+Damit haben wir Chomsky Normalform erreicht.
+\end{loesung}
+}{}
+

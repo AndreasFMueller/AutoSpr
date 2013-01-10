@@ -1,0 +1,36 @@
+Betrachten Sie die Behauptung:
+\begin{quote}
+In einem Graphen mit mindestens zwei Knoten gibt es zwei verschiedene Knoten
+mit dem gleichen Grade (der gleichen Anzahl Kanten, die von diesem
+Knoten ausgehen).
+\end{quote}
+Ist die Behauptung wahr oder falsch? Warum (Beweis
+oder Gegenbeispiel)?
+
+\begin{hinweis}
+Gehen Sie von einem zusammenh"angenden Graphen
+aus, und "uberlegen sie sich, welche Grade m"oglich sind.
+\end{hinweis}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Die Behauptung ist wahr.
+
+In einem zusammenh"angenden Graphen mit $n$
+Ecken kann der Grad einer Ecke nicht gr"osser als $n-1$ sein.
+M"oglich sind also nur die $n-1$ verschiedenen Grade
+$1,2,\dots,n-1$. Daher m"ussen zwei Ecken den gleichen Grad
+haben.
+
+Falls der Graph nicht zusammenh"angen ist, nimmt man eine
+Zusammenhangskomponente mit mindestens zwei Ecken, nach dem
+eben bewiesenen muss diese zwei Ecken mit dem gleichen
+Grad haben.
+
+Falls es keine Zusammenhangskomponente mit mit mindestens
+zwei Ecken gibt, besteht der Graph nur aus Vertices und hat
+kein Kanten, also haben alle Vertices den Grad $0$, auch
+in diesem Fall ist die Aussage also richtig.
+\end{loesung}
+}{}
+

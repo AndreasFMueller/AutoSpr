@@ -1,0 +1,80 @@
+Nurikabe ist ein japanisches Logikr"atsel, welches auf einem rechteckigen
+Gitter mit $u\times v$ Zellen gespielt wird. In einigen Feldern dieses Gitters
+sind Zahlen eingetragen.
+der Spieler muss einige der leeren Felder ausw"ahlen und schwarz
+f"arben. Die gef"arbten Felder heissen ``Fluss''. Es entstehen so
+weisse Gebiete, bestehend aus weissen Feldern, die entlang einer Kante
+benachbart sind. Es m"ussen folgende Regeln beachtet werden:
+\begin{enumerate}
+\item In jedem weissen Gebiet gibt es genau ein Zahlfeld, und die Zahl darin
+gibt an, wieviele weisse Felder das Gebiet umfasst.
+\item Es darf nur einen Fluss geben (das schwarze Gebiet muss zusammenh"angend
+sein), und es darf keine schwarzen $2\times 2$-Gebiete geben (der Fluss hat
+keine T"umpel).
+\end{enumerate}
+Die Abbildung zeigt ein korrekt gel"ostes Nurikabe.
+\begin{center}
+\includeagraphics[width=2truein]{nurikabe}
+\end{center}
+Ist die Sprache
+\[
+\text{\textsl{NURIKABE}}=\{\langle N\rangle\,|\,\text{$N$ ist ein l"osbares Nurikabe-R"atsel}\}
+\]
+in NP?
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Sie ist mit Sicherheit entscheidbar, denn man kann alle $2^{uv}$
+m"oglichen Belegungen des Spielfeldes mit schwarzen Feldern daraufhin
+"uberpr"ufen, ob sie die Regeln einhalten. Dieser Algorithmus braucht
+zwar exponentielle Zeit, zeigt aber, dass die Sprache entscheidbar ist.
+
+Es ist zu zeigen, dass es einen polynmiellen Verifizierer gibt. Dieser
+braucht ein Zertifikat $c$, f"ur welches wir eine Liste der schwarzen
+Felder verlangen. Damit wird folgender Verifikationsalgorithmus
+durchgef"uhrt:
+
+\begin{tabular}{rll}
+&Schritt&Aufwand\\
+\hline
+1&\begin{minipage}[t]{4.2truein}\strut
+F"ur jedes Zahlfeld ($O(n)$) verwendet man einen Markieralgorithmus,
+der alle zum Gebiet dieses Zahlfeldes geh"orenden weissen
+Felder bestimmt ($O(n)$ Durchg"ange mit Aufwand
+$O(n)$.\strut\end{minipage}&$O(n^3)$\\
+2&\begin{minipage}[t]{4.2truein}\strut
+Trifft dieser Algorithmus auf ein weiteres
+Zahlfeld, ist der erste Teil von Regel 1 verletzt
+($\to q_{\text{reject}}$).
+\strut\end{minipage}&$O(n)$\\
+3&\begin{minipage}[t]{4.2truein}\strut
+Weicht die Zahl der gefundenen weissen Felder vom Inhalt des Zahlfeldes
+ab, ist der zweite Teil von Regel 1 verletzt
+($\to q_{\text{reject}}$).\strut\end{minipage}&$n\cdot O(n)$\\
+4&\begin{minipage}[t]{4.2truein}\strut
+Ebenfalls mit einem Markieralgorithmus wird "uberpr"uft, ob das
+schwarze Gebiet zusammenh"angend ist.
+\strut\end{minipage}&$O(n^2)$\\
+5&\begin{minipage}[t]{4.2truein}\strut
+F"ur jedes schwarze Feld wird "uberpr"uft, ob es Teil eines
+$2\times 2$-T"umpels ist.
+\strut\end{minipage}&$O(n)$\\
+\hline
+&Total&$O(n^3)$
+\end{tabular}
+
+In den Aufwandsch"atzungen verwenden wir f"ur $n$ die L"ange der
+Beschreibung $\langle N\rangle$. Da der Aufwand f"ur die Verifikation
+polynomiell in der Gr"osse des Nurikabe ist, ist
+$\text{\textsl{NURIKABE}}\in\operatorname{NP}$.
+
+In der Tat ist sogar war, dass \textsl{NURIKABE} NP-vollst"andig
+ist. Dazu wurde eine "ahnlich Technik verwendet wie in dem in
+der Vorlesung skizzierten Beweis
+der NP-Vollst"andigkeit von \textsl{MINESWEEPER-CONSISTENCY}:
+Ein \textsl{SAT}-Problem wurde polynomiell in eine Schaltung und dann in
+ein Nurikabe-Problem "ubersetzt:
+http://www.cs.umass.edu/\~\ mcphailb/papers/2003thesis.pdf
+\end{loesung}
+}{ }
+

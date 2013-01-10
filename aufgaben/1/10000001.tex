@@ -1,0 +1,30 @@
+"Ubersetzen sie die folgenden Aussagen soweit m"oglich in
+logische Formeln (sie m"ussen die Aussagen selbst nicht beweisen).
+\begin{teilaufgaben}
+\item Eine Aussage ist entweder wahr oder falsch.
+\item Eine reelle Zahl ist entweder positiv, negativ oder $0$.
+\item Negative Zahlen haben keine reellen Wurzeln.
+\end{teilaufgaben}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item Wenn die Aussage $P$ heisst: $P\vee\neg P$.
+Man k"onnte argumentieren, dass damit noch nicht ausgedr"uckt ist,
+dass mit ``entweder\dots oder'' ein ausschliessendes Oder formuliert
+worden ist. Dazu m"usse man mit einer Und-Verkn"ufpung den Termen
+$\neg(P\wedge \neg P)$
+hinzuf"ugen. Aber
+$\neg(P\wedge \neg P)=\neg P\vee \neg\neg P=\neg P\vee P=P\vee\neg P$,
+dieser Zusatzterm ist also genau dann war, wenn der urspr"ungliche
+auch wahr war, bereits $P\vee \neg P$ beinhaltet also ein ausschliessendes
+Oder.
+\item $\forall x\in\mathbb R(x > 0\vee x<0\vee x=0)$
+\item $x\in\mathbb R\wedge x < 0\Rightarrow
+\neg\exists w\in\mathbb R(x=w^2)$
+oder mit einem All-Quantor: $\forall x\in\mathbb R(x<0\Rightarrow
+\neg\exists w\in\mathbb R(x=w^2)$
+\end{teilaufgaben}
+\end{loesung}
+}{}
+

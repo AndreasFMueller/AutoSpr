@@ -1,0 +1,25 @@
+Sei $\Sigma=\{a,b,c,d\}$.
+Zeigen Sie, dass die Sprache
+\[
+L=\{w\in\Sigma^*|\;\text{$|w|_a=|w|_b$ und $|w|_c=|w|_d$}\}
+\]
+nicht kontextfrei ist.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Man verwendet das Pumping Lemma. W"are die Sprache kontextfrei, g"abe
+es ein Wortl"ange $N$ derart, dass ein Wort l"anger als $N$ sich
+aufpumpen l"asst.
+Wir w"ahlen das Wort $w=a^Nc^Nb^Nd^N\in L$. Nach dem Pumping
+Lemma l"asst sich $w$ aufteilen in
+$w = uvxyz$, wobei $|vy|>0$ und $|vxy|\le N$. Wo genau der Teil
+$vxy$ liegt wissen wir nicht, aber wegen $|vxy|\le N$ k"onnen
+h"ochstens zwei der Buchstaben betroffen sein, und
+zwar nur die Paare $(a,c)$, $(c,b)$ oder $(b,d)$. Nur die Anzahl
+der betroffenen Buchstaben "andert sich, die Anzahl der "ubrigen
+Buchstaben bleibt gleich. In allen drei F"allen werden die
+Beziehungen $|w|_a=|w|_b$ und $|w|_c=|w|_d$ durch das Aufpumpen verletzt.
+\end{loesung}
+
+}{}
+

@@ -1,0 +1,82 @@
+Formulieren Sie eine Grammatik f"ur die Sprache
+\[
+L=\{w\in\Sigma^*| \;|w|_{\tt a}=|w|_{\tt b}\}
+\]
+"uber dem Alphabet $\Sigma=\{{\tt a},{\tt b}\}$.
+Finden Sie einen Parse-Tree f"ur das Wort {\tt aabbab}, ist er
+der einzige, den ihre Grammatik zul"asst?
+
+\begin{hinweis}
+Offenbar entspricht dieses $L$ dem $L_\infty$ aus
+Aufgabe~\ref{30000023}.
+Dort wurde bereits festgestellt, dass $L$ nicht regul"ar ist.
+Hier soll also festgestellt werden, dass $L$ kontextfrei ist.
+\end{hinweis}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Sei $S$ die Startvariable. Alle W"orter haben gerade
+L"ange. Erh"oht man mit einer Regel die L"ange eines Wortes um $2$,
+dann m"ussen dabei gleich viele {\tt a} und {\tt b} hinzugef"ugt werden.
+\begin{align*}
+S&\rightarrow\varepsilon\\
+&\rightarrow {\tt a}S{\tt b}\\
+&\rightarrow {\tt b}S{\tt a}\\
+&\rightarrow S S
+\end{align*}
+F"ur das Wort {\tt aabbab} gibt es die folgenden leicht abgek"urzten ($S\to{\tt a}S{\tt b}\to{\tt ab}$ wird jeweils zu $S\to{\tt ab}$ zusammengefasst) Parse Trees:
+
+\[
+\xymatrix{
+        &
+                &S\ar[dl] \ar[drr]
+\\
+        &S\ar[dl] \ar[d] \ar[drr]
+                &
+                        &
+                                &S\ar[dd] \ar[ddr]
+\\
+{\tt a}\ar[d]
+        &S\ar[d] \ar[dr]
+                &
+                        &{\tt b}\ar[d]
+                                &
+\\
+{\tt a}
+        &{\tt a}
+                &{\tt b}
+                        &{\tt b}
+                                &{\tt a}
+                                        &{\tt b}
+}
+\]
+
+\[
+\xymatrix{
+        &
+                &S\ar[dll] \ar[d] \ar[drrr]
+\\
+{\tt a}\ar[dd]
+        &
+                &S\ar[dl] \ar[dr]
+                        &
+                                &
+                                        &{\tt b}\ar[dd]
+\\
+        &S\ar[d] \ar[dr]
+                &
+                        &S\ar[d] \ar[dr]
+                                &
+\\
+{\tt a}
+        &{\tt a}
+                &{\tt b}
+                        &{\tt b}
+                                &{\tt a}
+                                        &{\tt b}
+}
+\]
+
+\end{loesung}
+}{}
+

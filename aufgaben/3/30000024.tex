@@ -1,0 +1,125 @@
+F"ur eine Anwendung, die als Antwort auf "aussere Reize (Events)
+nach programmierbaren Zeitintervallen (Delays) gewisse Aktionen (Actions)
+ausl"ost, wurde folgende einfache Programmiersprache entworfen. Ein
+Programm ist eine Liste von ``Befehlsw"ortern'', die Events, Delays und Actions
+codieren. Letztere werden
+jeweils durch die Buchstaben {\tt E}, {\tt D} und {\tt A} codiert.
+Parameter werden daran angeh"angt. Events oder Actions haben als Parameter
+einen Kleinbuchstaben gefolgt von einer Ziffernfolge. Delays haben als
+Parameter eine Ziffernfolge ohne f"uhrende Nullen und maximal f"unf
+Zeichen. Die einzelnen Befehlsw"orter d"urfen zur besseren Lesbarkeit mit Zeilenumbr"uchen
+(Newline, Zeichen \verb+\n+) getrennt werden. Auf jeden Event muss mindestens
+ein Delay folgen, auf jedes Delay eine Action. Auf ein Event darf keine Action folgen.
+\begin{teilaufgaben}
+\item Ist diese Sprache regul"ar?
+\item Falls ja: Beschreiben Sie einen endlichen Automaten, der die
+Sprache akzeptiert.
+\end{teilaufgaben}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Die Sprache ist regul"ar, denn man kann einen regul"aren Ausdruck
+angeben, der genau die W"orter dieser Sprache akzeptiert. Um diesen
+regul"aren Ausdruck aufzubauen kann man zun"achst Ausdr"ucke f"ur
+die einzelnen Events, Delays und  Actions konstruieren:
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Event&{\tt E[a-z][0-9]*($|\backslash$n)}\\
+Delay&{\tt D[1-9][0-9]*($|\backslash$n)}\\
+Action&{\tt A[a-z][0-9]*($|\backslash$n)}\\
+\hline
+\end{tabular}
+\end{center}
+Ein Event ist immer gefolgt von mindestens einer Gruppe aus
+einem Delay gefolgt von mindestens einer Action:
+\begin{center}
+Event
+        Delay Action Action{\tt *}
+        {\tt (} Delay Action Action{\tt *} {\tt )*}
+\end{center}
+Solche Events kann es jetzt beliebig viele geben, also
+\begin{center}
+{\tt (}Event
+        Delay Action Action{\tt *}
+        {\tt (} Delay Action Action{\tt *} {\tt )*}{\tt )*}
+\end{center}
+Setzt man jetzt die Ausdr"ucke aus der Tabelle in, erh"alt man
+den endg"ultigen regul"aren Ausdruck (ist alles als ein einziger
+Ausdruck zu lesen):
+\begin{center}
+{\tt (}
+{\tt E[a-z][0-9]*($|\backslash$n)}
+{\tt (D[1-9][0-9]*($|\backslash$n))}
+{\tt (A[a-z][0-9]*($|\backslash$n))}
+{\tt (A[a-z][0-9]*($|\backslash$n))}
+{\tt *}
+{\tt (}
+{\tt (D[1-9][0-9]*($|\backslash$n))}
+{\tt (A[a-z][0-9]*($|\backslash$n))}
+{\tt (A[a-z][0-9]*($|\backslash$n))}
+{\tt *}
+{\tt )*}{\tt )*}
+\end{center}
+\item
+Einen endlichen Automat kann dadurch erhalten, dass man obigen
+regul"aren Ausdruck vom Standardalgorithmus in einen endlichen
+Automaten umwandeln l"asst. Man kann den endlichen Automaten
+aber auch explizit angeben. Zun"achst kann man einzelne
+Teilautomaten $E$, $D$ und $A$ konstruieren, die jeweils
+ein Event-Wort, eine Delay-Wort oder ein Action-Wort akzeptieren:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+        &z_{10}\ar[r]^{\tt E}
+                &z_{11}\ar[r]^{\tt [a-z]}
+                        &z_{12}\ar[r]^{\tt [0-9]}
+                                &*++[o][F=]{z_{13}} \ar@(ur,dr)^{\tt [0-9]}
+\\
+*+\txt{} \ar[r]
+        &z_{20}\ar[r]^{\tt D}
+                &z_{21}\ar[r]^{\tt [1-9]}
+                        &*++[o][F=]{z_{22}} \ar@(ur,dr)^{\tt [0-9]}
+\\
+*+\txt{} \ar[r]
+        &z_{30}\ar[r]^{\tt E}
+                &z_{31}\ar[r]^{\tt [a-z]}
+                        &z_{32}\ar[r]^{\tt [0-9]}
+                                &*++[o][F=]{z_{33}} \ar@(ur,dr)^{\tt [0-9]}
+}
+\]
+Diese Teilautomaten k"onnen wir jetzt zu einem neuen Automaten
+zusammensetzen, der "Ubersichtlichkeit halber schreiben wir jeweils
+nur $E$, $D$ und $E$ f"ur die Teilautomaten.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+        &E \ar[r]^{\tt \backslash n} \ar[dr]^{\tt D}
+                &z_1 \ar[d]^{\tt D}
+                        &*+\txt{}
+\\
+*+\txt{}
+        &*+\txt{}
+                &D \ar[r]^{\tt \backslash n} \ar@/^/[dr]^{\tt A}
+                        &z_2 \ar[d]^{\tt A}
+\\
+*+\txt{}
+        &z_3 \ar[uu]^{\tt E} \ar[ur]^{\tt D}
+                &*+\txt{}
+                        &A      \ar@(ur,dr)^{\tt A}
+                                \ar@/^/[lu]^/1em/{\tt D}
+                                \ar@/^1.7pc/[lluu]^/2em/{\tt E}
+                                \ar[ll]^{\tt \backslash n}
+}
+\]
+Dabei verbinden die Pfeile jeweils die Akzeptierzust"ande der Teilautomaten
+mit den Startzus"anden.
+\end{teilaufgaben}
+\end{loesung}
+
+}{ }
+

@@ -1,0 +1,31 @@
+Beschreiben Sie eine Turing-Maschine, die Stack-Automaten simuliert.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Wir verwenden eine nicht deterministische Turing-Maschine mit zwei B"andern.
+Das erste Band
+enth"alt den Input, das zweite Band dient als Stack. Eine Turing-Maschine
+ver"andert in jedem Schritt die Kopf-Position, ein Stack-Automat kann
+jedoch in einem "Ubergang den Inhalt des Stack unver"andert lassen,
+oder keinen Input lesen. Durch Kombination von zwei "Uberg"angen
+kann dieses Verhalten jedoch auch auf einer Turing-Maschine simuliert
+werden.
+
+Um den Stackautomaten zu simulieren, m"ussen wir die Operationen des
+Stackautomaten abbilden:
+\begin{itemize}
+\item Lesen eines Input-Zeichen: Kopf auf Band 1 um ein Feld nach
+rechts bewegen. Damit das Ende des Input erkannt werden kann, muss ein
+zus"atzliches Bandalphabetzeichen erfunden werden, welches das Ende
+des Input signalisiert.
+\item Inhalt auf dem Stack ersetzen: Inhalt des Feldes unter dem Kopf
+auf Band 2 ersetzen.
+\item Push: Kopf auf Band 2 ein Feld nach rechts bewegen und Feld "uberschreiben.
+\item Pop: Kopf auf Band 2 ein Feld nach links bewegen.
+\end{itemize}
+Wenn der Kopf auf Band 1 auf das Zeichen f"ur das Ende des Input zeigt,
+und der Stackautomatenzustand akzeptiert, h"alt akzeptiert die Maschine.
+Andernfalls verwirft sie.
+\end{loesung}
+}{}
+

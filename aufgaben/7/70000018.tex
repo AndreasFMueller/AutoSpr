@@ -1,0 +1,32 @@
+n einem
+$n$-Sudoku m"ussen die Zahlen $1$ bis $n^2$ auf die Felder eines
+Spielfeld verteilt werden, welches sich aus $n\times n$ quadratisch
+angeordneten Quadraten von je $n\times n$ Feldern besteht.
+Ein keiner Zeile und Spalte und in keinem $n\times n$ Teilfeld
+darf eine Zahl mehr als einmal vorkommen. Die bekannten Sudokus
+sind 3-Sudokus.
+
+Zeigen sie: wenn $\text{P}=\text{NP}$, dann gibt es einen Algorithmus,
+der auch grosse Sudokus in polynomialer Zeit l"osen kann.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Wir m"ussen zun"achst zeigen, dass Sudoko ein NP-Problem ist.
+Das Sudoku-Feld hat $n^4$ Felder. F"ur jedes Feld m"ussen die
+folgenden Tests durchgef"uhrt werden. Zun"achst muss getestet
+werden, ob die Zahl in dem Feld zwisch $1$ und $n^2$ liegt.
+Dann muss die Zahl mit den $n^2$ Feldern der Zeile, der Spalte
+und des gleichen Teilfeldes verglichen werden. Insgesamt sind
+also $1+3n^2$ Vergleichsoperationen notwendig. Jeder solche Vergleich
+braucht $O(\log n^)2$ Ziffernvergleiche, da eine Zahl $<n^2$ $O(\log n^2)$
+Stellen hat.
+Insgesamt braucht es also $O(n^2(1+3n^2)\log n^2)< O(n^4\log n)<O(n^5)$
+Operationen. Damit ist gezeigt, dass das Sudoku-Problem einen polynomialen
+Verifizierer hat, also in NP ist.
+
+Wenn $\text{P}=\text{NP}$ ist, dann muss es auch einen polynomialen
+Algorithmus geben, der Sudokus l"ost.
+\end{loesung}
+
+}{}
+

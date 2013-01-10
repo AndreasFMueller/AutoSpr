@@ -1,0 +1,68 @@
+Das Wort {\tt 111111} ist in den ersten drei Sprachen von
+Aufgabe~\ref{40000001} enthalten.
+Finden Sie f"ur jede der Grammatiken a)-c) aus Aufgabe~\ref{40000001}
+den Ableitungsbaum
+(Parse-Tree) daf"ur und finden sie heraus, ob der
+Ableitungsbaum eindeutig ist. Falls nicht, k"onnen Sie die Grammatik
+modifizieren, so dass der Ableitungsbaum eindeutig wird?
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+\[
+\xymatrix{
+W\ar[d]\ar@/^30pt/[ddddddrrrrrr]
+\\
+W\ar[d]\ar@/^25pt/[dddddrrrrr]
+\\
+W\ar[d]\ar@/^20pt/[ddddrrrr]
+\\
+W\ar[d]\ar@/^15pt/[dddrrr]
+\\
+W\ar[d]\ar@/^10pt/[ddrr]
+\\
+W\ar[d]\ar@/^/[dr]
+\\
+\varepsilon &{\tt 1}&{\tt 1}&{\tt 1}&{\tt 1}&{\tt 1}&{\tt 1}
+}
+\]
+Ableitungsbaum ist eindeutig.
+\item
+\[
+\xymatrix{
+&E\ar@/_12pt/[dddddl]\ar[d]\ar@/^25pt/[dddddrrrrr]
+\\
+&W\ar[d]\ar@/^20pt/[ddddrrrr]
+\\
+&W\ar[d]\ar@/^15pt/[dddrrr]
+\\
+&W\ar[d]\ar@/^10pt/[ddrr]
+\\
+&W\ar[d]\ar@/^/[dr]
+\\
+{\tt 1}&\varepsilon&{\tt 1}&{\tt 1}&{\tt 1}&{\tt 1}&{\tt 1}
+}
+\]
+Der Ableitungsbaum ist eindeutig.
+\item
+\[
+\xymatrix{
+G\ar[d]\ar[drrrrr]
+\\
+G\ar[d]\ar[drrr]&&&&&P\ar[ddd]\ar[dddr]
+\\
+G\ar[d]\ar[dr]&&&P\ar[dd]\ar[ddr]
+\\
+G\ar[d]&P\ar[d]\ar[dr]
+\\
+\varepsilon&Z\ar[d]&Z\ar[d]&Z\ar[d]&Z\ar[d]&Z\ar[d]&Z\ar[d]
+\\
+&{\tt 1}&{\tt 1}&{\tt 1}&{\tt 1}&{\tt 1}&{\tt 1}
+}
+\]
+Der Ableitungsbaum ist eindeutig.
+\end{teilaufgaben}
+\end{loesung}
+}{}
+

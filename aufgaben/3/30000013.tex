@@ -1,0 +1,97 @@
+Ein CSV-File (Comma Separated Values) besteht aus Zeilen, die aus
+mit Komma getrennten Feldern bestehen. Jedes Feld ist begrenzt mit
+Anf"uhrungszeichen.
+Die Felder selbst k"onnen auch Kommas und Anf"uhrungszeichen enthalten,
+aber um die Anf"uhrungszeichen in einem Feld vom feldbegrenzenden
+Anf"uhrungszeichen zu unterscheiden, m"ussen zwei Anf"uhrungszeichen
+eingegeben werden. Enth"alt ein Feld weder Komma noch Anf"uhrungszeichen,
+k"onnen die feldbegrenzenden Anf"uhrungszeichen weggelassen werden.
+Hier ein Beispiel eines syntaktisch korrekten CSV-Files:
+\verbatimainput{beispiel.csv}
+
+Die syntaktisch korrekten Zeilen von CSV-Files bilden eine Sprache.
+Ist diese Sprache regul"ar?
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Ja, sie ist regul"ar, denn man kann einen endlichen Automaten daf"ur
+angeben.
+Das folgende Zustandsdiagramm beschreibt einen VNEA, der korrekte
+CSV-Zeilen akzeptiert.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &*++[o][F=]{z_0}\ar@/_/[d]_{\text{\tt[\char94,\char34]}} \ar[r]^{\text{\tt \char34}}
+            \ar@(ul,ur)^{\text{\tt,}}
+                &{z_1}\ar@(ul,ur)^{\text{\tt [\char94{}\char34]}}
+                    \ar@/_/[d]_{\text{\tt\char34}}
+\\
+*+\txt{}
+        &*++[o][F=]{z_2}\ar@/_/[u]_{\text{\tt,}}
+            \ar@(dl,dr)_{\text{\tt [\char94,\char34]}}
+                &*++[o][F=]{z_3}\ar@/_/[u]_{\text{\tt\char34}}
+                    \ar[ul]^{\text{\tt,}}
+}
+\]
+Wenn sich der Automat im Zustand $z_0$ befindet, erwartet er als
+n"achstes ein Feld. Dieses kann leer sein, was durch in Komma ({\tt ,})
+angezeigt wird. Es kann mit einem Feldbegrenzer {\tt\char34} beginnen,
+was den Automaten in den Zustand $z_1$ bringt. In diesem Zustand
+sind alle Zeichen akzeptabel, aber ein Anf"uhrungszeichen kann zwei
+verschiedene Bedeutungen haben. Es kann gefolgt sein von noch einem
+Anf"uhrungszeichen, in diesem Fall ist es ein eingebetetes Anf"uhrungszeichen.
+Es kann aber auch gefolgt sein von einem Komma, in diesem Fall war
+es ein Feldbegrenzer. Zu dieser Unterscheidung dient der Zustand $z_3$.
+
+Ein Feld kann im Zustand $z_0$ auch mit einem beliebigen Zeichen
+beginnen, das verschieden von Komma und Anf"uhrungszeichen ist.
+Dazu dient der Zustand $z_2$. In diesem Zustand sind Anf"uhrungszeichen
+nicht erlaubt, und ein Komma beendet das Feld, f"uhrt den Automaten
+also wieder in den Zustand $z_0$.
+
+Die Zust"ande $z_2$ und $z_3$ sind Akzeptierzust"ande, weil eine Zeile
+nur dann noch nicht zu ende sein darf, wenn ein ge"offnetes Anf"uhrungszeichen
+noch nicht geschlossen worden ist. Dies ist genau im Zustand $z_1$ der
+Fall, alle Zust"ande ausser $z_1$ k"onnen daher akzeptieren.
+
+Nat"urlich ist es auch m"oglich, die Regularit"at dadurch nachzuweisen,
+dass man einen regul"aren Ausdruck f"ur die Zeilen angibt. Wir bauen
+den regul"aren Ausdruck Schrittweise auf. Wenn $r_f$ ein regul"arer Ausdruck
+ist, auf den einzelne Felder einer CSV-Zeile passen, dann ist
+\[
+r_z=r_f\text{\tt (,}r_f\text{\tt )*}
+\]
+ein regul"arer Ausdruck, auf den ganze CSV-Zeilen passen. Ein Feld kann
+Feldbegrenzer haben, oder eben nicht, es ist also $r_f=r_b|r_u$, wobei
+auf $r_b$ begrenzte Felder passen, und auf $r_u$ nur unbegrenzte.
+Ungebegrenzte Felder d"urfen keine Kommata oder Anf"uhrungszeichen
+enthalten, also $r_u=\text{\tt [\char94,\char34]*}$. Begrenzte Felder
+d"urfen Kommata enthalten. Wenn sie Anf"uhrungszeichen enthalten,
+dann jeweils in Zweiergruppen:
+\[
+r_b=\text{\tt
+\char34([\char94\char34]|(\char34\char34))*\char34
+}
+\]
+Damit kann man jetzt den regul"aren Ausdruck zusammensetzen:
+\begin{align*}
+r_u&=\text{\tt
+[\char94,\char34]*
+}\\
+r_b&=\text{\tt
+\char34([\char94\char34]|(\char34\char34))*\char34
+}\\
+r_f&=\text{\tt
+[\char94,\char34]*|\char34([\char94\char34]|(\char34\char34))*\char34
+}\\
+r_z&=\text{\tt
+[\char94,\char34]*|\char34([\char94\char34]|(\char34\char34))*\char34
+(,%
+[\char94,\char34]*|\char34([\char94\char34]|(\char34\char34))*\char34
+)*
+}
+\end{align*}
+\end{loesung}
+}{}
+

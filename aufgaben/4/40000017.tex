@@ -1,0 +1,72 @@
+In der Vorlesung wurde die Sprache LOOP besprochen. Zeigen Sie, dass
+die Sprache kontextfrei ist, indem Sie eine
+kontextfreie Grammatik f"ur diese Sprache formulieren.
+Hat Ihre Grammatik Chomsky-Normalform?
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{align*}
+\text{\textsl{loop-programm}}&\to\text{\textsl{anweisungsfolge}}\\
+&\to\varepsilon\\
+\text{\textsl{anweisungsfolge}}
+&\to\text{\textsl{anweisungsfolge}}\;\text{'{\tt ;}'}\;
+\text{\textsl{anweisung}}
+\\
+\text{\textsl{anweisung}}
+&\to\text{\textsl{zuweisung}}
+\\
+&\to\text{\textsl{loop-anweisung}}
+\\
+\text{\textsl{zuweisung}}
+&\to
+\text{\textsl{variable}}\; \text{'{\tt :}'}\, \text{'{\tt =}'}\;
+\textsl{variable}\;\text{\textsl{operator}}\;\text{\textsl{konstante}}
+\\
+\text{\textsl{operator}}
+&\to\text{'{\tt +}'}\;|\;\text{'{\tt -}'}
+\\
+\text{\textsl{konstante}}&\to\text{\textsl{ziffer}}\\
+&\to\text{\textsl{konstante}}\;\text{\textsl{ziffer}}
+\\
+\text{\textsl{ziffer}}&\to 
+\text{'{\tt 0}'}\;|\;
+\text{'{\tt 1}'}\;|\;
+\text{'{\tt 2}'}\;|\;
+\text{'{\tt 3}'}\;|\;
+\text{'{\tt 4}'}\;|\;
+\text{'{\tt 5}'}\;|\;
+\text{'{\tt 6}'}\;|\;
+\text{'{\tt 7}'}\;|\;
+\text{'{\tt 8}'}\;|\;
+\text{'{\tt 9}'}\\
+\text{\textsl{variable}}&\to \text{'{\tt x}'}\;\text{\textsl{konstante}}\\
+\text{\textsl{loop-anweisung}}&\to
+\text{\textsl{loop}}\;
+\text{\textsl{variable}}\;
+\text{\textsl{do}}\;
+\text{\textsl{anweisungsfolge}}\;
+\text{\textsl{end}}\\
+\text{\textsl{loop}}&\to \text{'{\tt L}'}\; \text{'{\tt O}'}\; \text{'{\tt O}'}\; \text{'{\tt P}'}\\
+\text{\textsl{do}}&\to \text{'{\tt E}'}\; \text{'{\tt N}'}\; \text{'{\tt D}'}\\
+\text{\textsl{end}}&\to \text{'{\tt D}'}\; \text{'{\tt O}'} \\
+\end{align*}
+Man liest aus der Grammatik auch ab, dass die in anderen Sprachen als
+Trennzeichen n"otigen Leerzeichen "uberfl"ussig sind, obwohl sie nat"urlich
+helfen, ein Programm lesbar zu machen.
+
+Diese Grammatik hat nat"urlich nicht Chomsky-Normalform
+\begin{itemize}
+\item Es gibt mehrere Unit-Rules
+\item In mehreren Regeln kommen auf der rechten Seite mehr als
+zwei Elemente vor
+\item Es gibt Regeln, die mehr als ein Terminalsymbol auf der rechten
+Seite enthalten.
+\item Die Regel
+$\text{\textsl{variable}}\to \text{'{\tt x}'}\;\text{\textsl{konstante}}$
+enth"alt zwar zwei Elemente auf der rechten Seite, aber eines davon
+ist ein Terminalsymbol, in Chomsky-Normalform m"ussten beide Variable
+sein.
+\end{itemize}
+\end{loesung}
+}{}
+

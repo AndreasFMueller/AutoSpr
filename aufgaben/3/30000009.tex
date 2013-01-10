@@ -1,0 +1,93 @@
+Finden Sie einen regul"aren Ausdruck, der genau die durch
+drei teilbaren Bin"arzahlen akzeptiert.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Wir haben in der Vorlesung einen Automaten beschrieben, der genau die
+durch drei teilbaren Bin"arzahlen akzeptiert. Dieser Automat hatte die
+Dreier-Reste als Zust"ande:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &*++[o][F=]{0}\ar@/^/[r]^{\tt 1} \ar@(ur,ul)_{\tt 0}
+                &{1} \ar@/^/[r]^{\tt 0} \ar@/^/[l]^{\tt 1}
+                        &{2}\ar@(dr,ur)_{\tt 1}  \ar@/^/[l]^{\tt 0}
+}
+\]
+Um daraus einen regul"aren Ausdruck zu gewinnen, m"ussen wir
+den Automaten zun"achst mit zus"atzlichen Zust"anden versehen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{s}\ar[r]^{\varepsilon}
+                &{0}\ar@/^/[r]^{\tt 1} \ar@(ur,ul)_{\tt 0} \ar[d]^{\varepsilon}
+                        &{1} \ar@/^/[r]^{\tt 0} \ar@/^/[l]^{\tt 1}
+                                &{2}\ar@(dr,ur)_{\tt 1}  \ar@/^/[l]^{\tt 0}
+\\
+*+\txt{}
+        &*+\txt{}
+                &*++[o][F=]{a}
+                        &*+\txt{}
+                                &*+\txt{}
+}
+\]
+Jetzt kann der Automat schrittweise reduziert werden, bis nur noch
+zwei Zust"ande dastehen.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{s}\ar[r]^{\varepsilon}
+                &{0}\ar@/^/[r]^{\tt 1} \ar@(ur,ul)_{\tt 0} \ar[d]^{\varepsilon}
+                        &{1}  \ar@/^/[l]^{\tt 1}
+                                \ar@(dr,ur)_{{\tt 01}^*{\tt 0}}
+\\
+*+\txt{}
+        &*+\txt{}
+                &*++[o][F=]{a}
+                        &*+\txt{}
+}
+\]
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{s}\ar[r]^{\varepsilon}
+                &{0}\ar@(ur,ul)_{\tt 0} \ar[d]^{\varepsilon}
+                        \ar@(dr,ur)_{{\tt 1}({\tt 01}^*{\tt 0})^*{\tt 1}}
+\\
+*+\txt{}
+        &*+\txt{}
+                &*++[o][F=]{a}
+}
+\]
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{s}\ar[r]^{\varepsilon}
+                &{0}\ar[d]^{\varepsilon}
+                        \ar@(dr,ur)_{{\tt 0}|{\tt 1}({\tt 01}^*{\tt 0})^*{\tt 1}}
+\\
+*+\txt{}
+        &*+\txt{}
+                &*++[o][F=]{a}
+}
+\]
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{s}\ar[rr]^{({\tt 0}|{\tt 1}({\tt 01}^*{\tt 0})^*{\tt 1})^*}
+                &*+\txt{}
+                        &*++[o][F=]{a}
+}
+\]
+Woraus man den regul"aren Ausdruck
+$$({\tt 0}|{\tt 1}({\tt 01}^*{\tt 0})^*{\tt 1})^*$$
+abliest.
+\end{loesung}
+}{}
+

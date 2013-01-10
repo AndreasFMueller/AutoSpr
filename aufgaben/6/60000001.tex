@@ -1,0 +1,85 @@
+Die Sprache
+\[
+L=\{a^nb^nc^n\,|\,n\in \mathbb N\}
+\]
+ist nicht kontextfrei. Konstruieren sie eine TM, die $L$
+entscheidet.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Die Maschine verwendet als Bandalphabet $\{a,b,c,\blank,x\}$,
+und arbeitet nach folgendem Algorithmus:
+\begin{enumerate}
+\item Falls das n"achste Zeichen ein $\blank$ ist:
+$q_{\text{accept}}$
+\item Falls das n"achste Zeichen ein $b$, $c$ oder $x$ ist:
+$q_{\text{reject}}$.
+\item Falls das n"achste zu lesende Zeichen ein $a$ ist, ersetze
+es durch $\blank$ und fahre nach rechts.
+\item Nach rechts fahrend, "uberspringe alle $a$ und $x$.
+\item Falls das n"achste Zeichen kein $b$ ist:
+$q_{\text{reject}}$.
+\item Falls das n"achste Zeichen ein $b$ ist, ersetze es durch $x$,
+bewege den Kopf nach rechts.
+\item Nach rechts fahrend, "uberspringe alle $b$
+\item Falls das n"achste Zeichen kein $c$ ist:
+$q_{\text{reject}}$.
+\item Nach rechts fahrend, "uberspringe alle $c$.
+\item Falls das n"achste Zeichen kein $\blank$ ist: $q_{\text{reject}}$
+\item Falls das n"achste Zeichen ein $\blank$ ist, fahre nach
+links.
+\item Falls das Zeichen kein $c$ ist: $q_{\text{reject}}$
+\item Ersetze $c$ durch $\blank$, fahre nach links.
+\item Nach links fahrend, "uberspringe alle Zeichen bis zum n"achsten
+$\blank$.
+\item Bewege den Kopf nach rechts, und fahre weiter bei 1.
+\end{enumerate}
+Offenbar ist diese TM auch ein Entscheider.
+
+Das Zustandsdiagramm dieser TM ist
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+        &*++[o][F=]{q_{\text{accept}}}
+\\
+*+\txt{}
+        &{q_6}  \ar@(ur,dr)^{x\to x,R}
+                \ar[u]^{\blank\to\blank,R}
+                \ar@/_80pt/[ddd]
+\\
+*+\txt{}\ar[r]
+        &q_0    \ar[r]^{a\to\blank,R}
+                \ar[u]^{x\to x,R}
+                \ar[dd]
+                &q_1    \ar@(ur,ul)_{a\to a,R}
+                        \ar@(dr,dl)^{x\to x,R}
+                        \ar[r]^{b\to x,R}
+                        \ar[ddl]
+                        &q_2    \ar@(ur,ul)_{b\to b,R}
+                                \ar@(dr,dl)^{c\to c,R}
+                                \ar[r]^{c\to c,R}
+                                \ar[ddll]
+                                &q_3    \ar[d]^{\blank\to\blank,L}
+                                        \ar@(u,r)^{c\to c,R}
+                                        \ar[ddlll]
+\\
+*+\txt{}
+        &*+\txt{}
+                &*+\txt{}
+                        &*+\txt{}
+                                &q_4    \ar[d]^{c\to\blank,L}
+                                        \ar[dlll]
+\\
+*+\txt{}
+        &*++[o][F=]{q_{\text{reject}}}
+                &*+\txt{}
+                        &*+\txt{}
+                                &q_5    \ar[llluu]^{\blank\to\blank,R}
+                                        \ar@(ur,dr)^{.\to.,L}
+}\]
+Der "Ubergang bei $q_5$ ist zu lesen als: f"ur alle Zeichen ausser dem
+$\blank$, bewege den Kopf nach links.
+\end{loesung}
+}{}
+

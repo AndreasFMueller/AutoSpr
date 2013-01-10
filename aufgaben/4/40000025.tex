@@ -1,0 +1,88 @@
+F"ur arithmetische Ausdr"ucke mit den Grundoperationen
+{\tt +} und {\tt -} stehen die folgenden zwei Grammatiken
+zur Auswahl. Einerseits eine leicht abgewandelte Variante
+der in der Vorlesung besprochenen Grammatik:
+\begin{align*}
+\text{Ausdruck}&\rightarrow \text{Zahl}\;\text{'{\tt +}'}\;\text{Ausdruck} \\
+               &\rightarrow \text{Zahl}\;\text{'{\tt -}'}\;\text{Ausdruck} \\
+               &\rightarrow \text{Zahl}
+\end{align*}
+Andererseits die folgende Grammatik:
+\begin{align*}
+\text{Ausdruck}&\rightarrow \text{Term}\;\text{Termsequenz}\\
+\text{Termsequenz}&\rightarrow \text{'{\tt +}'}\; \text{Term}\; \text{Termsequenz}\\
+                  &\rightarrow \text{'{\tt -}'}\; \text{Term}\; \text{Termsequenz}\\
+                  &\rightarrow \varepsilon\\
+ \text{Term}&\rightarrow \text{Zahl}
+\end{align*}
+Die beiden Grammatiken verwenden nat"urlich die gleichen Regeln
+f"ur das nichtterminale Symbol ``Zahl''.
+\begin{teilaufgaben}
+\item Erstellen Sie f"ur jede Grammatik den parse tree f"ur den Ausdruck
+$$
+47-1291+1848
+$$
+\item Welche Grammatik ist vorzuziehen?
+\end{teilaufgaben}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item Die erste Grammatik erzeugt
+\[
+\xymatrix @-1mm {
+           &\text{Ausdruck}\ar[dl]\ar[d]\ar[drr]&               &    \\
+\text{Zahl}\ar[dd]&'{\tt +}'\ar[dd]      &&\text{Ausdruck}\ar[dl]\ar[dr]\ar[d]&    \\
+           &&\text{Zahl}\ar[d]    &'{\tt -}'\ar[d]      &\text{Zahl}\ar[d]\\
+47&-&1291&+&1848
+}
+\]
+Bei Verwendung der zweiten Grammatik bekommt man jedoch
+\[
+\xymatrix @-1mm {
+        &\text{Ausdruck}\ar[dl]\ar[dr]
+                &       &       &       &                       \\
+\text{Term}\ar[dddd]
+        &       &\text{Termsequenz}\ar[dl]\ar[d]\ar[drr]
+                        &       &       &                       \\
+        &\text{'{\tt -}'}\ar[ddd]
+                &\text{Term}\ar[ddd]
+                        &       &\text{Termsequenz}\ar[dl]\ar[d]\ar[dr]
+                                        &                       \\
+        &       &       &\text{'{\tt +}'}\ar[dd]
+                                &\text{Term}\ar[dd]
+                                        &\text{Termsequenz}\ar[d]\\
+        &       &       &       &       &\varepsilon            \\
+47      &-      &1291   &+      &1848   &                
+}
+\]
+
+\item Wird der Parse Tree zur Berechnung des Ausdrucks verwendet,
+ergibt sich f"ur die erste Grammatik ein falsches Resultat. In
+diesem Fall wird n"amlich zuerst die Summe $1291+1848=
+3139
+$
+gebildet, die anschliessend von $47$ subtrahiert, was
+$
+47-(1291+1848)
+=
+-3092
+$
+ergibt.
+
+Das richtige Resultat erh"alt man jedoch mit dem Parse
+Tree nach der zweiten Grammatik.  Dieser verlangt, zuerst
+die Differenz $47-1291 =
+-1244
+$
+zu bilden, und dann $1848$ zu addieren, was
+$
+604
+$
+ergibt. Daher ist die zweite Grammatik vorzuziehen.
+\end{teilaufgaben}
+\end{loesung}
+
+}{}
+
+

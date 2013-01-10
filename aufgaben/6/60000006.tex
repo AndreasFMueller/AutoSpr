@@ -1,0 +1,44 @@
+Hilberts zehntes Problem verlangt, man solle einen Algorithmus
+konstruieren, welcher entscheidet, ob ein Polynom $p(x_1,\dots,x_n)$
+mit ganzzahligen
+Koeffizienten eine ganzzahlige Nullstelle habe. Warum ist der folgende
+Algorithmus keine L"osung des Problems?
+\begin{enumerate}
+\item Erzeuge alle in Frage kommenden Tupel $x_1,\dots,x_n$
+\item Berechne $p(x_1,\dots,x_n)=0$ f"ur diese Werte der Argumente
+\item Falls einer der Polynomwerte $0$ ist, akzeptiere, andernfalls
+verwerfe.
+\end{enumerate}
+Wie k"onnte man den Algorithmus verbessern, damit er erkennen kann,
+ob ein Polynom eine ganzzahlige L"osung hat?
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Die Beschreibung verlangt, zuerst alle $n$-Tupel zu erzeugen,
+und m"oglicherweise irgendwo auf ein Band zu schreiben. Dieser
+Schritt wird nie terminieren, so dass der Algorithmus keine
+W"orter erkennen kann.
+
+Korrigiert werden k"onnte dieses Defizit dadurch, dass man eine
+Aufz"ahlung der $n$-Tupel $(x_1,\dots,x_n)$ konstruiert, und ein
+$n$-Tupel nach dem anderen in das Polynom $p$
+einsetzt. Falls das Polynom den Wert $0$ annimmt, akzeptiert man
+das Polynom. Insbesondere kann man niemals verwerfen, falls
+ein Polynom keine Nullstelle hat, terminiert die Maschine nicht.
+Eine Aufz"ahlung der $n$-Tupel kann zum Beispiel dadurch konstruiert
+werden, dass zun"achst alle Tupel mit
+$\max_{1\le i\le n}|x_i|=0$
+aufgez"ahlt werden (es gibt genau ein solches $n$-Tupel),
+dann alle $n$-Tupel mit
+$\max_{1\le i\le n}|x_i|=1$,
+gefolgt von den $n$-Tupeln mit
+$\max_{1\le i\le n}|x_i|=2$, und so weiter.
+
+Yuri Matjassevitch hat aufbauend auf Arbeiten von Julia Robinson bewiesen,
+dass es
+keinen Entscheider f"ur das zehnte Hilbertsche Problem gibt,
+ein Erkenner wie eben konstruiert ist also das beste, was
+man bekommen kann.
+\end{loesung}
+}{}
+

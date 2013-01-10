@@ -1,0 +1,96 @@
+Student Heiri Muster m"ochte einen Parser f"ur Additionsprobleme
+von $n$-Tupeln schreiben, wobei $n$ varieren kann. Solche Probleme
+sind Zeichenketten der Form
+$$
+(3,47,1291,4711)+(4,1848,2010,-1)
+$$
+wobei die Anzahl der Zahlen in beiden Klammern identisch sein muss.
+\begin{teilaufgaben}
+\item Geben Sie eine kontextfreie Grammatik f"ur Ausdr"ucke
+dieser Form an.
+\item Beschreiben Sie einen Stack-Automaten, der solche Ausdr"ucke
+akzeptiert.
+\end{teilaufgaben}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item Die folgende Grammatik beschreibt offenbar die Tuppel-Additionsprobleme:
+\begin{align*}
+S&\rightarrow
+\text{'{\tt (}'}\;
+\text{Ausdruck}\;
+\text{'{\tt )}'}
+\\
+\text{Ausdruck}&\rightarrow
+\text{Zahl}\;
+\text{'{\tt ,}'}\;
+\text{Ausdruck}\;
+\text{'{\tt ,}'}\;
+\text{Zahl}
+\\
+&\rightarrow
+\text{Zahl}\;
+\text{'{\tt )}'}\;
+\text{'{\tt +}'}\;
+\text{'{\tt (}'}\;
+\text{Zahl}
+\\
+\text{Zahl}&\rightarrow \dots
+\end{align*}
+Damit ist gezeigt, dass die Sprache kontextfrei ist. Nat"urlich
+ist der Parse-Tree zu dieser Grammatik kaum n"utzlich, die
+Additionsprobleme zu berechnen, weil er die erste
+Komponente des ersten Terms mit der letzten des zweiten
+Terms in Beziehung setzt, w"ahrend die Addition die beiden
+ersten Elemente addieren m"usste.
+\item
+W"are die Bedingung nicht gegeben, dass die Klammern
+gleich viele Zahlen enthalten m"ussen, w"are die
+Sprache sogar regul"ar, es w"are also gar kein Stack-Automat
+erforderlich, um die W"orter der Sprache zu erkennen.
+
+Daraus kann man schliessen, dass man den Stack genau daf"ur
+verwenden muss, die Zahlen auf in jedem Ausdruck zu z"ahlen.
+Man erreicht dies, indem man beim Lesen der ersten Klammer
+mit jedem Komma und der schliessenden Klammer, ein Zeichen auf den Stack legt,
+welches man beim Lesen der zweiten Klammer mit jedem Komma und
+der schliessenden Klammer entfernt. Ist der Stack nach diesen
+Operationen leer, wird das Wort akzeptiert.
+
+Zur Vereinfachung des Zustandsdiagramms verwenden wir f"ur
+Zahlen den folgenden Automaten:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+        &z_0\ar[r]^{\tt[1-9]} \ar[d]_{\tt -}
+                &*++[o][F=]{z_1}\ar@(ur,dr)^{\tt [0-9]}
+\\
+*+\txt{}
+        &z_2\ar[ur]_{\tt[1-9]}
+                &*+\txt{}
+}
+\]
+
+Wir geben den Stack-Automaten in Form eines Zustandsdiagramms
+an:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*++\txt{} \ar[r]
+        &{z_{10}} \ar[r]^{\tt (}
+                &Z\ar[r]^{\text{{\tt )},$\varepsilon\to x$}} \ar@(ur,ul)_{\text{{\tt ,},$\varepsilon\to x$}}
+                        &z_{11}\ar[d]^{\tt +}
+\\
+*++\txt{}
+        &*++[o][F=]{z_{13}}
+                &Z\ar[l]^{\text{{\tt )},$x\to\varepsilon$}}
+                        \ar@(dr,dl)^{\text{{\tt ,},$x\to\varepsilon$}}
+                        &{z_{12}}\ar[l]_{\tt (}
+}
+\]
+\end{teilaufgaben}
+\end{loesung}
+}{}
+

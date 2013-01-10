@@ -1,0 +1,46 @@
+Beschreiben Sie eine Turing-Maschine, welche eine bin"ar auf dem
+Band angegebene Zahl um $1$ erh"oht.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Nachdem das Wort auf das Band geschrieben und der Kopf auf den
+Anfang des Wortes positioniert worden ist, m"ussen folgende
+Schritte durchgef"uhrt werden:
+\begin{enumerate}
+\item Solange unter dem Schreib-/Lesekopf ein Zeichen aus $\Sigma$
+zu lesen ist, bewege den Kopf nach rechts.
+\item Bewege den Kopf um ein Zeichen nach links.
+\item Lese das Zeichen vom Band. Falls das Zeichen {\tt 0} ist,
+schreibe eine {\tt 1} auf das Band, und merke Dir den "Ubertrag {\tt 0}.
+Falls das Zeichen {\tt 1} ist, schreibe eine {\tt 0} auf das Band und
+merke Dir den "Ubertrag {\tt 1}.
+Bewege den Kopf nach links.
+\item Falls das Band einen Blank enth"alt, und der "Ubertrag {\tt 1}
+ist, schreibe eine {\tt 1} auf das Band und halte in $q_{\text{accept}}$.
+Falls der "Ubertrag aber {\tt 0} ist, halte im Zustand $q_{\text{accept}}$.
+\item Falls das Band eine {\tt 0} enth"alt und der "Ubertrag {\tt 0} ist,
+schreibe eine {\tt 0} auf das Band, bewege den Kopf nach Links und fahre
+weiter bei 4.
+\item Falls das Band eine {\tt 0} enth"alt und der "Ubertrag {\tt 1}
+ist oder umgekehrt, schreibe einen {\tt 1} auf das Band, merke Dir
+"Ubertrag {\tt 0} und bewege den Kopf nach links. Weiter bei 4.
+\item Falls das Band eine {\tt 1} enth"alt und der "Ubertrag ebenfalls
+{\tt 1} ist, schreibe eine {\tt 1} auf das Band, merke Dir "Ubertrag {\tt 1},
+bewege den Kopf nach links und fahre weiter bei 4.
+\end{enumerate}
+Man kann diese Turing-Maschine auch als Zustandsautomat darstellen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+        &q_0\ar@(ur,ul)_{{\tt 0}\to{\tt 0},R\atop {\tt 1}\to{\tt 1},R}
+            \ar[r]^{\blank\to\blank,L}
+                &q_1\ar[r]^{{{\tt 0}\to{\tt 1},R}
+                    \atop {\blank\to{\tt 1},R}}
+                    \ar@(ur,ul)_{{\tt 1}\to{\tt 0},L}
+                        &*++[o][F=]{q_{\text{accept}}}
+}
+\]
+\end{loesung}
+}{}
+

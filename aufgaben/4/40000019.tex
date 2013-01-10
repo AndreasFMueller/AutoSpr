@@ -1,0 +1,145 @@
+Konstruieren Sie einen Pushdown-Automaten, der die durch folgende
+Grammatik definierte Sprache akzeptiert:
+\begin{align*}
+S&\rightarrow \varepsilon\\
+ &\rightarrow SS\\
+ &\rightarrow KSV\\
+ &\rightarrow VSK\\
+K&\rightarrow 
+\text{\tt b}\,|\,
+\text{\tt c}\,|\,
+\text{\tt d}\,|\,
+\text{\tt f}\,|\,
+\text{\tt g}\,|\,
+\text{\tt h}\,|\,
+\text{\tt j}\,|\,
+\text{\tt k}\,|\,
+\text{\tt l}\,|\,
+\text{\tt m}\,|\,
+\text{\tt n}\,|\,
+\text{\tt p}\,|\,
+\text{\tt q}\,|\,
+\text{\tt r}\,|\,
+\text{\tt s}\,|\,
+\text{\tt t}\,|\,
+\text{\tt v}\,|\,
+\text{\tt w}\,|\,
+\text{\tt x}\,|\,
+\text{\tt y}\,|\,
+\text{\tt z}
+\\
+V&\rightarrow
+\text{\tt a}\,|\,
+\text{\tt e}\,|\,
+\text{\tt i}\,|\,
+\text{\tt o}\,|\,
+\text{\tt u}
+\end{align*}
+Zeigen Sie, dass das Wort {\tt freude} zwei verschiedene
+parse trees hat.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Die Sprache enth"alt die W"orter
+\[
+\varepsilon,
+\text{\it KV},
+\text{\it VK},
+\text{\it VVKK},
+\text{\it VKVK},
+\text{\it KVKV},
+\text{\it KKVV},\dots
+\]
+also alle W"orter, die gleich viele Konsonanten wie Vokale enthalten.
+Wir brauchen also nur einen Pushdown-Automaten, der feststellen kann,
+ob die gleiche Anzahl Vokale wie Konsonanten gelesen worden sind. Dazu
+verwenden wir als Stackalphabet $\Gamma = \{{\tt \$}, {\tt +}\}$,
+wobei die {\tt +} einen "Uberschuss von Konsontanten oder Vokalen
+anzeigen. Welches Zeichen gerade im "Uberfluss vorhanden ist,
+zeigt der aktuelle Zustand, der entweder $V$ ("Uberschuss an
+Vokalen) oder $K$ ("Uberschuss an Konsonanten) sein kann.
+Der Automat ist im Zustand $Z$, wenn gleich viele Vokale wie
+Konsonanten gelesen wurden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+10mm {
+*+\txt{}\ar[r]
+        &{s}\ar[d]^{\varepsilon,\varepsilon\to{\tt \$}}
+\\
+{V} \ar@(ul,dl)_{\scriptsize    \begin{gathered}
+                                        V,\varepsilon\to {\tt +}\\
+                                        K,{\tt +}\to\varepsilon
+                                \end{gathered}}
+    \ar@/_/[r]_{\varepsilon,{\tt \$}\to{\tt \$}}
+        &{Z} \ar@/^/[r]^{K,\varepsilon\to {\tt +}}
+             \ar@/_/[l]_{V,\varepsilon\to {\tt +}}
+             \ar[d]^{\varepsilon,{\tt\$}\to\varepsilon}
+                &{K} \ar@(ur,dr)^{\scriptsize   \begin{gathered}
+                                                        K,\varepsilon\to {\tt +}\\
+                                                        V,{\tt +}\to\varepsilon
+                                                \end{gathered}}
+                     \ar@/^/[l]^{\varepsilon,{\tt \$}\to{\tt\$}}
+\\
+*+\txt{}
+        &*++[o][F=]{E}
+}
+\]
+Die m"oglichen Parse Trees sind:
+\[
+\xymatrix{
+        &
+                &S\ar[dl] \ar[drr]
+\\
+        &S\ar[dl] \ar[d] \ar[drr]
+                &
+                        &
+                                &S\ar[dd] \ar[ddr]
+\\
+K\ar[d]
+        &S\ar[d] \ar[dr]
+                &
+                        &V\ar[d]
+                                &
+\\
+{\tt f}
+        &{\tt r}
+                &{\tt e}
+                        &{\tt u}
+                                &{\tt d}
+                                        &{\tt e}
+}
+\]
+
+\[
+\xymatrix{
+        &
+                &S\ar[dll] \ar[d] \ar[drrr]
+\\
+K\ar[dd]
+        &
+                &S\ar[dl] \ar[dr]
+                        &
+                                &
+                                        &V\ar[dd]
+\\
+        &S\ar[d] \ar[dr]
+                &
+                        &S\ar[d] \ar[dr]
+                                &
+\\
+{\tt f}
+        &{\tt r}
+                &{\tt e}
+                        &{\tt u}
+                                &{\tt d}
+                                        &{\tt e}
+}
+\]
+Darin haben wir zur Abk"urzung die Produktionsregeln
+$S\to KV$ und $S\to VK$ verwendet, welche sich durch
+zusammensetzen von $S\to KSV$ bzw.~$S\to VSK$ mit $S\to\varepsilon$
+ergeben.
+
+\end{loesung}
+}{ }
+

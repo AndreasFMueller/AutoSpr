@@ -1,0 +1,27 @@
+Verwenden Sie das Pumping Lemma um zu zeigen, dass die folgenden
+Sprachen nicht regul"ar sind:
+\begin{teilaufgaben}
+\item $\Sigma=\{{\tt 0},{\tt 1},{\tt 2}\}$ und $L=\{ 0^n1^n2^n |n\ge 0\}$.
+\item $\Sigma=\{{\tt a},{\tt b}\}$ und $L=\{ww|w\in \Sigma^*\}$.
+\item $\Sigma=\{{\tt a}\}$, und $L=\{{\tt a}^{2^n}|n\ge 0\}$.
+\end{teilaufgaben}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+In allen Teilaufgaben ist der entscheidende Schritt, zur Pumping Length
+$N$ ein passendes Wort zu w"ahlen, welches nicht aufgepumpt werden kann.
+\begin{teilaufgaben}
+\item $0^N1^N2^N$ kann nicht aufgepumpt werden, Argument analog zur
+$0^n1^n$ (in der Vorlesung behandelt).
+\item ${\tt a}^N{\tt ba}^N{\tt b}\in L$ kann nicht aufgepumpt werden,
+weil dadurch die Zahl der {\tt a} vor dem ersten {\tt b}, zunimmt,
+nicht aber die Zahl der {\tt a} nach dem ersten {\tt b}.
+\item
+Sei $n$ die kleinste Zahl, f"ur die $2^n\ge N$. W"ahle $w=0^{2^n}$.
+Beim Aufpumpen wird das aufgepumpte Wort $ux^kv$ L"ange $2^n+k|x|$
+haben. Gem"ass Pumping Lemma m"ussten dies alles Zweierpotenzen sein,
+was offensichtlich nicht sein kann.
+\end{teilaufgaben}
+\end{loesung}
+}{}
+

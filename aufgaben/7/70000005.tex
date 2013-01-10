@@ -1,0 +1,36 @@
+Job-Planungs-Problem:
+Gegeben sei eine Menge von $n$ Jobs $J_1,\dots,J_n$, welche zu ihrer
+Ausf"uhrung einige der $m$ Resourcen $r_1,\dots,r_m$ f"ur sich reservieren
+m"ussen. Jeder Task hat die gleiche Laufzeit $1$, jeweils zu ganzzahligen
+Zeitpunkten k"onnen Jobs gestartet werden. Zeigen Sie, dass die
+Aufgabe, die Jobs ohne Resourcenkonflikte so zu planen, dass innerhalb
+gegebener Zeit $N$ alle Jobs abgearbeitet werden, ein NP-vollst"andiges Problem
+ist.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Wir zeigen, dass das Problem "aquivalent ist zum Einf"arbe-Problem f"ur
+einen Graphen. Wir m"ussen f"ur jeden Job ein Zeitinterval $I_k=[k,k+1]$
+ausw"ahlen, w"ahrend dem er laufen soll. Dabei d"urfen zwei Jobs nicht
+gleichzeitig laufen, wenn Sie auf die gleiche Resource angewiesen sind.
+Wir konstruieren daher einen Graphen $G$ mit den Jobs als Ecken. Falls
+zwei Jobs die gleiche Resource beanspruchen, f"ugen wir eine Kante
+zwischen diesen beiden Jobs hinzu. Gesucht ist jetzt eine Zuteilung
+von Intervallen $I_k$ mit $0\le k< N$ zu jeder Ecke, so dass keine
+zwei benachbarten Ecken dem gleichen Interval zugeteilt sind. Bezeichnen
+wir die Intervalle $I_k$ als ``Farben'', haben wir aus dem Job-Planungs-Problem
+ein F"arbeproblem hergestellt.
+
+Ist umgekehrt ein Graph und eine Menge von Farben vorgegeben, k"onnen
+wir daraus wie folgt ein Planungs-Problem konstruieren. Die Ecken
+des Graphen nennen wir Jobs, die Kanten nennen wir Resourcen. Die
+mit einer Ecke inzidenten Kanten stellen die Resourcen dar, die ein
+Job braucht, um laufen zu k"onnen. Der Graph kann mit $N$ Farben
+eingef"arbt werden, wenn das Planungsproblem in Zeit $N$ l"osbar ist.
+
+Die beiden Probleme sind somit "aquivalent. Da das F"arbeproblem
+bekanntermassen NP-vollst"andig ist, ist auch das Job-Planungs-Problem
+NP-vollst"andig.
+\end{loesung}
+}{}
+

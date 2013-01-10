@@ -1,0 +1,128 @@
+Betrachten Sie den folgenden, in Tabellenform gegebenen
+Automaten "uber dem Alphabet $\Sigma=\{0,1\}$:
+\begin{center}
+\begin{tabular}{|c|cc|}
+\hline
+&{\tt 0}&{\tt 1}\\
+\hline
+$z$&$e$&$z_1$\\
+$z_0/E$&$z_0$&$z_1$\\
+$z_1$&$z_2$&$z_0$\\
+$z_2$&$z_1$&$z_3$\\
+$z_3$&$z_1$&$z_2$\\
+$e$&$e$&$e$\\
+\hline
+\end{tabular}
+\end{center}
+Zeichnen Sie das Zustandsdiagramm des Automaten. Konstruieren Sie den
+zugeh"origen minimalen Automaten.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Das folgende Zustandsdiagramm beschreibt den DEA:
+\[
+\UseTips
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}
+        &*+\txt{}
+                &*+\txt{}
+                        &z_2 \ar@/_/[d]^{\tt 1} \ar@/^/[dl]_{\tt 0}
+\\
+*+\txt{}\ar[r]
+        &z \ar[r]^{1} \ar[d]_{\tt 0}
+                &z_1 \ar@/_/[d]_{\tt 1}  \ar@/^/[ur]^{\tt 0}
+                        &z_3 \ar[l]^{\tt 0} \ar@/_/[u]_{\tt 1}
+\\
+*+\txt{}
+        &e \ar@(dr,dl)^{{\tt 0},{\tt 1}}
+                &*++[o][F=]{z_0} \ar@(dr,dl)^{\tt 0} \ar@/_/[u]_{\tt 1}
+}
+\]
+F"ur die Bestimmung der "aquivalenten Zust"ande bauen wir die Tabellen
+der nicht "aquivalenten Zust"ande auf. Im ersten Schritt werden die
+Paare aus einem Endzustand und einem Nicht-Endzustand markiert:
+\begin{center}
+\begin{tabular}{|c|cccccc|}
+\hline
+&$z$&$z_0/E$&$z_1$&$z_2$&$z_3$&$e$\\
+\hline
+$z$&$\equiv$&$\times$&&&&\\
+$z_0/E$&$\times$&$\equiv$&$\times$&$\times$&$\times$&$\times$\\
+$z_1$&&$\times$&$\equiv$&&&\\
+$z_2$&&$\times$&&$\equiv$&&\\
+$z_3$&&$\times$&&&$\equiv$&\\
+$e$&&$\times$&&&&$\equiv$\\
+\hline
+\end{tabular}
+\end{center}
+In den folgenden Schritten pr"uft man jedes noch nicht markierte Paar
+von Zust"anden, ob sie sich durch Anwendung der "Ubergangsfunktion
+in ein Paar "uberf"uhren lassen, welches bereits markiert ist. Ist dies
+der Fall, wird das entsprechende Feld ebenfalls markiert. In den folgenden
+Tabellen sind die jeweils bereits bekannten Markierungen mit dem Zeichen
+$\otimes$ ausgef"uhrt.
+\begin{center}
+\begin{tabular}{|c|cccccc|}
+\hline
+&$z$&$z_0/E$&$z_1$&$z_2$&$z_3$&$e$\\
+\hline
+$z$&$\equiv$&$\otimes$&$\times$&&&\\
+$z_0/E$&$\otimes$&$\equiv$&$\otimes$&$\otimes$&$\otimes$&$\otimes$\\
+$z_1$&$\times$&$\otimes$&$\equiv$&$\times$&$\times$&$\times$\\
+$z_2$&&$\otimes$&$\times$&$\equiv$&&$\times$\\
+$z_3$&&$\otimes$&$\times$&&$\equiv$&$\times$\\
+$e$&&$\otimes$&$\times$&$\times$&$\times$&$\equiv$\\
+\hline
+\end{tabular}
+\end{center}
+In der zweiten Iteration k"onnen noch sechs Paare markiert werden:
+\begin{center}
+\begin{tabular}{|c|cccccc|}
+\hline
+&$z$&$z_0/E$&$z_1$&$z_2$&$z_3$&$e$\\
+\hline
+$z$&$\equiv$&$\otimes$&$\otimes$&$\times$&$\times$&$\times$\\
+$z_0/E$&$\otimes$&$\equiv$&$\otimes$&$\otimes$&$\otimes$&$\otimes$\\
+$z_1$&$\otimes$&$\otimes$&$\equiv$&$\otimes$&$\otimes$&$\otimes$\\
+$z_2$&$\times$&$\otimes$&$\otimes$&$\equiv$&&$\otimes$\\
+$z_3$&$\times$&$\otimes$&$\otimes$&&$\equiv$&$\otimes$\\
+$e$&$\times$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\equiv$\\
+\hline
+\end{tabular}
+\end{center}
+Aber in der letzten Iteration bleiben die Felder $(z_2,z_3)$ und
+$(z_3,z_2)$ unmarkiert, die beiden Zust"ande sind also "aquivalent:
+\begin{center}
+\begin{tabular}{|c|cccccc|}
+\hline
+&$z$&$z_0/E$&$z_1$&$z_2$&$z_3$&$e$\\
+\hline
+$z$&$\equiv$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$\\
+$z_0/E$&$\otimes$&$\equiv$&$\otimes$&$\otimes$&$\otimes$&$\otimes$\\
+$z_1$&$\otimes$&$\otimes$&$\equiv$&$\otimes$&$\otimes$&$\otimes$\\
+$z_2$&$\otimes$&$\otimes$&$\otimes$&$\equiv$&&$\otimes$\\
+$z_3$&$\otimes$&$\otimes$&$\otimes$&&$\equiv$&$\otimes$\\
+$e$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\equiv$\\
+\hline
+\end{tabular}
+\end{center}
+Durch Zusammenlegen im Zustandsdiagramm erh"alt man jetzt als
+kleinsm"oglichen Automaten:
+\[
+\UseTips
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+        &z \ar[r]^{1} \ar[d]_{\tt 0}
+                &z_1 \ar@/_/[d]_{\tt 1}  \ar@/^/[r]^{\tt 0}
+                        &z_3 \ar@/^/[l]^{\tt 0} \ar@(ur,dr)_{\tt 1}
+\\
+*+\txt{}
+        &e \ar@(dr,dl)^{{\tt 0},{\tt 1}}
+                &*++[o][F=]{z_0} \ar@(dr,dl)_{\tt 0} \ar@/_/[u]_{\tt 1}
+}
+\]
+\end{loesung}
+}{}
+

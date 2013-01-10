@@ -1,0 +1,33 @@
+Welche der folgenden Aussagen ist wahr~bzw.~falsch:
+\begin{teilaufgaben}
+\item Jede Teilmenge einer regul"aren Sprache ist regul"ar.
+\item Jede Obermenge einer regul"aren Sprache ist regul"ar.
+\item Die Vereinigung zweier nicht regul"aren Sprachen ist nicht regul"ar.
+\item Die Schnittmenge zweier nicht regul"arer Sprachen ist nicht
+regul"ar.
+\end{teilaufgaben}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item $\Sigma^*$ ist regul"ar, w"are a) war, m"usste jede Sprache regul"ar
+sein, aber wir kennen nicht regul"are Sprachen, zum Beispiel
+$\{0^n1^n\,|\,n\mathbb N\}$.
+\item $\emptyset$ ist regul"ar, da aber $\emptyset$ in jeder anderen
+Teilmenge von $\Sigma^*$ enthalten ist, m"ussten alle Sprachen regul"ar
+sein, im Widerspruch zur Tatsache, dass wir nicht regul"are Sprachen
+kennen.
+\item Wenn $L$ nicht regul"ar ist, dann ist auch $\bar L$ nicht regul"ar.
+W"are n"amlich $\bar L$ regul"ar, m"usste auch $\bar\bar L=L$ regul"ar
+sein. Es ist aber auch $L\cup \bar L=\Sigma^*$ die Vereinigung zweier
+nicht regul"arer Sprachen, trotzdem ist $\Sigma^*$ nat"urlich regul"ar.
+\item Das Komplement einer nicht regul"aren Sprache ist ebenfalls nicht
+regul"ar. W"are die Vereinigung zweier nicht regul"arer Sprachen $L_1$
+und $L_2$ nicht regul"ar m"usste auch $\bar L_1\cup \bar L_2$ nicht
+regul"ar sein, und damit auch $\overline{\bar L_1\cup \bar L_2}=L_1\cap L_2$.
+Dass die Schnittmenge nicht regul"arer Sprachen aber trotzdem regul"ar
+sein kann haben wir bereits in b) eingesehen.
+\end{teilaufgaben}
+\end{loesung}
+}{}
+

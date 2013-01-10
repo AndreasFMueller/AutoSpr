@@ -1,0 +1,31 @@
+Gegeben sei ein deterministischer endlicher Automat $A=(Q,\Sigma, \delta,
+z_0, F)$ mit $|Q|=|F|$. Wieviele Zust"ande enth"alt der minimale Automat?
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Da $Q$ and $F$ endliche Mengen sind folgt aus $|Q|=|F|$, dass $Q=F$.
+Alle Zust"ande sind also Akzeptierzust"ande. Im Algorithmus zur Bestimmung
+des Minimalautomaten k"onnen daher schon im ersten Schritt "uberhaupt
+keine Zust"ande als "aquivalent markiert werden, also erst recht nicht
+in sp"ateren Schritten.
+
+Alternativ kann man auch argumentieren, dass von jedem Zustand $z$ aus
+$$L(z)=\Sigma^*,$$
+also
+$$L(z)=L(z'),$$
+d.~h.~die Zust"ande sind "aquivalent.
+
+Oder man kann sagen, dass dieser Automat, da er nur Akzeptierzust"ande
+besitzt, notwendigerweise alle W"orter akzeptieren muss. $L(A)=\Sigma^*$,
+der minimale Automat, der $\Sigma^*$ akzeptiert, ist aber
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+        &*++[o][F=]{}\ar@(ur,dr)^{\Sigma}
+}
+\]
+Dieser Automat hat offensichtlich nur einen Zustand.
+\end{loesung}
+}{}
+

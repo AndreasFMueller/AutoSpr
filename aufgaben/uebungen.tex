@@ -1,0 +1,58 @@
+%
+% uebung.tex -- gemeinsame Makros fuer Uebungsblaetter
+%
+% (c) 2006 Prof. Dr. Andreas Mueller, HSR
+% $Id: uebung.tex,v 1.3 2008/01/06 14:05:56 afm Exp $
+%
+\newcounter{uebungsaufgabe}
+\newboolean{loesungen}
+% environment fuer uebungsaufgaben
+\newenvironment{uebungsaufgaben}{
+\begin{list}{\arabic{uebungsaufgabe}.}
+  {\usecounter{uebungsaufgabe}
+  \setlength{\labelwidth}{2cm}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\labelsep}{5mm}
+  \setlength{\rightmargin}{0pt}
+  \setlength{\itemindent}{0pt}
+}}{\end{list}\vfill\pagebreak}
+% Teilaufgaben
+\newenvironment{teilaufgaben}{
+\begin{enumerate}
+\renewcommand{\labelenumi}{\alph{enumi})}
+}{\end{enumerate}}
+% Loesung
+\def\swallow#1{
+%nothing
+}
+\newenvironment{loesung}{%
+\begin{proof}[L"osung]%
+\renewcommand{\qedsymbol}{$\bigcirc$}
+}{\end{proof}}
+\def\keineloesungen{%
+\renewenvironment{loesung}{\swallow\begingroup}{\endgroup}%
+}
+% Hinweis
+\newenvironment{hinweis}{%
+\renewcommand{\qedsymbol}{}
+\begin{proof}[Hinweis]}{\end{proof}}
+% Aufgabe aus der Sammlung wiedergeben
+\newcounter{problemcounter}
+\def\aufgabepath{./}
+\def\ainput#1{\input\aufgabepath/#1}
+\def\verbatimainput#1{\expandafter\verbatiminput{\aufgabepath/#1}}
+\def\aufgabetoplevel#1{%
+\expandafter\def\expandafter\inputpath{#1}%
+\let\aufgabepath=\inputpath
+}
+\def\includeagraphics[#1]#2{\expandafter\includegraphics[#1]{\aufgabepath#2}}
+% \aufgabe
+\newcommand{\aufgabe}[2]{%
+\refstepcounter{problemcounter}%
+\label{#2}
+\bigskip{\parindent0pt\strut}\hbox{\bf\arabic{problemcounter}. }%
+\expandafter\def\csname aufgabepath\endcsname{\inputpath/#1/#2/}%
+\expandafter\input{\inputpath#1/#2.tex}
+}
+% oft benutzte Macros
+\def\blank{\text{\textvisiblespace}}

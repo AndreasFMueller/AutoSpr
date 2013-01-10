@@ -1,0 +1,27 @@
+Finden sie regul"are Ausdr"ucke f"ur die folgenden Sprachen
+\begin{teilaufgaben}
+\item $L=\{w|\text{$w$ beginnt mit {\tt 1} und endet mit {\tt 0}}\}$
+\item $L=\{w|\text{$w$ enth"alt den Teilstring {\tt 0101}}\}$
+\item $L=\{w|\text{an jeder ungeraden Position von $w$ befindet sich ein {\tt 1}}\}$
+\item $L=\{w|\;|w|\le 5\}$
+\end{teilaufgaben}
+Alle Sprachen sind "uber dem Alphabet $\Sigma=\{{\tt 0},{\tt 1}\}$ zu
+betrachten.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item ${\tt 1}({\tt 0}|{\tt 1})^*{\tt 0}$
+\item $({\tt 0}|{\tt 1})^* {\tt 0101} ({\tt 0}|{\tt 1})^*$
+\item $({\tt 1}({\tt 0}|{\tt 1}))^*(\varepsilon|{\tt 1})$
+\item $
+\varepsilon|
+({\tt 0}|{\tt 1})|
+(({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}))|
+(({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}))|
+(({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}))|
+(({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}))$
+\end{teilaufgaben}
+\end{loesung}
+}{}
+

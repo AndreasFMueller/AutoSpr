@@ -1,0 +1,422 @@
+Konstruieren sie f"ur jede der folgenden Sprachen "uber dem Alphabet
+$\Sigma=\{{\tt 0},{\tt 1}\}$ einen minimalen DEA:
+\begin{teilaufgaben}
+\item $L_1=\{w\in\Sigma^*\,|\,\text{$w$ enth"alt mindestens zwei {\tt 1} nacheinander}\}$
+\item $L_2=\{w\in\Sigma^*\,|\,\text{$w$ ist eine durch drei teilbare Bin"arzahl}\}$
+\item $L_3=L_1\cap L_2$
+\item $L_4=L_1\setminus L_2$
+\item $L_5=L_1\cup L_2$
+\end{teilaufgaben}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item Ein einfacher NEA f"ur $L_1$ ist
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*\txt{}\ar[r]
+        &{q_0} \ar[r]^{\tt 1} \ar@(dr,dl)^{{\tt 0},{\tt 1}}
+                &{q_1} \ar[r]^{\tt 1}
+                        &*++[o][F=]{q_2}\ar@(ur,dr)^{{\tt 0},{\tt 1}}
+}
+\]
+Diesen NEA k"onnen wir jetzt mit dem Standardalgorithmus in einen
+DEA umwandeln:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{q_{001}} \ar@(ur,ul)_{\tt 0} \ar@/^/[rdd]^{\tt 1}
+                &*++[o][F=]{q_{110}}\ar[ddl]_{{\tt 0},{\tt 1}}
+\\
+q_{000}\ar@(ul,dl)_{{\tt 0},{\tt 1}}
+        &{q_{010}} \ar[l]^{\tt 0} \ar[d]^{\tt 1}
+                &*++[o][F=]{q_{101}} \ar@(u,ur)^{\tt 0} \ar@/^/[r]^{\tt 1}
+                        &*++[o][F=]{q_{111}} \ar@/^/[l]^{\tt 0}
+                                \ar@(ur,dr)^{\tt 1}
+\\
+*+\txt{}
+        &*++[o][F=]{q_{100}} \ar@(dl,dr)_{{\tt 0},{\tt 1}}
+                &q_{011} \ar@/^/[uul]^{\tt 0} \ar[ur]_{\tt 1}
+}
+\]
+Eliminieren wir daraus die nicht erreichbaren Zust"ande, bleibt der
+DEA
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{q_{001}} \ar@(ur,ul)_{\tt 0} \ar@/^/[rdd]^{\tt 1}
+\\
+*+\txt{}
+        &*+\txt{}
+                &*++[o][F=]{q_{101}} \ar@(u,ur)^{\tt 0} \ar@/^/[r]^{\tt 1}
+                        &*++[o][F=]{q_{111}} \ar@/^/[l]^{\tt 0}
+                                \ar@(ur,dr)^{\tt 1}
+\\
+*+\txt{}
+        &*+\txt{}
+                &q_{011} \ar@/^/[uul]^{\tt 0} \ar[ur]_{\tt 1}
+}
+\]
+Oder etwas kompakter:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{q_{1}} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
+                &{q_{3}} \ar@/^/[l]^{\tt 0} \ar[r]^{\tt 1} 
+                        &*++[o][F=]{q_{7}} \ar@(ur,ul)_{\tt 1} \ar@/^/[r]^{\tt 0}
+                                &*++[o][F=]{q_{5}} \ar@(ur,ul)_{\tt 0} \ar@/^/[l]^{\tt 1}
+}
+\]
+Es ist jedoch noch nicht klar, ob dieser DEA minimal ist. Daher wenden
+wir den Algorithmus f"ur den Minimalautomaten an, um m"oglicherweise
+"aquivalente Zust"ande zu finden. Nach der Markierung von Paaren aus
+Akzeptierzust"anden und anderen Zust"anden als nicht "aquivalent hat man:
+\begin{center}
+\begin{tabular}{|c|cccc|}
+\hline
+     &$q_1$   &$q_3$   &$q_7$   &$q_5$\\
+\hline
+$q_1$&$\equiv$&        &$\times$&$\times$\\
+$q_3$&        &$\equiv$&$\times$&$\times$\\
+$q_7$&$\times$&$\times$&$\equiv$&        \\
+$q_5$&$\times$&$\times$&        &$\equiv$\\
+\hline
+\end{tabular}
+\end{center}
+Im n"achsten Schritt bekommt man:
+\begin{center}
+\begin{tabular}{|c|cccc|}
+\hline
+     &$q_1$    &$q_3$    &$q_7$    &$q_5$\\
+\hline
+$q_1$&$\equiv$ &$\times$ &$\otimes$&$\otimes$\\
+$q_3$&$\times$ &$\equiv$ &$\otimes$&$\otimes$\\
+$q_7$&$\otimes$&$\otimes$&$\equiv$ &        \\
+$q_5$&$\otimes$&$\otimes$&         &$\equiv$\\
+\hline
+\end{tabular}
+\end{center}
+Da das Paar $(q_5,q_7)$  nicht als nicht-"aquivalent
+markiert werden kann, m"ussen die beiden Zust"ande "aquivalent sein,
+so dass der minimale Automat $A_1$
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{q_{1}} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
+                &{q_{3}} \ar@/^/[l]^{\tt 0} \ar[r]^{\tt 1} 
+                        &*++[o][F=]{q_{7}} \ar@(dr,ur)_{{\tt 0},{\tt 1}}
+}
+\]
+ist.
+\item
+Der Automat $A_2$ f"ur die durch drei teilbaren Bin"arzahlen wurde in der
+Vorlesung entwickelt:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &*++[o][F=]{0} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
+                &{1} \ar@/^/[r]^{\tt 0} \ar@/^/[l]^{\tt 1}
+                        &{2} \ar@/^/[l]^{\tt 0} \ar@(ur,dr)^{\tt 1}
+}
+\]
+F"ur die folgenden Teilaufgaben ist jeweils der Produktautomat
+zu konstruieren. Wir tun dies jeweils so, dass der Automat f"ur
+$L_1$ horizontal, derjenige f"ur $L_2$ vertikal dargestellt wird.
+Daher hier nichmals der Automat f"ur $L_2$ vertikal dargestellt
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &*++[o][F=]{0} \ar@(ur,dr)_{\tt 0} \ar@/^/[d]^{\tt 1}
+\\
+*+\txt{}
+        &{1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
+\\
+*+\txt{}
+        &{2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
+}
+\]
+Der Produktautomat ohne Akzeptierzust"ande ist dann:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[dr]
+\\
+*+\txt{}
+        &{q_1/0} \ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
+                &{q_3/0} \ar[l]_{\tt 0} \ar[dr]^{\tt 1}
+                        &{q_7/0} \ar@(ul,ur)^{\tt 0} \ar@/^/[d]^{\tt 1}
+\\
+*+\txt{}
+        &{q_1/1} \ar@/^/[d]^{\tt 0} \ar[ur]^{\tt 1}
+                &{q_3/1} \ar[dl]^{\tt 0} \ar[ur]^{\tt 1}
+                        &{q_7/1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
+\\
+*+\txt{}
+        &{q_1/2} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
+                &{q_3/2} \ar[ul]^{\tt 0} \ar[r]^{\tt 1}
+                        &{q_7/2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
+\\
+}
+\]
+
+\item
+Die Sprache $L_1\cap L_2$ wird von folgendem Produktautomaten akzeptiert:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[dr]
+\\
+*+\txt{}
+        &{q_1/0} \ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
+                &{q_3/0} \ar[l]_{\tt 0} \ar[dr]^{\tt 1}
+                        &*++[o][F=]{q_7/0} \ar@(ul,ur)^{\tt 0} \ar@/^/[d]^{\tt 1}
+\\
+*+\txt{}
+        &{q_1/1} \ar@/^/[d]^{\tt 0} \ar[ur]^{\tt 1}
+                &{q_3/1} \ar[dl]^{\tt 0} \ar[ur]^{\tt 1}
+                        &{q_7/1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
+\\
+*+\txt{}
+        &{q_1/2} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
+                &{q_3/2} \ar[ul]^{\tt 0} \ar[r]^{\tt 1}
+                        &{q_7/2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
+\\
+}
+\]
+Es ist aber wieder nicht klar, ob dieser Automat minimal ist. Daher
+wenden wir erneut den Algorithmus f"ur den Minimalautomaten an. Im
+ersten Durchgang erhalten wir
+\begin{center}
+\begin{tabular}{|c|ccccccccc|}
+\hline
+         &$q_1/0$  &$q_3/0$  &$q_7/0$  &$q_1/1$  &$q_3/1$  &$q_7/1$  &$q_1/2$  &$q_3/2$  &$q_7/2$  \\
+\hline
+$q_1/0$  &$\equiv$ &         &$\times$ &         &         &         &         &         &         \\
+$q_3/0$  &         &$\equiv$ &$\times$ &         &         &         &         &         &         \\
+$q_7/0$  &$\times$ &$\times$ &$\equiv$ &$\times$ &$\times$ &$\times$ &$\times$ &$\times$ &$\times$ \\
+$q_1/1$  &         &         &$\times$ &$\equiv$ &         &         &         &         &         \\
+$q_3/1$  &         &         &$\times$ &         &$\equiv$ &         &         &         &         \\
+$q_7/1$  &         &         &$\times$ &         &         &$\equiv$ &         &         &         \\
+$q_1/2$  &         &         &$\times$ &         &         &         &$\equiv$ &         &         \\
+$q_3/2$  &         &         &$\times$ &         &         &         &         &$\equiv$ &         \\
+$q_7/2$  &         &         &$\times$ &         &         &         &         &         &$\equiv$ \\
+\hline
+\end{tabular}
+\end{center}
+Zweiter Durchgang:
+\begin{center}
+\begin{tabular}{|c|ccccccccc|}
+\hline
+         &$q_1/0$  &$q_3/0$  &$q_7/0$  &$q_1/1$  &$q_3/1$  &$q_7/1$  &$q_1/2$  &$q_3/2$  &$q_7/2$  \\
+\hline
+$q_1/0$  &$\equiv$ &         &$\otimes$&         &$\times$ &$\times$ &         &         &$\times$ \\
+$q_3/0$  &         &$\equiv$ &$\otimes$&         &$\times$ &$\times$ &         &         &$\times$ \\
+$q_7/0$  &$\otimes$&$\otimes$&$\equiv$ &$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$\\
+$q_1/1$  &         &         &$\otimes$&$\equiv$ &$\times$ &$\times$ &         &$\times$ &$\times$ \\
+$q_3/1$  &$\times$ &$\times$ &$\otimes$&$\times$ &$\equiv$ &         &$\times$ &$\times$ &$\times$ \\
+$q_7/1$  &$\times$ &$\times$ &$\otimes$&$\times$ &         &$\equiv$ &$\times$ &$\times$ &$\times$ \\
+$q_1/2$  &         &         &$\otimes$&         &$\times$ &$\times$ &$\equiv$ &         &$\times$ \\
+$q_3/2$  &         &         &$\otimes$&$\times$ &$\times$ &$\times$ &         &$\equiv$ &$\times$ \\
+$q_7/2$  &$\times$ &$\times$ &$\otimes$&$\times$ &$\times$ &$\times$ &$\times$ &$\times$ &$\equiv$ \\
+\hline
+\end{tabular}
+\end{center}
+Dritter Durchgang:
+\begin{center}
+\begin{tabular}{|c|ccccccccc|}
+\hline
+         &$q_1/0$  &$q_3/0$  &$q_7/0$  &$q_1/1$  &$q_3/1$  &$q_7/1$  &$q_1/2$  &$q_3/2$  &$q_7/2$  \\
+\hline
+$q_1/0$  &$\equiv$ &         &$\otimes$&$\times$ &$\otimes$&$\otimes$&$\times$ &$\times$ &$\otimes$\\
+$q_3/0$  &         &$\equiv$ &$\otimes$&$\times$ &$\otimes$&$\otimes$&$\times$ &$\times$ &$\otimes$\\
+$q_7/0$  &$\otimes$&$\otimes$&$\equiv$ &$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$\\
+$q_1/1$  &$\times$ &$\times$ &$\otimes$&$\equiv$ &$\otimes$&$\otimes$&$\times$ &$\otimes$&$\otimes$\\
+$q_3/1$  &$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\equiv$ &$\times$ &$\otimes$&$\otimes$&$\otimes$\\
+$q_7/1$  &$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\times$ &$\equiv$ &$\otimes$&$\otimes$&$\otimes$\\
+$q_1/2$  &$\times$ &$\times$ &$\otimes$&$\times$ &$\otimes$&$\otimes$&$\equiv$ &$\times$ &$\otimes$\\
+$q_3/2$  &$\times$ &$\times$ &$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\times$ &$\equiv$ &$\otimes$\\
+$q_7/2$  &$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\equiv$ \\
+\hline
+\end{tabular}
+\end{center}
+Das letzte verbleiben Paar $(q_1/0,q_3/0)$ kann im n"achsten Durchgang ebenfalls als
+nicht "aquivalent erkannt werden, womit gezeigt ist, dass der Automat
+minimal ist.
+\item
+Die Mengendifferenz $L_1\setminus L_2$ wird akzeptiert von dem Automaten,
+der als Akzeptierzust"ande die Paare von Akzeptierzust"anden hat, welche
+aus Akzeptierzust"anden von $A_1$ und Nicht-Akzeptierzust"anden von $A_2$
+bestehen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[dr]
+\\
+*+\txt{}
+        &{q_1/0} \ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
+                &{q_3/0} \ar[l]_{\tt 0} \ar[dr]^{\tt 1}
+                        &{q_7/0} \ar@(ul,ur)^{\tt 0} \ar@/^/[d]^{\tt 1}
+\\
+*+\txt{}
+        &{q_1/1} \ar@/^/[d]^{\tt 0} \ar[ur]^{\tt 1}
+                &{q_3/1} \ar[dl]^{\tt 0} \ar[ur]^{\tt 1}
+                        &*++[o][F=]{q_7/1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
+\\
+*+\txt{}
+        &{q_1/2} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
+                &{q_3/2} \ar[ul]^{\tt 0} \ar[r]^{\tt 1}
+                        &*++[o][F=]{q_7/2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
+\\
+}
+\]
+Auch hier muss wieder mit Hilfe des Algorithmus f"ur den Minimalautomaten
+sichergestellt werden, dass tats"achlich ein minimaler Automat vorliegt:
+\begin{center}
+\begin{tabular}{|c|ccccccccc|}
+\hline
+         &$q_1/0$  &$q_3/0$  &$q_7/0$  &$q_1/1$  &$q_3/1$  &$q_7/1$  &$q_1/2$  &$q_3/2$  &$q_7/2$  \\
+\hline
+$q_1/0$  &$\equiv$ &         &         &         &         &$\times$ &         &         &$\times$ \\
+$q_3/0$  &         &$\equiv$ &         &         &         &$\times$ &         &         &$\times$ \\
+$q_7/0$  &         &         &$\equiv$ &         &         &$\times$ &         &         &$\times$ \\
+$q_1/1$  &         &         &         &$\equiv$ &         &$\times$ &         &         &$\times$ \\
+$q_3/1$  &         &         &         &         &$\equiv$ &$\times$ &         &         &$\times$ \\
+$q_7/1$  &$\times$ &$\times$ &$\times$ &$\times$ &$\times$ &$\equiv$ &$\times$ &$\times$ &         \\
+$q_1/2$  &         &         &         &         &         &$\times$ &$\equiv$ &         &$\times$ \\
+$q_3/2$  &         &         &         &         &         &$\times$ &         &$\equiv$ &$\times$ \\
+$q_7/2$  &$\times$ &$\times$ &$\times$ &$\times$ &$\times$ &         &$\times$ &$\times$ &$\equiv$ \\
+\hline
+\end{tabular}
+\end{center}
+Zweiter Durchgang:
+\begin{center}
+\begin{tabular}{|c|ccccccccc|}
+\hline
+         &$q_1/0$  &$q_3/0$  &$q_7/0$  &$q_1/1$  &$q_3/1$  &$q_7/1$  &$q_1/2$  &$q_3/2$  &$q_7/2$  \\
+\hline
+$q_1/0$  &$\equiv$ &$\times$ &$\times$ &         &         &$\otimes$&         &$\times$ &$\otimes$\\
+$q_3/0$  &$\times$ &$\equiv$ &$\times$ &$\times$ &$\times$ &$\otimes$&$\times$ &         &$\otimes$\\
+$q_7/0$  &$\times$ &$\times$ &$\equiv$ &$\times$ &$\times$ &$\otimes$&$\times$ &$\times$ &$\otimes$\\
+$q_1/1$  &         &$\times$ &$\times$ &$\equiv$ &$\times$ &$\otimes$&         &$\times$ &$\otimes$\\
+$q_3/1$  &         &$\times$ &$\times$ &$\times$ &$\equiv$ &$\otimes$&$\times$ &$\times$ &$\otimes$\\
+$q_7/1$  &$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\equiv$ &$\otimes$&$\otimes$&$\times$ \\
+$q_1/2$  &         &$\times$ &$\times$ &         & $\times$&$\otimes$&$\equiv$& $\times$&$\otimes$\\
+$q_3/2$  &$\times$ &         &$\times$ &$\times$ &$\times$ &$\otimes$&$\times$ &$\equiv$ &$\otimes$\\
+$q_7/2$  &$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\times$ &$\otimes$&$\otimes$&$\equiv$ \\
+\hline
+\end{tabular}
+\end{center}
+Dritter Durchgang:
+\begin{center}
+\begin{tabular}{|c|ccccccccc|}
+\hline
+         &$q_1/0$  &$q_3/0$  &$q_7/0$  &$q_1/1$  &$q_3/1$  &$q_7/1$  &$q_1/2$  &$q_3/2$  &$q_7/2$  \\
+\hline
+$q_1/0$  &$\equiv$ &$\otimes$&$\otimes$&$\times$ &$\times$ &$\otimes$&$\times$ &$\otimes$&$\otimes$\\
+$q_3/0$  &$\otimes$&$\equiv$ &$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\times$ &$\otimes$\\
+$q_7/0$  &$\otimes$&$\otimes$&$\equiv$ &$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$\\
+$q_1/1$  &$\times$ &$\otimes$&$\otimes$&$\equiv$ &$\otimes$&$\otimes$&$\times$ &$\otimes$&$\otimes$\\
+$q_3/1$  &$\times$ &$\otimes$&$\otimes$&$\otimes$&$\equiv$ &$\otimes$&$\otimes$&$\otimes$&$\otimes$\\
+$q_7/1$  &$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\equiv$ &$\otimes$&$\otimes$&$\otimes$\\
+$q_1/2$  &$\times$ &$\otimes$&$\otimes$&$\times$ &$\otimes$&$\otimes$&$\equiv$ &$\otimes$&$\otimes$\\
+$q_3/2$  &$\otimes$&$\times$ &$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\equiv$ &$\otimes$\\
+$q_7/2$  &$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\equiv$ \\
+\hline
+\end{tabular}
+\end{center}
+Somit sind alle Zust"ande nicht "aquivalent, der Automat ist also minimal.
+\item
+Die Vereinigung $L_1\cup L_2$ wird akzeptiert von dem Automaten,
+der als Akzeptierzust"ande die Paare von Akzeptierzust"anden hat, welche
+aus Akzeptierzust"anden von $A_1$ oder von $A_2$ bestehen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[dr]
+\\
+*+\txt{}
+        &*++[o][F=]{q_1/0} \ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
+                &*++[o][F=]{q_3/0} \ar[l]_{\tt 0} \ar[dr]^{\tt 1}
+                        &*++[o][F=]{q_7/0} \ar@(ul,ur)^{\tt 0} \ar@/^/[d]^{\tt 1}
+\\
+*+\txt{}
+        &{q_1/1} \ar@/^/[d]^{\tt 0} \ar[ur]^{\tt 1}
+                &{q_3/1} \ar[dl]^{\tt 0} \ar[ur]^{\tt 1}
+                        &*++[o][F=]{q_7/1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
+\\
+*+\txt{}
+        &{q_1/2} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
+                &{q_3/2} \ar[ul]^{\tt 0} \ar[r]^{\tt 1}
+                        &*++[o][F=]{q_7/2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
+\\
+}
+\]
+Auch hier muss wieder mit Hilfe des Algorithmus f"ur den Minimalautomaten
+sichergestellt werden, dass tats"achlich ein minimaler Automat vorliegt:
+\begin{center}
+\begin{tabular}{|c|ccccccccc|}
+\hline
+         &$q_1/0$  &$q_3/0$  &$q_7/0$  &$q_1/1$  &$q_3/1$  &$q_7/1$  &$q_1/2$  &$q_3/2$  &$q_7/2$  \\
+\hline
+$q_1/0$  &$\equiv$ &$       $&$       $&$\times $&$\times $&$       $&$\times $&$\times $&$       $\\
+$q_3/0$  &$       $&$\equiv$ &$       $&$\times $&$\times $&$       $&$\times $&$\times $&$       $\\
+$q_7/0$  &$       $&$       $&$\equiv$ &$\times $&$\times $&$       $&$\times $&$\times $&$       $\\
+$q_1/1$  &$\times $&$\times $&$\times $&$\equiv$ &$       $&$\times $&$       $&$       $&$\times $\\
+$q_3/1$  &$\times $&$\times $&$\times $&$       $&$\equiv$ &$\times $&$       $&$       $&$\times $\\
+$q_7/1$  &$       $&$       $&$       $&$\times $&$\times $&$\equiv$ &$\times $&$\times $&$       $\\
+$q_1/2$  &$\times $&$\times $&$\times $&$       $&$       $&$\times $&$\equiv$ &$       $&$\times $\\
+$q_3/2$  &$\times $&$\times $&$\times $&$       $&$       $&$\times $&$       $&$\equiv$ &$\times $\\
+$q_7/2$  &$       $&$       $&$       $&$\times $&$\times $&$       $&$\times $&$\times $&$\equiv$ \\
+\hline
+\end{tabular}
+\end{center}
+Zweiter Durchgang:
+\begin{center}
+\begin{tabular}{|c|ccccccccc|}
+\hline
+         &$q_1/0$  &$q_3/0$  &$q_7/0$  &$q_1/1$  &$q_3/1$  &$q_7/1$  &$q_1/2$  &$q_3/2$  &$q_7/2$  \\
+\hline
+$q_1/0$  &$\equiv$ &$\times $&$\times $&$\otimes$&$\otimes$&$\times $&$\otimes$&$\otimes$&$\times $\\
+$q_3/0$  &$\times $&$\equiv$ &$\times $&$\otimes$&$\otimes$&$\times $&$\otimes$&$\otimes$&$\times $\\
+$q_7/0$  &$\times $&$\times $&$\equiv$ &$\otimes$&$\otimes$&$       $&$\otimes$&$\otimes$&$       $\\
+$q_1/1$  &$\otimes$&$\otimes$&$\otimes$&$\equiv$ &$\times $&$\otimes$&$\times $&$\times $&$\otimes$\\
+$q_3/1$  &$\otimes$&$\otimes$&$\otimes$&$\times $&$\equiv$ &$\otimes$&$\times $&$\times $&$\otimes$\\
+$q_7/1$  &$\times $&$\times $&$       $&$\otimes$&$\otimes$&$\equiv$ &$\otimes$&$\otimes$&$       $\\
+$q_1/2$  &$\otimes$&$\otimes$&$\otimes$&$\times $&$\times $&$\otimes$&$\equiv$ &$\times $&$\otimes$\\
+$q_3/2$  &$\otimes$&$\otimes$&$\otimes$&$\times $&$\times $&$\otimes$&$\times $&$\equiv$ &$\otimes$\\
+$q_7/2$  &$\times $&$\times $&$       $&$\otimes$&$\otimes$&$       $&$\otimes$&$\otimes$&$\equiv$ \\
+\hline
+\end{tabular}
+\end{center}
+Die verbleibenden Felder lassen sich nicht mehr als nicht "aquivalent
+erkennen, also m"uss sie "aquivalent sein. Man kann also die Zust"ande
+$q_7/0$, $q_7/1$ und $q_7/2$ zusammenlegen, und erh"alt so einen DEA
+mit nur noch 7 Zust"anden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &*++[o][F=]{10}\ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
+                &*++[o][F=]{30} \ar[l]^{\tt 0} \ar[dr]^{\tt 1}
+\\
+*+\txt{}
+        &{11} \ar[ur]^{\tt 1} \ar@/^/[d]^{\tt 0}
+                &{31} \ar[r]^{\tt 1} \ar[dl]^{\tt 0}
+                        &*++[o][F=]{7}\ar@(ur,dr)^{{\tt 0},{\tt 1}}
+\\
+*+\txt{}
+        &{12} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
+                &{32} \ar[ur]^{\tt 1} \ar[ul]^{\tt 0}
+}
+\]
+\end{teilaufgaben}
+\end{loesung}
+}{}
+

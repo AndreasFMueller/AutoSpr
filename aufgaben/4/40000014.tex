@@ -1,0 +1,97 @@
+Stellen Sie eine kontextfreie Gramatik auf, die die Sprache der ``wachsenden''
+W"orter  (siehe Aufgabe~\ref{30000016}) erzeugt.
+% Geben Sie auch eine Grammatik in Chomsky-Normal-Form an.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Wachsende W"orter bestehen aus einzelnen W"ortern der Form
+$w={\tt 0}^k{\tt 1}^{k+s}$.  Das Wort $w$ kann man erzeugen,
+indem man zuerst das leere Wort in {\tt 0} und {\tt 1}
+``einschachtelt'', und dann noch eine Anzahl von Einsen anh"angt.
+Damit haben wir aber in informeller Form alle Produktionsregeln
+f"ur W"orter der Sprache $L$ zusammengefasst.
+
+Das Symbol $W$ stehe f"ur W"orter wie $w$, dann kann man beliebige W"orter der
+Sprache zusammensetzen, in dem man solchen W"orter weitere anh"angt:
+\begin{align*}
+S_0&\to \varepsilon\\
+   &\to S\\
+S&\to A\\
+ &\to SA
+\end{align*}
+Die Teile $A$ entstehen wir folgt:
+\begin{align*}
+A&\to W\\
+ &\to A{\tt 1}\\
+W&\to {\tt01}\\
+ &\to {\tt 0}W{\tt 1}\\
+\end{align*}
+Diese Grammatik hat "ubrigens nicht Chomsky-Normalform, es gibt Unit rules,
+Regeln mit drei Symbolen auf der rechten Seite. Wir eliminieren zun"achst
+die Unit rules.
+
+Dies war nicht verlangt, aber man kann Chomsky-Normalform mit dem
+"ublichen Algorithmus erreichen: Elimination von $S_0\to S$:
+\begin{align*}
+S_0&\to \varepsilon\;|\;A\;|\;SA\\
+S  &\to A\;|\;SA\\
+A  &\to W\;|\;A{\tt 1}\\
+W  &\to {\tt 01}\;|\; {\tt 0}W{\tt 1}
+\end{align*}
+Elimination von $S_0\to A$:
+\begin{align*}
+S_0&\to \varepsilon\;|\;SA\;|\;W\;|\;A{\tt 1}\\
+S  &\to A\;|\;SA\\
+A  &\to W\;|\;A{\tt 1}\\
+W  &\to {\tt 01}\;|\; {\tt 0}W{\tt 1}
+\end{align*}
+Elimination von $S_0\to W$:
+\begin{align*}
+S_0&\to \varepsilon\;|\;SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}W{\tt 1}\\
+S  &\to A\;|\;SA\\
+A  &\to W\;|\;A{\tt 1}\\
+W  &\to {\tt 01}\;|\; {\tt 0}W{\tt 1}
+\end{align*}
+Elimination von $S\to A$:
+\begin{align*}
+S_0&\to \varepsilon\;|\;SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}W{\tt 1}\\
+S  &\to SA\;|\;W\;|\;A{\tt 1}\\
+A  &\to W\;|\;A{\tt 1}\\
+W  &\to {\tt 01}\;|\; {\tt 0}W{\tt 1}
+\end{align*}
+Elimination von $S\to W$:
+\begin{align*}
+S_0&\to \varepsilon\;|\;SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}W{\tt 1}\\
+S  &\to SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}W{\tt 1}\\
+A  &\to W\;|\;A{\tt 1}\\
+W  &\to {\tt 01}\;|\; {\tt 0}W{\tt 1}
+\end{align*}
+Elimination von $A\to W$:
+\begin{align*}
+S_0&\to \varepsilon\;|\;SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}W{\tt 1}\\
+S  &\to SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}W{\tt 1}\\
+A  &\to A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}W{\tt 1}\\
+W  &\to {\tt 01}\;|\; {\tt 0}W{\tt 1}
+\end{align*}
+Aufl"osung der Regeln mit rechter Seite ${\tt 0}W{\tt 1}$:
+\begin{align*}
+S_0&\to \varepsilon\;|\;SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}B\\
+B  &\to B{\tt 1}\\
+S  &\to SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}B\\
+A  &\to A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}B\\
+W  &\to {\tt 01}\;|\; {\tt 0}B
+\end{align*}
+Entfernung der Terminale {\tt 0} und {\tt 1} aus Regeln mit zwei Symbolen
+auf der rechten Seite:
+\begin{align*}
+S_0&\to \varepsilon\;|\;SA\;|\;AE\;|\;NE\;|\;NB\\
+B  &\to BE\\
+S  &\to SA\;|\;AE\;|\;NE\;|\;NB\\
+A  &\to AE\;|\;NE\;|\;NB\\
+W  &\to NE\;|\; NB\\
+N  &\to {\tt 0}\\
+E  &\to {\tt 1}
+\end{align*}
+\end{loesung}
+}{ }
+

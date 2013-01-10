@@ -1,0 +1,53 @@
+Seien $L_1$ und $L_2$ zwei Turing-entscheidbare Sprachen. Zeigen Sie, dass
+die folgenden Sprachen Turing-entscheidbar sind:
+\begin{teilaufgaben}
+\item $L_1\cup L_2$
+\item $L_1L_2$
+\item $L_1^*$
+\item $\Sigma^*\setminus L_1$
+\item $L_1\cap L_2$
+\end{teilaufgaben}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item Um zu entscheiden, ob ein Wort $w$ in $L_1\cup L_2$ ist,
+lassen wir zuerst $M_1$ auf dem Input $w$ laufen, und falls
+diese das Wort verwirft, $M_2$. Akzeptiert eine der Maschinen
+das Wort, wird es akzeptiert, andernfalls wird es verworfen.
+\item
+F"ur jede der $|w|+1$ Unterteilungen des Wortes $w$ in zwei
+Teilw"orter $xy=w$ lassen wir $M_1$ auf $x$ und $M_2$ auf
+$y$ laufen. Akzeptieren die Maschinen f"ur eine der
+Unterteilungen das Wort, akzeptieren wir, wir verwerfen, wenn
+f"ur keine Unterteilung beide Maschinen akzeptieren.
+\item
+Wenn $w\in L_1^*$, dann kann man $w$ schreiben als
+$w=x_1\dots x_n$, wobei $x_i\in L_1$ f"ur alle $i$ und
+$x_i\ne \varepsilon$. Es gibt endlich viele Unterteilungen
+von $w$ in maximal $n$ Teilw"orter mit einer L"ange von
+mindestens einem Zeichen. F"ur alle solchen Unterteilungen
+testen wir jede Komponenten $x_i$ mit der Turingmaschine
+$M_1$. Falls $M_1$ alle Komponenten einer Unterteilung
+akzeptiert, akzeptieren wir das Wort, wenn dies in keinem Fall
+vorkommt, verwerfen wir das Wort.
+
+Man kann dieses Problem sehr elegant mit Rekursion l"osen.
+Die Funktion untersucht alle Unterteilungen des Wortes in
+zwei Teile $x_1$ und $x_2$, indem sie zuerst den Entscheider
+f"ur $L_1$ mit Input $x_1$ aufruft, und dann sich selbst
+mit Input $x_2$ aufruft. Diese Rekursion ist endlich.
+\item
+F"ur die Sprache $\Sigma^*\setminus L_1$ verwenden wir die
+Turing Maschine $\bar M_1$, in welcher gegen"uber $M_1$
+die Zust"ande $q_{\text{accept}}$ und $q_{\text{reject}}$
+ihre Rollen vertauschen. $\bar M_1$ ist ein Entscheider,
+der genau die W"orter von $\Sigma^*\setminus L_1$ akzeptiert.
+\item
+Wir lassen $M_1$ auf $w$ laufen und anschliessen $M_2$ auf $w$.
+Wenn beide Maschinen akzeptieren, akzeptieren wir das Wort, andernfalls
+verwerfen wir.
+\end{teilaufgaben}
+\end{loesung}
+}{}
+

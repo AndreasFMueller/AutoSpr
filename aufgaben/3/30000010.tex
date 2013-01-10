@@ -1,0 +1,23 @@
+Sei $L$ eine regul"are Sprache "uber dem Alphabet $\Sigma$.
+Zeigen Sie dass die folgenden Sprachen auch regul"ar sind:
+\begin{teilaufgaben}
+\item $\operatorname{Rest}(L)=\{v \in\Sigma^*\;|\; v=ax, a\in\Sigma, x\in L\}$
+\item $\operatorname{First}(L)=\{v \in\Sigma^*\;|\; v=xa, a\in\Sigma, x\in L\}$
+\end{teilaufgaben}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item Da $L$ regul"ar ist, gibt es einen regul"aren Ausdruck $r$ mit
+$L(r)=L$. Dann ist $.r$ ein regul"arer Ausdruck, der
+$\operatorname{Rest}(L)=L(.r)$ akzeptiert.
+Also ist
+$\operatorname{Rest}(L)$ regul"ar.
+\item Da $L$ regul"ar ist, gibt es einen regul"aren Ausdruck $r$ mit
+$L(r)=L$. Dann ist $r.$ ein regul"arer Ausdruck, der
+$\operatorname{First}(L)=L(r.)$ akzeptiert. Also ist
+$\operatorname{First}(L)$ regul"ar.
+\end{teilaufgaben}
+\end{loesung}
+}{}
+

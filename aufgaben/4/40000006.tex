@@ -1,0 +1,125 @@
+Konstruieren Sie einen Stackautomaten, der die Sprache
+\[
+L=\{{\tt a}^i{\tt b}^j| i\ne j\}
+\]
+akzeptiert.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Der PDA funktioniert nach dem gleichen Prinzip wie der in der Vorlesung
+besprochene PDA, der die Sprache $\{{\tt 0}^n{\tt 1}^n|n\ge 0\}$
+akzeptiert.
+
+Wenn $i>j$ ist, dann ist es am Ende des Wortes noch m"oglich, mindestens
+ein weiteres {\tt a} vom Sack zu lesen, bevor das Stackende-Zeichen
+gefunden wird.
+
+Wenn $i<j$ ist, dann kann nach dem erreichen des Stackende-Zeichens
+noch ein {\tt b} vom Input gelesen werden, und weitere {\tt b}
+k"onnen gelesen werden, ohne dass der Stack modifiziert wird.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm{
+*+\txt{}
+        &*+\txt{}
+                &*+\txt{}
+                        &*+\txt{}
+                                &{q_3}\ar@(ur,ul)_{\varepsilon, {\tt a}\to\varepsilon}
+                                 \ar[r]^{\varepsilon,{\tt \$}\to\varepsilon}
+                                        &*++[o][F=]{q_4}
+\\
+*+\txt{}\ar[r]
+        &{q_0}\ar[r]^{\varepsilon,\varepsilon\to{\tt \$}}
+                &{q_1}\ar@(ur,ul)_{{\tt a},\varepsilon\to{\tt a}}
+                   \ar[r]^{\varepsilon,\varepsilon\to\varepsilon}
+                        &{q_2}\ar@(ur,ul)_{{\tt b},{\tt a}\to\varepsilon}
+                           \ar[ur]_{\varepsilon,{\tt a}\to\varepsilon}
+                           \ar[dr]^{{\tt b},{\tt \$}\to\varepsilon}
+\\
+*+\txt{}
+        &*+\txt{}
+                &*+\txt{}
+                        &*+\txt{}
+                                &{q_5}\ar@(dr,dl)^{{\tt b},\varepsilon\to\varepsilon}
+                                       \ar[r]^{\varepsilon,\varepsilon\to\varepsilon}
+                                        &*++[o][F=]{q_6}
+}
+\]
+
+Alternativ k"onnte man den Stackautomaten dadurch finden, dass man
+zuerst eine Grammatik konstruiert, und die dann mit Hilfe des Algorithmus
+aus der Vorlesung in einen Stackautomaten umwandelt. Die Grammatik
+m"uss W"orter mit einem "Uberschuss an {\tt a} oder {\tt b}
+produzieren, wir schreiben die Variable $A$ f"ur W"orter mit einem
+"Uberschuss an {\tt a} und $B$ f"ur W"orter mit einem "Uberschuss an
+{\tt b}. W"orter mit einem "Uberschuss an {\tt a} entstehen, in dem man
+solche W"orter immer im {\tt a} links wachsen l"asst oder wenn man
+ein {\tt b} rechts anf"ugt auch ein {\tt links} hinzuf"ugt. Die Grammatik
+wird damit
+\begin{align*}
+S&\to A|B\\
+A&\to {\tt a}A\\
+ &\to {\tt a}A{\tt b}\\
+ &\to {\tt a}\\
+B&\to B{\tt b}\\
+ &\to {\tt a}B{\tt b}\\
+ &\to {\tt b}\\
+\end{align*}
+Die Konstruktion aus der Vorlesung liefert jetzt zun"achst das
+Ger"ust des Automaten
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{}\ar[r]^{\varepsilon,\varepsilon\to{\tt \$}}
+                &{}\ar[r]^{\varepsilon,\varepsilon\to S}
+                        &R\ar[r]^{\varepsilon,{\tt\$}\to\varepsilon}
+                                &*++[o][F=]{}
+}
+\]
+dem Zustand $R$ f"ugt man jetzt entsprechend der Regeln folgende
+"Uberg"ange hinzu.
+F"ur die Regeln mit $A$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+        &\ar@/^/[d]^{\varepsilon,\varepsilon\to {\tt a}}
+\\
+*+\txt{}
+        &{R}    \ar[r]^{{\tt a},A\to{\tt b}}
+                \ar@/^/[u]^{\varepsilon,A\to A}
+                \ar@(d,dl)^{\varepsilon,A\to{\tt a}}
+                \ar@(l,dl)_{\varepsilon,S\to A}
+                &{}     \ar[r]^{\varepsilon,\varepsilon\to A}
+                        &{}     \ar@/^10pt/[ll]^{\varepsilon,\varepsilon\to{\tt a}}
+}
+\]
+Und f"ur die Regeln mit $B$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+        &\ar@/^/[d]^{\varepsilon,\varepsilon\to B}
+\\
+*+\txt{}
+        &{R}    \ar[r]^{{\tt a},B\to{\tt b}}
+                \ar@/^/[u]^{\varepsilon,B\to {\tt b}}
+                \ar@(d,dl)^{\varepsilon,B\to{\tt b}}
+                \ar@(l,dl)_{\varepsilon,S\to B}
+                &{}     \ar[r]^{\varepsilon,\varepsilon\to B}
+                        &{}     \ar@/^10pt/[ll]^{\varepsilon,\varepsilon\to{\tt a}}
+}
+\]
+Zus"atzlich braucht es noch die Regeln, die zur Verarbeitung
+der Eingabezeichen n"otig sind:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+{R}     \ar@(ul,dl)_{{\tt a},{\tt a}\to\varepsilon}
+        \ar@(ur,dr)^{{\tt b},{\tt b}\to\varepsilon}
+}
+\]
+\end{loesung}
+}{}
+

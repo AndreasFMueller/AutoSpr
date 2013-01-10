@@ -1,0 +1,28 @@
+Das Pumping Lemma liefert zu jeder regul"aren Sprache die Pumping length.
+Bestimmen sie die kleinstm"ogliche Pumping length f"ur die folgenden
+durch regul"are Ausdr"ucke definierten Sprachen
+Sprachen.
+\begin{teilaufgaben}
+\item ${\tt 0001}^*$
+\item $({\tt 01})^*$
+\item ${\tt 1011}$
+\item ${\tt 1}^*{\tt 01}^*{\tt 01}^*$
+\end{teilaufgaben}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item W"orter mit mindestens vier Zeichen k"onnen aufgepumpt werden,
+$N=4$.
+\item W"orter mit mindestens zwei Zeichen k"onnen aufgepumpt werden,
+$N=2$.
+\item Da nur ein einziges Wort vorhanden ist, muss die Pumping length
+so gross sein, dass dieses Wort nicht unter die Anwendbarkeit des
+Pumping Lemmas f"allt, also $N=5$.
+\item Damit ein Wort aufgepumpt werden kann, muss es mindestens eine
+{\tt 1} enhalten. Dies ist erst garantiert, wenn das Wort  mindestens
+drei Zeichen hat. Also $N=3$
+\end{teilaufgaben}
+\end{loesung}
+}{}
+

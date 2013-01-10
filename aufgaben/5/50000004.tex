@@ -1,0 +1,83 @@
+\begin{teilaufgaben}
+\item
+Beschreiben Sie einen Turing-Maschinen-Algorithmus, welcher genau die
+W"orter der Sprache aus Aufgabe~\ref{40000013} erkennt.
+\item
+Welche Komplexit"at hat ihr Algorithmus auf einer Standard-Turing-Maschine?
+\end{teilaufgaben}
+
+\begin{hinweis}
+Es darf in a) auch eine erweiterte Turing-Maschine
+mit mehreren B"andern oder mehreren Spuren verwendet werden.
+\end{hinweis}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Die Sprache besteht aus W"ortern "uber dem Alphabet 
+$\Sigma =\{{\tt <},{\tt >},{\tt /}\}$, die so aufgebaut sind,
+dass die `spitzen' Klammern `{\tt <}' und `{\tt >}' korrekt
+geschachtelt sind. Diese Sprache ist kontextfrei (es w"are leicht,
+daf"ur eine Grammatik anzugeben, wir brauchen das aber nicht), 
+kann also sogar mit einem Stackautomaten analysiert werden.
+Das Zustandsdiagramm
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{}\ar[r]^{\varepsilon,\varepsilon\to {\tt \$}}
+                &{}\ar@(ul,u)^{{\tt <},\varepsilon\to{\tt <}}
+                    \ar@(ur,u)_{{\tt >},{\tt <}\to\varepsilon}
+                    \ar@(dl,dr)_{{\tt /},\varepsilon\to\varepsilon}
+                    \ar[r]^{\varepsilon,{\tt\$}\to\varepsilon}
+                        &*++[o][F=]{}
+}
+\]
+beschreibt diesen Stackautomaten.
+Wir bauen daher eine Turing-Maschine, die einen Stackautomaten
+simuliert. Dazu verwenden wir eine TM mit zwei B"andern, wobei das zweite
+Band die Funktion des Stack "ubernimmt.
+
+Zu Beginn steht also das zu untersuchende Wort auf Band~1,
+der Schreib-/Lesekopf steht auf dem ersten Zeichen.
+Das zweite Band ist leer.
+{
+\renewcommand{\theenumii}{\arabic{enumii}}
+\renewcommand{\labelenumii}{\theenumii.}
+\begin{enumerate}
+\item Falls das aktuelle Zeichen auf Band 1 ein `{\tt <}' ist,
+schreibe es auf Band zwei, und bewege beide Schreib-/Lesek"opfe ein
+Feld nach rechts. Fahre weiter bei 1.
+\item Falls das aktuelle Zeichen auf Band 1 ein `{\tt >}' ist,
+und das aktuelle Zeichen auf Band 2 ein `{\tt <}', "uberschreibe
+das Zeichen auf Band 2 mit \textvisiblespace und bewege den Kopf
+nach links. Der Schreib-/Lesekopf von Band 1 wird nach rechts bewegt.
+Fahre weietr bei 1.
+\item Falls das aktuelle Zeichen auf Band 1 ein `{\tt /}' ist, bewege
+den Kopf nach rechts.
+Fahre weiter bei 1.
+\item Falls das aktuelle Zeichen auf Band 1 ein \textvisiblespace{} ist,
+akzeptiere.
+\item In allen anderen F"allen verwerfe.
+\end{enumerate}
+}
+\item
+Der oben beschriebene Algorithmus hat Komplexit"at $O(n)$ auf einer 
+Turing-Maschine mit zwei B"andern. Nach einem Satz aus der Vorlesung
+kann dieser Algorithmus in einen f"ur eine Standard-Turing-Maschine
+umgewandelt werden, wobei die Laufzeit quadriert wird. Der f"ur 
+Standardturingmaschinen konvertierte Algorithmus h"atte also die
+Laufzeit $O(n^2)$.
+\end{teilaufgaben}
+\end{loesung}
+{\bf Bewertung:}
+Je ein Punkt f"ur die wesentlichen Aspekte der Turing-Maschine,
+d.h.~Wortende wird erkannt ({\bf E}), `{\tt /}' werden ignoriert
+({\bf /}), `{\tt <}' werden mit den richtigen `{\tt >}' gematcht ({\bf M}),
+"uberz"ahlige oder falsche `{\tt >}' werden erkannt.
+Absch"atzung der Komplexit"at f"ur den Algorithmus auf einer
+Mehrbandmaschine 1 Punkt ({\bf K}), Umrechnung in die Komplexit"at
+einer Standard-TM ({\bf U}).
+}{ }
+

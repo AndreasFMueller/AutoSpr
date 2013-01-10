@@ -1,0 +1,66 @@
+Ein Sudoku-Tester ist ein Programm, welches bei einem vollst"andig
+ausgef"ullten Sudoku-Feld entscheidet, ob es richtig ausgef"ullt
+worden ist, d.~h.~ob alle Regeln eingehalten worden sind. K"onnen Sie
+einen Algorithmus angegeben, mit dem man Sudoku-Tester auf Korrektheit
+pr"ufen kann? Dabei ist das mathematische Sudoku-Problem nicht auf
+Felder $9\times 9$ beschr"ankt, sondern kann f"ur beliebig grosse
+Felder $n^2\times n^2$ ($n\times n$ Teilquadrate je $n\times n$)
+gestellt werden.
+
+\begin{hinweis}
+Betrachten Sie eine Eigenschaft, die ausdr"uckt, dass
+jedes Quadrat, das der Tester akzeptiert, mit Sicherheit korrekt
+ist. Es darf vorkommen, dass er korrekte Quadrate als inkorrekt
+verwirft.
+\end{hinweis}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Nein.  Die Eigenschaft \textsl{SUDOKU} sei die Eigenschaft einer
+Sprache $L$, dass jedes Wort $w\in L$ ein korrektes Sudoku-Feld
+beschreibt. Dabei verwenden wir folgende einfache
+Codierung f"ur ein Sudoku-Feld: wir schreiben die Ziffern in
+einem Sudoko-Feld zeilenweise in ein einziges Wort.
+Die Aufgabe fragt danach, ob \textsl{SUDOKU} entscheidbar sei.
+
+Wir wollen zeigen, dass die
+Eigenschaft $\textsl{SUDOKU}$ nicht trivial ist.
+Das einzige Wort der Sprache $L_1=\{w\}$  steht f"ur das korrekt
+ausgf"ullte Sudoku
+\[
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+\raisebox{0pt}[13pt][5pt]{5}&3&4&6&7&8&9&1&2\\
+\hline
+\raisebox{0pt}[13pt][5pt]{6}&7&2&1&9&5&3&4&8\\
+\hline
+\raisebox{0pt}[13pt][5pt]{1}&9&8&3&4&2&5&6&7\\
+\hline
+\raisebox{0pt}[13pt][5pt]{8}&6&9&7&6&1&4&2&3\\
+\hline
+\raisebox{0pt}[13pt][5pt]{4}&2&6&8&5&3&7&9&1\\
+\hline
+\raisebox{0pt}[13pt][5pt]{7}&1&3&9&2&4&8&5&6\\
+\hline
+\raisebox{0pt}[13pt][5pt]{9}&6&1&5&3&7&2&8&4\\
+\hline
+\raisebox{0pt}[13pt][5pt]{2}&8&7&4&1&9&6&3&5\\
+\hline
+\raisebox{0pt}[13pt][5pt]{3}&4&5&2&8&6&1&7&9\\
+\hline
+\end{tabular}
+\]
+also
+\[
+w=
+534678912672195348198342567869761423426853791713924856961537284287419635345286179
+\]
+Andererseits hat
+\[
+L_2=\{1^92^93^94^95^96^97^98^99^9\}
+\]
+die Eigenschaft \textsl{SUDOKU} nicht. Nach dem Satz
+von Rice ist also \textsl{SUDOKU} nicht entscheidbar.
+\end{loesung}
+}{}
+

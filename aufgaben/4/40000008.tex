@@ -1,0 +1,71 @@
+In der Vorlesung wurde die folgende Grammatik $G$ f"ur arithmetische
+Ausdr"ucke vorgestellt
+\begin{align*}
+E&\to E{\tt +}T\;|\; T\\
+T&\to T{\tt \times}F\;|\;F\\
+F&\to {\tt (}\,E\,{\tt )}\;|\; {\tt a}
+\end{align*}
+Verwandeln Sie diese Grammatik in einen Stackautomaten, der die gleiche
+Sprache akzeptiert.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Das Ger"ust des Automaten ist
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{}\ar[r]^{\varepsilon,\varepsilon\to{\tt \$}}
+                &{}\ar[r]^{\varepsilon,\varepsilon\to S}
+                        &R\ar[r]^{\varepsilon,{\tt\$}\to\varepsilon}
+                                &*++[o][F=]{}
+}
+\]
+Dem Zustand f"ugen wir jetzt Schrittweise die den Regeln
+entsprechenden "Uberg"ange hinzu. Zuerst $E\to E{\tt +}T\;|\; T$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+R       \ar[r]^{\varepsilon,E\to T}
+        \ar@(ul,dl)_{\varepsilon,E\to T}
+        &{}     \ar[r]^{\varepsilon,\varepsilon\to {\tt +}}
+                &{}     \ar@/^10pt/[ll]^{\varepsilon,\varepsilon\to E}
+}
+\]
+Dann $T\to T{\tt \times}F\;|\;F$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+R       \ar[r]^{\varepsilon,T\to F}
+        \ar@(ul,dl)_{\varepsilon,T\to F}
+        &{}     \ar[r]^{\varepsilon,\varepsilon\to {\tt \times}}
+                &{}     \ar@/^10pt/[ll]^{\varepsilon,\varepsilon\to T}
+}
+\]
+Und zum Schluss $F\to {\tt (}\,E\,{\tt )}\;|\; {\tt a}$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+R       \ar[r]^{\varepsilon,F\to {\tt )}}
+        \ar@(ul,dl)_{\varepsilon,F\to {\tt a}}
+        &{}     \ar[r]^{\varepsilon,\varepsilon\to E}
+                &{}     \ar@/^10pt/[ll]^{\varepsilon,\varepsilon\to {\tt (}}
+}
+\]
+Jetzt brauchen wir nur noch die Regeln, die die Terminalsymbole mit dem
+Input verarbeiten:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+R       \ar@(u,ur)^{{\tt a},{\tt a}\to\varepsilon}
+        \ar@(r,dr)^{{\tt (},{\tt (}\to\varepsilon}
+        \ar@(dr,d)^{{\tt )},{\tt )}\to\varepsilon}
+        \ar@(ul,l)_{{\tt +},{\tt +}\to\varepsilon}
+        \ar@(l,dl)_{{\tt \times},{\tt \times}\to\varepsilon}
+}
+\]
+Damit ist der Automat vollst"andig konstruiert.
+\end{loesung}
+}{}
+
+

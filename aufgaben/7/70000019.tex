@@ -1,0 +1,34 @@
+Zeigen Sie, dass aus $P=NP$ folgen w"urde, dass es einen Algorithmus
+gibt, der in einem beliebigen ungerichteten Graphen eine Clique
+maximaler Gr"osse in polynomialer Zeit finden kann.
+
+\begin{hinweis}
+Das in der Vorlesung besprochene Cliquenproblem besteht
+darin, eine $k$-Clique zu finden, hier muss dagegen eine Clique maximaler
+Gr"osse gefunden werden, es braucht hier also noch einen weiteren
+Schritt.
+\end{hinweis}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Es ist bekannt, dass das Finden einer $k$-Clique ein NP-vollst"andiges
+Problem ist. Falls $P=NP$ g"abe es einen polynomialen Algorithmus, um
+eine $k$-Clique zu finden.
+
+In der Aufgaben wird jedoch verlangt, eine Clique maximaler
+Gr"osse zu finden. Wir verwenden den eben gefunden polynomialen Algorithmus,
+um einen polynomialen Algorithmus f"ur das Problem eine maximale Clique
+zu finden.
+Sei $m$ die Anzahl der Knoten des Graphen $G$.
+\begin{enumerate}
+\item F"ur alle $k$ beginnend bei $m$ bis hinunter zu $0$ f"uhre Schritt 2 aus:
+\item Verwende $M$ um eine $k$-Clique in $G$ zu finden. Falls eine
+gefunden wird, gib sie als Resultat zur"uck.
+\end{enumerate}
+Dieser Algorithmus f"uhrt im schlimmsten Fall $m$ mal den Algorithmus zum
+Finden einer $k$-Clique aus, welcher polynomiale Laufzeit hat, der neue
+Algorithmus hat also ebenfalls polynomiale Laufzeit.
+\end{loesung}
+
+}{}
+

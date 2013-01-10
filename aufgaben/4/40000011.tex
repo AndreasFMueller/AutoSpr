@@ -1,0 +1,34 @@
+Sei $\Sigma=\{{\tt 0},{\tt 1}\}$ und
+\[
+L=\{w\in\Sigma^*\;|\;\text{$|w|$ ist ungerade und das mittlere Symbol in $w$ ist {\tt 0}}\}.
+\]
+Zeichnen Sie das Zustandsdiagramm eines Stackautomaten, welcher $L$
+erkennt.
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Wir verwenden als Stackalphabet zus"atzlich die zwei Zeichen {\tt \$}
+und {\tt x}. F"ur jedes gelesen Input-Zeichen legen wir ein {\tt x}
+auf den Stack. Nach der zentralen {\tt 0} entfernen wir f"ur jedes
+gelesen Zeichen wieder ein {\tt x}. Akzeptiert werden kann ein Wort,
+wenn danach der Stack leer ist:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{} \ar[r]
+        &{} \ar[r]^{\varepsilon,\varepsilon\to{\tt \$}}
+                &{}\ar@(u,ur)^{{\tt 0},\varepsilon\to{\tt x}}
+                   \ar@(ur,r)^{{\tt 1},\varepsilon\to{\tt x}}
+                   \ar[d]^{{\tt 0},\varepsilon\to\varepsilon}
+\\
+*+\txt{}
+        &*++[o][F=]{}
+                &{}\ar[l]^{\varepsilon,{\tt \$}\to\varepsilon}
+                   \ar@(r,dr)^{{\tt 0},{\tt x}\to\varepsilon}
+                   \ar@(dr,d)^{{\tt 1},{\tt x}\to\varepsilon}
+}
+\]
+\end{loesung}
+}{ }
+
+

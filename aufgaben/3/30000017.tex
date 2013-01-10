@@ -1,0 +1,35 @@
+Ein Wort "uber dem Alphabet $\Sigma=\{0,1\}$ heisst
+3-periodisch, wenn es nur aus Wiederholungen der ersten drei Zeichen besteht,
+also zum Beispiel
+\[
+\text{\tt 011011011},\quad
+\text{\tt 100100100},\quad
+\text{\tt 101101},\quad
+\text{\tt 111},
+\]
+nicht aber
+\[
+\text{\tt 00},\quad
+\text{\tt 1001},\quad
+\text{\tt 101100},\quad
+\text{\tt 111000}.
+\]
+Ist die Sprache $L$ der 3-periodischen W"orter regul"ar?
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Ja, denn der regul"are Ausdruck
+\[
+r=(000)^*|
+(001)^*|
+(010)^*|
+(011)^*|
+(100)^*|
+(101)^*|
+(110)^*|
+(111)^*
+\]
+akzeptiert die Sprache: $L=L(r)$.
+\end{loesung}
+}{ }
+

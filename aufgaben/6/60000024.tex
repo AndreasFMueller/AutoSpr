@@ -1,0 +1,29 @@
+Sei $k$ eine nat"urliche Zahl.
+Betrachten Sie das Problem zu entscheiden, ob eine Turing-Maschine
+Laufzeit $O(n^k)$ hat. Ist es entscheidbar?
+
+\begin{hinweis}
+Satz von Rice.
+\end{hinweis}
+
+\ifthenelse{\boolean{loesungen}}{
+\begin{loesung}
+Die Eigenschaft einer Funktion, $O(n^k)$ Schritte f"ur die Berechnung zu
+ben"otigen, ist eine nichttriviale Eigenschaft im Sinne des Satzes von Rice.
+Um dies einzusehen, m"ussen zwei Funktionen definiert werden, eine,
+die die Eigenschaft hat, und eine, die die Eigenschaft nicht hat.
+
+Die Turing-Maschine, die einen Blank auf das Band schreibt und dann anh"alt,
+hat Laufzeit $1$, also hat die Eigenschaft nicht. Sie braucht nur $O(1)$
+f"ur die Berechnung.
+
+Die Turing-Maschine, die $n^k$ berechnet und entsprechend viele
+Einsen auf das Band schreibt, braucht mindestens Laufzeit $n^k$, nur
+schon um das Ergebnis auf das Band zu schreiben. Die Funktion hat die
+Eigenschaft also.
+
+Nach dem Satz von Rice ist diese Eigenschaft also nicht entscheidbar.
+\end{loesung}
+
+}{}
+
