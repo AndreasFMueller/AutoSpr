@@ -22,6 +22,7 @@
 *.nav
 *.nlo
 *.out
+*.pdf
 *.pdfsync
 *.ps
 *.snm
@@ -30,6 +31,8 @@
 *.vrb
 *.xdy
 *.tdo
-skript/images/*.pdf
+*.swp
+*.swo
 skript/images/*.mpx
 skript/images/*.[0-9]
+skript/images/timestamp
