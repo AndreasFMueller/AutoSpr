@@ -49,8 +49,9 @@
 % \aufgabe
 \newcommand{\aufgabe}[2]{%
 \refstepcounter{problemcounter}%
-\label{#2}
+\label{#2}%
 \bigskip{\parindent0pt\strut}\hbox{\bf\arabic{problemcounter}. }%
+\marginpar{\raggedright\tiny #2}%
 \expandafter\def\csname aufgabepath\endcsname{\inputpath/#1/#2/}%
 \expandafter\input{\inputpath#1/#2.tex}
 }
