@@ -108,7 +108,7 @@ in der Form $A\to BC{\tt x}$.
 Im Beispiel ist $V=\{A\}$, $\Sigma=\{{\tt (},{\tt )}\}$, $S=A$ und
 $R$ enth"alt genau drei Regeln (\ref{regeln-beispiel}).
 
-Zur Abk"urzung erlauben wir, Regeln mit der gleichen Variable
+Zur Abk"urzung erlauben wir, Regeln mit der gleichen Variablen
 auf der linken Seite des Pfeils mit einem Vertikalstrich als
 Verkn"upfungszeichen auf der rechten Seite zu schreiben, zu lesen
 als ``oder'':
@@ -118,12 +118,12 @@ A \to \varepsilon\;|\; AA\;|\; {\tt (}A{\tt )}.
 
 Der Name ``kontextfrei'' r"uhrt daher, dass es bei der Anwendung
 der Regeln nicht auf den Kontext ankommt, in dem eine Variable
-auf er linken Seite des Pfeils $\rightarrow$ vorkommt. Regeln der
+auf der linken Seite des Pfeils~$\rightarrow$ vorkommt. Regeln der
 Form 
 \[
 {\tt a}A\to AA, \qquad {\tt bA}\to BB,
 \]
-sogenannte kontextsenstivie Regeln,
+sogenannte kontextsensitive Regeln,
 \index{kontextsensitiv}
 w"urden dagegen ausdr"ucken, dass die Umwandlung der Variablen $A$
 unterschiedlich zu erfolgen hat, wenn ihr verschiedene Zeichen
@@ -142,7 +142,7 @@ formalisieren.
 \index{Ableitung}
 Falls $A\to w$ eine Regel einer Grammatik $G$ ist, sagt man
 dass die Regel aus $uAv$ den String $uwv$ erzeugt,
-geschrieben $uAv\Rightarrow uwa$. Man sagt, $v$ l"asst sich aus
+geschrieben $uAv\Rightarrow uwv$. Man sagt, $v$ l"asst sich aus
 $u$ ableiten, wenn es eine Folge $u_1,\dots,u_n$ gibt mit
 \[
 u\Rightarrow u_1\Rightarrow u_2\Rightarrow\dots\Rightarrow u_n\Rightarrow v,
@@ -409,7 +409,7 @@ $S_0\to S$, wobei $S$ die urspr"ungliche Startvariable war.
 eine Variable ``wegzulassen''. F"ur jede Regel, die auf der rechten
 Seite eine solche Variable enth"alt, f"ugen wir eine zus"atzliche
 Regel hinzu, bei der die $\varepsilon$-Regel auf der rechten Seite
-angwendet worden ist, d.~h.~die Variable auf der rechten Seite weggelassen
+angwendet worden ist, d.\,h.~die Variable auf der rechten Seite weggelassen
 wurde.  Aus
 \[
 \left.
@@ -491,7 +491,7 @@ A&\to B\;|\; S\\
 B&\to{\tt b}\;|\; \varepsilon
 \end{align*}
 \item $\varepsilon$-"Uberg"ange entfernen: die einzige $\varepsilon$-Regel
-ist $B\to\varepsilon$, d.~h.~zu jeder Regel mit $B$ auf der rechten
+ist $B\to\varepsilon$, d.\,h.~zu jeder Regel mit $B$ auf der rechten
 Seite gibt es auch eine Regel, in welcher auf der rechten Seite das $B$
 weggelassen wurde:
 \begin{align*}
@@ -1399,7 +1399,7 @@ $A_{pq}\overset{*}{\Rightarrow} x$.
 Auch diesen Teil kann man mit vollst"andiger Induktion beweisen,
 diesmal "uber die L"ange der Berechnung. 
 
-Die k"urzeste m"ogliche Berechnung hat $0$ Schritte, d.~h.~sie endet
+Die k"urzeste m"ogliche Berechnung hat $0$ Schritte, d.\,h.~sie endet
 im gleichen Zustand, in dem sie begonnen hat.
 Und tats"achlich enth"alt die Grammatik die Regel $A_{pp}\to\varepsilon$, 
 so dass das leere Wort tats"achlich aus $A_{pp}$ mit leerem
