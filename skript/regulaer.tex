@@ -366,7 +366,7 @@ oder in Tabellenform
 \end{center}
 \end{beispiel}
 
-\begin{beispiel}[\bf W"orter mit einer geraden Anzahl $0$]
+\begin{beispiel}[\bf W"orter mit einer geraden Anzahl $a$]
 Sei $\Sigma=\{{\tt a},{\tt b}\}$,
 $L=\{w\in\Sigma^*\;|\; |w|_{\tt a}\equiv 0\mod 2\}$. $L$ besteht aus
 den W"ortern, die  eine gerade Anzahl von {\tt a}s enthalten. Diese
@@ -581,7 +581,7 @@ $L$ akzeptieren kann.
 Jedes Wort $w\in\Sigma^*$ f"uhrt den Automaten $A$ aus dem
 Anfangszustand in einen Zustand $q\in Q$. F"uhren zwei W"orter
 $w_1$ und $w_2$ den DEA $A$ in den gleichen Zustand $q$, werden
-von dort aus die gleichen W"orter akzeptiert, d.~h.~$L(w_1)=L(w_2)$.
+von dort aus die gleichen W"orter akzeptiert, d.\,h.~$L(w_1)=L(w_2)$.
 Die Abbildung
 \[
 f\colon Q\to Q': q\mapsto L(w)
@@ -801,8 +801,8 @@ geschriebene Wort:
 {\tt esel}^t={\tt lese},\quad {\tt reliefpfeiler}^t={\tt reliefpfeiler}.
 \]
 Palindrome sind offenbar W"orter, die sich bei Anwendung der
-$\mathstrut^t$-Operation nicht "andern: $w^t=w$. Die Menge der Palindrom
-ist nat"urlich eine Sprachen $L=\{w\in\Sigma^*\;|\;w^t=w\}$. 
+$\mathstrut^t$-Operation nicht "andern: $w^t=w$. Die Menge der Palindrome
+ist nat"urlich eine Sprache $L=\{w\in\Sigma^*\;|\;w^t=w\}$. 
 
 Wir zeigen jetzt, dass die Menge der Palindrome keine regul"are Sprache ist.
 Dazu verwenden wir das Pumping-Lemma, wir nehmen also an, die Sprache
@@ -1099,7 +1099,7 @@ der Regex-Library der achten Edition von Unix von Rob Pike
 \index{Pike, Rob} implementiert, die allerdings nicht sehr weit
 verbreitet war. Sp"ater hat Henry Spencer die Regex-Library neu
 implementiert, allerdings ohne die Thompson-NEA Konstruktion, sondern
-mit Backtr"acking. Da er sie in den public domain freigab, hat sie sich
+mit Backtracking. Da er sie in den public domain freigab, hat sie sich
 rasch verbreitet und bildete die Basis Regex-Bibliotheken in Perl, PCRE,
 Python und vielen anderen.
 
@@ -1176,7 +1176,7 @@ also auch $L(A')\subset L(A)$.
 \end{proof}
 
 \subsubsection{Beispiel}
-Der NEA  von Abbildung~\ref{koenntenea}
+Der NEA von Abbildung~\ref{koenntenea}
 %\[
 %\entrymodifiers={++[o][F]}
 %\xymatrix{
@@ -2472,7 +2472,7 @@ akzeptiert.
 \subsection{Performance}
 \index{Laufzeit!eines DEA}
 \index{Laufzeit!eines NEA}
-Ein DEA hat immer Laufzeit $O(n)$, d.~n.~ein Regex-Matcher auf der
+Ein DEA hat immer Laufzeit $O(n)$, d.\,h.~ein Regex-Matcher auf der
 Basis eines DEA wird erkennen, ob ein Inputstring passt innerhalb 
 einer Zeit, die proportional zur L"ange des Strings ist.
 Die einfachste Implementation eines NEA hingegen wird alle M"oglichkeiten
@@ -2509,7 +2509,7 @@ Ausdruck {\tt a?a?a?aaa} hinzuschreiben:
 							&*++[o][F=]{}
 }
 \]
-Und auch einen NEA findet manh aus der Konstruktion eines Automaten
+Und auch einen NEA findet man aus der Konstruktion eines Automaten
 aus einem regul"aren Ausdruck ohne Probleme:
 \[
 \entrymodifiers={++[o][F]}
@@ -2612,6 +2612,7 @@ $3$ und $4$ sind wieder Zust"ande die ben"otigt werden, um andere Inputs
 wie zum Beispiel EOF zu erkennen. Der resultierend DEA entspricht genau
 dem oben vorgeschlagenen DEA.
 
+\begin{sloppypar} % To prevent "java.lang.string" from overflowing
 Nicht alle Implementationen verwenden jedoch diese Theorie. Die
 Regex-Funktionen in der C-Library verwenden dies, und sind entsprechend
 schnell. Alle Unix-Tools, die auf dieser Bibliothek basieren, sind
@@ -2623,3 +2624,4 @@ besseren Regex-Matcher beinhalten w"urde. Leider wurde da nur am
 Interface herumgebastelt, nicht an der Substanz. Vielleicht sollten
 die Implementatoren von {\tt java.util.regex} mal die Vorlesung MathI2
 besuchen.
+\end{sloppypar}
