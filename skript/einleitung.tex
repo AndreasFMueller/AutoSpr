@@ -5,13 +5,13 @@
 %
 \lhead{Einleitung}
 \rhead{}
-\chapter*{Worum geht es?}
+\chapter*{Worum geht es?\label{chapter-intro}}
 Urspr"unglich wurden Computer dazu entwickelt, aufwendige
 Berechnungen zu automatisieren. Inzwischen wird nur noch ein
 ganz kleiner Teil der weltweit installierten Rechenleistung f"ur
 diese Art von Problemen genutzt. 
-Die heute Informatik befasst sich vorwiegend mit der maschinellen Vorarbeitung von
-Zeichenfolgen. 
+Die heutige Informatik befasst sich vorwiegend mit der maschinellen
+Vorarbeitung von Zeichenfolgen. 
 
 W"ahrend fr"uher noch die Frage nach der effizientesten L"osung von
 Berechnungsaufgaben mit dem Computer, also die Numerik, im Vordergrund stand,  
@@ -102,7 +102,7 @@ Nachdem jetzt gekl"art ist, was in dieser Vorlesung nicht behandelt
 wird, hier einige Hinweise, was in den kommenden Kapiteln untersucht
 wird:
 \begin{description}
-\item[Kapitel 3:] Deterministische endliche Automaten (DEA). Von einem
+\item[Kapitel \ref{chapter-regular}:] Deterministische endliche Automaten (DEA). Von einem
 DEA akzeptierte Sprache. Rekonstruktion des DEA aus der Sprache.
 Regul"are Sprachen und DEAs. Regul"are Ausdr"ucke. Nicht deterministische
 endliche Automaten (NEA). Wie beweist man, dass eine Sprache nicht regul"ar
@@ -113,7 +113,7 @@ Anwendung regul"arer Ausdr"ucke zu werden. Viel wichtiger ist Klarheit dar"uber
 zu bekommen, in welchen F"allen regul"are Ausdr"ucke anwendbar sind,
 und wo ihre Grenzen sind.
 
-\item[Kapitel 4:] Stack-Automaten und von einem Stack-Automaten
+\item[Kapitel \ref{chapter-cfl}:] Stack-Automaten und von einem Stack-Automaten
 erzeugte Sprache. Kontextfreie Grammatiken und davon erzeugte Sprachen. 
 Normalform einer Grammatik. Komplexit"at des Parse-Problems.
 Wiederum geht es nicht darum, besonders gewandt im Umgang mit Grammatiken
@@ -128,7 +128,7 @@ Software-Werkzeugen direkt einen Parser f"ur die von der Grammatik beschriebene
 Sprache generieren kann. Wieder ist nicht die Beherrschung solcher Tools das
 Ziel, dies wird in der Vorlesung Compilerbau geschehen.
 
-\item[Kapitel 5:] Turing Maschinen und davon erkannte Sprachen. 
+\item[Kapitel \ref{chapter-turing}:] Turing Maschinen und davon erkannte Sprachen. 
 Rekursiv aufz"ahlbare Sprachen und Aufz"ahler.
 
 Eine Turing Maschinen ist ein stark vereinfachtes Modell eines Computers.
@@ -142,7 +142,7 @@ gibt, die nicht mit dem Computer gel"ost werden k"onnen. Allerdings wird
 es uns schwer fallen, solche Probleme explizit zu beschreiben. 
 Gelingen wird uns dies erst im Kapitel 6.
 
-\item[Kapitel 6:] Entscheidbare Sprachen. Unl"osbare Probleme.
+\item[Kapitel \ref{chapter-entscheidbarkeit}:] Entscheidbare Sprachen. Unl"osbare Probleme.
 
 Ziel dieses Kapitels is zu lernen, wie man ein beliebiges Problem als
 Sprache formulieren kann, und damit die bisher gelernte Theorie darauf
@@ -154,7 +154,7 @@ zu pr"ufen, ob sie je anhalten werden.
 Ausserdem lernen wir eine Technik kennen, mit der wir Probleme 
 nach ``Schwierigkeitsgrad'' miteinander vergleichen k"onnen. 
 
-\item[Kapitel 7:] Komplexit"atstheorie. In diesem Kapitel sollen 
+\item[Kapitel \ref{chapter-komplexitaet}:] Komplexit"atstheorie. In diesem Kapitel sollen 
 die prinzipiellen Grenzen der Geschwindigkeit ermittelt werden,
 mit der ein Problem mit dem Computer gel"ost werden kann. Es wird sich
 herausstellen, dass es zwar viele Probleme gibt, die mit aktuellen Computern in
@@ -163,7 +163,7 @@ existiert, f"ur die es nach aktuellem Wissen keinen Algorithmus geben kann,
 der die Aufgabe bei etwas gr"osseren Problemen l"osen kann. Diese Problem sind
 zwar im Prinzip l"osbar, aber alle Rechnleistung der Welt kann die Probleme nicht l"osen.
 
-\item[Kapitel 8:]
+\item[Kapitel \ref{chapter-vollstaendigkeit}:]
 Turing-Maschinen haben eine universelle Eigenschaft: ein Turing-Maschine
 kann jede andere Turing-Maschine simulieren. Doch in der Praxis
 programmiert niemand direkt eine Turing-Maschine, dazu werden
