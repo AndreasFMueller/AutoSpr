@@ -1,0 +1,3 @@
+22:     PRINTSTRING "1234 \"abc\""
+23:     PRINTVAR v7
+24:     PRINTTM

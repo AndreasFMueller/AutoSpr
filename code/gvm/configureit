@@ -1,0 +1,21 @@
+#
+# setting the right configure flags per plattform
+#
+# (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
+#
+case `uname` in
+	Darwin)
+		# on Mac OS X, if you have the GNU MP under /usr/local/lib
+		LDFLAGS=-L/usr/local/lib
+		CFLAGS="-g -Wall -O -std=c99"
+		export CFLAGS LDFLAGS
+		;;
+	Linux)
+		# on Linux, GMP is usually included and installed under /usr/lib
+		# no special linker flags are needed to find it
+		CFLAGS="-g -Wall -O -std=c99"
+		export CFLAGS 
+esac
+
+# now run configure with these flags
+./configure

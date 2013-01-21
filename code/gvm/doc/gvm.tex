@@ -1,0 +1,314 @@
+\documentclass{beamer}
+\usepackage{array}
+\usepackage{german}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{txfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{picins}
+\usepackage{ifthen}
+\usepackage{multirow}
+
+\mode<beamer>{%
+\usetheme[hideothersubsections,hidetitle]{Hannover}
+}
+\title[]{GOTO virtual machine}
+\date[27. Mai 2012]{27. Mai 2012}
+\begin{document}
+
+\def\blank{\text{\textvisiblespace}}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\section{GOTO}
+\frametitle{Sprache GOTO}
+Programm zur Berechnung der Summe $5 + 7$:
+\verbatiminput{beispiel.goto}
+
+"Ahnlich k"onnen beliebige arithmetische Operationen implementiert werden.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Erweiterte Sprache GOTO}
+Grammatik f"ur Ausdr"ucke $E$, arithmetische Operationen
+mit Operator $O$
+zwischen
+Variablen $V$ und Konstanten $C$:
+\begin{align*}
+E&\rightarrow V \; \text{\tt ':='} \; C\\
+E&\rightarrow V \; \text{\tt ':='} \; V\\
+ &\rightarrow V \; \text{\tt ':='} \; V \; O \; C\\
+ &\rightarrow V \; \text{\tt ':='} \; V \; O \; V\\
+O&\rightarrow \text{'+'}\;|\; \text{'-'}\;|\; \text{'*'}\;|\; \text{'/'}\;|\; \text{'\%'}\\
+V&\rightarrow \text{\tt 'v'}\; C\\
+C&\rightarrow D \; |\; CD\\
+D&\rightarrow
+\text{\tt '0'}\;|\;
+\text{\tt '1'}\;|\;
+\text{\tt '2'}\;|\;
+\text{\tt '3'}\;|\;
+\text{\tt '4'}\;|\;
+\text{\tt '5'}\;|\;
+\text{\tt '6'}\;|\;
+\text{\tt '7'}\;|\;
+\text{\tt '8'}\;|\;
+\text{\tt '9'}
+\end{align*}
+\end{frame}
+
+\begin{frame}
+\frametitle{Erweiterte Sprache GOTO}
+
+{\bf Ablaufsteuerung:} Zus"atzlicher Befehl {\tt HALT}
+\verbatiminput{steuerung.goto}
+
+{\bf Ausgabe:} 
+\verbatiminput{print.goto}
+
+{\tt PRINTTM} gibt Werte der ersten drei Variable in spezieller Form aus
+(siehe sp"ater: TM Simulator)
+
+\end{frame}
+
+\begin{frame}
+\section{virtual machine}
+\frametitle{GOTO virtual machine}
+\begin{itemize}
+\item Scanner (mit {\tt flex} generiert)
+\item Parser (mit {\tt bison} generiert)
+\item Variablen und Konstanten mit beliebiger L"ange: GNU multiprecision
+library (GNU MP)
+\item Programm wird als Array von {\tt gvm\_node\_t} gespeichert
+\verbatiminput{node.h}
+\item Hilfsfunktionen zum Ausgeben und Ausf"uhren des Programms
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Node Payload}
+\verbatiminput{nodes.h}
+\end{frame}
+
+\begin{frame}
+\frametitle{VM Struktur}
+\verbatiminput{vm.h}
+\end{frame}
+
+\begin{frame}
+\frametitle{Parser generiert {\tt gvm\_node\_t}}
+{\bf Zuweisungen:}
+\verbatiminput{parser.y}
+\end{frame}
+
+\begin{frame}
+\frametitle{Parser generiert {\tt gvm\_node\_t}}
+{\bf Bedingter Sprung:}
+\verbatiminput{parsergoto.y}
+\end{frame}
+
+\begin{frame}
+\frametitle{VM Execution Engine}
+\verbatiminput{engine.h}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ausf"uhrung: Zuweisung}
+{\small
+\verbatiminput{assign.h}
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ausf"uhrung: Sprung}
+\verbatiminput{goto.h}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ausf"uhrung: bedingter Sprung}
+\verbatiminput{condgoto.h}
+\end{frame}
+
+\begin{frame}
+\section{Turing Vollst"andigkeit}
+\frametitle{GOTO ist Turing vollst"andig}
+
+M"ogliche Beweise:
+\begin{enumerate}
+\item GOTO ist "aquivalent zu WHILE, man zeigt das WHILE Turing vollst"andig ist
+\item Man zeigt, dass sich eine bereits bekannt Turing vollst"andige Sprache
+nach GOTO kompilieren l"asst
+\item Man baut einen Turing-Maschinen-Simulator in GOTO
+\end{enumerate}
+
+Wir w"ahlen einem Mischung von 2 und 3: Compiler, der TM-Beschreibungen
+in GOTO "ubersetzt
+\[
+\Rightarrow
+\]
+ein beliebiges Turing Programm kann auf der GOTO VM ausgef"uhrt werden.
+\end{frame}
+
+\begin{frame}
+\frametitle{Turing Maschinen Sprache}
+Beschreibung von Turing-Maschinen:
+{\small
+\verbatiminput{../tmc/beaver3}
+}
+``Mathematisch'':
+\[
+\text{\tt (}
+q
+\text{\tt ,}
+a
+\text{\tt ) -> (}
+q'
+\text{\tt ,}
+a'
+\text{\tt )}
+m
+\quad
+\Leftrightarrow
+\quad
+\delta(a,q)=(q',q',m),
+\quad m\in \{L, R, H\}
+\]
+
+\end{frame}
+
+\begin{frame}
+\frametitle{TM-Programm: Datenstruktur}
+\verbatiminput{tm.h}
+\end{frame}
+
+\begin{frame}
+\frametitle{TM Programm: Band, Zustand, Kopfposition}
+\begin{itemize}
+\item Band: Variable {\tt v0}, 2 bit pro Zelle, mit folgender Codierung:
+\begin{itemize}
+\item['\blank'\quad] Code 0 (leeres Band $= 0$, alle Zellen mit '\blank' initialisiert)
+\item['0'\quad] Code 1
+\item['1'\quad] Code 2
+\end{itemize}
+\item Zustand: Variable {\tt v1}
+\item Kopfposition: Variable {\tt v2}
+\end{itemize}
+Beispiel:
+\begin{align*}
+\text{{\tt v0} dezimal} &= 45736175274\\
+\text{4-er System}&=222212011222122222\\
+\text{Decodiert}&=\text{'11111011100\blank101111'}
+\end{align*}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Zelle lesen/schreiben}
+$b =$ Band, $k=$ Kopfposition
+
+\bigskip
+
+{\bf $c$ aus Zelle lesen:}
+\[
+c=(b / 4^k) \mod 4
+\]
+
+\bigskip
+
+{\bf Zelle mit $c$ schreiben:}
+\begin{align*}
+v_{10}&=v_0\mod 4^k\\
+v_{11}&=4(v_0/4^{k+1})\\
+v_0&=v_{10} + (c + v_{11})4^k
+\end{align*}
+\end{frame}
+
+\begin{frame}
+\section{TM Compiler}
+\frametitle{TM Compiler}
+Compiler erzeugt ein GOTO Program folgender Struktur
+\begin{enumerate}
+\item Initialisiere Variablen
+\item Isoliere Zelle {\tt v2} aus dem Band ({\tt v0})
+\item F"ur jede TM-Anweisung:
+\begin{enumerate}
+\item Pr"ufe, ob Zustand "ubereinstimmt
+\item Pr"ufe, ob Bandzeichen "ubereinstimmt
+\item Merke neuen Zustand, neues Bandzeichen, Kopfbewegung
+\end{enumerate}
+\item Modifiziere Band
+\item Gehe zum neuen Zustand "uber
+\item Bewege den Kopf
+\item Weiter bei 2.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Initialisierung}
+\verbatiminput{tmc-initial.goto}
+\end{frame}
+
+\begin{frame}
+\frametitle{Zelle isolieren}
+{\bf $c$ aus Zelle lesen:}
+\[
+c=(b / 4^k) \mod 4
+\]
+\verbatiminput{tmc-isolate.goto}
+\end{frame}
+
+\begin{frame}
+\frametitle{"Uberetzung einer TM Anweisung}
+\begin{center}
+\tt (1,1) -> (1, 1) Right
+\end{center}
+wird "ubersetzt in
+\verbatiminput{tmc-command.goto}
+{\tt v7} = neuer Zustand, {\tt v6} = neues Bandzeichen, {\tt v5} = Kopfbewegung
+(1 = Left, 2 = Right, 3 = Halt)
+\end{frame}
+
+\begin{frame}
+\frametitle{Zelle "uberschreiben}
+{\bf Zelle mit $c$ schreiben:}
+\[
+(v_0\mod 4^k)
++ (c +
+4(v_0/4^{k+1})
+)4^k
+\]
+GOTO Code:
+{\small
+\verbatiminput{tmc-splice.goto}
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kopfbewegung}
+\verbatiminput{tmc-move.goto}
+\end{frame}
+
+\begin{frame}
+\frametitle{Zustand}
+Zustand aufdatieren und neuer Durchgang:
+\verbatiminput{tmc-state.goto}
+Damit man die Rechnung verfolgen kann:
+\verbatiminput{tmc-printtm.goto}
+liefert den Trace-Output:
+\verbatiminput{tmc-beaver.tm}
+\end{frame}
+
+\begin{frame}
+\frametitle{Demo}
+\end{frame}
+
+\end{document}

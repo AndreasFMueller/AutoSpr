@@ -1,0 +1,26 @@
+1:	v1 := 7
+2:	v2 := 5
+3:	v0 := v1
+4:	v3 := v2
+5:	IF v0 = 0 GOTO 9
+6:	v3 := v3 + 1
+7:	v0 := v0 - 1
+8:	GOTO 5
+9:	v4 := 0
+10:	v0 := v1
+11:	IF v0 = 0 GOTO 15
+12:	v4 := v4 + v3
+13:	v0 := v0 - 1
+14:	GOTO 11
+15:	v5 := v1 * v3
+16:	v6 := 1024
+17:	v7 := 10
+18:	IF v7 = 0 GOTO 22
+19:	v6 := v6 * v6
+20:	v7 := v7 - 1
+21:	GOTO 18
+22:	PRINTSTRING "1234 \"abc\""
+23:	PRINTVAR v7
+24:	PRINTVAR v6
+25:	PRINTTM
+26:	HALT

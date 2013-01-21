@@ -1,0 +1,128 @@
+.TH "GOTO VM"  "1" "Jun 2012" "Goto virtual machine" HSR
+.SH NAME
+gvm \- execute GOTO programs
+.SH SYNOPSIS
+.B gvm
+[
+.B \-dnt
+] [
+.BI -0 initial-value0
+] [
+.BI -s sleep
+] programfile
+.SH DESCRIPTION
+.BR gvm (1)
+is a virtual machine that parses and executes programs in the GOTO language,
+an extremely simple language mainly used in theoretical computer science
+to discuss capabilities of programming languages provided by various
+control structures.
+
+A program in the GOTO language consists of a list of numbered commands
+like in
+
+.nf
+.ti 10
+1: v0 := 5
+.ti 10
+2: v1 := 4
+.ti 10
+3: IF v1 = 0 THEN 7
+.ti 10
+4: v0 := v0 + 1
+.ti 10
+5: v1 := v1 - 1
+.ti 10
+6: GOTO 3
+.ti 10
+7: HALT
+.fi
+
+GOTO has an infinite set of variables v0, v1, v2, ...
+that can hold arbitrarily large natural numbers.  
+Variables can be assigned constants, or simple arithmetic
+operations with constants of the form
+
+.ti 10
+vi := vj + c
+
+or
+
+.ti 10
+vi := vj - c.
+
+If the subtraction underflows, the target variable is assigned the value 0.
+Since all arithmetic operations can be built from these primitive
+operations, 
+.BR gvm (1) 
+allows arbitrary arithmetic operations between variables of the
+form vi := vj
+.I op
+vk, where
+.I op
+is any of the operators +, -, *, / and %. Division is of course
+integer division.
+
+GOTO has a conditional jump instruction of the form
+
+.ti 10
+.R IF
+.I vi = c
+.R THEN
+.I target
+
+Note that the only supported condition is equality comparison between
+a variable and a constant. Using the conditional jump with a trivially
+satisfied condition gives the behavior of an unconditional jump operation,
+but for convenience, such an unconditional goto command has been added 
+in
+.BR gvm (1).
+Basic GOTO, being a theoretical tool to study programming language properties
+rather than a practical programming environment, lacks any input/output
+features. To make 
+.BR gvm (1) 
+useful for experiments, three basic print commands have been added:
+
+.ti 10
+PRINTVAR v1
+.ti 10
+PRINT "some string"
+.ti 10
+PRINTTM
+
+The PRINTVAR command prints the contents of a variable in decimal.
+The PRINT command prints an arbitrary string. PRINTTM interprets the
+first three variables as the state of a turing machine as implemented
+by the turing machine compiler
+.BR tmc (1)
+and prints it in more easily interpreted format.
+.SH OPTIONS
+.TP
+.B \-d
+enable debug output.
+.TP
+.B \-n
+don't actually execute the program, just read it. This is useful when
+looking for syntactic problems in the code.
+.TP
+.B \-t
+enable tracing. With this flag, 
+.BR gvm (1)
+displays each command and its result.
+.TP
+.BI \-0 initial-value0
+initialize variable 0 with a value different from 0. This is
+useful if
+.BR gvm (1)
+is used to run turing machine programs compiled with
+.BR tmc (1),
+which expect the initial turing machine tape contents in variable 0.
+.TP
+.BI \-s sleep
+Pause for 
+.I sleep
+nanoseconds between each step of the GOTO program.
+.SH "SEE ALSO"
+.BR tmc(1)
+.SH AUTHOR
+Prof. Dr. Andreas Mueller <andreas.mueller@hsr.ch>
+

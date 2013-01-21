@@ -12,3 +12,12 @@ minedemo      Java-Programm zur Illustration des MINESWEEPER-CONSISTENCY
 
 turing        Ein einfacher Turing-Maschinen-Simulator in C mit Beispielen,
               welche auch in der Vorlesung gezeigt wurden.
+
+gvm           GOTO Virtual Machine. Zum Nachweis, dass GOTO eine Turing-
+              vollstaendige Sprache ist, enthaelt dieses Verzeichnis den
+              Source Code fuer eine virtuelle Maschine, die GOTO-Code
+              ausfuehren kann, und eine Compiler, der beliebige Turing
+              Maschinen-Beschreibungen (wie aus dem Verzeichnis turing/pgm)
+              in GOTO code uebersetzen kann. Damit kann man eine universelle
+              Turingmaschine auf einer GOTO Maschine simulieren.
+

@@ -1,0 +1,12 @@
+89: IF v5 = 1 GOTO 91
+90: GOTO 92
+91: v2 := v2 - 1
+92: IF v5 = 2 GOTO 94
+93: GOTO 95
+94: v2 := v2 + 1
+95: IF v5 = 3 GOTO 97
+96: GOTO 98
+97: GOTO 100
+...
+100: HALT
+

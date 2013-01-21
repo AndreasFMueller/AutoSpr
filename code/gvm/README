@@ -1,0 +1,43 @@
+What this is
+------------
+
+This is the GOTO virtual machine project. It implements the following
+components:
+
+1. A virtual machine called GVM (GOTO Virtual Machine) that can execute
+   GOTO programs with some restrictions.
+
+2. A compiler that compiles symbolic GOTO programs to the GVM
+ 
+To build/install the software, run the configureit script, it detects
+your plattform and sets appropriate environment variables for configure
+to succeed. Then proceed as described in the INSTALL file.
+
+How to use it
+-------------
+
+After the programs have been built, you can use the tmc (turing machine
+compiler) program to compile any turing machine description (see the
+samples provided for the syntax). The command
+
+	tmc -o beaver3.goto pgm/beaver3
+
+compiles the turing machine program in the file pgm/beaver3 into
+an equivalent GOTO program in the current directory. If the turing
+machine program needs initial data and/or special initial position of
+the read/write head, this can be added using the options described in
+the tmc(1) manula page.
+
+Once the program is compiled, the gvm(1) program can be used to run the
+GOTO program. The tmc(1) compiler generates statements to display the
+state of the simulated turing machine after each turing step.  If you
+want to see how the GOTO machine implements the individual steps, use
+the -t option.  Additional options are described in the gvm manual page.
+
+Documentation
+-------------
+
+The doc directory contains manual pages for tmc(1) and gvm(1).
+In addition, running "make gvm.pdf" in the doc directory generates,
+provided your machine has a reasonably complete latex installation,
+a presentation explaining the GVM project.

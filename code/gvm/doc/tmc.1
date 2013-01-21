@@ -1,0 +1,114 @@
+.TH "GOTO VM"  "1" "Jun 2012" "Goto virtual machine" HSR
+.SH NAME
+tmc \- turing machine compiler for gvm
+.SH SYNOPSIS
+.B tmc
+[
+.B \-dnt
+] [
+.BI -0 initial-value0
+] [
+.BI -s sleep
+] programfile
+.SH DESCRIPTION
+.BR tmc (1)
+takes a turing machine description an turns it into an equivalent
+GOTO program that can then be executed by the GOTO virtual machine
+.BR tvm (1).
+
+A Turing machine program that
+.BR tmc (1) 
+can understand is a list of statements of the form
+
+.ti 10
+( 
+.I state
+,
+.I tapecontents
+) -> (
+.I newstate
+,
+.I newtapecontents
+)
+.I movement
+
+This entry specifies that if the machine is in state
+.I state
+and reads the character
+.I tapecontents
+from the current position of the read/write-head, it will
+transition to new state
+.IR newstate ,
+write 
+.I newtapeconents
+to the current cell and move
+the read/write-head according to the value of
+.IR movement .
+This list thus describes the transition function of the turing machine.
+Note that only the characters 0, 1 and B (for blank) are allowed to
+encode the 
+.I tapecontents
+and
+.IR newtapecontents .
+
+The 
+.I movement
+element can be Left, Right or Halt.
+So there is no particular accepting or rejecting state as in some other
+definitions of the turing machine.
+
+This implementation uses the first three variables to represent the
+state of the turing machine. v0 contains an encoded version of the
+contents of the tape. For this purpose, blank is encoded as 0,
+0 is encoded as 1 and 1 is encoded as 2. The string that results
+from this encoding is the interpreted as a number in base 4 and
+stored in v0. Base 4 is used because cells of the tape are then
+2-bit blocks of the binary representation of v0.
+
+Variable v1 contains the current state and v2 contains the current
+read/write-head position. 
+
+.SH OPTIONS
+.TP
+.B \-d
+enable debug output.
+.TP
+.BI \-o outfile
+Specifies that the generated GOTO program be written to the file
+.I outfile
+instead of the default a.goto.
+.TP
+.B \-n
+don't actually execute the program, just read it. This is useful when
+looking for syntactic problems in the code.
+.TP
+.BI \-s state
+Set the initial state to 
+.IR state .
+By default, the initial state is 0.
+.TP
+.BI \-p position
+Set the initial position to
+.IR position .
+By default, the initial position is 0. The turing machine
+implementation is to a tape that is inifinite only to the right,
+some applications may still want to use portions of the tape to the
+left of the initial position. By adjusting the initial position using
+this option, this limited turing machine can still be used.
+.TP
+.BI \-t tapecontents
+use the string 
+.I tapecontents
+as the initial contents of the tape. Note that the string may not
+contain any other characters than 0, 1 and blank.
+.TP
+.BI \-T tapefilename
+Read the initial contents from a file named
+.IR tapefilename .
+The file
+.I tapefilename
+may only contain a single line.
+.SH "SEE ALSO"
+.BR gvm(1)
+.SH AUTHOR
+Prof. Dr. Andreas Mueller <andreas.mueller@hsr.ch>
