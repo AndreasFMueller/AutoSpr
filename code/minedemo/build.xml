@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!--
+
+  build.xml == ANT file to build the mine sweeper application
+
+  The default target builds the application and creates a JAR 
+  file build/minesweeper.jar. To run the application use
+
+  java -classpath build/minesweeper.java ch.hsr.mathi2.minedemo.Mines <mines>
+
+  The <mines> argument should specify a mine field speicification
+  file, example mine fields are contained in the samples directory.
+
+  There are also targets included to directly launch the application
+  on the samples
+
+  (c) 2008 Prof Dr Andreas Mueller, Hochschule Rapperswil
+
+  -->
+
+<project name="minesweeper" default="all" basedir=".">
+
+    <property name="srcdir" value="${basedir}"/>
+    <property name="builddir" value="${basedir}/build"/>
+    <property name="classesdir" value="${builddir}/classes"/>
+    <property name="libdir" value="${basedir}/libraries"/>
+
+    <path id="classpath">
+    </path>
+
+    <path id="classpathrun">
+	<pathelement location="${builddir}/minesweeper.jar"/>
+    </path>
+
+    <target name="all" depends="jar"/>
+
+    <target name="compile">
+	<mkdir dir="${classesdir}"/>
+	<javac srcdir="${srcdir}" destdir="${classesdir}" debug="on"
+		deprecation="on" optimize="on" includes="**"
+		includeantruntime="false">
+	    <compilerarg value="-Xlint"/>
+	    <classpath refid="classpath"/>
+	</javac>
+    </target>
+
+    <target name="jar" depends="compile">
+	<jar jarfile="${builddir}/minesweeper.jar">
+	    <fileset dir="${classesdir}">
+		<include name="ch/hsr/mathi2/minesweeper/*.class"/>
+	    </fileset>
+	    <fileset dir="${basedir}">
+		<include name="resources/*.png"/>
+	    </fileset>
+	</jar>
+    </target>
+
+    <target name="test" depends="jar">
+	<java classname="ch.hsr.mathi2.minesweeper.Mines"
+	    classpathref="classpathrun" fork="true">
+	    <arg line="samples/test.mines"/>
+	</java>
+    </target>
+
+    <target name="wire" depends="jar">
+	<java classname="ch.hsr.mathi2.minesweeper.Mines"
+	    classpathref="classpathrun" fork="true">
+	    <arg line="samples/wire.mines"/>
+	</java>
+    </target>
+
+    <target name="cross" depends="jar">
+	<java classname="ch.hsr.mathi2.minesweeper.Mines"
+	    classpathref="classpathrun" fork="true">
+	    <arg line="samples/crossover.mines"/>
+	</java>
+    </target>
+
+    <target name="splitter" depends="jar">
+	<java classname="ch.hsr.mathi2.minesweeper.Mines"
+	    classpathref="classpathrun" fork="true">
+	    <arg line="samples/splitter.mines"/>
+	</java>
+    </target>
+
+    <target name="and" depends="jar">
+	<java classname="ch.hsr.mathi2.minesweeper.Mines"
+	    classpathref="classpathrun" fork="true">
+	    <arg line="samples/and.mines"/>
+	</java>
+    </target>
+
+</project>

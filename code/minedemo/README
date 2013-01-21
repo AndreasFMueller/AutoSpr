@@ -1,0 +1,20 @@
+Demo-Programm zum Problem MINESWEEPER-CONSISTENCY
+
+Mehr Information zum bauen und ausfuehren des Programmes findet sich
+im File build.xml. Beispiel-Minenfelder sind in den Files im
+Verzeichnis samples enthalten.
+
+wire.mines         einfacher "Draht"
+
+crossover.mines    Ueberkreuzung von zwei "Draehten"
+
+splitter.mines     Splitter, Verzweigung von "Draehten"
+
+and.mines          UND Verknuepfung
+
+or.mines           ODER Verknuepfung
+
+xor.mines          XOR Verknuepfung
+
+test.mines         kleines Testbeispiel
+
