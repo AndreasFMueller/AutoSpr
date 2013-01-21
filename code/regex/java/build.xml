@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+
+<!--
+
+  build.xml == build the regex test programs
+
+  run ant in this directory to build the regex test classes in the jar
+  file build/regex.jar. Then use the two test targets to exercise the
+  regex matchers:
+
+  target test-string    run the regex matcher based on java.lang.String
+
+  target test-regex     run the regex matcher based on java.util.regex
+
+  (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
+
+  -->
+
+<project name="regex" default="all" basedir=".">
+
+    <property name="srcdir" value="${basedir}"/>
+    <property name="builddir" value="${basedir}/build"/>
+    <property name="classesdir" value="${builddir}/classes"/>
+
+    <path id="classpath">
+        <pathelement location="${builddir}/regex.jar"/>
+    </path>
+
+    <target name="all" depends="jar"/>
+
+    <target name="compile">
+        <mkdir dir="${classesdir}"/>
+        <javac srcdir="${srcdir}" destdir="${classesdir}" debug="on"
+            deprecation="on"
+            optimize="on" includes="**" includeantruntime="false">
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+
+    <target name="jar" depends="compile">
+        <jar jarfile="${builddir}/regex.jar">
+            <fileset dir="${classesdir}">
+                <include name="ch/hsr/mathi2/*.class"/>
+            </fileset>
+        </jar>
+    </target>
+
+    <target name="test-string" depends="jar">
+        <java classname="ch.hsr.mathi2.regex"
+            classpathref="classpath">
+            <arg line="ch.hsr.mathi2.StringMatcher"/>
+        </java>
+    </target>
+
+    <target name="test-regex" depends="jar">
+        <java classname="ch.hsr.mathi2.regex"
+            classpathref="classpath">
+            <arg line="ch.hsr.mathi2.RegexMatcher"/>
+        </java>
+    </target>
+
+</project>

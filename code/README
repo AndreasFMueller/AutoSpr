@@ -1,0 +1,13 @@
+Code-Beispiel als Anwendungen der Theorie
+
+regex         Programme zur Demonstration der Leistungsfaehigkeit der
+              regular expression matcher in verschiedenen Programmiersprachen
+
+calculator    Einfaches Taschenrechner-Programm, welches aus einer 
+              kontextfreien Grammatik mit Hilfe eines Scanner-Generators
+              (flex) und Parser-Generators (bison) aufgebaut wurde.
+
+minedemo      Java-Programm zur Illustration des MINESWEEPER-CONSISTENCY
+              Problems.
+
+

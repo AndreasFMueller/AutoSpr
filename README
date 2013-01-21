@@ -1,6 +1,20 @@
 Skript zur Vorlesung Mathematische Grundlagen der Informatik 2 
 an der Hochschule fuer Technik Rapperswil
 
+Die Unterverzeichnisse enthalten die folgenden, von einander unabhaengigen
+Teile:
+
+aufgaben    Eine Sammlung von Aufgaben, entstanden aus Uebungsaufgaben und
+            Pruefungen frueherer Jahre
+
+skript      Source Code und und Bilder fuer das Skript
+
+code        Beispiele von Anwendungen der Theorie
+
+
+Skript
+------
+
 Zum Bauen dieses Skripts ist eine vollstaendige LaTeX Installation
 erforderlich, wie sie jeder typischen Linux Distribution beiliegt.
 
@@ -17,3 +31,21 @@ gebaut werden:
 
     $ cd skript
     $ make
+
+Aufgabensammlung
+----------------
+
+Im Verzeichnis "aufgaben" wurde eine Aufgabensammlung aufgebaut. Die
+Aufgaben sind nach Kapiteln geordnet und so organisiert, dass die Aufgaben
+zusammen mit den Musterloesungen leicht aus anderen Projekten referenziert
+werden koennen. Falls eine Aufgabe oder ihre Loesung zusaetzliche Files 
+benoetig, sind diese Files in einem Verzeichnis mit der gleichen Nummer
+abgelegt.
+
+Code
+----
+
+Im Unterverzeichnis "code" befindet sich ein Reihe kleiner Beispielprojekte,
+welche die Anwendung der Theorie des Skriptes illustrieren. Eine kurze
+Beschreibung der Projekte findet man in code/README.
+
