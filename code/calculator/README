@@ -1,0 +1,40 @@
+Bau eines einfachen Taschenrechners mit Bison und Flex
+
+Dieses Verzeichnis illustriert, wie mit Hilfe von Scanner- und Parser-
+Generatoren mit wenig Aufwand ein Kommandozeileninterpreter gebaut
+werden kann. Die einzelnen Phasen sind:
+
+phase1  Minimale Grammatik fuer arithmetische Ausdruecke, kein
+        monadisches Minus, Zahlen koennen kein Vorzeichen haben.
+        Der Taschenrechner kann jetzt zwar die syntaktische Korrektheit
+        von Ausdruecken pruefen, er kann aber noch keine Rechnungen
+        durchfuehren.
+
+phase2	Strukturierte Rueckgabewerte des Lexers an den Parser.
+        Die Zahlen werden zwar jetzt in eine interne double-Darstellung
+        gewandelt, aber die Grammatik kann immer noch nichts damit anfangen.
+
+phase3	Grammatik mit Aktionen ausstatten, so dass mit den Rueckgabewerten
+        des Lexers gerechnet werden kann.
+
+phase4	Bisher konnte der calculator nur einen einzigen arithmetischen
+        Ausdruck verarbeiten, jeder weiter Ausdruck fuehrte zu einem 
+        Syntaxfehler. In dieser Phase wird die Grammatik erweiter, so
+        dass eine beliebige Zahl von Ausdruecken verarbeitet werden kann.
+
+phase5  Syntax und Implementation fuer Funktionen.
+
+phase6  Syntax und Implementation fuer die Potenzfunktion in der Form
+        x^y, also 2^3 = 8
+
+phase7  Syntax und Implementation von Registern fuer die Zwischenspeicherung
+        von Resultaten
+
+phase8  Syntax on Implementation von Konstanten
+
+phase9  Syntax fuer eine primitive History-Funktion: Zugriff auf das letzte
+        Rechenresultat
+
+Das Makefile in diesem Verzeichnis kann dazu verwendet werden, den Calculator
+in jeder Phase zu bauen.
+

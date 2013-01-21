@@ -1,0 +1,2 @@
+- Rueckgabewerte des Lexers mit strukturierten Werten versehen
+- Zahlen werden vom Lexer erkannt und in double Werte umgewandelt
