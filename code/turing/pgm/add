@@ -1,0 +1,146 @@
+//
+// Sicherstellen, dass zwischen den beiden Zahlen zwei Blanks stehen (statt einer)
+//
+(0,0) -> (0,0) Right
+(0,1) -> (0,1) Right
+(0,B) -> (1,B) Right
+
+(1,0) -> (1,0) Right
+(1,1) -> (1,1) Right
+(1,B) -> (2,B) Left
+
+(2,0) -> (3,B) Right // we have seen a 0, we overwrite it and intend to write it in the field at the right
+(2,1) -> (4,B) Right // we have seen a 1, we overwrite it and intend to write it in the field at the right
+(2,B) -> (6,B) Right
+
+(3,0) -> (5,0) Left
+(3,1) -> (5,0) Left
+(3,B) -> (5,0) Left
+
+(4,0) -> (5,1) Left
+(4,1) -> (5,1) Left
+(4,B) -> (5,1) Left
+
+(5,B) -> (2,B) Left
+(5,0) -> (3,B) Right
+(5,1) -> (4,B) Right
+
+(6,B) -> (6,B) Right
+(6,0) -> (7,0) Right
+(6,1) -> (7,1) Right
+
+(7,0) -> (7,0) Right
+(7,1) -> (7,1) Right
+(7,B) -> (8,B) Left
+//
+// Im Zustand 8 zeigt der Lesekopf auf das letzte Zeichen der Summe
+//
+(8,0) -> (10,B) Left
+(8,1) -> (20,B) Left
+//
+// Zustände 10-19 dienen dazu, eine 0 ohne Carry als erste Ziffer für
+// die Summe einzufügen
+//
+(10,0) -> (10,0) Left
+(10,1) -> (10,1) Left
+(10,B) -> (11,B) Left // nach diesem Schritt stehen wir auf dem Blank
+	              // wo die 0 hingeschrieben werden soll
+(11,B) -> (12,B) Left
+(12,0) -> (13,B) Right
+(12,1) -> (14,B) Right
+(13,B) -> (15,0) Right
+(14,B) -> (15,1) Right
+
+(15,B) -> (16,B) Right
+(16,0) -> (16,0) Right // Zustand 16 dient zum ueberspringen des zweiten Summanden
+(16,1) -> (16,1) Right
+(16,B) -> (17,B) Left
+//
+// Zustände 20-29 dienen dazu, eine 1 ohne Carry als erste Ziffer für
+// die Summe einzufügen
+//
+(20,0) -> (20,0) Left
+(20,1) -> (20,1) Left
+(20,B) -> (21,B) Left // nach diesem Schritt stehen wir auf dem Blank
+		      // wo die 1 hingeschrieben werden soll
+(21,B) -> (22,B) Left
+(22,0) -> (23,B) Right
+(22,1) -> (24,B) Right
+(23,B) -> (25,1) Right
+(24,B) -> (100,0) Right  // Zustand 100 codiert, dass das Carry jetzt gesetzt ist
+
+(25,B) -> (26,B) Right
+(26,0) -> (26,0) Right
+(26,1) -> (26,1) Right
+(26,B) -> (17,B) Left // Zustand
+
+(100,B) -> (101,B) Right
+(101,0) -> (101,0) Right
+(101,1) -> (101,1) Right
+(101,B) -> (102,B) Left
+
+(102,0) -> (40,B) Left // Summand 0 mit Carry muss addiert werden, gleichbedeutend
+                        // mit Summand 1, d.h. Zustand 40
+(102,1) -> (120,B) Left // Summand 1 mit Carry muss addiert werden
+(102,B) -> (103,B) Left
+
+(103,0) -> (103,0) Left
+(103,1) -> (103,1) Left
+(103,B) -> (103,1) Halt
+
+(120,0) -> (120,0) Left
+(120,1) -> (120,1) Left
+(120,B) -> (121,B) Left // zweiter Summand übersprungen
+(121,0) -> (121,0) Left
+(121,1) -> (121,1) Left
+(121,B) -> (122,B) Left // Summe übersprungen, Kopf zeigt jetzt auf letztes Zeichen
+		        // des ersten Summanden
+(122,0) -> (123,B) Right // Summe 10 schreiben
+(122,1) -> (124,B) Right // Summe 11 schreiben
+(123,B) -> (125,0) Right
+(124,B) -> (125,1) Right
+(125,0) -> (125,0) Right // Summe überspringen
+(125,1) -> (125,1) Right
+(125,B) -> (101,B) Right // Summe übersprungen
+
+// Carry muss noch ganz zu vorderst platziert werden
+//
+//  Zustand 17: wir stehen auf dem letzten Zeichen des zweiten Summanden,
+//              und müssen mit diesem Zeichen jetzt die Summe mit dem
+//              letzten Zeichen des anderen Summanden bilden
+//
+(17,0) -> (30,B) Left // Summand 0 
+(17,1) -> (40,B) Left // Summand 1
+(17,B) -> (17,B) Halt
+// Zustände 30 und 31 werden dazu verwendet, den 2. Summanden nach links zu überspringen
+(30,0) -> (30,0) Left
+(30,1) -> (30,1) Left
+(30,B) -> (31,B) Left // zweiter Summand ist übersprungen,
+(31,0) -> (31,0) Left
+(31,1) -> (31,1) Left
+(31,B) -> (32,B) Left // Summe ist übersprungen
+(32,0) -> (33,B) Right
+(32,1) -> (34,B) Right
+(33,B) -> (35,0) Right
+(34,B) -> (35,1) Right
+(35,0) -> (35,0) Right
+(35,1) -> (35,1) Right
+(35,B) -> (16,B) Right
+
+(40,0) -> (40,0) Left
+(40,1) -> (40,1) Left
+(40,B) -> (41,B) Left // zweiter Summand übersprungen
+(41,0) -> (41,0) Left
+(41,1) -> (41,1) Left
+(41,B) -> (42,B) Left // Summe übersprungen
+(42,0) -> (43,B) Right // Summe 1 muss geschrieben werden
+(42,1) -> (44,B) Right // Summe 10 muss geschrieben werden
+(43,B) -> (45,1) Right
+(45,0) -> (45,0) Right
+(45,1) -> (45,1) Right
+(45,B) -> (16,B) Right // nach rechts fahren mit Carry set
+
+(44,B) -> (47,0) Right
+(47,0) -> (47,0) Right
+(47,1) -> (47,1) Right
+(47,B) -> (101,B) Right

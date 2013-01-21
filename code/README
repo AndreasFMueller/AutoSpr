@@ -10,4 +10,5 @@ calculator    Einfaches Taschenrechner-Programm, welches aus einer
 minedemo      Java-Programm zur Illustration des MINESWEEPER-CONSISTENCY
               Problems.
 
-
+turing        Ein einfacher Turing-Maschinen-Simulator in C mit Beispielen,
+              welche auch in der Vorlesung gezeigt wurden.

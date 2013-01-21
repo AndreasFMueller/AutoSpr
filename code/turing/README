@@ -1,0 +1,15 @@
+Turing-Maschinen-Simulator und Beispieprogramme
+
+Das Verzeichnis pgm enthaelt einige Beispiel-Programme
+
+add          binaere Addition von zwei Zahlen, die hintereinander auf dem
+             Band stehen. Als initialer Bandinhalt muss eines der Files
+             in data/addtape* verwendet werden.
+
+subtract     Subtraktion von Zahlen in unaerer Darstellung. Als initialer
+             Bandinhalt verwende man data/subtracttape
+
+beaver3      Bekannte busy beaver Programme mit 3 bis 5 Zustaenden
+beaver4
+beaver5
+
