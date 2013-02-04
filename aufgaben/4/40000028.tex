@@ -1,0 +1,98 @@
+Die Sprache Lisp hat eine etwas eigene Syntax, Larry Wall hat sie einst
+mit ``Haferbrei vermischt mit abgeschnittenen Fingern"ageln'' verglichen.
+In Lisp gibt es Atome:
+\begin{itemize}
+\item numerische Atome, d.~h.~Zahlen: {\tt 1 2 3
+-4  3.14  -7.5  6.02E+23}
+\item Strings, also Zeichenfolgen in Anf"uhrungszeichen:
+\begin{center}
+{\tt \textquotedblright ein String\textquotedblright}
+{\tt \textquotedblright \&]\$787?\textquotedblright}
+{\tt \textquotedblright setq\textquotedblright}
+{\tt \textquotedblright 12\textquotedblright}
+\end{center}
+\item Symbole, alle anderen Zeichenketten, die von Zahlen und Strings
+untersscheidbar sind, und kein Klammern und Anf"uhrungszeichen enthalten.
+\end{itemize}
+Aus den Atomen k"onnen jetzt Listen kombiniert werden. Eine Liste besteht
+aus einer "offnenden Klammer, einer Folge von Listenelementen und
+einer schliessenden Klammer. Listenelemente sind entweder Atome oder Listen.
+Listen k"onnen auch leer sein, ebenso Strings.
+Ein typisches Lisp-Programm ist
+\begin{verbatim}
+(defun print-quadratzahlen (x)
+  (cond ((plusp x)
+         (print (* x x))
+         (print-quadratzahlen (- x 1)))))
+\end{verbatim}
+\begin{teilaufgaben}
+\item
+Formulieren Sie eine kontextfreie Grammatik f"ur Lisp.
+\item
+Falls Ihre Grammatik nicht Chomsky-Normalform hat: markieren Sie
+alle Regeln, die der Normalform widersprechen.
+\end{teilaufgaben}
+
+\begin{hinweis}
+Zur Vereinfachung gehen Sie davon aus, dass Zahlen positive nat"urliche
+Zahlen sind, dass Strings nur Kleinbuchstaben und Ziffern enthalten, und
+dass ein Symbol eine Folge von Kleinbuchstaben (keine Ziffern) ist.
+\end{hinweis}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item Die folgende Grammatik folgt ziemlich genau der obigen Beschreibung
+der Sprache. Man beachte, dass die beiden $\varepsilon$-Regeln
+erlauben, dass Listen und Strings leer sind.
+\begin{align*}
+\text{liste}&\rightarrow {\color{blue}
+{\text{'{\tt (}'}}\;
+\text{listenelemente}\;
+{\text{'{\tt )}'}}}
+\\
+\text{listenelemente}&\rightarrow {\color{green}\varepsilon} \;|\; \text{listenelemente}\;\text{element}
+\\
+\text{element}&\rightarrow {\color{red}\text{liste}} \;|\; {\color{red}\text{atom}}
+\\
+\text{atom}&\rightarrow {\color{red}\text{zahl}}\;|\;{\color{red}\text{string}}\;|\;{\color{red}\text{symbol}}
+\\
+\text{zahl}&\rightarrow {\color{red}\text{ziffer}}\;|\;\text{zahl}\;\text{ziffer}
+\\
+\text{symbol}&\rightarrow {\color{red}\text{buchstabe}} \;|\; \text{symbol}\;\text{buchstabe}
+\\
+\text{string}&\rightarrow {\color{blue}
+\text{'{\tt\textquotedblright}'}\; \text{stringinhalt}\;
+\text{'{\tt\textquotedblright}'}}
+\\
+\text{stringinhalt}&\rightarrow {\color{green}\varepsilon} \;|\; \text{stringinhalt}\;\text{zeichen}
+\\
+\text{ziffer}&\rightarrow
+{\text{'{\tt 0}'}} \;|\;
+{\text{'{\tt 1}'}} \;|\;
+{\text{'{\tt 2}'}} \;|\;
+\dots \;|\;
+{\text{'{\tt 9}'}}
+\\
+\text{buchstabe}&\rightarrow
+{\text{'{\tt a}'}} \;|\;
+{\text{'{\tt b}'}} \;|\;
+\dots \;|\;
+{\text{'{\tt z}'}}
+\\
+\text{zeichen}&\rightarrow {\color{red}\text{ziffer}}\; |\; {\color{red}\text{buchstabe}}
+\end{align*}
+\item
+In der Grammatik oben sind
+Unit rules
+{\color{red}
+rot},
+Regeln mit mehr als zwei Symbolen auf der rechten Seite
+{\color{blue}
+blau},
+und
+$\varepsilon$-Regeln, die nicht von der Startvariablen ausgehen,
+{\color{green}
+gr"un} markiert.
+\end{teilaufgaben}
+
+\end{loesung}

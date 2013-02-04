@@ -1,0 +1,96 @@
+Programmiersprachen der C-Familie verwenden Anf"uhrungszeichen
+({\tt\textquotedblright}), um Zeichenketten zu markieren.
+Wenn aber ein Anf"uhrungszeichen Teil der
+Zeichenkette sein soll, wird es durch einen vorangestelltes {\tt\textbackslash}
+gekennzeichnet.
+Ebenso muss ein {\tt\textbackslash} durch einen vorangestellten {\tt\textbackslash}
+markiert werden. Nat"urlich muss zum "offnenden Anf"uhrungszeichen
+auch immer ein schliessendes geh"oren. Beispiel:
+\begin{center}
+\tt
+\textquotedblright dies ist ein String mit \textbackslash\textquotedblright eingebetteten\textbackslash\textquotedblright\ Anfuehrungszeichen\textquotedblright
+\end{center}
+\begin{teilaufgaben}
+\item
+Beschreiben Sie eine Turing-Maschinen, welche korrekt formattierte
+Zeichenketten akzeptiert. Visualisieren Sie die Turing-Maschine mit
+einem Zustandsdiagramm.
+\item
+Ist die Validierung von solchen Zeichenketten eventuell auch mit einer
+einfacheren Maschine m"oglich?
+\end{teilaufgaben}
+
+
+\begin{hinweis}
+Gehen Sie davon aus, dass das Zeichen \blank\ verschieden ist
+vom Leerzeichen ({\tt ' '}, Hex {\tt 0x20}).
+\end{hinweis}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Die Turingmaschine verwendet als Bandalphabet das ASCII-Alphabet 
+sowie ein zus"atzliches Zeichen \blank. Die Turing-Maschine implementiert
+folgenden Algorithmus:
+\begin{enumerate}
+\renewcommand{\theenumii}{\arabic{enumii}}
+\item Pr"ufe, ob das Zeichen ein {\tt \textquotedblright} ist.
+Falls nicht: $q_{\text{reject}}$.
+Falls ja, Kopf nach rechts bewegen. Damit wird erkannt, ob das erste
+Zeichen ein "offnendes Anf"uhrungszeichen ist.
+\item Pr"ufe, ob das Zeichen in {\tt \textquotedblright} ist.
+Falls ja, Kopf nach rechts bewegen, weiter bei (5).
+Wenn dieser Test zutrifft, liegt ein schliessendes Anf"uhrungszeichen
+vor, die Zeichenkette m"usste jetzt fertig sein, das wird in Schritt
+(5) gepr"uft.
+\item Pr"ufe, ob das Zeichen ein {\tt \textbackslash} ist. Falls
+ja, Kopf nach rechts bewegen und weiter bei (2).
+Falls nein, Kopf nach rechts bewegen und weiter bei (3).
+In diesem Schritt werden alle Zeichen akzeptiert ausser das
+{\tt\textbackslash}-Zeichen, bei diesen muss (im n"achsten Schritt)
+noch "uberpr"uft werden, ob ein erlaubtes Zeichen folgt.
+\item Pr"ufe, ob das Zeichen ein {\tt \textquotedblright} oder ein
+{\tt \textbackslash} ist.
+Falls nein: $q_{\text{reject}}$, falls ja, Kopf nach rechts und weiter
+bei (2).
+\item Pr"ufe, ob das Zeichen ein {\blank} ist. Falls ja $q_{\text{accept}}$,
+andernfalls $q_{\text{reject}}$.
+\end{enumerate}
+Das folgende Zustandsdiagramm implementiert diese Turing-Maschine:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&q_0\ar[r]^{{\tt\textquotedblright},R}
+		\ar@/_/[ddr]_{\text{\tt .},R}
+		&q_1 \ar@/^/[d]^{{\text{\tt\textbackslash}},R}
+			\ar@(ur,ul)_{{\tt .},R}
+			\ar[r]^{{\tt\textquotedblright},R}
+			&q_3\ar[r]^{\text{\blank} ,R}
+				\ar@/^/[ddl]^{\text{\tt .},R}
+				&*++[o][F=]{q_{\text{accept}}}
+\\
+*+\txt{}
+	&*+\txt{}
+		&q_2 \ar@/^/[u]^{{{\text{\tt\textbackslash}},R}\atop{{\text{\tt\textquotedblright}},R}}
+		\ar[d]_{\text{\tt .},R}
+\\
+*+\txt{}
+	&*+\txt{}
+		&*++[o][F=]{q_{\text{reject}}}
+}
+\]
+Darin bedeutet die Beschriftung $\text{\tt .},R$ eines Pfeiles, dass
+dieser "Ubergang genommen werden soll f"ur alle Zeichen, die nicht
+durch andere "Uberg"ange von diesem Zustand aus schon bestimmt sind.
+\item
+Die Sprache ist regul"ar, was man daran erkennen kann, dass die
+Turingmaschine nur ein einziges Mal von links nach rechts durch den
+String f"ahrt, und dabei niemals auf das Band schreibt. Sie liest also
+nur Zeichen vom Band, "andert ihren Zustand und befindet sich am Ende 
+Des Programmlaufs entweder in einem Akzeptierzustand oder eben nicht.
+Das ist genau, was ein DEA macht. Ein m"oglicher regul"arer Ausdruck
+f"ur diese Sprache ist
+\verbatiminput{re}
+\end{teilaufgaben}
+\end{loesung}

@@ -1,0 +1,55 @@
+Die Sprache $L$ besteht aus den Zahlen, die in Dezimaldarstellung
+(f"uhrende Nullen erlaubt)
+aus zwei gleich langen Teilen bestehen. Die Ziffern im zweiten
+Teil entstehen dabei aus den Ziffern im ersten Teil durch die
+Operation $z\mapsto 9-z$ (Neunerkomplement), ausserdem ist die Reihenfolge
+umgekehrt. Beispiele:
+\[
+L=\{ 09, 18, 27, 36,\dots 0099, 1188, 1278,\dots \}.
+\]
+\begin{teilaufgaben}
+\item
+K"onnen Sie eine kontextfreie Grammatik f"ur $L$  angeben?
+\item
+K"onnen Sie einen Stackautomaten angeben, der die Sprache $L$ 
+akzeptiert?
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Eine m"ogliche kontextfreie
+Grammatik f"ur $L$ ist:
+\begin{align*}
+\text{zahl}
+&\rightarrow \varepsilon\\
+&\rightarrow \text{'{\tt 0}'}\;\text{zahl}\;\text{'{\tt 9}'}\\
+&\rightarrow \text{'{\tt 1}'}\;\text{zahl}\;\text{'{\tt 8}'}\\
+&\rightarrow \text{'{\tt 2}'}\;\text{zahl}\;\text{'{\tt 7}'}\\
+&\rightarrow \text{'{\tt 3}'}\;\text{zahl}\;\text{'{\tt 6}'}\\
+&\rightarrow \text{'{\tt 4}'}\;\text{zahl}\;\text{'{\tt 5}'}\\
+&\rightarrow \text{'{\tt 5}'}\;\text{zahl}\;\text{'{\tt 4}'}\\
+&\rightarrow \text{'{\tt 6}'}\;\text{zahl}\;\text{'{\tt 3}'}\\
+&\rightarrow \text{'{\tt 7}'}\;\text{zahl}\;\text{'{\tt 2}'}\\
+&\rightarrow \text{'{\tt 8}'}\;\text{zahl}\;\text{'{\tt 1}'}\\
+&\rightarrow \text{'{\tt 9}'}\;\text{zahl}\;\text{'{\tt 0}'}\\
+\end{align*}
+\item
+Zu dieser Grammatik geh"ort folgender Stackautomat:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&q_0\ar[r]^{\varepsilon,\varepsilon\to\text{\tt\$}}
+		&q_1 \ar@(ur,ul)_{z,\varepsilon\to 9-z}
+			\ar[r]^{\varepsilon,\varepsilon\to\varepsilon}
+			&q_2 \ar@(ur,ul)_{z,z\to\varepsilon}
+				\ar[r]^{\text{\tt\$},\text{\tt\$}\to\varepsilon}
+				&*++[o][F=]{q_3}
+}
+\]
+Darin bedeutet der "Ubergang
+$z,\varepsilon\to9-z$, dass f"ur jede Ziffer $z$ des Inputs die Ziffer
+$9-z$ auf den Stack gelegt wird.
+\end{teilaufgaben}
+\end{loesung}

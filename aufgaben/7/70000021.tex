@@ -1,0 +1,34 @@
+Die Bewohner eines Landes lassen sich nach einer grossen Zahl
+von Kriterien in Gruppen einteilen: nach Berufsgruppen, nach
+Altersgruppen, nach kulturellen Interessen, nach Hobbies usw.
+Jetzt soll eine Interessenvertretung gebildet werden so, dass
+jede dieser Gruppen mit genau einem Mitglied vertreten ist.
+Dabei ist es durchaus zul"assig, dass die Gruppe der Raketenmodellbauer
+und die Gruppe der Freunde von Kammermusik von der gleichen Person
+vertreten werden. Aber es darf nicht sein, dass sich der Vertreter
+der Astrophotographen auch noch f"ur Kammermusik interessiert.
+Gibt es einen effizienten Algorithmus, der auch bei einer grossen
+Zahl von Bewohnern und Gruppierungen entscheiden kann, ob eine
+solche Zusammenstellung einer Interessenvertretung "uberhaupt
+m"oglich ist?
+
+\begin{loesung}
+Nein, denn das Problem ist NP-vollst"andig, wie wir gleich
+zeigen werden, nach unserem aktuellen
+Wissen also h"ochstwahrscheinlich nicht mit einem effizienten
+Algorithmus l"osbar. Und g"abe es einen effizienten Algorithmus,
+w"urde dies automatisch $\text{P}=\text{NP}$ zur Folge haben.
+
+Seien die $i\in I$ die Kriterien, nach denen gruppiert wird,
+und sei $U_i$ die Menge der Bewohner, die zur Gruppe $i$ geh"ort.
+Gesucht wird jetzt ein Teilmenge $H\subset\bigcup_{i\in I}S_i$
+von Interessenvertretern so, dass $H$ mit jeder der Mengen
+$S_i$ genau einen Vertreter gemeinsam hat: $|H\cap S_i|=1$
+f"ur alle $i$. Dies ist das Problem {\textsl{HITTING-SET}}. 
+
+Umgekehrt l"asst sich jedes {\textsl{HITTING-SET}} Problem umformulieren
+als Problem, eine Interessenvertretung der genannten Art zu finden.
+Folglich ist das vorliegende Problem "aquivalent zum {\textsl{HITTING-SET}},
+welches bekanntermassen NP-vollst"andig ist. Also ist auch des
+Interessenvertretungsproblem NP-vollst"andig.
+\end{loesung}

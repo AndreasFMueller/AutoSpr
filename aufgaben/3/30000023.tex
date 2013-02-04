@@ -1,8 +1,8 @@
 Untersuchen Sie die Sprache $L_\infty$, die aus den W"ortern besteht, die
 in allen Sprachen $L_n$ aus Aufgabe \ref{30000022} vorkommen:
-$$
+\[
 L_{\infty} = \bigcap_{n>0}L_n.
-$$
+\]
 Sie besteht also aus W"ortern, f"ur die
 $|w|_{\tt 0}$ und
 $|w|_{\tt 1}$ immer den gleichen Rest bei Teilung durch jede beliebige
@@ -16,8 +16,6 @@ $$L_\infty = \{w\in\Sigma^*|\;|w|_0=|w|_1\}.$$
 Ist die Sprache $L_\infty$ regul"ar?
 \end{teilaufgaben}
 
-
-\ifthenelse{\boolean{loesungen}}{
 \begin{loesung}
 \begin{teilaufgaben}
 \item Nehmen wir an, ein Wort $w$ habe $a$ {\tt 0}, also $a=|w|_{\tt 0}$ und
@@ -27,9 +25,9 @@ die Anzahlen $n$ und $m$ m"ussen aber auch den gleichen Rest bei
 Teilung durch $N$ haben. Da $a<N$ ist $a$ auch gerade dieser Rest,
 und analog f"ur $b$. Somit muss $a=b$ sein. Die W"orter in
 $L_\infty$ haben also gleich viele {\tt 0} und {\tt 1},
-$$
+\[
 L_\infty=\{w|\,|w|_{\tt 0}=|w|_{\tt 1}\}.
-$$
+\]
 
 Man k"onnte auch wie folgt argumentieren. Wenn zwei Zahlen $a$ und $b$
 bei Teilung durch jede beliebige Zahl gleichen Rest ergeben m"ussen,
@@ -88,6 +86,5 @@ also m"usse auch $L_\infty$ nicht regul"ar sein. Denn $L$ ist auch
 in $\Sigma^*$ enhalten, welches offensichtlich regul"ar ist.
 \end{teilaufgaben}
 \end{loesung}
-}{}
 
 

@@ -1,0 +1,78 @@
+Die ``International Bank Account Number'' vereinfacht den
+grenz"uberschreitenden Zahlungsverkehr durch ein vereinheitlichtes
+Format. Die IBAN beginnt immer mit der zweistelligen ISO-L"anderkennzeichnung
+({\tt CH} f"ur die Schweiz, {\tt GR} f"ur Griechenland,$\dots$). Danach
+folgen zwei bis drei Stellen f"ur eine Pr"ufzahl (Italien verwendet
+drei Stellen, der Rest Europas zwei).
+Danach folgen weitere Ziffern, die die Bank und das Konto bezeichnen.
+Der kontospezifische Teil kann weitere bankspezifische Pr"ufziffernteile
+enthalten, die jedoch nicht standardisiert sind, und uns hier nicht
+interessieren.
+Insgesamt ist die IBAN h"ochstens 34 Stellen lang.
+Beispielsweise ist
+\begin{center}
+{\tt DE88200800000970375700}
+\end{center}
+eine g"ultige IBAN Nummer.
+
+Die Berechnung der Pr"ufziffer funktioniert wie folgt.
+Zun"achst
+werden die beiden Buchstaben des L"andercodes durch Zahlenwerte
+beginnend mit $\text{\tt A}=10$ ersetzt, und f"ur die zweistellige
+Pr"ufzahl werden {\tt 0} eingesetzt. Dann werden diese sechs Stellen
+vorne entfernt und hinten an die IBAN angeh"angt. F"ur obiges Beispiel
+wird also {\tt D} durch $13$ und {\tt E} durch $14$ ersetzt, so dass dass die 
+IBAN zun"achst zu
+\begin{center}
+{\tt 131488200800000970375700}
+\end{center}
+Dann werden die ersten 6 Stellen nach hinten verschoben:
+\begin{center}
+{\tt 200800000970375700131400}
+\end{center}
+Dann wird von dieser Zahl der Rest bei Division durch 97 ermittelt:
+in diesem Fall 10. Die Pr"ufzahl ist die Differenz zu 98, in diesem
+Fall also $98-10=88$, die korrekte IBAN ist also
+\begin{center}
+{\tt DE88200800000970375700}
+\end{center}
+
+Die Modulo-Berechnung f"ur grosse Zahlen ist etwas unhandlich.
+Gibt es eventuell einen endlichen Automaten, mit dem man die IBANs
+auch auf Korrektheit pr"ufen kann?
+
+\begin{hinweis}
+Es wird nicht verlangt, dass Sie einen solchen Zustandsautomaten angeben,
+sondern h"ochstens dass sie darlegen, wie man gegebenenfalls zu einem solchen
+Zustandsautomaten kommen k"onnte, sollte es einen geben.
+\end{hinweis}
+
+\begin{loesung}
+Ja, da IBANs eine endliche, wenn auch sehr grosse ($25^2\cdot 10^{32}$)
+Sprache bilden, ist die Menge der IBANs regul"ar.
+Insbesondere gibt es einen regul"aren Ausdruck, der genau die 
+korrekten IBANs akzeptiert.
+
+Einen solchen regul"aren Ausdruck zu finden, ist jedoch nicht einfach.
+Man kann aber wie folgt vorgehen: In der Vorlesung wurde gezeigt,
+dass man den Rest bei einer Division durch 97 mit einem endlichen
+Automaten bestimmen kann. Die obige Beschreibung der Pr"ufzahl
+l"auft darauf hinaus, dass man "uberpr"ufen muss, ob die ersten
+vier Stellen den zum zweiten Teil ``passenden'' Rest bei Teilung
+durch 97 liefert.
+
+Man formuliert also zun"achst einen Automaten $A_1$,
+welcher genau die Reste von der ersten vier Stellen ermittelt, seine
+Zust"ande sind die m"oglichen Reste $0$ bis $96$.
+Dann konstruiert man einen Automaten $A_2$, welcher den Rest 
+des zweiten Teils ermittelt, wenn diesem noch 6 Stellen mit $0$
+folgen w"urden.
+
+Dieser Rest muss jetzt zusammen mit dem von $A_1$
+bestimmten Rest einen bestimmten Wert ergeben. Aus $A_1$ und $A_2$ bildet
+man den Produktautomaten und markiert alle Paare von Zust"anden die
+in diesem Sinne ``zusammenpassen'' also Akzeptiertzust"ande.
+Um einen regul"aren Ausdruck zu finden, wandelt man diesen endlichen
+Automaten mit dem Standardalgorithmus in einen regul"aren Automaten
+um.
+\end{loesung}

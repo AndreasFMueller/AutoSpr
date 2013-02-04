@@ -1,6 +1,5 @@
 Zeigen Sie, dass eine regul"are Sprache $L$ Turing-entscheidbar ist.
 
-\ifthenelse{\boolean{loesungen}}{
 \begin{loesung}
 Da $L$ regul"ar ist, gibt es einen DEA $A$, der $L$ akzeptiert.
 Aus diesem DEA konstruieren wir jetzt eine Turing-Maschine.
@@ -36,5 +35,3 @@ DEA, und erkennt am Ende des Wortes genau diejenigen W"orter, die
 vom DEA akzpetiert werden. Also ist $L(M)=L(A)$. Die TM h"alt genau
 nach $|w|+1$ Schritten an, also ist $M$ ein Entscheider.
 \end{loesung}
-}{}
-

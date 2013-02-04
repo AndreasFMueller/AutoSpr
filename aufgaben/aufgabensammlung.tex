@@ -28,6 +28,9 @@
 \usepackage{algorithmic}
 \usepackage{makeidx}
 \usepackage{paralist}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{environ}
 \makeindex
 \begin{document}
 \pagestyle{fancy}
@@ -56,6 +59,11 @@ Andreas M"uller
 Hochschule f"ur Technik, Rapperswil, 2011-2013
 \end{center}
 \end{titlepage}
+\hypersetup{
+        colorlinks=true,
+        linktoc=all,
+        linkcolor=blue
+}
 \rhead{Inhaltsverzeichnis}
 \tableofcontents
 \newenvironment{beispiel}[1][Beispiel]{%

@@ -1,0 +1,40 @@
+Ist es m"oglich, ein Programm zu schreiben, welches von einem anderen
+Programm herausfinden kann, ob es eine bestimmte Speicherzelle
+ver"andern wird, ohne es laufen zu lassen?
+
+\begin{loesung}
+Es geht darum, ein Programm zu schreiben, welches durch Inspektion
+einer Turing-Maschine herausfindet, ob ein bestimmtes Feld des
+Bandes w"ahrend der Laufzeit irgendwann ver"andert wird.
+
+G"abe es n"amlich so einen Entscheider $E$, k"onnte man damit das Halteproblem
+entscheiden. Dazu sei $M$ irgend eine Turing-Maschine, von der wir
+wissen wollen, ob sie anhalten wird oder nicht.
+Wir konstruieren jetzt eine neue Turing-Maschine mit zwei
+B"andern. Auf dem ersten Band operiert die Turing-Maschine
+wie gewohnt.
+Die Zust"ande $q_\text{accept}$ und $q_\text{reject}$ werden
+aber leicht modifiziert: wenn die urspr"ungliche Turingmaschine 
+in einen dieser Zust"ande gehen will, lassen wir die modifizierte
+Turingmaschine erst noch ein Zeichen in das erste Feld des zweiten
+Bandes schreiben. Dies modifiziert Turingmaschine "ubersetzen wir jetzt noch
+in eine Turingmaschine mit einem Band (Standardalgorithmus). Wir haben
+jetzt eine neue Turingmaschine, die genau dann ein ganz bestimmtes
+Feld ver"andern wird, wenn die urspr"ungliche Turingmaschine
+anh"alt. Wir haben also eine Reduktion des Halteproblems auf das
+Problem gefunden zu entscheiden, ob ein bestimmtes Feld "uberschrieben
+wird. Da $E$ ein Entscheider f"ur dieses Problem ist, w"are auch das
+Halteproblem entscheidbar. Dieser Widerspruch zeigt, dass es einen
+solchen Entscheider nicht geben kann.
+
+Diese Frage l"asst sich allerdings nicht mit dem Satz von Rice 
+behandeln. Dieser ist nur anwendbar auf die Sprache, die von einer
+TM akzeptiert wird. Im vorliegenden Fall interesiiert die Sprache,
+die die TM akzeptiert, aber gar nicht.
+Es interessiert nur die Implementationseigenschaft, ob eine
+bestimmte Speicherzelle ver"andert w"urde.
+Dabei ist es durchaus denkbar, dass es f"ur die gleiche Sprache $L$
+zwei verschiedene TMs $M_1$ und $M_2$ gibt, die beide die Sprache $L$
+akzeptieren, aber $M_1$ modifiziert die besagte Speicherstelle, $M_2$
+aber nicht.
+\end{loesung}

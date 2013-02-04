@@ -22,22 +22,24 @@
 \renewcommand{\labelenumi}{\alph{enumi})}
 }{\end{enumerate}}
 % Loesung
-\def\swallow#1{
-%nothing
-}
-\newenvironment{loesung}{%
+\NewEnviron{loesung}{%
 \begin{proof}[L"osung]%
 \renewcommand{\qedsymbol}{$\bigcirc$}
-}{\end{proof}}
+\BODY
+\end{proof}}
+\NewEnviron{diskussion}{
+\BODY
+}
 \def\keineloesungen{%
-\renewenvironment{loesung}{\swallow\begingroup}{\endgroup}%
+\RenewEnviron{loesung}{\relax}
+\RenewEnviron{diskussion}{\relax}
 }
 % Hinweis
 \newenvironment{hinweis}{%
 \renewcommand{\qedsymbol}{}
 \begin{proof}[Hinweis]}{\end{proof}}
 % Aufgabe aus der Sammlung wiedergeben
-\newcounter{problemcounter}
+\newcounter{problemcounter}[chapter]
 \def\aufgabepath{./}
 \def\ainput#1{\input\aufgabepath/#1}
 \def\verbatimainput#1{\expandafter\verbatiminput{\aufgabepath/#1}}
@@ -50,10 +52,12 @@
 \newcommand{\aufgabe}[2]{%
 \refstepcounter{problemcounter}%
 \label{#2}%
-\bigskip{\parindent0pt\strut}\hbox{\bf\arabic{problemcounter}. }%
+\bigskip{\parindent0pt\strut}\hbox{\bf\theproblemcounter. }%
 \marginpar{\raggedright\tiny #2}%
 \expandafter\def\csname aufgabepath\endcsname{\inputpath/#1/#2/}%
 \expandafter\input{\inputpath#1/#2.tex}
+\bigskip
 }
+\renewcommand\theproblemcounter{\thechapter.\arabic{problemcounter}}
 % oft benutzte Macros
 \def\blank{\text{\textvisiblespace}}
