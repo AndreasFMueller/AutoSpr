@@ -4,16 +4,24 @@ x\vee y\qquad\text{und}\qquad (x\vee z)\wedge (y\vee \neg z)
 \]
 "aquivalent sind, d.\,h.~die Variablen der einen Formel k"onnen
 genau dann so mit Wahrheitswerten
-belegt werden, dass die Formel war wird, wenn dies f"ur die andere Formel
+belegt werden, dass die Formel wahr wird, wenn dies f"ur die andere Formel
 m"oglich ist.
 
 \begin{loesung}
 Wenn $x\vee y$ wahr ist, dann ist eine der Variablen, zum Beispiel
 $x$ wahr.
 Dann kann mann $z$ auf ``falsch'' setzen, was die zweite Formel wahr macht.
+Ist stattdessen $y$ wahr, kann man $z$ auf wahr setzen, auch so wird die
+zweite Formel wahr.
+Ist die erste Formel dagegen falsch, dann ist weder $x$ noch $y$ wahr,
+die zweite Formel ist also im wesentlichen $z\wedge \neg z$, was nie
+wahr sein kann.
 
-Ist umgekehrt die zweite Formel war, und auch $z$, dann ist $\neg z$ nicht 
+Ist umgekehrt die zweite Formel wahr, und auch $z$, dann ist $\neg z$ nicht 
 wahr, also muss $y$ wahr sein. Dann ist auch $x\vee y$ wahr. Dasselbe
 Argument funktioniert auch, wenn $z$ falsch ist, dann folgt, dass $x$
 wahr sein muss, und wieder ist $x\vee y$ wahr.
+Ist die zweite Formel immer falsch, dann gibt es keine Belegung von
+$z$ so, dass beide Terme wahr sind. D.\,h.~aber, dass $x$ und $y$
+beide falsch sein m"ussen, also ist auch $x\vee y$ falsch.
 \end{loesung}
