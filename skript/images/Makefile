@@ -4,18 +4,19 @@
 # (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
 # $Id$
 #
-all:	cfg turing nea lang red comp pl reg mine
+all:	cfg turing nea lang red comp pl reg mine graph
 
 REGFILES = reg-1.pdf reg-2.pdf reg-3.pdf reg-4.pdf reg-5.pdf
 NEAFILES = nea-1.pdf nea-2.pdf nea-3.pdf nea-4.pdf nea-5.pdf
 CFGFILES = cfg-1.pdf cfg-2.pdf
 TURINGFILES = turing-1.pdf turing-2.pdf turing-3.pdf turing-4.pdf
 LANGFILES = lang-1.pdf lang-2.pdf lang-3.pdf lang-4.pdf lang-5.pdf lang-6.pdf
-MINEFILES = mine-1.pdf mine-2.pdf mine-3.pdf mine-4.pdf mine-5.pdf
+MINEFILES = mine-1.pdf mine-2.pdf
 PLFILES = pl-1.pdf pl-2.pdf pl-3.pdf pl-4.pdf pl-5.pdf
 REDFILES = red-1.pdf
 COMPFILES = comp-1.pdf comp-2.pdf comp-3.pdf comp-4.pdf comp-5.pdf \
 	comp-6.pdf comp-7.pdf
+GRAPHFILES = graph-1.pdf
 
 timestamp:	$(REGFILES) $(NEAFILES) $(CFGFILES) $(TURINGFILES) \
 		$(LANGFILES) $(MINEFILES) $(PLFILES) $(REDFILES) $(COMPFILES)
@@ -95,5 +96,15 @@ $(MINEFILES):	mine.mp Makefile
 		echo $${f}; \
 		i=`expr $${f} : "mine\.\(.\)"`; \
 		mptopdf mine.$${i}; \
+	done
+
+graph:	$(GRAPHFILES)
+$(GRAPHFILES):	graph.mp Makefile
+	TEX=latex mpost graph.mp
+	for f in graph.?; \
+	do \
+		echo $${f}; \
+		i=`expr $${f} : "graph\.\(.\)"`; \
+		mptopdf graph.$${i}; \
 	done
 

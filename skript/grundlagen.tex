@@ -411,6 +411,53 @@ und einer Menge $E$ von zweielementigen Teilmengen von $V$, die Kanten
 genannt werden.
 \end{definition}
 
+\begin{figure}
+\begin{center}
+\includegraphics{images/graph-1.pdf}
+\end{center}
+\caption{Graph\label{grundlagen:graph}}
+\end{figure}
+Die Abbildung\ref{grundlagen:graph} zeigt einen Graphen mit Vertex-Menge
+\[
+V=\{v_0,
+v_1,
+v_2,
+v_3,
+v_4,
+v_5,
+v_6\},
+\]
+und Kanten
+\begin{align*}
+e_0&=\{v_0,v_4\},&
+e_1&=\{v_0,v_3\},&
+e_2&=\{v_0,v_1\},&
+e_3&=\{v_2,v_4\},
+\\
+e_4&=\{v_1,v_3\},&
+e_5&=\{v_2,v_3\},&
+e_6&=\{v_1,v_2\},&
+e_7&=\{v_1,v_5\},
+\\
+e_8&=\{v_1,v_6\},&
+e_9&=\{v_2,v_5\},&
+e_{10}&=\{v_5,v_6\}.
+\end{align*}
+Die Menge $E$ besteht also aus den Elementen $e_1,\dots,e_{10}$.
+
+\begin{figure}
+\begin{center}
+\includegraphics{images/graph-2.pdf}
+\end{center}
+\caption{Kein Graph, jede Kante eines Graphen hat zwei verschiedene
+Ecken.\label{grundlagen:keingraph}}
+\end{figure}
+Man beachte, dass ein Graph keine Kante haben kann, die zur"uck zum 
+selben Vertex f"uhren kann.
+Das Gebilde in Abbildung~\ref{grundlagen:keingraph}
+ist also kein Graph, weil jede Kante eines Graphen zwei verschiedene
+Ecken hat.
+
 \index{Grad}
 Der {\em Grad} einer Ecke in einem Graphen ist die Anzahl der Kanten,
 die von dieser Ecke ausgehen.
