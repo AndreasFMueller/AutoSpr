@@ -1,0 +1,49 @@
+Wieviele W"orter enthalten die folgenden Sprachen "uber dem Alphabet 
+$\Sigma=\{{\tt 0}, {\tt 1}\}$?
+\begin{teilaufgaben}
+\item $L=\{ w\in\Sigma^*\,|\, |w|\le 5\}$
+\item $L=\{ w\in\Sigma^*\,|\, |w|\le n\}$
+\item $L=\{ w\in\Sigma^*\,|\,
+|w|_{\tt 0}\le 2
+\wedge
+|w|_{\tt 1}\le 3
+\}$
+\item $L=\{ w\in\Sigma^*\,|\, |w|_{\tt 0}\le 1291\}$
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Es gibt jeweils $2^l$ W"orter der L"ange $l$, also
+\[
+|L|=2^0 + 2^1+2^2+2^3+2^4+2^5=2^6-1=63.
+\]
+\item
+Wie in a) ist die Kardinalit"at von $L$:
+\[
+|L|=\sum_{k=0}n2^k=2^{n+1}-1.
+\]
+\item
+Wir z"ahlen die Anzahl m"oglicher W"orter f"ur jede L"ange, l"anger als
+$5$ Zeichen kann ein Wort in $L$ ja offenbar nicht werden. Wir bekommen
+folgende Tabelle
+\begin{center}
+\begin{tabular}{|c|l|c|}
+\hline
+L"ange&W"orter&Anzahl\\
+\hline
+0&$\varepsilon$&1\\
+1&{\tt 0}, {\tt 1}&2\\
+2&{\tt 00}, {\tt 01}, {\tt 10}, {\tt 11}&4\\
+3&{\tt 001}, {\tt 010}, {\tt 011}, {\tt 100}, {\tt 101}, {\tt 110}, {\tt 111}&7\\
+4&{\tt 0111}, {\tt 1011}, {\tt 1101}, {\tt 1110}&4\\
+ &{\tt 0011}, {\tt 0101}, {\tt 0110}, {\tt 1001}, {\tt 1010}, {\tt 1100}&6\\
+5&W"ahle 2 aus 5 Pl"atzen f"ur die {\tt 0}: $\binom{5}{2}$&10\\
+\hline
+\end{tabular}
+\end{center}
+Insgesamt hat die Sprache $L$ also $1+2+4+7+10+10=34$ W"orter.
+\item Die W"orter aus $L$ k"onnen beliebig viele {\tt 1} enthalten,
+die Sprache hat also unendlich viele W"orter.
+\end{teilaufgaben}
+\end{loesung}
