@@ -1,0 +1,42 @@
+Nehmen sie dieselbe Modifikation, die in Aufgabe~\ref{80000001}
+zu RISC-LOOP gef"uhrt hat,
+an WHILE vor, was dann die Sprache RISC-WHILE ergibt. Die {\tt WHILE}-Operation
+ist "ahnlich wie {\tt LOOP} in RISC-LOOP auf das Register $r$ beschr"ankt:
+\[
+\text{\tt WHILE }r>0\text{ \tt DO} \dots { \tt END}
+\]
+Ist RISC-WHILE Turing vollst"andig?
+
+\begin{loesung}
+Genau so wie sich in LOOP alle Anweisungen in RISC-LOOP "ubersetzen
+liessen, lassen sich auch in WHILE alle Anweisungen in RISC-WHILE
+"ubersetzen. Gezeigt werden muss dies nur noch f"ur die {\tt WHILE}-Anweisung.
+Wir "ubersetzen als Beispiel $\text{\tt WHILE }x_3 > 0\text{ \tt DO }P \text{ \tt END}$
+\begin{center}
+\begin{tabular}{r<{:}l}
+ 1& {\tt INCR}\\
+ 2& {\tt INCR}\\
+ 3& {\tt INCR}\\
+ 4& $r:=x_i$\\
+ 5& {\tt DECR}\\
+ 6& {\tt DECR}\\
+ 7& {\tt DECR}\\
+ 8& {\tt WHILE }$r > 0$ { \tt DO}\\
+ 9& {\tt \ \ }$P$\\
+10& {\tt \ \ INCR}\\
+11& {\tt \ \ INCR}\\
+12& {\tt \ \ INCR}\\
+13& {\tt \ \ }$r:=x_i$\\
+14& {\tt \ \ DECR}\\
+15& {\tt \ \ DECR}\\
+16& {\tt \ \ DECR}\\
+17& {\tt END}
+\end{tabular}
+\end{center}
+Nat"urlich ist diese Implementation nicht unbedingt effizient, offenbar werden
+viel zu viele {\tt INCR} und {\tt DECR} Befehle ausgef"uhrt. Doch kann ein
+dem Compiler nachgeschalteter Optimizer aufeinanderfolgende {\tt INCR} und
+{\tt DECR} eliminieren, und daf"ur auch die Reihenfolge von Befehlen "andern.
+Zum Beispiel k"onnen Berechnungsanwiesungen $r:= r\pm c$ mit {\tt INCR}
+oder {\tt DECR} vertauscht werden.
+\end{loesung}

@@ -1,0 +1,34 @@
+Beschreiben Sie die Grammatik der Sprache RISC-GOTO, die analog zu
+RISC-WHILE gebildet wird.
+
+\begin{loesung}
+In der folgenden Grammatik steht $P$ f"ur ein Programm, $L$ f"ur
+eine Programmzeile, $M$ f"ur eine Zeilennummer, $A$ f"ur eine
+Anweisung, $N$ f"ur eine natu"rliche Zahl, $C$ f"ur eine Konstante,
+$D$ f"ur eine Ziffer:
+\begin{align*}
+P&\rightarrow P\; L\\
+ &\rightarrow L\\
+L&\rightarrow M\colon \; A\\
+M&\rightarrow N\\
+A&\rightarrow r := x_i\\
+ &\rightarrow x_i := r\\
+ &\rightarrow r := r + C\\
+ &\rightarrow r := r - C\\
+ &\rightarrow \text{\tt IF } r = C \text{ \tt THEN } M\\
+C&\rightarrow N\\
+N&\rightarrow D\\
+ &\rightarrow ND\\
+D&\rightarrow
+\text{'0'}\;|\;
+\text{'1'}\;|\;
+\text{'2'}\;|\;
+\text{'3'}\;|\;
+\text{'4'}\;|\;
+\text{'5'}\;|\;
+\text{'6'}\;|\;
+\text{'7'}\;|\;
+\text{'8'}\;|\;
+\text{'9'}
+\end{align*}
+\end{loesung}

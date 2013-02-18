@@ -1,0 +1,89 @@
+In der Sprache LOOP kann jede Variable direkt adressiert werden, und
+in der gleichen Instruktion k"onnen auch noch arithmetische Operationen
+ausgef"uhrt werden. `Reinrassige' RISC-CPUs arbeiten anders.
+Arithmetische Operationen sind nur zwischen Registern m"oglich,
+Und Laden eines Registers mit einem Wert aus dem Hauptspeicher ist
+immer getrennt von Rechenoperationen (Load-/Store-Architektur).
+
+Betrachten Sie folgende RISC-LOOP genannte Modifikation von LOOP.
+Statt direkt adressierbarer Variablen
+$x_0,x_1,x_2,\dots$ gibt es einen Index $i$, der auf jede der Variablen zeigen
+kann. Der Zeiger ist zu Beginn des Programms auf $0$ initialisiert, und kann
+inkrementiert oder dekrementiert werden, dazu gibt
+es zwei neue Befehle {\tt INCR} und {\tt DECR}, die immer auf $i$
+wirken.
+Der Index $i$ kann jedoch nicht direkt auf einen bestimmten Wert gesetzt werden.
+
+Mit $x_i$
+kann jeweils auf diejenige Variable zugegriffen werden, auf die $i$ zeigt.
+$x_i$ kann aber nicht direkt in einem arithmetischen Ausdruck verwendet werden,
+vielmehr muss ihr Wert zuerst in das Register $r$ geladen werden, welches
+als einziges f"ur arithmetische Operationen zur Verf"ugung steht. Das folgende
+Programm berechnet, was in LOOP die Anweisung $x_3 := x_2 + 4$
+geschafft hat:
+\begin{algorithmic}[1]
+\STATE {\tt INCR}
+\STATE {\tt INCR}
+\STATE $r$ := $x_i$
+\STATE $r$ := $r + 4$
+\STATE {\tt INCR}
+\STATE $x_i$ := $r$
+\end{algorithmic}
+Auch die LOOP Anweisung kann nicht mehr jede beliebige Variable als
+Argument verwenden, sondern nur den aktuellen Wert von $r$.
+Zeigen Sie, dass RISC-LOOP trotzdem nicht weniger leistungsf"ahig als
+LOOP ist.
+
+\begin{loesung}
+Der Zugriff auf Variablen kommt nur in Anweisungen der Form
+\[
+x_i:=x_j\pm c
+\]
+und in der LOOP Anweisung
+\[
+\text{\tt LOOP $x_i$ DO \dots END}
+\]
+vor. Um zu zeigen, dass RISC-LOOP nicht weniger leistungsf"ahig ist, m"ussen
+wir nur zeigen, dass wir jedes LOOP-Programm in ein RISC-LOOP Programm
+umformen k"onnen. Dazu m"ussen wir offenbar st"andig den Index $i$ modifizieren,
+um auf die richtige Variable zugreifen zu k"onnen. Wir organisieren das
+so, dass wir daf"ur sorgen, dass nach einem Zugriff $i$ immer wieder auf
+$0$ zur"uckgesetzt wird. Die Zuweisung $x_3:=x_2+4$ ersetzen wir daher durch das Programm
+\begin{center}
+\begin{tabular}{r<{:}l}
+1&{\tt INCR}\\
+2&{\tt INCR}\\
+3&$r$ := $x_i$\\
+4&{\tt DECR}\\
+5&{\tt DECR}\\
+6&$r$ := $r + 4$\\
+7&{\tt INCR}\\
+8&{\tt INCR}\\
+9&{\tt INCR}\\
+10&$x_i$ := $r$\\
+11&{\tt DECR}\\
+12&{\tt DECR}\\
+13&{\tt DECR}
+\end{tabular}
+\end{center}
+Allgemein "ubersetzen wir $x_j:=x_i\pm c$ durch
+\begin{itemize}
+\item $i$ {\tt INCR} Befehle
+\item Zugriff $r:=x_i$
+\item $i$ {\tt DECR} Befehle
+\item Rechnung $r:=r\pm c$
+\item $j$ {\tt INCR} Befehle
+
+\item Speicherung $x_i:=r$
+\item $j$ {\tt DECR} Befehle
+\end{itemize}
+Analog "ubersetzen wir $\text{\tt LOOP} x_i$ durch
+\begin{itemize}
+\item $i$ {\tt INCR} Befehle
+\item Zugriff $r:=x_i$
+\item $i$ {\tt DECR} Befehle
+\item Schleifenbefehl $\text{\tt LOOP }r$.
+\end{itemize}
+Auf diese Weise l"asst sich jedes LOOP-Programm in eine RISC-LOOP Programm
+"ubersetzen, RISC-LOOP ist also mindestens so leistungsf"ahig wie LOOP.
+\end{loesung}
