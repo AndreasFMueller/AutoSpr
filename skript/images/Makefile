@@ -1,4 +1,4 @@
-# 
+#
 # convert metapost source into images to be included in script
 #
 # (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
@@ -19,10 +19,11 @@ COMPFILES = comp-1.pdf comp-2.pdf comp-3.pdf comp-4.pdf comp-5.pdf \
 GRAPHFILES = graph-1.pdf
 
 timestamp:	$(REGFILES) $(NEAFILES) $(CFGFILES) $(TURINGFILES) \
-		$(LANGFILES) $(MINEFILES) $(PLFILES) $(REDFILES) $(COMPFILES)
+		$(LANGFILES) $(MINEFILES) $(PLFILES) $(REDFILES) $(COMPFILES) \
+		$(GRAPHFILES)
 	touch timestamp
 
-nea:	$(NEAFILES) 
+nea:	$(NEAFILES)
 $(NEAFILES):	nea.mp Makefile
 	TEX=latex mpost nea.mp
 	for i in 1 2 3 4 5 6; \
