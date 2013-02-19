@@ -14,7 +14,7 @@ images/timestamp:
 	cd images; make timestamp
 
 skript.pdf:	images/timestamp skript.ind
-	pdflatex skript.tex
+	latexmk -pdf skript.tex
 
 skript.ind:	$(TEXFILES) 
 	touch skript.ind
