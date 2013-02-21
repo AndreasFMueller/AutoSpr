@@ -481,9 +481,16 @@ Punkt, die {\em Wurzel} des Baumes, enthalten. Alle anderen Ecken vom Grad 1
 \index{Blatt}
 heissen Bl"atter des Baumes.
 
+\begin{figure}
+\begin{center}
+\includegraphics{images/graph-3.pdf}
+\end{center}
+\caption{Gerichteter Graph\label{grundlagen:gerichtetergraph}}
+\end{figure}
 M"ochte man die Richtung der Kanten ber"ucksichtigen,
 hat man mit einem gerichteten
-Graphen zu tun. Da es jetzt auf die Reihenfolge der Endpunkte an kommt,
+Graphen zu tun (Abbildung~\ref{grundlagen:gerichtetergraph}).
+Da es jetzt auf die Reihenfolge der Endpunkte an kommt,
 sich insbesondere die Kante von $a$ nach $b$ von der Kante von $b$ nach
 $a$ unterscheidet, k"onnen wir die Kanten nicht mehr durch die ungeordneten
 Mengen beschreiben, sondern m"ussen geordnete Tupel verwenden.
@@ -496,11 +503,44 @@ Mengen $V$ von Ecken (Vertizes) und einer Menge von Paaren $E\subset V\times V$,
 den Kanten.
 \end{definition}
 
+Die Kanten des Graphen in Abbildung~\ref{grundlagen:gerichtetergraph}
+sind Paare
+\begin{align*}
+e_0&=(v_0,v_4)
+&
+e_1&=(v_0,v_3)
+&
+e_2&=(v_0,v_1)
+&
+e_3&=(v_4,v_2)
+\\
+e_4&=(v_1,v_3)
+&
+e_5&=(v_2,v_3)
+&
+e_6&=(v_1,v_2)
+&
+e_7&=(v_5,v_1)
+\\
+e_8&=(v_1,v_6)
+&
+e_9&=(v_5,v_2)
+&
+e_{10}&=(v_5,v_6)
+\end{align*}
+
+\begin{figure}
+\begin{center}
+\includegraphics{images/graph-4.pdf}
+\end{center}
+\caption{Gerichteter beschrifteter Graph\label{grundlagen:beschrgraph}}
+\end{figure}
 Ein Verkehrsnetz wie auch die sp"ater zu definierenden endlichen
 Automaten ist aber noch komplizierter: auf den Verbindungen zwischen
 den Netzwerken sind auch verschiedene Bahnlinien im Einsatz, so gibt
 es zwischen Rapperswil und Pf"affikon zum Beispiel je eine Kante, die
-mit ``S5'' bzw.~mit ``Voralpenexpress'' angeschrieben ist. Dies
+mit ``S5'' bzw.~mit ``Voralpenexpress'' angeschrieben ist
+(Abbildung~\ref{grundlagen:beschrgraph}). Dies
 wird von folgender Definition eingefangen:
 
 \begin{definition}
@@ -511,6 +551,31 @@ aus einer Menge $V$ von Ecken, einer Menge $L$ von Beschriftungen (Labels) und
 einer Menge $E$ von Tripeln $(a,e,l)\in V\times V\times L$. Das
 Tripel $(a,e,l)$ heisst Kante von $a$ nach $e$ mit Beschriftung $l$.
 \end{definition}
+
+Der in Abbildung~\ref{grundlagen:beschrgraph} abgebildete Graph
+hat die Kantenmenge 
+\begin{align*}
+E=\{\;
+&
+(v_0,v_1,\text{\tt Fussweg}),\;
+(v_0,v_3,\text{\tt ICE}),\;
+(v_0,v_4,\text{\tt NCC 1701-D}),\;
+\\&
+(v_1,v_2,\text{\tt S5}),\;
+(v_1,v_3,\text{\tt S7}),\;
+(v_1,v_6,\text{\tt Taxi}),\;
+(v_2,v_3,\text{\tt S5}),\;
+\\&
+(v_3,v_0,\text{\tt ICE}),\;
+(v_5,v_1,\text{\tt S5}),\;
+(v_5,v_1,\text{\tt S7}),\;
+(v_5,v_6,\text{\tt Bus})\;
+\}
+\end{align*}
+Man beachte, dass es zwei verschieden beschriftete Kanten gibt
+von $v_5$ nach $v_1$, und dass die Richtung der beiden gleich
+beschrifteten Kanten zwischen $v_0$ und $v_3$ verschieden ist.
+Beides M"oglichkeiten, die in einem Graphen verboten sind.
 
 \rhead{Beweistechniken}
 \section{Beweistechniken}
@@ -526,7 +591,7 @@ Ein solches Vorgehen wird auch oft eine Herleitung genannt.
 
 \begin{satz}
 \index{Gleichung!quadratische}
-Falls $a>0$ und $b^2-4ac>0$ hat die quadratische Gleichung
+Falls $a\ne0$ und $b^2-4ac>0$ hat die quadratische Gleichung
 \[
 ax^2+bx+c=0
 \]
