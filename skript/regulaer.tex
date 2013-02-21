@@ -19,7 +19,7 @@ eine Sprache hat, die mit einem endlichen Automaten oder einem
 regul"aren Ausdruck beschrieben werden kann.
 
 \rhead{Deterministische endliche Automaten}
-\section{Deterministische endliche Automaten}
+\section{Deterministische endliche Automaten\label{regulaer:dea}}
 Ein endlicher Automat modelliert ein System, welches
 in einer endlichen Zahl verschiedener Zust"ande sein kann. Der
 "Ubergang zwischen den Zust"ande geschieht determinstisch beim
@@ -62,7 +62,7 @@ einen Doppelkreis:
 \]
 Damit haben wir alle Elemente zusammen, die einen deterministischen
 endlichen Automaten ausmachen.
-\subsection{Definition}
+\subsection{Definition\label{regulaer:definition-dea}}
 \index{Automat!endlicher}
 \index{Automat!deterministischer endlicher}
 \index{DEA|see{deterministischer endlicher Automat}}
@@ -310,7 +310,7 @@ $e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$\\
 
 \end{beispiel}
 
-\subsection{Von einem DEA akzeptierte Sprache}
+\subsection{Von einem DEA akzeptierte Sprache\label{regulaer:akzeptiertesprache}}
 \index{akzeptierte Sprache eines DEA}
 Ein DEA definiert auf nat"urliche Weise eine Sprache: sie besteht aus
 allen W"ortern, die als Input f"ur den DEA angewendet, diesen vom
@@ -324,6 +324,7 @@ L(A)=\{w\in\Sigma^*\;|\; \text{$w$ "uberf"uhrt $A$ in einen Akzeptierzustand}\}
 \end{definition}
 
 \begin{definition}
+\label{regulaer:definition:regulaere-sprache}
 \index{Sprache!regul\"are}
 Eine Sprache heisst regul"ar, wenn es einen DEA gibt, der sie
 akzeptiert.
@@ -400,7 +401,7 @@ einem {\tt a} beginnen und genau ein {\tt b} enthalten.
 \]
 \end{beispiel}
 
-\subsection{Rekonstruktion des Automaten}
+\subsection{Rekonstruktion des Automaten\label{regulaer:rekonstruktion}}
 Wenn eine Sprache regul"ar ist, dann muss es einen DEA geben, der
 diese Sprache erkennt. Doch wie findet man aus der Sprache, also 
 aus der Menge $L$, diesen DEA?
@@ -547,7 +548,7 @@ An den Zeilen vier bis sieben kann man ablesen, dass es unendlich
 viele verschiedene Mengen $L(w)$ gibt, somit kann $L$ nicht von
 einem endlichen Automaten erkannt werden.
 
-\subsection{Minimaler Automat}
+\subsection{Minimaler Automat\label{regulaer:minimalautomat}}
 \index{Automat!minimaler}
 Zwei endliche Automaten k"onnen v"ollig verschieden aussehen,
 und trotzdem die gleiche Sprache akzeptieren. Kann man auf einfache
@@ -712,7 +713,7 @@ und erh"alt den minimalen Automaten:
 			&*++[o][F=]{z_3}\ar@(ur,dr)^{0,1}
 }
 \]
-\subsection{Pumping Lemma f"ur regul"are Sprachen}
+\subsection{Pumping Lemma f"ur regul"are Sprachen\label{regulaer:pumpinglemma}}
 \index{Pumping Lemma!f\"ur regul\"are Sprachen}
 Eine regul"are Sprache wird von einem DEA akzeptiert. Dadurch wird
 die Struktur der W"orter eingeschr"ankt. Ein Wort $w$ beschreibt
@@ -826,7 +827,7 @@ Der Widerspruch zeigt jetzt, dass die Annahme, $L$ sei regul"ar, nicht
 haltbar ist, $L$ ist also nicht regul"ar.
 
 \rhead{Nicht deterministische Automaten}
-\section{Nicht deterministische Automaten}
+\section{Nicht deterministische Automaten\label{regulaer:nea}}
 Ein DEA sieht jeweils nur ein Zeichen weit, kann sich nicht an "altere
 Zeichen erinnern, und kann seine fr"uheren Entscheidungen beim Eintreffen
 neuer Zeichen nicht mehr revidieren. Es ist daher nicht unmittelbar klar,
@@ -845,7 +846,7 @@ gr"osser ist. Es wird sich zeigen, dass jeder NEA
 in einen "aquivalenten DEA umgewandelt werden kann, NEAs erkennen also
 die gleichen Sprachen wie DEAs.
 
-\subsection{Definition}
+\subsection{Definition\label{regulaer:definition-dea}}
 In einem DEA gibt es zu jedem Zustand $q\in Q$
 und jedem Zeichen $a\in\Sigma$ genau
 einen "Ubergang in den Zustand $\delta(q,a)$.
@@ -979,7 +980,7 @@ in zwei verschiedene Automaten, die die Teilbarkeit testen:
 \]
 \end{beispiel}
 
-\subsection{Erreichbare Zust"ande}
+\subsection{Erreichbare Zust"ande\label{regulaer:erreichbarezustaende}}
 \index{erreichbare Zust"ande}
 Im Folgenden werden wir berechnen m"ussen, welche Menge von Zust"anden
 durch einen "Ubergang oder mehrere verkettete "Uberg"ange erreicht werden
@@ -1103,7 +1104,7 @@ mit Backtracking. Da er sie in den public domain freigab, hat sie sich
 rasch verbreitet und bildete die Basis Regex-Bibliotheken in Perl, PCRE,
 Python und vielen anderen.
 
-\subsection{Transformation NEA $\rightarrow$ DEA}
+\subsection{Transformation NEA $\rightarrow$ DEA\label{regulaer:nea-dea}}
 NEAs f"uhren trotz der betr"achtlichen Erweiterung durch den
 Nichtdeterminismus nicht zu einer gr"osseren Klasse von akzeptierbaren
 Sprachen. Dazu gen"ugt es zu zeigen, dass sich jeder NEA ein einen DEA
@@ -1432,7 +1433,7 @@ gleich, wenn $A''$ und $B''$ identisch sind.
 \end{enumerate}
 \end{proof}
 
-\subsection{Mengenoperationen}
+\subsection{Mengenoperationen\label{regulaer:mengenoperationen}}
 \index{Mengenoperationen}
 \index{Durchschnitt}
 \index{Vereinigung}
@@ -1651,7 +1652,7 @@ $F\leftrightarrow Q\setminus F$ hervor, aber beide akzeptieren
 $\Sigma^*$, also nicht das Komplement.
 
 \rhead{Regul"are Ausdr"ucke}
-\section{Regul"are Ausdr"ucke}
+\section{Regul"are Ausdr"ucke\label{regulaer:re}}
 \index{regul\"are Ausdr\"ucke}
 Endliche Automaten beschreiben regul"are Sprachen, sind aber f"ur die
 Anwendung eher unhandlich. In der Praxis haben sich regul"are Ausdr"ucke
@@ -1660,7 +1661,7 @@ W"ortern zu spezifizieren erlauben. Ziel dieses Abschnittes ist
 zu zeigen, dass regul"are Ausdr"ucke genau gleich ausdrucksstark sind
 wie DEAs.
 
-\subsection{Regul"are Operationen}
+\subsection{Regul"are Operationen\label{regulaer:regulaere-operationen}}
 \index{regul\"are Operationen}
 Wir wissen bereits, dass wir die Mengenoperationen auf regul"are
 Sprachen anwenden d"urfen, ohne die Klasse der regul"aren Sprachen
@@ -1955,7 +1956,7 @@ Dazu werden wir im n"achsten Abschnitt eine pr"agnantere Notation,
 die regul"aren Ausdr"ucke definieren. Danach werden wir zeigen,
 dass sich jeder DEA in einen regul"aren Ausdruck umwandeln l"asst.
 
-\subsection{Regul"are Ausdr"ucke}
+\subsection{Regul"are Ausdr"ucke\label{regulaer:regulaere-ausdruecke}}
 \index{regul\"are Ausdr\"ucke}
 \index{Ausdr\"ucke!regul\"are}
 \begin{table}
@@ -2163,7 +2164,7 @@ l"asst sich also auch mit einem Computer implementieren, sie geht
 auf Ken Thompson zur"uck.
 \index{Thompson, Ken}
 
-\subsection{Regul"arer Ausdruck eines DEA}
+\subsection{Regul"arer Ausdruck eines DEA\label{regulaer:dea-re}}
 Zu jedem DEA gibt es einen regul"aren Ausdruck, der angibt,
 welche W"orter er akzeptiert.  In diesem Abschnitt geben
 wir einen Algorithmus an, der einen DEA in einen "aquivalenten
@@ -2355,7 +2356,7 @@ Damit ist der regul"are Ausdruck gefunden, der die gleiche Sprache
 akzeptiert wie der urspr"ungliche DEA.
 entspricht.
 
-\section{Anhang: Regul"are Ausdr"ucke in der Praxis}
+\section{Anhang: Regul"are Ausdr"ucke in der Praxis\label{regulaer:praxis}}
 \rhead{Regex in der Praxis}
 \subsection{Flex}
 \index{Flex}
@@ -2625,3 +2626,28 @@ Interface herumgebastelt, nicht an der Substanz. Vielleicht sollten
 die Implementatoren von {\tt java.util.regex} mal die Vorlesung MathI2
 besuchen.
 \end{sloppypar}
+
+\section{Zusammenfassung: Das Wichtigste in K"urze}
+\begin{enumerate}
+\item Zu jedem DEA gibt es einen
+minimalen Automaten, der zum Beispiel dazu verwendet werden kann,
+DEA zu vergleichen
+(\ref{regulaer:minimalautomat}).
+\item Eine Sprache ist regul"ar, wenn sie von einem endlichen Automaten
+akzeptiert wird (\ref{regulaer:definition:regulaere-sprache}).
+\item Selbst wenn man von einer Sprache nur weiss, dass sie regul"ar
+ist, kann man einen DEA finden, der die Sprache akzeptiert
+(Satz \ref{satz_dea_aus_sprache}).
+\item Jeder NEA kann in einen DEA umgewandelt werden (\ref{regulaer:nea-dea}).
+\item Regul"are Sprachen erf"ullen das Pumping Lemma
+(\ref{regulaer:pumpinglemma}).
+Eine Sprache ist nicht regul"ar, wenn sie ein Wort enth"alt, so
+dass jede vom Pumping Lemma erlaubte Art von aufgepumptem Wort nicht
+mehr in der Sprache drin ist.
+\item Die regul"aren Operationen Vereinigung, Verkettung und $*$-Operation
+erzeugen aus regul"aren Sprachen neue regul"are Sprachen
+(\ref{regulaer:regulaere-operationen}).
+\item Zu jedem endlichen Automaten kann man einen regul"aren Ausdruck
+finden, der die gleiche Sprache akzeptiert wie der Automat.
+(\ref{regulaer:dea-re}).
+\end{enumerate}
