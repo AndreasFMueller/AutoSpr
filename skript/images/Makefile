@@ -6,7 +6,7 @@
 #
 all:	cfg turing nea lang red comp pl reg mine graph
 
-REGFILES = reg-1.pdf reg-2.pdf reg-3.pdf reg-4.pdf reg-5.pdf
+REGFILES = reg-1.pdf reg-2.pdf reg-3.pdf reg-4.pdf reg-5.pdf reg-6.pdf
 NEAFILES = nea-1.pdf nea-2.pdf nea-3.pdf nea-4.pdf nea-5.pdf
 CFGFILES = cfg-1.pdf cfg-2.pdf
 TURINGFILES = turing-1.pdf turing-2.pdf turing-3.pdf turing-4.pdf
@@ -84,7 +84,7 @@ $(PLFILES):	pl.mp Makefile
 reg: $(REGFILES)
 $(REGFILES):	reg.mp Makefile
 	TEX=latex mpost reg.mp
-	for i in 1 2 3 4 5; \
+	for i in 1 2 3 4 5 6; \
 	do \
 		mptopdf reg.$${i}; \
 	done
