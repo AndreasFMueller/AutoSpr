@@ -621,7 +621,7 @@ haben.
 \index{aquivalent Zustande@\"aquivalent!Zust\"ande}
 Statt herauszufinden, welche Zust"ande in diesem Sinne "aquivalent
 sind, k"onnte man auch herauszufinden versuchen, welche nicht "aquivalent
-sind. Als Beispiel nehmen wir den folgenden Automaten\footnote{Aus [S]}
+sind. Als Beispiel nehmen wir den folgenden Automaten
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -630,13 +630,13 @@ sind. Als Beispiel nehmen wir den folgenden Automaten\footnote{Aus [S]}
 		&{z_1}\ar@/_/[dd]_{0} \ar[dr]^{1}
 \\
 *+\txt{} \ar[r]
-	&{z_0}\ar[ur]^{0} \ar[dr]^1
+	&{z_0}\ar[ur]^{0} \ar[dr]_1
 		&*+\txt{}
 			&*++[o][F=]{z_3}\ar@(ur,dr)^{0,1}
 \\
 *+\txt{}
 	&*+\txt{}
-		&{z_2} \ar@/_/[uu]_{0} \ar[ur]^{1}
+		&{z_2} \ar@/_/[uu]_{0} \ar[ur]_{1}
 }
 \]
 Von den zwei Zust"anden $z_1$ und $z_2$ aus kann man genau die gleichen
