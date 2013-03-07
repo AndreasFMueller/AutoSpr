@@ -853,7 +853,7 @@ gr"osser ist. Es wird sich zeigen, dass jeder NEA
 in einen "aquivalenten DEA umgewandelt werden kann, NEAs erkennen also
 die gleichen Sprachen wie DEAs.
 
-\subsection{Definition\label{regulaer:definition-dea}}
+\subsection{Definition\label{regulaer:definition-nea}}
 In einem DEA gibt es zu jedem Zustand $q\in Q$
 und jedem Zeichen $a\in\Sigma$ genau
 einen "Ubergang in den Zustand $\delta(q,a)$.
@@ -882,6 +882,8 @@ $(Q,\Sigma,\delta, q_0,F)$ mit
 \index{e-Ubergange@$\varepsilon$-\"Uberg"ange}
 "Uberg"ange mit $\varepsilon$ als ``Input'' heissen $\varepsilon$-"Uberg"ange.
 Ein NEA kann einen solchen "Ubergang durchf"uhren ``wann er Lust hat''.
+Wir bezeichnen NEAs mit $\varepsilon$-"Uberg"angen auch als
+NEA$\mathstrut_\varepsilon$.
 
 Ein DEA ist ein Spezialfall eines NEA. Ein NEA ist
 ein DEA, wenn
@@ -1030,7 +1032,6 @@ befinden sich alle Zust"ande, die von Zust"anden von $M$ aus mit Input
 $a$ erreichbar sind.
 
 \subsubsection{$\varepsilon$-"Uberg"ange}
-
 Einzelne Zust"ande kann man auch durch $\varepsilon$-"Uberg"ange
 erreichen. Die Menge der Zust"ande, die von $q\in Q$ aus durch
 $\varepsilon$-"Uberg"ange erreichbar sind, bezeichnen wir mit
