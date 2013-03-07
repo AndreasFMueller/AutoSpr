@@ -18,14 +18,6 @@ Skript
 Zum Bauen dieses Skripts ist eine vollstaendige LaTeX Installation
 erforderlich, wie sie jeder typischen Linux Distribution beiliegt.
 
-Zusätzlich wird das Paket `picins` (http://tug.ctan.org/pkg/picins) benötigt.
-Mit MiKTeX sollte es automatisch installiert werden, unter TeXlive muss es aus
-lizenztechnischen Gründen manuell nachinstalliert werden. Dies kann am
-einfachsten folgendermassen getan werden:
-
-    $ cd skript
-    $ wget http://mirror.unl.edu/ctan/macros/latex209/contrib/picins/picins.sty
-
 Sofern alle Abhängigkeiten erfüllt sind, kann das Skript folgendermassen
 gebaut werden:
 
