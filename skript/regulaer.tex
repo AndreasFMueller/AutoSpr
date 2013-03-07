@@ -1458,6 +1458,17 @@ Sind $L_1$ und $L_2$ regul"are Sprachen, dann
 ist auch $L_1\cup L_2$ regul"ar.
 \end{satz}
 
+\begin{figure}
+\begin{center}
+\includegraphics[height=0.4\hsize]{images/nea-5}
+\qquad
+\qquad
+\includegraphics[height=0.4\hsize]{images/nea-6}
+\end{center}
+\caption{Konstruktion eines NEA 
+f"ur die Sprache $L(A_1)\cup L(A_2)$.\label{regulaer:vereinigung}}
+\end{figure}
+
 \begin{proof}[Beweis]
 Da die Sprachen regul"ar sind, gibt es endliche Automaten 
 \begin{align*}
@@ -1469,7 +1480,8 @@ jetzt einen Automaten
 \[
 A = (Q, \Sigma, \delta, q_0, F)
 \]
-konstruieren, der $L_1\cup L_2$ akzeptieren.
+konstruieren, der $L_1\cup L_2$ akzeptieren
+(Abbildung~\ref{regulaer:vereinigung}).
 
 F"ur die Vereinigung muss das Alphabet alle Zeichen enthalten,
 also $\Sigma = \Sigma_1\cup\Sigma_2$. Man kann jeden der Automaten 
