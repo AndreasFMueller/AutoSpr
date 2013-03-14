@@ -112,7 +112,7 @@ der Ziffernfolgen mit Zweierpotenzwerten definieren:
 bin"aren Zeichenketten. Darin k"onnen wir eine Reihe von Sprachen auszeichnen:
 \begin{align*}
 L_1&=\{ {\tt 0}^n{\tt 1}^n\,|\,n\ge 0\}\\
-L_2&=\{ w\in\Sigma^*\,|\, |w|_{\tt 0}=|w|_{\tt 1}\}
+L_2&=\{ w\in\Sigma^*\,|\, |w|_{\tt 0}=|w|_{\tt 1}\}\\
 L_3&=\{ w\in\Sigma^*\,|\, \text{Zahlenwert von $w$ ist durch 3 teilbar}\}
 \end{align*}
 \item Sei $\Sigma$ die Menge der ASCII-Zeichen. Dann ist $\Sigma^*$ die
@@ -130,3 +130,16 @@ J
 =\{w\in\Sigma^*\,|\, {\text{$w$ wird von einem Java-Compiler akzeptiert}}\}.
 \]
 \end{enumerate}
+
+Oft kommen Zeichenketten aus vielen identischen Zeichen oder Zeichenketten vor.
+Wir verwenden f"ur solche Zeichenketten eine Potenz-Notation:
+\begin{align*}
+{\tt 0}^3{\tt 1}^5&={\tt 00011111}\\
+({\tt 01})^4&={\tt 01010101}
+\end{align*}
+Die Sprache
+\[
+L=\{ {\tt 0}^n{\tt 1}^n\,|\,n\in\mathbb R\}
+\]
+besteht also aus allen Folgen von {\tt 0} und {\tt 1}, in denen eine Anzahl
+von Nullen gefolgt wird von einer identischen Anzahl Einsen.
