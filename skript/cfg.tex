@@ -340,6 +340,146 @@ der diese Sprachen akzeptiert. Dann wird sich zeigen, dass
 die regul"aren Sprachen diejenigen kontextfreien Sprachen sind,
 f"ur deren Analyse der Stack gar nicht ben"otigt wird.
 
+\subsection{Parse Tree}
+\index{parse tree}
+\index{Ableitungsbaum}
+Der Ableitungsbaum eines Wortes einer kontextfreien Sprache
+ist eine Darstellung der verwendeten Produktionsregeln in Baum-Struktur.
+\index{Ausdr\"ucke!arithmetische}
+Die Grammatik f"ur arithmetische Ausdr"ucke produziert zum Beispiel
+den Ausdruck {\tt 7 * (3 + 5)}.
+Die dabei verwendeten Regeln k"onnen in Baumform wie folgt
+dargestellt werden:
+
+{
+\tiny
+\[
+\xymatrix{
+	&{\tt expression} \ar[d]
+\\
+	&{\tt term} \ar[dl] \ar[d] \ar[drrr]
+\\
+{\tt term}\ar[dddd]
+	&{\tt *}\ar[ddddddd]
+		&
+			&
+				&{\tt factor}\ar@/_40pt/[dddddddll]\ar[d]\ar@/^30pt/[dddddddrr]
+					&
+						&
+\\
+	&
+		&
+			&
+				&{\tt expression}\ar[dl]\ar[dddddd]\ar[ddr]
+					&
+\\
+	&
+		&
+			&{\tt expression}\ar[d]
+				&
+					&
+						&
+\\
+	&
+		&
+			&{\tt term}\ar[d]
+				&
+					&{\tt term}\ar[d]
+						&
+\\
+{\tt factor}\ar[d]
+	&
+		&
+			&{\tt factor}\ar[d]
+				&
+					&{\tt factor}\ar[d]
+						&
+\\
+N\ar[d]
+	&
+		&
+			&N\ar[d]
+				&
+					&N\ar[d]
+						&
+\\
+Z\ar[d]
+	&
+		&
+			&Z\ar[d]
+				&
+					&Z\ar[d]
+						&
+\\
+{\tt 7}
+	&{\tt *}
+		&{\tt (}
+			&{\tt 3}
+				&{\tt +}
+					&{\tt 5}
+						&{\tt )}
+}
+\]
+}
+
+Offenbar spielt es keine Rolle, ob erst die Regelanwendungen
+im linken Teil des Baumes geschehen, oder die Regelanwendungen im
+rechten Teil. Zwei Ableitungen k"onnen daher als gleich angesehen
+werden, wenn sich die Ableitungsb"aume nicht unterscheiden.
+
+\begin{definition}
+\index{Aquivalenz@\"Aquivalenz!von Ableitungen}
+Zwei Ableitungen eines Wortes $w$ einer kontextfreien Sprache $L(G)$
+heissen "aquivalent, wenn sie den gleichen Ableitungsbaum haben.
+Hat eine Sprache W"orter mit verschiedenen Ableitungen, heisst
+sie mehrdeutig (engl.~ambiguous).
+\end{definition}
+
+Von besonderem praktischem Interesse sind Grammatiken, in denen
+Ableitungen immer eindeutig sind. Die
+\index{expression-term-factor Grammatik}
+{\tt expression}-{\tt term}-{\tt factor}-Grammatik f"ur einfache
+arithmetische Ausdr"ucke erf"ullt diese Bedingung. 
+Ein Beispiel f"ur eine zweideutige Grammatik ist
+\[
+G=(\{S\}, \{0,1\}, \{S\to 0S1|1S0|SS|\varepsilon\}, S).
+\]
+$G$ erzeugt die Sprache
+$\{w\in \{0,1\}^*\,|\, |w|_0 = |w|_1\}$, aber das Wort
+$001011$ hat mindestens zwei verschiedene Ableitungen:
+\[
+\xymatrix{
+&&&S\ar@/_10pt/[dddddlll]\ar[d]\ar@/^30pt/[dddddrrrr]
+\\
+&&&S\ar[dl]\ar[drr]
+\\
+ &&S\ar[dddl]\ar[d]\ar[dddr]&&&S\ar[dddl]\ar[d]\ar[dddr]&&
+\\
+&&S\ar[d]&&&S\ar[d]&&
+\\
+ & &\varepsilon& & &\varepsilon& & 
+\\
+0&0&           &1&0&           &1&1
+}
+\]
+oder
+\[
+\xymatrix{
+&&&S\ar@/_/[dddddlll]\ar[d]\ar@/^/[dddddrrr]
+\\
+&&&S\ar@/_/[ddddll]\ar[d]\ar@/^/[ddddrr]&&&
+\\
+&&&S\ar@/_/[dddl]\ar[d]\ar@/^/[dddr]&&&
+\\
+&&&S\ar[d]&&&
+\\
+&&&\varepsilon&&&
+\\
+0&0&1&&0&1&0
+}
+\]
+
+
 \subsection{Chomsky Normalform}
 Bei den regul"aren Sprachen war der Algorithmus zur Reduktion
 auf den minimalen Automaten die Voraussetzung, Automaten vergleichen
@@ -579,145 +719,6 @@ herzustellen. Weitere $|w|$ Anwendungen von Regeln der Form $A\to a$
 wandeln Variablen in Terminalsymbole um. Somit kann ein Wort mit
 genau $2|w|-1$ Regelanwendungen produziert werden.
 \end{proof}
-
-\subsection{Parse Tree}
-\index{parse tree}
-\index{Ableitungsbaum}
-Der Ableitungsbaum eines Wortes einer kontextfreien Sprache
-ist eine Darstellung der verwendeten Produktionsregeln in Baum-Struktur.
-\index{Ausdr\"ucke!arithmetische}
-Die Grammatik f"ur arithmetische Ausdr"ucke produziert zum Beispiel
-den Ausdruck {\tt 7 * (3 + 5)}.
-Die dabei verwendeten Regeln k"onnen in Baumform wie folgt
-dargestellt werden:
-
-{
-\tiny
-\[
-\xymatrix{
-	&{\tt expression} \ar[d]
-\\
-	&{\tt term} \ar[dl] \ar[d] \ar[drrr]
-\\
-{\tt term}\ar[dddd]
-	&{\tt *}\ar[ddddddd]
-		&
-			&
-				&{\tt factor}\ar@/_40pt/[dddddddll]\ar[d]\ar@/^30pt/[dddddddrr]
-					&
-						&
-\\
-	&
-		&
-			&
-				&{\tt expression}\ar[dl]\ar[dddddd]\ar[ddr]
-					&
-\\
-	&
-		&
-			&{\tt expression}\ar[d]
-				&
-					&
-						&
-\\
-	&
-		&
-			&{\tt term}\ar[d]
-				&
-					&{\tt term}\ar[d]
-						&
-\\
-{\tt factor}\ar[d]
-	&
-		&
-			&{\tt factor}\ar[d]
-				&
-					&{\tt factor}\ar[d]
-						&
-\\
-N\ar[d]
-	&
-		&
-			&N\ar[d]
-				&
-					&N\ar[d]
-						&
-\\
-Z\ar[d]
-	&
-		&
-			&Z\ar[d]
-				&
-					&Z\ar[d]
-						&
-\\
-{\tt 7}
-	&{\tt *}
-		&{\tt (}
-			&{\tt 3}
-				&{\tt +}
-					&{\tt 5}
-						&{\tt )}
-}
-\]
-}
-
-Offenbar spielt es keine Rolle, ob erst die Regelanwendungen
-im linken Teil des Baumes geschehen, oder die Regelanwendungen im
-rechten Teil. Zwei Ableitungen k"onnen daher als gleich angesehen
-werden, wenn sich die Ableitungsb"aume nicht unterscheiden.
-
-\begin{definition}
-\index{Aquivalenz@\"Aquivalenz!von Ableitungen}
-Zwei Ableitungen eines Wortes $w$ einer kontextfreien Sprache $L(G)$
-heissen "aquivalent, wenn sie den gleichen Ableitungsbaum haben.
-Hat eine Sprache W"orter mit verschiedenen Ableitungen, heisst
-sie mehrdeutig (engl.~ambiguous).
-\end{definition}
-
-Von besonderem praktischem Interesse sind Grammatiken, in denen
-Ableitungen immer eindeutig sind. Die
-\index{expression-term-factor Grammatik}
-{\tt expression}-{\tt term}-{\tt factor}-Grammatik f"ur einfache
-arithmetische Ausdr"ucke erf"ullt diese Bedingung. 
-Ein Beispiel f"ur eine zweideutige Grammatik ist
-\[
-G=(\{S\}, \{0,1\}, \{S\to 0S1|1S0|SS|\varepsilon\}, S).
-\]
-$G$ erzeugt die Sprache
-$\{w\in \{0,1\}^*\,|\, |w|_0 = |w|_1\}$, aber das Wort
-$001011$ hat mindestens zwei verschiedene Ableitungen:
-\[
-\xymatrix{
-&&&S\ar@/_10pt/[dddddlll]\ar[d]\ar@/^30pt/[dddddrrrr]
-\\
-&&&S\ar[dl]\ar[drr]
-\\
- &&S\ar[dddl]\ar[d]\ar[dddr]&&&S\ar[dddl]\ar[d]\ar[dddr]&&
-\\
-&&S\ar[d]&&&S\ar[d]&&
-\\
- & &\varepsilon& & &\varepsilon& & 
-\\
-0&0&           &1&0&           &1&1
-}
-\]
-oder
-\[
-\xymatrix{
-&&&S\ar@/_/[dddddlll]\ar[d]\ar@/^/[dddddrrr]
-\\
-&&&S\ar@/_/[ddddll]\ar[d]\ar@/^/[ddddrr]&&&
-\\
-&&&S\ar@/_/[dddl]\ar[d]\ar@/^/[dddr]&&&
-\\
-&&&S\ar[d]&&&
-\\
-&&&\varepsilon&&&
-\\
-0&0&1&&0&1&0
-}
-\]
 
 
 \subsection{Ein deterministischer Parse-Algorithmus}
