@@ -43,11 +43,12 @@ konstruieren:
 		&{} \ar[rr]^{\varepsilon,\varepsilon\to S}
 			&*+\txt{}
 			&{R} \ar[rr]^{\varepsilon,{\tt \$}\to\varepsilon}
-				\ar@(u,ur)^{{\tt 0},{\tt 0}\to\varepsilon}
-				\ar@(u,ul)_{{\tt 1},{\tt 1}\to\varepsilon}
-				\ar@(d,dr)_{\varepsilon,X\to{\tt 0}}
-				\ar@(d,dl)^{\varepsilon,X\to{\tt 1}}
+				\ar@(u,ul)_{x,x\to\varepsilon}
+				%\ar@(ul,l)_{{\tt 1},{\tt 1}\to\varepsilon}
+				\ar@(u,ur)^{\varepsilon,X\to x}
+				%\ar@(ur,r)^{\varepsilon,X\to{\tt 1}}
 				\ar@/_/[dl]_{\varepsilon,S\to X}
+				\ar@(dl,dr)_{\varepsilon,S\to\varepsilon}
 				&*+\txt{}
 				&*++[o][F=]{}
 \\
@@ -59,4 +60,7 @@ konstruieren:
 					&{} \ar@/_/[ul]_{\varepsilon,\varepsilon\to X}
 }
 \]
+In den Regeln oberhalb des Zustandes $R$ steht das $x$ f"ur ein Terminalsymbol.
+Jeder Pfeil steht also eigentlich f"ur zwei Regeln, n"amlich eine mit
+$x={\tt 0}$ und eine mit $x={\tt 1}$.
 \end{loesung}
