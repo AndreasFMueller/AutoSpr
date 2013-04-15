@@ -20,6 +20,34 @@ aber alles umfasst, was wir mit modernen Computern abbilden k"onnen.
 
 \section{Turing Maschinen}
 \rhead{Turingmaschinen}
+\subsection{Zwei Stacks: Random Access}
+Ein Stack hat die M"oglichkeiten eines endlichen Automaten dramatisch
+erweitert, ein Stackautomat kann die bedeutend gr"ossere Klasse der
+kontextfreien Sprachen analysieren. Wir haben aber auch schon gesehen,
+dass es nicht kontextfreie Sprachen gibt. Mit welcher m"oglichst kleinen
+Erweiterung k"onnen wir eine Sprache wie $\{a^nb^nc^n\,|\, n\ge 0\}$
+analysieren?
+
+Eine erste Idee k"onnte sein, eine zweiten Stack hinzuzuf"ugen.
+Damit k"onnte man mit Sicherheit die Sprache $\{a^nb^nc^n\,|\,n\ge 0\}$
+behandeln. Doch man f"ugt damit wesentlich mehr hinzu. Ein Buch ist
+sicher ein Random-Access Speichermedium. Durch bl"attern im Buch
+kann man jede beliebige Seite erreichen. Wenn man aber ein Buch
+aufschl"agt, besteht es eigentlich nur aus zwei Stapeln von Bl"attern.
+Bl"attern bedeutet nichts anderes, dass man ein Blatt des Buches vom
+einen Stapel wegnimmt und auf den anderen Stapel legt. Zwei Stacks
+bilden also bereits ein Random-Access Medium.
+
+Antike Schriftrollen sind auch B"ucher, die aber nicht als Stapel
+von Seiten organisiert sind, sondern als langes Band. Es ist aber klar,
+dass man durch zerschneiden und binden jede Schriftrolle in ein
+Buch verwandeln kann, und ein Buch durch zusammenkleben der einzelnen
+Seiten zu einem Band in eine Schriftrolle.
+Die heutigen B"ucher (Kodices) haben sich gegen"uber den Schriftrollen
+etwa im ersten Jahrhundert n.~Chr. durchgesetzt.
+F"ur unsere Anwendung ist die Vorstellung eines Random-Access Mediums
+als endloses Band von Speicherzellen praktischer. Sie passt besser zu
+unserem Bild vom Hauptspeicher eines Computers oder von Massenspeichermedien.
 \subsection{Definition}
 \index{Band}
 \index{Bandalphabet}
