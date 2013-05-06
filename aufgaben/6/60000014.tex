@@ -1,18 +1,12 @@
 Ein Sudoku-Tester ist ein Programm, welches bei einem vollst"andig
-ausgef"ullten Sudoku-Feld entscheidet, ob es richtig ausgef"ullt
+ausgef"ullten Sudoku-Spielplan entscheidet, ob es richtig ausgef"ullt
 worden ist, d.~h.~ob alle Regeln eingehalten worden sind. K"onnen Sie
 einen Algorithmus angegeben, mit dem man Sudoku-Tester auf Korrektheit
 pr"ufen kann? Dabei ist das mathematische Sudoku-Problem nicht auf
-Felder $9\times 9$ beschr"ankt, sondern kann f"ur beliebig grosse
-Felder $n^2\times n^2$ ($n\times n$ Teilquadrate je $n\times n$)
-gestellt werden.
-
-\begin{hinweis}
-Betrachten Sie eine Eigenschaft, die ausdr"uckt, dass
-jedes Quadrat, das der Tester akzeptiert, mit Sicherheit korrekt
-ist. Es darf vorkommen, dass er korrekte Quadrate als inkorrekt
-verwirft.
-\end{hinweis}
+Spielpl"ane mit $9\times 9$ Feldern beschr"ankt,
+sondern kann f"ur beliebig grosse
+$n^2\times n^2$-Spielpl"ane ($n\times n$ Unterquadrate von je $n\times n$
+Feldern) gestellt werden.
 
 \begin{loesung}
 Nein.  Die Eigenschaft \textsl{SUDOKU} sei die Eigenschaft einer
@@ -60,4 +54,12 @@ L_2=\{1^92^93^94^95^96^97^98^99^9\}
 \]
 die Eigenschaft \textsl{SUDOKU} nicht. Nach dem Satz
 von Rice ist also \textsl{SUDOKU} nicht entscheidbar.
+
+Genau genommen haben wir sogar eine st"arkere Aussage bewiesen.
+Die untersuchte Eigenschaft besagte, dass ein Sudoku-Tester-Programm nicht
+alle korrekt ausgef"ullten Sudokus erkennt, es darf auch einige
+korrekt ausgef"ullte Sudokus ``"ubersehen''. Unser Resultat sagt dann,
+dass wir nicht einmal solche ``l"uckenhaften'' Sudoko-Tester von solchen
+unterscheiden k"onnen, die auch ein inkorrekt ausgef"ulltes Sudoku
+akzeptieren.
 \end{loesung}
