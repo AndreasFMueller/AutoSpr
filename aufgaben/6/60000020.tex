@@ -5,28 +5,28 @@ hat:
 \[
 l(n)=|\{w\in L|\;|w|\le n\}|.
 \]
-Man sagt, die Sprache $L$ habe polynomiales Wachstum, wenn
+Man sagt, die Sprache $L$ habe polynomielles Wachstum, wenn
 \[
 l(n)=O(n^k)
 \]
-f"ur ein geeignetes $k$. Ist entscheidbar, ob eine Sprache polynomiales
+f"ur ein geeignetes $k$. Ist entscheidbar, ob eine Sprache polynomielles
 Wachstum hat?
 
 \begin{loesung}
-Wir zeigen mit dem Satz von Rice, dass die Eigenschaft, polynomiales
+Wir zeigen mit dem Satz von Rice, dass die Eigenschaft, polynomielles
 Wachstum zu haben, entscheidbar ist. Dazu m"ussen wir zwei Sprachen
 angeben, eine Sprache, die die Eigenschaft hat, und eine, die die
 Eigenschaft nicht hat.
 
 Die Sprache $L_0=\emptyset$ enth"alt gar keine W"orter, f"ur sie
-gilt also $l(n)=0$, diese Sprache hat also sicher polynomiales
+gilt also $l(n)=0$, diese Sprache hat also sicher polynomielles
 Wachstum, es ist sogar $l(n)=O(1)$.
 
 Die Sprache $L_1=\{\text{\tt 1}\}^*$ ist sicher auch eine Sprache mit
 dem Alphabet $\Sigma$, also $L_1\subset \Sigma^*$. Die W"orter
 von $L_1$ sind die nat"urlichen Zahlen in un"arer Darstellung,
 es gibt also immer genau $n+1$ W"orter der L"ange $\le n$, also
-$l(n)=n+1=O(n)$. Auch die Sprache $L_1$ hat also polynomiales Wachstum.
+$l(n)=n+1=O(n)$. Auch die Sprache $L_1$ hat also polynomielles Wachstum.
 
 Man kann sogar f"ur jeden beliebigen Exponenten $k\ge 1$ eine Sprache $L_k$
 mit Wachstum $O(n^k)$ angeben. Dazu sei $w$ ein Wort in $\Sigma^*$,
@@ -50,7 +50,7 @@ $L_1$.
 Die Sprache $L_\infty=\Sigma^*$ besteht aus allen {\tt 0}-{\tt 1}-Folgen.
 Es gibt jeweils $2^n$ W"orter der L"ange $n$, oder $2^{n+1}-1$ W"orter
 der L"ange $n$, also $l(n)=2^{n+1}-1$. $2^n$ w"achst aber schneller
-als jede Potenz von $n$, somit hat die Sprache $L_2$ kein polynomiales
+als jede Potenz von $n$, somit hat die Sprache $L_2$ kein polynomielles
 Wachstum.
 
 $L_k$ und $L_\infty$ sind offenbar zwei Sprachen, wie sie der Satz von

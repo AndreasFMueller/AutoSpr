@@ -7,7 +7,7 @@ darf eine Zahl mehr als einmal vorkommen. Die bekannten Sudokus
 sind 3-Sudokus.
 
 Zeigen sie: wenn $\text{P}=\text{NP}$, dann gibt es einen Algorithmus,
-der auch grosse Sudokus in polynomialer Zeit l"osen kann.
+der auch grosse Sudokus in polynomieller Zeit l"osen kann.
 
 \begin{loesung}
 Wir m"ussen zun"achst zeigen, dass Sudoko ein NP-Problem ist.
@@ -20,9 +20,9 @@ also $1+3n^2$ Vergleichsoperationen notwendig. Jeder solche Vergleich
 braucht $O(\log n^)2$ Ziffernvergleiche, da eine Zahl $<n^2$ $O(\log n^2)$
 Stellen hat.
 Insgesamt braucht es also $O(n^2(1+3n^2)\log n^2)< O(n^4\log n)<O(n^5)$
-Operationen. Damit ist gezeigt, dass das Sudoku-Problem einen polynomialen
+Operationen. Damit ist gezeigt, dass das Sudoku-Problem einen polynomiellen
 Verifizierer hat, also in NP ist.
 
-Wenn $\text{P}=\text{NP}$ ist, dann muss es auch einen polynomialen
+Wenn $\text{P}=\text{NP}$ ist, dann muss es auch einen polynomiellen
 Algorithmus geben, der Sudokus l"ost.
 \end{loesung}
