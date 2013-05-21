@@ -90,7 +90,24 @@ Laufzeit, der entscheiden k"onnte, ob das Problem "uberhaupt eine
 L"osung hat.
 
 \subsection{FEEDBACK-ARC-SET}
+Kurz nachdem die Pl"ane f"ur das Pr"ufstellennetz aus dem vorangegangenen
+Beispiel von der Gesch"aftsletiung bewilligt worden war, "anderte
+der Hersteller der Roboter bei einem Softwareupdate die Wartungsvorschriften.
+Die Pr"ufung erfolgt jetzt nicht mehr im Stehen, sondern w"ahrend der
+Fahrt.
+Durch diese dynamische Pr"ufung werden Problem erkennbar, die bei der
+statischen Pr"ufung nicht gefunden werden konnten. Heiri Musters
+Nachfolger wird beauftragt, die Pl"ane entsprechend anzupassen.
+Drei Monate sp"ater ist auch er wegen Burnout freigestellt.
 
+\medskip
+
+Das Problem wurde durch die Umstellung zu einer Instanz des
+Problems {\it FEEDBACK-ARC-SET} modifiziert.
+Es m"ussen $k$ Kanten gefunden werden, so dass jeder Zyklus eine
+diese Kanten durchl"auft. Auch dieses Problem ist NP-vollst"andig,
+und d"urfte daher f"ur ein kompliziertes Streckennetz
+nicht nur einen Sachbearbeiter "uberfordern.
 
 \subsection{SET-COVERING}
 Der populistische Politiker Tesco Vering versprach w"ahrend des
@@ -174,7 +191,8 @@ Dieses Problem ist NP-vollst"andig, nach aktuellem Wissen gibt es
 also keinen polynomiellen Algorithmus, mit dem entschieden werden
 k"onnte, ob es "uberhaupt eine L"osung hat.
 
-%\subsection{CLIQUE-COVER}
+\subsection{CLIQUE-COVER}
+
 \subsection{3D-MATCHING}
 In der Provinz Gnichtam De herscht grosse Wohnungsnot.
 Eine Analyse durch das Innenministerium ergab, dass die Ursache
@@ -237,7 +255,27 @@ keinen Algorithmus mit polynomieller Laufzeit, der entscheiden
 k"onnte, ob es eine Aufgabenverteilung gibt.
 
 \subsection{STEINER-TREE}
+Eine Bank hat bis anhin ihre Filialen immer vom Hauptsitz aus mit
+Geld versorgt. Die daf"ur n"otigen Hochsicherheitstransporte sind
+jedoch teuer, daher soll ein neues Transportmodell gefunden werden.
+Neu sollen auch Transporte zwischen Filialen m"oglich sein.
+Am Hauptsitz werden dazu die Betr"age f"ur mehrere Filialen
+verladen, die Filialen m"ussen die Lieferungen
+auseinander nehmen und auf neue Transporte verladen. Das
+Management will wissen, ob sich mit dieser Methode die
+Kosten unter den Betrag $k$ senken lassen. 
 
+\medskip
+
+F"ur jedes Paar von Filialen sind die Kosten eines Transportes
+bekannt. Der billigste Logistikplan wird einen Baum verwenden.
+W"are das gew"ahlte Verfahren nicht ein Baum, k"onnte man
+durch Umverteilung eines Teils des Geldes n"amlich einen
+Transport weglassen, wodurch die Kosten geringer w"urden.
+Es liegt also eine Instanz des Problems {\it STEINER-TREE}
+vor, welches NP-vollst"andig ist und daher nach allem, was
+wir wissen, nicht von einem Algorithmus mit polynomieller
+Laufzeit gel"ost werden kann.
 
 \subsection{SEQUENCING}
 
