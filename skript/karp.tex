@@ -1,4 +1,5 @@
 \section{Beispiele}
+\rhead{Beispiele zur Liste von Karp}
 In diesem Abschnitt werden zu den NP-vollst"andigen Problemen des
 Katalogs von Karp einzelne Beispiele oder Illustrationen geben.
 \subsection{VERTEX-COVER}
@@ -70,7 +71,7 @@ Sicherheitscheck unterzogen werden, der nur wenige Minuten dauert. Wegen
 des weitl"aufigen Fabrikgel"andes lohnt es sich nicht, alle Roboter jeden
 Tag an eine zentrale Kontrollstelle zu fahren, wo sie "uberpr"uft werden
 k"onnen. Sie w"urden viel zu lange ausfallen. Daher wurde entschieden, an
-einigen Stellen des Netzes der Roboter-Fahrwege Pr"ufstellen einzurichten.
+einigen Knoten des Netzes der Roboter-Fahrwege Pr"ufstellen einzurichten.
 
 Sachbearbeiter Heiri Muster soll herausfinden, ob das Budget reicht,
 um gen"ugend Pr"ufstellen einzurichten, so dass jeder Roboter t"aglich
@@ -91,7 +92,7 @@ L"osung hat.
 
 \subsection{FEEDBACK-ARC-SET}
 Kurz nachdem die Pl"ane f"ur das Pr"ufstellennetz aus dem vorangegangenen
-Beispiel von der Gesch"aftsletiung bewilligt worden war, "anderte
+Beispiel von der Gesch"aftsleitung bewilligt worden waren, "anderte
 der Hersteller der Roboter bei einem Softwareupdate die Wartungsvorschriften.
 Die Pr"ufung erfolgt jetzt nicht mehr im Stehen, sondern w"ahrend der
 Fahrt.
@@ -123,7 +124,8 @@ immer noch von einer Verg"unstigung profitiert. Niemand soll im
 Wahlkampf sagen k"onnen: ``Vering hat mir all Verg"unstigungen weggenommen!''
 Kurz vor Beginn des n"achsten Wahlkampfs war die Komission jedoch
 immer noch nicht fertig, so dass sich Vering als neues Wahlkampfthema
-auf den Kampf gegen die allgemeine Unf"ahigkeit der Veraltung verlegte, um davon
+auf den Kampf gegen die allgemeine Unf"ahigkeit der Verwaltung verlegte,
+um davon
 abzulenken, dass er das letzte Wahlversprechen nicht eingel"ost hatte.
 Trotzdem wurde er nicht wiedergew"ahlt. Eine detaillierte Analyse der
 Wahlresultate ergab, dass Vering vor allem die Stimmen der Mathematiker und
@@ -254,24 +256,29 @@ mit dem entschieden werden k"onnte, ob es "uberhaupt so eine Teilmenge
 $W$ gibt.
 
 \subsection{HITTING-SET}
-An einer Hochschule soll geplant werden, welche Dozenten welche
-F"acher unterrichten sollen.
-Die meisten Dozenten sind kompetent, mehr als eines der F"acher
-zu unterrichten, und es ist bekannt, dass die vorhandenen Kompetenzen
-unter den Dozenten alle F"acher abdecken.
-Warum dauert es trotzdem so lange, eine F"acherzuteilung zu finden? 
+Die Lobby-Organisation Bribe-A-Scientist will eine Menge von
+Wissenschaftlern bestechen.
+Sie sucht Fachleute, die zu einer Anzahl wichtiger Themen
+im Sinne von BAS Stellung nehmen k"onnen.
+Bei ihrer Suche stellt BAS fest, dass einige Wissenschafter
+zu mehreren Themen Stellung nehmen k"onnten.
+BAS will verhindern, dass der Eindruck entsteht, gewisse
+Leute liessen sich f"ur jede Aussage kaufen.
+Die ausgew"ahlten Wissenschafter sollen im jeweiligen Fachgebiet
+die einzigen sein, die in Frage kommen.
+Ist so eine Auswahl effizient auffindbar?
 
 \medskip
 
-Das Problem der F"acherzuteilung ist "aquivalent zum Problem {\it HITTING-SET}.
-Zu jedem Fach $i$ gibt es eine Menge $S_i$ von Dozenten, die das Fach
-unterrichten k"onnten.
-Gesucht ist eine Menge $H$ von Dozenten, so dass jedes Fach genau
-einen Dozenten erh"alt, also $H\cap S_i$ genau ein Element enth"alt.
+Sei $S_i$ Menge der Wissenschafter, die zum Thema $i$ Stellung im
+Sinne von BAS beziehen k"onnen. Gesucht wird eine Auswahl
+$H$ von Wissenschaftern, so dass jeder Wissenschafter genau
+ein Fachgebiet hat, f"ur das er zur Stimme von BAS werden soll,
+also $|H\cap S_i|=1$.
+Dies ist das NP-vollst"andige Problem {\it HITTING-SET}, welches
+nach heutigem Wissen nicht in polynomieller Zeit gewl"ost werden
+kann.
 
-Dieses Problem ist NP-vollst"andig, nach aktuellem Wissen gibt es
-keinen Algorithmus mit polynomieller Laufzeit, der entscheiden
-k"onnte, ob es eine Aufgabenverteilung gibt.
 
 \subsection{STEINER-TREE}
 Eine Bank hat bis anhin ihre Filialen immer vom Hauptsitz aus mit
@@ -332,7 +339,7 @@ Die Gesamtstrafe ist daher
 Das Problem ist somit "aquivalent zu {\it SEQUENCING}, einem
 NP-vollst"andigen Problem, f"ur das es nach aktuellem Wissen keinen
 polynomiellen Algorithmus steht. Das Projekt w"are besser beraten,
-statt der optimalen Abfolge nach einer angen"ahert optimalen Abfolge
+statt nach der optimalen Abfolge nach einer angen"ahert optimalen Abfolge
 zu suchen.
 
 \subsection{SUBSET-SUM}
