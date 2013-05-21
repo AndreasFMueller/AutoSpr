@@ -192,6 +192,25 @@ also keinen polynomiellen Algorithmus, mit dem entschieden werden
 k"onnte, ob es "uberhaupt eine L"osung hat.
 
 \subsection{CLIQUE-COVER}
+In einem Online-Spiel treten die Spieler jeweils paarweise gegeneinander an.
+Eine zuverl"assige Rangliste der Spieler kann nur innerhalb
+einer Gruppe erstellt werden, in der jeder Spieler gegen
+jeden anderen gespielt hat. Trotzdem soll jetzt versucht werden,
+ein Gesamt-Ranking zu erstellen. Grundlage daf"ur ist die Auswahl
+einer Menge von Gruppen, in der jeder gegen jeden gespielt hat.
+Die Auswahl soll m"oglichst klein sein, denn man hofft so, die
+Schnittmengen, in denen systembedingt am ehesten Ranking-Widerspr"uche
+auftreten k"onnten, m"oglichst klein zu halten. Allerdings stellt es
+sich als schwierig heraus, eine solche Auswahl zu treffen, warum?
+
+\medskip
+
+Die Aufgabe verlangt, in dem Graphen bestehend aus den Spielern
+als Knoten und Kanten, die angeben, ob die zwei Spieler schon gegeneinander
+gespielt hat, eine "Uberdeckung mit einer m"oglichst
+kleinen Anzahl Cliquen zu finden. Dies ist das NP-vollst"andige Problem
+{\it CLIQUE-COVER}. Nach aktuellem Wissen gibt es daf"ur keinen
+Algorithmus mit polynomieller Laufzeit.
 
 \subsection{3D-MATCHING}
 In der Provinz Gnichtam De herscht grosse Wohnungsnot.
@@ -295,7 +314,7 @@ am richtigen Ort?
 \medskip
 
 Nein, der Gruppenleiter h"atte erkennen m"ussen, das er der Sekret"arin
-ein NP-vollst"andiges Problem gestellt hat, wof"ur es in nach aktuellem
+ein NP-vollst"andiges Problem gestellt hat, wof"ur es nach aktuellem
 Wissen keinen Algorithmus mit polynomieller Laufzeit gibt. Die Vorschl"age
 des Teams bilden eine Menge $\{b_1,b_2,\dots,b_n\}$ von Betr"agen $b_i$.
 Daraus soll ein Teilmenge $I=\{i_1,\dots,i_m\}$ gebildet werden, so dass
