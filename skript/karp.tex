@@ -19,7 +19,7 @@ Diese Aff"are hatte das Milit"ar einige der f"ahigsten K"opfe beraubt,
 so dass eine zuverl"assigere Methode gefunden werden musste, um
 Regimefeinde zu erkennen.
 Wenn sich damit gegen"uber dem Ausland auch noch ein Anschein von
-Rechtssystem etablieren liess, w"urde das Dikatator Xetrev den Zugang
+Rechtssystem etablieren liess, w"urde das Diktator Xetrev den Zugang
 zu westlichen Waffenlieferanten etwas erleichtern.
 
 Aus technischen Gr"unden ist eine l"uckenlose "Uberwachung aller Anschl"usse
@@ -27,7 +27,7 @@ nicht m"oglich.
 Die Software kann mit maximal $k$ Anschl"ussen umgehen, die abgeh"ort
 werden k"onnen.
 Diktator Xetrev befiehlt daher, dass innert einer Woche eine Menge
-von $k$ Anschl"ussen definiert werden m"ussen, so dass jedes
+von $k$ Anschl"ussen definiert werden m"usse, so dass jedes
 Telefongespr"ach abgeh"ort werden kann.
 
 Diese Ank"undigung verursacht erst einmal eine neue Fluchtwelle von
@@ -44,7 +44,7 @@ Diktators Xetrev aus und machte kurzen Prozess mit ihm.
 Als aber nach einer weiteren Woche erneut ein Saboteur angeklagt wurde,
 der genau die gleiche Verteidigungstrategie verwendete, obwohl
 doch mittlerweile bekannt war, dass sie nicht zum Erfolg f"uhren konnte,
-begann sich Diktator Xetrev jedoch zu fragen, ob darin vielleicht
+begann sich Diktator Xetrev zu fragen, ob darin vielleicht
 ein K"ornchen Wahrheit stecken k"onnte. K"onnte es sein, dass 
 es tats"achlich zu schwierig ist, eine solche Anschlussauswahl zu treffen?
 
@@ -60,7 +60,43 @@ ausgew"ahlten Knoten endet.
 
 %\subsection{FEEDBACK-NODE-SET}
 %\subsection{FEEDBACK-ARC-SET}
-%\subsection{SET-COVERING}
+\subsection{SET-COVERING}
+Der populistische Politiker Tesco Vering versprach w"ahrend des
+Wahlkampfes, das Dickicht von Steuererleichterungen, welches
+f"ur jeden B"urger das Ausf"ullen der Steuererkl"arung zur Qual
+machte, zu vereinfachen.
+Nach seinem Amtsantritt als Ministerpr"asident 
+stellte er jedoch fest, dass jeder seiner W"ahler von irgend einer
+der Verg"unstigungen profitierte. Um seine Wiederwahl nicht
+zu gef"ahrden, beauftragte er daher eine Komission eine Liste
+von Verg"unstigungen aufzustellen, so dass jeder seiner W"ahler
+immer noch von einer Verg"unstigung profitiert. Niemand soll im
+Wahlkampf sagen k"onnen: ``Vering hat mir all Verg"unstigungen weggenommen!''
+Kurz vor Beginn des n"achsten Wahlkampfs war die Komission jedoch
+immer noch nicht fertig, so dass sich Vering als neues Wahlkampfthema
+auf den Kampf gegen die allgemeine Unf"ahigkeit der Veraltung verlegte, um davon
+abzulenken, dass er das letzte Wahlversprechen nicht eingel"ost hatte.
+Trotzdem wurde er nicht wiedergew"ahlt. Eine detaillierte Analyse der
+Wahlresultate ergab, dass Vering vor allem die Stimmen der Mathematiker und
+Informatiker gefehlt hatten.
+Sie warfen ihm Unverst"andnis f"ur die Komplexit"at seiner Aufgabe vor und 
+und hielten ihn deshalb f"ur nicht tauglich f"ur ein politisches Amt.
+
+\medskip
+
+Tats"achlich ist das Programm von Tesco Vering das Problem {\it SET-COVERING}.
+Die Steuerverg"unstigungen sind numeriert von $1$ bis $n$.
+Sei $S_i$ die Menge der W"ahler von Vering, die von Verg"unstigung $i$
+profitieren. Der Auftrag der Komission war, eine Teilmenge
+$I=\{i_1,i_2,\dots,i_k\}$ zu finden, so dass
+\[
+\bigcup_{i=1}^nS_i=\bigcup_{i\in I}S_i
+\]
+ist.
+Dieses Problem ist NP-vollst"andig, nach aktuellem Wissen gibt
+es also keinen polynomiellen Algorithmus um zu entscheiden, ob es
+"uberhaupt eine L"osung des Problems gibt.
+
 %\subsection{EXACT-COVER}
 %\subsection{CLIQUE-COVER}
 \subsection{3D-MATCHING}
