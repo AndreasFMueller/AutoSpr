@@ -1,0 +1,41 @@
+\section{Beispiele}
+In diesem Abschnitt werden zu den NP-vollst"andigen Problemen des
+Katalogs von Karp einzelne Beispiele oder Illustrationen geben.
+%\subsection{VERTEX-COVER}
+%\subsection{FEEDBACK-NODE-SET}
+%\subsection{FEEDBACK-ARC-SET}
+%\subsection{SET-COVERING}
+%\subsection{EXACT-COVER}
+%\subsection{CLIQUE-COVER}
+%\subsection{3D-MATCHING}
+%\subsection{SUBSET-SUM}
+%\subsection{HTTING-SET}
+%\subsection{STEINER-TREE}
+%\subsection{SEQUENCING}
+\subsection{PARTITION}
+Aufgabe:
+Ein reicher K"onig ist gestorben, und hinterl"asst seinen beiden
+S"ohnen, eineiige Zwillinge, ein grosses Verm"ogen aus Schl"ossern
+und Burgen. Die Berater des K"onigs werden zusammengerufen um
+dar"uber zu entscheiden, wie die G"uter gerecht an die beiden S"ohne
+verteilt werden sollen. Warum sind die Berater auch nach einem Jahr
+noch nicht zur Einsicht gelangt, ob die gerechte Teilung "uberhaupt
+m"oglich ist?
+
+Bezeichnen wir mit $c_i$ den Wert der Immobilie $i$, dann besteht
+die Aufgabe der Berater darin eine Aufteilung der Menge $A$ aller 
+zur Teilung stehenden Immobilien in zwei Mengen $I$ und $A\setminus I$
+zu vollziehen, die Immobilien jeder Menge jeweils einem der S"ohne zugeteilt
+werden sollen.
+Nat"urlich sollen die beiden Mengen gleichen Gesamtwert haben.
+Der Gesamtwert ist jeweils die Summe der einzelnen Werte, gesucht ist also
+$I\subset A$ so dass
+\[
+\sum_{i\in I}c_i =\sum_{i\in A\setminus I}c_i
+\]
+Diese ist das Problem {\it PARTITION}, es ist NP-vollst"andig.
+Daher gibt es nach aktuellem Wissen keinen polynomiellen Algorithmus,
+der es entscheiden k"onnte.
+
+
+%\subsection{MAX-CUT}
