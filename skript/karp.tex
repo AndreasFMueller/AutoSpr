@@ -97,7 +97,51 @@ Dieses Problem ist NP-vollst"andig, nach aktuellem Wissen gibt
 es also keinen polynomiellen Algorithmus um zu entscheiden, ob es
 "uberhaupt eine L"osung des Problems gibt.
 
-%\subsection{EXACT-COVER}
+\subsection{EXACT-COVER}
+In einem Straflager m"ussen Str"aflinge in diversen Bauprojekten
+der Umgebung arbeiten.
+Viele der Str"aflinge sind jedoch eher unbegabt und daher kaum
+f"ahig, diese Arbeiten zur Zufriedenheit der Lagerleitung auszuf"uhren.
+Jeder Str"afling ist f"ur mindestens eines der Projekte nicht geeignet.
+Der sadistische Lagerkommandant ersinnt sich dazu noch einen teuflischen
+Plan, wie er m"oglichst viele Str"aflinge wegen Sabotage bestrafen kann.
+Er gibt seinen Schergen folgende Regeln f"ur die Zuteilung der Str"aflinge
+zu den Projekten: Jeder Str"afling darf nur zu Projekten aufgeboten werden,
+f"ur die er nicht geeignet ist, und jeder Str"afling muss besch"aftigt
+werden.
+Im Lagerapport am n"achsten Tag r"ucken die Aufseher damit heraus, dass
+sie keine Zuteilung gefunden h"atten, die diesen Regeln entspricht, und
+dass deshalb an diesem Tag nichts gearbeitet worden sei.
+Der Lagerkommandant sch"aumt vor Wut und droht damit die Aufseher eigenh"andig
+zu erschiessen, wenn sie sich weiterhin seinen Befehlen widersetzen
+w"urden.
+
+\medskip
+
+Der Lagerkommandant hat seinen Aufsehern ein Problem gestellt, welches
+"aquivalent zu {\it EXACT-COVER} ist.
+Die Menge aller Str"aflinge ist $U$.
+Die Projekte seien numeriert
+von $1$ bis $n$. Die Menge $S_i\subset U$ besteht aus den Str"aflingen, die
+f"ur das Projekt $i$ ungeeignet sind. Weil jeder Str"afling f"ur mindestens
+ein Projekt ungeeignet ist, ist 
+\[
+U=\bigcup_{i=1}^n S_i.
+\]
+Gesucht werden jetzt Teilmenge von Projekten
+$I=\{i_1,\dots,i_m\}\subset\{1,\dots,n\}$, so dass 
+jeder Str"afling auf einem Projekt arbeitet:
+\[
+\bigcup_{j=1}^m S_{i_j}=U
+\]
+aber kein Str"afling mehr als einem Projekt zugeteilt wird:
+\[
+S_{i_j}\cap S_{i_k}=\emptyset\qquad \forall j\ne k.
+\]
+Dieses Problem ist NP-vollst"andig, nach aktuellem Wissen gibt es
+also keinen polynomiellen Algorithmus, mit dem entschieden werden
+k"onnte, ob es "uberhaupt eine L"osung hat.
+
 %\subsection{CLIQUE-COVER}
 \subsection{3D-MATCHING}
 In der Provinz Gnichtam De herscht grosse Wohnungsnot.
