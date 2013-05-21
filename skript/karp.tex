@@ -297,7 +297,43 @@ wir wissen, nicht von einem Algorithmus mit polynomieller
 Laufzeit gel"ost werden kann.
 
 \subsection{SEQUENCING}
+Wenn Z"uge sich versp"aten oder ausfallen hat dies oft weitreichende
+Auswirkungen auf viele weitere Verbindungen.
+Aus diesem Grund muss die SBB zum Beispiel dem Z"urcher Verkehrsverbund
+Strafe f"ur versp"atete ZVV-Z"uge bezahlen. Aber auch dort, wo
+keine direkte Strafzahlung f"allig wird, entsteht mindestens ein
+Image-Schaden. Ursache der Abh"angigkeiten ist oft die Tatsache,
+dass in Streckenabschnitt zu einer bestimmten Zeit nur von einem
+Zug durchfahren werden kann. Die Z"uge sind verschieden schnell,
+die ben"otigte Durchfahrtszeit variiert. 
 
+Die Kosten sollen jetzt dadurch gesenkt werden, dass den Disponenten
+ein Computerprogramm zur Verf"ugung gestellt wird, mit dem sie nach
+einem Zwischenfall auf einer Strecke die optimale Reihenfolge der Z"uge
+festlegen k"onnen, mit der der geringste Schaden entsteht.
+Hat dieses Projekt Aussicht auf Erfolg?
+
+\medskip
+
+Nur beschr"ankt.
+Die Durchfahrzeit des Zugs mit Nummer $i$ durch die Strecke ist $t_i$.
+Wenn der Zug sp"ater als zur Zeit $d_i$ ankommt, ist die Strafe $s_i$
+f"allig.
+Werden die Z"uge in der durch die Permutation $\pi$
+permutierten Reihenfolge  $\pi(1),\pi(2),\dots,\pi(n)$ abgefertigt,
+betr"agt die f"ur Zug Nummer $j$ anfallende Strafe:
+\[
+\vartheta(t_{\pi(1)}+t_{\pi(2)}+\dots+t_{\pi(j)})s_{\pi(j)}
+\]
+Die Gesamtstrafe ist daher
+\[
+\sum_{j=1}^n \vartheta(t_{\pi(1)}+t_{\pi(2)}+\dots+t_{\pi(j)})s_{\pi(j)}.
+\]
+Das Problem ist somit "aquivalent zu {\it SEQUENCING}, einem
+NP-vollst"andigen Problem, f"ur das es nach aktuellem Wissen keinen
+polynomiellen Algorithmus steht. Das Projekt w"are besser beraten,
+statt der optimalen Abfolge nach einer angen"ahert optimalen Abfolge
+zu suchen.
 
 \subsection{SUBSET-SUM}
 Kurz vor Jahresende in einer grossen Software-Firma: Wie jedes Jahr stellt
