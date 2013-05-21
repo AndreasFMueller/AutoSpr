@@ -58,8 +58,40 @@ m"ogliche Gespr"ach abgeh"ort werden kann, also jede Kante in einem
 ausgew"ahlten Knoten endet.
 
 
-%\subsection{FEEDBACK-NODE-SET}
-%\subsection{FEEDBACK-ARC-SET}
+\subsection{FEEDBACK-NODE-SET}
+In einer grossen Fabrik bringen Transportroboter die Teile zu den
+Verarbeitungsstationen.  Die Roboter fahren dabei entlang vorgegebener
+Bahnen, die sie mit Hilfe von Bodenmarkierungen einhalten.  Die Roboter
+sind immer f"ur die gleichen Prozesse im Einsatz und fahren daher mehrmals
+am Tag immer die gleichen Runden ab.
+
+Die Wartungsvorschriften verlangen, dass die Roboter t"aglich einmal einem
+Sicherheitscheck unterzogen werden, der nur wenige Minuten dauert. Wegen
+des weitl"aufigen Fabrikgel"andes lohnt es sich nicht, alle Roboter jeden
+Tag an eine zentrale Kontrollstelle zu fahren, wo sie "uberpr"uft werden
+k"onnen. Sie w"urden viel zu lange ausfallen. Daher wurde entschieden, an
+einigen Stellen des Netzes der Roboter-Fahrwege Pr"ufstellen einzurichten.
+
+Sachbearbeiter Heiri Muster soll herausfinden, ob das Budget reicht,
+um gen"ugend Pr"ufstellen einzurichten, so dass jeder Roboter t"aglich
+gepr"uft werden kann.
+Drei Monate sp"ater wird er wegen Burnout freigestellt.
+
+\medskip
+
+Das Budget reicht f"ur die Ausr"ustung von $k$ Pr"ufstellen.
+Die Roboter bewegen sich auf dem gerichteten Graphen der Bodenmarkierungen.
+Sie fahren die Zyklen des Graphen ab. Gesucht wird jetzt eine Menge
+von $k$ Netzknoten f"ur die Pr"ufstellen, so dass jeder Zyklus des Graphen
+durch eine dieser Pr"ufstellen verl"auft.
+Dies ist das NP-vollst"andige Problem {\it FEEDBACK-NODE-SET}.
+Nach aktuellem Wissen gibt es keinen Algorithmus mit polynomieller
+Laufzeit, der entscheiden k"onnte, ob das Problem "uberhaupt eine
+L"osung hat.
+
+\subsection{FEEDBACK-ARC-SET}
+
+
 \subsection{SET-COVERING}
 Der populistische Politiker Tesco Vering versprach w"ahrend des
 Wahlkampfes, das Dickicht von Steuererleichterungen, welches
@@ -184,10 +216,57 @@ nach heutigem Wissen gibt es keinen polynomiellen Algorithmus,
 mit dem entschieden werden k"onnte, ob es "uberhaupt so eine Teilmenge
 $W$ gibt.
 
-%\subsection{SUBSET-SUM}
-%\subsection{HTTING-SET}
-%\subsection{STEINER-TREE}
-%\subsection{SEQUENCING}
+\subsection{HITTING-SET}
+An einer Hochschule soll geplant werden, welche Dozenten welche
+F"acher unterrichten sollen.
+Die meisten Dozenten sind kompetent, mehr als eines der F"acher
+zu unterrichten, und es ist bekannt, dass die vorhandenen Kompetenzen
+unter den Dozenten alle F"acher abdecken.
+Warum dauert es trotzdem so lange, eine F"acherzuteilung zu finden? 
+
+\medskip
+
+Das Problem der F"acherzuteilung ist "aquivalent zum Problem {\it HITTING-SET}.
+Zu jedem Fach $i$ gibt es eine Menge $S_i$ von Dozenten, die das Fach
+unterrichten k"onnten.
+Gesucht ist eine Menge $H$ von Dozenten, so dass jedes Fach genau
+einen Dozenten erh"alt, also $H\cap S_i$ genau ein Element enth"alt.
+
+Dieses Problem ist NP-vollst"andig, nach aktuellem Wissen gibt es
+keinen Algorithmus mit polynomieller Laufzeit, der entscheiden
+k"onnte, ob es eine Aufgabenverteilung gibt.
+
+\subsection{STEINER-TREE}
+
+
+\subsection{SEQUENCING}
+
+
+\subsection{SUBSET-SUM}
+Kurz vor Jahresende in einer grossen Software-Firma: Wie jedes Jahr stellt
+der Gruppenleiter Software-Entwicklung fest, dass noch nicht sein ganzes
+Budget verbraucht ist.  Er entscheidet, dass diesmal der gesamt Restbetrag
+bis auf den letzten Rappen
+ausgegeben werden soll.  Daher sammelt der Gruppenleiter von seinem
+Team Vorschl"age, was mit dem verbleibenden Geld gemacht werden k"onnte,
+und gibt die Liste seiner Sekret"arin.  Sie soll daraus so einige Dinge
+ausw"ahlen, dass genau das Restbudget verbraucht wird. Einige Tag sp"ater
+wundert er sich, dass die Sekret"arin total "uberfordert ist. Ist er
+am richtigen Ort?
+
+\medskip
+
+Nein, der Gruppenleiter h"atte erkennen m"ussen, das er der Sekret"arin
+ein NP-vollst"andiges Problem gestellt hat, wof"ur es in nach aktuellem
+Wissen keinen Algorithmus mit polynomieller Laufzeit gibt. Die Vorschl"age
+des Teams bilden eine Menge $\{b_1,b_2,\dots,b_n\}$ von Betr"agen $b_i$.
+Daraus soll ein Teilmenge $I=\{i_1,\dots,i_m\}$ gebildet werden, so dass
+so dass der Restbetrag $r$ dadurch aufgebraucht wurde:
+\[
+\sum_{k=1}^m b_{i_k} = r.
+\]
+Dies ist das Problem {\it SUBSET-SUM}.
+
 \subsection{PARTITION}
 Ein reicher K"onig ist gestorben, und hinterl"asst seinen beiden
 S"ohnen, eineiigen Zwillingen, ein grosses Verm"ogen aus Schl"ossern
@@ -213,4 +292,4 @@ Daher gibt es nach aktuellem Wissen keinen polynomiellen Algorithmus,
 der es entscheiden k"onnte.
 
 
-%\subsection{MAX-CUT}
+\subsection{MAX-CUT}
