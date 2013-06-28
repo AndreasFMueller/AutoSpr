@@ -11,7 +11,7 @@
 Die Turing-Maschine liefert einen wohldefinierten Begriff der
 Berechenbarkeit, der auch robust gegen"uber milden "Anderungen
 der Definition einer Turing-Maschine ist.
-Der Aufbau aus einem endlichen Automaten mitzus"atzlichem
+Der Aufbau aus einem endlichen Automaten mit zus"atzlichem
 Speicher und der einfache Kalk"ul mit Konfigurationen hat
 sie ausserdem Beweisen vieler wichtiger Eigenschaften zug"anglich
 gemacht. Die vorangegangenen Kapitel "uber Entscheidbarkeit und
@@ -115,7 +115,7 @@ viel zu verlieren.
 
 Die Ausgaben eines Programmes sind deterministisch, und was der Benutzer
 erreichen will und die Ereignisse, die er einspeisen wird sind es ebenfalls.
-Man kann also im Prinzip vorauswissen, was ausgegeben werden wird
+Man kann also im Prinzip voraus wissen, was ausgegeben werden wird
 und welche Ereignisse ein Benutzer ausl"osen wird. Schreibt man diese
 Vorg"angig auf das Band, so wie man es auch beim automatisierten Testen
 eines Userinterfaces tut, entsteht aus dem interaktiven Programm eines,
@@ -160,7 +160,7 @@ die Sprachen, bei denen ein solcher Verlust nicht eintritt.
 \begin{definition}
 \index{Turing-vollst\"andig}
 Eine Programmiersprache heisst Turing-vollst"andig, wenn sich jede 
-berechnenbare Abbildung in dieser Sprache formulieren l"asst. Zu
+berechenbare Abbildung in dieser Sprache formulieren l"asst. Zu
 jeder Berechenbaren Abbildung $f\colon\Sigma^*\to \Sigma^*$ gibt
 es also ein Programm $w$ so, dass $c(w)$ die Funktion $f$ berechnet.
 \end{definition}
@@ -192,7 +192,7 @@ wenn es einen Turing-Maschinen-Simulator in $A$ gibt.
 
 \subsection{Beispiele}
 Die "ublichen Programmiersprachen sind alle Turing-vollst"andig, denn es
-ist eine einfache Programmier"ubung, einesn Turing-Maschinen-Simulator
+ist eine einfache Programmier"ubung, eines Turing-Maschinen-Simulator
 in einer dieser Sprachen zu schreiben. In einigen Programmiersprachen
 ist dies jedoch schwieriger als in anderen.
 
@@ -200,7 +200,7 @@ ist dies jedoch schwieriger als in anderen.
 \index{Javascript}
 Fabrice Bellard hat 2011 einen PC-Emulator in Javascript geschrieben, der
 leistungsf"ahig genug ist, Linux zu booten. Auf seiner Website 
-http://bellard.org/jslinux/ kann man den Emulator im eigenen Browser 
+\url{http://bellard.org/jslinux/} kann man den Emulator im eigenen Browser 
 starten. Das gebootete Linux enth"alt auch einen C-Compiler. Da C
 Turing-vollst"andig ist, gibt es einen Turing-Maschinen-Simulator in
 C, den man auch auf dieses Linux bringen und mit dem C-Compiler
@@ -212,7 +212,7 @@ Javascript, Javascript ist Turing-Vollst"andig.
 XSLT ist eine XML-basierte Sprache, die Transformationen von XML-Dokumenten
 zu beschreiben erlaubt. XSLT ist jedoch leistungsf"ahig, eine Turing-Maschine
 zu simulieren. Bob Lyons hat auf seiner Website
-http://www.unidex.com/turing/utm.htm ein XSL-Stylesheet publiziert,
+\url{http://www.unidex.com/turing/utm.htm} ein XSL-Stylesheet publiziert,
 welches einen Simulator implementiert. Als Input verlangt es
 ein
 XML-Dokument, welches die Beschreibung der Turing-Maschine in einem
@@ -242,12 +242,12 @@ Don Knuth, der Autor von \TeX, hat sich lange davor gedr"uckt, seiner
 Schriftsatz-Sprache auch eine Turing-vollst"andige Programmiersprache
 zu spendieren. Schliesslich kam er nicht mehr darum herum, und wurde
 von Guy Steeles richtigegehend dazu gedr"angt, wie er in
-http://maps.aanhet.net/maps/pdf/16\_15.pdf
+\url{http://maps.aanhet.net/maps/pdf/16\_15.pdf}
 gesteht.
 
 Dass \TeX Turing-vollst"andig ist beweist ein Satz von \LaTeX-Macros, den
 man auf
-http://en.literateprograms.org/Turing\_machine\_simulator\_(LaTeX)
+\url{http://en.literateprograms.org/Turing\_machine\_simulator\_(LaTeX)}
 finden kann.
 Um ihn zu verwenden, formuliert man die Beschreibung
 von Turing-Maschine und initialiem Bandinhalt als eine Menge von
@@ -265,7 +265,7 @@ Turing-Maschinen-Simulator in der gew"ahlten Sprachen schreiben muss.
 Dies ist in jedem Fall eine nicht triviale Aufgabe.
 Daher w"are es n"utzlich Kriterien zu erhalten, welche einfacher
 anzuwenden sind. Einen wesentlichen Einfluss auf die M"oglichkeiten,
-was sich mit einer Programmiersprache ausdr"ucken l"asst, haben die
+was sich mit einer Programmiersprache ausdr"ucken lassen, haben die
 Kontrollstrukturen.
 
 \subsection{LOOP}
@@ -324,7 +324,19 @@ werden.
 Ein LOOP-Programm definiert also eine Abbildung $\mathbb N^k\to\mathbb N$,
 wobei $k$ die Anzahl der Variablen ist, in denen Input zu "ubergeben ist.
 
-\subsubsection{Beispiel: Multiplikation}
+\subsubsection{Beispiel: Summer zweier Variablen}
+LOOP kann nur jeweils eine Konstante hinzuaddieren, das gen"ugt aber
+bereits, um auch die Summe zweier Variablen zu berechnen. Der folgende
+Code berechnet die Summe von $x_1$ und $x_2$ und legt das Resultat in 
+$x_0$ ab:
+\begin{algorithmic}
+\STATE $x_0$ {\tt := } $x_1$
+\STATE {\tt LOOP} $x_2$ {\tt DO}
+\STATE{\tt \ \ \ \ }$x_0:=x_0$ {\tt +} $1$
+\STATE{\tt END}
+\end{algorithmic}
+
+\subsubsection{Beispiel: Produkt zweier Variablen}
 \index{Multiplikation}
 Die Sprache LOOP ist offenbar relativ primitiv, trotzdem
 ist sie leistungsf"ahig genug, um die Multiplikation von zwei
