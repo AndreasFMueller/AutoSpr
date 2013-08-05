@@ -47,8 +47,8 @@ schwierig.
 
 \index{Ausdr\"ucke!arithmetische}
 F"ur Klammern ist man sich jedoch meistens eine andere Vorgehensweise
-gewohnt. Wenn man arithmetische Ausdr"ucke aufbaut sagt man zum
-Beispiel: ``wenn man die Summe $a+b$ mit $c$ multiplizeren will,
+gewohnt. Wenn man arithmetische Ausdr"ucke aufbaut, sagt man zum
+Beispiel: ``Wenn man die Summe $a+b$ mit $c$ multiplizeren will,
 dann {\bf muss man $a+b$ in Klammern setzen}''.
 Klammern werden also immer paarweise gesetzt, und man baut den
 Ausdruck sozusagen von innen nach aussen auf.
@@ -59,7 +59,7 @@ Klammerausdr"ucke sind. Dazu k"onnen wir bereits bekannte korrekte
 Klammerausdr"ucke aneinanderh"angen, oder wir k"onnen einen bereits
 bekannten korrekten Ausdruck ``einklammern''. Schreiben wir $A$
 f"ur einen Klammerausdruck, bedeutet das, dass wir $A$ gem"ass
-folgender Regeln umformen k"onnen
+folgender Regeln umformen k"onnen:
 \begin{align*}
 A&\to AA\\
 A&\to {\tt (}A{\tt )}
@@ -163,7 +163,7 @@ bezeichnen.
 
 \subsection{Beispiele}
 \subsubsection{Nat"urliche Zahlen}
-Nat"urliche sind W"orter "uber dem Alphabet $\Sigma=\{
+Nat"urliche Zahlen sind W"orter "uber dem Alphabet $\Sigma=\{
 {\tt 0},
 {\tt 1},
 {\tt 2},
@@ -191,7 +191,7 @@ N&\to A\\
 A&\to {\tt 1}\;|\;\dots\;|\;{\tt 9}\\
 Z&\to {\tt 0}\;|\; A
 \end{align*}
-Leider haben dir damit aber auch die Zahl {\tt 0} verboten,
+Leider haben wir damit aber auch die Zahl {\tt 0} verboten,
 eine einzelne Ziffer {\tt 0} sollte auch akzeptabel sein.
 Wir brauchen also eine zus"atzliche Regel, welche $N\to{\tt 0}$
 "uberf"uhrt:
@@ -316,7 +316,7 @@ Konstruktionen, die mit regul"aren Operationen m"oglich sind,
 auch durch Produktionsregeln einer Grammatik ausgedr"uckt werden
 k"onnen. 
 \begin{enumerate}
-\item Leere Sprache: die leere Sprache ist regul"ar. Sie wird auch 
+\item Leere Sprache: Die leere Sprache ist regul"ar. Sie wird auch 
 von der Grammatik mit $R=\emptyset$ erzeugt, also ist sie auch
 kontextfrei.
 \item Ein einzelnes Zeichen: $L=\{{\tt a}\}$. Die Sprache $L$ wird von
@@ -630,7 +630,7 @@ S&\to ASA\;|\; {\tt a}B\\
 A&\to B\;|\; S\\
 B&\to{\tt b}\;|\; \varepsilon
 \end{align*}
-\item $\varepsilon$-"Uberg"ange entfernen: die einzige $\varepsilon$-Regel
+\item $\varepsilon$-"Uberg"ange entfernen: Die einzige $\varepsilon$-Regel
 ist $B\to\varepsilon$, d.\,h.~zu jeder Regel mit $B$ auf der rechten
 Seite gibt es auch eine Regel, in welcher auf der rechten Seite das $B$
 weggelassen wurde:
@@ -747,7 +747,7 @@ $w_1$ und $w_2$ mit je geringerer L"ange: $w=w_1w_2$ und
 $|w_i|<|w|$. Es gibt $|w|-1$ solche Zerlegungen. Um also zu testen,
 ob die Grammatik das Wort $w$ aus der Variablen $A$ ableitet,
 muss man also rekursiv alle m"oglichen
-Zerlegungen des Wortes daraufhin testen, sie von den Variablen
+Zerlegungen des Wortes daraufhin testen, ob sie von den Variablen
 $B$ bzw.~$C$ erzeugt werden, ob also $B\overset{*}\Rightarrow w_1$
 und $C\overset{*}\Rightarrow w_2$ gilt, und dies f"ur jede
 Regel $A\to BC\in R$. Es gibt weniger als $|R|$ solche Regeln.
@@ -855,7 +855,7 @@ dem Wert, der als drittes Argument der "Ubergangsfunktion
 "ubergeben wird, sich etwas anders verh"alt. Die Idee ist, dass
 dieses dritte Argument von einem Stack gelesen werden soll, der in
 der Definition nicht explizit ausgedr"uckt sein muss, da er
-sich f"ur alle Stackautomaten gleich verh"alt: man kann Zeichen
+sich f"ur alle Stackautomaten gleich verh"alt: Man kann Zeichen
 aus $\Gamma$ dort hinschreiben, oder von dort lesen\footnote{Man k"onnte
 die Definition eines Stackautomaten auch als C++-Template mit
 sechs Template-Argumenten betrachten. Um den Stack zu
@@ -868,14 +868,14 @@ Automaten gelegt haben, definieren wir Stackautomaten nur
 ``nichtdeterministisch''.
 
 \subsection{Gerichteter beschrifteter Graph}
-% XXX Idee: zu den Stack-Operationen Bilder hinzufuegen
+% XXX Idee: Zu den Stack-Operationen Bilder hinzufuegen
 \index{Graph!gerichteter!beschrifteter!eines Stackautomaten}
 Auch zu einem Stackautomaten gibt es einen gerichteten beschrifteten
 Graphen. Die "Ubergangsfunktion legt jetzt zu jedem Zustand 
 fest, was f"ur ein Zeichen verarbeitet wird, was f"ur ein
 neuer Zustand erreicht wird, und wie sich der Stackinhalt
 ver"andert.
-Dazu diese zus"atzliche Information wird der Beschriftung der Pfeile
+Dazu wird diese zus"atzliche Information der Beschriftung der Pfeile
 hinzugef"ugt.
 \[
 \xymatrix{
@@ -950,7 +950,7 @@ zu z"ahlen. Dann muss man sich nicht deterministisch entscheiden,
 ob man auf gleich viele $b$ oder auf gleich viele $c$ testen will,
 beides kann man nicht haben, da nach einem Test der Stack wieder leer
 ist. Als Alphabet verwenden wir daher wieder $\Gamma=\{a,b,c,{\tt\$}\}$.
-Der Automat muss als zun"achst das Zeichen {\tt\$} auf den Stack legen.
+Der Automat muss also zun"achst das Zeichen {\tt\$} auf den Stack legen.
 Dann beginnt er entweder, die $b$ zu z"ahlen, und die $c$ zu ignorieren,
 oder die $b$ zu ignorieren und dann die $c$ zu z"ahlen.
 \[
@@ -1223,7 +1223,7 @@ den "Ubergang
 \item Jeder "Ubergang legt ein Zeichen auf den Stack, oder entfernt
 eines, aber er macht nicht beides gleichzeitig. Dazu muss jeder "Ubergang,
 der gleichzeitig ein Zeichen vom Stack nimmt und ein neues dort ablegt
-mit Hilfe eines neuen Zustandes in zwei "Uberg"ange aufgeteilt werden
+mit Hilfe eines neuen Zustandes in zwei "Uberg"ange aufgeteilt werden:
 \[
 \xymatrix{
 *++[o][F]{p}\ar[dd]^{a,b\to c}
@@ -1302,6 +1302,7 @@ genommen.
 
 \[
 \begin{gathered}
+
 \entrymodifiers={++[o][F]}
 \xymatrix{
 {p}\ar[d]\ar[r]^{a,\varepsilon\to t}
@@ -1311,6 +1312,7 @@ genommen.
 	&{s}\ar[l]^{b,t\to\varepsilon}
 }
 \end{gathered}
+
 \qquad\rightsquigarrow\qquad A_{pq}\to aA_{rs}b
 \]
 
@@ -1354,7 +1356,7 @@ $p$ mit leerem Stack in den Zustand $q$ mit leerem Stack "uberf"uhren.
 \end{hilfssatz}
 
 \begin{proof}[Beweis von Hilfssatz \ref{apq_generates_x_implies}]
-Man kann vollst"andige Induktion f"ur die L"ange der be\-n"otigten 
+Man kann die vollst"andige Induktion f"ur die L"ange der be\-n"otigten 
 Ableitung $A_{pq}\overset{*}{\Rightarrow} x$ verwenden.
 
 Falls die Ableitung mit nur einem Schritt m"oglich ist, dann muss
