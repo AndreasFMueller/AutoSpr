@@ -1,22 +1,29 @@
 Seien $A_1$ und $A_2$ Sprachen, die von einer nichtdeterministischen
-Turing-Maschine in polynomialer Zeit entscheidbar sind. Zeigen Sie:
+Turing-Maschine in polynomieller Zeit entscheidbar sind. Zeigen Sie:
 \begin{teilaufgaben}
 \item $A_1\cap A_2$ ist in NP
 \item $A_1A_2$ ist in NP
 \end{teilaufgaben}
 
 \begin{loesung}
-Man muss nur nachweisen, dass es einen Verifizierer gibt, der polynomiale
-Laufzeit hat. Dabei kann man davon ausgehen, dass $V_1$ in polynomialer
+Man muss nur nachweisen, dass es einen Verifizierer gibt, der polynomielle
+Laufzeit hat. Dabei kann man davon ausgehen, dass $V_1$ in polynomieller
 Zeit $p_1(n)$ $w_1\in A_1$ verifiziert, und analog f"ur $V_2$.
 \begin{teilaufgaben}
 \item
-Um $w\in A_1\cap A_2$ zu verifizieren, muss man nur beide Verifizierer
-$V_1$ und $V_2$ anwenden, wozu Laufzeit $p_1(n)+p_2(n)$ notwendig ist.
+Um $w\in A_1\cap A_2$ zu verifizieren, verlangt man als Zertifikat
+die beiden Zertifikate, die zertifizieren, dass $w\in  A_1$
+ist und $w\in A_2$. Dann l"asst man beide Verifizierer
+$V_1$ und $V_2$ wozu, wozu Laufzeit $p_1(n)+p_2(n)$ notwendig ist,
+also polynomielle Laufzeit.
 \item
-Aus $V_1$ und $V_2$
-konstruiert man einen Verifizierer $V$,
-der $w=w_1w_2$, $w_1\in A_1$ und $w_2\in A_2$ in Zeit
-$n + p_1(n) + p_2(n)$, also in polynomialer Zeit verifiziert.
+Um $w\in A_1A_2$ zu verifizieren verlangt man als Zertifikat
+die Zerlegung $w=w_1w_2$ und die beiden Zertifikate, die 
+$w_1\in A_1$ bzw.~$w_2\in A_2$ zertifizieren. Dann kontrolliert
+man, ob tats"achlich $w=w_1w_2$ ist, und  l"asst
+die Verifizierer auf den beiden Teilw"ortern mit den
+jeweiligen Zertifikaten laufen.
+Dazu ist die Laufzeit
+$O(n + p_1(n) + p_2(n))$, also in polynomieller Zeit n"otig.
 \end{teilaufgaben}
 \end{loesung}

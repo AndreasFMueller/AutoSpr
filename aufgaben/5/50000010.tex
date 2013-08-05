@@ -1,0 +1,65 @@
+Beschreiben Sie eine Turing-Maschine, welche Palindrome erkennt.
+Zeichnen Sie das Zustands-Diagramm, wenn
+$\Sigma=\{{\tt 0},{\tt 1}\}$.
+
+\begin{loesung}
+Die Turingmaschine muss herausfinden, ob die Zeichen am Anfang und
+am Ende des Wortes jeweils gleich sind. Sie muss also folgenden
+Algorithmus implementieren:
+\begin{compactenum}
+\item Merke das Zeichen unter dem Schreib-/Lesekopf, l"osche es und
+bewege den Kopf nach rechts.
+\item Falls das Zeichen unter dem Schreib-/Lesekopf ein $\blank$ ist:
+$q_{\text{accept}}$
+\item Fahre nach rechts bis zum ersten $\blank$, bewege den Kopf dann
+nach links.
+\item Falls das Zeichen unter dem Schreib-/Lesekopf verschieden ist
+vom gespeicherten Zeichen: $q_{\text{reject}}$.
+\item L"osche das Zeichen unter dem Schreib-/Lesekopf und bewege
+den Kopf nach links.
+\item Fahre nach links bis zum ersten $\blank$, bewege den Kopf nach
+rechts.
+\item Weiter bei 1.
+\end{compactenum}
+Die Anweisung ``merke das Zeichen unter dem Schreib-/Lesekopf'' muss
+durch separate Zust"ande f"ur jedes m"ogliche Zeichen des Alphabetes
+implementiert werden. Das folgende Zustandsdiagramm implementiert dies
+f"ur das Alphabet $\Sigma=\{{\tt 0},{\tt 1}\}$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+	&*+\txt{}
+		&{} \ar[dr]^{\blank\to\blank,\text{R}}
+		    \ar[r]^{{\tt x}\to{\tt x},\text{R}}
+			&{} \ar@(ul,ur)^{{\tt x}\to{\tt x},\text{R}}
+		    	    \ar[r]^{\blank\to\blank,\text{L}}
+				&{} \ar[d]^{{\tt 1}\to{\tt 1},\text{R}}
+				    \ar[r]^{{\tt 0}\to{\tt 0},\text{L}}
+					&{} \ar@(r,d)^{{\tt x}\to{\tt x},\text{L}}
+					    \ar `u^l[llll]+/u1.3cm/ `^d[lllld]_{\blank\to\blank,\text{R}} [lllld]
+\\
+*+\txt{}\ar[r]
+	&{} \ar[ur]_{{\tt 0}\to\blank,\text{R}}
+	    \ar[dr]^{{\tt 1}\to\blank,\text{R}}
+	    \ar[rr]^{\blank\to\blank,\text{R}}
+		&*+\txt{}
+			&*++[o][F=]{q_{\text{accept}}}
+				&*++[o][F=]{q_{\text{reject}}}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{} \ar[ur]_{\blank\to\blank,\text{R}}
+		    \ar[r]_{{\tt x}\to{\tt x},\text{R}}
+			&{} \ar@(dl,dr)_{{\tt x}\to{\tt x},\text{R}}
+		    	    \ar[r]_{\blank\to\blank,\text{L}}
+				&{} \ar[u]_{{\tt 0}\to{\tt 0},\text{R}}
+				    \ar[r]_{{\tt 1}\to{\tt 1},\text{L}}
+					&{} \ar@(r,u)_{{\tt x}\to{\tt x},\text{L}}
+					    \ar `d[llll]+/d1.3cm/ `[llllu]^{\blank\to\blank,\text{R}} [llllu]
+}
+\]
+Darin steht abk"urzend ${\tt x}\to{\tt x},\text{R}$ f"ur ``ein beliebiges
+Alphabetzeichen unter dem Schreib-/Lesekopf wird belassen und der Kopf
+nach rechts bewegt''.
+\end{loesung}

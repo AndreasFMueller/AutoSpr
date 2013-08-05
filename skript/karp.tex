@@ -1,0 +1,420 @@
+\section{Beispiele}
+\rhead{Beispiele zur Liste von Karp}
+In diesem Abschnitt werden zu den NP-vollst"andigen Problemen des
+Katalogs von Karp einzelne Beispiele oder Illustrationen geben.
+\subsection{VERTEX-COVER}
+Diktator Revoc Xetrev unterdr"uckt sein Volk gnadenlos.
+Schon l"anger l"asst er von der staatlichen Telefongesellschaft
+erheben, welche Telefonanschl"usse genau miteinander telefonieren.
+Damit lassen sich hervorragend Leute als Regimefeinde entlarven.
+Nachdem allerdings eine ganze Reihe von hohen Milit"ars als
+Landesverr"ater verurteilt und erschossen worden waren,
+stellte sich heraus, dass eine Gruppe von
+inzwischen ebenfalls verurteilten Regimekritikern sich genau dies
+zu Nutze machten: sie riefen die Milit"ars gegen deren Willen an.
+Da es keine Aufzeichnung "uber den Inhalt der Gespr"ache gab, konnten
+die Milit"ars ihre Unschuld nicht beweisen, mit fatalen Folgen f"ur
+ihre Karriere.
+
+Diese Aff"are hatte das Milit"ar einige der f"ahigsten K"opfe beraubt,
+so dass eine zuverl"assigere Methode gefunden werden musste, um
+Regimefeinde zu erkennen.
+Wenn sich damit gegen"uber dem Ausland auch noch ein Anschein von
+Rechtssystem etablieren liess, w"urde das Diktator Xetrev den Zugang
+zu westlichen Waffenlieferanten etwas erleichtern.
+
+Aus technischen Gr"unden ist eine l"uckenlose "Uberwachung aller Anschl"usse
+nicht m"oglich.
+Die Software kann mit maximal $k$ Anschl"ussen umgehen, die abgeh"ort
+werden k"onnen.
+Diktator Xetrev befiehlt daher, dass innert einer Woche eine Menge
+von $k$ Anschl"ussen definiert werden m"usse, so dass jedes
+Telefongespr"ach abgeh"ort werden kann.
+
+Diese Ank"undigung verursacht erst einmal eine neue Fluchtwelle von
+Mathematikern und Informatikern.
+Nach einer Woche wird der erste Experte wegen Befehlsverweigerung
+erschossen.
+Im Prozess, der nur 15 Minuten gedauert hattee, hatte er feige behauptet,
+es sei nicht m"oglich, in der kurzen
+Zeit eine entsprechende Menge zu finden. Ja es sei nicht einmal
+m"oglich, zu entscheiden, ob es eine solche Menge "uberhaupt g"abe.
+Der Staatsanwalt legte ihm das als Sabotage der Pl"ane des grossen
+Diktators Xetrev aus und machte kurzen Prozess mit ihm.
+
+Als aber nach einer weiteren Woche erneut ein Saboteur angeklagt wurde,
+der genau die gleiche Verteidigungstrategie verwendete, obwohl
+doch mittlerweile bekannt war, dass sie nicht zum Erfolg f"uhren konnte,
+begann sich Diktator Xetrev zu fragen, ob darin vielleicht
+ein K"ornchen Wahrheit stecken k"onnte. K"onnte es sein, dass 
+es tats"achlich zu schwierig ist, eine solche Anschlussauswahl zu treffen?
+
+\medskip
+
+Das Problem, welches die Experten l"osen sollten, ist das Problem
+{\it VERTEX-COVER}. Die Telefonanschl"usse bilden die Knoten eines Graphen,
+die Kanten verbinden diejenigen Anschl"usse, die tats"achlich miteinander
+telefonieren. Gesucht ist eine Menge von $k$ Knoten so, dass jedes
+m"ogliche Gespr"ach abgeh"ort werden kann, also jede Kante in einem
+ausgew"ahlten Knoten endet.
+
+
+\subsection{FEEDBACK-NODE-SET}
+In einer grossen Fabrik bringen Transportroboter die Teile zu den
+Verarbeitungsstationen.  Die Roboter fahren dabei entlang vorgegebener
+Bahnen, die sie mit Hilfe von Bodenmarkierungen einhalten.  Die Roboter
+sind immer f"ur die gleichen Prozesse im Einsatz und fahren daher mehrmals
+am Tag immer die gleichen Runden ab.
+
+Die Wartungsvorschriften verlangen, dass die Roboter t"aglich einmal einem
+Sicherheitscheck unterzogen werden, der nur wenige Minuten dauert. Wegen
+des weitl"aufigen Fabrikgel"andes lohnt es sich nicht, alle Roboter jeden
+Tag an eine zentrale Kontrollstelle zu fahren, wo sie "uberpr"uft werden
+k"onnen. Sie w"urden viel zu lange ausfallen. Daher wurde entschieden, an
+einigen Knoten des Netzes der Roboter-Fahrwege Pr"ufstellen einzurichten.
+
+Sachbearbeiter Heiri Muster soll herausfinden, ob das Budget reicht,
+um gen"ugend Pr"ufstellen einzurichten, so dass jeder Roboter t"aglich
+gepr"uft werden kann.
+Drei Monate sp"ater wird er wegen Burnout freigestellt.
+
+\medskip
+
+Das Budget reicht f"ur die Ausr"ustung von $k$ Pr"ufstellen.
+Die Roboter bewegen sich auf dem gerichteten Graphen der Bodenmarkierungen.
+Sie fahren die Zyklen des Graphen ab. Gesucht wird jetzt eine Menge
+von $k$ Netzknoten f"ur die Pr"ufstellen, so dass jeder Zyklus des Graphen
+durch eine dieser Pr"ufstellen verl"auft.
+Dies ist das NP-vollst"andige Problem {\it FEEDBACK-NODE-SET}.
+Nach aktuellem Wissen gibt es keinen Algorithmus mit polynomieller
+Laufzeit, der entscheiden k"onnte, ob das Problem "uberhaupt eine
+L"osung hat.
+
+\subsection{FEEDBACK-ARC-SET}
+Kurz nachdem die Pl"ane f"ur das Pr"ufstellennetz aus dem vorangegangenen
+Beispiel von der Gesch"aftsleitung bewilligt worden waren, "anderte
+der Hersteller der Roboter bei einem Softwareupdate die Wartungsvorschriften.
+Die Pr"ufung erfolgt jetzt nicht mehr im Stehen, sondern w"ahrend der
+Fahrt.
+Durch diese dynamische Pr"ufung werden Problem erkennbar, die bei der
+statischen Pr"ufung nicht gefunden werden konnten. Heiri Musters
+Nachfolger wird beauftragt, die Pl"ane entsprechend anzupassen.
+Drei Monate sp"ater ist auch er wegen Burnout freigestellt.
+
+\medskip
+
+Das Problem wurde durch die Umstellung zu einer Instanz des
+Problems {\it FEEDBACK-ARC-SET} modifiziert.
+Es m"ussen $k$ Kanten gefunden werden, so dass jeder Zyklus eine
+diese Kanten durchl"auft. Auch dieses Problem ist NP-vollst"andig,
+und d"urfte daher f"ur ein kompliziertes Streckennetz
+nicht nur einen Sachbearbeiter "uberfordern.
+
+\subsection{SET-COVERING}
+Der populistische Politiker Tesco Vering versprach w"ahrend des
+Wahlkampfes, das Dickicht von Steuererleichterungen, welches
+f"ur jeden B"urger das Ausf"ullen der Steuererkl"arung zur Qual
+machte, zu vereinfachen.
+Nach seinem Amtsantritt als Ministerpr"asident 
+stellte er jedoch fest, dass jeder seiner W"ahler von irgend einer
+der Verg"unstigungen profitierte. Um seine Wiederwahl nicht
+zu gef"ahrden, beauftragte er daher eine Komission eine Liste
+von Verg"unstigungen aufzustellen, so dass jeder seiner W"ahler
+immer noch von einer Verg"unstigung profitiert. Niemand soll im
+Wahlkampf sagen k"onnen: ``Vering hat mir all Verg"unstigungen weggenommen!''
+Kurz vor Beginn des n"achsten Wahlkampfs war die Komission jedoch
+immer noch nicht fertig, so dass sich Vering als neues Wahlkampfthema
+auf den Kampf gegen die allgemeine Unf"ahigkeit der Verwaltung verlegte,
+um davon
+abzulenken, dass er das letzte Wahlversprechen nicht eingel"ost hatte.
+Trotzdem wurde er nicht wiedergew"ahlt. Eine detaillierte Analyse der
+Wahlresultate ergab, dass Vering vor allem die Stimmen der Mathematiker und
+Informatiker gefehlt hatten.
+Sie warfen ihm Unverst"andnis f"ur die Komplexit"at seiner Aufgabe vor und 
+und hielten ihn deshalb f"ur nicht tauglich f"ur ein politisches Amt.
+
+\medskip
+
+Tats"achlich ist das Programm von Tesco Vering das Problem {\it SET-COVERING}.
+Die Steuerverg"unstigungen sind numeriert von $1$ bis $n$.
+Sei $S_i$ die Menge der W"ahler von Vering, die von Verg"unstigung $i$
+profitieren. Der Auftrag der Komission war, eine Teilmenge
+$I=\{i_1,i_2,\dots,i_k\}$ zu finden, so dass
+\[
+\bigcup_{i=1}^nS_i=\bigcup_{i\in I}S_i
+\]
+ist.
+Dieses Problem ist NP-vollst"andig, nach aktuellem Wissen gibt
+es also keinen polynomiellen Algorithmus um zu entscheiden, ob es
+"uberhaupt eine L"osung des Problems gibt.
+
+\subsection{EXACT-COVER}
+In einem Straflager m"ussen Str"aflinge in diversen Bauprojekten
+der Umgebung arbeiten.
+Viele der Str"aflinge sind jedoch eher unbegabt und daher kaum
+f"ahig, diese Arbeiten zur Zufriedenheit der Lagerleitung auszuf"uhren.
+Jeder Str"afling ist f"ur mindestens eines der Projekte nicht geeignet.
+Der sadistische Lagerkommandant ersinnt sich dazu noch einen teuflischen
+Plan, wie er m"oglichst viele Str"aflinge wegen Sabotage bestrafen kann.
+Er gibt seinen Schergen folgende Regeln f"ur die Zuteilung der Str"aflinge
+zu den Projekten: Jeder Str"afling darf nur zu Projekten aufgeboten werden,
+f"ur die er nicht geeignet ist, und jeder Str"afling muss besch"aftigt
+werden.
+Im Lagerapport am n"achsten Tag r"ucken die Aufseher damit heraus, dass
+sie keine Zuteilung gefunden h"atten, die diesen Regeln entspricht, und
+dass deshalb an diesem Tag nichts gearbeitet worden sei.
+Der Lagerkommandant sch"aumt vor Wut und droht damit die Aufseher eigenh"andig
+zu erschiessen, wenn sie sich weiterhin seinen Befehlen widersetzen
+w"urden.
+
+\medskip
+
+Der Lagerkommandant hat seinen Aufsehern ein Problem gestellt, welches
+"aquivalent zu {\it EXACT-COVER} ist.
+Die Menge aller Str"aflinge ist $U$.
+Die Projekte seien numeriert
+von $1$ bis $n$. Die Menge $S_i\subset U$ besteht aus den Str"aflingen, die
+f"ur das Projekt $i$ ungeeignet sind. Weil jeder Str"afling f"ur mindestens
+ein Projekt ungeeignet ist, ist 
+\[
+U=\bigcup_{i=1}^n S_i.
+\]
+Gesucht werden jetzt Teilmenge von Projekten
+$I=\{i_1,\dots,i_m\}\subset\{1,\dots,n\}$, so dass 
+jeder Str"afling auf einem Projekt arbeitet:
+\[
+\bigcup_{j=1}^m S_{i_j}=U
+\]
+aber kein Str"afling mehr als einem Projekt zugeteilt wird:
+\[
+S_{i_j}\cap S_{i_k}=\emptyset\qquad \forall j\ne k.
+\]
+Dieses Problem ist NP-vollst"andig, nach aktuellem Wissen gibt es
+also keinen polynomiellen Algorithmus, mit dem entschieden werden
+k"onnte, ob es "uberhaupt eine L"osung hat.
+
+\subsection{CLIQUE-COVER}
+In einem Online-Spiel treten die Spieler jeweils paarweise gegeneinander an.
+Eine zuverl"assige Rangliste der Spieler kann nur innerhalb
+einer Gruppe erstellt werden, in der jeder Spieler gegen
+jeden anderen gespielt hat. Trotzdem soll jetzt versucht werden,
+ein Gesamt-Ranking zu erstellen. Grundlage daf"ur ist die Auswahl
+einer Menge von Gruppen, in der jeder gegen jeden gespielt hat.
+Die Auswahl soll m"oglichst klein sein, denn man hofft so, die
+Schnittmengen, in denen systembedingt am ehesten Ranking-Widerspr"uche
+auftreten k"onnten, m"oglichst klein zu halten. Allerdings stellt es
+sich als schwierig heraus, eine solche Auswahl zu treffen, warum?
+
+\medskip
+
+Die Aufgabe verlangt, in dem Graphen bestehend aus den Spielern
+als Knoten und Kanten, die angeben, ob die zwei Spieler schon gegeneinander
+gespielt hat, eine "Uberdeckung mit einer m"oglichst
+kleinen Anzahl Cliquen zu finden. Dies ist das NP-vollst"andige Problem
+{\it CLIQUE-COVER}. Nach aktuellem Wissen gibt es daf"ur keinen
+Algorithmus mit polynomieller Laufzeit.
+
+\subsection{3D-MATCHING}
+In der Provinz Gnichtam De herrscht grosse Wohnungsnot.
+Eine Analyse durch das Innenministerium ergab, dass die Ursache
+die vielen Singles sind, die jeweils alleine eine gem"ass
+Plan der staatlichen Wohnungsbaubeh"orde f"ur Familien vorgesehene
+Wohnung belegen.
+W"urde man die Singles paarweise den Wohnungen zuteilen, w"urden die
+Wohnungen reichen.
+
+Daher beschliesst der Familienminister ein Programm zur Zwangsverheiratung
+der Singles und beautragt seine Beh"orde mit der Ausarbeitung einer Zuordnung,
+wer mit wem verheiratet werden soll und wo das frisch verheiratete Paar
+wohnen soll.
+Nat"urlich ist nicht jede Kombination aus einem Mann,
+einer Frau und einer Wohnung akzeptabel, immerhin m"ussen 
+Arbeitswege vern"unftig bleiben, die B"urger sollen ja als 
+Arbeiter weiterhin produktiv bleiben um die hohen Steuern bezahlen zu k"onnen.
+Das Ministerium beginnt also ein Liste von m"oglichen Zwangsfamilien
+zu erstellen.
+
+Nach einem Jahr wird der Familienminister ungeduldig, denn obwohl die
+genannte Liste nach wenigen Wochen fertig war, konnte daraus immer noch
+kein geeignete Familienplanung abgeleitet werden, die Fachleute wissen
+noch nicht einmal, ob es "uberhaupt m"oglich ist, eine Planung
+zu finden, welche alle geforderten Rahmenbedingungen erf"ullt.
+
+\medskip
+
+Das Problem, welches das Familienministerium der Provinz Gnichtam De
+l"osen soll, ist {\it 3D-MATCHING}. Es gibt $n$ unverheiratete Frauen
+und M"anner, und $n$ m"ogliche Wohnungen. Die urspr"unglich erstellte
+Liste ist eine Menge von Tripeln $(x,y,z)$, wobei die Zahlen $x$,
+$y$ und $z$ aus der Menge $T=[n]=\{1,2,3,\dots,n\}$ stammen. Aus dieser
+Teilmenge $U\subset T\times T\times T$ soll jetzt eine 
+Teilmenge $W\subset U$ von genau $n$ Tripeln ausgew"ahlt werden, so dass
+jeder Mann, jede Frau und jede Wohnung in genau einem Tripel vorkommt.
+Dieses Problem ist NP-vollst"andig, 
+nach heutigem Wissen gibt es keinen polynomiellen Algorithmus,
+mit dem entschieden werden k"onnte, ob es "uberhaupt so eine Teilmenge
+$W$ gibt.
+
+\subsection{HITTING-SET}
+Die Lobby-Organisation Bribe-A-Scientist will eine Menge von
+Wissenschaftlern bestechen.
+Sie sucht Fachleute, die zu einer Anzahl wichtiger Themen
+im Sinne von BAS Stellung nehmen k"onnen.
+Bei ihrer Suche stellt BAS fest, dass einige Wissenschafter
+zu mehreren Themen Stellung nehmen k"onnten.
+BAS will verhindern, dass der Eindruck entsteht, gewisse
+Leute liessen sich f"ur jede Aussage kaufen.
+Die ausgew"ahlten Wissenschafter sollen im jeweiligen Fachgebiet
+die einzigen sein, die in Frage kommen.
+Ist so eine Auswahl effizient auffindbar?
+
+\medskip
+
+Sei $S_i$ Menge der Wissenschafter, die zum Thema $i$ Stellung im
+Sinne von BAS beziehen k"onnen. Gesucht wird eine Auswahl
+$H$ von Wissenschaftern, so dass jeder Wissenschafter genau
+ein Fachgebiet hat, f"ur das er zur Stimme von BAS werden soll,
+also $|H\cap S_i|=1$.
+Dies ist das NP-vollst"andige Problem {\it HITTING-SET}, welches
+nach heutigem Wissen nicht in polynomieller Zeit gewl"ost werden
+kann.
+
+
+\subsection{STEINER-TREE}
+Eine Bank hat bis anhin ihre Filialen immer vom Hauptsitz aus mit
+Geld versorgt. Die daf"ur n"otigen Hochsicherheitstransporte sind
+jedoch teuer, daher soll ein neues Transportmodell gefunden werden.
+Neu sollen auch Transporte zwischen Filialen m"oglich sein.
+Am Hauptsitz werden dazu die Betr"age f"ur mehrere Filialen
+verladen, die Filialen m"ussen die Lieferungen
+auseinander nehmen und auf neue Transporte verladen. Das
+Management will wissen, ob sich mit dieser Methode die
+Kosten unter den Betrag $k$ senken lassen. 
+
+\medskip
+
+F"ur jedes Paar von Filialen sind die Kosten eines Transportes
+bekannt. Der billigste Logistikplan wird einen Baum verwenden.
+W"are das gew"ahlte Verfahren nicht ein Baum, k"onnte man
+durch Umverteilung eines Teils des Geldes n"amlich einen
+Transport weglassen, wodurch die Kosten geringer w"urden.
+Es liegt also eine Instanz des Problems {\it STEINER-TREE}
+vor, welches NP-vollst"andig ist und daher nach allem, was
+wir wissen, nicht von einem Algorithmus mit polynomieller
+Laufzeit gel"ost werden kann.
+
+\subsection{SEQUENCING}
+Wenn Z"uge sich versp"aten oder ausfallen hat dies oft weitreichende
+Auswirkungen auf viele weitere Verbindungen.
+Aus diesem Grund muss die SBB zum Beispiel dem Z"urcher Verkehrsverbund
+Strafe f"ur versp"atete ZVV-Z"uge bezahlen. Aber auch dort, wo
+keine direkte Strafzahlung f"allig wird, entsteht mindestens ein
+Image-Schaden. Ursache der Abh"angigkeiten ist oft die Tatsache,
+dass in Streckenabschnitt zu einer bestimmten Zeit nur von einem
+Zug durchfahren werden kann. Die Z"uge sind verschieden schnell,
+die ben"otigte Durchfahrtszeit variiert. 
+
+Die Kosten sollen jetzt dadurch gesenkt werden, dass den Disponenten
+ein Computerprogramm zur Verf"ugung gestellt wird, mit dem sie nach
+einem Zwischenfall auf einer Strecke die optimale Reihenfolge der Z"uge
+festlegen k"onnen, mit der der geringste Schaden entsteht.
+Hat dieses Projekt Aussicht auf Erfolg?
+
+\medskip
+
+Nur beschr"ankt.
+Die Durchfahrzeit des Zugs mit Nummer $i$ durch die Strecke ist $t_i$.
+Wenn der Zug sp"ater als zur Zeit $d_i$ ankommt, ist die Strafe $s_i$
+f"allig.
+Werden die Z"uge in der durch die Permutation $\pi$
+permutierten Reihenfolge  $\pi(1),\pi(2),\dots,\pi(n)$ abgefertigt,
+betr"agt die f"ur Zug Nummer $j$ anfallende Strafe:
+\[
+\vartheta(t_{\pi(1)}+t_{\pi(2)}+\dots+t_{\pi(j)})s_{\pi(j)}
+\]
+Die Gesamtstrafe ist daher
+\[
+\sum_{j=1}^n \vartheta(t_{\pi(1)}+t_{\pi(2)}+\dots+t_{\pi(j)})s_{\pi(j)}.
+\]
+Das Problem ist somit "aquivalent zu {\it SEQUENCING}, einem
+NP-vollst"andigen Problem, f"ur das es nach aktuellem Wissen keinen
+polynomiellen Algorithmus steht. Das Projekt w"are besser beraten,
+statt nach der optimalen Abfolge nach einer angen"ahert optimalen Abfolge
+zu suchen.
+
+\subsection{SUBSET-SUM}
+Kurz vor Jahresende in einer grossen Software-Firma: Wie jedes Jahr stellt
+der Gruppenleiter Software-Entwicklung fest, dass noch nicht sein ganzes
+Budget verbraucht ist.  Er entscheidet, dass diesmal der gesamt Restbetrag
+bis auf den letzten Rappen
+ausgegeben werden soll.  Daher sammelt der Gruppenleiter von seinem
+Team Vorschl"age, was mit dem verbleibenden Geld gemacht werden k"onnte,
+und gibt die Liste seiner Sekret"arin.  Sie soll daraus so einige Dinge
+ausw"ahlen, dass genau das Restbudget verbraucht wird. Einige Tag sp"ater
+wundert er sich, dass die Sekret"arin total "uberfordert ist. Ist er
+am richtigen Ort?
+
+\medskip
+
+Nein, der Gruppenleiter h"atte erkennen m"ussen, das er der Sekret"arin
+ein NP-vollst"andiges Problem gestellt hat, wof"ur es nach aktuellem
+Wissen keinen Algorithmus mit polynomieller Laufzeit gibt. Die Vorschl"age
+des Teams bilden eine Menge $\{b_1,b_2,\dots,b_n\}$ von Betr"agen $b_i$.
+Daraus soll ein Teilmenge $I=\{i_1,\dots,i_m\}$ gebildet werden, so dass
+so dass der Restbetrag $r$ dadurch aufgebraucht wurde:
+\[
+\sum_{k=1}^m b_{i_k} = r.
+\]
+Dies ist das Problem {\it SUBSET-SUM}.
+
+\subsection{PARTITION}
+Ein reicher K"onig ist gestorben, und hinterl"asst seinen beiden
+S"ohnen, eineiigen Zwillingen, ein grosses Verm"ogen aus Schl"ossern
+und Burgen. Die Berater des K"onigs werden zusammengerufen um
+dar"uber zu entscheiden, wie die G"uter gerecht an die beiden S"ohne
+verteilt werden k"onnen. Warum sind die Berater auch nach einem Jahr
+noch nicht zur Einsicht gelangt, ob eine gerechte Teilung "uberhaupt
+m"oglich ist?
+
+Bezeichnen wir mit $c_i$ den Wert der Immobilie $i$, dann besteht
+die Aufgabe der Berater darin eine Aufteilung der Menge $A$ aller 
+zur Teilung stehenden Immobilien in zwei Mengen $I$ und $A\setminus I$
+zu vollziehen, die Immobilien jeder Menge jeweils einem der S"ohne zugeteilt
+werden sollen.
+Nat"urlich sollen die beiden Mengen gleichen Gesamtwert haben.
+Der Gesamtwert ist jeweils die Summe der einzelnen Werte, gesucht ist also
+$I\subset A$ so dass
+\[
+\sum_{i\in I}c_i =\sum_{i\in A\setminus I}c_i
+\]
+Diese ist das Problem {\it PARTITION}, es ist NP-vollst"andig.
+Daher gibt es nach aktuellem Wissen keinen polynomiellen Algorithmus,
+der es entscheiden k"onnte.
+
+
+\subsection{MAX-CUT}
+Nord- und S"ud-Computanien haben sich nach langem Krieg wieder
+vereinigt. Ein F"orderungs-Programm versucht die wirtschaftliche
+Zusammenarbeit der ehemals verfeindeten Staaten dadurch zu f"ordern,
+dass Transporte, die ehemalige Demarkationslinie "uberschreiten,
+grossz"ugig subventioniert werden. So grossz"ugig, dass die
+Auftraggeber, wenn sie denn unterbezahlte Fahrer aus den Nachbarl"andern
+daf"ur anheuern, sogar mehr an Subventionen erhalten k"onnen als
+die eigentliche Fahrt kostet. Eine Firma m"ochte sich daran eine
+goldene Nase verdienen, und verlangt, dass die Produktionsstandorte so verteilt
+werden, dass m"oglichst viele grenzquerende Transporte n"otig sind.
+Das muss schnell geschehen, bevor das F"orderprogramm eingestellt wird.
+Hat dieser Plan Chancen?
+
+\medskip
+
+Die Produktionsstationen bilden einen Graphen, dessen Kanten
+anzeigen, ob zwischen den beiden Stationen ein Transport notwendig
+ist. Jeder Kante ist der m"ogliche Gewinn zugeordnet, der winkt,
+wenn der Transport grenzquerend durchgef"uhrt werden kann. Gesucht
+wird jetzt eine Aufteilung der Produktionsstationen auf die
+beiden Landesteile Nord- und S"ud-Computanien, so dass der Gewinn
+aus Subventionen die Ziele $W$ des Management "ubersteigen.
+Dies ist das Problem {\it MAX-CUT}, welches NP-vollst"andig ist
+und daher nach gegenw"artigem Wissen nicht von einem Algorithmus
+in polynomieller Zeit gel"ost werden kann.

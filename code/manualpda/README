@@ -1,0 +1,9 @@
+Manuelle Pushdown Automat
+-------------------------
+
+Das Postscript File mpda.ps enthaelt einen manuellen Pushdown
+Automaten. Die Symbol-Karten auf Seite 2 enthalten Terminalsymbole
+und Variablen, sowie das $-Zeichen zur Markierung des Stackanfangs.
+Ausgedruckt auf Folien und ausgeschnitten koennen sie dazu verwendet
+werden, die Arbeit eines Stackautomaten zu visualisieren.
+

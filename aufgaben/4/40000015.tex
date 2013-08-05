@@ -27,4 +27,40 @@ wenn danach der Stack leer ist:
                    \ar@(dr,d)^{{\tt 1},{\tt x}\to\varepsilon}
 }
 \]
+Die alternative L"osung verwendet wieder eine Grammatik, zum Beispiel
+\begin{align*}
+S&\rightarrow XSX\\
+&\rightarrow {\tt 0}\\
+X&\rightarrow {\tt 0}\,|\,{\tt 1}
+\end{align*}
+Daraus kann man wieder nach bekanntem Muster den ``Bl"umchenautomaten''
+konstruieren:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{} \ar[r]^{\varepsilon,\varepsilon\to{\tt \$}}
+		&{} \ar[rr]^{\varepsilon,\varepsilon\to S}
+			&*+\txt{}
+			&{R} \ar[rr]^{\varepsilon,{\tt \$}\to\varepsilon}
+				\ar@(u,ul)_{x,x\to\varepsilon}
+				%\ar@(ul,l)_{{\tt 1},{\tt 1}\to\varepsilon}
+				\ar@(u,ur)^{\varepsilon,X\to x}
+				%\ar@(ur,r)^{\varepsilon,X\to{\tt 1}}
+				\ar@/_/[dl]_{\varepsilon,S\to X}
+				\ar@(dl,dr)_{\varepsilon,S\to\varepsilon}
+				&*+\txt{}
+				&*++[o][F=]{}
+\\
+*+\txt{}
+	&*+\txt{}
+		&*+\txt{}
+			&{}\ar@/_/[rr]_{\varepsilon,\varepsilon\to S}
+				&*+\txt{}
+					&{} \ar@/_/[ul]_{\varepsilon,\varepsilon\to X}
+}
+\]
+In den Regeln oberhalb des Zustandes $R$ steht das $x$ f"ur ein Terminalsymbol.
+Jeder Pfeil steht also eigentlich f"ur zwei Regeln, n"amlich eine mit
+$x={\tt 0}$ und eine mit $x={\tt 1}$.
 \end{loesung}

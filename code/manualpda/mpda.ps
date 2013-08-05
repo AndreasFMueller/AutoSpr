@@ -1,0 +1,73 @@
+%!PS-Adobe-2.0
+%
+% manualpda.ps -- Folien fuer "manuellen" Stackautomaten
+%
+% (c) 2013 Prof Dr Andreas Mueller, Hochschule Rapperswil
+%
+%%Title: Manueller Stackautomat
+%%Creator: Prof Dr Andreas Mueller
+%%Orientation: Landscape
+%%DocumentPaperSizes: A4
+%%Pages: 2
+%%EndComments
+
+%%Page: 1
+% Titel
+/Helvetica findfont 20 scalefont setfont
+
+50 730 moveto
+(Input:)
+show
+
+50 60 580 {
+	dup
+	650 moveto
+	55 0 rlineto stroke
+} for
+
+475 600 moveto
+(Stack:) dup stringwidth exch -0.5 mul exch rmoveto
+show
+
+400 590 moveto 
+400 50 lineto
+550 50 lineto
+550 590 lineto stroke
+
+showpage
+
+/Helvetica findfont 60 scalefont setfont
+%%Page: 2
+/deltax 60 def
+/deltay 80 def
+/y 780 def
+/karten {
+	/zeichen exch def
+	/y y deltay sub def
+	40 deltax 500 {
+		/x exch def
+		x y moveto
+		deltax 0 rlineto
+		0 deltay rlineto
+		deltax -1 mul 0 rlineto
+		0 deltay -1 mul rlineto
+		stroke
+		x deltax 2 div add y deltay 2 div add moveto
+		zeichen stringwidth pop -0.5 mul -20 rmoveto
+		zeichen show
+	} for
+} def
+
+(w) karten
+(S) karten
+($) karten
+(\() karten
+(\)) karten
+(0) karten
+(1) karten
+(a) karten
+(b) karten
+
+showpage
+
+%%Trailer

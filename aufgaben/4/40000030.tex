@@ -1,0 +1,34 @@
+Zeichnen Sie das Zustandsdiagramm eines Stackautomaten, der
+Palindrome erkenne.
+
+\begin{loesung}
+Palindrome kann man mit einem Stackautomaten erkennen, indem man 
+die erste H"alfte des Wortes auf den Stack schreibt, und dann mit
+der zweiten H"alfte vergleicht. Allerdings ist zwischen ungeraden
+und geraden W"ortern zu unterscheiden. Ausserdem ist nat"urlich
+nicht bekannt, wie lange ein Wort sein wird, der Wechsel zur zweiten
+Phase, wo der Stack wieder abgebaut wird, erfolgt also nicht deterministisch.
+
+Der folgende Stackautomat implementiert diese Idee. Zur Vereinfachung der
+Notation verwenden wir folgende Abgek"urzten Schreibweisen:
+\begin{align*}
+.,&\varepsilon\to.&&\text{bedeutet}&&\text{Lege ein Zeichen vom Input auf den Stack}
+\\
+.,&.\to\varepsilon&&\text{bedeutet}&&\text{Nehme ein Zeichen vom Input vom Stack}
+\end{align*}
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix {
+*+\txt{}\ar[r]
+	&{q_0} \ar[r]^{\varepsilon,\varepsilon\to{\tt \$}}
+		&{q_1} \ar@(u,r)^{.,\varepsilon\to .}
+		   \ar@/_/[d]_{.,\varepsilon\to\varepsilon}
+		   \ar@/^/[d]^{\varepsilon,\varepsilon\to\varepsilon}
+\\
+*+\txt{}
+	&*++[o][F=]{q_3}
+		&{q_2} \ar@(r,d)^{.,.\to\varepsilon}
+		    \ar[l]^{\varepsilon,{\tt \$}\to\varepsilon}
+}
+\]
+\end{loesung}

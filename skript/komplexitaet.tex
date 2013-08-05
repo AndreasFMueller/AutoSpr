@@ -27,8 +27,8 @@ Probleme ausserhalb der Reichweite von deterministischen Turingmaschinen
 sind. Es scheint, dass diese Kluft nicht "uberbr"uckt werden kann.
 
 F"ur die Praxis bedeutet dies, dass einige Probleme mit effizienten
-Algorithmen gel"ost werden k"onnen, w"ahrend f"ur andere Algorithmen
-kein effizienten L"osungen m"oglich sind. Der Praktiker wird daher
+Algorithmen gel"ost werden k"onnen, w"ahrend f"ur andere 
+keine effizienten Algorithmen m"oglich sind. Der Praktiker wird daher
 das Problem einschr"anken m"ussen, denn oft lassen sich solche
 Probleme unter zus"atzlichen Bedingungen effizient l"osen.
 Voraussetzung ist nat"urlich, dass er Probleme diesen beiden
@@ -479,7 +479,7 @@ in polynomieller Zeit entscheidbaren Sprachen heisst NP.
 \end{figure}%
 
 Insbesondere enth"alt NP alle Sprachen mit einem polynomiellen
-Verifizierer. Es ist auch klar, dass die $\text{P}\subset\text{NP}$,
+Verifizierer. Es ist auch klar, dass $\text{P}\subset\text{NP}$,
 siehe Abbildung \ref{psubsetnp}.
 Ein offenes Problem ist jedoch, ob $\text{P}\ne \text{NP}$.
 Die Bedeutung dieser Frage wird sp"ater klar werden.
@@ -787,6 +787,7 @@ ist genau dann erf"ullbar, wenn der Graph eine $k$-Clique enth"alt.
 			\ar@{-}[dddll]
 			\ar@{-}[ddddl] \ar@{-}[dddd] \ar@{-}[ddddr]
 			\ar@{-}[drr] \ar@{-}[dddrr]
+			\ar@{-}[dll] \ar@{-}[ddll]
 			&{x_2}
 				\ar@{-}[dddlll] \ar@{-}[dddlll]
 				\ar@{-}[dddd]
@@ -1743,13 +1744,14 @@ $\text{\textsl{3SAT}}\le_P\text{\textsl{SUBSET-SUM}}$ gezeigt.
 %falsch sein.
 %\end{proof}
 
-\section{Karps Katalog NP-vollst"andiger Probleme}
-\rhead{Karp's Liste}
+\section{Katalog NP-vollst"andiger Probleme von Karp}
+\rhead{Liste von Karp}
 \index{Karp, Richard}
 \index{Karp's Liste}
 Schon kurz nach der Ver"offentlichung des Beweises des Satzes
-\ref{cooklevin} hat Richard Karp bei einen Baum von Reduktionen
-ver"offentlicht.
+\ref{cooklevin} hat Richard Karp einen Baum von Reduktionen
+ver"offentlicht, in dem ausgehend von SAT 21 Probleme verzeichnet
+waren.
 Selbstverst"andlich l"asst
 sich jedes dieser Probleme auf jedes andere reduzieren. Zum Beispiel
 hatten wir \textsl{3SAT} auf \textsl{CLIQUE} reduziert, w"ahrend
@@ -1943,6 +1945,8 @@ seinem Komplement verbinden, mindestens so gross ist wie $W$:
 \sum_{\{u,v\}\in E\wedge u\in S\wedge v\not\in S} w(\{u,v\})\ge W
 \]
 \end{description}
+
+\input karp.tex
 
 \section{Schaltungen, Minesweeper und \textsl{SAT}}
 \rhead{Minesweeper}
