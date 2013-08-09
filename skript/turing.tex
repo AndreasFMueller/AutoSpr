@@ -9,7 +9,7 @@
 Die bisher entwickelten Modelle von Rechenmaschinen haben zwar
 interessante Sprachklassen hervorgebracht, sind aber offensichlich nicht
 geeignet, die M"oglichkeiten eines Computers abzubilden. Ein
-Computer verf"ugt, "uber einen Speicher, auf den er, im Gegensatz zum
+Computer verf"ugt "uber einen Speicher, auf den er, im Gegensatz zum
 Stack eines Stackautomen, beliebigen Zugriff hat. Das Ziel dieses
 Abschnittes ist daher, einen endlichen Zustandsautomaten so zu
 erweitern, dass er mit einem solchen Speicher arbeiten kann.
@@ -28,7 +28,7 @@ dass es nicht kontextfreie Sprachen gibt. Mit welcher m"oglichst kleinen
 Erweiterung k"onnen wir eine Sprache wie $\{a^nb^nc^n\,|\, n\ge 0\}$
 analysieren?
 
-Eine erste Idee k"onnte sein, eine zweiten Stack hinzuzuf"ugen.
+Eine erste Idee k"onnte sein, einen zweiten Stack hinzuzuf"ugen.
 Damit k"onnte man mit Sicherheit die Sprache $\{a^nb^nc^n\,|\,n\ge 0\}$
 behandeln. Doch man f"ugt damit wesentlich mehr hinzu. Ein Buch ist
 sicher ein Random-Access Speichermedium. Durch bl"attern im Buch
@@ -94,8 +94,8 @@ ist es nicht zul"assig, dass der Kopf nach der Verarbeitung stehen
 bleibt.
 
 Im Gegensatz zu DEA oder Stackautomat ist die Berechnung in diesem
-Modell nach dem Ende des Input-String noch nicht zu Ende. Die Maschine
-kann mehrmals "uber die auf dem Band gespeicherten Daten fahren, und
+Modell nach dem Ende des Input-Strings noch nicht zu Ende. Die Maschine
+kann mehrmals "uber die auf dem Band gespeicherten Daten fahren und
 sie immer wieder modifizieren. Sie k"onnte also im Prinzip auch
 gar nie aufh"oren zu arbeiten. Daher brauchen wir Zust"ande, die
 die Maschine anhalten. Wenn die Maschine angehalten hat, m"ussen wir
@@ -365,7 +365,7 @@ muss. Daf"ur braucht es die beiden Zust"ande $q_3$ und $q_4$:
 		      \ar@(d,r)_{{\tt x}\to{\tt x},\text{R}}
 }
 \]
-Wenn die Maschine nach dem abarbeiten aller 0 und {\tt x} auf einen
+Wenn die Maschine nach dem Abarbeiten aller 0 und {\tt x} auf einen
 neuen Blank \textvisiblespace\ trifft, ist sie entweder im Zustand
 $q_3$ oder in $q_4$. Im letzten Fall hat sie ein ungerade Anzahl 
 von 0 gefunden, gem"ass Schritt 3 des Algorithmus muss also verworfen
@@ -448,8 +448,8 @@ der Programm und Daten enth"alt. Computer mit Harvard-Architektur
 verwenden dagegen zwei verschiedene Speicher: einen Programm-Speicher
 und einen Datenspeicher. Die beiden Speicher k"onnen sogar verschiedene
 Wortl"ange haben. AVR-Microcontroller verwenden zum Beispiel
-den Flashspeicher, den sie als 16bit breiten Speicher adressieren, 
-w"ahrend sie das RAM als 8bit breiten Speicher adressieren.
+den Flashspeicher, den sie als 16 Bit breiten Speicher adressieren, 
+w"ahrend sie das RAM als 8 Bit breiten Speicher adressieren.
 ARM-Microcontroller dagegen betrachten RAM und Flash einfach als
 verschiedene Bereich in einem einzigen grossen Adressraum.
 AVR-Microcontroller haben also ``zwei B"ander'' mit unterschiedlichen
