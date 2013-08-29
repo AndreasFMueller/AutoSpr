@@ -23,7 +23,7 @@ da er eine Programmiersprache verwendet, deren Code anschliessend
 von einem Compiler oder Interpreter "ubersetzt und von einer realen
 Maschine ausgef"uhrt wird.
 
-Der Aufbau der realen Maschine ist sehr 
+Der Aufbau der realen Maschine ist sehr
 nahe an einer Turing-Maschine, ein Prozessor liest und schreibt
 jeweils einzelne
 Speicherzellen eines mindestens f"ur praktische Zwecke unendlich
@@ -65,7 +65,7 @@ zweckm"assig, dass ein Anwender nicht die volle Leistung einer
 Turing-Maschine zur Verf"ugung hat.
 
 Damit stellt sich jetzt die Frage, wie man einem Berechnungsmodell und
-das heisst letztlich der Sprache, in der der Berechnungsauftrag 
+das heisst letztlich der Sprache, in der der Berechnungsauftrag
 formuliert wird, ansehen kann, ob sie gleich m"achtig ist wie eine
 Turing-Maschine.
 
@@ -93,14 +93,14 @@ Man beachte, dass in dieser Definition einer Programmiersprache kein Platz ist
 f"ur Input oder Output w"ahrend des Programmlaufes.
 Das Band der Turing-Maschine, bzw.~sein Inhalt bildet den Input, der Output
 kann nach Ende der Berechnung vom Band gelesen werden.
-Man k"onnte dies als Mangel dieses Modells ansehen, in der Tat ist aber 
+Man k"onnte dies als Mangel dieses Modells ansehen, in der Tat ist aber
 keine Erweiterung n"otig, um Interaktion abzubilden.
 Interaktionen mit einem Benutzer bestehen immer aus einem Strom von
 Ereignissen, die dem Benutzer zufliessen ("Anderungen des Bildschirminhaltes,
 Signalt"one) oder die der Benutzer veranlasst (Bewegungen des Maus-Zeigers,
 Maus-Klicks, Tastatureingaben). Alle diese Ereignisse kann man sich codiert
 auf ein Band geschrieben denken, welches die Turing-Maschine bei Bedarf
-liest. 
+liest.
 
 Der Inhalt des Bandes einer Standard-Turing-Maschine kann w"ahrend des
 Programmlaufes nur von der Turing-Maschine selbst ver"andert werden.
@@ -159,7 +159,7 @@ die Sprachen, bei denen ein solcher Verlust nicht eintritt.
 
 \begin{definition}
 \index{Turing-vollst\"andig}
-Eine Programmiersprache heisst Turing-vollst"andig, wenn sich jede 
+Eine Programmiersprache heisst Turing-vollst"andig, wenn sich jede
 berechenbare Abbildung in dieser Sprache formulieren l"asst. Zu
 jeder Berechenbaren Abbildung $f\colon\Sigma^*\to \Sigma^*$ gibt
 es also ein Programm $w$ so, dass $c(w)$ die Funktion $f$ berechnet.
@@ -175,13 +175,13 @@ werden:
 \index{Turing-Maschinen-Simulator}
 Ein Turing-Maschinen-Simulator ist eine Turing-Maschine $S$, die als Input
 die Beschreibung $\langle M,w\rangle$ einer Turing-Maschine $M$ und eines
-Input-Wortes f"ur $M$ erh"alt, und die Berechnung durchf"uhrt, die $M$ auf $w$ 
+Input-Wortes f"ur $M$ erh"alt, und die Berechnung durchf"uhrt, die $M$ auf $w$
 ausf"uhren w"urde.
 Ein Turing-Maschinen-Simulator in der Programmiersprache $A$ ist
 ein Wort $s\in A$ so, dass $c(s)$ ein Turing-Maschinen-Simulator ist.
 \end{definition}
 
-Damit erhalten wir ein Kriterium f"ur Turing-Vollst"andigkeit: 
+Damit erhalten wir ein Kriterium f"ur Turing-Vollst"andigkeit:
 
 \begin{satz}
 \label{turingvollstaendigkeitskriterium}
@@ -199,8 +199,8 @@ ist dies jedoch schwieriger als in anderen.
 \subsubsection{Javascript}
 \index{Javascript}
 Fabrice Bellard hat 2011 einen PC-Emulator in Javascript geschrieben, der
-leistungsf"ahig genug ist, Linux zu booten. Auf seiner Website 
-\url{http://bellard.org/jslinux/} kann man den Emulator im eigenen Browser 
+leistungsf"ahig genug ist, Linux zu booten. Auf seiner Website
+\url{http://bellard.org/jslinux/} kann man den Emulator im eigenen Browser
 starten. Das gebootete Linux enth"alt auch einen C-Compiler. Da C
 Turing-vollst"andig ist, gibt es einen Turing-Maschinen-Simulator in
 C, den man auch auf dieses Linux bringen und mit dem C-Compiler
@@ -301,7 +301,7 @@ oder eine Berechnung mit den beiden vorhandenen Operatoren
 \STATE $x_i$ {\tt :=} $x_j$ {\tt +} $c$
 \STATE $x_i$ {\tt :=} $x_j$ {\tt -} $c$
 \end{algorithmic}
-Dabei ist das Resultat der Subtraktion als $0$ definiert, wenn 
+Dabei ist das Resultat der Subtraktion als $0$ definiert, wenn
 der Minuend kleiner ist als der Subtrahend.
 
 Programme werden daraus wie folgt aufgebaut:
@@ -309,8 +309,8 @@ Programme werden daraus wie folgt aufgebaut:
 \item Das leere Programm $\varepsilon$ ist eine LOOP-Programm,
 w"ahrend der Ausf"uhrung tut es nichts.
 \item Wertzuweisungen sind LOOP-Programme
-\item Sind $P_1$ und $P_2$ LOOP-Programme, dann auch 
-$P_1{\tt ;}P_2$. Um dieses Programm auszuf"uhren wird zuerst $P_1$ 
+\item Sind $P_1$ und $P_2$ LOOP-Programme, dann auch
+$P_1{\tt ;}P_2$. Um dieses Programm auszuf"uhren wird zuerst $P_1$
 ausgef"uhrt und anschliessend $P_2$.
 \item Ist $P$ ein LOOP-Programm, dann ist auch
 \begin{algorithmic}
@@ -327,7 +327,7 @@ wobei $k$ die Anzahl der Variablen ist, in denen Input zu "ubergeben ist.
 \subsubsection{Beispiel: Summer zweier Variablen}
 LOOP kann nur jeweils eine Konstante hinzuaddieren, das gen"ugt aber
 bereits, um auch die Summe zweier Variablen zu berechnen. Der folgende
-Code berechnet die Summe von $x_1$ und $x_2$ und legt das Resultat in 
+Code berechnet die Summe von $x_1$ und $x_2$ und legt das Resultat in
 $x_0$ ab:
 \begin{algorithmic}
 \STATE $x_0$ {\tt := } $x_1$
@@ -340,7 +340,7 @@ $x_0$ ab:
 \index{Multiplikation}
 Die Sprache LOOP ist offenbar relativ primitiv, trotzdem
 ist sie leistungsf"ahig genug, um die Multiplikation von zwei
-Zahlen, die in den Variablen $x_1$ und $x_2$ "ubergeben werden, 
+Zahlen, die in den Variablen $x_1$ und $x_2$ "ubergeben werden,
 zu berechnen:
 
 \begin{algorithmic}
@@ -420,7 +420,7 @@ eine {\tt WHILE}-Anweisung der Form
 \STATE{\tt WHILE }$x_i>0${\tt\ DO }$P${\tt\ END}
 \end{algorithmic}
 Dadurch ist die {\tt LOOP}-Anweisung nicht mehr unbedingt
-notwendig, denn 
+notwendig, denn
 \begin{algorithmic}
 \STATE{\tt LOOP }$x${\tt\ DO }$P${\tt\ END}
 \end{algorithmic}
@@ -429,7 +429,7 @@ kann durch
 \STATE$y:= x$;
 \STATE{\tt WHILE }$y>0${\tt\ DO }$P$; $y:=y-1${\tt\ END}
 \end{algorithmic}
-nachgebildet werden. 
+nachgebildet werden.
 
 \subsection{GOTO}
 \index{GOTO}
@@ -466,7 +466,7 @@ einen ganzen Anweisungsblock enthalten kann.
 \subsection{"Aquivalenz von WHILE und GOTO}
 Die Verwendung eines Sprungbefehles wie GOTO ist in der modernen
 Softwareentwicklung verp"ont. Sie f"uhre leichter zu Spaghetti-Code,
-der kaum mehr wartbar ist. Gewisse Sprachen verbannen daher 
+der kaum mehr wartbar ist. Gewisse Sprachen verbannen daher
 GOTO vollst"andig aus ihrer Syntax, und propagieren dagegen
 die Verwendung von `strukturierten' Kontrollstrukturen wie
 WHILE. Die Aufregung ist allerdings unn"otig: GOTO und WHILE sind "aquivalent.
@@ -497,7 +497,7 @@ Aus dem GOTO-Programm machen wir dann folgendes WHILE-Programm
 Die Anweisung $A_i'$ entsteht aus der Anweisung $A_i$ nach folgenden
 Regeln
 \begin{itemize}
-\item Falls $A_i$ eine Zuweisung ist, wird ihr eine weitere Zuweisung 
+\item Falls $A_i$ eine Zuweisung ist, wird ihr eine weitere Zuweisung
 \begin{algorithmic}
 \STATE $z:=z+1$
 \end{algorithmic}
@@ -540,10 +540,10 @@ GOTO-Programme "ubersetzen kann.
 
 \subsection{Turing-Vollst"andigkeit von WHILE und GOTO}
 Da WHILE und GOTO "aquivalent sind, braucht die Turing-Vollst"andigkeit
-nur f"ur eine der Sprachen gezeigt zu werden. 
+nur f"ur eine der Sprachen gezeigt zu werden.
 Wir skizzieren, wie man eine Turing-Maschine in ein GOTO-Programm
 "ubersetzen kann. Dies gen"ugt, da man nur die universelle
-Turing-Maschine zu "ubersetzen braucht, um damit jede andere 
+Turing-Maschine zu "ubersetzen braucht, um damit jede andere
 Turing-Maschine ausf"uhren zu k"onnen.
 
 \subsubsection{Alphabet, Zust"ande und Band}
@@ -559,7 +559,7 @@ speichern.
 
 Der Inhalt des Bandes kann durch eine einzige Variable $b$ dargestellt
 werden. Schreibt man die Zahl im System zur Basis $k$, k"onnen die
-die Zeichen in den einzelnen Felder des Bandes als die Ziffern 
+die Zeichen in den einzelnen Felder des Bandes als die Ziffern
 der Zahl $b$ interpretiert werden.
 
 Die Kopfposition wird durch eine Zahl $h$ dargestellt. Befindet sich
@@ -570,7 +570,7 @@ gesetzt.
 Alle Komponenten der Turing-Maschine werden mit nat"urlichen Zahlen
 und arithmetischen Operationen dargestellt.
 Zwar beherrscht LOOP nur die Addition oder Subtraktion einer Konstanten,
-aber durch wiederholte Addition einer $1$ kann damit jede beliebige 
+aber durch wiederholte Addition einer $1$ kann damit jede beliebige
 Addition oder Subtraktion implementiert werden.
 
 Ebenso k"onnen Multiplikation und Division auf wiederholte Addition
@@ -602,7 +602,7 @@ $b'$ enth"alt an der Stelle der Kopfposition ein $0$.
 \subsubsection{Schreiben eines Feldes}
 Soll das Feld an der Kopfposition mit dem Zeichen $x$ "uberschrieben
 werden, wird mit (\ref{clearchar}) zuerst das Feld gel"oscht.
-Anschliessend wird das Feld durch 
+Anschliessend wird das Feld durch
 \[
 b'=b+x\cdot h
 \]
@@ -625,7 +625,7 @@ Die "Ubergangsfunktion
 ermittelt aus aktuellem Zustand $s$ und
 aktuellem Zeichen $z$ den neuen Zustand, das neue Zeichen auf
 dem Band und die Kopfbewegung ermittelt. Im Gegensatz zur fr"uheren
-Definition verwenden wir jetzt die Zahlen $1$ und $2$ f"ur die 
+Definition verwenden wir jetzt die Zahlen $1$ und $2$ f"ur die
 Kopfbewegung L bzw.~R.
 Wir schreiben $\delta_i$ f"ur die $i$-te Komponente von $\delta$.
 Der folgende GOTO-Pseudocode
@@ -651,13 +651,13 @@ beschreibt also ein Programm, welches die Turing-Maschine implementiert
 \end{algorithmic}
 Damit ist gezeigt, dass eine gegebene Turingmaschine in ein
 GOTO-Programm "ubersetzt werden kann. "Ubersetzt man die universelle
-Turing-Maschine, erh"alt man ein GOTO-Programm, welches jede beliebige 
+Turing-Maschine, erh"alt man ein GOTO-Programm, welches jede beliebige
 Turing-Maschine simulieren kann. Somit ist GOTO und damit auch WHILE
 Turing-vollst"andig.
 
 \subsection{Esoterische Programmiersprachen}
 \index{Programmiersprache!esoterische}
-Zur Illustration der Tatsache, dass eine sehr primitive Sprache 
+Zur Illustration der Tatsache, dass eine sehr primitive Sprache
 ausreichen kann, um Turing-Vollst"andigkeit zu erreichen, wurden
 verschiedene esoterische Programmiersprachen erfunden.
 Ihre N"utzlichkeit liegt darin, ein bestimmtest Konzept der Theorie
@@ -673,10 +673,10 @@ Tat ist der kleinste Brainfuck-Compiler f"ur Linux nur 171 Bytes
 lang.
 
 Brainfuck basiert auf einem einzelnen Pointer {\tt ptr}, welcher
-im Programm inkrementiert oder dekrementiert werden kann. 
+im Programm inkrementiert oder dekrementiert werden kann.
 Jeder Pointer-Wert zeigt auf eine Zelle, deren Inhalt inkrementiert
 oder dekrementiert werden kann.
-Dies erinnert an die Position des Kopfes einer Turing-Maschine. 
+Dies erinnert an die Position des Kopfes einer Turing-Maschine.
 Zwei Instruktionen f"ur Eingabe und Ausgabe eines Zeichens
 an der Pointer-Position erm"oglichen Datenein- und -ausgabe.
 Als einzige Kontrollstruktur steht WHILE zur Verf"ugung. Damit
