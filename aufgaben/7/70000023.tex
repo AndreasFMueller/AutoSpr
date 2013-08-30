@@ -1,0 +1,42 @@
+Ein aufstrebendes Film-Festival ist derart gewachsen, dass der 
+Vorf"uhrsaal nicht mehr reicht. Daher m"ussen jetzt zwei gleich
+grosse S"a"ale verwendet werden, und trotzdem ist das Festival
+wieder ausverkauft, und zwar in einem Masse, dass "uberhaupt nur Stars und Prominente
+samt Ihrer Entourage eingelassen werden k"onnen, f"ur
+einzelne Besucher gibt es keine Pl"atze.
+
+Doch die Stars st"oren sich daran, dass sie m"oglicherweise nicht
+ihre ganze Entourage im gleichen Saal haben k"onnen. Daher muss
+kurzfristig eine Aufteilung der Festival-G"aste gefunden werden,
+so dass die beiden S"a"ale so gef"ullt werden k"onnen, dass
+jede Entourage vollst"andig in einem der S"a"ale Platz nimmt.
+
+Der Festival-Direktor ist jedoch sehr "uberrascht, dass die
+Bestimmung einer solchen Aufteilung so lange dauert. Warum
+sind Sie nicht "uberrascht?
+
+\begin{loesung}
+Zu jedem Star $i\in I$ gibt es eine Entourage mit $c_i$
+Mitgliedern. Diese Menge muss jetzt in zwei Teilmengen
+$A$ (Stars samt Entourage, die in Saal A Platz nehmen) und
+$B$ (Stars samt Entourage, die in Saal B Platz nehmen) aufgeteilt
+werden, so dass $I=A\cup B$. Die Aufteilung muss so sein, dass
+in beiden S"a"alen gleich viele Leute Platz nehmen, also
+\[
+\sum_{i\in A}c_i=
+\sum_{i\in B}c_i.
+\]
+Dies ist das Problem {\it PARTITION}. Das gestellte Problem ist also
+"aquivalent zum NP-vollst"andigen Problem {\it PARTITION}, und ist
+daher ebenfalls NP-vollst"andig. Man kann daher nach aktuellem
+Wissen nicht erwarten, dass es daf"ur einen effizienten Algorithmus
+gibt.
+\end{loesung}
+
+\begin{bewertung}
+Auswahl eines geeigneten Vergleichsproblems ({\bf V}) 1 Punkt,
+Reduktion: Stars ({\bf S}) 1 Punkt, Entourage ({\bf E}) 1 Punkt,
+Aufteilung ({\bf A}) 1 Punkt,
+Bedingungen ({\bf B}) 1 Punkt,
+Schlussfolgerung ({\bf F}) 1 Punkt.
+\end{bewertung}

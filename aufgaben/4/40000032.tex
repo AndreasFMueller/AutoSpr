@@ -1,0 +1,91 @@
+Will man eine Matrix wie
+\[
+A=\begin{pmatrix}
+1&2&3\\
+4&5&6\\
+7&8&9
+\end{pmatrix}
+\]
+in einem Computerprogramm verwenden, braucht man irgend eine Syntax,
+mit der man Matrizen eingeben kann. Octave und Matlab verwenden zum
+Beispiel:
+\begin{verbatim}
+                          A = [
+                             1, 2, 3;
+                             4, 5, 6;
+                             7, 8, 9;
+                          ]
+\end{verbatim}
+Zeilen werden durch Strichpunkt getrennt, Element in einer Zeile durch Komma.
+K"onnen Sie eine Grammatik formulieren, welche genau korrekte
+Matrix-Definitionen produziert?
+
+\begin{loesung}
+Nein, die Sprache der korrekten Matrix-Definitionen ist nicht
+kontextfrei, wie man mit dem Pumping-Lemma zeigen kann.
+
+W"are das m"oglich, k"onnte man auch eine Grammatik aufstellen, die
+alle Ziffern und Whitespace wegl"asst, und die daher genau die Strings der Form 
+\begin{equation}
+\text{\tt [}
+\text{\tt ,}^n
+\text{\tt ;}
+\text{\tt ,}^n
+\text{\tt ;}
+\text{\tt ,}^n
+\text{\tt ;}
+\text{\tt ]}
+\label{40000032:expr}
+\end{equation}
+produziert, wobei auch mehr als drei Zeilen m"oglich
+sein sollen. Aber auch dieses Sprache ist nicht kontextfrei. 
+
+W"are diese Sprache kontextfrei, m"usste es nach dem Pumping Lemma
+f"ur kontextfreie Sprachen eine Zahl $N$ geben, so dass W"orter $w$
+mit $|w|\ge N$ aufgepumpt werden k"onnen. 
+
+Wir w"ahlen das Wort
+\[
+w=
+\text{\tt [}
+\text{\tt ,}^{2N}
+\text{\tt ;}
+\text{\tt ,}^{2N}
+\text{\tt ;}
+\text{\tt ,}^{2N}
+\text{\tt ;}
+\text{\tt ]}
+\]
+Es ist sicher lang genug.
+
+Gem"ass dem Pumping Lemma gibt es eine Unterteilung $w=uvxyz$ derart,
+dass $|vxy|\le N$, $|vy|>0$ und $uv^kxy^kz$ ist f"ur jedes $k$
+ein Ausdruck der Form
+(\ref{40000032:expr}).
+Wegen der Bedingung $|vxy|\le N$ kann sich $vxy$ "uber h"ochstens zwei
+der Gruppen von Kommas erstrecken, alle Zeilen m"ussen
+also immer $2N$ Kommas enthalten.
+Das Wort $uxz$ (der Fall $k=0$) enth"alt zwei oder drei Zeilen.
+W"aren es drei Zeilen, m"ussten beide $2N$ lang sein, d.~h.~es
+w"are gar nichts entfernt worden, im Widerspruch zur Bedingung
+$|vy|>0$.
+Zwei Zeilen sind aber auch nicht m"oglich, denn dazu
+h"atten $2N$ Kommas entfernt werden m"ussen, im Widerspruch
+zu $2N\le |yv|<|yzv|\le N$.
+
+Somit kann $uxz$ nicht ein Wort der Form
+(\ref{40000032:expr})
+sein, im Widerspruch zur Aussage des Pumping Lemmas.
+Dieser Widerspruch zeigt, dass die Sprache nicht kontextfrei
+sein kann.
+\end{loesung}
+
+\begin{bewertung}
+Pumping Lemma f"ur kontextfreie Sprachen ({\bf PL}) 1 Punkt,
+Wahl eines geeigneten Wortes ({\bf W}) 1 Punkt,
+Unterteilung entsprechend der Vorgaben des Pumping Lemmas ({\bf U}) 1 Punkt,
+durch Pumpen werden h"ochstens zwei Zeilen modifiziert ({\bf Z}) 1 Punkt,
+eines der gepumpten W"orter ist keine korrekte Matrix-Definition ({\bf K})
+1 Punkt,
+Schlussfolgerung ({\bf F}) 1 Punkt.
+\end{bewertung}

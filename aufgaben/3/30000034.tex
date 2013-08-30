@@ -1,0 +1,73 @@
+Finden Sie einen regul"aren Ausdruck f"ur die Sprache $L$ "uber dem
+Alphabet $\Sigma=\{{\tt 0},{\tt 1}\}$ bestehend aus den W"ortern,
+die eine ungerade Anzahl {\tt 1} enthalten.
+
+\begin{loesung}
+Diese Sprache ist regul"ar, man kann sofort einen endlichen Automaten
+daf"ur angeben:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+	&{q_0}\ar@/^/[r]^{{\tt 1}}
+	      \ar@(ul,ur)^{{\tt 0}}
+		&*++[o][F=]{q_1} \ar@/^/[l]^{{\tt 1}}
+	               \ar@(ul,ur)^{{\tt 0}}
+}
+\]
+Auf diesen entlichen Automaten kann man jetzt den Standardalgorithmus
+anwenden, mit dem man einen "aquivalenten regul"aren Ausdruck
+gewinnen kann.
+
+Im ersten Schritt muss man neue Start- und Akzeptierzust"ande 
+konstruieren:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+	&{S}\ar[r]^{\varepsilon}
+		&{q_0}\ar@/^/[r]^{{\tt 1}}
+		      \ar@(ul,ur)^{{\tt 0}}
+			&{q_1} \ar@/^/[l]^{{\tt 1}}
+			       \ar@(ul,ur)^{{\tt 0}}
+			       \ar[r]^{\varepsilon}
+				&*++[o][F=]{A}
+}
+\]
+Im zweiten Schritt m"ussen die Zwischenzust"ande entfernt werden,
+bis nur noch $S$ und $A$ "ubrig bleiben. Wir beginnen mit $q_0$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+	&{S}\ar[rr]^{{\tt 0}^*{\tt 1}}
+		&*+\txt{}
+			&{q_1} \ar@(ul,ur)^{{\tt 0}|{\tt 1}{\tt 0}^*{\tt 1}}
+			       \ar[r]^{\varepsilon}
+				&*++[o][F=]{A}
+}
+\]
+Jetzt kann auch noch $q_1$ entfernt werden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+	&{S}\ar[rrr]^{{\tt 0}^*{\tt 1} ({\tt 0}|{\tt 1}{\tt 0}^*{\tt 1})^*}
+		&*+\txt{}
+			&*\txt{}
+				&*++[o][F=]{A}
+}
+\]
+Der gesuchte regul"are Ausdruck ist also
+\[
+r={\tt 0}^*{\tt 1} ({\tt 0}|{\tt 1}{\tt 0}^*{\tt 1})^*
+\]
+\end{loesung}
+
+\begin{bewertung}
+Methode "uber VNEA ({\bf V}) 1 Punkt,
+DEA f"ur die Sprache ({\bf D}) 1 Punkt,
+Erweiterung um neuen Start-/Akzeptierzustand ({\bf S}) 1 Punkt,
+Entfernung der Zwischenzust"ande in zwei Schritten ({\bf E}) 2 Punkte,
+Regul"arer Ausdruck ({\bf R}) 1 Punkt.
+\end{bewertung}

@@ -1,0 +1,39 @@
+Ein {\it e}-Learning-System soll Sch"ulern arithmetische Ausdr"ucke
+zur Auswertung geben, und die Antworten der Sch"uler "uberpr"ufen.
+Die Qualit"atssicherung verlangt vom Programmierer dieses Moduls, dass
+er einen unabh"angigen Test schreibt, welcher aus dem Source-Code
+des Moduls ableiten kann, ob je ein inkorrekter arithmetischer Ausdruck
+als Aufgabe gestellt werden k"onnte. Kann der Programmierer dieses
+Problem l"osen?
+
+\begin{loesung}
+Das Modul soll nur W"orter einer Sprache von korrekten arithmetischen
+Ausdr"ucken produzieren.
+Die vom Modul akzeptierte Sprache soll also die Eigenschaft
+$P=\text{``enth"alt nur korrekte arithmetische Ausdr"ucke''}$
+haben. 
+Diese Eigenschaft ist nicht trivial. Die Sprache
+\[
+L_1=\{w\,|\,\text{$w$ ist ein korrekter arithemtischer Ausdruck}\}
+\]
+ist Turing erkennbar (sogar Turing-entscheidbar, dank des CYK-Algorithmus),
+und hat die Eigenschaft $P$.
+\index{CYK-Algorithmus}
+\index{Satz von Rice}
+Die Sprache
+\[
+L_2=\{ \text{``$7-$''}\}
+\]
+ist als endliche und damit regul"are Sprache ebenfalls Turing-erkennbar,
+hat aber die Eigenschaft $P$ nicht. Nach dem Satz von Rice folgt daher,
+dass nicht einscheidbar ist, ob die von dem Modul akzeptierte Sprache
+von W"ortern nur aus korrekten arithmetischen Ausdr"ucken besteht.
+So einen Test kann der Programmierer also nicht schreiben.
+\end{loesung}
+
+\begin{bewertung}
+Anwendung des Satzes von Rice ({\bf R}) 1 Punkt,
+Eigenschaft ({\bf P}) 2 Punkt,
+zwei Beispiele f"ur Sprachen ({\bf B}) je 1 Punkt,
+Schlussfolgerung ({\bf F}) 1 Punkt.
+\end{bewertung}

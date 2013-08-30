@@ -1,0 +1,56 @@
+Die Sprache $L$ "uber dem Alphabet $\Sigma = \{{\tt 0},\;{\tt 1}\}$
+besteht aus denjenigen W"ortern, in denen jede Folge von {\tt 0}
+von einer mindestens so langen Folge von {\tt 1} gefolgt wird.
+Beschreiben Sie eine Standard-Turing-Maschinen, welche $L$
+entscheidet.
+
+\begin{loesung}
+Eine solche Turing-Maschine muss wiederholt Sequenzen der
+Form ${\tt 0}^n{\tt 1}^m$ analysieren und kontrollieren, ob $m \ge n$ ist,
+bis sie auf ein Zeichen \blank\ trifft, welches das Ende des
+Wortes anzeigt. Da wir das Ende solcher Sequenzen markieren 
+k"onnen m"ussen, verwenden wir ein zus"atzliches Bandzeichen
+{\tt x}, das Bandalphabet ist also $\Gamma
+=\{{\tt 0},\,{\tt 1},\,{\tt x}\}$.
+
+Die Idee des folgenden Algorithmus ist, in jeder Sequenz jeweils
+die {\tt 1} und {\tt 0} paarweise zu markieren, bis klar ist,
+ob die Sequenz die Bedingung $m\ge n$ erf"ullt.
+
+Der folgende Algorithmus tut dies:
+\begin{enumerate}
+\item
+\label{50000015:l0}
+Falls das Zeichen unter dem Schreib-Lesekopf ein \blank\ ist,
+terminiere mit $q_{\text{accept}}$.
+\item
+\label{50000015:l1}
+Fahre nach rechts, "uberspringe alle {\tt 0} oder {\tt 1}.
+Nach dem letzten Zeichen bewege den Kopf nach links.
+\item Falls das aktuelle Zeichen ein {\tt 0} ist, terminiere mit
+$q_{\text{reject}}$.
+\item Falls das aktuelle Zeichen ein {\tt 1} ist, "uberschreibe es
+mit einem {\tt x} und bewege den Kopf nach links.
+\item Fahre nach links, "uberspringe alle {\tt 1}.
+\item Fahre nach links, "uberspringe alle {\tt 0},
+dann bewege den Kopf nach rechts.
+\item Falls das aktuelle Zeichen ein {\tt 0} ist, "uberschreibe es mit
+{\tt x}, bewege den Kopf nach rechts und fahre weiter bei \ref{50000015:l1}.
+\item Falls das aktuelle Zeichen ein {\tt 1} ist, gibt es offenbar in
+diesem Teil des Wortes keine {\tt 0} mehr, dieser Teil des Wortes
+erf"ullt also die gestellten Bedingungen. Fahre nach rechts, "uberspringe
+alle {\tt 1} und alle {\tt x} und fahre weiter bei \ref{50000015:l0}.
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+Verwendung eines Hilfszeichens zur Unterteilung in Sequenzen
+und zum Z"ahlen ({\bf H}) 1 Punkt,
+Analyse jeder einzelnen Sequenz ({\bf S}) 1 Punkt,
+Paarweises abz"ahlen der {\tt 0} und {\tt 1} ({\bf P}) 1 Punkt,
+Abbruchbedingung f"ur $q_{\text{accept}}$ ({\bf A}) 1 Punkt,
+Abbruchbedingung f"ur $q_{\text{reject}}$ ({\bf R}) 1 Punkt,
+Weiterfahr-Bedingungung f"ur n"achste Sequenz ({\bf W}) 1 Punkt.
+\end{bewertung}
+
+

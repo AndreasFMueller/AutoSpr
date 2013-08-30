@@ -1,0 +1,40 @@
+Ist die Sprache der W"orter, die mehr Konsonanten als Vokale enthalten,
+regul"ar?
+
+\begin{loesung}
+Nein. W"are das so, dann m"usste es sogar so sein, wenn es nur einen
+einzigen Konsonanten $k$ und einen Vokal $v$ g"abe.
+Dann m"usste also die Sprache $L=\{ w\in\Sigma^*\,|\, |w|_k > |v|_k\}$
+regul"ar sein. Wir zeigen mit dem Pumping-Lemma, dass dies nicht m"oglich
+ist.
+
+Sei $N$ die Pumping Length der als regul"ar angenommenen Sprache $L$.
+Dann bilden wir das Wort $w=v^{N}k^{N+1}$. Es ist offenbar $w\in L$.
+Nach dem Pumping Lemma gibt es also eine Zerlegung $w=xyz$ mit
+$|xy|\le N$ und $|y|>0$ so, dass auch $xy^nz\in L$ ist.
+Aber $y$ kann nur aus $v$ bestehen, zum Beispiel $x=v^a$, $y=v^b$ und
+$z=v^ck^{N+1}$. Dann ist
+\[
+xy^nz=v^{a+bn+c}k^{N+1}
+\]
+Da aber $a+b+c=N$ ist, gilt
+\[
+a+bn+c=a+b+c + b(n-1)=N+b(n-1).
+\]
+Ausserdem ist $b\ge 1$.
+Durch Aufpumpen mit $n> 2$ entsteht also ein Wort, welches
+$N+b(n-1)> N+1$ erf"ullt, d.~h.~ein Wort mit mehr Vokalen als
+Konsonanten, $xy^nz\not\in L$. Nach dem Pumping-Lemma m"usste das
+aufgepumpte Wort aber immer noch in $L$ sein. Dieser Widerspruch
+zeigt, dass $L$ nicht regul"ar sein kann.
+\end{loesung}
+
+\begin{bewertung}
+Pumping Lemma ({\bf P}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+Konstruktion eines zweckm"assigen Wortes ({\bf W}) 1 Punkt,
+Zerlegung in $xyz$ ({\bf Z}) 1 Punkt,
+Nachweis, dass Aufpumpen f"ur dieses Wort aus der Sprache herausf"uhrt
+({\bf A}) 1 Punkt,
+Schlussfolgerung ({\bf R}) 1 Punkt.
+\end{bewertung}
