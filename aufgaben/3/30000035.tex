@@ -27,6 +27,32 @@ $N+b(n-1)> N+1$ erf"ullt, d.~h.~ein Wort mit mehr Vokalen als
 Konsonanten, $xy^nz\not\in L$. Nach dem Pumping-Lemma m"usste das
 aufgepumpte Wort aber immer noch in $L$ sein. Dieser Widerspruch
 zeigt, dass $L$ nicht regul"ar sein kann.
+
+W"ahlt man das Wort $k^Nv^{N-1}$, kann man argumentieren, dass
+beim Abpumpen von $y$, welches nur aus Konsonanten besteht, die
+Zahl der Konsonanten kleiner wird, so dass die Bedingung, dass ein
+Wort mehr Konsonanten als Vokale haben muss, nicht mehr erf"ullt ist.
+
+Der Nachweis l"asst sich aber auch mit dem Satz von Myhill-Nerode
+f"uhren. Dazu sind die Mengen $L(w)$ zu berechnen, man findet:
+\begin{center}
+\begin{tabular}{|c|l|}
+\hline
+$w$&$L(w)$\\
+\hline
+$|w|_v=0$&Mindestens 1 Konsonant mehr als Vokale\\
+$|w|_v=1$&Mindestens 2 Konsonanten mehr als Vokale\\
+$|w|_v=2$&Mindestens 3 Konsonanten mehr als Vokale\\
+$|w|_v=3$&Mindestens 4 Konsonanten mehr als Vokale\\
+$|w|_v=4$&Mindestens 5 Konsonanten mehr als Vokale\\
+$\dots$&$\dots$\\
+$|w|_v=x$&Mindestens $x+1$ Konsonanten mehr als Vokale\\
+\hline
+\end{tabular}
+\end{center}
+Da alle Mengen $L(w)$ verschieden sind, w"urde ein DEA f"ur die Sprache
+unendlich viele verschiedene Zust"ande brauchen, was f"ur einen
+DEA nicht zul"assig ist.
 \end{loesung}
 
 \begin{bewertung}
@@ -34,7 +60,8 @@ Pumping Lemma ({\bf P}) 1 Punkt,
 Pumping Length ({\bf N}) 1 Punkt,
 Konstruktion eines zweckm"assigen Wortes ({\bf W}) 1 Punkt,
 Zerlegung in $xyz$ ({\bf Z}) 1 Punkt,
-Nachweis, dass Aufpumpen f"ur dieses Wort aus der Sprache herausf"uhrt
+Nachweis, dass Aufpumpen oder Abpumpen f"ur dieses Wort aus der Sprache
+herausf"uhrt
 ({\bf A}) 1 Punkt,
 Schlussfolgerung ({\bf R}) 1 Punkt.
 \end{bewertung}
