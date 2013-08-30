@@ -23,15 +23,27 @@ Man muss zeigen, dass HASHIWOKAKURO in NP ist. Dazu gen"ugt es, einen
 polynomiellen Verifizierer zu finden. Als Zertifikat f"ur den
 Verifizierer verlangen wir die Anzahl der Br"ucken zwischen jedem 
 Paar von Inseln des R"atsels.
-Der Verifizierer muss nun f"ur jede Insel $I$ des R"atsels pr"ufen,
-ob die Zahl der Br"ucken, die auf dieser Insel enden, mit der
-Vorgabe "ubereinstimmt. Dazu muss f"ur jedes Paar von Inseln
-getestet werden, ob eine davon $I$ ist, und falls dem so ist, muss
-die Anzahl der Br"ucken zwischen diesem Paar aufsummiert werden.
-F"ur jede Insel $I$ und jedes Paar von Inseln ist also der gleiche
-beschr"ankte Aufwand notwendig.
-Es gibt maximal $O(n^4)$ Paare von Inseln, und maximal $O(n^2)$
-Inseln, also l"asst sich die Verifikation in $O(n^6)$ durchf"uhren.
+Der Verifizierer muss folgende Dinge "uberpr"ufen:
+\begin{center}
+\begin{tabular}{l|c}
+Pr"ufung&Laufzeit\\
+\hline
+Br"ucken sind horizontal oder vertikal&$O(n^4)$\\
+Br"ucken enden in Inseln&$O(n^4)$\\
+Br"ucken kreuzen sich nicht&$O(n^8)$\\
+Br"ucken, die in einer Insel enden, haben die ``richtige'' Summe&$O(n^6)$\\
+\hline
+Maximale Laufzeit& $O(n^8)$
+\end{tabular}
+\end{center}
+Dabei haben wir die ganz grobe Absch"atzung verwendet, dass es h"ochstens
+so viele Br"ucken geben kann wie Punktpaare, also $O(n^2)\cdot O(n^2)=O(n^4)$.
+Bei der Kontrolle der ``richtigen'' Summe muss der Verifizierer zum
+Beispiel f"ur jede Insel und jede Br"ucke die gleiche Arbeit leisten und
+"uberpr"ufen, ob die
+Br"ucke in der Insel endet, die Br"ucken z"ahlen und mit dem Inselwert
+vergleichen.  Die Komplixit"at dieses Teils ist also $O(n^6)$, wie in
+obiger Tabelle angegeben.
 Die Verifikation ist also in polynomieller Zeit durchf"uhrbar.
 \end{loesung}
 

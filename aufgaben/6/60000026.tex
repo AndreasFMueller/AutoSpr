@@ -31,6 +31,29 @@ von W"ortern nur aus korrekten arithmetischen Ausdr"ucken besteht.
 So einen Test kann der Programmierer also nicht schreiben.
 \end{loesung}
 
+\begin{loesung}
+Man kann auch direkt eine Reduktion von $A_{\text{TM}}$ auf das vorliegende
+Problem konstruieren.  Wir nehmen also an, wir h"atten einen Entscheider,
+der herausfinden kann, ob eine Turingmaschine ausschliesslich korrekte
+arithmetische Ausdr"ucke akzeptiert. Wir konstruieren jetzt die
+Reduktionsabbildung, die $\langle M,w\rangle$ auf das folgende
+Programm $M'$ mit Input $u$ abbildet:
+\begin{enumerate}
+\item Teste, ob $u$ kein arithmetischer Ausdruck ist. Falls 
+$u$ ein arithemtischer Ausdruck ist: $q_\text{reject}$
+\item Lasse $M$ auf $w$ laufen. Falls $M$ akzeptiert: $q_\text{accept}$,
+andernfalls $q_\text{reject}$
+\end{enumerate}
+Dieses Programm akzeptiert genau die Sprache, die aus lauter W"ortern
+besteht, die keine arithemetischen Ausdr"ucke sind, oder die leere
+Sprache, und zwar abh"angig davon ob $M$ das Wort $w$ akzeptiert
+oder nicht. Indem man den Entscheider f"ur arithmetische Ausdr"ucke
+auf $M'$ anwendet kann man jetzt also entscheiden, ob $M$ auf $w$
+anhalt, man hat einen Entscheider f"ur $A_\text{TM}$ gefunden.
+Da es einen solchen nicht geben kann, ist auch das urspr"ungliche
+Problem nicht entscheidbar.
+\end{loesung}
+
 \begin{bewertung}
 Anwendung des Satzes von Rice ({\bf R}) 1 Punkt,
 Eigenschaft ({\bf P}) 2 Punkt,
