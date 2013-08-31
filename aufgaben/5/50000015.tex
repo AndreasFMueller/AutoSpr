@@ -15,33 +15,114 @@ k"onnen m"ussen, verwenden wir ein zus"atzliches Bandzeichen
 
 Die Idee des folgenden Algorithmus ist, in jeder Sequenz jeweils
 die {\tt 1} und {\tt 0} paarweise zu markieren, bis klar ist,
-ob die Sequenz die Bedingung $m\ge n$ erf"ullt.
+ob die Sequenz die Bedingung $m\ge n$ erf"ullt, und dann zur
+n"achsten Sequenz weiter zu gehen.
 
-Der folgende Algorithmus tut dies:
+Zun"achst "uberlegen wir uns einen Algorithmus, der W"orter der Form
+${\tt 0}^n{\tt 1}^{n+m}$ akzeptiert:
 \begin{enumerate}
+\item Falls das Zeichen under dem Schreibe-Lesekopf ein \blank\ ist:
+$q_\text{accept}$.
 \item
-\label{50000015:l0}
-Falls das Zeichen unter dem Schreib-Lesekopf ein \blank\ ist,
-terminiere mit $q_{\text{accept}}$.
+\label{50000015:phase1:2}
+Falls das Zeichen in {\tt 0} ist ersetze es durch einen \blank\ und
+"uberspringe alle folgenden {\tt 0} und {\tt x}.
+Andernfalls fahre weiter bei \ref{50000015:phase1:1}.
 \item
-\label{50000015:l1}
-Fahre nach rechts, "uberspringe alle {\tt 0} oder {\tt 1}.
-Nach dem letzten Zeichen bewege den Kopf nach links.
-\item Falls das aktuelle Zeichen ein {\tt 0} ist, terminiere mit
-$q_{\text{reject}}$.
-\item Falls das aktuelle Zeichen ein {\tt 1} ist, "uberschreibe es
-mit einem {\tt x} und bewege den Kopf nach links.
-\item Fahre nach links, "uberspringe alle {\tt 1}.
-\item Fahre nach links, "uberspringe alle {\tt 0},
-dann bewege den Kopf nach rechts.
-\item Falls das aktuelle Zeichen ein {\tt 0} ist, "uberschreibe es mit
-{\tt x}, bewege den Kopf nach rechts und fahre weiter bei \ref{50000015:l1}.
-\item Falls das aktuelle Zeichen ein {\tt 1} ist, gibt es offenbar in
-diesem Teil des Wortes keine {\tt 0} mehr, dieser Teil des Wortes
-erf"ullt also die gestellten Bedingungen. Fahre nach rechts, "uberspringe
-alle {\tt 1} und alle {\tt x} und fahre weiter bei \ref{50000015:l0}.
+Falls das n"achste Zeichen ein \blank\ ist: $q_\text{reject}$.
+\item
+Falls das n"achste Zeichen ein {\tt 1}, "uberschreibe es durch ein {\tt x}
+und fahre zur"uck bis ein \blank\ gefunden wird, positioniere den Kopf
+rechts davon, fahre weiter bei \ref{50000015:phase1:2}.
+\item
+\label{50000015:phase1:1}
+"Uberspringe alle folgenden {\tt 1} oder {\tt x}.
+\end{enumerate}
+Dieser Algorithmus ersetzt jede {\tt 0} durch einen \blank\ und sucht eine
+passende {\tt 1}, die durch {\tt x} ersetzt werden.
+Die {\tt x} und {\tt 1} bleiben auf dem Band stehen, am Ende des Algorithmus
+steht der Schreib-Lesekopf auf dem ersten Zeichen nach einer Sequenz,
+als auf dem Beginn der n"achsten Sequenz oder auf einem \blank.
+Der Bandinhalt hat sich also zum Beispiel so gewandelt:
+\[
+\text {\tt 0000111111100011111}
+\rightarrow
+\text {\tt \blank\blank\blank\blank xxxx11100011111}
+\]
+Jetzt kann man einfach den algorithmus erneut laufen lassen, der Bandinhalt
+wird dann zu
+\[
+\text {\tt \blank\blank\blank\blank xxxx11100011111}
+\rightarrow
+\text {\tt \blank\blank\blank\blank xxxx111\blank\blank\blank xxx11}
+\]
+und der Kopf steht auf dem Blank nach dem letzten Wort.
+Der n"achste Lauf des Algorithmus wird in Schritt 1 das Wort akzeptieren.
+
+Der Zusammengesetzte Algorithmus sieht jetzt so aus:
+\begin{enumerate}
+\item Falls das Zeichen under dem Schreibe-Lesekopf ein \blank\ ist:
+$q_\text{accept}$.
+\item
+\label{50000015:phase2:2}
+Falls das Zeichen in {\tt 0} ist ersetze es durch einen \blank\ und
+"uberspringe alle folgenden {\tt 0} und {\tt x}.
+Andernfalls fahre weiter bei \ref{50000015:phase2:1}.
+\item
+Falls das n"achste Zeichen ein \blank\ ist: $q_\text{reject}$.
+\item
+Falls das n"achste Zeichen ein {\tt 1}, "uberschreibe es durch ein {\tt x}
+und fahre zur"uck bis ein \blank\ gefunden wird, positioniere den Kopf
+rechts davon, fahre weiter bei \ref{50000015:phase2:2}.
+\item
+\label{50000015:phase2:1}
+"Uberspringe alle folgenden {\tt 1} oder {\tt x}.
+\item Weiter bei 1.
 \end{enumerate}
 \end{loesung}
+
+\begin{diskussion}
+Man kann eine geeignete Turing-Maschine auch wie folgt bekommen.
+Zun"achst stellt man fest, dass W"orter der genannten Art eine
+kontextfreie Sprache bilden. Eine m"ogliche Grammatik daf"ur ist
+\begin{align*}
+S&\to \varepsilon \\
+ &\to S W\\
+W&\to \varepsilon \\
+ &\to \text{\tt 0}W\text{\tt 1} \\
+ &\to W\text{\tt 1}
+\end{align*}
+Es gibt also einen Stackautomaten f"ur diese Sprache. Ein besonders eleganter
+Stackautomat w"are
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+10mm{
+*+\txt{}\ar[r]
+	&*++[o][F=]{q_0}\ar[r]^{{\tt 0},\varepsilon\to \$}
+	      \ar@(ur,ul)_{{\tt 1},\varepsilon\to\varepsilon}
+		&{q_1}\ar[r]^{\varepsilon,\varepsilon\to{\tt 0}}
+			&{q_2}\ar@(r,u)_{{\tt 0},\varepsilon\to{\tt 0}}
+			      \ar[dl]^{{\tt 1},{\tt 0}\to\varepsilon}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{q_3}\ar@(r,d)^{{\tt 1},{\tt 0}\to\varepsilon}
+		      \ar[ul]_{\varepsilon,\$\to\varepsilon}
+}
+\]
+Sobald im Input eine {\tt 0} auftaucht, wechselt er in den Zustand $q_1$ und
+beginnt die {\tt 0}en auf den Stack zu schreiben. Wenn dann aber {\tt 1}en 
+auftreten, wird der Stack wieder abgebaut. Nur wenn der Stack v"ollig
+gelehrt werden kann, und eventuell noch weitere {\tt 1}en folgen,
+wird das Wort akzeptiert. Man erkennt auch, dass der Stackautomat
+f"ur akzeptable W"orter sogar determinisitisch ist.
+
+Zu jedem Stackautomaten gibt es eine Turingmaschine mit zwei B"andern,
+die den Stackautomaten implementiert, das zweite Band wird f"ur die 
+Implementation des Stacks verwendet. 
+Jede Turing-Maschine mit zwei B"andern kann aber in eine Turing-Maschine
+mit nur einem Band umgewandelt werden.
+\end{diskussion}
 
 \begin{bewertung}
 Verwendung eines Hilfszeichens zur Unterteilung in Sequenzen
