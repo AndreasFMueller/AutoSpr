@@ -1,0 +1,158 @@
+Ein etwas unerfahrener Event-Manager hat sich f"ur seinen n"achsten
+Event ein Spiel einfallen lassen, f"ur das er die G"aste in
+Teams mit jeweils drei Mitgliedern einteilen muss. 
+Damit die Bildung der Teams schnell vonstatten gehen kann, schickt
+er den Teilnehmern die Team-Nummer bereits mit der Einladung.
+Dummerweise l"asst die Datenqualit"at seiner Adressdatenbank
+sehr zu w"unschen "ubrig. Die meisten Teilnehmer bekommen mehrere
+Einladungen, mit verschiedenen Team-Nummern. Am Event kommt es zum Eklat.
+Der Manager versucht die Situation noch zu retten, indem er den
+Teilnehmern sagt, sie sollen die Dreierteams einfach mit einer
+der Teamnummern bilden, mit welcher spiele keine Rolle. Die Teilnehmer
+finden jedoch keine L"osung, der Event platzt, einige Teilnehmer 
+gehen fr"uhzeitig nach Hause, andere ers"auffen ihren Frust an der Bar.
+Warum ist es so schwierig, nach Anweisung des Managers Teams zu bilden?
+
+\begin{loesung}
+Dieses Problem, welches wir \textsl{TEAMBILDUNG} nennen wollen,
+ist NP-vollst"andig, wie wir durch Vergleich mit dem bekanntermassen
+NP-vollst"andigen Problem \textsl{EXACT-COVER} nachweisen wollen.
+
+Je der vom Manager verschickten Nummern $j$ definiert eine Teilmenge
+$S_j$ der Menge aller Teilnehmer $U$. Gesucht ist eine Unterfamilie
+Teams $S_{j_i}$, $1\le i\le m$, so dass keine zwei Teams sich "uberschneiden
+(d.~h.~kein Teilnehmer ist in mehr als einem Team) und die ganze Menge $U$
+"uberdecken (d.~h.~jeder Teilnehmer ist in einem Team).
+
+\medskip
+Reduktion auf \textsl{HITTING-SET}: Dazu bildet man f"ur jeden
+Teilnehmer $i$ die Menge $S_i$ der Teams, f"ur die Teilnehmer $i$
+vorgesehen ist. Es ist klar, dass $S_i\subset S$, wobei $S$ die Menge
+aller Teams ist. Gesucht ist jetzt eine Auswahl von Teams so, dass
+jeder Teilnehmer in genau einem Team ist, also $H\subset S$ so,
+dass $|H\cap S_i|=1$. Das ist das Problem \textsl{HITTING-SET}.
+
+\medskip
+Es ist in diesem Fall auch m"oglich, eine Reduktion auf SAT anzugeben.
+Dazu muss man beachten, dass eine Auswahl der Teams, die auf den
+Einladungen definiert wurden, ja tats"achlich eine L"osung des
+Problems darstellen w"urden, man muss nur noch herausfinden, welche
+Teams gebildet werden m"ussen, und welche nicht. Seien also $i\in I$
+die Teamnummern, und sei f"ur jedes $i$ eine boolsche Variable $x_i$
+gegeben, welche angibt, ob ein Team gebildet werden soll oder nicht.
+Jetzt muss aus den Daten nur noch eine Formel $\varphi$ konstruiert werden,
+welche angibt, ob die Belegung der $x_i$ mit Wahrheitswerten, also die Auswahl
+der Teams, eine L"osung des Problems darstellt.
+
+Zu jedem Teilnehmer $j\in T$ k"onnen wir die Megen $I_j$ der Nummern
+der Teams bilden, f"ur die er vorgesehen ist.
+
+Die Formel $\varphi$ besteht aus mehreren Teilen, welche f"ur jeden
+Teilnehmer $j$ ausdr"ucken sollen, dass 
+\begin{enumerate}
+\item er in h"ochstens einem der realisierten Teams ist (Formel $\varphi_{1i}$),
+und dass
+\item er in mindestens einem der realisierten Teams ist (Formel $\varphi_{2i}$).
+\end{enumerate}
+Die gesucht Formel ist dann
+$\bigwedge_{j\in T} \varphi_{1i}\wedge \varphi_{2i}$.
+
+Die Formel $\varphi_{2j}$ dr"uckt aus, dass mindestens ein Team realisiert
+wird, f"ur das der Teilnehmer $j$ vorgesehen ist:
+\begin{equation}
+\varphi_{2j}=x_{i_1}\vee x_{i_2}\vee\dots\vee x_{i_k} = \bigvee_{i\in I_j}x_i.
+\label{70000025:1}
+\end{equation}
+
+Die Formel
+\begin{equation}
+x_{i_1}\wedge\overline{(x_{i_2}\vee\dots\vee x_{i_k})}
+\label{70000025:2}
+\end{equation}
+ist genau dann war, wenn Team $i_1$ das einzige Team von $j$ ist,
+welches realisiert wird. Die Formel ist falsch, wenn ausser $i_1$ auch
+noch ein anderes Team realisiert wird. Sie ist aber auch falsch, wenn 
+gar keines der Teams realisiert wird.
+
+Entsprechend kann man eine Formel bilden, die dann war wird, wenn $i_2$ als 
+einziges Team realisiert wird. Oder allgemein ist
+die Formel
+\begin{equation}
+x_i\wedge \overline{\biggl(\bigvee_{i'\in I_j\setminus\{i\}}x_{i'}\biggr)}
+\label{70000025:3}
+\end{equation}
+wahr, wen Team $i\in I_j$ als einziges der Teams von $j$ realisiert wird.
+Damit eine L"osung gefunden wird, muss irgend eines der Teams von $j$ als
+einziges realisiert werden,
+die gesuchte Formel $\varphi_{1j}$ ist daher
+\begin{equation}
+\varphi_{1j} = 
+\bigvee_{i\in I_j} \biggl(x_i\wedge
+	\overline{\biggl(\bigvee_{i'\in I_j\setminus \{i\}}x_{i'}\biggr)}\biggr)
+\label{70000025:4}
+\end{equation}
+Damit kann man jetzt auch die Gesamtformel $\varphi$ zusammensetzen:
+\begin{equation}
+\varphi=
+\bigwedge_{j\in T}
+\biggl(
+\bigvee_{i\in I_j} \biggl(x_i\wedge
+	\overline{\biggl(\bigvee_{i'\in I_j\setminus \{i\}}x_{i'}\biggr)}\biggr)
+\wedge
+\biggl(
+\bigvee_{i\in I_j}x_i
+\biggr)
+\biggr)
+\label{70000025:5}
+\end{equation}
+Damit ist zwar eine Reduktion von \textsl{TEAMBILDUNG} auf \textsl{SAT}
+geschafft, es ist aber noch nicht gezeigt, dass dies auch eine polynomielle
+Reduktion ist. Sei $n$ die Anzahl der Teilnehmer und $m$ die Anzahl der
+Teams, die gebildet werden sollten.
+
+Jede der Formeln (\ref{70000025:1}) hat L"ange $O(m)$.
+Da es in der Schlussformel $O(n)$ Teilformeln dieser Art gibt, 
+tragen diese mit L"ange $O(nm)$ zur L"ange von $\varphi$ bei.
+
+Die Formel (\ref{70000025:3}) hat L"ange $O(m)$, davon werden $|I_j|=O(n)$
+St"uck
+in (\ref{70000025:4}) zu einer Formel der L"ange $O(mn)$ zusammengesetzt.
+In (\ref{70000025:5}) kommt eine solche Formel f"ur jeden Teilnehmer vor,
+die Gesamtl"ange von $\varphi$ ist $O(n^2m) + O(nm)=O(n^2m)$, also auf
+jeden Fall polynomiell in der Gr"osse des Problems. Damit ist gezeigt,
+dass die Reduktion auf \textsl{SAT} auch eine polynomielle Reduktion ist.
+\end{loesung}
+
+\begin{diskussion}
+Bei oberfl"achlicher Betrachtung scheint \textsl{TEAMBILDUNG} auch
+zum Problem \textsl{3D-MATCHING} "aquivalent zu sein. Da alle NP-vollst"andigen
+Problem "aquivalent sind, ist das nat"urlich immer richtig, aber
+es ist nicht so einfach, eine "Aquivalenz zwischen 
+\textsl{TEAMBILDUNG} und 
+\textsl{3D-MATCHING} zu beschreiben.
+
+Im Problem \textsl{3D-MATCHING} geht es um eine endliche Menge $T$,
+die den Teilnehmern im Problem \textsl{TEAMBILDUNG} entspricht.
+Jede Team-Nummer, die der Manager verschickt hat, erzeugt ein Tripel
+von jeweils drei Teilnehmern, also eine Menge $U$ von Tripeln,
+$U\subset T\times T\times T$. Die Aufgabe der Teilnehmer besteht
+jetzt darin, nur einen Teil der Team-Nummern zu verwenden, um
+die Teams zu bilden, also eine Auswahl von Tripeln $W$ aus der Menge $U$
+zu treffen. Die Bedingungen sind jedoch nicht exakt die gleichen.
+In \textsl{3D-MATCHING} m"ussen gleich viele Tripel $|W|$
+gew"ahlt werden, wie es Teilnehmer $|T|$ gibt, in 
+\textsl{TEAMBILDUNG} werden nur $\frac13$ so viele Teams gebildet
+wie es Teilnehmer gibt. \textsl{3D-MATCHING} verlangt auch nicht,
+dass sich die Tripel nicht "uberschneiden d"urfen, sie d"urfen sich
+nur in keiner Koordinate "uberschneiden.
+\end{diskussion}
+
+\begin{bewertung}
+L"osungsprinzip Reduktion ({\bf R}) 1 Punkt,
+Auswahl eines geeigneten Vergleichsproblems ({\bf V}) 1 Punkt,
+Reduktionsabbildung f"ur G"aste ({\bf G}) 1 Punkt,
+Teams ({\bf T}) 1 Punkt,
+Ausschlussbedingung (jeder Teilnehmer in genau einem realisierten Team,
+{\bf B}) 1 Punkt,
+Schlussfolgerung NP-vollst"andig ({\bf S}) 1 Punkt.
+\end{bewertung}
