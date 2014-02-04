@@ -1,0 +1,155 @@
+Die Schweizer Autokennzeichen
+(siehe Aufgabe \ref{30000036})
+lassen sich auch durch eine
+kontextfreie Grammatik spezifizieren.
+\begin{teilaufgaben}
+\item Geben Sie eine Grammatik an, die genau die Schweizer Autokennzeichen
+erzeugt.
+\item Markieren Sie in Ihrer Grammatik genau diejenigen Regeln, welche
+nicht der Chomsky Normalform entsprechen, und begr"unden Sie ihre
+Markierungen.
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item Wir brauchen zun"achst Regeln f"ur die Kantonsk"urzel:
+\begin{align*}
+\text{\textsl{praefix}}
+&\rightarrow
+\text{\color{red}\textsl{kantonskuerzel}}\;|\;
+\text{\color{red}\textsl{adminpraefix}}\\
+\text{\textsl{kantonskuerzel}}
+&\rightarrow
+{\color{blue}\tt AG}\;|\;
+{\color{blue}\tt AR}\;|\;
+{\color{blue}\tt AI}\;|\;
+{\color{blue}\tt BL}\;|\;
+{\color{blue}\tt BS}\;|\;
+{\color{blue}\tt BE}\;|\;
+{\color{blue}\tt FR}\;|\;
+{\color{blue}\tt GE}\;|\;
+{\color{blue}\tt GL}\;|\;
+{\color{blue}\tt GR}\;|\;
+{\color{blue}\tt JU}\;|\;
+{\color{blue}\tt LU}\;|\;
+{\color{blue}\tt NE}
+\\
+&\rightarrow
+{\color{blue}\tt NW}\;|\;
+{\color{blue}\tt OW}\;|\;
+{\color{blue}\tt SH}\;|\;
+{\color{blue}\tt SZ}\;|\;
+{\color{blue}\tt SO}\;|\;
+{\color{blue}\tt SG}\;|\;
+{\color{blue}\tt TI}\;|\;
+{\color{blue}\tt TG}\;|\;
+{\color{blue}\tt UR}\;|\;
+{\color{blue}\tt VD}\;|\;
+{\color{blue}\tt VS}\;|\;
+{\color{blue}\tt ZG}\;|\;
+{\color{blue}\tt ZH}\\
+\text{\textsl{adminpraefix}}
+&\rightarrow {\tt A}\;|\;
+{\tt P}\;|\;
+{\tt M}
+\end{align*}
+Dann brauchen wir Regeln f"ur eine maximal sechsstellige Zahl
+\begin{align*}
+\text{\textsl{zahl}}
+&\rightarrow
+\text{\textsl{positiveziffer}}\;\text{\textsl{rest}}
+\\
+\text{\textsl{rest}}
+&\rightarrow{\color{green}\varepsilon}
+\\
+&\rightarrow
+\text{\color{red}\textsl{ziffer}}
+\\
+&\rightarrow
+\text{\textsl{ziffer}}\;
+\text{\textsl{ziffer}}
+\\
+&\rightarrow
+{\color{blue}
+\text{\textsl{ziffer}}\;
+\text{\textsl{ziffer}}\;
+\text{\textsl{ziffer}}}
+\\
+&\rightarrow
+{\color{blue}
+\text{\textsl{ziffer}}\;
+\text{\textsl{ziffer}}\;
+\text{\textsl{ziffer}}\;
+\text{\textsl{ziffer}}}
+\\
+&\rightarrow
+{\color{blue}
+\text{\textsl{ziffer}}\;
+\text{\textsl{ziffer}}\;
+\text{\textsl{ziffer}}\;
+\text{\textsl{ziffer}}\;
+\text{\textsl{ziffer}}}
+\\
+\text{\textsl{ziffer}}
+&\rightarrow
+{\tt 0}\;|\;
+{\tt 1}\;|\;
+{\tt 2}\;|\;
+{\tt 3}\;|\;
+{\tt 4}\;|\;
+{\tt 5}\;|\;
+{\tt 6}\;|\;
+{\tt 7}\;|\;
+{\tt 8}\;|\;
+{\tt 9}
+\\
+\text{\textsl{positiveziffer}}
+&\rightarrow
+{\tt 1}\;|\;
+{\tt 2}\;|\;
+{\tt 3}\;|\;
+{\tt 4}\;|\;
+{\tt 5}\;|\;
+{\tt 6}\;|\;
+{\tt 7}\;|\;
+{\tt 8}\;|\;
+{\tt 9}
+\\
+\end{align*}
+Schliesslich brauchen wir noch Regeln f"ur das optionale Suffix:
+\begin{align*}
+\text{\textsl{suffix}}
+&\rightarrow{\color{green}\varepsilon} \;|\;
+{\tt U} \;|\;
+{\tt V} \;|\;
+{\tt Z}
+\end{align*}
+Diese Regeln k"onnen wir jetzt mit Hilfe einer Startregel zu einer
+Grammatik f"ur Autokennzeichen zusammenf"ugen:
+\begin{align*}
+\text{\textsl{kennzeichen}}&\rightarrow
+\text{\textsl{praefix}}\;\text{\textsl{zahl}}\;\text{\textsl{suffix}}
+\end{align*}
+\item In den obigen Regeln sind Regeln, die nicht der Chomsky Normalform
+entsprechen, nach folgendem Farbcode markiert:
+\begin{itemize}
+\item {\color{red} rot}: Unit-Rules
+\item {\color{blue} blau}: auf der rechten Seite kommen mehr als
+zwei Elemente vor, oder zwei Elemente, aber mindestens eines davon
+ist ein Terminalsymbol.
+\item {\color{green} gr"un}: leeres Wort auf der rechten Seite der Regel
+\end{itemize}
+
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item Fehlerfreie Grammatik 4 Punkte, Abz"uge f"ur Fehler wie
+nicht spezifizierte administrative Pr"afixe ({\bf A}), nicht spezifizierte
+Sondernutzungszeichen ({\bf S}), f"uhrende Nullen ({\bf N}).
+\item 2 Punkte, Abz"uge f"ur nicht erkannte Regeln oder f"ur falsch
+markierte Regeln.
+\end{teilaufgaben}
+\end{bewertung}
+
