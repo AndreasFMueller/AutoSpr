@@ -40,9 +40,25 @@ implementieren, was mit dem folgenden Zustandsdiagramm m"oglich ist:
 \]
 
 Eine andere L"osung k"onnte man dadurch erhalten, dass man die TM
-auf dem Band von der Zahl 3 (bin"ar 11) subtrahieren l"asst. Wenn
+auf dem Band von der Zahl 3 (bin"ar 11) subtrahieren l"asst. Dies
+kann nach dem Muster der bin"aren Addition (``schriftliche'' Subtraktion,
+Video aus der Vorlesung)
+durch dreimaliges bin"ares R"uckw"artsz"ahlen (Bin"arz"ahler aus den
+"Ubungen) erfolgen.
+Wenn
 das aufgeht, also auf dem Band nur Nullen stehen, dann ist die
 Zahl durch drei teilbar.
+
+Noch ein weiterer L"osungsweg besteht darin, die Zahl zuerst auf einem zweiten
+Band in un"are Darstellung umzuwandeln. Dazu braucht man ein drittes Band,
+auf dem man die Zweierpotenzen in un"arer Darstellung berechnet, indem
+man den Inhalt des Bandes nochmals an dessen Ende kopiert. Die un"are
+Darstellung des Inputs bekommt man, indem man f"ur jede Stelle 1
+des Inputs die zugeh"orige un"are Darstellung des zugeh"origen Stellenwertes
+ans Ende von Band~2 kopiert. Teilbarkeit durch drei kann man in der
+un"aren Darstellung dadurch pr"ufen, dass man die Zeichen von Band~2
+in Dreiergruppen l"oscht. Wenn das aufgeht, ist die Zahl durch drei teilbar
+und kann akzeptiert werden.
 \end{loesung}
 
 \begin{bewertung}
