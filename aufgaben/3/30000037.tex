@@ -1,0 +1,55 @@
+Betrachten Sie "uber dem Alphabet $\Sigma = \{{\tt 0},{\tt 1},\blank\}$ die
+Sprache $L$, deren W"orter aus zwei durch genau ein Leerzeichen getrennten
+Bin"arzahlen bestehen, wobei die zweite gr"osser sein muss als die erste.
+Zur Sprache geh"oren also zum Beispiel
+\[
+{\tt 10000}\blank{\tt 10001},\quad
+{\tt 0}\blank{\tt 10001}
+\]
+aber nicht
+\[
+{\tt 10000}\blank{\tt 10000},\quad
+{\tt 10000}\blank\blank\blank{\tt 10001},\quad
+{\tt 10001}\blank{\tt 0}.
+\]
+Ist $L$ regul"ar?
+
+\begin{loesung}
+Nein, wie man mit dem Pumping Lemma nachweisen kann.
+W"are $L$ regul"ar, m"usste es eine Pumping Length $N$ geben, so dass
+W"orter mit mindestens L"ange $N$ aufgepumpt werden k"onnen. Wir w"ahlen
+das Wort
+\begin{align*}
+w&= {\tt 1}^N\blank{\tt 10}^N
+&
+w&=\underbrace{\tt 1111\dots 1}_{\text{$N$ Einsen}}\blank{\tt 1}\underbrace{\tt 0000\dots 0}_{\text{$N$ Nullen}}
+\end{align*}
+es erf"ullt die Bedingung $w\in L$. Da $|w| = 2N+2>N$ muss es eine
+Unterteilung $w=xyz$ geben so, dass $|xy|\le N$ ist, also $x$ und $y$
+m"ussen vollst"andig aus Einsen bestehen. Es ist also $y={\tt 1}^n$
+mit $n > 0$.
+Pumpt man diese Wort auf, erh"oht sich nur die Zahl der Einsen im Teil
+vor dem Leerzeichen:
+\begin{align*}
+xy^2z&={\tt 1}^{N+n}\blank{\tt 10}^N
+&
+xy^2z&=
+\underbrace{\tt 1111\dots 1}_{N+n}\blank{\tt 1}\underbrace{\tt 0000\dots 0}_{N}
+\end{align*}
+Die Zahl links vom Blank ist $2^{N+n}-1$, die Zahl rechts ist $2^N$,
+aber $2^{N+n}-1 > 2^N$, das aufgepumpte Wort kann also nicht mehr
+in $L$ sein.
+
+Dieser Widerspruch zeigt, dass $L$ nicht regul"ar sein kann.
+\end{loesung}
+
+\begin{bewertung}
+Pumping Lemma ({\bf PL}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+Konstruktion eines geeigneten Wortes ausgehend von der Pumping Length
+({\bf W}) 1 Punkt,
+Zerlegung des Wortes $w=xyz$ ({\bf Z}) 1 Punkt,
+Konsequenzen bei Auf- oder Abpumpen ({\bf A}) 1 Punkt,
+Schlussfolgerung ({\bf S}) 1 Punkt.
+\end{bewertung}
+
