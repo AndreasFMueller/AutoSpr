@@ -297,28 +297,29 @@ Hier soll an Hand einer Beispiel-Grammatik gezeigt werden, wie ein
 von Bison erzeugter Parser einen arithmetischen Ausdruck
 erkennt. Wir verwenden die Grammatik:
 \begin{align}
-\text{expr}&\rightarrow \text{term}\tag{2}\\
-\text{expr}&\rightarrow \text{expr}\;\text{'{\tt +}'}\;\text{term}\tag{3}\\
-\text{expr}&\rightarrow \text{expr}\;\text{'{\tt -}'}\;\text{term}\tag{4}\\
-\text{term}&\rightarrow \text{factor}\tag{5}\\
-\text{term}&\rightarrow \text{term}\;\text{'{\tt *}'}\;\text{factory}\tag{6}\\
-\text{term}&\rightarrow \text{term}\;\text{'{\tt /}'}\;\text{factory}\tag{7}\\
-\text{factor}&\rightarrow\text{'{\tt (}'}\;\text{expr}\;\text{'{\tt )}'}\tag{8}\\
-\text{factor}&\rightarrow\text{number}\tag{9}\\
-\text{number}&\rightarrow\text{number}\;\text{digit}\tag{10}\\
-\text{number}&\rightarrow\text{digit}\tag{11}\\
-\text{digit}&\rightarrow\text{'{\tt 0}'}\tag{12}\\
+\textsl{expr}&\rightarrow \textsl{term}\tag{2}\\
+\textsl{expr}&\rightarrow \textsl{expr}\;\text{'{\tt +}'}\;\textsl{term}\tag{3}\\
+\textsl{expr}&\rightarrow \textsl{expr}\;\text{'{\tt -}'}\;\textsl{term}\tag{4}\\
+\textsl{term}&\rightarrow \textsl{factor}\tag{5}\\
+\textsl{term}&\rightarrow \textsl{term}\;\text{'{\tt *}'}\;\textsl{factory}\tag{6}\\
+\textsl{term}&\rightarrow \textsl{term}\;\text{'{\tt /}'}\;\textsl{factory}\tag{7}\\
+\textsl{factor}&\rightarrow\text{'{\tt (}'}\;\textsl{expr}\;\text{'{\tt )}'}\tag{8}\\
+\textsl{factor}&\rightarrow\textsl{number}\tag{9}\\
+\textsl{number}&\rightarrow\textsl{number}\;\textsl{digit}\tag{10}\\
+\textsl{number}&\rightarrow\textsl{digit}\tag{11}\\
+\textsl{digit}&\rightarrow\text{'{\tt 0}'}\tag{12}\\
 \vdots&\qquad\vdots\notag\\
-\text{digit}&\rightarrow\text{'{\tt 9}'}\tag{21}
+\textsl{digit}&\rightarrow\text{'{\tt 9}'}\tag{21}
 \end{align}
 Die Nummerierung der Regeln bezieht sich auf die sp"ater gezeigten Regeln
 der von Bison erzeugten Parsetabellen. Damit diese Grammatik in einem
 Programm einfach demonstriert werden kann ist es sinnvoll, ein Endzeichen
 f"ur die arithmetischen Ausdr"ucke einzuf"uhren. Wir f"ugen zu diesem
 Zweck die Regel 
-\[
-\text{exprline}\rightarrow \text{expr}\;\text{'{\tt $\setminus$n}'}
-\]
+\begin{equation}
+\textsl{exprline}\rightarrow \textsl{expr}\;\text{'{\tt $\setminus$n}'}
+\tag{1}
+\end{equation}
 hinzu. Bison f"ugt dann seinerseits eine Regel mit der Nummer 0 hinzu, so ergibt
 sich folgende Grammatik in Bisons Schreibweise:
 \verbatiminput{bison/bisongrammar.txt}
