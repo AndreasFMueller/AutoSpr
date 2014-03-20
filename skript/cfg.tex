@@ -182,26 +182,25 @@ Z&\to {\tt 0}\;|\;\dots \;|\;{\tt 9}
 erzeugt werden.
 
 Diese Grammatik hat aber den Mangel, dass sie auch Zahlen
-mit f"uhrenden Nullen erlaubt. Diese k"onnten dadurch entfernt
-werden, dass wir eine weitere Variable $A$ f"ur zul"assige
-Anfangsziffern einf"uhren:
+mit f"uhrenden Nullen erlaubt.
+Diese k"onnten dadurch entfernt
+werden, dass wir eine weitere Variable f"ur zul"assige
+Anfangsziffern einf"uhren.
+Die Bezeichnung der Variablen mit einzelnen Buchstaben wird jetzt
+bereits etwas un"ubersichtlich, wir schreiben die Grammatik daher neu
+so:
 \begin{align*}
-N&\to A\\
- &\to NZ\\
-A&\to {\tt 1}\;|\;\dots\;|\;{\tt 9}\\
-Z&\to {\tt 0}\;|\; A
+\textsl{zahl}           &\to\textsl{nichtnullziffer}\; \textsl{ziffernfolge} \\
+                        &\to\textsl{ziffer}\\
+\textsl{ziffernfolge}   &\to \textsl{ziffernfolge}\; \textsl{ziffer}\\
+                        &\to \textsl{ziffer}\\
+\textsl{ziffer}         &\to \texttt{0}\; |\; \textsl{nichtnullziffer}\\
+\textsl{nichtnullziffer}&\to \texttt{1}\;|\;\texttt{2}\;|\;\dots\;|\;\texttt{9}
 \end{align*}
-Leider haben wir damit aber auch die Zahl {\tt 0} verboten,
-eine einzelne Ziffer {\tt 0} sollte auch akzeptabel sein.
-Wir brauchen also eine zus"atzliche Regel, welche $N\to{\tt 0}$
-"uberf"uhrt:
-\begin{align*}
-N&\to A\\
- &\to NZ\\
- &\to {\tt 0}\\
-A&\to {\tt 1}\;|\;\dots\;|\;{\tt 9}\\
-Z&\to {\tt 0}\;|\; A
-\end{align*}
+Damit ist auch gleich der Fall einer einzelnen Null abgehandelt, denn eine
+solche ist ja eine \textsl{ziffer}, und eine \textsl{zahl} kann auch eine
+einzelne Ziffer sein.
+
 \subsubsection{Einfache arithmetische Ausdr"ucke}
 \index{Ausdr\"ucke!arithmetische}
 \index{expression-term-factor Grammatik}
@@ -211,18 +210,18 @@ wird, werden wir im Folgenden auch l"anger Variablennamen zulassen.
 Als Alphabet verwenden wir
 $\Sigma=\{{\tt 0},\dots,{\tt 9},{\tt +},{\tt *},{\tt (}, {\tt )}\}$.
 Die Startvariable dr"uckt aus, was erzeugt werden soll, in diesem Fall
-ein Ausdruck, also nennen wir sie {\tt expression}.  Folgende Grammatik
+ein Ausdruck, also nennen wir sie \textsl{expression}.  Folgende Grammatik
 erzeugt die arithmetischen Ausdr"ucke:
 \begin{align*}
-\text{\tt expression} &\to \text{\tt expression}\;{\tt +}\;\text{\tt term}\\
-                      &\to \text{\tt term}\\
-\text{\tt term}       &\to \text{\tt term}\;{\tt *}\;\text{\tt factor}\\
-                      &\to \text{\tt factor}\\
-\text{\tt factor}     &\to {\tt (}\text{\tt expression}{\tt )}\\
-                      &\to N\\
-N                     &\to Z\\
-                      &\to NZ\\
-Z                     &\to {\tt 0}\;|\;\dots \;|\;{\tt 9}
+\textsl{expression} &\to \textsl{expression}\;{\tt +}\;\textsl{term}\\
+                    &\to \textsl{term}\\
+\textsl{term}       &\to \textsl{term}\;{\tt *}\;\textsl{factor}\\
+                    &\to \textsl{factor}\\
+\textsl{factor}     &\to {\tt (}\textsl{expression}{\tt )}\\
+                    &\to N\\
+N                   &\to Z\\
+                    &\to NZ\\
+Z                   &\to {\tt 0}\;|\;\dots \;|\;{\tt 9}
 \end{align*}
 
 \subsubsection{Eine nicht regul"are Sprache}
@@ -352,47 +351,47 @@ Die dabei verwendeten Regeln k"onnen in Baumform wie folgt
 dargestellt werden:
 
 {
-\tiny
+\small
 \[
 \xymatrix{
-	&{\tt expression} \ar[d]
+	&\textsl{expression} \ar[d]
 \\
-	&{\tt term} \ar[dl] \ar[d] \ar[drrr]
+	&\textsl{term} \ar[dl] \ar[d] \ar[drrr]
 \\
-{\tt term}\ar[dddd]
+\textsl{term}\ar[dddd]
 	&{\tt *}\ar[ddddddd]
 		&
 			&
-				&{\tt factor}\ar@/_40pt/[dddddddll]\ar[d]\ar@/^30pt/[dddddddrr]
+				&\textsl{factor}\ar@/_80pt/[dddddddll]\ar[d]\ar@/^40pt/[dddddddrr]
 					&
 						&
 \\
 	&
 		&
 			&
-				&{\tt expression}\ar[dl]\ar[dddddd]\ar[ddr]
+				&\textsl{expression}\ar[dl]\ar[dddddd]\ar[ddr]
 					&
 \\
 	&
 		&
-			&{\tt expression}\ar[d]
+			&\textsl{expression}\ar[d]
 				&
 					&
 						&
 \\
 	&
 		&
-			&{\tt term}\ar[d]
+			&\textsl{term}\ar[d]
 				&
-					&{\tt term}\ar[d]
+					&\textsl{term}\ar[d]
 						&
 \\
-{\tt factor}\ar[d]
+\textsl{factor}\ar[d]
 	&
 		&
-			&{\tt factor}\ar[d]
+			&\textsl{factor}\ar[d]
 				&
-					&{\tt factor}\ar[d]
+					&\textsl{factor}\ar[d]
 						&
 \\
 N\ar[d]
