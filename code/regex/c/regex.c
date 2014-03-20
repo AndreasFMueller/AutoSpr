@@ -17,8 +17,8 @@ int	main(int argc, char *argv[]) {
 	char	s1[2 * N + 1];
 	char	s2[N + 1];
 	memset(regex, 0, sizeof(regex));
-	memset(s1, 0, sizeof(regex));
-	memset(s2, 0, sizeof(regex));
+	memset(s1, 0, sizeof(s1));
+	memset(s2, 0, sizeof(s2));
 
 	/* baue regulaeren Ausdruck und Teststring fuer Laengen zwischen
            1 und N */
