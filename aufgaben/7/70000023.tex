@@ -1,0 +1,75 @@
+Ein aufstrebendes Film-Festival ist derart gewachsen, dass der 
+Vorf"uhrsaal nicht mehr reicht. Daher m"ussen jetzt zwei gleich
+grosse S"a"ale verwendet werden, und trotzdem ist das Festival
+wieder ausverkauft, und zwar in einem Masse, dass "uberhaupt nur Stars und Prominente
+samt ihrer Entourage eingelassen werden k"onnen, f"ur
+einzelne Besucher gibt es keine Pl"atze.
+
+Doch die Stars st"oren sich daran, dass sie m"oglicherweise nicht
+ihre ganze Entourage im gleichen Saal haben k"onnen. Daher muss
+kurzfristig eine Aufteilung der Festival-G"aste gefunden werden,
+so dass die beiden S"a"ale so gef"ullt werden k"onnen, dass
+jede Entourage vollst"andig in einem der S"a"ale Platz nimmt.
+
+Der Festival-Direktor ist jedoch sehr "uberrascht, dass die
+Bestimmung einer solchen Aufteilung so lange dauert. Warum
+sind Sie nicht "uberrascht?
+
+\begin{loesung}
+Zu jedem Star $i\in I$ gibt es eine Entourage mit $c_i$
+Mitgliedern. Diese Menge muss jetzt in zwei Teilmengen
+$A$ (Stars samt Entourage, die in Saal A Platz nehmen) und
+$B$ (Stars samt Entourage, die in Saal B Platz nehmen) aufgeteilt
+werden, so dass $I=A\cup B$. Die Aufteilung muss so sein, dass
+in beiden S"a"alen gleich viele Leute Platz nehmen, also
+\[
+\sum_{i\in A}c_i=
+\sum_{i\in B}c_i.
+\]
+Dies ist das Problem {\it PARTITION}. Das gestellte Problem ist also
+"aquivalent zum NP-vollst"andigen Problem {\it PARTITION}, und ist
+daher ebenfalls NP-vollst"andig. Man kann daher nach aktuellem
+Wissen nicht erwarten, dass es daf"ur einen effizienten Algorithmus
+gibt.
+\end{loesung}
+
+\begin{diskussion}
+Man kann auch versuchen, das Problem Festival-Problem mit
+{\it SUBSET-SUM} vergleichen.
+Zu jedem Star $i\in I$ geh"ort die Zahl $s_i$ der Mitglieder in der
+Entourage des Stars. Sei $S=\{s_i\,|\,i\in I\}$ die Menge all dieser
+Mitgliederzahlen. Sei $t$ die Platzzahl eines der Vorf"uhrs"a"ale.
+Man muss jetzt eine Teilmenge von $I'\subset I$ ausw"ahlen, so dass
+\[
+\sum_{i\in I'} s_i=t.
+\]
+Dies sieht auf den ersten Blick aus wie des {\it SUBSET-SUM}-Problem,
+beim genaueren Hinschauen erkennt man jedoch den Unterschied: In der
+Liste der $s_i$ k"onnen einzelne Zahlen mehrfach vorkommen. Es k"onnte
+sogar sein, dass die Menge $S$ "uberhaupt nur eine Zahl enth"alt,
+zum Beispiel wenn dass Filmfestival allen Stars die gleiche Zahl von
+Freikarten f"ur die Entourage abgegeben hat. Dann ist das erzeugte
+{\it SUBSET-SUM}-Problem gar nicht mehr l"osbar, w"ahrend das urspr"ungliche
+Problem genau dann l"osbar ist, wenn $t$ durch die immer gleiche Gr"osse
+der Entourage teilbar ist. 
+
+Eine allgemeinere Formulierung des Rucksack-Problems hingegen w"are
+durchaus ein m"ogliches Vergleichsproblem, denn oben haben wir ja
+eine Reduktion des Festival-Problems auf das Problem konstruiert,
+f"ur eine Familie (nicht Menge!) $(s_i)_{i\in I}$ von Zahlen eine
+Teilfamilie (nicht Teilmenge!) $(s_i)_{i\in I'}$ zu finden, so dass
+die Summe der Zahlen einen bestimmten Wert $t=\sum_{i\in I'}s_i$
+erreicht.
+\end{diskussion}
+
+\begin{bewertung}
+L"osungsansatz mit Reduktion ({\bf R}) 1 Punkt,
+Auswahl eines geeigneten Vergleichsproblems ({\bf V}) 1 Punkt.
+Reduktionsabbildung f"ur Stars ({\bf S}) 1 Punkt,
+f"ur die Entourage ({\bf E}) 1 Punkt,
+f"ur die Zuordnung zu den beiden S"a"alen ({\bf A}) 1 Punkt,
+f"ur die Aufteilung in zwei gleich grosse R"aume ({\bf P}) 1 Punkt,
+maximal drei von den letztgenannten vier m"oglichen Punkten.
+Schlussfolgerung, dass NP-vollst"andige Probleme nach aktuellem
+Wissen nicht effizient gel"ost werden k"onnen ({\bf N}) 1 Punkt.
+\end{bewertung}

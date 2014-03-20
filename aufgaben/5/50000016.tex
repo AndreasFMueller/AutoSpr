@@ -1,0 +1,70 @@
+Beschreiben Sie ein Turing-Maschinen-Programm, welches herausfindet,
+ob eine Bin"arzahl durch drei teilbar ist.
+
+\begin{loesung}
+F"ur das Problem der Teilbarkeit durch drei wurde in der Vorlesung
+ein endlicher Automat gezeigt:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+	&*++[o][F=]{0}	\ar@(ur,ul)_{\tt 0}
+			\ar@/^/[r]^{\tt 1}
+		&{1}	\ar@/^/[r]^{\tt 0}
+			\ar@/^/[l]^{\tt 1}
+			&{2}	\ar@/^/[l]^{\tt 0}
+				\ar@(ur,ul)_{\tt 1}
+}
+\]
+Die gesuchte Turing-Maschine muss also genau diesen endlichen Automaten
+implementieren, was mit dem folgenden Zustandsdiagramm m"oglich ist:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+	&{0}	\ar@(ur,ul)_{{\tt 0}\to{\tt 0},\text{R}}
+		\ar@/^/[r]^{{\tt 1}\to{\tt 1},\text{R}}
+		\ar[d]_{\blank\to\blank,\text{R}}
+		&{1}	\ar@/^/[r]^{{\tt 0}\to{\tt 0},\text{R}}
+			\ar@/^/[l]^{{\tt 1}\to{\tt 1},\text{R}}
+			\ar[dr]_{\blank\to\blank,\text{R}}
+			&{2}	\ar@/^/[l]^{{\tt 0}\to{\tt 0},\text{R}}
+				\ar@(ur,ul)_{{\tt 1}\to{\tt 1},\text{R}}
+				\ar[d]^{\blank\to\blank,\text{R}}
+\\
+*+\txt{}
+	&*++[o][F=]{q_{\text{accept}}}
+		&*+\txt{}
+			&*++[o][F=]{q_{\text{reject}}}
+}
+\]
+
+Eine andere L"osung k"onnte man dadurch erhalten, dass man die TM
+auf dem Band von der Zahl 3 (bin"ar 11) subtrahieren l"asst. Dies
+kann nach dem Muster der bin"aren Addition (``schriftliche'' Subtraktion,
+Video aus der Vorlesung)
+durch dreimaliges bin"ares R"uckw"artsz"ahlen (Bin"arz"ahler aus den
+"Ubungen) erfolgen.
+Wenn
+das aufgeht, also auf dem Band nur Nullen stehen, dann ist die
+Zahl durch drei teilbar.
+
+Noch ein weiterer L"osungsweg besteht darin, die Zahl zuerst auf einem zweiten
+Band in un"are Darstellung umzuwandeln. Dazu braucht man ein drittes Band,
+auf dem man die Zweierpotenzen in un"arer Darstellung berechnet, indem
+man den Inhalt des Bandes nochmals an dessen Ende kopiert. Die un"are
+Darstellung des Inputs bekommt man, indem man f"ur jede Stelle 1
+des Inputs die zugeh"orige un"are Darstellung des zugeh"origen Stellenwertes
+ans Ende von Band~2 kopiert. Teilbarkeit durch drei kann man in der
+un"aren Darstellung dadurch pr"ufen, dass man die Zeichen von Band~2
+in Dreiergruppen l"oscht. Wenn das aufgeht, ist die Zahl durch drei teilbar
+und kann akzeptiert werden.
+\end{loesung}
+
+\begin{bewertung}
+Endlicher Automat f"ur 3er-Rest ({\bf D}) 2 Punkte,
+"Ubersetzung des Automaten in eine TM-Maschine: 4 Punkte.
+Falls in einem TM-Programm eine nicht weiter spezifizierte Operation
+``Division durch 3'' oder ``Modulo 3'' verwendet wurde, wurden
+nur 3 Punkte vergeben.
+\end{bewertung}

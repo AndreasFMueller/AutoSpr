@@ -1,0 +1,71 @@
+In einer HTML-Tabelle sollte man in jedem {\tt <tr>}-Element gleich
+viele {\tt <td>}-Element angeben (sofern man nicht {\tt <td>}-Elemente
+verwendet, die sich "uber mehrer Spalten oder Zeilen erstrecken).
+Es stellt sich die Frage, ob man dies durch eine kontextfreie Grammatik
+sicherstellen k"onnte.
+Betrachten Sie dazu die folgende vereinfachte Sprache $L$ "uber dem Alphabet
+$\Sigma=\{\text{\tt r}, \text{\tt d}\}$. Die Buchstaben sollen
+dabei f"ur {\tt <tr>}-Element und {\tt <td>}-Element stehen.
+Die W"orter von $L$ sollen die Form
+\[
+(\text{\tt rd}^n)^k
+\]
+haben. Damit ist gemeint, dass jedes Wort aus $k$ Teilst"ucken besteht,
+die alle identisch sind und jeweils aus einem {\tt r} und $n$ Zeichen
+{\tt d} bestehen. Die W"orter
+\[
+\text{\tt rrr}, \quad
+\text{\tt rddrddrdd},\quad
+\text{\tt rdddddddrddddddd},\quad
+\text{\tt rddddddddddddddd}
+\]
+geh"oren also zu $L$, die W"orter
+\[
+\text{\tt rdr}, \quad
+\text{\tt rdrddrddd},\quad
+\text{\tt rdddddddr},\quad
+\text{\tt dddddddddddddddr}
+\]
+aber nicht.
+Gibt es f"ur diese Sprache eine kontextfreie Grammatik?
+
+\begin{loesung}
+Nein, wie man mit dem Pumping Lemma f"ur kontextfreie Sprachen zeigen kann.
+
+Angenommen $L$ sei kontextfrei, dann gibt es eine Pumping Length $N$, so
+dass W"orter mit mindestens L"ange $N$ aufgepumpt werden k"onnen. 
+Wir w"ahlen als Wort
+\[
+w=\text{\tt r}
+\underbrace{\text{\tt d}\dots\text{\tt d}}_{N}
+\text{\tt r}
+\underbrace{\text{\tt d}\dots\text{\tt d}}_{N}
+\text{\tt r}
+\underbrace{\text{\tt d}\dots\text{\tt d}}_{N}
+\]
+Es hat L"ange $3N+3$, es muss also eine Zerlegung $w=uvxyz$ geben
+so, dass $|vxy|\le N$ ist. Wie auch immer diese Zerlegung aussieht,
+$v$ oder $y$, vielleicht sogar beide, werden ausschliesslich aus {\tt d}
+bestehen. Ausserdem k"onnen $v$ und $y$ h"ochstens zwei der Bl"ocke
+aus Zeichen $d$ im Wort $w$ "uberlappen. Der erste oder der letzte Block
+ist vollst"andig in $u$ bzw.~$z$ enthalten. Insbesondere m"ussen in
+einem aufgepumpten Wort immer noch alle Bl"ocke aus Zeichen {\tt d}
+gleich lang sein, damit es immer noch in $l$ ist.
+
+Nehmen wir an, $v$ bestehe aus lauter {\tt d}. Dann wird sich beim
+Aufpumpen ``sein'' Block verl"angern, im Widerspruch zum eben gesagten.
+"Ahnlich ergibt sich auch ein Widerspruch, wenn  $y$ aus lauter {\tt d}
+besteht.
+
+Diese Widerspr"uche zeigen, dass die Sprache $L$ nicht kontextfrei sein
+kann.
+\end{loesung}
+
+\begin{bewertung}
+Pumping Lemma f"ur kontextfreie Sprachen ({\bf PL}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+Beispielwort unter Verwendung von $N$ ({\bf W}) 1 Punkt,
+Zerlegung des Wortes ({\bf Z}) 1 Punkt,
+Konsequenzen beim Auf- bzw.~Abpumpen ({\bf A}) 1 Punkt,
+Schlussfolgerung ({\bf S}) 1 Punkt.
+\end{bewertung}

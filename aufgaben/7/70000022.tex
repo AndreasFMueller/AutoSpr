@@ -1,0 +1,76 @@
+Das Spiel Hashiwokakero wird auf einem $n\times n$-Gitter gespielt,
+auf dem einige Gitterpunkte als Inseln markiert und mit einer Zahl
+versehen sind. Die Zahl gibt an, wieviele Br"ucken auf der
+betreffenden Insel enden.
+Br"ucken verlaufen immer parallel zu den Koordinatenachsen, und
+k"onnen keine Inseln "uberspringen.
+Zwei Inseln k"onnen mit maximal zwei
+Br"ucken verbunden sein. Der Spieler soll Br"ucken so bauen,
+dass die Zahl der Br"ucken auf jeder Insel mit der Vorgabe
+"ubereinstimmt. Im Bild links die Aufgabe, rechts die L"osung.
+\begin{center}
+\begin{tabular}{cc}
+\includeagraphics[width=0.4\hsize]{HashiwokakeroBeispiel.pdf}&
+\includeagraphics[width=0.4\hsize]{HashiwokakeroLoesung.pdf}
+\end{tabular}
+\end{center}
+Zeigen Sie, dass eine nichtdeterministische Maschine in
+polynomieller Zeit entscheiden kann, ob ein Hashiwokakero-R"atsel
+eine L"osung hat.
+
+\begin{loesung}
+Man muss zeigen, dass HASHIWOKAKURO in NP ist. Dazu gen"ugt es, einen
+polynomiellen Verifizierer zu finden. Als Zertifikat f"ur den
+Verifizierer verlangen wir die Anzahl der Br"ucken zwischen jedem 
+Paar von Inseln des R"atsels.
+Der Verifizierer muss folgende Dinge "uberpr"ufen:
+\begin{center}
+\begin{tabular}{l|c}
+Pr"ufung&Laufzeit\\
+\hline
+Br"ucken sind horizontal oder vertikal&$O(n^4)$\\
+Br"ucken enden in Inseln&$O(n^4)$\\
+Br"ucken kreuzen sich nicht&$O(n^8)$\\
+Br"ucken, die in einer Insel enden, haben die ``richtige'' Summe&$O(n^6)$\\
+\hline
+Maximale Laufzeit& $O(n^8)$
+\end{tabular}
+\end{center}
+Dabei haben wir die ganz grobe Absch"atzung verwendet, dass es h"ochstens
+so viele Br"ucken geben kann wie Punktpaare, also $O(n^2)\cdot O(n^2)=O(n^4)$.
+Bei der Kontrolle der ``richtigen'' Summe muss der Verifizierer zum
+Beispiel f"ur jede Insel und jede Br"ucke die gleiche Arbeit leisten und
+"uberpr"ufen, ob die
+Br"ucke in der Insel endet, die Br"ucken z"ahlen und mit dem Inselwert
+vergleichen.  Die Komplixit"at dieses Teils ist also $O(n^6)$, wie in
+obiger Tabelle angegeben.
+Die Verifikation ist also in polynomieller Zeit durchf"uhrbar.
+\end{loesung}
+
+\begin{bewertung}
+Beobachtung, dass es reicht, einen polynomiellen Verifizerer ({\bf (V)})
+zu finden 1 Punkt,
+Definition des Zertifikats ({\bf Z}) 1 Punkt,
+Definition des Verifikationsalgorithmus ({\bf A}) 2 Punkte,
+Absch"atzung der Laufzeitkomplexit"at ({\bf L}) 2 Punkte.
+\end{bewertung}
+
+\begin{diskussion}
+Daniel Andersson hat nachgewiesen, dass das Br"uckenspiel
+NP-vollst"andig ist: {\it Hashiwokakero is NP-complete},
+Daniel Anderrsson, Journal of Information Processing Letters {\bf 109} (19),
+2009, pp. 1145-1146.
+F"ur den Beweis muss eine Reduktion von einem bekanntermassen
+NP-vollst"andigen Problem konstruiert werden.
+Im vorliegenden Fall wird folgendes Problem verwendet:
+In einem Gitter $\mathbb Z$ ist eine Menge von Punkten $P\subset \mathbb Z^2$
+ausgew"ahlt worden.
+Daraus entsteht ein Graph, indem alle Strecken zwischen Punkten von $P$
+hinzugef"ugt werden, die L"ange $1$ haben,
+der sogenannte Einheits-Distanz-Graph.
+Das Problem zu entscheiden,
+ob dieser Graph einen hamiltonschen Zyklus besitzt ist NP-vollst"andig.
+Der Beweis von Anderson konstruiert zu jedem Einheits-Distanz-Graphen
+ein Hashiwokakero-Spiel, welches genau dann l"osbar ist, wenn der
+Graph einen hamiltonschen Zyklus hat.
+\end{diskussion}

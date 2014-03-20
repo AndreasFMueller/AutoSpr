@@ -1,0 +1,85 @@
+Zeigen Sie mit Hilfe einer Grammatik, dass die Sprache WHILE kontextfrei ist.
+Markieren Sie alle Regeln, die nicht der Chomsky Normalform entsprechen.
+
+\begin{loesung}
+Man muss eine Grammatik f"ur WHILE angeben.
+\begin{align*}
+\text{\textsl{while-programm}}&\to{\color{red}\text{\textsl{anweisungsfolge}}}\\
+&\to\varepsilon\\
+\text{\textsl{anweisungsfolge}}
+&\to{\color{blue}\text{\textsl{anweisungsfolge}}\;\text{'{\tt ;}'}\;
+\text{\textsl{anweisung}}}
+\\
+\text{\textsl{anweisung}}
+&\to\text{\color{red}\textsl{zuweisung}}
+\\
+&\to\text{\color{red}\textsl{loop-anweisung}}
+\\
+\text{\textsl{zuweisung}}
+&\to
+{\color{blue}
+\text{\textsl{variable}}\; \text{'{\tt :}'}\, \text{'{\tt =}'}\;
+\textsl{variable}\;\text{\textsl{operator}}\;\text{\textsl{konstante}}}
+\\
+\text{\textsl{operator}}
+&\to\text{'{\tt +}'}\;|\;\text{'{\tt -}'}
+\\
+\text{\textsl{konstante}}&\to\text{\color{red}\textsl{ziffer}}\\
+&\to\text{\textsl{konstante}}\;\text{\textsl{ziffer}}
+\\
+\text{\textsl{ziffer}}&\to 
+\text{'{\tt 0}'}\;|\;
+\text{'{\tt 1}'}\;|\;
+\text{'{\tt 2}'}\;|\;
+\text{'{\tt 3}'}\;|\;
+\text{'{\tt 4}'}\;|\;
+\text{'{\tt 5}'}\;|\;
+\text{'{\tt 6}'}\;|\;
+\text{'{\tt 7}'}\;|\;
+\text{'{\tt 8}'}\;|\;
+\text{'{\tt 9}'}\\
+\text{\textsl{variable}}&\to{\color{yellow} \text{'{\tt x}'}\;\text{\textsl{konstante}}}\\
+\text{\textsl{while-anweisung}}&\to{\color{blue}
+\text{\textsl{while}}\;
+\text{\textsl{variable}}\;
+\text{'{\tt >}'}\;
+\text{'{\tt 0}'}\;
+\text{\textsl{do}}\;
+\text{\textsl{anweisungsfolge}}\;
+\text{\textsl{end}}}\\
+\text{\textsl{while}}&\to
+{\color{green}\text{'{\tt W}'}\; \text{'{\tt H}'}\; \text{'{\tt I}'}\; \text{'{\tt L}'}\; \text{'{\tt E}'}}\\
+\text{\textsl{end}}&\to{\color{green} \text{'{\tt E}'}\; \text{'{\tt N}'}\; \text{'{\tt D}'}}\\
+\text{\textsl{do}}&\to{\color{green} \text{'{\tt D}'}\; \text{'{\tt O}'}} \\
+\end{align*}
+Man liest aus der Grammatik auch ab, dass die in anderen Sprachen als
+Trennzeichen n"otigen Leerzeichen "uberfl"ussig sind, obwohl sie nat"urlich
+helfen, ein Programm lesbar zu machen.
+
+Diese Grammatik hat nat"urlich nicht Chomsky-Normalform
+\begin{itemize}
+\item Es gibt mehrere Unit-Rules
+({\color{red} rot})
+\item In mehreren Regeln kommen auf der rechten Seite mehr als
+zwei Elemente vor
+({\color{blue} blau})
+\item Es gibt Regeln, die mehr als ein Terminalsymbol auf der rechten
+Seite enthalten.
+({\color{green} gr"un})
+\item Die Regel
+$\text{\textsl{variable}}\to \text{'{\tt x}'}\;\text{\textsl{konstante}}$
+enth"alt zwar zwei Elemente auf der rechten Seite, aber eines davon
+ist ein Terminalsymbol, in Chomsky-Normalform m"ussten beide Variable
+sein.
+({\color{yellow} gelb})
+\end{itemize}
+\end{loesung}
+
+\begin{bewertung}
+Startvariable ({\bf S}) 1 Punkt,
+Teilgrammatik f"ur Zuweisungen ({\bf Z}) 1 Punkt,
+Teilgrammatik f"ur WHILE-Kontrollstruktur ({\bf W}) 1 Punkt,
+Teilgrammatik f"ur Anweisungsfolgen ({\bf A}) 1 Punkt,
+Unit rules ({\bf U}) 1 Punkt,
+Mehrere oder falsche Symbole auf der rechten Seite ({\bf M}) 1 Punkt,
+\end{bewertung}
