@@ -347,9 +347,10 @@ ist eine Darstellung der verwendeten Produktionsregeln in Baum-Struktur.
 \index{Ausdr\"ucke!arithmetische}
 Die Grammatik f"ur arithmetische Ausdr"ucke produziert zum Beispiel
 den Ausdruck {\tt 7 * (3 + 5)}.
-Die dabei verwendeten Regeln k"onnen in Baumform wie folgt
-dargestellt werden:
+Die dabei verwendeten Regeln k"onnen in Baumform wie in
+Abbildung \ref{etf-parse-tree} dargestellt werden.
 
+\begin{figure}
 {
 \small
 \[
@@ -420,6 +421,10 @@ Z\ar[d]
 }
 \]
 }
+\caption{Parse-Tree des Ausdrucks \texttt{7 * ( 3 + 5 )} in der
+Expression-Term-Factor-Grammatik.
+\label{etf-parse-tree}}
+\end{figure}
 
 Offenbar spielt es keine Rolle, ob erst die Regelanwendungen
 im linken Teil des Baumes geschehen, oder die Regelanwendungen im
