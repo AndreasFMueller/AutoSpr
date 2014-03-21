@@ -261,7 +261,7 @@ B&\rightarrow 01
 
 \subsubsection{Shift-Reduce Konflikt}
 \index{Konflikt!shift-reduce}
-In der folgenden Grammatik ist nach dem lesen einer $1$ nicht klar
+In der folgenden Grammatik ist nach dem Lesen einer $1$ nicht klar
 \begin{align*}
 A&\rightarrow 1\tag{1}\\
 A&\rightarrow 1\,A\tag{2}
@@ -301,8 +301,8 @@ erkennt. Wir verwenden die Grammatik:
 \textsl{expr}&\rightarrow \textsl{expr}\;\text{'{\tt +}'}\;\textsl{term}\tag{3}\\
 \textsl{expr}&\rightarrow \textsl{expr}\;\text{'{\tt -}'}\;\textsl{term}\tag{4}\\
 \textsl{term}&\rightarrow \textsl{factor}\tag{5}\\
-\textsl{term}&\rightarrow \textsl{term}\;\text{'{\tt *}'}\;\textsl{factory}\tag{6}\\
-\textsl{term}&\rightarrow \textsl{term}\;\text{'{\tt /}'}\;\textsl{factory}\tag{7}\\
+\textsl{term}&\rightarrow \textsl{term}\;\text{'{\tt *}'}\;\textsl{factor}\tag{6}\\
+\textsl{term}&\rightarrow \textsl{term}\;\text{'{\tt /}'}\;\textsl{factor}\tag{7}\\
 \textsl{factor}&\rightarrow\text{'{\tt (}'}\;\textsl{expr}\;\text{'{\tt )}'}\tag{8}\\
 \textsl{factor}&\rightarrow\textsl{number}\tag{9}\\
 \textsl{number}&\rightarrow\textsl{number}\;\textsl{digit}\tag{10}\\
