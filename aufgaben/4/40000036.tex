@@ -1,0 +1,50 @@
+Betrachten Sie die Grammatik 
+\begin{align*}
+R&\to \texttt{'a'} \;|\; \texttt{'b'} \;|\; \texttt{'c'} \;|\;\dots\;|\; \texttt{'z'} \;|\; \texttt{'.'}\\
+ &\to R\; \texttt{'*'}\\
+ &\to R\; \texttt{'|'}\; R\\
+ &\to RR\\
+ &\to \texttt{'('} \; R \; \texttt{')'}
+\end{align*}
+"uber dem Alphabet bestehend aus allen Zeichen, die in der Grammatik als
+Literale genannt wurden.
+Finden sie die Ableitung f"ur die folgenden W"orter in dieser Grammatik
+\begin{teilaufgaben}
+\item \texttt{.*}
+\item \texttt{(a|b)}
+\item \texttt{(ab)*|(cd)*}
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+\(
+R\to R\texttt{*}\to \texttt{.*}
+\)
+\item \(
+R\to \texttt{(} R\texttt{)}
+  \to \texttt{(}R\texttt{|}R\texttt{)}
+  \to \texttt{(a|}R\texttt{)}
+  \to \texttt{(a|b)}
+\)
+\item
+\begin{align*}
+R&\to R\texttt{|}R
+  \to R\texttt{*|}R\texttt{*}
+  \to \texttt{(}R\texttt{)*|}R\texttt{*}
+  \to \texttt{(}R\texttt{)*|(}R\texttt{)*}
+  \to \texttt{(}RR\texttt{)*|(}R\texttt{)*}
+  \to \texttt{(}RR\texttt{)*|(}RR\texttt{)*}
+\\
+ &\to \texttt{(a}R\texttt{)*|(}RR\texttt{)*}
+  \to \texttt{(ab)*|(}RR\texttt{)*}
+  \to \texttt{(ab)*|(c}R\texttt{)*}
+  \to \texttt{(ab)*|(cd)*}
+\end{align*}
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{diskussion}
+Diese Grammatik beschreibt eine Teilmenge der regul"aren Ausdr"ucke.
+\end{diskussion}
+
