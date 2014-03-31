@@ -1,9 +1,9 @@
 Finden sie regul"are Ausdr"ucke f"ur die folgenden Sprachen
 \begin{teilaufgaben}
-\item $L=\{w|\text{$w$ beginnt mit {\tt 1} und endet mit {\tt 0}}\}$
-\item $L=\{w|\text{$w$ enth"alt den Teilstring {\tt 0101}}\}$
-\item $L=\{w|\text{an jeder ungeraden Position von $w$ befindet sich ein {\tt 1}}\}$
-\item $L=\{w|\;|w|\le 5\}$
+\item $L=\{w\;|\;\text{$w$ beginnt mit {\tt 1} und endet mit {\tt 0}}\}$
+\item $L=\{w\;|\;\text{$w$ enth"alt den Teilstring {\tt 0101}}\}$
+\item $L=\{w\;|\;\text{an jeder ungeraden Position von $w$ befindet sich ein {\tt 1}}\}$
+\item $L=\{w\;|\;|w|\le 5\}$
 \end{teilaufgaben}
 Alle Sprachen sind "uber dem Alphabet $\Sigma=\{{\tt 0},{\tt 1}\}$ zu
 betrachten.
@@ -13,12 +13,50 @@ betrachten.
 \item ${\tt 1}({\tt 0}|{\tt 1})^*{\tt 0}$
 \item $({\tt 0}|{\tt 1})^* {\tt 0101} ({\tt 0}|{\tt 1})^*$
 \item $({\tt 1}({\tt 0}|{\tt 1}))^*(\varepsilon|{\tt 1})$
-\item $
+\item
+Am einfachsten w"are diese Sprache durch den regul"aren Ausdruck 
+\[
+(\texttt{0}|\texttt{1})\{0,5\}
+\]
+abzubilden, allerdings ist dies ein erweiterter regul"arer Ausdruck.
+W"unschen wir stattdessen einen regul"aren Ausdruck, der nur die
+grundlegenden Elemente verwendet, m"ussen wir eine Konstruktion haben,
+welche $r\{m,n\}$ ausdr"uckt. Daf"ur gibt es mehrere M"oglichkeiten.
+Man k"onnte zum Beispiel die ersten $m$ Kopien von $r$ obligatorisch
+erkl"aren, und die verbleibenden fakultativ:
+\[
+\underbrace{r\dots r}_m\underbrace{(r|\varepsilon)\dots(r|\varepsilon)}_{n-m}
+\]
+Alternativ k"onnte man $r\{m,n\}$ als eine Alternative von verschieden langen
+Strings aus $r$ aufbauen:
+\[
+(\underbrace{r\dots r}_m)|
+(\underbrace{r\dots r}_{m+1})|
+(\underbrace{r\dots r}_{m+2})|\dots
+(\underbrace{r\dots r}_{n - 1})|
+(\underbrace{r\dots r}_{n})
+\]
+Der Vorteil der zweiten Konstruktion besteht darin, dass man daraus, welcher
+Teil des regul"aren Ausdrucks gepasst hat, sofort ablesen kann, wieviele
+Komponenten $r$ das getestete Wort umfasst, der regul"are Ausdruck kann
+die Anzahl Komponenten ``z"ahlen''.
+
+Wendet man die zweite L"osung auf die Aufgabe an, erh"alt man.
+\[
 \varepsilon|
-({\tt 0}|{\tt 1})|
-(({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}))|
-(({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}))|
-(({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}))|
-(({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}) ({\tt 0}|{\tt 1}))$
+(\texttt{0}|\texttt{1})|
+((\texttt{0}|\texttt{1}) (\texttt{0}|\texttt{1}))|
+((\texttt{0}|\texttt{1}) (\texttt{0}|\texttt{1}) (\texttt{0}|\texttt{1}))|
+((\texttt{0}|\texttt{1}) (\texttt{0}|\texttt{1}) (\texttt{0}|\texttt{1}) (\texttt{0}|\texttt{1}))|
+((\texttt{0}|\texttt{1}) (\texttt{0}|\texttt{1}) (\texttt{0}|\texttt{1}) (\texttt{0}|\texttt{1}) (\texttt{0}|\texttt{1}))
+\]
+Der erste Ansatz gibt dagegen als L"osung
+\[
+(\texttt{0}|\texttt{1}|)
+(\texttt{0}|\texttt{1}|)
+(\texttt{0}|\texttt{1}|)
+(\texttt{0}|\texttt{1}|)
+(\texttt{0}|\texttt{1}|)
+\]
 \end{teilaufgaben}
 \end{loesung}
