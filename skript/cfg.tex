@@ -914,7 +914,7 @@ muss.
 % p --- eps,b->eps ---> q
 % p --- eps,eps->eps ---> q
 
-\subsection{Beispiele}
+\subsection{Beispiele\label{stackbeispiele}}
 \subsubsection{Stackautomaten k"onnen ``z"ahlen''}
 Um die W"orter der nicht regul"are Sprache $L=\{0^n1^n\;|\;n\in \mathbb N\}$
 zu erkennen, braucht man einen Z"ahler, mit dem man die Zahl der $0$
@@ -1458,6 +1458,69 @@ $A_{pq}\overset{*}{\Rightarrow} x$
 
 Damit ist auch der Beweis von Hilfssatz \ref{pda_has_grammar} vollst"andig.
 \end{proof}
+
+\begin{beispiel}
+Wir m"ochten die Theorie dazu verwenden, f"ur den Stackautomaten aus
+Abschnitt~\ref{stackbeispiele} f"ur die Sprache
+$L=\{\texttt{0}^n\texttt{1}^n\;|\; n\ge 0\}$ eine Grammatik zu finden.
+Dazu wandeln wir zun"achst den Stackautomaten in die Standardform um, die
+wir f"ur die Konstruktion der Grammatik brauchen. Dazu m"ussen wir
+im vertikalen "Ubergang einen Zwischenzustand einf"ugen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{q_0}\ar[r]^{\varepsilon,\varepsilon\to{\tt \$}}
+		&{q_1} \ar@(ur,dr)^{{\tt 0},\varepsilon\to{\tt 0}}
+		    \ar[d]^{\varepsilon,\varepsilon\to x}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{q_2}\ar[d]^{\varepsilon,x\to\varepsilon}
+\\
+*+\txt{}
+	&*++[o][F=]{q_a}
+		&{q_3}\ar[l]^{\varepsilon,{\tt \$}\to\varepsilon}
+		   \ar@(ur,dr)^{{\tt 1},{\tt 0}\to\varepsilon}
+}
+\]
+Die Startvariable der Grammatik ist $A_{q_0q_a}$. Die "Uberg"ange, die
+das Zeichen $\texttt{\$}$ behandeln, f"uhren zu einer Regel
+\begin{equation}
+A_{q_0q_a}\to \varepsilon A_{q_1q_3}\varepsilon = A_{q_1q_3}.
+\label{q0qa}
+\end{equation}
+Wenn man im Zustand $q_1$ eine $\texttt{0}$ auf den Stack legt, dann
+muss man sie auch im Zustand $q_3$ wieder entfernen. Dieser Prozess
+gibt Anlass zu einer Regel
+\begin{equation}
+A_{q_1q_3}\to \texttt{0}\; A_{q_1q_3}\;\texttt{1}
+\label{q1q3}
+\end{equation}
+Man kann aber auch ohne eine $\texttt{0}$ auf dem Stack von
+$q_1$ zu $q_3$ gelangen, das f"uhrt zu der Regel 
+\begin{equation}
+A_{q_1q_3}\to \varepsilon\; A_{q_2q_2}\;\varepsilon
+\label{q2q2}
+\end{equation}
+Zus"atzlich hat man noch die Regel $A_{q_2q_2}\to\varepsilon$, da 
+$A_{q_2q_2}$ nur in (\ref{q2q2}) gebraucht wird, k"onnen wir sie
+bereits anwenden, und erhalten so die Grammatik.
+\begin{align}
+A_{q_0q_a}&\to A_{q_1q_3} \tag{\ref{q0qa}}\\
+A_{q_1q_3}&\to \texttt{0}\; A_{q_1q_3}\;\texttt{1} \tag{\ref{q1q3}}\\
+A_{q_1q_3}&\to \varepsilon\tag{\ref{q2q2}}
+\end{align}
+Es werden nur noch zwei Variablen verwendet, aber die Startvariable
+wird immer in $A_{q_1q_3}$ umgewandelt, man kann sie also auch noch
+einsparen. Schreiben wir $S=A_{q_1q_3}$ bleibt somit als
+Grammatik
+\begin{align}
+S&\to \texttt{0}\; S\; \texttt{1}\tag{\ref{q1q3}}\\
+S&\to\varepsilon,\tag{\ref{q2q2}}
+\end{align}
+genau die Grammatik, die wir fr"uher schon f"ur $L$ gefunden haben.
+\end{beispiel}
 
 \section{Nicht kontextfreie Sprachen}
 \rhead{Nicht kontextfreie Sprachen}

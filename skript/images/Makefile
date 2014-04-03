@@ -4,7 +4,7 @@
 # (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
 # $Id$
 #
-all:	cfg turing nea lang red comp pl reg mine graph
+all:	cfg turing nea lang red comp pl reg mine graph stack
 
 REGFILES = reg-1.pdf reg-2.pdf reg-3.pdf reg-4.pdf reg-5.pdf reg-6.pdf
 NEAFILES = nea-1.pdf nea-2.pdf nea-3.pdf nea-4.pdf nea-5.pdf
@@ -17,6 +17,7 @@ REDFILES = red-1.pdf
 COMPFILES = comp-1.pdf comp-2.pdf comp-3.pdf comp-4.pdf comp-5.pdf \
 	comp-6.pdf comp-7.pdf
 GRAPHFILES = graph-1.pdf
+STACKFILES = stack-1.pdf stack-2.pdf
 
 timestamp:	$(REGFILES) $(NEAFILES) $(CFGFILES) $(TURINGFILES) \
 		$(LANGFILES) $(MINEFILES) $(PLFILES) $(REDFILES) $(COMPFILES) \
@@ -107,5 +108,15 @@ $(GRAPHFILES):	graph.mp Makefile
 		echo $${f}; \
 		i=`expr $${f} : "graph\.\(.\)"`; \
 		mptopdf graph.$${i}; \
+	done
+
+stack:	$(STACKFILES)
+$(STACKFILES):	stack.mp Makefile
+	TEX=latex mpost stack.mp
+	for f in stack.?; \
+	do \
+		echo $${f}; \
+		i=`expr $${f} : "stack\.\(.\)"`; \
+		mptopdf stack.$${i}; \
 	done
 
