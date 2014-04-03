@@ -1279,6 +1279,14 @@ Falls das am Ende entfernte Zeichen $x$ ist, k"onnen wir dies durch
 die Regel $A_{pq}\to aA_{rs}b$ symbolisieren, wobei $a$ das Zeichen
 ist, welches zusammen mit dem Ablegen von $x$ vom Input verarbeitet wird,
 und $b$ das Zeichen, das mit dem Entfernen von $x$ verarbeitet wird.
+Der Stack ist zwischen den Zust"anden $r$ und $s$ unver"andert, wir
+k"onnen ihn schematisch wie in Abbildung~\ref{stacknichtleer} darstellen.
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.85\hsize]{images/stack-2.pdf}
+\end{center}
+\caption{"Uberg"ange, die den Stack in keinem Zwischenzustand leeren\label{stacknichtleer}}
+\end{figure}
 
 Falls das am Schluss vom Stack entfernte Zeichen nicht das Gleiche ist,
 dann muss das $x$ irgendwann im Laufe der Berechnung entfernt worden
@@ -1287,6 +1295,13 @@ sein. Es gibt also einen Zwischenzustand $r$, in dem der Stack
 wieder im selben Zustand wie zu
 Beginn der Berechnung ist, wir k"onnen dies durch
 $A_{pq}\to A_{pr}A_{rq}$ symbolisieren.
+Die Abbildung~\ref{stackleer} zeigt diese Situation schematisch.
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.85\hsize]{images/stack-1.pdf}
+\end{center}
+\caption{"Uberg"ange, die zwischenzeitlich den Stack leeren\label{stackleer}}
+\end{figure}
 
 Formal konstruieren wir also eine Grammatik mit Variablen
 $V=\{A_{pq}\;|\; p,q\in Q\}$, Startvariable ist $A_{q_0,q_a}$.
@@ -1317,6 +1332,7 @@ genommen.
 \end{gathered}
 \qquad\rightsquigarrow\qquad A_{pq}\to aA_{rs}b
 \]
+
 
 \item F"ur drei Zust"ande $p,q,r\in Q$ f"uge die Regel 
 $A_{pq}\to A_{pr}A_{rq}$ hinzu.
@@ -1351,6 +1367,7 @@ A_{pp}\to\varepsilon.
 Jetzt muss man nur noch zeigen, dass ein Wort $w$ genau dann aus $A_{pq}$
 abgeleitet werden kann, wenn es $P$ vom Zustand $p$ mit leerem Stack
 in den Zustand $q$ mit leerem Stack bringen kann.
+
 
 \begin{hilfssatz}\label{apq_generates_x_implies}
 Falls $A_{pq}$ das Wort $x$ erzeugt, dann kann $x$ $P$ aus dem Zustand
