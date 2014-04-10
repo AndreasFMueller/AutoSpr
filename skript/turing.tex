@@ -213,6 +213,44 @@ anh"alt. Eine Sprache heisst entscheidbar, wenn ein Entscheider sie
 erkennt.
 \index{entscheidbar}
 \end{definition}
+Es ist klar, dass eine Turing-entscheidbare Sprache auch Turing-erkennbar
+ist.
+Die Definition der Eigenschaft ``Turing-entscheidbar'' unterscheidet sich
+von der Definition der Eigenschaft ``Turing-erkennbar'' nur dadurch,
+dass bei einer entscheidbaren Sprache die Turing-Maschine auf jedem
+beliebigen Input anhalten muss, w"ahrend bei einer nur erkennbaren
+Sprache einzelne Input-W"orter auch dazu f"uhren k"onnen, dass die
+Turing-Maschine endlos weiterrechnet.
+
+\begin{beispiel}
+Die kleinsten Mersenne-Primzahlen sind $3=2^2-1$, $7=2^3-1$, $31=2^5-1$,
+andererseits ist $2^{11}-1=2047=23\cdot 89$ keine Primzahl.
+Das finden von Mersenneschen Primzahlen ist mit GIMPS (Great Internet
+Mersenne Prime Search) zu einem Volkssport geworden.
+Es ist nicht bekannt, ob es unendlich viele Mersennesche Primzahlen gibt.
+
+Wir bilden jetzt die folgende Sprache "uber dem Alphabet
+$\Sigma=\{\texttt{0},\texttt{1}\}$:
+\[
+L=\{w\in\Sigma^*\,|\,\text{die Anzahl Mersennescher Primzahlen ist gr"osser als $w$}\}.
+\]
+Eine Turing-Maschinen-Programm, welches pr"ufen muss, ob $w\in L$ ist,
+muss herausfinden, ob es mindestens $w$ (interpretiert als Zahl)
+Mersennsche Primzahlen gibt.
+Dazu m"ussen der Reihe nach alle Zweierpotenzen $2^k$ daraufhin getestet werden,
+ob $2^k-1$ eine Primzahl ist.
+Wenn mindestens $n$ Mersennsche Primzahlen gefunden wurden, wird $n$
+akzeptiert, sonst nicht. Falls $n\in L$ ist, wird der Algorithmus
+die Zahl $n$ akzeptieren, die Sprache $L$ ist also Turing-erkennbar.
+
+Falls es nur endlich viele Mersennesche Primzahlen gibt, zum Beispiel
+nur $N$, dann wird dieser Algorithmus f"ur jede Zahl $n>N$ nicht
+aufh"oren zu laufen.
+Der Algorithmus kann ja nicht absch"atzen, ob noch eine Mersennesche
+Primzahl kommen wird, ob es also einfach noch etwas mehr Geduld
+braucht.
+Diese Sprache $L$ ist also nicht Turing-entscheidbar.
+\end{beispiel}
 
 \subsection{Zustandsdiagramm}
 \index{Graph!gerichteter!beschrifteter!einer Turing-Maschine}
