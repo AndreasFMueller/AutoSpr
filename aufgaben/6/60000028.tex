@@ -1,0 +1,92 @@
+Formulieren Sie die folgenden Probleme als Sprachprobleme
+\begin{teilaufgaben}
+\item Welche nat"urlichen Zahlen sind Quadrate einer nat"urlichen Zahl?
+\item Falls $n\in\mathbb N$ eine Quadratzahl ist, finde man die Wurzel.
+\item Hat die quadratische Gleichung $ax^2+bx+c=0$ mit $a,b,c\in\mathbb N$
+reelle L"osungen?
+\item Hat die Gleichung $a^n+b^n=c^n$ ganzzahlige L"osungen, wobei mindestens
+eine der Zahlen $a$, $b$ oder $c$ gr"osser als $1$ sein muss?
+\item Man finde die Primfaktoren einer Zahl $n$.
+\end{teilaufgaben}
+
+\begin{hinweis}
+Es wird nicht verlangt, eine L"osungsalgorithmus f"ur das Problem zu
+formulieren.
+\end{hinweis}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item Sie $L$ die Sprache "uber dem Alphabet $\{\texttt{0}, \texttt{1}\}$
+gegeben durch
+\[
+L=\{ w\in\Sigma^*\;|\;
+\text{$w$ ist die Bin"ardarstellung einer Quadratzahl}
+\}
+\]
+Das Problem wird entscheiden von einer Turing-Maschine, die Bin"arzahlen auf
+dem Band analysiert, ob sie Quadratzahlen sind, und im Zustand
+$q_{\text{accept}}$ stehenbleibt, falls dies zutrifft.
+\item
+Sei $\Sigma=\{\texttt{0},\texttt{1},\texttt{:}\}$ und
+\[
+L=\left\{w\in\Sigma^*\;\left|\;
+\begin{minipage}{4truein}
+$w$ ist von der Form $w_1\texttt{:}w_2$, wobei $w_i$ Binardarstellungen
+von Zahlen $n_i$ sind mit $n_1=n_2^2$.
+\end{minipage}
+\right.\right\}.
+\]
+Diese Sprache kann von einer TM entschieden werden, welche $n_2^2$ 
+berechnet und genau dann im Zustand $q_{\text{accept}}$ anh"alt, wenn
+das Resultat mit $n_1$ "ubereinstimmt.
+\item 
+Sei $\Sigma=\{\texttt{0},\texttt{1},\texttt{:}\}$ und 
+\[
+L=\left\{w\in\Sigma^*\;\left|\;
+\begin{minipage}{4truein}
+$w$ ist von der Form $a\texttt{:}b\texttt{:}c$, wobei $a$, $b$ und $c$
+Bin"ardarstellungen der Koeffizienten einer quadratischen Gleichung sind,
+die reelle L"osungen hat.
+\end{minipage}
+\right.\right\}
+\]
+Diese Sprache kann mit einer TM entschieden werden, die die Diskriminante
+$b^2-4ac$ berechnet und im Zustand $q_{\text{accept}}$ stehen bleibt genau
+dann, wenn die Diskriminante $\ge 0$ ist.
+\item 
+Sei $\Sigma=\{\texttt{0},\texttt{1}\}$ und
+\[
+L=\left\{ w\in\Sigma^*\;\left|\;
+\begin{minipage}{4truein}
+$w$ ist die Bin"ardarstellung einer nat"urlichen Zahl $n$, f"ur die
+die Gleichung $a^n+b^n=c^n$ eine ganzzahlige L"osung hat, wobei mindestens
+eine der Zahlen $a$, $b$ oder $c$ gr"osser als $1$ sein muss.
+\end{minipage}
+\right.\right\}.
+\]
+Dank der Leistung von Andrew Wiles, der das Fermatsche Problem gel"ost hat,
+ist es heutzutage m"oglich, einen
+Entscheider f"ur $L$ anzugeben: f"ur $w=2$ muss er im Zustand
+$q_{\text{accept}}$ anhalten, andernfalls im Zustand $q_{\text{reject}}$.
+Ohne dieses Wissen bleibt nur, Tripel von ganzen Zahlen $(a,b,c)$
+durchzuprobieren. Falls eine L"osung existiert, wird sie fr"uher oder sp"ater
+gefunden. Falls keine L"osung existiert, wird dieser Algorithmus nicht
+anhalten. Die Sprache kann also auf diese naive Weise zwar erkannt, aber
+nicht entschieden werden.
+\item 
+Sei $\Sigma=\{\texttt{0},\texttt{1},\texttt{:}\}$ und 
+\[
+L=\left\{ w\in\Sigma^*\;\left|\;
+\begin{minipage}{4truein}
+$w$ ist von der Form
+$n\texttt{:}p_1\texttt{:}n_1\texttt{:}p_2\texttt{:}n_2\texttt{:}\dots\texttt{:}p_k\texttt{:}n_k$, und es gilt $n=p_1^{n_1}p_2^{n_2}\dots p_k^{n_k}$,
+wenn man die $p_i$ und $n_i$ als Bin"arzahlen interpretiert.
+\end{minipage}
+\right.\right\}.
+\]
+Die Sprache $L$ wird entschieden von einer Turing-Maschine, die das Produkt
+$p_1^{n_1}p_2^{n_2}\dots p_k^{n_k}$ ausrechnet und genau dann im Zustand
+$q_{\text{accept}}$, wenn das Resultat mit $n$ "ubereinstimmt.
+\end{teilaufgaben}
+\end{loesung}
+
