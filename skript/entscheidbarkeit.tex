@@ -749,6 +749,9 @@ vor:
 Wegen Schritt~1 kann $S$ h"ochstens die W"orter der Form
 $\texttt{0}^n\texttt{1}^n$ erkennen, alle anderen werden bereits in
 Schritt $1$ verworfen.
+Ob die W"orter 
+$\texttt{0}^n\texttt{1}^n$ erkannt werden, h"angt davon ab, ob $M$ das Wort
+$w$ erkennt:
 \begin{align*}
    M&\text{ erkennt $w$}      &
     &\Leftrightarrow&
@@ -873,7 +876,7 @@ k"onnen also damit beginnen, nichtdeterministisch zwischen diesen drei
 F"allen zu unterscheiden:
 \[
 \entrymodifiers={++[o][F]}
-\xymatrix{
+\xymatrix @+3mm{
 *+\txt{}
 	&q_1
 \\
@@ -891,7 +894,7 @@ Im Zustand $q_1$ m"ussen wir einen Stackautomaten anh"angen, der
 bereits mit einem DEA machen, man braucht den Stack daf"ur gar nicht.
 Ist $w=a_1a_2\dots a_k$, dann ist der Automat daf"ur geeignet
 \[
-\xymatrix{
+\xymatrix @+3mm{
 *++[o][F]{q_1}\ar[r]^{q_0,\varepsilon\to\varepsilon}
 	&*++[o][F]{}\ar[r]^{a_1,\varepsilon\to\varepsilon}
 		&*++[o][F]{}\ar[r]^{a_2,\varepsilon\to\varepsilon}
@@ -911,7 +914,7 @@ die Zeichen von $C_i$ lesen und kontrollieren, ob $q_{\text{accept}}$
 darin vorkommt. Ein Automat daf"ur ist 
 \[
 \entrymodifiers={++[o][F]}
-\xymatrix{
+\xymatrix @+3mm{
 q_2\ar@(ur,ul)
 	\ar[r]^{{\tt\#},\varepsilon\to\varepsilon}
 	&{}\ar@(ur,ul)
