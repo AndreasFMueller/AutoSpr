@@ -29,10 +29,92 @@ inkorrekten unterscheiden k"onnen. Die Menge der korrekten
 Beschreibungen bilden eine Sprache, das Problem ist also darauf
 zur"uckgef"uhrt, eine Sprache zu entscheiden.
 
+\subsection{Entscheidbare Sprachen}
+Eine Sprache heisst entscheidbar, wenn es einen Entscheider gibt, deren
+dazu verwendet werden kann, herauszufinden, ob ein Wort $w$ in der Sprache
+liegt. 
+
+\begin{beispiel}
+Sie $A$ ein DEA. Dann kann man folgenden Algorithmus $M_A$ mit Input $w$ bauen:
+\begin{compactenum}
+\item Simuliere den DEA $A$ auf dem Input $A$
+\item Falls $A$ in einem Akzeptierzustand steht: $q_{\text{accept}}$
+\item Andernfalls: $q_{\text{reject}}$
+\end{compactenum}
+Dieser Algorithmus ist sicher ein Entscheider, er terminiert immer.
+Ob er ein Wort $w$ akzeptiert, h"angt davon ab, ob $A$ das Wort akzeptiert:
+\begin{align*}
+  A&\text{akzpetiert $w$}&
+   &\Leftrightarrow&
+M_A&\text{ erkennet $w$}
+\\
+  A&\text{akzpetiert $w$ nicht}&
+   &\Leftrightarrow&
+M_A&\text{ erkennet $w$ nicht}
+\end{align*}
+Das bedeutet aber, dass $L(A)=L(M_A)$, oder $M_A$ ist ein Entscheider f"ur
+die Sprache $L(A)$.
+\end{beispiel}
+
+Zu jeder regul"aren Sprache mit DEA $A$ gibt es also einen
+Algorithmus $M_A$, der die gleiche Sprache erkennt: $L(A)=L(M_A)$.
+K"urzer:
+
+\begin{satz}
+\label{regulaer-entscheidbar}
+Regul"are Sprachen sind entscheidbar.
+\end{satz}
+
+\begin{beispiel}
+Sei $G$ eine kontextfreie Grammatik. Dann kann man den folgenden Algorithmus
+$M_G$ mit Input $w$ bauen:
+\begin{compactenum}
+\item Wandle $G$ in Chomsky-Normalform $G'$ um
+\item Wende den CYK-Algorithmus (Satz \ref{cyk-algorithm}) auf $G'$ und das
+Wort $w$ an
+\item Wenn der CYK-Algorithmus das Wort $w$ akzeptiert: $q_{\text{accept}}$
+\item Andernfalls: $q_{\text{reject}}$.
+\end{compactenum}
+Weil der CYK-Algorithmus (Satz \ref{cyk-algorithm}) deterministisch 
+feststellen kann, ob ein Wort von einer Grammatik erzeugt wird, ist
+$M_G$ ein Entscheider. $M_G$ erkennt ein Wort genau dann, wenn des von
+der Grammatik produziert wird, also $L(M_G)=L(G)$.
+\end{beispiel}
+
+Zu jeder kontextfreien Sprache mit Grammatik $G$ gibt es also einen 
+Algorithmus $M_G$, der die gleiche Sprache erkennt: $L(G)=L(M_G)$.
+K"urzer:
+
+\begin{satz}
+Kontextfreie Sprachen sind entscheidbar.
+\end{satz}
+Dieser Satz zeigt, dass die entscheidbaren Sprachen eine 
+Obermenge der kontextfreien Sprachen sind, wie in folgender
+Graphik dargestellt.
+\begin{center}
+\includegraphics[width=0.7\hsize]{images/lang-2}
+\end{center}
+
 \subsection{Entscheidbare Probleme f"ur regul"are Sprachen}
+Wir wollen jetzt eine Ebene h"oher geben. Unser Fokus sind jetzt nicht
+mehr einzelne Sprachen, sondern eine ganze Menge von Sprachen, und eventuell
+weitere Daten. Wir suchen also nicht mehr Algorithmen, die eine Frage
+f"ur eine einzelne Sprache beantworten k"onnen, sondern Algorithmen, die
+die Frage gleich f"ur mehrere Sprachen beantworten.
+
+In Satz~\ref{regulaer-entscheidbar} ging es darum, einen Algorithmus
+zu finden, der entscheidet, ob ein Wort $w$ von {\em einem} ganz bestimmten,
+vorgegebenen endlichen Automaten $A$ akzeptiert wird.
+Jetzt fragen wir, ob es einen Algorithmus gibt, der f"ur {\em jede beliebige}
+Kombination von DEA und Wort $w$ diese Entscheidung treffen kann.
+Dies ist offenbar ein viel allgemeineres Problem, ob $A$ das Wort
+akzeptiert ist ein Spezialfall. Dieses Problem heisst das
+Akzeptanzproblem f"ur endliche Automaten.
+
 \subsubsection{Akzeptanzproblem}
 \index{Akzeptanzproblem!f\"ur regul\"are Sprachen}
-Wir betrachten das folgende Problem: Gegeben sei ein endlicher Automat $B$ und ein Wort $w$,
+Wir betrachten das folgende Problem: Gegeben sei ein endlicher Automat $B$
+und ein Wort $w$,
 kann man entscheiden, ob der Automat das Wort akzeptiert?
 Um dies als Sprachproblem zu formulieren, braucht  man eine Codierung
 $\langle B,w\rangle$ von Automat und Wort. Die Sprache, die zu
@@ -216,12 +298,6 @@ andernfalls $q_{\text{reject}}$.
 \end{compactenum}
 \medskip
 \end{proof}
-Dieser Satz beweist, dass die entscheidbaren Sprachen eine echte
-Obermenge der kontextfreien Sprachen sind, wie in folgender
-Graphik dargestellt.
-\begin{center}
-\includegraphics[width=0.7\hsize]{images/lang-2}
-\end{center}
 
 \subsubsection{Leerheitsproblem}
 \index{Leerheitsproblem!f\"ur kontextfreie Grammatiken}
@@ -552,8 +628,8 @@ A_{\text{TM}}
 $S$ konstruieren wir wie folgt:
 \medskip
 \begin{compactenum}
-\item lasse $M$ laufen
-\item falls $M$ akzeptiert: $q_{\text{accept}}$
+\item lasse $M$ laufen auf Input $w$
+\item falls $M$ das Wort $w$ erkennt: $q_{\text{accept}}$
 \item falls $M$ verwirft: beginne eine Endlosschleife
 \end{compactenum}
 \medskip
@@ -670,10 +746,26 @@ vor:
 \item Falls $M$ $w$ verwirft: $q_{\text{reject}}$
 \end{compactenum}
 \medskip
-Dieser Algorithmus erkennt die Sprache $L(S)=\{0^n1^n\;|\;n\in\mathbb N\}$
-genau dann, wenn $M$ das Wort $w$ erkennt. $L(S)$ ist dann nicht regul"ar.
-Andernfalls erkennt $S$
-die leere Sprache, die regul"ar ist. 
+Wegen Schritt~1 kann $S$ h"ochstens die W"orter der Form
+$\texttt{0}^n\texttt{1}^n$ erkennen, alle anderen werden bereits in
+Schritt $1$ verworfen.
+\begin{align*}
+   M&\text{ erkennt $w$}      &
+    &\Leftrightarrow&
+L(S)&=\{\texttt{0}^n\texttt{1}^n\,|\, n\ge 0\}&
+    &\Leftrightarrow&
+    &\text{$L(S)$ nicht regul"ar}\\
+   M&\text{ erkennt $w$ nicht}&
+    &\Leftrightarrow&
+L(S)&=\{\quad\}=\emptyset&
+    &\Leftrightarrow&
+    &\text{$L(S)$ regul"ar}
+\end{align*}
+$S$ erkennt die nicht regul"are Sprache $\{0^n1^n\;|\;n\in\mathbb N\}$
+genau dann, wenn $M$ das Wort $w$ erkennt.
+Die Reduktion $\langle M,w\rangle\to \langle S\rangle$ "ubersetzt
+``erkennen'' in ``nicht regul"are Sprache erkennen'', also also $A_{\text{TM}}$
+in $\overline{\textsl{REGULAR}}_{\text{TM}}$.
 \end{proof}
 
 \index{Gleichheitsproblem!f\"ur Turingmaschinen}
@@ -693,8 +785,9 @@ Wir konstruieren eine Reduktion
 $
 E_{\text{TM}}\le \text{\it EQ}_{\text{TM}}
 $
-Dazu sei $M_0$ eine Turingmaschine, die jeden Input verwirft.
-Die Abbildung $f$ ist dann
+Dazu sei $M_0$ eine Turingmaschine, die jeden Input verwirft,
+also $L(M_0)=\emptyset$.
+F"ur die Abbildung $f$ verwendenw ir
 \[
 f
 \colon
@@ -703,7 +796,9 @@ E_{\text{TM}}\le \text{\it EQ}_{\text{TM}}
 \langle M\rangle\mapsto \langle M,M_0\rangle
 \]
 Es ist $\langle M,M_0\rangle\in \text{\it EQ}_{\text{TM}}$
-genau dann, wenn $\langle M\rangle\in E_{\text{TM}}$.
+genau dann, wenn
+$L(M)=L(M_0)=\emptyset$, also genau dann, wenn
+$\langle M\rangle\in E_{\text{TM}}$.
 \end{proof}
 
 Dieser Satz hat zum Beispiel zur Folge, dass es keine zuverl"assige
