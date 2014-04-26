@@ -1,11 +1,12 @@
 #
-# Makefile -- build turing machine simulator
+# Makefile -- build turing machine simulator
 #
 # For additional information, check the README file
 #
 # (c) 2010 Prof Dr Andreas Mueller, Hochschule Rapperswil
 # $Id$
 #
+VERSION = 1.0
 all:	turing
 
 turing:	turing.c Makefile
@@ -35,3 +36,9 @@ add2:	turing
 add3:	turing
 	./turing -c -p 10000 -v -o 2 -s 50 -t data/addtape3 pgm/add
 
+dist:	turing-$(VERSION).tar.gz
+
+turing-$(VERSION).tar.gz:
+	mkdir turing-$(VERSION)
+	cp -r pgm data README turing.c Makefile turing-$(VERSION)
+	tar czf turing-$(VERSION).tar.gz turing-$(VERSION)
