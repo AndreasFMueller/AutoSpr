@@ -1,0 +1,37 @@
+Konstruieren Sie nach dem Vorbild der Reduktion
+$\textsl{SUDOKU}\le_P\textsl{SAT}$ aus der Vorlesung eine
+Reduktion
+$\textsl{VERTEX-COLORING}\le_P\textsl{SAT}$
+
+\begin{loesung}
+Wir m"ussen zu einem gegebenen Graphen $G$ und einer Zahl $k$ eine
+Formel konstruieren, die genau dann erf"ullbar ist, wenn das F"arbeproblem
+l"osbar ist. Das F"arbeproblem verlangt, dass wir jedem Vertex $v$ eine
+Farbe zuordnen, wir bezeichen diese Farben mit den Variablen $z_v$
+mit Werten in $\{0,1,\dots,k-1\}$.
+Die Farben m"ussen so gew"ahlt sein, dass Vertizes, die mit einer Kante
+verbunden sind, nicht die gleiche Farbe bekommen k"onnen. Die Variablen
+$z_{v_1}$ und $z_{v_2}$ m"ussen daher die Gleichung $z_{v_1}\ne z_{v_2}$
+erf"ullen, wenn $\{v_1,v_2\}$ eine Kante des Graphen ist. Das F"arbeproblem
+hat also genau dann eine L"osung, wenn die Formel
+\[
+\varphi =\bigwedge_{\text{$\{v_1,v_2\}$ Kante von $G$}} (z_{v_1}\ne z_{v_2})
+\]
+durch eine geeignete Zuordnung von Werten zu den Variablen $z_v$ wahr gemacht
+werden kann.
+
+Die Formel $\varphi$ ist aber noch keine logische Formel, da die Variablen
+nicht nur boolsche Werte annehmen k"onnen.
+Dies kann man aber analog zum Beispiel $\textsl{SUDOKU}\le_P\textsl{SAT}$
+in der Vorlesung mit Hilfe eines neuen Satzes von Variablen $x_{vc}$
+erreichen, wobei $x_{vc}$ genau dann wahr ist, wenn $z_v=c$ ist.
+F"ur die Details verweisen wir auf das Skript.
+\end{loesung}
+
+\begin{diskussion}
+Die Aufgabe \ref{70000028} zeigt, dass \textsl{SUDOKU} und 
+$k\textsl{-VERTEX-COLORING}$ nahe miteinander verwandt sind,
+so dass die Konstruktion einer solchen Reduktion nicht "uberrascht.
+\end{diskussion}
+
+

@@ -1,0 +1,203 @@
+Konstruieren Sie eine Reduktion
+$\textsl{SUDOKU}\le_P\textsl{VERTEX-COLORING}$
+
+\begin{loesung}
+Zu einem Sudoku-R"atsel konstruieren wir einen Graphen wie folgt:
+Jedes Feld des Sudoku-R"atsel wird zu einem Vertex des Graphen.
+Der Graph erh"alt eine Kante f"ur jedes Paar von Feldern, die nicht
+das gleiche Zeichen enthalten d"urfen, also wenn die beiden Felder in der
+gleichen Zeile, der gleichen Spalte oder dem gleichen Unterfeld liegen.
+
+F"ur ein $2^2\times 2^2$-Sudoku ergibt sich so der Graph:
+\begin{equation}
+\entrymodifiers={++[o][F]}
+\xymatrix {
+{}\ar@{-}[r] \ar@{-}[d] \ar@{-}[dr]
+	\ar@/^10pt/@{-}[rr]
+	\ar@/^15pt/@{-}[rrr]
+	\ar@/_10pt/@{-}[dd]
+	\ar@/_15pt/@{-}[ddd]
+	&{} \ar@{-}[d]
+		\ar@{-}@/^2pt/[r]
+		\ar@{-}@/^10pt/[rr]
+		\ar@/^10pt/@{-}[dd]
+		\ar@/^15pt/@{-}[ddd]
+		&{}\ar@{-}[r] \ar@{-}[d] \ar@{-}[dr]
+			\ar@/_10pt/@{-}[dd]
+			\ar@/_15pt/@{-}[ddd]
+			\color{red}
+			&{} \ar@{-}[d]
+				\ar@/^10pt/@{-}[dd]
+				\ar@/^15pt/@{-}[ddd]
+				\color{red}
+\\
+{}\ar@{-}[r] \ar@{-}[ur]
+	\ar@/_10pt/@{-}[rr]
+	\ar@/_15pt/@{-}[rrr]
+	\ar@{-}@/_2pt/[d]
+	\ar@{-}@/_10pt/[dd]
+	&{}
+		\ar@{-}@/^2pt/[d]
+		\ar@{-}@/^10pt/[dd]
+		\ar@{-}@/_2pt/[r]
+		\ar@{-}@/_10pt/[rr]
+		&{}\ar@{-}[r] \ar@{-}[ur]
+			\ar@{-}@/_2pt/[d]
+			\ar@{-}@/_10pt/[dd]
+			&{}
+				\ar@{-}@/^2pt/[d]
+				\ar@{-}@/^10pt/[dd]
+\\
+{}\ar@{-}[r] \ar@{-}[d] \ar@{-}[dr]
+	\ar@/^10pt/@{-}[rr]
+	\ar@/^15pt/@{-}[rrr]
+	&{} \ar@{-}[d]
+		\ar@{-}@/^2pt/[r]
+		\ar@{-}@/^10pt/[rr]
+		&{}\ar@{-}[r] \ar@{-}[d] \ar@{-}[dr]
+			&{} \ar@{-}[d]
+\\
+{}\ar@{-}[r] \ar@{-}[ur]
+	\ar@/_10pt/@{-}[rr]
+	\ar@/_15pt/@{-}[rrr]
+	&{}
+		\ar@{-}@/_2pt/[r]
+		\ar@{-}@/_10pt/[rr]
+		&{}\ar@{-}[r] \ar@{-}[ur]
+			&{}
+}
+\label{70000028:graph}
+\end{equation}
+
+Ausserdem m"ussen wir die Vorgaben abbilden. Dazu konstruieren wir noch
+zus"atzliche Vertices, die wir mit den Zeichen aus $\Sigma$ anschreiben.
+Wir nennen diese Vertizes die {\em Zeichenvertices}.
+Die Vorgabefelder werden mit all den Zeichenvertices verbunden, die verschieden
+sind vom Vorgabezeichen.
+F"ur das $2^2\times 2^2$-Sudoku aus Abbildung \ref{70000028:sudoku}
+\begin{figure}
+\begin{center}
+\includeagraphics[width=0.3\hsize]{sudoku-1.pdf}
+\end{center}
+\caption{$2^2\times 2^2$-Sudoku zu Aufgabe \ref{70000028}
+\label{70000028:sudoku}}
+\end{figure}
+m"ussen wir zum Graphen (\ref{70000028:graph}) noch die folgenden Kanten
+hinzuf"ugen:
+\begin{equation}
+\entrymodifiers={++[o][F]}
+\xymatrix {
+{1}
+	&*+\txt{}
+		&*+\txt{}
+			&*+\txt{}
+				&*+\txt{}
+					&{2}
+\\
+*+\txt{}
+	&{}%\ar@{-}[r] \ar@{-}[d] \ar@{-}[dr]
+		%\ar@/^10pt/@{-}[rr]
+		%\ar@/^15pt/@{-}[rrr]
+		%\ar@/_10pt/@{-}[dd]
+		%\ar@/_15pt/@{-}[ddd]
+		&{} %\ar@{-}[d]
+			%\ar@{-}@/^2pt/[r]
+			%\ar@{-}@/^10pt/[rr]
+			%\ar@/^10pt/@{-}[dd]
+			%\ar@/^15pt/@{-}[ddd]
+			&{}%\ar@{-}[r] \ar@{-}[d] \ar@{-}[dr]
+				%\ar@/_10pt/@{-}[dd]
+				%\ar@/_15pt/@{-}[ddd]
+				\ar@{-}[urr]
+				\ar@{-}@/_9pt/[ddddrr]
+				\ar@{-}@/_25pt/[ddddlll]
+				&{} %\ar@{-}[d]
+					%\ar@/^10pt/@{-}[dd]
+					%\ar@/^15pt/@{-}[ddd]
+					\ar@{-}[ullll]
+					\ar@{-}[ur]
+					\ar@{-}@/^12pt/[ddddllll]
+					&*+\txt{}
+\\
+*+\txt{}
+	&{}%\ar@{-}[r] \ar@{-}[ur]
+		%\ar@/_10pt/@{-}[rr]
+		%\ar@/_15pt/@{-}[rrr]
+		%\ar@{-}@/_2pt/[d]
+		%\ar@{-}@/_10pt/[dd]
+		&{}
+			%\ar@{-}@/^2pt/[d]
+			%\ar@{-}@/^10pt/[dd]
+			%\ar@{-}@/_2pt/[r]
+			%\ar@{-}@/_10pt/[rr]
+			&{}%\ar@{-}[r] \ar@{-}[ur]
+				%\ar@{-}@/_2pt/[d]
+				%\ar@{-}@/_10pt/[dd]
+				&{}
+					%\ar@{-}@/^2pt/[d]
+					%\ar@{-}@/^10pt/[dd]
+					&*+\txt{}
+\\
+*+\txt{}
+	&{}%\ar@{-}[r] \ar@{-}[d] \ar@{-}[dr]
+		%\ar@/^10pt/@{-}[rr]
+		%\ar@/^15pt/@{-}[rrr]
+		&{} %\ar@{-}[d]
+			%\ar@{-}@/^2pt/[r]
+			%\ar@{-}@/^10pt/[rr]
+			&{}%\ar@{-}[r] \ar@{-}[d] \ar@{-}[dr]
+				&{} %\ar@{-}[d]
+					&*+\txt{}
+\\
+*+\txt{}
+	&{}%\ar@{-}[r] \ar@{-}[ur]
+		%\ar@/_10pt/@{-}[rr]
+		%\ar@/_15pt/@{-}[rrr]
+		\ar@{-}[uuuul]
+		\ar@{-}[dl]
+		\ar@{-}[drrrr]
+		&{}
+			%\ar@{-}@/_2pt/[r]
+			%\ar@{-}@/_10pt/[rr]
+			\ar@{-}@/_9pt/[uuuull]
+			\ar@{-}[uuuurrr]
+			\ar@{-}[dll]
+			&{}%\ar@{-}[r] \ar@{-}[ur]
+				&{}
+					&*+\txt{}
+\\
+{3}
+	&*+\txt{}
+		&*+\txt{}
+			&*+\txt{}
+				&*+\txt{}
+					&{4}
+}
+\label{70000028:vorgaben}
+\end{equation}
+Die Vereinigung der Kanten in (\ref{70000028:graph}) und
+(\ref{70000028:vorgaben}) liefert den Graphen, der dem gegebenen
+Sudoku-R"atsel zugeordnet wird.
+
+F"ur die Zahl der Farben setzen wir $k=|\Sigma|$, im Beispiel des
+$2^2\times 2^2$-Sudokus aus Abbildung~\ref{70000028:sudoku} ist $k=4$.
+
+Ist das Sudoku-R"atsel l"osbar, kann man man eine beliebige
+Zuordnung von Farben zu den einzelnen Zeichen von $\Sigma$ verwenden,
+um die Vertizes des Graphen einzuf"arben. 
+
+Ist umgekehrt der konstruierte Graph mit $k$ Farben einf"arbbar, dann kann man
+die Farben der Zeichen-Vertizes verwenden, um allen anderen Vertizes
+ebenfalls ein Zeichen zuzuordnen. Diese Zeichenbelegung ist automatisch
+eine L"osung. Die Kanten innerhalb des Sudoku-Feldes sorgen daf"ur, dass
+die Sudoku-Regeln eingehalten werden, die Kanten zu den Zeichen-Vertices
+sorgen daf"ur, dass die Vorgaben erf"ullt sind.
+
+Wir haben damit gezeigt, dass der konstruierte Graph genau dann mit
+$k$ Farben einf"arbbar ist, wenn das Sudoku-R"atsel l"osbar ist. 
+Ausserdem ist der Aufwand f"ur die Konstruktion des Graphen von der
+Gr"ossenordnung des urspr"unglichen Sudoku, also $O(n)$. Die konstruierte
+Reduktion ist also sogar eine polynomielle Reduktion.
+\end{loesung}
+
+
