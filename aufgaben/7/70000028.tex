@@ -1,5 +1,5 @@
 Konstruieren Sie eine Reduktion
-$\textsl{SUDOKU}\le_P\textsl{VERTEX-COLORING}$
+$\textsl{SUDOKU}\le_P\textsl{VERTEX-COLORING}$.
 
 \begin{loesung}
 Zu einem Sudoku-R"atsel konstruieren wir einen Graphen wie folgt:
@@ -8,7 +8,8 @@ Der Graph erh"alt eine Kante f"ur jedes Paar von Feldern, die nicht
 das gleiche Zeichen enthalten d"urfen, also wenn die beiden Felder in der
 gleichen Zeile, der gleichen Spalte oder dem gleichen Unterfeld liegen.
 
-F"ur ein $2^2\times 2^2$-Sudoku ergibt sich so der Graph:
+F"ur ein $2^2\times 2^2$-Sudoku wie das in Abbildung~\ref{70000028:sudoku}
+ergibt sich so der Graph:
 \begin{equation}
 \entrymodifiers={++[o][F]}
 \xymatrix {
@@ -77,7 +78,7 @@ sind vom Vorgabezeichen.
 F"ur das $2^2\times 2^2$-Sudoku aus Abbildung \ref{70000028:sudoku}
 \begin{figure}
 \begin{center}
-\includeagraphics[width=0.3\hsize]{sudoku-1.pdf}
+\includeagraphics[width=0.25\hsize]{sudoku-1.pdf}
 \end{center}
 \caption{$2^2\times 2^2$-Sudoku zu Aufgabe \ref{70000028}
 \label{70000028:sudoku}}
@@ -160,7 +161,7 @@ hinzuf"ugen:
 			%\ar@{-}@/_2pt/[r]
 			%\ar@{-}@/_10pt/[rr]
 			\ar@{-}@/_9pt/[uuuull]
-			\ar@{-}[uuuurrr]
+			\ar@{-}@/_25pt/[uuuurrr]
 			\ar@{-}[dll]
 			&{}%\ar@{-}[r] \ar@{-}[ur]
 				&{}
