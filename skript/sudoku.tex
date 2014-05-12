@@ -1,0 +1,158 @@
+\subsection{SUDOKU und SAT}
+Als Vorstufe der angestrebten Erkenntnis, dass sich jedes Problem auf \textsl{SAT}
+reduzieren l"asst, wollen wir zeigen, dass sich die Frage nach der
+L"osbarkeit eines Sudoku-R"atsels auf \textsl{SAT} reduzieren l"asst.
+
+Ein $n$-Sudoku ist ein $n^2\times n^2$-Feld, welches mit $n^2$ verschiedenen
+Zeichen aus einer Menge $\Sigma$ so gef"ullt werden muss,
+dass in jeder Zeile, jeder Spalte
+und in jedem der $n\times n$-Unterquadrate jedes Zeichen genau einmal
+vorkommt.
+Die aus R"atselspalten von Zeitungen bekannten $3$-Sudokus verwenden
+die Ziffern $1$ bis $9$ f"ur $\Sigma$.
+Einige der Zeichen sind bereits vorgegeben, die leeren Felder m"ussen
+so gef"ullt werden, dass die Regeln nicht verletzt werden.
+Abbildung~\ref{sudoku} zeigt ein l"osbares $3$-Sudoku-R"atsel.
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.5\hsize]{images/sudoku-1.pdf}
+\end{center}
+\caption{$3$-Sudoku, die hellen Ziffern zeigen, dass die Vorgabe (dunkle
+Ziffern) erf"ullbar ist, das $3$-Sudoko ist l"osbar.\label{sudoku}}
+\end{figure}
+Wir schreiben
+\begin{align*}
+\textsl{SUDOKU}=\{\langle S\rangle\;|\; \text{$S$ ist ein l"osbares $n$-Sudoku}\}
+\end{align*}
+
+Ob ein $n$-Sudoku l"osbar ist, ist sicher entscheidbar: man kann alle
+$|\Sigma|^{n^2\cdot n^2}=n^{2n^4}$ m"oglichen Belegungen des Feldes mit
+Zeichen durchprobieren, was aber nat"urlich exponentielle Zeit
+beansprucht.
+
+\textsl{SUDOKU} ist sicher in NP, denn man kann als L"osungszertifikat
+die Zeichen im vollst"andig ausgef"ullten Feld verwenden.
+Zur Verifikation muss man dann nur "uberpr"ufen, ob die
+die vorgegebenen Zeichen richtig in die L"osung "ubernommen wurden und
+ob die Sudoku-Regeln eingehalten wurden. Dies ist in Laufzeit $O(n^4)$
+m"oglich, es gibt also einen polynomiellen Verifizierer.
+
+Der Satz~\ref{cooklevin} behauptet, \textsl{SAT} sei NP-vollst"andig,
+es m"usste sich also auch \textsl{SUDOKU} polynomiell auf \textsl{SAT}
+reduzieren lassen:
+
+\begin{satz} $\textsl{SUDOKU}\le_P\textsl{SAT}$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir m"ussen eine Reduktion konstrukieren, die jedem Sudoku-R"atsel
+eine logische Formel zuordnet, welche genau dann erf"ullbar ist, wenn
+das Sudoku-R"atsel l"osbar ist. Wir gehen in zwei Schritten vor. 
+Zun"achst konstrieren wir eine Formel, die genau dann erf"ullbar ist,
+wenn das Sudoku l"osbar ist, die aber noch keine logische Formel ist.
+Im zweiten Schritt wandeln wir die Formel dann in eine "aquivalente
+logische Formel um.
+
+1.~Schritt: Sei also $S$ ein gegebenes $n$-Sudoku. Wenn das R"atsel l"osbar
+ist, dann gibt es f"ur jedes Feld ein Zeichen, f"ur welches alle Sudoku-Regeln
+eingehalten werden. Wir bezeichnen das Zeichen in dem Feld in Zeile $i$
+und Spalte $j$ mit $z_{ij}$. F"ur einige Felder gibt es Vorgaben, die wir mit
+$v_{ij}$ bezeichnen. Jetzt m"ussen die Bedingungen f"ur eine korrekte
+L"osung des Sudoku formuliert werden:
+\begin{compactenum}
+\item {\em Vorgaben sind korrekt:} Die Vorgabe im Feld $(i,j)$ ist erf"ullt,
+wenn gilt $z_{ij}=v_{ij}$. Alle Vorgaben sind erf"ullt, wenn der Ausdruck
+\[
+\varphi_{\text{Vorgaben}}=\bigwedge_{\text{Feld $(i,j)$ ist Vorgabefeld}}(z_{ij}=v_{ij})
+\]
+wahr ist.
+\item {\em Zeilenbedingung:} Der Wert $z_{ij}$ in Zeile $i$ ist erlaubt,
+wenn jedes andere $z_{ij}$ in der Zeile $i$ verschieden davon ist:
+\[
+\varphi_{\text{Zeilenbedingung $(i,j)$}}
+=
+\bigwedge_{k\ne j}(z_{ij}\ne z_{ik}).
+\]
+\item {\em Spaltenbedingung:} Der Wert $z_{ij}$ in Spalte $j$ ist erlaubt,
+wenn jedes andere $z_{kj}$ in der Spalte $j$ verschieden ist:
+\[
+\varphi_{\text{Spaltenbedingung $(i,j)$}}
+=
+\bigwedge_{k\ne i}(z_{ij}\ne z_{kj}).
+\]
+\item {\em Unterfeld-Bedingung:} Der Wert $z_{ij}$ im $n\times n$-Unterfeld,
+welches $(i,j)$ enth"alt, ist zul"assig, wenn jedes andere Zeichen im gleichen
+Unterfeld davon verschieden ist:
+\[
+\varphi_
+{\text{Unterfeldbedingung $(i,j)$}}
+=
+\bigwedge_{{\text{$(k,l)$ im Unterfeld $(i,j)$}}\atop{i\ne k\wedge j\ne l}}(z_{ij}\ne z_{kl}).
+\]
+\end{compactenum}
+F"ur jedes Feld $(i,j)$ gibt es also drei Bedingungen:
+\[
+\varphi_{ij}=
+\varphi_{\text{Zeilenbedingung $(i,j)$}}
+\wedge
+\varphi_{\text{Spaltenbedingung $(i,j)$}}
+\wedge
+\varphi_{\text{Unterfeldbedingung $(i,j)$}}.
+\]
+Eine L"osung f"ur das Sudoku kann genau dann gefunden werden, wenn man
+$z_{ij}$ so w"ahlen kann, dass alle diese Feld-Bedingungen und die
+Vorgabe-Bedingungen erf"ullt sind, wenn also die Formel
+\begin{equation}
+\varphi=
+\varphi_{\text{Vorgaben}}\wedge
+\bigwedge_{1\le i,j\le n^2}
+\varphi_{ij}
+\label{sudoku-formel}
+\end{equation}
+erf"ullbar ist.
+
+2.~Schritt: Die Formel (\ref{sudoku-formel}) ist nahe am Gesuchten,
+sie ist genau dann erf"ullbar, wenn das Sudoku l"osbar ist. Allerdings
+ist sie keine logische Formel, die Variablen $z_{ij}$ sind Variablen mit
+Zeichenwerten. Wir k"onnen Sie aber durch $n^2$ neue logische Variablen
+$x_{ijc}$ ersetzen, wobei $c\in \Sigma$ ist, mit der Bedeutung, dass
+$x_{ijc}$ genau dann wahr ist, wenn $z_{ij}=c$. 
+
+Jede Teilformel von (\ref{sudoku-formel}) setzt sich zusammen
+aus Ausdr"ucken der Form oder $z_{ij}=c$
+oder $z_{ij}\ne z_{kl}$, wobei $c\in\Sigma$.
+Es reicht also, wenn man jede Teilformel nur durch die Variablen $x_{ijc}$ 
+ausdr"ucken kann.
+\begin{compactenum}
+\item {\em Nur ein Wert:} F"ur jedes Paar $(i,j)$ darf nur eine der
+Variablen $x_{ijc}$ wahr sein, es kann ja nur ein einziges Zeichen $c$
+die Bedingung $z_{ij}=c$ erf"ullen. Die Formel
+\[
+x_{ijc}\wedge \bigwedge_{d\in\Sigma\setminus\{c\}}\bar x_{ijd}
+\]
+muss also f"ur mindestens ein $c$ wahr sein:
+\[
+\varphi_{\text{Eintrag $(i,j)$}}
+=
+\bigvee_{c\in \Sigma}
+\biggl(
+x_{ijc}\wedge \bigwedge_{d\in\Sigma\setminus\{c\}}\bar x_{ijd}
+\biggr).
+\]
+\item {\em Vorgabe:} Um die Vorgabe $z_{ij}=c$ auszudr"ucken, muss man
+nur verlangen, dass $x_{ijc}$ wahr ist.
+\item {\em Ungleichheit:} Um auszudr"ucken, dass $z_{ij} \ne z_{kl}$ muss
+man nur verlangen, dass $x_{ijc}$ und $x_{klc}$ nicht gleichzeitig wahr
+sein k"onnen:
+\[
+\varphi_{\text{Ungleichheit $z_{ij}\ne z_{kl}$}}
+=
+\bigwedge_{c\in\Sigma}
+\overline{x_{ijc}\wedge x_{klc}}.
+\]
+\end{compactenum}
+Durch Anwendung aller dieser Umformungen auf alle Terme in (\ref{sudoku-formel})
+erh"alt man eine neue Formel $\varphi$, die nur noch die logischen
+Variablen $x_{ijc}$ enth"alt. Die neue Formel ist genau dann erf"ullbar,
+wenn das Sudoku-R"atsel eine L"osung hat.
+\end{proof}
