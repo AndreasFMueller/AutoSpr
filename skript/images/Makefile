@@ -18,6 +18,7 @@ COMPFILES = comp-1.pdf comp-2.pdf comp-3.pdf comp-4.pdf comp-5.pdf \
 	comp-6.pdf comp-7.pdf
 GRAPHFILES = graph-1.pdf
 STACKFILES = stack-1.pdf stack-2.pdf
+SUDOKUFILES = sudoku-1.pdf
 
 timestamp:	$(REGFILES) $(NEAFILES) $(CFGFILES) $(TURINGFILES) \
 		$(LANGFILES) $(MINEFILES) $(PLFILES) $(REDFILES) $(COMPFILES) \
@@ -118,5 +119,15 @@ $(STACKFILES):	stack.mp Makefile
 		echo $${f}; \
 		i=`expr $${f} : "stack\.\(.\)"`; \
 		mptopdf stack.$${i}; \
+	done
+
+sudoku:	$(SUDOKUFILES)
+$(SUDOKUFILES):	sudoku.mp Makefile
+	TEX=latex mpost sudoku.mp
+	for f in sudoku.?; \
+	do \
+		echo $${f}; \
+		i=`expr $${f} : "sudoku\.\(.\)"`; \
+		mptopdf sudoku.$${i}; \
 	done
 
