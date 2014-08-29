@@ -1,0 +1,160 @@
+Finden Sie einen regul"aren Ausdruck sowie einen deterministischen endlichen
+Automaten f"ur die Sprache $L$ "uber dem 
+Alphabet $\Sigma = \{\texttt{a},\texttt{b}\}$ bestehend aus W"ortern,
+in denen der Buchstabe \texttt{a} nie einzeln dasteht, sondern immer
+nur in Gruppen von mindestens $2$ Zeichen \texttt{a}.
+
+\begin{loesung}
+Eine Gruppe von mindestens zwei Zeichen \texttt{a} kann durch den
+regul"aren Ausdruck \texttt{aaa*} dargestellt werden.
+Solche Gruppen k"onnen jetzt mit beliebig vielen Zeichen \texttt{b} verbunden werden:
+\texttt{(aaa*b*)*}. Dieser Regul"are Ausdruck verlangt aber, dass W"orter
+mit \texttt{a} beginnen m"ussen, was nicht den urspr"unglichen Forderungen
+entspricht. Es ist auch erlaubt, dass ein Wort mit beliebig vielen
+Zeichen \texttt{b} beginnt. Der fertige regul"are Ausdruck wird damit zu
+\[
+\texttt{b*(aaa*b*)*}
+\]
+Ein deterministischer endlicher Automat f"ur die Sprache $L$ ist
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+	&*++[o][F=]{q_0}\ar[r]^{\texttt{a}}
+	      \ar@(dr,dl)^{\texttt{b}}
+		&{q_1}\ar[r]^{\texttt{a}} \ar[d]^{\texttt{b}}
+			&*++[o][F=]{q_2} \ar@/_20pt/[ll]_{\texttt{b}}
+				\ar@(ur,dr)^{\texttt{a}}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{e}\ar@(dl,dr)_{\texttt{a},\texttt{b}}
+}
+\]
+Selbstverst"andlich kann man aus diesem endlichen Automaten auch einen
+regul"aren Ausdruck gewinnen. Dazu ist zun"achst der endlich Automat
+mit einem neuen Start- und einem einzigen Akzeptierzustand umzuformen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+	&{s}\ar[r]^{\varepsilon}
+		&{q_0}\ar[d]^{\texttt{a}} \ar[rr]^{\varepsilon}
+			\ar@(ul,ur)^{\texttt{b}}
+			&*+\txt{}
+				&*++[o][F=]{a}
+\\
+*+\txt{}
+	&{e} \ar@(ul,dl)_{\texttt{a}|\texttt{b}}
+		&{q_1}\ar[r]^{\texttt{a}} \ar[l]_{\texttt{b}}
+			&{q_2}\ar[ur]_{\varepsilon} \ar[ul]_{\texttt{b}}
+				\ar@(dl,dr)_{\texttt{a}}
+}
+\]
+Da keine Pfade "uber $e$ zu einem Akzeptierzustand f"uhren, kann man
+in dem VNEA zur Ermittlung des regul"aren Ausdrucks diesen Zustand
+weglassen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+	&{s}\ar[r]^{\varepsilon}
+		&{q_0}\ar[d]^{\texttt{a}} \ar[rr]^{\varepsilon}
+			\ar@(ul,ur)^{\texttt{b}}
+			&*+\txt{}
+				&*++[o][F=]{a}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{q_1}\ar[r]^{\texttt{a}}
+			&{q_2}\ar[ur]_{\varepsilon} \ar[ul]_{\texttt{b}}
+				\ar@(dl,dr)_{\texttt{a}}
+}
+\]
+Jetzt muss man alle Zust"ande entfernen, wir beginnen mit $q_1$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+	&{s}\ar[r]^{\varepsilon}
+		&{q_0} \ar[rr]^{\varepsilon}
+			\ar@(ul,ur)^{\texttt{b}}
+			\ar@/_/[dr]_{\texttt{aa}}
+			&*+\txt{}
+				&*++[o][F=]{a}
+\\
+*+\txt{}
+	&*+\txt{}
+		&*\txt{}
+			&{q_2}\ar[ur]_{\varepsilon} \ar@/_/[ul]_{\texttt{b}}
+				\ar@(dl,dr)_{\texttt{a}}
+}
+\]
+Jetzt entfernen wir Zustand $q_2$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+	&{s}\ar[r]^{\varepsilon}
+		&{q_0} \ar[rr]^{\varepsilon|\texttt{aaa*}}
+			\ar@(ul,ur)^{\texttt{b}|\texttt{aaa*b}}
+			&*+\txt{}
+				&*++[o][F=]{a}
+}
+\]
+Und zum Schluss wird jetzt noch $q_0$ entfernt:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+	&{s}\ar[rrr]^{\texttt{(b|aaa*b)*(|aaa*)}}
+		&*+\txt{}
+			&*+\txt{}
+				&*++[o][F=]{a}
+}
+\]
+Der regul"are Ausdruck
+\texttt{(b|aaa*b)*(|aaa*)}
+ist also auch eine m"ogliche L"osung der Aufgabe.
+
+Die urspr"ungliche Formulierung verlangte, dass \texttt{a} in Gruppen von mindestens
+zwei Zeichen auftreten musste, was man auch so verstehen konnte, dass einzig das
+alleinstehende Zeichen \texttt{a} nicht zul"assig ist. Diese Sprache ist nat"urlich
+auch regul"ar.
+
+$L=\Sigma^* \setminus \{\texttt{a}\}$. Da die Sprache $\{\texttt{a}\}$
+endlich ist, ist sie regul"ar. $\Sigma^*$ ist auch regul"ar. Die Differenz regul"arer
+Sprachen ist ebenfalls regul"ar. Man muss also nur noch einen endlichen Automaten
+und einen regul"aren Ausdruck daf"ur finden.
+
+Der regul"are Ausdruck muss ausdr"ucken, dass ein mit \texttt{a} beginnendes Wort
+noch mindestens ein Zeichen haben muss. F"ur W"orter, die mit \texttt{b} beginnen,
+gibt es keine weiteren Bedingungen. Also:
+\[
+\texttt{a.+|b.*}
+\]
+Auf dieser Basis l"asst sich auch leicht ein endlicher Automat formulieren
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+	&*++[o][F=]{q_0} \ar[r]^{\texttt{a}} \ar[d]_{\texttt{b}}
+		&{q_a} \ar[dl]^{\Sigma}
+\\
+*+\txt{}
+	&*++[o][F=]{q_b} \ar@(dl,dr)_{\Sigma}
+}
+\]
+\end{loesung}
+
+\begin{bewertung}
+Regul"arer Ausdruck: stellt sicher, dass \texttt{a} immer mindestens als
+Gruppen \text{aa} vorkommt ($\textbf{A}_r$) 1 Punkt, \texttt{b} kann beliebig
+vorkommen ($\textbf{B}_r$) 1 Punkt, W"orter k"onnen mit \texttt{b} beginnen und
+aufh"oren ($\textbf{E}_r$) 1 Punkt. Analog  
+$\textbf{A}_r$ und
+$\textbf{B}_r$ f"ur den deterministischen endlichen Automaten.
+Automat ist eine DEA (kein NEA) (\textbf{D}) 1 Punkt.
+\end{bewertung}
+
+
