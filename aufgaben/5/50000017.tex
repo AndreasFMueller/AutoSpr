@@ -1,0 +1,171 @@
+Turing-Maschinen mit $\Sigma=\{\texttt{0}, \texttt{1}\}$ und genau
+drei Zust"anden haben notwendigerweise ein Zustandsdiagramm der Form
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+	&{q_0} \ar@(ur,ul) \ar[r] \ar[d]
+		&*++[o][F=]{q_{\text{accept}}}
+\\
+*+\txt{}
+	&*++[o][F=]{q_{\text{reject}}}
+}
+\]
+Hier fehlen nur noch die "Uberg"ange, die von der Art
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+{q_0}\ar[r]^{a\to b,d}&{q}
+}
+\]
+sein m"ussen, wobei $q$ irgend ein Zustand ist, $a$ und $b$ Bandalphabethzeichen
+und $d$ die Bewegungsrichtung des Schreibe-/Lesekopfes aus $\{\text{L},\text{R}\}$.
+F"ur "Uberg"ange in einen Akzeptierzustand spielen die Werte von $b$ und $d$
+keine Rolle, "Uberg"ange in einen Akzeptierzustand, die sich nur durch die
+Werte von $b$ und $d$ unterscheiden, sind im Wesentlichen gleich.
+\begin{teilaufgaben}
+\item
+Welche "Uberg"angen m"ussen Sie w"ahlen, damit die Turing-Maschine
+die Sprache $\Sigma^*$ erkennt?
+\item
+Welche "Uberg"ange m"ussen Sie w"ahlen, damit die Turing-Maschine
+die Sprache $\emptyset$ erkennt?
+\item
+Kann man eine Turing-Maschine mit drei Zust"anden bauen, welche die
+Sprache
+\[
+L=\{ \texttt{0}^n\,|\,n\ge 0\}
+\]
+erkennt?
+\item
+Wieviele wesentlich verschiedene Zustandsdiagramme von solchen Turing-Maschinen 
+gibt es?
+\end{teilaufgaben}
+
+\begin{loesung}
+F"ur "Uberg"ange, die in einem Akzeptierzustand enden, sind die Werte
+von $b$ und $d$ nicht relevant. Nur die "Uberg"ange, die in $q_0$ enden
+f"uhren zu tats"achlich verschiedenen Turing-Maschinen. F"ur die drei
+Bandalphabet-Zeichen $\Gamma =\{\texttt{0},\texttt{1},\blank\}$ muss 
+also nur entscheiden werden, zu welchem Zustand sie f"uhren, und welche
+Werte f"ur $b$ und $d$ gegebenenfalls verwendet werden sollen.
+Zu jedem Zeichen f"ur $a$ gibt es also zwei "Uberg"ange, die in
+einem Akzeptierzustand enden, eine Anzahl von "Uberg"angen, die in $q_0$
+enden. Solche "Uberg"ange gibt es mit drei verschiedenen Zeichen auf
+dem Band nach dem "Ubergang, und zwei Bewegungsrichtungen, also insgesamt
+6 m"ogliche "Uberg"ange:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm{
+{q_0} \ar[r]^{?\to ?,?}	&*++[o][F=]{q_{\text{accept}}}&
+{q_0} \ar[r]^{?\to ?,?}	&*++[o][F=]{q_{\text{reject}}}\\
+{q_0} \ar[r]^{?\to \texttt{0},\text{L}}	&{q_0}&
+{q_0} \ar[r]^{?\to \texttt{0},\text{R}}	&{q_0}\\
+{q_0} \ar[r]^{?\to \texttt{1},\text{L}}	&{q_0}&
+{q_0} \ar[r]^{?\to \texttt{1},\text{R}}	&{q_0}\\
+{q_0} \ar[r]^{?\to \blank,\text{L}}	&{q_0}&
+{q_0} \ar[r]^{?\to \blank,\text{R}}	&{q_0}\\
+}
+\]
+\begin{teilaufgaben}
+\item
+Die Turing-Maschine
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+	&{q_0} \ar[r]
+		&*++[o][F=]{q_{\text{accept}}}
+\\
+*+\txt{}
+	&*++[o][F=]{q_{\text{reject}}}
+}
+\]
+mit einem "Ubergang nach $q_{\text{accept}}$ f"ur jedes Zeichen in $\Gamma$
+akzeptiert alle W"orter, also die Sprache $\Sigma^*$.
+Alternativ k"onnte man auch alle Zeichen \texttt{0} und \texttt{1}
+"uberlesen und akzeptieren, sobald man einen $\blank$ findet:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+	&{q_0}
+		\ar@(u,ul)_{\texttt{0}\to\texttt{0},\text{R}}
+		\ar@(u,ur)^{\texttt{1}\to\texttt{1},\text{R}}
+		\ar[r]^{\blank\to\blank,\text{R}}
+		&*++[o][F=]{q_{\text{accept}}}
+\\
+*+\txt{}
+	&*++[o][F=]{q_{\text{reject}}}
+}
+\]
+\item
+Die Turing-Maschine
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+	&{q_0} \ar[d]
+		&*++[o][F=]{q_{\text{accept}}}
+\\
+*+\txt{}
+	&*++[o][F=]{q_{\text{reject}}}
+}
+\]
+mit einem "Ubergang nach $q_{\text{reject}}$ f"ur jedes Zeichen in $\Gamma$
+akzeptiert nur die leere Sprache. Wie in Teilaufgabe a) kann man nat"urlich
+die Maschine auch noch etwas l"anger arbeiten lassen, bevor man in den
+Zustand $q_\text{reject}$ geht:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{} \ar[r]
+	&{q_0}
+		\ar@(u,ul)_{\texttt{0}\to\texttt{0},\text{R}}
+		\ar@(u,ur)^{\texttt{1}\to\texttt{1},\text{R}}
+		\ar[d]^{\blank\to\blank,\text{R}}
+		&*++[o][F=]{q_{\text{accept}}}
+\\
+*+\txt{}
+	&*++[o][F=]{q_{\text{reject}}}
+}
+\]
+Alternativ k"onnte man auch beim ersten \texttt{1} in oder beim ersten \texttt{0} in
+den Zustand $q_\text{reject}$ wechseln.
+\item
+Die Turing-Maschine
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{} \ar[r]
+	&{q_0} \ar@(ur,ul)_{\texttt{0}\to\texttt{0},\text{R}}
+		\ar[d]^{\texttt{1}\to\texttt{1},\text{R}}
+		\ar[r]^{\blank\to\blank,\text{R}}
+		&*++[o][F=]{q_{\text{accept}}}
+\\
+*+\txt{}
+	&*++[o][F=]{q_{\text{reject}}}
+}
+\]
+"uberspringt alle \texttt{0}, verwirft, sobald sie ein \texttt{1} trifft,
+und erkennt, wenn sie das Ende des Wortes erreicht.
+Sie erkennt also genau die W"orter, die aus lauter \texttt{0} zusammengesetzt
+sind, dies entspricht der Spezifikation von $L$.
+\item
+Damit kann man jetzt die m"oglichen Turing-Maschinen aufz"ahlen.
+Da f"ur jedes Zeichen in $\Gamma$ einer von $8$ "Uberg"angen
+gew"ahlt werden muss, gibt es $8^3=512$ wesentlich verschiedene
+Zustandsdiagramme.
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item Funktionierende TM f"ur $\Sigma^*$ (\textbf{A}) 1 Punkt.
+\item Funktionierende TM f"ur $\emptyset$ (\textbf{E}) 1 Punkt.
+\item Funktionierende TM f"ur $L$ (\texttt{L}) 2 Punkte.
+\item Anzahl m"oglicher Turing-Maschinen (\textbf{N}) 1 Punkt,
+Abz"ahlargument (\textbf{Z}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
+

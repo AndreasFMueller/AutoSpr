@@ -1,0 +1,339 @@
+Graphviz ist ein Werkzeug zur Visualisierung von Graphen. Auf der
+Graphviz-Website findet man folgende (vereinfachte) Darstellung der Grammatik
+f"ur die Sprache DOT, in der Graphen f"ur Graphviz beschrieben werden:
+\begin{equation}
+\begin{aligned}
+\textsl{graph}     &: \texttt{graph}\, \texttt{`\{'}\, \textsl{stmt\_list}\, \texttt{`\}'} \\
+\textsl{stmt\_list}&: [\, \textsl{stmt}\, [\, \texttt{`;'}\, \textsl{stmt\_list}\, ]\, ] \\
+\textsl{stmt}      &: \textsl{node\_stmt}\, |\, \textsl{edge\_stmt} \\
+\textsl{edge\_stmt}&: \textsl{node\_id}\, \textsl{edgeRHS} \\
+\textsl{edgeRHS}   &: \textsl{edgeop}\, \textsl{node\_id}\, [\, \textsl{edgeRHS}\, ]\, \\
+\textsl{edgeop}    &: \textrm{'\text{---}'}\, |\, \textrm{'$\rightarrow$'}\, \\
+\textsl{node\_stmt}&: \textsl{node\_id} \\
+\textsl{node\_id}  &: \textsl{ID}
+\end{aligned}
+\label{40000037:ebnf}
+\end{equation}
+Die eckigen Klammern bedeuten, dass die eingeklammerten Elemente optional sind.
+Die nicht weiter aufgel"oste Variable \textsl{ID} steht f"ur eine beliebige,
+mit einem Buchstaben beginnende Zeichenkette aus Buchstaben oder Ziffern.
+
+\begin{teilaufgaben}
+\item
+(\ref{40000037:ebnf}) sieht zwar etwas aus wie eine Grammatik,
+entspricht aber wegen der eckigen Klammern nicht der "ublichen Notation.
+Bringen Sie (\ref{40000037:ebnf}) in die "ubliche Form, wobei sie
+die Zeichenkette \texttt{graph} sowie die Variable
+\textsl{ID} nicht weiter aufzul"osen brauchen (Sie k"onnen Sie wie Terminalsymbole
+behandeln).
+\item Markieren Sie alle Regeln, die nicht der Chomsky-Normalform 
+entsprechen (Begr"undung!).
+\item F"uhren Sie die Transformation in Chomsky-Normalform durch, mit folgenden
+Vereinfachungen: 1. f"uhren Sie nur zwei Eliminationsschritte von Unit-Rules durch
+(es sind mehr solche Schritte f"ur eine vollst"andige Transformation in CNF n"otig)
+und 2. lassen Sie den letzten Schritt (Transformation von Regeln der Form
+$A\to A_1A_2\dots A_n$) weg.
+\item Ist die Sprache DOT regul"ar?
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item In konventioneller Form geschrieben, lautet die Grammatik
+\begin{align*}
+\textsl{graph}     &\rightarrow {\color{green}\texttt{graph}\; \texttt{`\{'}\; \textsl{stmt\_list}\; \texttt{`\}'}} \\
+\textsl{stmt\_list}&\rightarrow {\color{red}\varepsilon}\\
+                   &\rightarrow {\color{blue}\textsl{stmt}}\\
+                   &\rightarrow {\color{green}\textsl{stmt}\; \texttt{`;'}\; \textsl{stmt\_list}}\\
+\textsl{stmt}      &\rightarrow {\color{blue}\textsl{node\_stmt}}\; |\;
+                                {\color{blue}\textsl{edge\_stmt}} \\
+\textsl{edge\_stmt}&\rightarrow \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edgeRHS}   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\\
+                   &\rightarrow {\color{green}\textsl{edgeop}\; \textsl{node\_id}\; \textsl{edgeRHS}}\\
+\textsl{edgeop}    &\rightarrow \textrm{`\text{---}'}\; |\; \textrm{`$\rightarrow$'}\; \\
+\textsl{node\_stmt}&\rightarrow {\color{blue}\textsl{node\_id}} \\
+\textsl{node\_id}  &\rightarrow {\textsl{ID}}
+\end{align*}
+\item Die Regeln sind wie folgt mit Farben markiert:
+\begin{compactenum}
+\item $\varepsilon$ auf der rechten Seite einer Regel, aber nicht die
+Startvariable auf der linken Seite ({\color{red} rot}).
+\item Unit rules: ({\color{blue} blau})
+\item Mehr als zwei Elemente auf der rechten Seite einer Regel:
+({\color{green}gr"un})
+\end{compactenum}
+\item Im ersten Schritt der CNF-Transformation wird sichergestellt, dass
+auf der rechten Seite die Startvariable nicht vorkommt.
+Dies ist bereits erf"ullt, so dass wir auf diesen Schritt verzichten k"onnen.
+Als n"achstes muss die $\varepsilon$-Regel entfernt werden:
+\begin{align*}
+\textsl{graph}     &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \textsl{stmt\_list}\; \texttt{`\}'} \\
+                   &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \texttt{`\}'} \\
+\textsl{stmt\_list}&\rightarrow \textsl{stmt}\\
+                   &\rightarrow \textsl{stmt}\; \texttt{`;'}\; \textsl{stmt\_list}\\
+\textsl{stmt}      &\rightarrow \textsl{node\_stmt}\; |\;
+                                \textsl{edge\_stmt} \\
+\textsl{edge\_stmt}&\rightarrow \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edgeRHS}   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\\
+                   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\; \textsl{edgeRHS}\\
+\textsl{edgeop}    &\rightarrow \textrm{`\text{---}'}\; |\; \textrm{`$\rightarrow$'}\; \\
+\textsl{node\_stmt}&\rightarrow \textsl{node\_id} \\
+\textsl{node\_id}  &\rightarrow \textsl{ID}
+\end{align*}
+Jetzt m"ussen Unit-Rules eliminiert werden. Man beachte, dass in der Aufgabenstellung
+nur zwei Unit-Rule Transformationen verlangt waren, wir f"uhren der Vollst"andigkeit
+halber alle Schritte durch.
+Wir beginnen mit $\textsl{stmt\_list}\to\textsl{stmt}$:
+\begin{align*}
+\textsl{graph}     &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \textsl{stmt\_list}\; \texttt{`\}'} \\
+                   &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \texttt{`\}'} \\
+\textsl{stmt\_list}&\rightarrow {\color{red}\textsl{node\_stmt}}\; |\;
+                                {\color{red}\textsl{edge\_stmt}} \\
+                   &\rightarrow \textsl{stmt}\; \texttt{`;'}\; \textsl{stmt\_list}\\
+\textsl{stmt}      &\rightarrow \textsl{node\_stmt}\; |\;
+                                \textsl{edge\_stmt} \\
+\textsl{edge\_stmt}&\rightarrow \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edgeRHS}   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\\
+                   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\; \textsl{edgeRHS}\\
+\textsl{edgeop}    &\rightarrow \textrm{`\text{---}'}\; |\; \textrm{`$\rightarrow$'}\; \\
+\textsl{node\_stmt}&\rightarrow \textsl{node\_id} \\
+\textsl{node\_id}  &\rightarrow \textsl{ID}
+\end{align*}
+Damit sind zwei neue Unit-Rules entstanden, wir behandeln als n"achstes
+$\textsl{stmt\_list}\to\textsl{node\_stmt}$:
+\begin{align*}
+\textsl{graph}     &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \textsl{stmt\_list}\; \texttt{`\}'} \\
+                   &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \texttt{`\}'} \\
+\textsl{stmt\_list}&\rightarrow {\color{red}\textsl{node\_id}}\; |\;
+                                \textsl{edge\_stmt} \\
+                   &\rightarrow \textsl{stmt}\; \texttt{`;'}\; \textsl{stmt\_list}\\
+\textsl{stmt}      &\rightarrow \textsl{node\_stmt}\; |\;
+                                \textsl{edge\_stmt} \\
+\textsl{edge\_stmt}&\rightarrow \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edgeRHS}   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\\
+                   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\; \textsl{edgeRHS}\\
+\textsl{edgeop}    &\rightarrow \textrm{`\text{---}'}\; |\; \textrm{`$\rightarrow$'}\; \\
+\textsl{node\_stmt}&\rightarrow \textsl{node\_id} \\
+\textsl{node\_id}  &\rightarrow \textsl{ID}
+\end{align*}
+$\textsl{stmt\_list}\to\textsl{node\_id}$:
+\begin{align*}
+\textsl{graph}     &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \textsl{stmt\_list}\; \texttt{`\}'} \\
+                   &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \texttt{`\}'} \\
+\textsl{stmt\_list}&\rightarrow {\color{red}\textsl{ID}}\; |\;
+                                \textsl{edge\_stmt} \\
+                   &\rightarrow \textsl{stmt}\; \texttt{`;'}\; \textsl{stmt\_list}\\
+\textsl{stmt}      &\rightarrow \textsl{node\_stmt}\; |\;
+                                \textsl{edge\_stmt} \\
+\textsl{edge\_stmt}&\rightarrow \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edgeRHS}   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\\
+                   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\; \textsl{edgeRHS}\\
+\textsl{edgeop}    &\rightarrow \textrm{`\text{---}'}\; |\; \textrm{`$\rightarrow$'}\; \\
+\textsl{node\_stmt}&\rightarrow \textsl{node\_id} \\
+\textsl{node\_id}  &\rightarrow \textsl{ID}
+\end{align*}
+$\textsl{stmt\_list}\to\textsl{edge\_stmt}$:
+\begin{align*}
+\textsl{graph}     &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \textsl{stmt\_list}\; \texttt{`\}'} \\
+                   &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \texttt{`\}'} \\
+\textsl{stmt\_list}&\rightarrow \textsl{ID}\; |\;
+                                {\color{red}\textsl{node\_id}\; \textsl{edgeRHS} }\\
+                   &\rightarrow \textsl{stmt}\; \texttt{`;'}\; \textsl{stmt\_list}\\
+\textsl{stmt}      &\rightarrow \textsl{node\_stmt}\; |\;
+                                \textsl{edge\_stmt} \\
+\textsl{edge\_stmt}&\rightarrow \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edgeRHS}   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\\
+                   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\; \textsl{edgeRHS}\\
+\textsl{edgeop}    &\rightarrow \textrm{`\text{---}'}\; |\; \textrm{`$\rightarrow$'}\; \\
+\textsl{node\_stmt}&\rightarrow \textsl{node\_id} \\
+\textsl{node\_id}  &\rightarrow \textsl{ID}
+\end{align*}
+$\textsl{stmt}\to\textsl{node\_stmt}$:
+\begin{align*}
+\textsl{graph}     &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \textsl{stmt\_list}\; \texttt{`\}'} \\
+                   &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \texttt{`\}'} \\
+\textsl{stmt\_list}&\rightarrow \textsl{ID}\; |\;
+                                \textsl{node\_id}\; \textsl{edgeRHS} \\
+                   &\rightarrow \textsl{stmt}\; \texttt{`;'}\; \textsl{stmt\_list}\\
+\textsl{stmt}      &\rightarrow {\color{red}\textsl{node\_id}}\; |\;
+                                \textsl{edge\_stmt} \\
+\textsl{edge\_stmt}&\rightarrow \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edgeRHS}   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\\
+                   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\; \textsl{edgeRHS}\\
+\textsl{edgeop}    &\rightarrow \textrm{`\text{---}'}\; |\; \textrm{`$\rightarrow$'}\; \\
+\textsl{node\_stmt}&\rightarrow \textsl{node\_id} \\
+\textsl{node\_id}  &\rightarrow \textsl{ID}
+\end{align*}
+$\textsl{stmt}\to\textsl{node\_id}$:
+\begin{align*}
+\textsl{graph}     &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \textsl{stmt\_list}\; \texttt{`\}'} \\
+                   &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \texttt{`\}'} \\
+\textsl{stmt\_list}&\rightarrow \textsl{ID}\; |\;
+                                \textsl{node\_id}\; \textsl{edgeRHS} \\
+                   &\rightarrow \textsl{stmt}\; \texttt{`;'}\; \textsl{stmt\_list}\\
+\textsl{stmt}      &\rightarrow {\color{red}\textsl{ID}}\; |\;
+                                \textsl{edge\_stmt} \\
+\textsl{edge\_stmt}&\rightarrow \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edgeRHS}   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\\
+                   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\; \textsl{edgeRHS}\\
+\textsl{edgeop}    &\rightarrow \textrm{`\text{---}'}\; |\; \textrm{`$\rightarrow$'}\; \\
+\textsl{node\_stmt}&\rightarrow \textsl{node\_id} \\
+\textsl{node\_id}  &\rightarrow \textsl{ID}
+\end{align*}
+$\textsl{stmt}\to\textsl{edge\_stmt}$:
+\begin{align*}
+\textsl{graph}     &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \textsl{stmt\_list}\; \texttt{`\}'} \\
+                   &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \texttt{`\}'} \\
+\textsl{stmt\_list}&\rightarrow \textsl{ID}\; |\;
+                                \textsl{node\_id}\; \textsl{edgeRHS} \\
+                   &\rightarrow \textsl{stmt}\; \texttt{`;'}\; \textsl{stmt\_list}\\
+\textsl{stmt}      &\rightarrow \textsl{ID}\; |\;
+                                {\color{red}\textsl{node\_id}\; \textsl{edgeRHS}} \\
+\textsl{edge\_stmt}&\rightarrow \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edgeRHS}   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\\
+                   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\; \textsl{edgeRHS}\\
+\textsl{edgeop}    &\rightarrow \textrm{`\text{---}'}\; |\; \textrm{`$\rightarrow$'}\; \\
+\textsl{node\_stmt}&\rightarrow \textsl{node\_id} \\
+\textsl{node\_id}  &\rightarrow \textsl{ID}
+\end{align*}
+$\textsl{node\_stmt}\to\textsl{node\_id}$:
+\begin{align*}
+\textsl{graph}     &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \textsl{stmt\_list}\; \texttt{`\}'} \\
+                   &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \texttt{`\}'} \\
+\textsl{stmt\_list}&\rightarrow \textsl{ID}\; |\;
+                                \textsl{node\_id}\; \textsl{edgeRHS} \\
+                   &\rightarrow \textsl{stmt}\; \texttt{`;'}\; \textsl{stmt\_list}\\
+\textsl{stmt}      &\rightarrow \textsl{ID}\; |\;
+                                \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edge\_stmt}&\rightarrow \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edgeRHS}   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\\
+                   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\; \textsl{edgeRHS}\\
+\textsl{edgeop}    &\rightarrow \textrm{`\text{---}'}\; |\; \textrm{`$\rightarrow$'}\; \\
+\textsl{node\_stmt}&\rightarrow {\color{red}\textsl{ID}} \\
+\textsl{node\_id}  &\rightarrow \textsl{ID}
+\end{align*}
+Damit sind alle Unit Rules entfernt. 
+
+Im letzten Schritt, werden die Regeln umgeformt, die mehr als zwei Elemente auf
+der rechten Seite haben. Dieser Schritt ist in der Aufgabenstellung nicht verlangt,
+wir f"uhren ihn der Vollst"andigkeit halber durch. Zun"achst f"ur die erste Regel:
+\begin{align*}
+\textsl{graph}     &\rightarrow \texttt{graph}\; {\color{red}A_1} \\
+                   &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \texttt{`\}'} \\
+\color{red}A_1     &\color{red}\rightarrow A_2A_3\\
+\color{red}A_2     &\color{red}\rightarrow \texttt{`\{'}\\
+\color{red}A_3     &\color{red}\rightarrow \textsl{stmt\_list}\;A_4\\
+\color{red}A_4     &\color{red}\rightarrow \texttt{`\}'}\\
+\textsl{stmt\_list}&\rightarrow \textsl{ID}\; |\;
+                                \textsl{node\_id}\; \textsl{edgeRHS} \\
+                   &\rightarrow \textsl{stmt}\; \texttt{`;'}\; \textsl{stmt\_list}\\
+\textsl{stmt}      &\rightarrow \textsl{ID}\; |\;
+                                \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edge\_stmt}&\rightarrow \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edgeRHS}   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\\
+                   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\; \textsl{edgeRHS}\\
+\textsl{edgeop}    &\rightarrow \textrm{`\text{---}'}\; |\; \textrm{`$\rightarrow$'}\; \\
+\textsl{node\_stmt}&\rightarrow \textsl{ID} \\
+\textsl{node\_id}  &\rightarrow \textsl{ID}
+\end{align*}
+Nun f"ur die zweite Regel:
+\begin{align*}
+\textsl{graph}     &\rightarrow \texttt{graph}\; A_1 \\
+                   &\rightarrow \texttt{graph}\; \color{red}B_1 \\
+A_1                &\rightarrow A_2A_3\\
+A_2                &\rightarrow \texttt{`\{'}\\
+A_3                &\rightarrow \textsl{stmt\_list}\;A_4\\
+A_4                &\rightarrow \texttt{`\}'}\\
+\color{red}B_1     &\color{red}\rightarrow B_2B_3\\
+\color{red}B_2     &\color{red}\rightarrow \texttt{`\{'}\\
+\color{red}B_3     &\color{red}\rightarrow \texttt{`\}'}\\
+\textsl{stmt\_list}&\rightarrow \textsl{ID}\; |\;
+                                \textsl{node\_id}\; \textsl{edgeRHS} \\
+                   &\rightarrow \textsl{stmt}\; \texttt{`;'}\; \textsl{stmt\_list}\\
+\textsl{stmt}      &\rightarrow \textsl{ID}\; |\;
+                                \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edge\_stmt}&\rightarrow \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edgeRHS}   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\\
+                   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\; \textsl{edgeRHS}\\
+\textsl{edgeop}    &\rightarrow \textrm{`\text{---}'}\; |\; \textrm{`$\rightarrow$'}\; \\
+\textsl{node\_stmt}&\rightarrow \textsl{ID} \\
+\textsl{node\_id}  &\rightarrow \textsl{ID}
+\end{align*}
+Dann f"ur die Regel
+$\textsl{stmt\_list}\rightarrow \textsl{stmt}\; \texttt{`;'}\; \textsl{stmt\_list}$:
+\begin{align*}
+\textsl{graph}     &\rightarrow \texttt{graph}\; A_1 \\
+                   &\rightarrow \texttt{graph}\; B_1 \\
+A_1                &\rightarrow A_2A_3\\
+A_2                &\rightarrow \texttt{`\{'}\\
+A_3                &\rightarrow \textsl{stmt\_list}\;A_4\\
+A_4                &\rightarrow \texttt{`\}'}\\
+B_1                &\rightarrow B_2B_3\\
+B_2                &\rightarrow \texttt{`\{'}\\
+B_3                &\rightarrow \texttt{`\}'}\\
+\textsl{stmt\_list}&\rightarrow \textsl{ID}\; |\;
+                                \textsl{node\_id}\; \textsl{edgeRHS} \\
+                   &\rightarrow \textsl{stmt}\; \color{red}C_1\\
+\color{red}C_1     &\color{red}\rightarrow C_2\;\textsl{stmt\_list}\\
+\color{red}C_2     &\color{red}\rightarrow \texttt{`;'} \\
+\textsl{stmt}      &\rightarrow \textsl{ID}\; |\;
+                                \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edge\_stmt}&\rightarrow \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edgeRHS}   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\\
+                   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\; \textsl{edgeRHS}\\
+\textsl{edgeop}    &\rightarrow \textrm{`\text{---}'}\; |\; \textrm{`$\rightarrow$'}\; \\
+\textsl{node\_stmt}&\rightarrow \textsl{ID} \\
+\textsl{node\_id}  &\rightarrow \textsl{ID}
+\end{align*}
+Und schliesslich f"ur die Regel 
+$\textsl{edgeRHS}   \rightarrow \textsl{edgeop}\; \textsl{node\_id}\; \textsl{edgeRHS}$:
+\begin{align*}
+\textsl{graph}     &\rightarrow \texttt{graph}\; A_1 \\
+                   &\rightarrow \texttt{graph}\; B_1 \\
+A_1                &\rightarrow A_2A_3\\
+A_2                &\rightarrow \texttt{`\{'}\\
+A_3                &\rightarrow \textsl{stmt\_list}\;A_4\\
+A_4                &\rightarrow \texttt{`\}'}\\
+B_1                &\rightarrow B_2B_3\\
+B_2                &\rightarrow \texttt{`\{'}\\
+B_3                &\rightarrow \texttt{`\}'}\\
+\textsl{stmt\_list}&\rightarrow \textsl{ID}\; |\;
+                                \textsl{node\_id}\; \textsl{edgeRHS} \\
+                   &\rightarrow \textsl{stmt}\; C_1\\
+C_1                &\rightarrow C_2\;\textsl{stmt\_list}\\
+C_2                &\rightarrow \texttt{`;'} \\
+\textsl{stmt}      &\rightarrow \textsl{ID}\; |\;
+                                \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edge\_stmt}&\rightarrow \textsl{node\_id}\; \textsl{edgeRHS} \\
+\textsl{edgeRHS}   &\rightarrow \textsl{edgeop}\; \textsl{node\_id}\\
+                   &\rightarrow \textsl{edgeop}\; \color{red}D_1\\
+\color{red}D_1     &\color{red}\rightarrow \textsl{node\_id}\; \textsl{edgeRHS}\\
+\textsl{edgeop}    &\rightarrow \textrm{`\text{---}'}\; |\; \textrm{`$\rightarrow$'}\; \\
+\textsl{node\_stmt}&\rightarrow \textsl{ID} \\
+\textsl{node\_id}  &\rightarrow \textsl{ID}
+\end{align*}
+Damit ist die Grammatik vollst"andig in Chomsky-Normalform umgewandelt.
+\item Nur \textsl{stmt\_list} und \textsl{edgeRHS} werden auf rekursive
+Art verwendet. In beiden F"allen geht es nur darum, eine Folge von
+Statements darzustellen, was mit einem regul"aren Ausdruck auch m"oglich ist.
+Daher ist die Sprache regul"ar.
+
+Man kann auch direkt einen regul"aren Ausdruck angeben. Damit dieser "ubersichtlich
+bleibt, schreiben wir \textsl{ID} f"ur den regul"anre Ausdruck, der die verschiedenen
+IDs beschreibt:
+\[
+\texttt{graph\{%
+(\textsl{ID}(($\rightarrow$|\textrm{---})\textsl{ID})*)*%
+\}}
+\]
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item Standardform (\textbf{S}) 1 Punkt,
+\item Nicht CNF-Regeln (\textbf{C}) 1 Punkt,
+\item Elimination der $\varepsilon$-Regel (\textbf{E}) 1 Punkt,
+Elimination zweier Unit-Rules (\textbf{U}) 2 Punkt,
+\item Sprache ist regul"ar (\textbf{R}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}

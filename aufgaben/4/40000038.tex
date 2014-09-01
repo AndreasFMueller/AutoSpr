@@ -1,0 +1,57 @@
+In der Vorlesung wurde gezeigt, dass die Sprache
+$\{\texttt{a}^n\texttt{b}^n\texttt{c}^n\;|\;n\ge 0\}$
+"uber dem Alphabet $\Sigma=\{\texttt{a},\texttt{b},\texttt{c}\}$
+nicht kontextfrei ist.
+Wenn man die Bedingungen etwas lockert, und nur noch verlangt, dass die
+Anzahl der verschiedenen Zeichen "ubereinstimmt, die Reihenfolge aber
+beliebig sein darf, erh"alt man die Sprache
+\[
+L=\{w\in\Sigma^*\;|\;|w|_\texttt{a}=|w|_\texttt{b}=|w|_\texttt{c}\}.
+\]
+Ist $L$ kontextfrei?
+
+\begin{loesung}
+Nein, auch $L$ ist nicht kontextfrei.
+Man kann dies mit dem Pumping-Lemma f"ur kontextfreie Sprachen nachweisen,
+wobei man sogar das gleiche Beispielwort verwenden kann wie im Falle der
+Sprache $\{ \texttt{a}^n \texttt{b}^n \texttt{c}^n\;|\; n \ge 0\}$ .
+
+Man nimmt dazu an, dass $L$ kontextfrei sei.
+Gem"asst Pumping-Lemma gibt es daher die Pumping-Length $N$.
+Wir konstruieren jetzt ein Wort
+$w=\texttt{a}^N\texttt{b}^N\texttt{c}^N$, welches die Voraussetzungen
+des Pumping-Lemma sicher erf"ullt.
+Es muss also eine Unterteilung $w=uvxyz$ geben, so dass $|vxy|\le N$ ist.
+Diese letzte Bedingung hat zur Folge, dass $v$ und $y$ h"ochstens in
+zwei der drei Bl"ocke $\texttt{a}^N$, $\texttt{b}^N$ oder $\texttt{c}^N$ liegen k"onnen.
+Insbesondere "andert sich beim Pumpen nur die Anzahl von zwei der drei
+Buchstaben, nach auf- oder abpumpen erh"alt man also ein Wort, bei dem 
+die Anzahl jedes der drei Buchstaben nicht mehr gleich ist, also kein
+Wort mehr aus $L$, im Widerspruch zur Aussage des Pumping-Lemma.
+Daher kann $L$ nicht kontextfrei sein.
+\end{loesung}
+
+\begin{diskussion}
+Es gen"ugt nicht, darauf zu verweisen, dass $L$ die Sprache
+$L'=\{ \texttt{a}^n \texttt{b}^n \texttt{c}^n\;|\; n\ge 0\}$ enthalte,
+und dass daher auch $L'$ nicht kontextfrei sein.  Dann k"onnte man n"amlich auch
+argumentieren, dass $L$ die regul"are Sprache $\emptyset$ enthalte, und daher
+regul"ar sei!
+
+Wenn man sich den Pumping-Lemma-Beweis genauer anschaut, kann man auch verstehen,
+warum es nicht reicht. Der Beweis beruht ja darauf, dass aufgepumpte W"orter nicht
+mehr in der Sprache sind. Wenn die Sprache aber mehr W"orter umfasst, dann ist
+es auch schwieriger ``aus der Sprache herauszufallen'', es ist ja jetzt leichter,
+die Bedingung der Sprache zu erf"ullen. Damit ist es m"oglich, dass ein Wort, welches
+in $L'$ nicht aufgepumpt werden kann, in $L$ aufpumpbar wird.
+\end{diskussion}
+
+\begin{bewertung}
+Pumping Lemma f"ur kontextfreie Sprachen ({\bf PL}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+Beispielwort unter Verwendung von $N$ ({\bf W}) 1 Punkt,
+Zerlegung des Wortes ({\bf Z}) 1 Punkt,
+Konsequenzen beim Auf- bzw.~Abpumpen ({\bf A}) 1 Punkt,
+Schlussfolgerung ({\bf S}) 1 Punkt.
+\end{bewertung}
+

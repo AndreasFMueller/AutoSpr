@@ -1,0 +1,28 @@
+In einer SQL INSERT Query m"ussen Spalten der Datenbank und Wert
+in gleicher Zahl angegeben werden:
+\begin{verbatim}
+INSERT INTO blubb(a1, b2, c3) VALUES('wert1', 'wert2', 1291);
+\end{verbatim}
+Es stellt sich die Frage, ob man dies durch die Grammatik bereits
+sicherstellen kann.
+Betrachten Sie dazu die Sprache "uber dem Alphabet 
+$\Sigma= \{ {\tt (}, {\tt )}, {\tt ,}\}$, bestehend aus W"orter der
+Form
+\[
+w=
+\text{\tt (}\underbrace{\text{\tt ,,}\dots\text{\tt ,}}_{n}
+\text{\tt)(}\underbrace{\text{\tt,,}\dots\text{\tt ,}}_{n}\text{\tt )}
+\]
+wobei sich zwischen den beiden Klammern gleich viele Kommata befinden.
+Ist diese Sprache kontextfrei?
+
+\begin{loesung}
+Diese Sprache ist kontextfrei, denn man kann diese W"orter mit folgender
+Grammatik erzeugen
+\begin{align*}
+S&\rightarrow \text{`{\tt (}'}\; V \; \text{`{\tt )}'}\\
+V&\rightarrow \text{`{\tt ,}'}\; V \; \text{`{\tt ,}'}\\
+ &\rightarrow \text{`{\tt )(}'}
+\end{align*}
+\end{loesung}
+

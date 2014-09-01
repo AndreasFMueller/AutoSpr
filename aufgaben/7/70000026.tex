@@ -1,0 +1,65 @@
+In einem Entwicklungsland sollen die aus dem Ausland erhaltenen
+Unterst"utzungsmittel dazu verwendet werden, endlich alle Ortschafen
+mit mindestens 100 Einwohnern ans Stromnetz anzuschliessen.
+Der Bau von Leitungen zwischen einzelnen Ortschaften ist je nach
+Gel"ande unterschiedlich teuer, zum Teil auch schlicht unm"oglich.
+Es wird entschieden, dass man in einer ersten Phase auf Redundanz des
+neu zu erstellenden Netzes verzichten will.
+Der Minister m"ochte endlich wissen,
+ob das vorhandene Geld f"ur das Projekt ausreicht, und ist sehr ungehalten
+dar"uber, dass die Verwaltung so lange braucht, diese Frage zu beantworten.
+Kann man dies erkl"aren?
+
+\begin{loesung}
+Dieses \textsl{STROMNETZ} genannte Problem ist "aquivalent zu
+\textsl{STEINER-TREE} wie folgt.
+Die Ortschaften des Landes entsprechen der Menge $V$ aller Vertizes des
+Graphen. Die untereinander zu verbindenden Ortschaften bilden eine Teilmenge
+$R\subset V$.
+Eine Kante im Graphen $G$ entspricht zwei verbindbaren Ortschaften,
+jeder solchen Kante sind die Kosten f"ur den Bau einer Verbindungsleitung
+zugeordnet.
+Es ist nun eine Menge von Verbindungsleitungen zu w"ahlen, die einen Baum
+(keine Redundanz) bilden und so, dass die Summe der Gewichte das 
+Budget nicht "ubersteigt.
+\begin{align*}
+\textsl{STEINER-TREE}&\leftrightarrow\textsl{STROMNETZ}\\
+\text{Knoten}&\leftrightarrow\text{Ortschaften}\\
+\text{Knoten in $R$}&\leftrightarrow\text{zu erschliessende Ortschaften}\\
+\text{Gewicht $w$ einer Kante}&\leftrightarrow \text{Baukosten einer Verbindungsleitung}\\
+\text{maximales Gewicht $k$}&\leftrightarrow\text{Budget}
+\end{align*}
+Da das Problem \textsl{STEINER-TREE} bekanntermassen NP-vollst"andig ist
+und daher keinen effizienten L"osungsalgorithmus besitzt, ist nicht
+"uberraschend, dass das "aquivalente Problem \textsl{STROMNETZ} von
+der Verwaltung nicht effizient gel"ost werden konnte.
+\end{loesung}
+
+\begin{diskussion}
+\textsl{HAMPATH} ist nicht geeignet, denn Stromnetze werden ja nicht als eine einzige
+Leitung gebaut, die nacheinander durch alle Ortschaften gezogen wird. Ein Stromnetz
+ist nicht die Tour de Suisse.
+
+\textsl{MAX-CUT} ist ebenfalls nicht geeignet. \textsl{MAX-CUT} sucht die maximalen
+Investitionen, die man in den Sand setzen kann, indem man eine Menge von Verbindungen
+durchschneidet. Das ist so ziemlich das Gegenteil von dem, was man tats"achlich machen
+will.
+
+Die Tatsache, dass man ein gewisses Budget $k$ ausgeben kann, k"onnte einen dazu
+verleiten, eine Reduktion auf \textsl{SUBSET-SUM} zu versuchen. Aber in
+\textsl{SUBSET-SUM} kann man nicht abbilden, dass die gebauten Leitungen ein
+zusammenh"angendes Netz bilden m"ussen. \textsl{SUBSET-SUM} w"are die richige
+Wahl, wenn es darum ginge herauszufinden, ob man genau das gesamte Budget ausgeben
+kann, unabh"angig davon, ob damit die Ortschaften tats"achlich mit Strom versorgt
+werden.
+\end{diskussion}
+
+\begin{bewertung}
+L"osungsprinzip Reduktion ({\bf R}) 1 Punkt,
+Auswahl eines geeigneten Vergleichsproblems ({\bf V}) 1 Punkt,
+Reduktionsabbildung f"ur Ortschaften ({\bf O}) 1 Punkt,
+Leitungsl"ange ({\bf L}) 1 Punkt,
+Budget {\bf B}) 1 Punkt,
+Schlussfolgerung NP-vollst"andig ({\bf S}) 1 Punkt.
+\end{bewertung}
+
