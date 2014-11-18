@@ -1,5 +1,5 @@
 #
-# Makefile to build MathI2 script
+# Makefile to build AutoSpr script
 #
 # (c) 2009 Prof Dr Andreas Mueller
 # $Id$
