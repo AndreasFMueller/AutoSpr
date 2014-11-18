@@ -4,7 +4,7 @@
 // (c) 2008 Prof Dr Andreas Mueller, Hochschule Rapperswil
 // $Id: Mine.java,v 1.1 2008/03/12 14:53:20 afm Exp $
 //
-package ch.hsr.mathi2.minesweeper;
+package ch.hsr.autospr.minesweeper;
 
 /**
  * holder class for mine field states.
