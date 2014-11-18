@@ -3,7 +3,7 @@
 //
 // (c) 2012 Prof Dr Andreas Müller, Hochschule Rapperswil
 //
-package ch.hsr.mathi2;
+package ch.hsr.autospr;
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;

@@ -4,7 +4,7 @@
 //
 // (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
 //
-package ch.hsr.mathi2;
+package ch.hsr.autospr;
 
 /**
  * Matcher implementation based on java.lang.String.
