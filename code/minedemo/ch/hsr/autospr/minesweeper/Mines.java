@@ -4,7 +4,7 @@
 //
 // (c) 2008 Prof Dr Andreas Mueller, Hochschule Rapperswil
 //
-package ch.hsr.mathi2.minesweeper;
+package ch.hsr.autospr.minesweeper;
 
 import javax.swing.*;
 import java.awt.*;

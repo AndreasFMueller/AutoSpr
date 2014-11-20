@@ -6,7 +6,7 @@
   The default target builds the application and creates a JAR 
   file build/minesweeper.jar. To run the application use
 
-  java -classpath build/minesweeper.java ch.hsr.mathi2.minedemo.Mines <mines>
+  java -classpath build/minesweeper.java ch.hsr.autospr.minedemo.Mines <mines>
 
   The <mines> argument should specify a mine field speicification
   file, example mine fields are contained in the samples directory.
@@ -47,7 +47,7 @@
     <target name="jar" depends="compile">
 	<jar jarfile="${builddir}/minesweeper.jar">
 	    <fileset dir="${classesdir}">
-		<include name="ch/hsr/mathi2/minesweeper/*.class"/>
+		<include name="ch/hsr/autospr/minesweeper/*.class"/>
 	    </fileset>
 	    <fileset dir="${basedir}">
 		<include name="resources/*.png"/>
@@ -56,35 +56,35 @@
     </target>
 
     <target name="test" depends="jar">
-	<java classname="ch.hsr.mathi2.minesweeper.Mines"
+	<java classname="ch.hsr.autospr.minesweeper.Mines"
 	    classpathref="classpathrun" fork="true">
 	    <arg line="samples/test.mines"/>
 	</java>
     </target>
 
     <target name="wire" depends="jar">
-	<java classname="ch.hsr.mathi2.minesweeper.Mines"
+	<java classname="ch.hsr.autospr.minesweeper.Mines"
 	    classpathref="classpathrun" fork="true">
 	    <arg line="samples/wire.mines"/>
 	</java>
     </target>
 
     <target name="cross" depends="jar">
-	<java classname="ch.hsr.mathi2.minesweeper.Mines"
+	<java classname="ch.hsr.autospr.minesweeper.Mines"
 	    classpathref="classpathrun" fork="true">
 	    <arg line="samples/crossover.mines"/>
 	</java>
     </target>
 
     <target name="splitter" depends="jar">
-	<java classname="ch.hsr.mathi2.minesweeper.Mines"
+	<java classname="ch.hsr.autospr.minesweeper.Mines"
 	    classpathref="classpathrun" fork="true">
 	    <arg line="samples/splitter.mines"/>
 	</java>
     </target>
 
     <target name="and" depends="jar">
-	<java classname="ch.hsr.mathi2.minesweeper.Mines"
+	<java classname="ch.hsr.autospr.minesweeper.Mines"
 	    classpathref="classpathrun" fork="true">
 	    <arg line="samples/and.mines"/>
 	</java>

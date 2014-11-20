@@ -5,7 +5,7 @@
 // (c) 2008 Prof Dr Andreas Mueller, Hochschule Rapperswil
 // $Id: BombActionListener.java,v 1.1 2008/03/12 14:53:20 afm Exp $
 //
-package ch.hsr.mathi2.minesweeper;
+package ch.hsr.autospr.minesweeper;
 
 import java.awt.*;
 import java.awt.event.*;
