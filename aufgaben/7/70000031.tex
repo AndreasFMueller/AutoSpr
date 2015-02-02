@@ -1,0 +1,46 @@
+Eine Firma konnte in einer feindlichen "Ubernahme einen wichtigen Konkurrenten
+aufkaufen. Der Konkurrent ist eigentlich eine Vereinigung von sehr vielen,
+sehr intensiv und effizient zusammenarbeitenden, aber im "Ubrigen weitgehend
+selbst"andigen Abteilungen, alle unter dem selben Dach.
+Das Ziel der "Ubernahme war, daraus die ``Rosinen'' herauszupicken, und
+den Rest zu schliessen. Die Wettbewerbsbeh"orden hatten dies vorausgesehen,
+und als Auflage f"ur die "Ubernahme gemacht, dass keine einzige der Abteilungen
+geschlossen werden d"urfe.
+Daher dachten sich die neuen Eigent"umer den folgenden b"osartigen Plan aus,
+um den gleichen Zweck zu erreichen. Sie teilten die Abteilungen auf zwei 
+verschiedene Standorte auf, und sorgten daf"ur, dass jede Kommunikation zwischen
+den beiden Standorten so ineffizient wurde, dass die Abteilungen kaum mehr
+sinnvoll zusammenarbeiten konnten.
+Dadurch w"urden die einzelnen Abteilungen wirtschaftlich ruiniert, und man
+m"usste sie trotz allem schliessen.
+Die neuen Eigent"umer beauftragten daher eine Beratungsfirma, eine
+Aufteilung zu finden, mit der die Kommunikation zwischen den Abteilungen
+m"oglichst stark behindert w"urde.
+Die Beratungsfirma brauchte daf"ur sehr lange. Warum ist das nicht
+"uberraschend?
+
+\begin{loesung}
+Es handelt sich hier um das Problem \textsl{MAX-CUT}.
+Wir beschreiben eine Reduktion des Problems auf \textsl{MAX-CUT}:
+\begin{align*}
+\text{Abteilung}&\leftrightarrow \text{Vertex} \\
+\text{Kommunikationsbeziehung}&\leftrightarrow \text{Kante} \\
+\text{Kommunikationsvolumen}&\leftrightarrow \text{Gewicht einer Kante}
+\end{align*}
+Die neuen Firmeneigent"umer wollen die Menge der Vertices so in zwei
+Mengen aufteilen, dass die Summe der Gewichte der Kanten, die durch die
+Aufteilung zerschnitten werden, m"oglichst
+gross wird. Dies ist genau die Beschreibung des Problems \textsl{MAX-CUT}.
+
+Das Problem \textsl{MAX-CUT} ist NP-vollst"andig, nach aktuellem Wissen
+gibt es also keinen effizienten (polynomiellen) Algorithmus, der ein
+\textsl{MAX-CUT} Problem l"osen k"onnte.
+\end{loesung}
+
+\begin{bewertung}
+Reduktionsansatz ({\bf R}) 1 Punkt,
+Vergleichsproblem ({\bf M}) 1 Punkt,
+Reduktionsabbildung ({\bf A}) je ein Punkt, maximal 3 Punkte,
+Schlussfolgerung NP-Vollst"andigkeit ({\bf N}) 1 Punkt.
+\end{bewertung}
+
