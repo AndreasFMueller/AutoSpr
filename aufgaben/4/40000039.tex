@@ -1,0 +1,193 @@
+Taschenrechner mit umgekehrter polnischer Notation verwenden einen Stack.
+Mit einer speziellen Taste \keys{ENTER} werden Zahlen auf den Stack
+geschoben. Dies geschieht auch implizit bei Verwendung einer
+Operationstaste, also einer der Tasten \keys{{$+$}}, \keys{{$-$}},
+\keys{{$\times$}}, \keys{{$\div$}}, die ausserdem die obersten
+beiden Elemente auf dem Stack durch das Resultat der Rechenoperation 
+ersetzt. Die Tastenfolgen, die dazu f"uhren, dass alle Zahlen auf dem 
+Stack verarbeitet sind, bilden eine Sprache.
+
+\begin{teilaufgaben}
+\item Warum ist die von so einem Taschenrechner akzeptiert Sprache
+kontextfrei?
+\item Stellen Sie eine Grammatik dieser Sprache auf.
+\item Ist Ihre Grammatik in Chomsky-Normalform? Wenn nein, bringen Sie sie
+in Chomsky-Normalform.
+\end{teilaufgaben}
+
+\begin{hinweis}
+Nehmen Sie zur Vereinfachung an, dass der Taschenrechner nur f"ur ganze
+Zahlen gebaut ist. K"urzen Sie ganze Zahlen in der Grammatik durch
+die Variable \textsl{zahl} ab, und verzichten sie darauf, die Aufl"osung
+dieser Variable in der Grammatik durchzuf"uhren.
+\end{hinweis}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item Die Sprache kann offenbar von einem Stackautomaten verarbeitet werden,
+also ist sie kontextfrei.
+\item Die folgende Grammatik erzeugt korrekte Tastenfolgen:
+\begin{align*}
+S&\rightarrow S \; S \; \textsl{operationstaste}
+\\
+ &\rightarrow S \; \textsl{zahl} \; \textsl{operationstaste}
+\\
+ &\rightarrow \textsl{zahl}\;\keys{ENTER}\; S\;\textsl{operationstaste}
+\\
+ &\rightarrow \textsl{zahl}\;\keys{ENTER}\; \textsl{zahl}\;\textsl{operationstaste}
+\\
+\textsl{operationstaste}&\rightarrow
+\keys{{$+$}}
+\;|\;
+\keys{{$-$}}
+\;|\;
+\keys{{$\times$}}
+\;|\;
+\keys{{$\div$}}
+\\
+\end{align*}
+Darin steht die Variable $S$ f"ur eine Folge von Tastendr"ucken, die
+alle Zahlen auf dem Stack verarbeitet.
+\item
+Die Grammatik hat nicht Chomsky-Normalform, aber sie ist leicht in
+CNF zu bringen. Die Bedingung, dass die Startvariable auf der rechten
+Seite nicht vorkommen darf, wird durch die Grammatik
+\begin{align*}
+\color{red}S_0&\color{red}\rightarrow S
+\\
+S&\rightarrow S \; S \; \textsl{operationstaste}
+\\
+ &\rightarrow S \; \textsl{zahl} \; \textsl{operationstaste}
+\\
+ &\rightarrow \textsl{zahl}\;\keys{ENTER}\; S\;\textsl{operationstaste}
+\\
+ &\rightarrow \textsl{zahl}\;\keys{ENTER}\; \textsl{zahl}\;\textsl{operationstaste}
+\\
+\textsl{operationstaste}&\rightarrow
+\keys{{$+$}}
+\;|\;
+\keys{{$-$}}
+\;|\;
+\keys{{$\times$}}
+\;|\;
+\keys{{$\div$}}
+\end{align*}
+erf"ullt. Diese Grammatik hat aber eine Unit-Rule $S_0\to S$, die als n"achstes
+eliminiert werden muss:
+\begin{align*}
+\color{red}S_0&\color{red}\rightarrow S \; S \; \textsl{operationstaste}
+\\
+ &\color{red}\rightarrow S \; \textsl{zahl} \; \textsl{operationstaste}
+\\
+ &\color{red}\rightarrow \textsl{zahl}\;\keys{ENTER}\; S\;\textsl{operationstaste}
+\\
+ &\color{red}\rightarrow \textsl{zahl}\;\keys{ENTER}\; \textsl{zahl}\;\textsl{operationstaste}
+\\
+S&\rightarrow S \; S \; \textsl{operationstaste}
+\\
+ &\rightarrow S \; \textsl{zahl} \; \textsl{operationstaste}
+\\
+ &\rightarrow \textsl{zahl}\;\keys{ENTER}\; S\;\textsl{operationstaste}
+\\
+ &\rightarrow \textsl{zahl}\;\keys{ENTER}\; \textsl{zahl}\;\textsl{operationstaste}
+\\
+\textsl{operationstaste}&\rightarrow
+\keys{{$+$}}
+\;|\;
+\keys{{$-$}}
+\;|\;
+\keys{{$\times$}}
+\;|\;
+\keys{{$\div$}}
+\end{align*}
+Einige Regeln beinhalten mehr als zwei Symbole auf der rechten Seite, 
+wobei eines auch ein Terminalsymbol sein kann. Wir eliminieren die
+Terminalsymbole durch eine neue Regel:
+\begin{align*}
+S_0&\rightarrow S \; S \; \textsl{operationstaste}
+\\
+ &\rightarrow S \; \textsl{zahl} \; \textsl{operationstaste}
+\\
+ &\rightarrow \textsl{zahl}\; {\color{red}E} \; S\;\textsl{operationstaste}
+\\
+ &\rightarrow \textsl{zahl}\; {\color{red}E} \; \textsl{zahl}\;\textsl{operationstaste}
+\\
+S&\rightarrow S \; S \; \textsl{operationstaste}
+\\
+ &\rightarrow S \; \textsl{zahl} \; \textsl{operationstaste}
+\\
+ &\rightarrow \textsl{zahl} \; {\color{red}E} \; S\;\textsl{operationstaste}
+\\
+ &\rightarrow \textsl{zahl}\; {\color{red}E} \; \textsl{zahl}\;\textsl{operationstaste}
+\\
+\textsl{operationstaste}&\rightarrow
+\keys{{$+$}}
+\;|\;
+\keys{{$-$}}
+\;|\;
+\keys{{$\times$}}
+\;|\;
+\keys{{$\div$}}
+\\
+\color{red}E&\color{red}\rightarrow\keys{ENTER}
+\end{align*}
+Die Folgen von mehr als zwei Variablen auf der rechten Seite k"onnen jetzt
+ebenfalls eliminiert werden:
+\begin{align*}
+S_0&\rightarrow {\color{red}A_1} \; \textsl{operationstaste}
+\\
+\color{red}A_1&\color{red}\rightarrow S \; S 
+\\
+S_0&\rightarrow {\color{red}A_2} \; \textsl{operationstaste}
+\\
+\color{red}A_2&\color{red}\rightarrow S \; \textsl{zahl}
+\\
+S_0&\rightarrow {\color{red}A_3} \; \textsl{operationstaste}
+\\
+\color{red}A_3&\color{red}\rightarrow A_4 \; S
+\\
+\color{red}A_4&\color{red}\rightarrow \textsl{zahl} \; E
+\\
+S_0&\rightarrow {\color{red}A_5} \; \textsl{operationstaste}
+\\
+\color{red}A_5&\color{red}\rightarrow A_4 \; \textsl{zahl}
+\\
+S&\rightarrow {\color{red}A_1} \; \textsl{operationstaste}
+\\
+S&\rightarrow {\color{red}A_2} \; \textsl{operationstaste}
+\\
+S&\rightarrow {\color{red}A_3} \;\textsl{operationstaste}
+\\
+S&\rightarrow {\color{red}A_5} \; \textsl{operationstaste}
+\\
+\textsl{operationstaste}&\rightarrow
+\keys{{$+$}}
+\;|\;
+\keys{{$-$}}
+\;|\;
+\keys{{$\times$}}
+\;|\;
+\keys{{$\div$}}
+\\
+E&\rightarrow\keys{ENTER}
+\end{align*}
+Damit hat die Grammatik Chomsky-Normalform.
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item
+Sprachen, die mit einem Stackautomaten verarbeitet werden k"onnen, sind
+kontextfrei ({\bf A}) 1 Punkt,
+\item
+Grammatik erlaubt beliebige Berechnungen zu verkn"upfen wie in der
+Regel $S\to S\;S\;\textsl{operationstaste}$ ({\bf R}) 1 Punkt,
+Regeln f"ur Verkn"upfung von Zahlen mit Ausdr"ucken ({\bf ZS/SZ}) 1 Punkt,
+Regel f"ur Verkn"upfung zweier Zahlen ({\bf 2}) 1 Punkt,
+\item
+Unit Rule entfernt ({\bf U}) 1 Punkt, Aufl"osung von Folgen mit mehr
+als 2 Variablen ({\bf F}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
+
