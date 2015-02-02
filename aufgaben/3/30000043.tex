@@ -1,0 +1,47 @@
+Ist die Sprache
+\[
+L=\{
+\texttt{a}^s
+\texttt{b}^t
+\texttt{a}^{t-s}
+\,|\, 0\le s\le t
+\}
+\]
+"uber dem Alphabet $\Sigma=\{\texttt{a},\texttt{b}\}$ regul"ar?
+
+\begin{loesung}
+Nehmen wir an, $L$ w"are regul"ar, und $N$ sei die Pumping length. 
+Wir bilden das Wort $w=\texttt{a}^N\texttt{b}^N$. $w$ ist sicher in $L$,
+wie man mit der Wahl $s=t=N$ sofort einsieht. 
+Nach dem Pumping Lemma gibt es eine Zerlegung $w=xyz$ mit $|xy|\le N$
+und $|y|\ge 1$,
+insbesondere muss $y$ vollst"andig aus Buchstaben \texttt{a} bestehen.
+Nach $k$-fachem Aufpumpen erh"alt man
+\[
+w_k=\texttt{a}^{N+(k-1)|y|}\texttt{b}^N.
+\]
+Dies kann aber nicht mehr ein Wort in $L$ sein, denn die W"orter in $L$
+haben immer gleich viele Buchstaben \texttt{a} und \texttt{b}:
+\[
+|w|_{\texttt{a}}
+=s+(t-s)=t=
+|w|_{\texttt{b}}.
+\qquad\text{aber}\qquad
+|w_k|_{\texttt{a}}
+=N+(k-1)|y|\ne
+|w_k|_{\texttt{b}}=N.
+\]
+Dieser Widerspruch zeigt, dass die Annahme, $L$ sei regul"ar, nicht zu
+halten ist. Also kann $L$ nicht regul"ar sein.
+\end{loesung}
+
+\begin{bewertung}
+Anwendung des Pumping Lemma f"ur regul"are Sprachen ({\bf PL}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+Wahl eines geeigneten Wortes ({\bf W}) 1 Punkt,
+Aufteilung des Wortes in $uvw$ ({\bf A}) 1 Punkt,
+Erkenntnis, dass das Wort beim Aufpumpen aus der Sprache f"allt ({\bf L})
+1 Punkt,
+Schlussfolgerung, Sprache ist nicht regul"ar ({\bf S}) 1 Punkt.
+\end{bewertung}
+
