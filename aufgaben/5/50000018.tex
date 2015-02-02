@@ -1,0 +1,98 @@
+Betrachten Sie die Turingmaschine $M$ mit Inputalphabet
+$\Sigma=\{\texttt{0},\texttt{1}\}$ und folgendem Zustandsdiagramm:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{}
+	&*+\txt{}
+		&{q_2}\ar[r]^{\texttt{0}\to\texttt{0},R}
+		      \ar[ld]_{\texttt{1}\to\texttt{0},R}
+			&*++[o][F=]{q_\text{reject}}
+\\
+*+\txt{} \ar[r]
+	&{q_0}\ar[r]^{\texttt{1}\to\texttt{1},R}
+	      \ar[dr]_{{\scriptstyle\texttt{0}\to\texttt{0},R}\atop{\scriptstyle\blank\to\blank,R}}
+		&{q_1}\ar[u]_{\texttt{0}\to\texttt{1},L}
+		      \ar[d]^{{\scriptstyle\texttt{1}\to\texttt{1},R}\atop{\scriptstyle\blank\to\blank,R}}
+\\
+*+\txt{}
+	&*+\txt{}
+		&*++[o][F=]{q_\text{accept}}
+			&*+\txt{}
+}
+\]
+\begin{teilaufgaben}
+\item Was steht nach der Verarbeitung des Wortes \texttt{10010} auf dem Band?
+\item Was steht nach der Verarbeitung des Wortes \texttt{100011} auf dem Band?
+\item K"onnen Sie ein Beispiel f"ur ein Wort geben, welches von dieser
+Turingmaschine verworfen wird?
+\item Die Turingmaschine $M$ ist nicht deterministisch, weil im Zustand
+$q_2$ kein "Ubergang f"ur das Zeichen $\blank$ definiert ist.
+Kann es vorkommen, dass im Zustand $q_2$ das Zeichen $\blank$ gelesen
+wird?
+\item Geben Sie eine einfache Beschreibung des Wortes, das nach
+Verarbeitung eines Wortes $w$ mit $M$ auf dem Band steht.
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item Auf dem Wort \texttt{10010} wird folgende Berechnung durchgef"uhrt,
+die Kopfposition wird durch die Farbe {\color{red}rot} angezeigt:
+\begin{center}
+\begin{tabular}{>{$}r<{$}|cccccccc}
+q_0& \color{red} 1 & 0 & 0 & 1 & 0 & \blank & \blank & \blank \\
+q_1& 1 & \color{red} 0 & 0 & 1 & 0 & \blank & \blank & \blank \\
+q_2& \color{red} 1 & 1 & 0 & 1 & 0 & \blank & \blank & \blank \\
+q_0& 0 & \color{red} 1 & 0 & 1 & 0 & \blank & \blank & \blank \\
+q_1& 0 & 1 & \color{red} 0 & 1 & 0 & \blank & \blank & \blank \\
+q_2& 0 & \color{red} 1 & 1 & 1 & 0 & \blank & \blank & \blank \\
+q_0& 0 & 0 & \color{red} 1 & 1 & 0 & \blank & \blank & \blank \\
+q_1& 0 & 0 & 1 & \color{red} 1 & 0 & \blank & \blank & \blank \\
+q_\text{accept}& 0 & 0 & 1 & 1 & \color{red} 0 & \blank & \blank & \blank \\
+\end{tabular}
+\end{center}
+Das Resultat der Rechnung ist also \texttt{00110}.
+\item Die Berechnung auf dem Wort \texttt{100011} ist
+\begin{center}
+\begin{tabular}{>{$}r<{$}|cccccccc}
+q_0& \color{red} 1 & 0 & 0 & 0 & 1 & 1 & \blank & \blank \\
+q_1& 1 & \color{red} 0 & 0 & 0 & 1 & 1 & \blank & \blank \\
+q_2& \color{red} 1 & 1 & 0 & 0 & 1 & 1 & \blank & \blank \\
+q_0& 0 & \color{red} 1 & 0 & 0 & 1 & 1 & \blank & \blank \\
+q_1& 0 & 1 & \color{red} 0 & 0 & 1 & 1 & \blank & \blank \\
+q_2& 0 & \color{red} 1 & 1 & 0 & 1 & 1 & \blank & \blank \\
+q_0& 0 & 0 & \color{red} 1 & 0 & 1 & 1 & \blank & \blank \\
+q_1& 0 & 0 & 1 & \color{red} 0 & 1 & 1 & \blank & \blank \\
+q_2& 0 & 0 & \color{red} 1 & 1 & 1 & 1 & \blank & \blank \\
+q_0& 0 & 0 & 0 & \color{red} 1 & 1 & 1 & \blank & \blank \\
+q_1& 0 & 0 & 0 & 1 & \color{red} 1 & 1 & \blank & \blank \\
+q_\text{accept}& 0 & 0 & 0 & 1 & \color{red} 1 & 1 & \blank & \blank \\
+\end{tabular}
+\end{center}
+Das Resultat der Rechnung ist also \texttt{000111}.
+\item Es gibt kein solches Wort.
+Der Zustand $q_2$ ist nur erreichbar von $q_1$ aus, wenn auf dem
+Feld rechts vom aktuellen Feld eine \text{0} Stand. 
+Dieses Feld wurde aber erreicht vom Zustand $q_0$ aus, weil auf
+dem Feld links davon, also dem aktuellen Feld, eine \texttt{1} stand.
+Wenn die Maschine im Zustand $q_2$ ist, befindet sich also links vom
+aktuellen Feld immer eine \texttt{1}, der "Ubergang zu $q_\text{reject}$
+wird gar nie verwendet.
+\item In Teilaufgabe c) wurde bereits gezeigt, dass im Zustand $q_2$
+immer ein Zeichen \texttt{1} gelesen wird, der Fall kann also nicht
+eintreten.
+\item
+Die Maschine schiebt eine eventuell vorhandene f"uhrende \texttt{1}
+"uber alle \texttt{0} hinweg, bis links von der zweiten \texttt{1} steht.
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+Resultat in Teilaufgabe a) ({\bf A}) 1 Punkt,
+Resultat in Teilaufgabe b) ({\bf B}) 1 Punkt,
+Analyse warum in Zustand $q_2$ nur eine \texttt{1} auf dem Feld links
+stehen kann ({\bf Q}) 2 Punkte,
+Verwendung der Analyse f"ur Teilaufgabe d) ({\bf N}) 1 Punkt,
+Beschreibung der Funktion der Turingmaschine ({\bf F}) 1 Punkt.
+\end{bewertung}
+
