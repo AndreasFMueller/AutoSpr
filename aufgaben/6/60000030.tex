@@ -1,0 +1,61 @@
+Primzahlzwillinge sind aufeinanderfolgende ungerade Zahlen, die beide
+Primzahlen sind, zum Beispiel $(3,5)$, $(5,7)$, $(11,13)$, $(17,19)$,\dots.
+Die Primzahlzwillings-Vermutung besagt, dass es unendlich viele
+Primzahlzwillinge gibt, sie konnte bisher weder bewiesen noch wiederlegt
+werden.
+
+\begin{teilaufgaben}
+\item Formulieren Sie das Entscheidungsproblem ``Geh"ort die Zahl $n$ zu
+einem Primzahlzwillingspaar?'' als Sprachproblem.
+\item Ist die in a) definierte Sprache entscheidbar?
+\item Jemand hat eine Funktion \texttt{boolean zwillingstest(BigInteger n)}
+geschrieben, die herausfinden kann, ob die Zahl $n$ zu einem
+Primzahlzwillingspaar geh"ort.
+Gibt es eine M"oglichkeit, maschinell zu pr"ufen, ob eine solche Funktion
+in allen F"allen korrekt arbeitet?
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item Sei $\Sigma=\{\texttt{9},\texttt{1}\}$. Die Sprache
+\[
+L=\left\{w\in\Sigma^*\,\left|
+\begin{minipage}{4truein}
+$w$ ist die Bin"arcodierung einer Zahl $n$, die eine Primzahl ist
+so, dass $n-2$ oder $n+2$ ebenfalls eine Primzahl ist.
+\end{minipage}
+\right.
+\right\}
+\]
+Enth"alt genau die Bin"ardarstellungen von Zahlen, die zu einem
+Primzahlzwillingspaar geh"oren.
+\item
+Ein Entscheidungsalgorithmus f"ur $L$ geht wie folgt vor:
+\begin{enumerate}
+\item Pr"ufe, ob $n$ ungerade ist. Falls $n$ gerade ist: $q_\text{reject}$
+\item Pr"ufe, ob $n$ eine Primzahl ist (mit irgend einem der bekannten
+Testalgorithmen f"ur Primzahlen). Falls $n$ keine Primzahl ist:
+$q_{\text{reject}}$
+\item Pr"ufe ob $n-2$ oder $n+2$ Primzahlen sind. Falls beide keine
+Primzahlen sind: $q_{\text{reject}}$, andernfalls $q_{\text{accept}}$
+\end{enumerate}
+\item
+Eine Funktion wie \texttt{zwillingstest} ist eine Turingmaschine, die
+eine Turing erkennbare Sprache $L'=L(\texttt{zwillingstest})$ definiert.
+Die Aufgabe fragt nach einer Entscheidungsprozedur, welche erlauben
+w"urde festzustellen, ob die von \texttt{zwillingstest} erkannte
+Sprache $L'$ die Eigenschaft hat, gleich $L$ zu sein. Diese
+Eigenschaft ist nicht trivial: die Sprache $L$ hat diese Eigenschaft,
+die Sprache $\emptyset$ hat sie nicht. Nach dem Satz von Rice ist
+die Eigenschaft nicht entscheidbar.
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+"Ubersetzung ein Sprachproblem ({\bf "U}) 1 Punkt,
+Drei wesentliche Schritte f"ur den Entscheidungsalgorithmus ({\bf A})
+je 1 Punkt, maximal 3 Punkte,
+Formulierung einer nichttrivialen Eigenschaft ({\bf E}) 1 Punkt,
+Anwendung des Satzes von Rice ({\bf R}) 1 Punkt.
+\end{bewertung}
+
