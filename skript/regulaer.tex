@@ -756,10 +756,10 @@ gilt. Dann leitet man daraus einen Widerspruch ab.
 \begin{figure}
 \begin{center}
 \begin{tabular}{l}
-\includegraphics[width=0.9\hsize]{images/pl-2.pdf}\\
-\includegraphics[width=0.9\hsize]{images/pl-1.pdf}\\
-\includegraphics[width=0.9\hsize]{images/pl-3.pdf}\\
-\includegraphics[width=0.9\hsize]{images/pl-4.pdf}
+\includegraphics{images/pl-2.pdf}\\
+\includegraphics{images/pl-1.pdf}\\
+\includegraphics{images/pl-3.pdf}\\
+\includegraphics{images/pl-4.pdf}
 \end{tabular}
 \end{center}
 \caption{Anwendung des Pumping-Lemmas. Ein gen"ugend langes Wort
@@ -1066,13 +1066,13 @@ erreichten Zust"ande mit einer Markierung versieht.
 \begin{center}
 \begin{tabular}{cccc}
 &%
-\includegraphics[width=0.35\hsize]{images/reg-2}&
+\includegraphics{images/reg-2}&
 \raisebox{60pt}{$\overset{\displaystyle\text{\tt b}}\longrightarrow$}&
-\includegraphics[width=0.35\hsize]{images/reg-3}\\
+\includegraphics{images/reg-3}\\
 \raisebox{60pt}{$\overset{\displaystyle\text{\tt a}}\longrightarrow$}&
-\includegraphics[width=0.35\hsize]{images/reg-4}&
+\includegraphics{images/reg-4}&
 \raisebox{60pt}{$\overset{\displaystyle\text{\tt a}}\longrightarrow$}&
-\includegraphics[width=0.35\hsize]{images/reg-5}
+\includegraphics{images/reg-5}
 \end{tabular}
 \end{center}
 \caption{Verarbeitung des Wortes {\tt baa} durch den NEA von
@@ -1461,10 +1461,10 @@ ist auch $L_1\cup L_2$ regul"ar.
 
 \begin{figure}
 \begin{center}
-\includegraphics[height=0.4\hsize]{images/nea-5}
+\includegraphics{images/nea-5}
 \qquad
 \qquad
-\includegraphics[height=0.4\hsize]{images/nea-6}
+\includegraphics{images/nea-6}
 \end{center}
 \caption{Konstruktion eines NEA 
 f"ur die Sprache $L(A_1)\cup L(A_2)$.\label{regulaer:vereinigung}}
@@ -1772,18 +1772,18 @@ ist ideal daf"ur geeignet. Die folgende Verkettung funktioniert:
 F\"ur die allgemeine Konstruktion gehen wir aus
 von zwei Automaten $A_1$ und $A_2$:
 \begin{center}
-\includegraphics[width=0.6\hsize]{images/nea-1}
+\includegraphics{images/nea-1}
 \end{center}
 Ein Automat f"ur die Verkettung entsteht, indem man
 die Akzeptierzust"ande im ersten Automaten "uber
 $\varepsilon$-"Uberg"ange mit dem
 Startzustand des zweiten verbindet:
 \begin{center}
-\includegraphics[width=0.6\hsize]{images/nea-2}
+\includegraphics{images/nea-2}
 \end{center}
 Die $\varepsilon$-"Uberg"ange
-fungieren als Einbahnstrassen und stellen sicher, dass auch
-die Automaten selbst nicht ver"andert werden.
+fungieren als Einbahnstrassen und stellen sicher, auch innerhalb der
+einzelnen Automaten keine neuen akzeptierten W"orter entstehen k"onnen.
 
 Etwas formeller kann man das Resultat im folgenden Satz zusammenfassen.
 
@@ -1936,6 +1936,13 @@ F'&=\{q'\}\\
 \end{cases}
 \end{align*}
 \end{proof}
+\subsubsection{Variante: mindestens eine Wiederholung}
+Die Sprache $LL^*$ besteht aus Verkettungen von W"ortern aus $L$,
+im Unterschied zu $L^*$ kommt aber mindestens ein Wort vor.
+Einen Automaten daf"ur kann man auf verschiedene Arten gewinnen,
+sie laufen aber alle im Wesentlichen auf die L"osung
+\includegraphics[width=0.5\hsize]{images/nea-4}
+hinaus.
 
 \subsubsection{Automat zur Alternative $L_1\cup L_2$}
 \index{Alternative}
@@ -2493,8 +2500,8 @@ akzeptiert.
 \index{Laufzeit!eines DEA}
 \index{Laufzeit!eines NEA}
 Ein DEA hat immer Laufzeit $O(n)$, d.\,h.~ein Regex-Matcher auf der
-Basis eines DEA wird erkennen, ob ein Inputstring passt innerhalb 
-einer Zeit, die proportional zur L"ange des Strings ist.
+Basis eines DEA wird innerhalb einer Zeit proportional zur
+L"ange des Inputstrings erkennen, ob ein Inputstring passt.
 Die einfachste Implementation eines NEA hingegen wird alle M"oglichkeiten
 von nicht eindeutigen "Uberg"angen durchprobieren m"ussen, mit
 m"oglicherweise exponentieller Laufzeit. Normalerweise sind in der

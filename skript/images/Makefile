@@ -7,7 +7,7 @@
 all:	cfg turing nea lang red comp pl reg mine graph stack
 
 REGFILES = reg-1.pdf reg-2.pdf reg-3.pdf reg-4.pdf reg-5.pdf reg-6.pdf
-NEAFILES = nea-1.pdf nea-2.pdf nea-3.pdf nea-4.pdf nea-5.pdf
+NEAFILES = nea-1.pdf nea-2.pdf nea-3.pdf nea-4.pdf nea-5.pdf nea-6.pdf nea-7.pdf
 CFGFILES = cfg-1.pdf cfg-2.pdf
 TURINGFILES = turing-1.pdf turing-2.pdf turing-3.pdf turing-4.pdf
 LANGFILES = lang-1.pdf lang-2.pdf lang-3.pdf lang-4.pdf lang-5.pdf lang-6.pdf
@@ -28,7 +28,7 @@ timestamp:	$(REGFILES) $(NEAFILES) $(CFGFILES) $(TURINGFILES) \
 nea:	$(NEAFILES)
 $(NEAFILES):	nea.mp Makefile
 	TEX=latex mpost nea.mp
-	for i in 1 2 3 4 5 6; \
+	for i in 1 2 3 4 5 6 7; \
 	do \
 		mptopdf nea.$${i}; \
 	done
