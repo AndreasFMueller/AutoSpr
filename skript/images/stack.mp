@@ -20,7 +20,6 @@ drawarrow (-10,0)--(210,0);
 pickup pencircle scaled 3pt;
 
 draw (0,0);	label.bot(btex $p$ etex, (0,0));
-draw (80,0);	label.bot(btex $r$ etex, (80,0));
 draw (200,0);	label.bot(btex $q$ etex, (200,0));
 
 pickup pencircle scaled 0.5pt;
@@ -33,6 +32,9 @@ label.rt(btex Stack etex, (0,50));
 
 label.urt(btex $b,?\to\varepsilon$ etex, (195,5)) withcolor(1,1,1);
 label.ulft(btex $a,\varepsilon\to ?$ etex, (5,5)) withcolor(1,1,1);
+
+pickup pencircle scaled 3pt;
+draw (80,0) withcolor(1,0,0);	label.bot(btex $r$ etex, (80,0)) withcolor(1,0,0);
 
 endfig;
 
