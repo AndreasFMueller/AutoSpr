@@ -713,6 +713,13 @@ und erh"alt den minimalen Automaten:
 			&*++[o][F=]{z_3}\ar@(ur,dr)^{0,1}
 }
 \]
+
+Der Vergleich von zwei deterministischen endlichen Automaten ist zwar
+mit Hilfe des Minimalautomaten m"oglich, dies ist jedoch nicht der
+bestm"ogliche Algorithmus.
+Ein Algorithmus mit linearer Laufzeit wurde von Hopcroft und Karp
+angegeben.
+
 \subsection{Pumping Lemma f"ur regul"are Sprachen\label{regulaer:pumpinglemma}}
 \index{Pumping Lemma!f\"ur regul\"are Sprachen}
 \begin{figure}
@@ -1440,6 +1447,13 @@ $A''$ und $B''$.
 gleich, wenn $A''$ und $B''$ identisch sind.
 \end{enumerate}
 \end{proof}
+
+Der hier vorgeschlagene Beweis ist allerdings oft nicht praktikabel.
+Der aus dem NEA erzeugte DEA hat im schlechtesten Fall $2^n$
+Zust"ande, wenn der NEA $n$ Zust"ande hatte, die Laufzeit des
+Algorithmus ist also exponentiell in der Gr"osse des NEA.
+Ein wesentlich schnellerer Algorithmus wurde 2015 von Bonchi und Pous
+gefunden \cite{skript:bonchi-pous}.
 
 \subsection{Mengenoperationen\label{regulaer:mengenoperationen}}
 \index{Mengenoperationen}
