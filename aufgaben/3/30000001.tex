@@ -56,14 +56,14 @@ Schleife an den Zust"anden $q_1$ oder $q_5$ nutzen kann, weil das Wort
 zu kurz ist, um wieder $q_3$ zu erreichen. Die verbleibenden Pfeile,
 die das Wort nutzen kann, "andern also mit jedem Zeichen den Rest
 der Zustandsnummer bei Teilung durch zwei. Man kann das symbolisieren,
-in dem man die $q_1$, $q_2$ und $q_3$ schwarz einf"arbt, die anderen
+in dem man die $q_1$, $q_3$ und $q_5$ schwarz einf"arbt, die anderen
 weiss. Ein Zeichen l"asst dann immer die Farbe wechseln. Mit drei Zeichen
 landet man auf weiss, aber der einzige Akzeptierzustand ist schwarz,
 also ist es nicht m"oglich, ein Wort der L"ange drei zu akzeptieren.
 
 Noch ein weiteres Argument verl"auft wie folgt:
 Zun"achst halten wir fest, dass der Automat auch keine W"orter der
-L"ange $1$ akzepiert, es gibt keine Pfeile, welche von $q_3$ nach
+L"ange $1$ akzeptiert, es gibt keine Pfeile, welche von $q_3$ nach
 $q_3$ zur"uck f"uhren. Ein Wort der L"ange drei muss also mindestens
 die Zust"ande $q_2$ oder $q_4$ erreichen. Eine Zustands"anderung von
 dort zur"uck zu $q_3$ ergibt zwar ein akzeptiertes Wort der L"ange
@@ -91,7 +91,7 @@ welches L"ange $0$ hat. Insgesamt sind dies $9$ verschiedene W"orter
 {\tt ud},{\tt du}, \varepsilon
 \}
 \]
-\item Der Automat akzepiert alle W"orter der Form
+\item Der Automat akzeptiert alle W"orter der Form
 \[
 \text{\tt uu}
 \text{\tt u}^n
