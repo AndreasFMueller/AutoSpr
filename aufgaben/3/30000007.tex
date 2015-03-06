@@ -1,11 +1,14 @@
 Konstruieren sie f"ur jede der folgenden Sprachen "uber dem Alphabet
-$\Sigma=\{{\tt 0},{\tt 1}\}$ einen minimalen DEA:
+$\Sigma=\{{\tt 0},{\tt 1}\}$ einen NEA. Reduzieren Sie diesen f"ur die
+Teilaufgaben a)-3) auf einen minimalen DEA.
 \begin{teilaufgaben}
 \item $L_1=\{w\in\Sigma^*\,|\,\text{$w$ enth"alt mindestens zwei {\tt 1} nacheinander}\}$
 \item $L_2=\{w\in\Sigma^*\,|\,\text{$w$ ist eine durch drei teilbare Bin"arzahl}\}$
 \item $L_3=L_1\cap L_2$
 \item $L_4=L_1\setminus L_2$
 \item $L_5=L_1\cup L_2$
+\item $L_6=L_1L_2$
+\item $L_7=L_1^*$
 \end{teilaufgaben}
 
 \begin{loesung}
@@ -413,6 +416,35 @@ mit nur noch 7 Zust"anden:
 *+\txt{}
         &{12} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
                 &{32} \ar[ur]^{\tt 1} \ar[ul]^{\tt 0}
+}
+\]
+\item $L_6$ ist die Verkettung der zwei Sprachen $L_1$ und $L_2$.
+Den zug"origen NEA konstruiert man, indem man die beiden Teilautomaten
+mit einem $\varepsilon$-"Ubergang aneinanderh"angt:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{q_{1}} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
+                &{q_{3}} \ar@/^/[l]^{\tt 0} \ar[r]^{\tt 1} 
+                        &{q_7} \ar@(ur,ul)_{{\tt 0},{\tt 1}}
+				\ar[r]^{\varepsilon}
+        &*++[o][F=]{0} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
+                &{1} \ar@/^/[r]^{\tt 0} \ar@/^/[l]^{\tt 1}
+                        &{2} \ar@/^/[l]^{\tt 0} \ar@(ur,dr)^{\tt 1}
+}
+\]
+\item
+Die Stern-Konstruktion liefert den folgenden Automaten f"ur $L_7$
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&*++[o][F=]{*} \ar[r]^{\varepsilon}
+        &{q_{1}} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
+                &{q_{3}} \ar@/^/[l]^{\tt 0} \ar[r]^{\tt 1} 
+                        &{q_{7}} \ar@(dr,ur)_{{\tt 0},{\tt 1}}
+				\ar@/^20pt/[lll]^{\varepsilon}
 }
 \]
 \end{teilaufgaben}
