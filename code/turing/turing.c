@@ -508,7 +508,7 @@ void	usage(char *progname) {
 	printf("and dumps its contents reordered to standard output. It then\n");
 	printf("reads the data tape (if specified) and positions the read/write\n");
 	printf("head at the beginning or the offset specified with the -o option.\n"),
-	printf("It then simulates the machine and writes the resulting tape contnts\n");
+	printf("It then simulates the machine and writes the resulting tape contents\n");
 	printf("to standard output.\n");
 	printf("Options:\n");
 	printf("  -v                 Verbose output, every step of the machine is displayed\n");
