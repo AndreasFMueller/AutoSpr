@@ -1955,8 +1955,14 @@ Die Sprache $LL^*$ besteht aus Verkettungen von W"ortern aus $L$,
 im Unterschied zu $L^*$ kommt aber mindestens ein Wort vor.
 Einen Automaten daf"ur kann man auf verschiedene Arten gewinnen,
 sie laufen aber alle im Wesentlichen auf die L"osung
-\includegraphics[width=0.5\hsize]{images/nea-4}
-hinaus.
+\begin{center}
+\includegraphics[width=0.5\hsize]{images/nea-7}
+\end{center}
+hinaus. Wesentlich ist, dass man den Automaten durchlaufen muss, bevor
+etwas akzeptiert werden kann, und dass man von den Akzeptierzust"anden
+auch wieder zum Startzustand zur"uckkehren kann. Dabei darf allerdings
+kein ``Kurzschluss'' entstehen, man muss eine Einbahnstrasse aus
+$\varepsilon$-"Uberg"angen verwenden.
 
 \subsubsection{Automat zur Alternative $L_1\cup L_2$}
 \index{Alternative}
