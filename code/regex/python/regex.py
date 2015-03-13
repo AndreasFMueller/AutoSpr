@@ -3,7 +3,7 @@ import re
 r1 = ""
 r2 = ""
 i = 0
-while i < 30:
+while i < 29:
 	i += 1
 	r1 += "a?"
 	r2 += "a"
