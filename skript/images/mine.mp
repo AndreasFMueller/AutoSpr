@@ -6,7 +6,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 verbatimtex
-\documentclass{book}
+\documentclass[12pt]{book}
 \usepackage{times}
 \usepackage{amsmath}
 \usepackage{amssymb}
