@@ -1835,72 +1835,52 @@ Die Stern-Operation verlangt, dass man einen Automaten mehrfach
 durchlaufen k"onnen muss.
 Dies k"onnte man mit einem $\varepsilon$-"Ubergang
 von den Akzeptierzust"anden direkt zum Startzustand realisieren.
-Dadurch "andert man aber den Automaten, und es ist a priori nicht
-klar, dass man dadurch die Sprache nicht ver"andert. Der folgende
-Automat akzeptiert genau die Strings aus einer ungeraden Anzahl Nullen:
-\begin{equation}
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-	&{}\ar@/^/[r]^{\tt 0}
-		&*++[o][F=]{}\ar@/^/[l]^{\tt 0}
-}
-\label{ungeradenullen}
-\end{equation}
-Verbindet man den Akzeptierzustand mit dem Startzustand mit einem
-$\varepsilon$-"Ubergang, dann entsteht:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-	&{}\ar@/^/[r]^{\tt 0}
-		&*++[o][F=]{}\ar@/^/[l]^{\tt 0}\ar@/^20pt/[l]^{\varepsilon}
-}
-\]
-Dieser Automat akzeptiert Strings beliebiger L"ange $>0$, was
-man von $L^*$ zwar erwartet, was aber im ersten Moment doch
-etwas "uberraschend ist.
+Dadurch "andert man aber den Automaten f"ur die Sprache $L$,
+der Automat ist nicht mehr eine wiederverwendbare Einheit.
 
-Es fehlt nun aber noch ein Akzeptierzustand, mit dem man
-das leere Wort akzeptieren kann. Das leere Wort wird genau
-dann akzeptiert, wenn der Startzustand ein Akzeptierzustand ist.
-Wir d"urfen aber den Startzustand des Automaten nicht einfach
-zu einem Akzeptierzustand machen, weil damit auch alle
-Strings akzeptabel w"urden, die zum Startzustand zur"uckf"uhren.
-Nehmen wir wieder den Automaten (\ref{ungeradenullen}) f"ur Strings
-ungerader L"ange, und verwandeln wir den Startzustand in einen
-Akzeptierzustand:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-	&*++[o][F=]{}\ar@/^/[r]^{\tt 0}
-		&*++[o][F=]{}\ar@/^/[l]^{\tt 0}
-}
-\]
-Da dieser Automat nur Akzeptierzust"ande hat, werden alle W"orter
-akzeptiert.
+Wir streben an, die regul"aren Operationen ohne interne "Anderungen
+des Automaten zu konstruieren.
+Insbesondere d"urfen dem Automaten keine neuen "Uberg"ange hinzugef"ugt
+werden.
+Es ist hingegen zul"assig, einen Akzeptierzustand zu einem
+Nichtakzeptierzustand zu degradieren.
+Ob n"amlich ein Zustand als Akzeptierzustand interpretiert wird,
+h"angt davon ab, was ein zusammengesetzter Automat mit der Information
+macht, dass ein Teilautomat sich in einem Akzeptierzustand befindet.
 
-Beide Schwierigkeiten k"onnen umgangen werden, wenn man einen
-neuen Startzustand hinzuf"ugt, der auch Akzeptierzustand
-ist, und die $\varepsilon$-"Uberg\"ange nicht zur"uck zum
-urspr"unglichen Startzustand, sondern zum neuen Startzustand
-f"uhrt:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-	&*++[o][F=]{}\ar[r]^{\varepsilon}
-		&{}\ar@/^/[r]^{\tt 0}
-			&{}\ar@/^/[l]^{\tt 0} \ar@/^20pt/[ll]^{\varepsilon}
+Zur Verdeutlichung stelle man sich eine Automaten-Objekt $A$ vor mit
+folgendem Interface
+\begin{verbatim}
+interface Automat {
+        // Zeichen verarbeiten
+        void    process(char zeichen);
+        // testen, ob sich der Automat in einem Akzeptierzustand befindet
+        boolean accept();
+        // in den Startzustand zurueckversetzen
+        void    reset();
 }
-\]
+\end{verbatim}
+Offensichtlich enth"alt dieses Interface keine M"oglichkeit, den Automaten
+zu modifizieren, oder auch nur den inneren Zustand auf eine andere Art
+zu "andern als mit einem normalen "Ubergang.
+Das Interface gen"ugt aber, um die *-Operation auszuf"uhren.
+Um ein Wort in $L^*$ zu akzeptieren, muss man nur jedes Zeichen
+des Wortes in den Automaten $A$ einspeisen und fragen, ob er sich
+in einem Akzeptierzustand befindet. Falls ja, darf man das Teilwort
+akzeptieren und den Automaten in den Startzustand zur"uckversetzen.
 
-Die allgemeine Konstruktion geht daher aus von einem Automaten $A$:
+F"ur die *-Operation darf also der Automat
 \begin{center}
 \includegraphics[width=0.3\hsize]{images/nea-3}
 \end{center}
-Die Sprache $L^*$ wird dann akzeptiert von
+nicht modifiziert werden, insbesondere darf der naheligende
+$\varepsilon$-"Ubergnag von einem Akzeptierzustand zum Startzustand
+nicht hinzugef"ugt werden.
+Um das leere Wort muss daher ein zus"atzlicher Zustand hinzugef"ugt werden.
+Und f"ur die Wiederholung darf kann man diesen neuen Zustand ebenfalls
+verwenden, indem man von den Aktzeptierzust"anden von $A$ zu diesem
+neuen Zustand zur"uckkehrt.
+So erh"alt man den Automaten
 \begin{center}
 \includegraphics[width=0.5\hsize]{images/nea-4}
 \end{center}
