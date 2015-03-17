@@ -49,6 +49,7 @@ nicht mehr ganz frischen Ubuntu-Installation kompiliert werden:
     texlive-pstricks-doc
     texlive-science
     texlive-science-doc
+    latexmk
 
 Auf neueren Ubuntu-Distributionen können die Package-Namen leicht abweichen.
 Der Output von "apt-cache search texlive" kann helfen, die richtigen Namen
