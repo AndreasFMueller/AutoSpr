@@ -19,7 +19,7 @@ Zum Bauen dieses Skripts ist eine vollstaendige LaTeX Installation
 erforderlich, wie sie jeder typischen Linux Distribution beiliegt.
 
 Mit folgender Liste von TeX-Packages konnte das Skript auf einer
-nicht mehr ganz frischen Ubuntu-Installation kompiliert werden:
+Ubuntu 14.04 LTS Installation kompiliert werden:
 
     texlive-base
     texlive-bibtex-extra
@@ -51,9 +51,15 @@ nicht mehr ganz frischen Ubuntu-Installation kompiliert werden:
     texlive-science-doc
     latexmk
 
-Auf neueren Ubuntu-Distributionen können die Package-Namen leicht abweichen.
-Der Output von "apt-cache search texlive" kann helfen, die richtigen Namen
-zu ermitteln.
+Auf anderen Ubuntu-Distributionen können die Package-Namen leicht
+abweichen.  Der Output von "apt-cache search texlive" kann helfen,
+die richtigen Namen zu ermitteln.
+
+Bei Ubuntu 12.04 scheint jemand auf die Idee gekommen zu sein, dass das
+Programm mptopdf nicht mehr nötig sei, seit latex den Metapost-Output
+direkt lesen kann. Das ist natürlich Unsinn, da es auch andere
+Konsumenten von Metapost-Output gibt. Aber gegen inkompetente Package
+Maintainer ist halt kein Kraut gewachsen.
 
 Sofern alle Abhängigkeiten erfüllt sind, kann das Skript folgendermassen
 gebaut werden:
@@ -61,11 +67,11 @@ gebaut werden:
     $ cd skript
     $ make
 
-Schlägt der Build fehl weil Packages fehlen, kann es passieren, dass die
-Dependencies im Makefile nicht korrekt behandelt werden. In solchen Fällen
-hilft es, die Files skript.ind und skript.toc zu löschen. Bei Problemen
-mit den Metapost-Bildern im Unterverzeichnis skript/images hilft, das
-Timestamp-File skript/images/timestamp zu löschen.
+Schlägt der Build fehl weil Packages fehlen, kann es passieren, dass
+die Dependencies im Makefile nicht korrekt behandelt werden. In solchen
+Fällen hilft es, die Files skript.ind und skript.toc zu löschen. Bei
+Problemen mit den Metapost-Bildern im Unterverzeichnis skript/images
+hilft, das Timestamp-File skript/images/timestamp zu löschen.
 
 Aufgabensammlung
 ----------------
@@ -73,14 +79,15 @@ Aufgabensammlung
 Im Verzeichnis "aufgaben" wurde eine Aufgabensammlung aufgebaut. Die
 Aufgaben sind nach Kapiteln geordnet und so organisiert, dass die Aufgaben
 zusammen mit den Musterloesungen leicht aus anderen Projekten referenziert
-werden koennen. Falls eine Aufgabe oder ihre Loesung zusaetzliche Files 
+werden koennen. Falls eine Aufgabe oder ihre Loesung zusaetzliche Files
 benoetig, sind diese Files in einem Verzeichnis mit der gleichen Nummer
 abgelegt.
 
 Code
 ----
 
-Im Unterverzeichnis "code" befindet sich ein Reihe kleiner Beispielprojekte,
-welche die Anwendung der Theorie des Skriptes illustrieren. Eine kurze
-Beschreibung der Projekte findet man in code/README.
+Im Unterverzeichnis "code" befindet sich ein Reihe kleiner
+Beispielprojekte, welche die Anwendung der Theorie des Skriptes
+illustrieren. Eine kurze Beschreibung der Projekte findet man in
+code/README.
 
