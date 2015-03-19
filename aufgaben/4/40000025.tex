@@ -42,26 +42,36 @@ Bei Verwendung der zweiten Grammatik bekommt man jedoch
 \xymatrix @-1mm {
         &\text{Ausdruck}\ar[dl]\ar[dr]
                 &       &       &       &                       \\
-\text{Term}\ar[dddd]
+\text{Term}\ar[ddd]
         &       &\text{Termsequenz}\ar[dl]\ar[d]\ar[drr]
                         &       &       &                       \\
         &\text{'{\tt -}'}\ar[ddd]
-                &\text{Term}\ar[ddd]
+                &\text{Term}\ar[dd]
                         &       &\text{Termsequenz}\ar[dl]\ar[d]\ar[dr]
                                         &                       \\
         &       &       &\text{'{\tt +}'}\ar[dd]
-                                &\text{Term}\ar[dd]
+                                &\text{Term}\ar[d]
                                         &\text{Termsequenz}\ar[d]\\
-        &       &       &       &       &\varepsilon            \\
+\text{Zahl}\ar[d]
+	&
+		&\text{Zahl}\ar[d]
+			&
+				&\text{Zahl}\ar[d]
+					&\varepsilon\\
 47      &-      &1291   &+      &1848   &                
 }
 \]
 
-\item Wird der Parse Tree zur Berechnung des Ausdrucks verwendet,
-ergibt sich f"ur die erste Grammatik ein falsches Resultat. In
-diesem Fall wird n"amlich zuerst die Summe $1291+1848=
-3139
-$
+\item
+Um mit einem Parse Tree einen Ausdruck auszuwerten, muss man f"ur
+jede Regel festlegen, wie sie in die Wertberechnung "ubersetzt werden
+muss.
+
+F"ur die erste Grammatik muss man festlegen, wie ein Ausdruck auszuwerten
+ist. Dazu muss man zuerst den Ausdruck auf der rechten Seite der 
+Regel auswerten, und dann die arithmetische Operation mit der Zahl
+entsprechend dem Operationszeichen durchf"uhren.
+Es wird also zuerst die Summe $1291+1848= 3139$
 gebildet, die anschliessend von $47$ subtrahiert, was
 $
 47-(1291+1848)
@@ -69,16 +79,19 @@ $
 -3092
 $
 ergibt.
+Der erste Parse Tree ergibt also das falsche Resultat.
 
 Das richtige Resultat erh"alt man jedoch mit dem Parse
-Tree nach der zweiten Grammatik.  Dieser verlangt, zuerst
-die Differenz $47-1291 =
--1244
-$
-zu bilden, und dann $1848$ zu addieren, was
-$
-604
-$
-ergibt. Daher ist die zweite Grammatik vorzuziehen.
+Tree nach der zweiten Grammatik.
+Die Auswertung einer Regel erfolgt hier anders: zum Wert der Termsequenz
+wird der Wert des Terms hinzuaddiert, mit dem Vorzeichen, das in der
+Regel gew"ahlt worden ist.
+Von unten nach oben ausgewertet bedeutet das wieder, dass zuerst 
+die Termsequenz in der dritten Zeile zu 1848 evaluiert wird.
+Die Termsequenz in der zweiten Zeile kann dann als $-1291 + 1848$
+ausgerechnet werden. Der Ausdruck ist dann $47$ plus das bisherige
+Resultat, also 
+$604$, das richtige Resultate.
+Daher ist die zweite Grammatik vorzuziehen.
 \end{teilaufgaben}
 \end{loesung}
