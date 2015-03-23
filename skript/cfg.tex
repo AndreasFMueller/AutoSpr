@@ -70,14 +70,11 @@ fehlt in diesen Regeln noch ein Anfang, bis jetzt k"onnen wir "uberhaupt
 keine W"orter produzieren. Dazu nehmen wir noch eine Regel $A\to\varepsilon$
 hinzu, die besagt, dass das leere Wort auch ein akzeptabler
 Klammerausdruck ist. Die Regeln
-\begin{equation}
-\begin{aligned}
-A&\to\varepsilon\\
-A&\to AA\\
-A&\to {\tt (}A{\tt )}
-\end{aligned}
-\label{regeln-beispiel}
-\end{equation}
+\begin{align}
+A&\to\varepsilon       \label{regeln-beispiel-1}\\
+A&\to AA               \label{regeln-beispiel-2}\\
+A&\to {\tt (}A{\tt )}  \label{regeln-beispiel-3}
+\end{align}
 erzeugen in diesem Sinne alle korrekt geschachtelten Klammerausdr"ucke.
 
 Der Buchstabe $A$ steht offenbar nicht immer f"ur das gleiche, 
@@ -106,7 +103,8 @@ in der Form $A\to BC{\tt x}$.
 \end{compactenum}
 \end{definition}
 Im Beispiel ist $V=\{A\}$, $\Sigma=\{{\tt (},{\tt )}\}$, $S=A$ und
-$R$ enth"alt genau drei Regeln (\ref{regeln-beispiel}).
+$R$ enth"alt genau drei Regeln (\ref{regeln-beispiel-1}) bis
+(\ref{regeln-beispiel-3}).
 
 Zur Abk"urzung erlauben wir, Regeln mit der gleichen Variablen
 auf der linken Seite des Pfeils mit einem Vertikalstrich als
@@ -150,6 +148,23 @@ u\Rightarrow u_1\Rightarrow u_2\Rightarrow\dots\Rightarrow u_n\Rightarrow v,
 auch geschrieben als $u\overset{*}{\Rightarrow} v$
 \end{definition}
 
+\begin{beispiel}
+Als Beispiel sei das Wort \texttt{(()())} aus der Grammatik
+(\ref{regeln-beispiel-1})
+bis
+(\ref{regeln-beispiel-2})
+f"ur die Klammerausdr"ucke abgeleitet:
+\begin{align*}
+A
+&\xrightarrow{\text{(\ref{regeln-beispiel-3})}} \texttt{(} A \texttt{)}
+ \xrightarrow{\text{(\ref{regeln-beispiel-2})}} \texttt{(} AA \texttt{)}
+ \xrightarrow{\text{(\ref{regeln-beispiel-3})}} \texttt{((} A\texttt{)}A \texttt{)}
+ \xrightarrow{\text{(\ref{regeln-beispiel-3})}} \texttt{((} A\texttt{)(}A \texttt{))}
+ \xrightarrow{\text{(\ref{regeln-beispiel-1})}} \texttt{((} \texttt{)(}A \texttt{))}
+ \xrightarrow{\text{(\ref{regeln-beispiel-1})}} \texttt{((} \texttt{)(} \texttt{))}
+\end{align*}
+Die Reihenfolge der Regelanwendung ist nicht eindeutig.
+\end{beispiel}
 
 \begin{definition}
 \index{Sprache!von einer CFG erzeugte}
