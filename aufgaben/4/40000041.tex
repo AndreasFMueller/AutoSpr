@@ -1,0 +1,146 @@
+Man finde eine Grammatik f"ur die Sprache
+$L=\{ w\in\Sigma^*\,|\, |w|_{\texttt{1}}=|w|_{\texttt{0}}\}$
+"uber dem Alphabet $\Sigma=\{\texttt{0},\texttt{1}\}$, indem man
+man sie aus dem folgenden Stackautomaten ableitet:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix {
+*+\txt{}\ar[r]
+	&{0}\ar[dr]_{\varepsilon,\varepsilon\to\texttt{\$}}
+		&*+\txt{}
+			&{2} \ar[dr]^{\varepsilon,\texttt{\$}\to\varepsilon}
+			    \ar@(u,ul)_{\texttt{0},\varepsilon\to\texttt{0}}
+			    \ar@(u,ur)^{\texttt{1},\texttt{0}\to\varepsilon}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{1}\ar[dl]_{\varepsilon,\texttt{\$}\to\varepsilon}
+		    \ar[ur]^{\texttt{0},\varepsilon\to\texttt{0}}
+		    \ar[dr]_{\texttt{1},\varepsilon\to\texttt{1}}
+			&*+\txt{}
+				&{4}\ar[ll]_{\varepsilon,\varepsilon\to\texttt{\$}}
+\\
+*+\txt{}
+	&*++[o][F=]{5}
+		&*+\txt{}
+			&{3} \ar[ur]_{\varepsilon,\texttt{\$}\to\varepsilon}
+			    \ar@(d,dl)^{\texttt{1},\varepsilon\to\texttt{1}}
+			    \ar@(d,dr)_{\texttt{0},\texttt{1}\to\varepsilon}
+}
+\]
+
+\begin{hinweis}
+Dieser Automat wurde im Wesentlichen in der Vorlesung als Bespiel
+hergeleitet. Die Idee des Automaten ist, dass der ober Zweig mit
+dem Zustand $2$ verwendet wird, solange mehr \texttt{0} als \texttt{1}
+gelesen wurden, der unter Zweig mit dem Zustand $3$ wird
+dagegen verwendet, wenn mehr \texttt{1} als \texttt{0} gelesen wurden.
+Im oberen Zweig werden die Nullen auf den Stack gelegt, und der Stack wird
+mit Einsen wieder abgebaut.
+Im unteren Zweig werden die Einsen auf den Stack gelegt, und der Stack
+wird mit Nullen wieder abgebaut.
+Es ist also m"oglich, das w"ahrend der Verarbeitung eines Wortes
+mehrmals zwischen dem oberen und untern Teilautomaten hin- und hergewechselt
+wird.
+Akzeptabel ist ein Wert, welches den Steck leer l"asst, im Zustand $1$
+sind immer gleich viele Einsen wie Nullen gelesen worden.
+\end{hinweis}
+
+\begin{loesung}
+Dieser Stackautomat erf"ullt bereits alle Voraussetzungen, damit
+der Algorithmus aus dem Skript angewendet werden kann. Es gibt nur
+einen Akzeptierzustand, und der Stack wird vor dem Akzeptieren
+eines Wortes geleert.
+
+Der im Skript besprochene Algorithmus verwendet als Variablen der
+Grammatik die Symbole $A_{pq}$, die f"ur W"orter steht, die den
+Stackautomaten vom Zustand $p$ in den Zustand $q$ "uberf"uhren, ohne
+den Stack zu ver"andern. Die Startvariable der so konstruierten Grammatik
+ist also $A_{05}$.
+
+Zwischen $0$ und $1$ wird das Zeichen $\texttt{\$}$ auf den Stack gelegt,
+und es kann im Schritt zwischen $1$ und $5$ oder im Schritt zwischen $2$
+und $3$ oder zwischen $3$ und $4$ wieder entfernt werden. Ausserdem
+kann zwischen $4$ und $1$ wieder ein $\texttt{\$}$ auf den Stack gelegt
+werden. Daher heissen die ersten Regeln
+\begin{align*}
+A_{05}&\to \varepsilon A_{11}\varepsilon \\
+      &\to A_{04}A_{45}
+\end{align*}
+Ausgehend vom Zustand $1$ gibt es gar keine Wege, die ohne den Stack zu
+ver"andern wieder bei $1$ ankommen, denn jeder solche Weg m"usste "uber
+Zustand $4$ f"uhren, wo ein Zeichen entfernt wird, welches nicht zwischen
+$1$ und $4$ auf den Stack gelegt wurde. Daher ist die einzige m"ogliche
+Regel f"ur $A_{11}$
+\begin{align*}
+A_{11}&\to\varepsilon.
+\end{align*}
+F"ur die Variable $A_{04}$ gibt es zwei Regeln, eine die "uber den
+Zustand $2$ f"uhrt, die andere, die "uber den Zustand $3$ f"uhrt:
+\begin{align*}
+A_{04}&\to \varepsilon A_{12}\varepsilon\\
+      &\to \varepsilon A_{13}\varepsilon
+\end{align*}
+F"ur $A_{12}$ und $A_{13}$ wiederum bekommt man die Regeln
+\begin{align*}
+A_{12}&\to\texttt{0} A_{22}\texttt{1}\\
+A_{13}&\to\texttt{1} A_{33}\texttt{0}
+\end{align*}
+Zus"atzlich zu den $\varepsilon$-Regeln f"ur die Variablen $A_{22}$ und $A_{33}$
+findet man die Regeln, die ein Zeichen auf den Stack legen und am
+Schluss wieder abbauen:
+\begin{align*}
+A_{22}&\to \texttt{0}A_{22}\texttt{1}\;|\;\varepsilon\\
+A_{33}&\to \texttt{1}A_{33}\texttt{0}\;|\;\varepsilon
+\end{align*}
+Diese zwei Regeln besagen, dass $A_{22}$ f"ur W"orter der Form
+$\texttt{0}^n\texttt{1}^n$ steht und $A_{33}$ f"ur W"orter der Form
+$\texttt{1}^n\texttt{0}^n$ mit $n\ge 0$.
+Entsprechend steht die Variablen $A_{12}$  f"ur W"orter der Form
+$\texttt{0}^n\texttt{1}^n$ und $A_{13}$ f"ur W"orter der Form
+$\texttt{1}^n\texttt{0}^n$ mit $n\ge 1$.
+
+Wir m"ussen noch die Variable $A_{45}$ weiter entwickeln. Es gibt
+drei Wege, wie man von $4$ nach $5$ gelangen kann ohne den
+Stack zu ver"andern. Entweder auf dem direkten Weg oder mit
+einer Schleife "uber den Zustand $2$ oder $3$.
+Diesen Wegen entsprechen die Regeln
+\begin{align*}
+A_{45}&\to\varepsilon A_{11}\varepsilon\to\varepsilon\\
+      &\to A_{44}A_{45}\\
+A_{44}&\to\varepsilon A_{12}\varepsilon\\
+      &\to\varepsilon A_{13}\varepsilon
+\end{align*}
+Diese Regeln dr"ucken aus, dass $A_{45}$ eine Verkettung von W"ortern
+ist, die jeweils aus $A_{44}$ entwickelt werden k"onnen.
+Letztere Variable kann, wie bereits oben dargelet,
+in W"orter der Form $\texttt{0}^n\texttt{1}^n$ bzw.~$\texttt{1}^n\texttt{0}^n$
+umgewandelt werden.
+
+Schreiben wir der besseren Lesbarkeit halber $N$ f"ur W"orter, die mit
+einer Folgen von Nullen beginnen, also von der
+Form $\texttt{0}^n\texttt{1}^n$ mit $n\ge 1$ sind, und $E$ f"ur W"orter,
+die mit einer Folge von Einsen beginnen, also von der
+Form $\texttt{1}^n\texttt{0}^n$ sind, sieht die Grammatik jetzt so aus
+\begin{align*}
+A_{05}&\to\varepsilon \\
+      &\to A_{04}A_{45} \\
+A_{04}&\to A_{04}A_{44} \\
+      &\to N \\
+      &\to E \\
+A_{44}&\to N \\
+      &\to E \\
+      &\to \varepsilon
+\end{align*}
+Dies kann man noch etwas vereinfachen zu
+\begin{align*}
+S&\to \varepsilon\;|\; B\\
+B&\to BN\;|\;N\;|\;E\\
+N&\to \texttt{0}N\texttt{1}\;|\; \texttt{01}\\
+E&\to \texttt{1}E\texttt{0}\;|\; \texttt{10}
+\end{align*}
+Darin steht $B$ f"ur eine nicht leere Folge von W"ortern der Art $N$
+oder $E$.
+\end{loesung}
+
+
