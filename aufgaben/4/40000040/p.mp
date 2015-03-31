@@ -20,9 +20,12 @@ beginfig(1)
 
 pickup pencircle scaled 1pt;
 
-fill (0,0)--(11 * u, 0)--(11 * u,u)--(0,u)--cycle withcolor(0.9,1,0.9);
-fill (11 * u,0)--(18 * u, 0)--(18 * u,u)--(11 * u,u)--cycle withcolor(1,0.9,0.9);
-fill (18 * u, 0)--(20 * u,0)--(20 * u, u)--(18 * u, u)--cycle withcolor(0.9,0.9,1);
+fill (0,0)--(11 * u, 0)--(11 * u,u)--(0,u)--cycle
+	withcolor(0.9,0.9,1);
+fill (11 * u,0)--(18 * u, 0)--(18 * u,u)--(11 * u,u)--cycle
+	withcolor(1,0.9,0.9);
+fill (18 * u, 0)--(20 * u,0)--(20 * u, u)--(18 * u, u)--cycle
+	withcolor(0.9,1,0.9);
 
 path p;
 p = (0,0)--(20 * u, 0)--(20 * u, u)--(0, u)--cycle;
@@ -51,10 +54,13 @@ beginfig(2)
 
 pickup pencircle scaled 1pt;
 
-fill (0,0)--(11 * u, 0)--(11 * u,u)--(0,u)--cycle withcolor(0.9,1,0.9);
-fill (11 * u,0)--(24 * u, 0)--(24 * u,u)--(11 * u,u)--cycle withcolor(1,0.9,0.9);
-draw (18 * u,0)--(18 * u, u) withcolor (1,0,0);
-fill (24 * u, 0)--(27 * u,0)--(27 * u, u)--(24 * u, u)--cycle withcolor(0.9,0.9,1);
+fill (0,0)--(11 * u, 0)--(11 * u,u)--(0,u)--cycle
+	withcolor(0.9,0.9,1.0);
+fill (11 * u,0)--(24 * u, 0)--(24 * u,u)--(11 * u,u)--cycle
+	withcolor(1.0,0.9,0.9);
+draw (18 * u,0)--(18 * u, u) withcolor red;
+fill (24 * u, 0)--(27 * u,0)--(27 * u, u)--(24 * u, u)--cycle
+	withcolor(0.9,1.0,0.9);
 
 path p;
 p = (0,0)--(27 * u, 0)--(27 * u, u)--(0, u)--cycle;
