@@ -1,6 +1,6 @@
 Man finde eine Grammatik f"ur die Sprache
 $L=\{ w\in\Sigma^*\,|\, |w|_{\texttt{1}}=|w|_{\texttt{0}}\}$
-"uber dem Alphabet $\Sigma=\{\texttt{0},\texttt{1}\}$, indem man
+"uber dem Alphabet $\Sigma=\{\texttt{0},\texttt{1}\}$, indem
 man sie aus dem folgenden Stackautomaten ableitet:
 \[
 \entrymodifiers={++[o][F]}
@@ -135,7 +135,7 @@ A_{44}&\to N \\
 Dies kann man noch etwas vereinfachen zu
 \begin{align*}
 S&\to \varepsilon\;|\; B\\
-B&\to BN\;|\;N\;|\;E\\
+B&\to BN\;|\;BE\;|\;N\;|\;E\\
 N&\to \texttt{0}N\texttt{1}\;|\; \texttt{01}\\
 E&\to \texttt{1}E\texttt{0}\;|\; \texttt{10}
 \end{align*}

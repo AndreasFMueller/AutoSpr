@@ -40,10 +40,10 @@ w=\texttt{x}^N\texttt{+y}^N\texttt{+z}^N
 welches sicher in $L$ ist.
 
 Nach dem Pumping Lemma hat dieses Wort eine Aufteilung
-$w=xyzuv$ mit $|yzu|\le N$, das Teilwort $yzu$ kann sich also 
+$w=uvxyz$ mit $|vxy|\le N$, das Teilwort $vxy$ kann sich also 
 h"ochstens "uber zwei der Monome in $w$ erstrecken.
-Beim Aufpumpen der Teile $y$ und $u$ gem"ass der Formel
-$w_k=xy^kzu^kv$ wird sich also die Zahl der Variablen in diesen
+Beim Aufpumpen der Teile $v$ und $y$ gem"ass der Formel
+$w_k=uv^kxy^kz$ wird sich also die Zahl der Variablen in diesen
 beiden Monomen "andern, nicht aber die Zahl der Variablen im 
 verbleibenden Monom. Insbesondere sind die aufgepumpten W"orter $w_k$
 nicht mehr in $L$, im Widerspruch zur Aussage des Pumping Lemma.
@@ -53,12 +53,12 @@ Dieser Widerspruch zeigt, dass $L$ nicht kontextfrei sein kann.
 \begin{diskussion}
 Es gibt in diesem Beweis noch einen etwas subtilen Schritt, der einer
 besonderen Diskussion w"urdig ist. Es ist n"amlich eine Aufteilung
-$w={\color{blue}x}{\color{red}y}{\color{green}z}uv$ denkbar,
+$w={\color{blue}u}{\color{red}v}{\color{green}x}yz$ denkbar,
 die m"oglicherweise doch aufpumpbar ist:
 \begin{center}
 \includeagraphics[width=315pt]{p-1.pdf}
 \end{center}
-In dieser Aufteilung besteht $\color{red}y$ aus je einem Teilst"uck
+In dieser Aufteilung besteht $\color{red}v$ aus je einem Teilst"uck
 aus dem zweiten Monom und einem aus dem dritten Monom. Beim
 Aufpumpen "andert sich also nicht nur die Anzahl der
 Variablen, sondern auch die Anzahl der Monome:
@@ -68,9 +68,9 @@ Variablen, sondern auch die Anzahl der Monome:
 Dies funktioniert
 aber nur, wenn das neu entstehende Monom wieder die richtige
 L"ange hat, n"amlich $N$. Das neu entstehende Monom besteht
-aus dem Teil von $\color{red}y$ rechts vom Zeichen \texttt{+},
-gefolgt vom Teil von $\color{red}y$ links vom Zeichen \texttt{+}.
-Die L"ange des Monoms ist also $|y|-1$. Aber $|y|\le |yzu|\le N$,
+aus dem Teil von $\color{red}v$ rechts vom Zeichen \texttt{+},
+gefolgt vom Teil von $\color{red}v$ links vom Zeichen \texttt{+}.
+Die L"ange des Monoms ist also $|v|-1$. Aber $|v|\le |vxy|\le N$,
 d.~h.~ist das Monom echt k"urzer als $N$. Das aufgepumpte Polynom ist
 also nicht mehr homogen.
 \end{diskussion}
