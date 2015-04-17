@@ -8,18 +8,45 @@ die folgenden Sprachen Turing-entscheidbar sind:
 \item $L_1\cap L_2$
 \end{teilaufgaben}
 
+\begin{hinweis}
+Turing-entscheidbar heisst, dass es zwei Funktionen 
+\begin{verbatim}
+boolean l1(String w);
+boolean l2(String w);
+\end{verbatim}
+gibt, welche genau dann \texttt{true} zur"uckgeben, wenn \texttt{w}
+zur"uckgeben, wenn \texttt{w} in $L_1$ bzw.~$L_2$ ist. Die Aufgabe
+besteht dann darin, f"ur jede Sprache $L$ in den Teilaufgaben eine neue
+Funktion
+\begin{verbatim}
+boolean l(String w) {
+  ....
+}
+\end{verbatim}
+zu programmieren, welche genau dann \texttt{true} zur"uckgibt, wenn
+\texttt{w} in $L$ ist.
+\end{hinweis}
+
 \begin{loesung}
 \begin{teilaufgaben}
 \item Um zu entscheiden, ob ein Wort $w$ in $L_1\cup L_2$ ist,
 lassen wir zuerst $M_1$ auf dem Input $w$ laufen, und falls
 diese das Wort verwirft, $M_2$. Akzeptiert eine der Maschinen
 das Wort, wird es akzeptiert, andernfalls wird es verworfen.
+
+Mit den Notationen des Hinweises k"onnte man dieses Problem mit folgendem
+Code l"osen:
+\verbatimainput{a.java}
 \item
 F"ur jede der $|w|+1$ Unterteilungen des Wortes $w$ in zwei
 Teilw"orter $xy=w$ lassen wir $M_1$ auf $x$ und $M_2$ auf
 $y$ laufen. Akzeptieren die Maschinen f"ur eine der
 Unterteilungen das Wort, akzeptieren wir, wir verwerfen, wenn
 f"ur keine Unterteilung beide Maschinen akzeptieren.
+
+Mit den Notationen des Hinweises k"onnte man dieses Problem mit folgendem
+Code l"osen:
+\verbatimainput{b.java}
 \item
 Wenn $w\in L_1^*$, dann kann man $w$ schreiben als
 $w=x_1\dots x_n$, wobei $x_i\in L_1$ f"ur alle $i$ und
@@ -36,15 +63,28 @@ Die Funktion untersucht alle Unterteilungen des Wortes in
 zwei Teile $x_1$ und $x_2$, indem sie zuerst den Entscheider
 f"ur $L_1$ mit Input $x_1$ aufruft, und dann sich selbst
 mit Input $x_2$ aufruft. Diese Rekursion ist endlich.
+
+Mit den Notationen des Hinweises k"onnte man dieses Problem mit folgendem
+Code l"osen:
+\verbatimainput{c.java}
 \item
 F"ur die Sprache $\Sigma^*\setminus L_1$ verwenden wir die
 Turing Maschine $\bar M_1$, in welcher gegen"uber $M_1$
 die Zust"ande $q_{\text{accept}}$ und $q_{\text{reject}}$
 ihre Rollen vertauschen. $\bar M_1$ ist ein Entscheider,
 der genau die W"orter von $\Sigma^*\setminus L_1$ akzeptiert.
+
+Mit den Notationen des Hinweises k"onnte man dieses Problem mit folgendem
+Code l"osen:
+\verbatimainput{d.java}
 \item
 Wir lassen $M_1$ auf $w$ laufen und anschliessen $M_2$ auf $w$.
 Wenn beide Maschinen akzeptieren, akzeptieren wir das Wort, andernfalls
 verwerfen wir.
+
+Mit den Notationen des Hinweises k"onnte man dieses Problem mit folgendem
+Code l"osen:
+\verbatimainput{e.java}
 \end{teilaufgaben}
 \end{loesung}
+

@@ -11,6 +11,18 @@ bzw.~$M_2$):
 \begin{loesung}
 Wir m"ussen eine Turing Maschine angeben, die die entsprechende
 Sprache erkennen kann.
+Dazu k"onnen im Prinzip die gleichen Ideen verwendet werden, wie sie
+zur L"osung von Aufgabe~\ref{60000004} verwendet wurden.
+Allerdings ist jetzt nicht mehr sichergestellt, dass der Aufruf
+der Funktionen \texttt{l1} oder \texttt{l2} je zur"uckkehrt.
+Statt die Funktionen nacheinander aufzurufen, kann man aber in allen
+Algorithmen alle Aufrufe parallel ausf"uhren, und die Threads abbrechen,
+sobald gen"ugend Resultate f"ur eine positive Antwort gefunden worden
+sind. Im schlimmsten Fall wird kein Thread je fertig, dann ist das
+Inputwort aber auch nicht akzeptabel.
+
+Im Detail kann man dies f"ur Turing-Maschinen auch wie folgt
+beschreiben.
 \begin{teilaufgaben}
 \item Wir k"onnen nicht einfach beide Turing Maschinen nach einander
 auf dem Input laufen lassen, da erste ja nicht terminieren k"onnte und
