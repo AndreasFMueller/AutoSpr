@@ -249,13 +249,14 @@ S&\rightarrow \varepsilon\\
 &\rightarrow {\tt 0}S{\tt 1}
 \end{align*}
 
-\subsection{Regul"are Operationen}
+\subsection{Regul"are Operationen\label{sect:cfg-regulaer}}
 In diesem Abschnitt beweisen wir, dass regul"are Sprachen auch
 kontextfrei sind. Dazu ist zu zeigen, dass
 zu jedem regul"aren Ausdruck eine kontextfreie Grammatik existiert,
 die die Sprache erzeugt.
 
 \begin{satz}[Vereinigung]
+\label{satz:cfg-union}
 \index{Vereinigung}
 Seien $L_1$ und $L_2$ kontextfreie Sprachen "uber $\Sigma$,
 dann ist auch $L_1\cup L_2$ kontextfrei.
@@ -285,6 +286,7 @@ angewendet werden, weil $V_1\cap V_2=\emptyset$.
 \end{proof}
 
 \begin{satz}[Verkettung]
+\label{satz:cfg-verkettung}
 \index{Verkettung}
 Sind $L_1$ und $L_2$ kontextfreie Sprachen, dann ist auch $L_1L_2$
 kontextfrei.
@@ -303,6 +305,7 @@ die Sprache $L_1L_2$.
 
 \begin{satz}[$*$-Operation]
 \index{*-Operation@$*$-Operation}
+\label{satz:cfg-star}
 Ist $L$ kontextfrei, dann auch $L^*$.
 \end{satz}
 
@@ -506,6 +509,7 @@ auf den minimalen Automaten die Voraussetzung, Automaten vergleichen
 zu k"onnen. Eine "ahnliche Normalform w"unscht man sich auch f"ur
 Grammatiken, und definiert daher:
 \begin{definition}
+\label{definition:cnf}
 \index{Chomsky Normalform}
 Eine kontextfreie Grammatik  ist in Chomsky Normalform, wenn
 jede Regel von der Form
@@ -547,6 +551,7 @@ Grammatik in Chomsky Normalform zu "uberf"uhren, wie der folgende Satz
 zeigt.
 
 \begin{satz}
+\label{satz:cnf}
 Eine kontextfreie Sprache wird erzeugt von einer Grammatik
 in Chomsky Normalform.
 \end{satz}
@@ -998,7 +1003,7 @@ oder die $b$ zu ignorieren und dann die $c$ zu z"ahlen.
 }
 \]
 
-\subsection{"Aquivalenz von Stackautomaten und CFG}
+\subsection{"Aquivalenz von Stackautomaten und CFG\label{sect:aequivalenz-cfg}}
 So wie regul"are Ausdr"ucke und endliche Automaten zur Beschreibung
 von regul"aren Sprachen "aquivalent sind, so sind auch kontexfreie Grammatiken
 mit Stackautomaten "aquivalent:
