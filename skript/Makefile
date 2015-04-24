@@ -9,7 +9,7 @@ all:	skript.pdf
 TEXFILES = cfg.tex grundlagen.tex komplexitaet.tex regulaer.tex \
 	skript.tex sprachen.tex turing.tex entscheidbarkeit.tex \
 	einleitung.tex vollstaendig.tex realworldparser.tex karp.tex \
-	sudoku.tex \
+	sudoku.tex algorithmen.tex \
 	references.bib
 
 images/timestamp:
