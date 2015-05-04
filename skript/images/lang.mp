@@ -88,7 +88,7 @@ label.top(btex Turing etex, (230,3));
 label(btex erkennbare etex, (230,0));
 label.bot(btex Sprachen etex, (230,-5));
 
-label(btex $\color{blue}\textit{HALT}_{\textit{TM}}$ etex, (200,-54));
+label(btex $\color{blue}\textit{HALT}\varepsilon_{\text{TM}}$ etex, (200,-54));
 
 endfig;
 

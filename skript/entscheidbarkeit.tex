@@ -467,13 +467,14 @@ entschieden werden kann.
 Nicht einmal f"ur den speziellen Input $\varepsilon$ ist es
 entscheidbar, auch die Sprache
 \[
-L=\{
+\textit{HALT}\varepsilon_{\text{TM}}
+=\{
 \langle M\rangle \;|\;
 \text{$M$ ist eine TM und h"alt auf Input $\varepsilon$}
 \}
 \]
 ist nicht entscheidbar. Nehmen wir an, es g"abe einen
-Entscheider $H$ f"ur $L$, dann k"onnen wir daraus
+Entscheider $H$ f"ur $\textit{HALT}\varepsilon_{\text{TM}}$, dann k"onnen wir daraus
 auch einen Entscheider f"ur $A_{\text{TM}}$ konstruieren.
 Dazu gehen wir wie folgt vor. Auf dem Input $\langle M,w\rangle$
 bauen wir folgende Maschine $M'$:
@@ -491,7 +492,8 @@ entscheidet also, ob $w\in L(M)$, l"ost also das Akzeptanzproblem
 $A_{\text{TM}}$. 
 Da $A_{\text{TM}}$ nicht entscheidbar ist, darf es keinen solchen
 Entscheider geben. Dieser Widerspruch zeigt, dass die Annahme, es
-g"abe einen Entscheider f"ur $L$ gibt, nicht haltbar ist. $L$ heisst
+g"abe einen Entscheider f"ur $\textit{HALT}\varepsilon_{\text{TM}}$ gibt,
+nicht haltbar ist. $\textit{HALT}\varepsilon_{\text{TM}}$ heisst
 auch das {\em spezielle Halteproblem}.
 \index{Halteproblem!spezielles}
 
