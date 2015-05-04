@@ -20,7 +20,7 @@ k"onnen.
 
 \section{Entscheidbare Sprachen}
 \rhead{Entscheidbare Sprachen}
-\index{Sprache!entscheidbare}
+\index{Sprache!entscheidbare}%
 Wenn ein Problem von einem Computer gel"ost werden soll, dann
 muss der Computer die Problembeschreibung und eine m"ogliche L"osung
 lesen k"onnen, und entscheiden k"onnen, ob die beiden zusammen passen.
@@ -113,7 +113,7 @@ akzeptiert ist ein Spezialfall. Dieses Problem heisst das
 Akzeptanzproblem f"ur endliche Automaten.
 
 \subsubsection{Akzeptanzproblem}
-\index{Akzeptanzproblem!f\"ur regul\"are Sprachen}
+\index{Akzeptanzproblem!f\"ur regul\"are Sprachen}%
 Wir betrachten das folgende Problem: Gegeben sei ein endlicher Automat $B$
 und ein Wort $w$,
 kann man entscheiden, ob der Automat das Wort akzeptiert?
@@ -125,11 +125,12 @@ A_{\text{DEA}} =\{
 \langle B,w\rangle\;|\;\text{$B$ ist ein DEA und $B$ akzeptiert $w$}.
 \}
 \]
+\index{ADEA@$A_{\text{DEA}}$}%
 \begin{satz}
 \label{adea_decidable}
 $A_{\text{DEA}}$ ist entscheidbar.
 \end{satz}
-\index{Akzeptanzproblem!f\"ur DEAs}
+\index{Akzeptanzproblem!f\"ur DEAs}%
 
 \begin{proof}[Beweis]
 Der folgende Algorithmus entscheidet
@@ -147,13 +148,14 @@ Das gleiche Problem kann man auch f"ur nicht deterministische Automaten
 formulieren:
 
 \begin{satz}
-\index{Akzeptanzproblem!f\"ur NEAs}
+\index{Akzeptanzproblem!f\"ur NEAs}%
 Das Akzeptanzproblem f"ur nicht deterministische endlich Automaten
 \[
 A_{\text{NEA}} =\{
 \langle B,w\rangle\;|\;\text{$B$ ist ein NEA und $B$ akzeptiert $w$}.
 \}
 \]
+\index{ANEA@$A_{\text{NEA}}$}%
 ist entscheidbar.
 \end{satz}
 
@@ -170,17 +172,18 @@ entscheiden, ob $B'$ das Wort $w$ akzeptiert.
 \end{proof}
 
 \begin{satz} Das Akzeptanzproblem f"ur regul"are Ausdr"ucke
-\index{Akzeptanzproblem!f\"ur regul\"are Ausdr\"ucke}
+\index{Akzeptanzproblem!f\"ur regul\"are Ausdr\"ucke}%
 \[
 A_{\text{REX}}=\{
 \langle R,w\rangle\;|\;\text{$R$ ist ein regul"arer Ausdruck und $R$ akzeptiert $w$}
 \}
 \]
+\index{AREX@$A_{\text{REX}}$}%
 ist entscheidbar.
 \end{satz}
 
 \subsubsection{Leerheitsproblem}
-\index{Leerheitsproblem!f"ur DEAs}
+\index{Leerheitsproblem!f"ur DEAs}%
 Wir wollen einem endlichen Automaten ansehen k"onnen, ob er "uberhaupt
 irgend ein Wort akzeptieren wird, und untersuchen daher
 \[
@@ -191,6 +194,7 @@ E_{\text{DEA}}
 \]
 \begin{satz}
 $E_{\text{DEA}}$
+\index{EDEA@$E_{\text{DEA}}$}%
 ist entscheidbar.
 \end{satz}
 
@@ -212,7 +216,7 @@ $q_{\text{accept}}$
 \end{proof}
 
 \subsubsection{Gleichheitsproblem}
-\index{Gleichheitsproblem!f"ur DEAs}
+\index{Gleichheitsproblem!f"ur DEAs}%
 Akzeptieren zwei DEAs die gleiche Sprache? Im Kapitel \ref{chapter-regular}
 haben wir einen Algorithmus skizziert, mit dem dies entschieden werden kann.
 
@@ -224,6 +228,7 @@ Die Sprache
 \langle A,B\rangle\;|\;\text{$A$ und $B$ sind DEAs und $L(A)=L(B)$}
 \}
 \]
+\index{EQDEA@$\textit{EQ}_{\text{DEA}}$}%
 ist entscheidbar.
 \end{satz}
 
@@ -270,7 +275,7 @@ $E_{\text{DEA}}$.
 
 \subsection{Entscheibarkeitsproblem f"ur kontextfreie Sprachen}
 \subsubsection{Akzeptanzproblem}
-\index{Akzeptanzproblem!f"ur kontextfreie Grammatiken}
+\index{Akzeptanzproblem!f"ur kontextfreie Grammatiken}%
 \begin{satz}
 \label{satz:acfg-entscheidbar}
 Die Sprache
@@ -280,6 +285,7 @@ A_{\text{CFG}}=\{
 \}
 \]
 ist entscheidbar.
+\index{ACFG@$A_{\text{CFG}}$}%
 \end{satz}
 
 \begin{proof}[Beweis 1]
@@ -303,7 +309,7 @@ andernfalls $q_{\text{reject}}$.
 \end{proof}
 
 \subsubsection{Leerheitsproblem}
-\index{Leerheitsproblem!f\"ur kontextfreie Grammatiken}
+\index{Leerheitsproblem!f\"ur kontextfreie Grammatiken}%
 \begin{satz}
 Die Sprache
 \[
@@ -312,6 +318,7 @@ E_{\text{CFG}}=\{
 \}
 \]
 ist entscheidbar.
+\index{ECFG@$E_{\text{CFG}}$}%
 \end{satz}
 
 \begin{proof}[Beweis]
@@ -338,13 +345,14 @@ $E_{\text{CFG}}$.
 \end{proof}
 
 \subsubsection{Gleichheit}
-\index{Gleichheitsproblem!f\"ur kontextfreie Grammatiken}
+\index{Gleichheitsproblem!f\"ur kontextfreie Grammatiken}%
 Es ist verlockend zu vermuten, dass das Gleichheitsproblem
 \[
 \text{\it EQ}_{\text{CFG}}=\{
 \langle G,H\rangle\;|\; \text{$G$  und $H$ sind kontextfreie Grammatiken und $L(G)=L(H)$}
 \}
 \]
+\index{EQCFG@$\textit{EQ}_{\text{CFG}}$}%
 mit der gleichen Methode mit Hilfe der symmetrischen Differenz
 wie bei regul"aren Sprachen entschieden werden k"onnte. Dem ist
 allerdings nicht so, denn das Komplement einer kontextfreien Sprache
@@ -354,7 +362,7 @@ $\text{\it EQ}_{\text{CFG}}$ nicht entscheidbar, die Methoden zum Beweis
 werden allerdings erst sp"ater bereitgestellt.
 
 \section{Das Akzeptanzproblem f"ur Turingmaschinen}
-\index{Akzeptanzproblem!f\"ur Turingmaschinen}
+\index{Akzeptanzproblem!f\"ur Turingmaschinen}%
 \rhead{Akzeptanzproblem f"ur Turingmaschinen}
 Das Akzeptanzproblem f"ur Turing-erkennbare Sprachen fragt, ob 
 eine Turingmaschine $M$ und ein Inputwort $w$ erkennen wird.
@@ -375,6 +383,7 @@ A_{\text{TM}}=\{
 \langle M,w\rangle\;|\; \text{$M$ ist eine TM und $M$ erkennt $w$}
 \}
 \]
+\index{ATM@$A_{\text{TM}}$}%
 
 \begin{satz}
 \label{ATM}
@@ -448,7 +457,7 @@ Widerspruch zeigt, dass die Annahme, es g"abe einen Entscheider $H$
 nicht haltbar ist. Also ist das Problem nicht entscheidbar.
 \end{proof}
 
-\index{Goedel@G\"odel, Kurt}
+\index{Goedel@G\"odel, Kurt}%
 Die Entdeckung, dass gewisse Probleme nicht entscheidbar sind,
 geht auf Kurt G"odel zur"uck. G"odel hat sie jedoch in leicht
 anderem Zusammenhang gefunden. Er untersuchte die Frage, ob ein
@@ -458,7 +467,7 @@ obwohl sie wahr sind.
 
 Die Formulierung f"ur Turing-Maschinen geht auf eine Arbeit von
 Alan Turing 1936 zur"uck.
-\index{Turing, Alan}
+\index{Turing, Alan}%
 Aus der L"osung des Halteproblems kann
 man eine konkrete solche Aussage ableiten.
 
@@ -473,6 +482,7 @@ entscheidbar, auch die Sprache
 \text{$M$ ist eine TM und h"alt auf Input $\varepsilon$}
 \}
 \]
+\index{HALTepsilonTM@$\textit{HALT}\varepsilon_{\text{TM}}$}%
 ist nicht entscheidbar. Nehmen wir an, es g"abe einen
 Entscheider $H$ f"ur $\textit{HALT}\varepsilon_{\text{TM}}$, dann k"onnen wir daraus
 auch einen Entscheider f"ur $A_{\text{TM}}$ konstruieren.
@@ -495,7 +505,7 @@ Entscheider geben. Dieser Widerspruch zeigt, dass die Annahme, es
 g"abe einen Entscheider f"ur $\textit{HALT}\varepsilon_{\text{TM}}$ gibt,
 nicht haltbar ist. $\textit{HALT}\varepsilon_{\text{TM}}$ heisst
 auch das {\em spezielle Halteproblem}.
-\index{Halteproblem!spezielles}
+\index{Halteproblem!spezielles}%
 
 Das Halteproblem beweist, dass es Sprachen gibt, die nicht
 entscheidbar sind, obwohl sie von einer Turing-Maschine
@@ -507,7 +517,7 @@ echte Obermenge der entscheidbaren Sprachen.
 \end{center}
 
 \section{Reduktion}
-\index{Reduktion}
+\index{Reduktion}%
 \rhead{Reduktion}
 Im letzten Abschnitt wurde die Entscheidbarkeit der Sprache $L$
 auf das Akzeptanzproblem in dem Sinne zur"uckgef"uhrt, dass
@@ -522,7 +532,7 @@ Sprachen mindestens teilweise nach ihrer Schwierigkeit, sie zu entscheiden,
 anzuordnen. 
 
 \subsection{Reduktionsabbildung}
-\index{Reduktionsabbildung}
+\index{Reduktionsabbildung}%
 \begin{figure}
 \begin{center}
 %\includegraphics[width=\hsize]{images/red-1}
@@ -544,14 +554,14 @@ von $B$ nach $A$ zu transportieren, wenn sie mit einer Turingmaschine
 berechnet werden kann. Wir definieren daher
 
 \begin{definition}
-\index{berechenbar}
+\index{berechenbar}%
 Eine Abbildung $f\colon \Sigma^*\to \Sigma^*$ heisst berechenbar wenn es eine
 Turingmaschine gibt, die auf jedem Input $w\in \Sigma^*$ anh"alt
 und ausschliesslich das Wort $f(w)$ auf dem Band zur"uckl"asst.
 \end{definition}
 
 \begin{definition}
-\index{Reduktion}
+\index{Reduktion}%
 Eine Sprache $A$ ist reduzierbar auf die Sprache $B$, in Zeichen
 \[
 A\le B
@@ -604,12 +614,13 @@ entscheidbares Problem ist, und $f$ berechenbare Abbildung ist,
 die die Reduktion $A\le B$ vermittelt.
 
 \subsection{Weitere nicht entscheidbare Sprachprobleme}
-\index{Halteproblem}
+\index{Halteproblem}%
 \begin{satz} Das Halteproblem
 \[
 \text{\it HALT}_{\text{TM}}=\{\langle M,w\rangle\;|\;
 \text{$M$ ist eine TM und $M$ h"alt auf Input $w$}\}
 \]
+\index{HALTTM@$\textit{HALT}_{\text{TM}}$}%
 ist nicht entscheidbar.
 \end{satz}
 
@@ -668,13 +679,14 @@ da zu ganz erstaunlichen Aussagen versteigt). Das beste, was man
 tun kann, ist Mustererkennung (endliche Sprachen sind alle regul"ar).
 
 \begin{satz}
-\index{Leerheitsproblem!f\"ur Turingmaschinen}
+\index{Leerheitsproblem!f\"ur Turingmaschinen}%
 Das Leerheitsproblem f"ur Turingmaschinen
 \[
 E_{\text{TM}}
 =
 \{ \langle M\rangle\;|\; \text{$M$ ist eine TM und $L(M)=\emptyset$}\}
 \]
+\index{ETM@$E_{\text{TM}}$}%
 ist nicht entscheidbar.
 \end{satz}
 
@@ -734,6 +746,7 @@ A_{\text{TM}}\le\text{\it REGULAR}_{\text{TM}}=\{
 \langle M\rangle\;|\;\text{$M$ ist eine TM und $L(M)$ ist regul"ar}
 \}
 \]
+\index{REGULARTM@$\textit{REGULAR}_{\text{TM}}$}%
 konstruieren. Auch in diesem Fall ist es einfacher, eine
 Reduktion
 \[
@@ -778,7 +791,7 @@ Die Reduktion $\langle M,w\rangle\to \langle S\rangle$ "ubersetzt
 in $\overline{\textsl{REGULAR}}_{\text{TM}}$.
 \end{proof}
 
-\index{Gleichheitsproblem!f\"ur Turingmaschinen}
+\index{Gleichheitsproblem!f\"ur Turingmaschinen}%
 \begin{satz}
 Man kann nicht entscheiden, ob zwei Turingmaschinen die gleiche Sprache
 erkennen:
@@ -787,6 +800,7 @@ erkennen:
 \langle M_1,M_2\rangle\;|\;\text{$M_i$ sind Turingmaschinen und $L(M_1)=L(M_2)$}
 \}
 \]
+\index{EQTM@$\textit{EQ}_{\text{TM}}$}%
 ist nicht entscheidbar.
 \end{satz}
 
@@ -833,6 +847,7 @@ Grammatik alle W"orter erzeugt:
 \text{\it ALL}_{\text{CFG}}=\{\langle G\rangle\;|\; \text{$G$
 ist eine kontextfreie Grammatik und $L(G)=\Sigma^*$}\}
 \]
+\index{ALLCFG@$\textit{ALL}_{\text{CFG}}$}%
 ist nicht entscheidbar.
 \end{satz}
 
@@ -985,7 +1000,7 @@ konstruiert.
 \end{proof}
 
 \begin{satz}
-\index{Gleichheitsproblem!f\"ur kontextfreie Grammatiken}
+\index{Gleichheitsproblem!f\"ur kontextfreie Grammatiken}%
 Das Gleichheitsproblem f"ur kontextfreie Grammatiken
 ist nicht entscheidbar:
 \[
@@ -994,6 +1009,7 @@ ist nicht entscheidbar:
 und $L(G_1)=L(G_2)$}
 \}
 \]
+\index{EQCFG@$\textit{EQ}_{\text{CFG}}$}%
 ist nicht entscheidbar.
 \end{satz}
 
@@ -1031,7 +1047,7 @@ nur verwendet, dass wir eine regul"are Sprache ($\emptyset$) und
 eine nicht regul"are ($\{0^n1^n\;|\;n\in\mathbb N\}$) kennen.
 
 \begin{definition}
-\index{Eigenschaft!nicht-triviale}
+\index{Eigenschaft!nicht-triviale}%
 Sei $P$ eine Eigenschaft einer Sprache $L$, $P(L)$ ist also wahr oder
 falsch. $P$ heisst nicht trivial, falls es eine Sprache $L_1$ gibt,
 die die Eigenschaft $P$ hat, und eine Sprache $L_2$, die die
@@ -1039,7 +1055,7 @@ Eigenschaft nicht hat.
 \end{definition}
 
 \begin{satz}[Rice]
-\index{Rice!Satz von}
+\index{Rice!Satz von}%
 \label{rice-theorem}
 Sei $P$ eine nicht triviale Eigenschaft von Turing-erkennbaren Sprachen,
 dann ist $P$ nicht entscheidbar. Als Sprachproblem formuliert:
@@ -1097,6 +1113,7 @@ entscheidbar ist.
 \subsubsection{Anwendungen}
 
 \begin{beispiel}[\bf $\text{\textsl{ALL}}_{\text{TM}}$ ist nicht entscheidbar]
+\index{ALLTM@$\textit{ALL}_{\text{TM}}$}%
 $\text{\textsl{ALL}}_{\text{TM}}$ ist die Sprache
 \[
 \text{\textsl{ALL}}_{\text{TM}}=\{
@@ -1143,6 +1160,7 @@ ein korrekter Primzahltester
 \end{minipage}
 \right.\right\}.
 \]
+\index{PRIMALITY-TESTER@$\textit{PRIMALITY-TESTER}$}%
 \textsl{PRIMALITY-TESTER} enth"alt also genau diejenigen Programme, welche
 als Primzahlpr"ufer korrekt funktionieren.
 
