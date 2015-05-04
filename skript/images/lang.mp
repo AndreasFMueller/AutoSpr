@@ -7,6 +7,7 @@ verbatimtex
 \usepackage{amsfonts}
 \usepackage{txfonts}
 \usepackage{german}
+\usepackage{color}
 \begin{document}
 etex;
 
@@ -76,11 +77,18 @@ draw (-90,0)..(90,-90)..(270,0)..(90,90)..cycle;
 label.top(btex kontextfreie etex, (70,0));
 label.bot(btex Sprachen etex, (70,0));
 
+label(btex $\color{blue}\{\texttt{0}^n\texttt{1}^n\,|\,n\ge 0\}$ etex, (46,-34));
+
 label.top(btex entscheidbare etex, (150,0));
 label.bot(btex Sprachen etex, (150,0));
 
-label.top(btex Turing erkennbare etex, (230,0));
-label.bot(btex Sprachen etex, (230,0));
+label(btex $\color{blue}\{\texttt{a}^n\texttt{b}^n\texttt{c}^n\,|\,n\ge 0\}$ etex, (123,-44));
+
+label.top(btex Turing etex, (230,3));
+label(btex erkennbare etex, (230,0));
+label.bot(btex Sprachen etex, (230,-5));
+
+label(btex $\color{blue}\textit{HALT}_{\textit{TM}}$ etex, (200,-54));
 
 endfig;
 
