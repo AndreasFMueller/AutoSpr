@@ -704,9 +704,9 @@ Wenn $M$ das Wort $w$ erkennt, dann erkennt $S$ die Sprache
 $L(S)=\{w\}$. Wenn $M$ das Wort $w$ nicht erkennt, ist $L(S)=\emptyset$.
 Oder
 \begin{align*}
-W&\operatorname{erkennt}w              &&\Rightarrow&L(S)&=\{w\}\ne \emptyset
+M&\operatorname{erkennt}w              &&\Rightarrow&L(S)&=\{w\}\ne \emptyset
 \\
-W&\operatorname{erkennt}w\text{ nicht} &&\Rightarrow&L(S)&=\emptyset
+M&\operatorname{erkennt}w\text{ nicht} &&\Rightarrow&L(S)&=\emptyset
 \end{align*}
 oder
 \[
@@ -1088,7 +1088,7 @@ w\in L(M)&\qquad \Rightarrow\qquad L(M')=L_1\\
 w\not\in L(M)&\qquad \Rightarrow\qquad L(M')=\emptyset
 \end{align*}
 Da $f$ berechnenbar ist, haben wir die verlangte Reduktion
-gefunden, und es folgt also, dass $P_{\text{TM}}$ nicht
+gefunden, und es folgt, dass $P_{\text{TM}}$ nicht
 entscheidbar ist.
 \end{proof}
 
