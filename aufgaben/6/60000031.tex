@@ -1,0 +1,23 @@
+Man findet im Internet Websites, die anbieten, Word-Dokumente in PDF
+umzuwandeln.
+Ein Jungunternehmer m"ochte einen "ahnlichen Dienst anbieten, um XML Files
+mit Hilfe von XSLT Stylesheets in PDF Files umzuwandeln.
+Die Kunden sollen einen Satz von XML-Files und XSLT Stylesheets zum
+Beispiel als ZIP-File hochladen k"onnen, und als Antwort ein fertig
+formattiertes PDF erhalten.
+Im Apache-Projekt FOP findet er geeignete freie Software daf"ur.
+Sie sind zust"andig f"ur die Sicherheit, und sollen sicherstellen, dass
+alle XML-/XSLT-File-Kombinationen zur"uckgewiesen werden, die dazuf"uhren
+k"onnten, dass ihr Server beliebig lange mit diesem Auftrag besch"aftigt
+ist. Wie stehen Ihre Aussichten, dies zu realisieren?
+
+\begin{loesung}
+Die Sprache XSLT ist Turing-vollst"andig, man kann in ihr also alles
+programmieren, was mit einer Turing-Maschine gemacht werden kann.
+Die gestellte Aufgabe besteht also darin, herauszufinden, ob ein
+gegebenes Programm (XML-Files und XSLT Stylesheets) je anhalten wird.
+Dies ist das Halteproblem, welches nicht entscheidbar ist.
+Es gibt also keine M"oglichkeit, einem Auftrag anzusehen, ober dazu
+f"uhren wird, dass der PDF-Renderer nicht terminieren wird.
+\end{loesung}
+
