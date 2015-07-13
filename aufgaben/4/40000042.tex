@@ -1,0 +1,134 @@
+Die Programmiersprachen C und Pascal erlauben, aus Anweisungen sogenannte
+Bl"ocke zu bilden, aber sie verwenden verschiedene syntaktische Regeln
+daf"ur. In C wird ein Block von geschweiften Klammern \texttt{\{} und
+\texttt{\}} einfasst, und die Anweisungen m"ussen durch Semikolon
+beendet werden. In Pascal beginnt ein Block mit \texttt{begin} und
+endet mit \text{end}, und zwischen den einzelnen Anweisungen steht ein
+Semikolon. Das folgende Beispiel illustriert den Unterschied.
+
+\medskip
+\begin{tabular}{lr}
+\begin{minipage}{0.5\hsize}
+\texttt{for}-Schleife in C:
+\medskip
+\verbatimainput{block.c}
+\end{minipage}&%
+\begin{minipage}{0.5\hsize}
+\texttt{for}-Schleife in Pascal:
+\medskip
+\verbatimainput{block.pas}
+\end{minipage}
+\end{tabular}
+\medskip
+
+Man beachte, dass in Pascal am Ende der zweiten Anweisung kein Semikolon
+n"otig ist.
+Beide Sprachen erlauben, dass ein Block keine Anweisungen enth"alt.
+
+Konstruieren Sie f"ur jede der Sprachen eine Grammatik f"ur Bl"ocke
+(Verwenden Sie die Variable \texttt{block} daf"ur), die die genannten
+Unterschiede ausdr"uckt.
+Verwenden Sie in Ihrer Grammatik die Variable \texttt{anweisung} f"ur
+Anweisungen.
+Sie m"ussen keine Grammatik f"ur Anweisungen angeben.
+
+\begin{loesung}
+Die beiden Grammatiken m"ussen die folgenden zwei Unterschiede zwischen
+den Sprachen sichtbar machen: einerseits die Wahl der Zeichen,
+die einen Block begrenzen, und andererseits die das Semikolon, welches
+in C ein Terminator, in Pascal aber ein Separator ist.
+
+Bl"ocke worden aus einer Anweisungsfolge konstruiert, in C zum Beispiel
+mit Hilfe der Regel
+\[
+\texttt{block}
+\rightarrow
+\text{'{\tt \{}'}\;\texttt{anweisungsfolge}\; \text{'{\tt\}}'}
+\]
+In Pascal muss man die Blockbegrenzer aus Zeichen zusammensetzen
+\begin{align*}
+\texttt{block}
+&\rightarrow
+B\; \texttt{anweisungsfolge}\;E
+\\
+B&\rightarrow
+\text{'}\texttt{b}\text{'}\;
+\text{'}\texttt{e}\text{'}\;
+\text{'}\texttt{g}\text{'}\;
+\text{'}\texttt{i}\text{'}\;
+\text{'}\texttt{n}\text{'}
+\\
+E&\rightarrow
+\text{'}\texttt{e}\text{'}\;
+\text{'}\texttt{n}\text{'}\;
+\text{'}\texttt{d}\text{'}
+\end{align*}
+Die Konstruktion einer Anweisungsfolge in C verwendet das Semikolon als
+Anweisungsendzeichen:
+\begin{align*}
+\texttt{anweisungsfolge}
+&\rightarrow
+\texttt{anweisungsfolge}
+\;
+\texttt{folgenelement}
+\\
+&\rightarrow\varepsilon
+\\
+\texttt{folgenelement}
+&\rightarrow 
+\texttt{anweisung}
+\;\text{'{\tt ;}'}
+\end{align*}
+In Pascal muss das Semikolon als Trennzeichen verwendet werden:
+\begin{align*}
+\texttt{anweisungsfolge}
+&\rightarrow
+\texttt{anweisungsfolge} \; \text{'{\tt ;}'}\; \texttt{anweisung}
+\\
+&\rightarrow\varepsilon
+\end{align*}
+Zusammengefasst ist die Grammatik f"ur C-Bl"ocke:
+\begin{align*}
+\texttt{block}
+&\rightarrow
+\text{'{\tt \{}'}\;\texttt{anweisungsfolge}\; \text{'{\tt\}}'}
+\\
+\texttt{anweisungsfolge}
+&\rightarrow
+\texttt{anweisungsfolge}
+\;
+\texttt{folgenelement}
+\\
+&\rightarrow\varepsilon
+\\
+\texttt{folgenelement}
+&\rightarrow 
+\texttt{anweisung}
+\;\text{'{\tt ;}'}
+\end{align*}
+Und f"ur Pascal-Bl"ocke ist sie
+\begin{align*}
+\texttt{block}
+&\rightarrow
+B\; \texttt{anweisungsfolge}\;E
+\\
+B&\rightarrow
+\text{'}\texttt{b}\text{'}\;
+\text{'}\texttt{e}\text{'}\;
+\text{'}\texttt{g}\text{'}\;
+\text{'}\texttt{i}\text{'}\;
+\text{'}\texttt{n}\text{'}
+\\
+E&\rightarrow
+\text{'}\texttt{e}\text{'}\;
+\text{'}\texttt{n}\text{'}\;
+\text{'}\texttt{d}\text{'}
+\\
+\texttt{anweisungsfolge}
+&\rightarrow
+\texttt{anweisungsfolge} \; \text{'{\tt ;}'}\; \texttt{anweisung}
+\\
+&\rightarrow\varepsilon
+\end{align*}
+\end{loesung}
+
