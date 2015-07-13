@@ -1,0 +1,84 @@
+Das Programm {\em Imagemagick} erm"oglicht Bildverarbeitung mit
+Kommandozeilenbefehlen. Viele Optionen dieses Programms m"ussen die
+Geometrie eines Bildes oder Bildausschnittes spezifizieren k"onnen.
+Dazu wurde eine Notation entwickelt, die in der Dokumentation etwa
+wie folgt zusammengefassst ist:
+\begin{center}
+\begin{tabular}{>{\tt}lp{5.75in}}
+\rm geometry&General description\\
+\hline
+50\%&Height and width both scaled by specified (50) percentage.\\
+47\%x42\%&Height (47\%) and width (42\%) individually scaled by specified
+percentages. (Only one \% symbol needed.)\\
+47&Width 47 given, height automagically selected to preserve aspect ratio.\\
+x42&Height 42 given, width automagically selected to preserve aspect ratio.\\
+47x42&Maximum values of height (42) and width (47) given, aspect ratio
+preserved.\\
+47x42\^&Minimum values of width (47) and height (42) given, aspect ratio
+preserved.\\
+47x42!&Width (47) and height (42) emphatically given, original
+aspect ratio ignored.\\
+47x42>&Shrinks an image with dimension(s) larger than the
+corresponding width (47) and/or height (42) argument(s).\\
+47x42<&Enlarges an image with dimension(s) smaller than the
+corresponding width (47) and/or height (42) argument(s).\\
+1974@&Resize image to have specified area (1974) in pixels. Aspect ratio is
+preserved.\\
+\hline
+\end{tabular}
+\end{center}
+Ausserdem kann einer solchen Gr"ossenspezifikation auch noch ein Offset
+angeh"angt werden, der immer von der Form
+\texttt{+18-48}
+sein muss. Die erste Zahl gibt den Versatz in $x$-Richtung an, die zweite
+den Versatz in $y$-Richtung. In beiden Richtungen sind beide Vorzeichen 
+\texttt{+} und \texttt{-} m"oglich.
+
+Finden Sie einen regul"aren Ausdruck, der alle m"oglichen
+Geometrie-Spezifikationen akzeptiert.
+
+
+\begin{loesung}
+Es gibt offenbar vier Arten von Geometriespezifikationen: Skalierungen 
+(erste zwei Zeilen),
+partielle Spezifikationen (Zeilen 3 und 4), vollst"andige Spezifikationen
+und Fl"achenspezifikationen (letzte Zeile).
+F"ur jede kann man einen regul"aren Ausdruck angeben:
+\begin{align*}
+\text{Skalierung:}\qquad&r_1 = \texttt{\color{red}[0-9]+\%|[0-9]+\%?x[0-9]+\%|[0-9]\%+x[0-9]+\%?}
+\\
+\text{partiell:}\qquad&r_2 = \texttt{\color{green}[0-9]+|x[0-9]+}
+\\
+\text{vollst"andig:}\qquad&r_3 = \texttt{\color{blue}[0-9]+x[0-9]+[\^{}!><]?}
+\\
+\text{Fl"ache:}\qquad&r_4 = \texttt{\color{yellow}[0-9]*@}
+\end{align*}
+Jedem dieser Ausdr"ucke kann ausserdem eine Offset-Spezifikation angeh"angt
+werden, die auf den regul"aren Ausdruck
+\begin{center}
+[-+][0-9]+[-+][0-9]+
+\end{center}
+passen muss. Zusammen ergbiet das den regul"aren Ausdruck
+\[
+\texttt{(}
+{\color{red} r_1}
+\texttt{|}
+{\color{green} r_2}
+\texttt{|}
+{\color{blue} r_3}
+\texttt{|}
+{\color{yellow} r_4}
+\texttt{)([-+][0-9]+[-+][0-9]+)?}
+\]
+oder ausgeschrieben
+\begin{center}
+\texttt{(({\color{red}[0-9]+\%|[0-9]+\%?x[0-9]+\%|[0-9]\%+x[0-9]+\%?})|}%
+\texttt{({\color{green}[0-9]+|x[0-9]+})|}\\
+\texttt{({\color{blue}[0-9]+x[0-9]+[\^{}!><]?}))}%
+\texttt{({\color{yellow}[0-9]*@})?}%
+\texttt{)([-+][0-9]+[-+][0-9]+)?}
+\end{center}
+(der regul"are Ausdruck ist aus Platzgr"unden auf zwei Zeilen aufgeteilt,
+beide Teile sind als ein regul"arer Ausdruck ohne 
+\end{loesung}
+
