@@ -1,6 +1,43 @@
-
-
+Sei $\Sigma=\{\texttt{a},\texttt{b},\dots,\texttt{z}\}$ das Alphabet
+bestehend aus allen Kleinbuchstaben. Die Sprache
+\[
+L=\{ w\in\Sigma^*
+\,
+|\,
+\text{
+f"ur alle $a,b\in\Sigma$ gilt
+$|w|_a < |w|_b$, wenn $b$ im Alphabet auf $a$ folgt%
+}
+\}
+\]
+besteht aus W"ortern, in denen Buchstaben h"aufiger sind, die sp"ater im
+Alphabet stehen (man beachte, dass $a$ und $b$ hier Variablen sind,
+nicht die Buchstaben \texttt{a} und \texttt{b}). Ist die Sprache $L$ regul"ar?
 
 \begin{loesung}
+Nein, $L$ ist nicht regl"ar, wie man mit dem Pumping-Lemma beweisen kann.
+Wir nehmen dazu an, dass $L$ regul"ar sei, das Pumping Lemma f"ur
+regul"are Sprachen besagt dann, dass es die Pumping Length $N$ f"ur die
+Sprachen $L$ gibt.
+Wir konstruieren jetzt ein Wort, welches die Bedingungen der Sprache
+erf"ullt:
+\[
+w=\texttt{a}^{N+1}\texttt{b}^{N+2}
+\]
+Das Pumping Lemma besagt dann, dass $w$ geschrieben werden kann als
+$w=xyz$, wobei $|xy|\le N$ und $|y|\ge 1$. 
+Aufgrund der Konstruktion von $w$ bestehen sowohl $x$ als auch $y$
+ausschliesslich aus Buchstaben \texttt{a}.
+Ein $k$-mal aufgepumptes Wort hat daher die Form
+\[
+w_k=xy^kz = \texttt{a}^{N+1+k|v|}\texttt{b}^{N+}.
+\]
+Es gilt f"ur $k\ge 1$:
+\[
+N+1+k|y|\ge N+1+k\ge N+2,
+\]
+das Wort $w_k=xy^kz$ erf"ullt nicht mehr die Spezifikation der Sprache,
+da diese $N+1+k|y| < N+2$ verlangt.
+Diese Widerspruch zeigt, dass $L$ nicht regul"ar sein kann.
 \end{loesung}
 
