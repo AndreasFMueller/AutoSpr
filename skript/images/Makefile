@@ -22,54 +22,66 @@ SUDOKUFILES = sudoku-1.pdf
 
 timestamp:	$(REGFILES) $(NEAFILES) $(CFGFILES) $(TURINGFILES) \
 		$(LANGFILES) $(MINEFILES) $(PLFILES) $(REDFILES) $(COMPFILES) \
-		$(GRAPHFILES)
+		$(GRAPHFILES) $(STACKFILES) $(SUDOKUFILES)
 	touch timestamp
 
 nea:	$(NEAFILES)
 $(NEAFILES):	nea.mp Makefile
 	TEX=latex mpost nea.mp
-	for i in 1 2 3 4 5 6 7; \
+	for f in nea.?; \
 	do \
+		echo $${f}; \
+		i=`expr $${f} : "nea\.\(.\)"`; \
 		mptopdf nea.$${i}; \
 	done
 
 turing:	$(TURINGFILES)
 $(TURINGFILES):	turing.mp Makefile
 	TEX=latex mpost turing.mp
-	for i in 1 2 3 4; \
+	for f in turing.?; \
 	do \
+		echo $${f}; \
+		i=`expr $${f} : "turing\.\(.\)"`; \
 		mptopdf turing.$${i}; \
 	done
 	
 cfg:	$(CFGFILES)
 $(CFGFILES): cfg.mp Makefile
 	TEX=latex mpost cfg.mp
-	for i in 1 2 3; \
+	for f in cfg.?; \
 	do \
+		echo $${f}; \
+		i=`expr $${f} : "cfg\.\(.\)"`; \
 		mptopdf cfg.$${i}; \
 	done
 
 lang:	$(LANGFILES)
 $(LANGFILES):	lang.mp Makefile
 	TEX=latex mpost lang.mp
-	for i in 1 2 3 4 5 6; \
+	for f in lang.?; \
 	do \
+		echo $${f}; \
+		i=`expr $${f} : "lang\.\(.\)"`; \
 		mptopdf lang.$${i}; \
 	done
 
 red: $(REDFILES)
 $(REDFILES): red.mp Makefile
 	TEX=latex mpost red.mp
-	for i in 1; \
+	for f in red.?; \
 	do \
+		echo $${f}; \
+		i=`expr $${f} : "red\.\(.\)"`; \
 		mptopdf red.$${i}; \
 	done
 
 comp: $(COMPFILES)
 $(COMPFILES): comp.mp Makefile
 	TEX=latex mpost comp.mp
-	for i in 1 2 3 4 5 6 7; \
+	for f in comp.?; \
 	do \
+		echo $${f}; \
+		i=`expr $${f} : "comp\.\(.\)"`; \
 		mptopdf comp.$${i}; \
 	done
 
@@ -86,8 +98,10 @@ $(PLFILES):	pl.mp Makefile
 reg: $(REGFILES)
 $(REGFILES):	reg.mp Makefile
 	TEX=latex mpost reg.mp
-	for i in 1 2 3 4 5 6; \
+	for f in reg.?; \
 	do \
+		echo $${f}; \
+		i=`expr $${f} : "reg\.\(.\)"`; \
 		mptopdf reg.$${i}; \
 	done
 
