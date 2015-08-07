@@ -70,7 +70,7 @@ weil Die Aufforderung ``Schaue nach, ob die obersten $n$ Elemente auf dem Stack
 auf die rechte Seite einer Regel passen'', ist f"ur bei einem Stack nicht
 durchf"uhrbar. Man kann immer nur das oberste Element einsehen.
 
-\subsection{$LR(0)$-Elemente}
+\subsection{\texorpdfstring{$LR(0)$}{LR(0)}-Elemente}
 \index{LR(0)-Element@$LR(0)$-Element}
 Ein Stackautomat kann sich nur dann an den den Stackinhalt unterhalb des obersten
 Stackelementes erinnern, wenn er diese Information in Zust"anden codieren kann.
@@ -119,7 +119,7 @@ am Ende des Wortes, kann die Reduktion agewendet werden.
 Man nennt die so erweiterten
 Produktionsregeln die {\em $LR(0)$-Elemente}.
 
-\subsection{"Ubergangsfunktion des $LR(0)$-Parsers}
+\subsection{"Ubergangsfunktion des \texorpdfstring{$LR(0)$}{LR(0)}-Parsers}
 Wenn eine Reduktionsregel angewendet werden kann, werden so viele Elemente
 aus dem Stack entfernt, wie die rechte Seite der Regel Zeichen hat. Das
 neue oberste Zeichen auf dem Stack ist der letzte Zustand des Automaten
@@ -132,13 +132,13 @@ Hilfe eines Stackautomaten durchf"uhrbar sind. Die einfachste ist nat"urlich
 die Shift-Ope\-ration. Da diese jedoch abh"angig ist vom aktuellen Element zuoberst
 auf dem Stack, braucht es daf"ur zwei Schritte:
 \[
-\boxed{0}\xrightarrow{0,{\tiny \boxed{0}\rightarrow\boxed{0}}}\cdot
-\xrightarrow{\varepsilon,\varepsilon\rightarrow{\tiny \boxed{0}}}\boxed{0}
+\boxed{0}\xrightarrow{0,\scalebox{0.7}{\boxed{0}$\rightarrow$\boxed{0}}}\cdot
+\xrightarrow{\varepsilon,\varepsilon\rightarrow\scalebox{0.7}{\boxed{0}}}\boxed{0}
 \]
 oder
 \[
-\boxed{0}\xrightarrow{1,{\tiny \boxed{0}\rightarrow\boxed{0}}}\cdot
-\xrightarrow{\varepsilon,\varepsilon\rightarrow{\tiny \boxed{01}}}\boxed{01},
+\boxed{0}\xrightarrow{1,\scalebox{0.7}{\boxed{0}$\rightarrow$\boxed{0}}}\cdot
+\xrightarrow{\varepsilon,\varepsilon\rightarrow\scalebox{0.7}{\boxed{01}}}\boxed{01},
 \]
 in beiden F"allen wird ein neuer Zwischenzustand ben"otigt, symbolisiert mit dem Zeichen
 `$\cdot$'.
@@ -149,49 +149,49 @@ n"achste Zustand $\boxed{0w}$. Dies kann man mit folgenden "Uberg"angen
 realisieren:
 \[
 \boxed{01}
-\xrightarrow{\varepsilon,{\tiny\boxed{01}}\to\varepsilon}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{01}}\to\varepsilon}
 \cdot
-\xrightarrow{\varepsilon,{\tiny\boxed{0}}\to\varepsilon}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0}}\to\varepsilon}
 \cdot
-\xrightarrow{\varepsilon,{\tiny\boxed{0}}\to\tiny{\boxed{0}}}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0}}\to\scalebox{0.7}{\boxed{0}}}
 \cdot
-\xrightarrow{\varepsilon,{\varepsilon\to\tiny{\boxed{0w}}}}
+\xrightarrow{\varepsilon,\varepsilon\to\scalebox{0.7}{\boxed{0w}}}
 \boxed{0w}
 \]
 Analog kann die Reduktion mit der Regel 1 durchgef"uhrt werden:
 \[
 \boxed{0w1}
-\xrightarrow{\varepsilon,{\tiny\boxed{0w1}}\to\varepsilon}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0w1}}\to\varepsilon}
 \cdot
-\xrightarrow{\varepsilon,{\tiny\boxed{0w}}\to\varepsilon}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0w}}\to\varepsilon}
 \cdot
-\xrightarrow{\varepsilon,{\tiny\boxed{0}}\to\varepsilon}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0}}\to\varepsilon}
 \cdot
-\xrightarrow{\varepsilon,{\tiny\boxed{0}}\to\tiny{\boxed{0}}}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0}}\to\scalebox{0.7}{\boxed{0}}}
 \cdot
-\xrightarrow{\varepsilon,{\varepsilon\to\tiny{\boxed{0w}}}}
+\xrightarrow{\varepsilon,\varepsilon\to\scalebox{0.7}{\boxed{0w}}}
 \boxed{0w}
 \]
 Wir k"onnen diese "Uberg"ange etwas einfacher schreiben, wenn wir in der
 Beschriftung der Pfeile erlauben, mehrere Operationen zusammenzufassen.
 Die Shift-Ope\-rationen werden dann zu
 \begin{gather*}
-\boxed{0}\xrightarrow{0,{\tiny \boxed{0}\rightarrow\boxed{0}\,\boxed{0}}}\boxed{0}
+\boxed{0}\xrightarrow{0,\scalebox{0.7}{\boxed{0}$\rightarrow$\boxed{0}\,\boxed{0}}}\boxed{0}
 \\
-\boxed{0}\xrightarrow{1,{\tiny \boxed{0}\rightarrow\boxed{0}\,\boxed{01}}}\boxed{01},
+\boxed{0}\xrightarrow{1,\scalebox{0.7}{\boxed{0}$\rightarrow$\boxed{0}\,\boxed{01}}}\boxed{01}
 \end{gather*}
 die Reduktionsoperationen zu
 \begin{gather*}
 \boxed{01}
-\xrightarrow{\varepsilon,{\tiny\boxed{0}\boxed{01}}\to\varepsilon}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0}\,\boxed{01}}\to\varepsilon}
 \cdot
-\xrightarrow{\varepsilon,{\tiny\boxed{0}}\to\tiny{\boxed{0}\,\boxed{0w}}}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0}}\to\scalebox{0.7}{\boxed{0}\,\boxed{0w}}}
 \boxed{0w}
 \\
 \boxed{0w1}
-\xrightarrow{\varepsilon,{\tiny\boxed{0}\,\boxed{0w}\,\boxed{0w1}}\to\varepsilon}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0}\,\boxed{0w}\,\boxed{0w1}}\to\varepsilon}
 \cdot
-\xrightarrow{\varepsilon,{\tiny\boxed{0}}\to\tiny{\boxed{0}\,\boxed{0w}}}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0}}\to\scalebox{0.7}{\boxed{0}\,\boxed{0w}}}
 \boxed{0w}
 \end{gather*}
 In diesem einfachen Bespiel gibt es nur eine M"oglichkeit f"ur den zweiten
