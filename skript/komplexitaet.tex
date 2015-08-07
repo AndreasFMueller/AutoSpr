@@ -526,7 +526,7 @@ Die Sprache \textsl{3SAT} ist
 \]
 Wie \textsl{SAT} ist \textsl{3SAT} in NP.
 
-\subsection{Existenz von Cliquen: $k$-\textsl{CLIQUE}}
+\subsection{Existenz von Cliquen: \texorpdfstring{$k$}{k}-\textsl{CLIQUE}}
 \begin{figure}
 \begin{center}
 %\includegraphics[width=0.6\hsize]{images/comp-1}
@@ -576,7 +576,7 @@ weniger Aufwand als die Gr"osse des Graphen brauchen, die
 Komplexit"at dieses Algorithmus ist also $O(n)$, das
 Cliquen-Problem ist in NP.
 
-\subsection{F"arbeproblem: $k$-\textsl{VERTEX-COLORING}}
+\subsection{F"arbeproblem: \texorpdfstring{$k$}{k}-\textsl{VERTEX-COLORING}}
 \index{F\"arbeproblem}
 \begin{figure}
 \begin{center}
@@ -1007,7 +1007,7 @@ f"ur die Zellen $c_{ij}$ die Formel
 \[
 \varphi_{c_{ij}}=
 \biggl(\bigvee_{s\in C} x_{ijs}\biggr)\wedge
-\bigwedge_{s,t\in C\atop s\ne t} (\overline{x_{ijs}}\vee\overline{x_{ijt}}).
+\bigwedge_{\myatop{s,t\in C}{s\ne t}} (\overline{x_{ijs}}\vee\overline{x_{ijt}}).
 \]
 Dies muss f"ur jede Indexkombination gelten, also
 \[
@@ -1018,7 +1018,7 @@ Dies muss f"ur jede Indexkombination gelten, also
 =
 \bigwedge_{1\le i,j\le n^k}\biggl(
 \biggl(\bigvee_{s\in C} x_{ijs}\biggr)\wedge
-\bigwedge_{s,t\in C\atop s\ne t} (\overline{x_{ijs}}\vee\overline{x_{ijt}})
+\bigwedge_{\myatop{s,t\in C}{s\ne t}} (\overline{x_{ijs}}\vee\overline{x_{ijt}})
 \biggr).
 \]
 Da unsere Redukton polynomiell sein soll, m"ussen wir auch bestimmen,
