@@ -1,0 +1,24 @@
+Der neue CEO einer grossen Fluggesellschaft m"ochte das Personal in allen
+Flugh"afen pers"onlich besuchen, die die Fluggesellschaft anfliegt.
+Er bittet seine Sekret"arin einen optimalen Besuchsplan zusammenzustellen,
+bei der er jede Destination nur genau einmal besuchen muss.
+Als der Plan eine Woche sp"ater immer noch nicht fertig ist, wird er
+ungeduldig.
+Warum dauert es so lange, einen Besuchsplan zusammenzustellen?
+
+\begin{loesung}
+Die Fl"uge, die die Destinationen der Fluggesellschaft miteinander
+verbinden, bilden einen gerichteten Graphen.
+Der CEO verlangt die L"osung des Problems HAMPATH, welches einen
+hamiltonschen Pfad sucht, also einen Pfad, der jede Ecke des Graphen
+genau einmal besucht.
+Dieses Problem ist NP-vollst"andig, es gibt also keine effizienten
+Algorithmen f"ur grosse Probleme.
+Reduktion $\text{HAMPATH}\le_P\text{BESUCH}$:
+\begin{align*}
+\text{Knoten}    & \to \text{Destination}\\
+\text{Kante}     & \to \text{Flug} \\
+\text{hamiltonscher Pfad}&\to\text{Besuchsplan}
+\end{align*}
+\end{loesung}
+
