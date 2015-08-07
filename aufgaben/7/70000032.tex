@@ -1,0 +1,83 @@
+{\em Heyawake} ist ein japanisches R"atsel, welches auf einem $n\times m$-Feld
+gespielt wird. Das Spielfeld ist durch dickere Linien unterteilt in gr"ossere rechteckige Gebiete, die {\it Zimmer} genannt werden. 
+Ziel des Spieles ist es, einzelne Felder schwarz einzuf"arben, so dass die
+folgenden Regeln erf"ullt sind:
+\begin{enumerate}
+\item
+Schwarze Quadrate grenzen niemals "uber eine Kante aneinander.
+\item
+Alle weissen Quadrate h"angen "uber Kanten zusammen
+\item
+Die Zahlen geben an, wie viele schwarze Quadrate in einem Raum vorkommen
+\item
+Ein Raum ohne Zahl kann beliebig viele schwarze Quadrate enthalten
+(solange die anderen Regeln erf"ullt sind)
+\item
+Eine gerade Linie aus weissen Quadraten kann sich h"ochstens "uber zwei
+R"aume erstrecken.
+\end{enumerate}
+Das folgende Beispiel zeigt Aufgabe und L"osung:
+\begin{center}
+\includeagraphics[width=0.35\hsize]{solution-big.png}
+\qquad
+\includeagraphics[width=0.35\hsize]{example-big.png}
+\end{center}
+
+Kann eine nicht deterministische Maschine in polynomieller Zeit entscheiden,
+ob ein Heyawake-R"atsel eine L"osung hat?
+
+\begin{loesung}
+Das Problem ist sicher entscheidbar, man kann alle $2^{nm}$ Einf"arbungen
+daraufhin "uberpr"ufen, ob die Regeln eingehalten werden.
+Daf"ur ist allerdings exponentielle Zeit notwendig.
+
+Eine nicht deterministische Maschine kann die Entscheidungsfrage genau
+dann in polynomieller Zeit beantworten, wenn es einen polynomiellen
+Verifizierer gibt.
+Als L"osungszertifikat $c$ fordern wir die Belegung der schwarzen Felder.
+Der Verfikationsalgorithmus muss die Regeln 1--5 "uberpr"ufen, und braucht
+daf"ur Zeit wie folgt
+\begin{center}
+\begin{tabular}{r|l|>{$}c<{$}}
+Regel&Arbeit&\text{Aufwand}\\
+\hline
+1.&F"ur jedes schwarze Feld 4 Nachbarn "uberpr"ufen&O(nm)\\
+2.&Zusammenhang "uberpr"ufen&O(nm)\\
+3.&F"ur jede Zahl die Anzahl schwarzer Felder im Zimmer pr"ufen&O(nm)\\
+4.&automatisch erf"ullt nach 3.&0\\
+5.&F"ur jedes weisse Feld, "uberpr"ufe Zeilenl"ange&O(nm(n+m))\\
+\hline
+&$c$ ist L"osung des Heyawake-R"atsels&O(nm(n+m))
+\end{tabular}
+\end{center}
+Nur die "Uberpr"ufung des Zusammenhangs ist etwas anspruchsvoller.
+Man kann dazu einen Einf"arbe-Algorithmus verwenden:
+\begin{enumerate}
+\item Markiere das erste weisse Feld {\color{red}rot}.
+\item F"ur jedes {\color{red}rot} markierte Feld markiere rekursiv
+alle noch nicht {\color{red}rot} markierten weissen Nachbarfelder ebenfalls
+{\color{red}rot}.
+\end{enumerate}
+Wenn am Ende dieses Algorithmus weisse Felder "ubrig bleiben, ist die
+in Regel~2 formulierte Bedinung nicht erf"ullt.
+Der F"arbealgorithmus besucht jedes Feld h"ochstens einmal, braucht also
+Zeit $O(nm)$.
+F"ur die "Uberpr"ufung, dass es keine weissen Felder gibt, wird ebenfalls
+Zeit $O(nm)$ ben"otigt.
+
+Die "Uberpr"ufung der Regel~5 muss in jedem der $nm$-Felder h"ochstens $n$
+vertikale und $m$ vertikale Felder "uberpr"ufen, daf"ur ist Zeit
+$O(nm(n+m))$ n"otig.
+
+Damit ist gezeigt, dass es einen polynomiellen Verifizierer gibt, und
+es folgt, dass eine nichtdeterministische Maschine ein Heyawake-R"atsel
+in polynomieller Zeit l"osen kann.
+\end{loesung}
+
+\begin{diskussion}
+Die Frage, ob ein Heyawake-R"atsel eine L"osung hat hat, ist NP-vollst"andig:
+Markus Holzer und Oliver Ruepp, {\it The Troubles of Interior Design--A
+Complexity Analysis of the Game Heyawake}, Proceedings,
+4th International Conference on Fun with Algorithms, LNCS 4475, Springer,
+Berlin/Heidelberg, 2007, pp.~198-212.
+\end{diskussion}
