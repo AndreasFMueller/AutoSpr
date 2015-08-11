@@ -1,0 +1,51 @@
+In Aufgabe~3 wird ein Spielfeld f"ur ein Heyawake-R"atsel vorgeben.
+Eine maschinenlesbare Version des Spielfeldes k"onnte wie 
+folgt aussehen:
+\begin{center}
+\small
+\verbatimainput{feld.txt}
+\end{center}
+Alle Zeilen sind gleich lang, und es folgen sich abwechselnd Zeilen,
+die die Felder beschreiben und Zeilen, die die horizontalen Linien
+beschreiben.
+Jeder zweite Platz in einer Zeile, die die Felder beschreibt, ist
+enth"alt entweder \texttt{|} oder ein Leerzeichen, so werden die W"ande
+beschrieben.
+K"onnen Sie eine (kontextfreie) Grammatik f"ur solche Feldbeschreibungen
+angeben?
+
+\begin{loesung}
+Nein, diese Sprache ist nicht kontextfrei, wie man mit dem 
+Pumping Lemma f"ur kontextfreie Sprachen beweisen kann.
+Dazu nehmen wir zun"achst an, dass die Sprache der Feldbeschreibungen
+kontextfrei sei. Dann gibt es nach dem Pumping Lemma eine Zahl $N$,
+die Pumping Length, so dass alle W"orter der Sprache mit mindestens
+L"ange $N$ ``aufpumpbar'' sind.
+
+Wir beschreiben jetzt ein v"ollig leeres $N\times N$-Feld. Es besteht
+abwechseln aus Zeilen aus lauter Punkten und Leerzeichen, und Zeilen
+aus lauter Leerzeichen. Alle Zeilen haben die gleiche L"ange $2N-1$.
+Dies ist das Wort $w$.
+
+Das Pumping Lemma besagt, dass man das Wort  $w$ in f"unf Teile
+$w=xyzuv$ zerlegt werden kann, wobei $|yzv|\le N$ sein muss.
+Ausserdem m"ussen die aufgepumpten W"orter $w_k=xy^kzu^kv$ alle wieder
+korrekte Feldbeschreibungen sein.
+Die Teile $y$ und $u$ sind in h"ochstens vier von den $2N-1$ Zeilen.
+Ausserdem enthalten sie so wenige Zeichen, durch entfernen von
+$y$ und $u$ nicht wieder vollst"andige Zeilen der L"ange $2N-1$ entstehen
+k"onnen.
+Beim Abpumpen wird also die L"ange von maximal vier Zeilen ver"andert,
+w"anrend die "ubrigen $2N-5$ Zeilen unver"andert bleiben\footnote{Wenn man
+es ganz genau nimmt, dann m"usste man hier voraussetzen, dass $N \ge 3$ ist,
+da man sonst nicht sicher sein kann, dass eine unver"anderte Zeile
+"ubrig bleibt. Diese Voraussetzung darf man aber immer machen, denn
+wenn $N$ Pumping Length ist, dann ist auch $N+1$ Pumping Length.
+Die Pumping Length sagt ja nur, wie lange ein Wort {\em mindestens} sein
+muss, damit es sicher aufpumpbar ist. Und wenn $N$ lang genug ist, dann ist
+$N+1$ sicher auch lang genug, und jede gr"ossere L"ange erst recht.
+Man darf also immer annehmen, dass die Pumping Length $N$ ``gross genug'' ist.}.
+Durch das Abpumpen ist das Wort $w_0$ nicht mehr in der Sprache.
+Dieser Widerspruch zeigt, dass 
+\end{loesung}
+
