@@ -48,16 +48,16 @@ Das Pumping Lemma besagt dann, dass $w$ geschrieben werden kann als
 $w=xyz$, wobei $|xy|\le N$ und $|y|\ge 1$. 
 Aufgrund der Konstruktion von $w$ bestehen sowohl $x$ als auch $y$
 ausschliesslich aus Buchstaben \texttt{a}.
-Ein $k$-mal aufgepumptes Wort hat daher die Form
+Ein aufgepumptes Wort hat daher die Form
 \[
-w_k=xy^kz = \texttt{a}^{N+1+k|v|}\texttt{b}^{N+}.
+w_k=xy^kz = \texttt{a}^{N+1+(k-1)|v|}\texttt{b}^{N+2}.
 \]
-Es gilt f"ur $k\ge 1$:
+Es gilt f"ur $k > 1$:
 \[
-N+1+k|y|\ge N+1+k\ge N+2,
+N+1+(k-1)|y|\ge N+1+(k-1)=N+k\ge N+2,
 \]
 das Wort $w_k=xy^kz$ erf"ullt nicht mehr die Spezifikation der Sprache,
-da diese $N+1+k|y| < N+2$ verlangt.
+da diese $N+1+(k-1)|y| < N+2$ verlangt.
 Diese Widerspruch zeigt, dass $L$ nicht regul"ar sein kann.
 \end{loesung}
 
