@@ -6,8 +6,8 @@ und mit drei Zust"anden
 (inklusive $q_{\text{accept}}$ und $q_{\text{reject}}$).
 Man weiss folgendes "uber $M$:
 \begin{enumerate}
-\item\label{50000019:liestalles} $M$ liest alle Zeichen des Inputwortes,
-bevor sie anh"alt.
+\item\label{50000019:liestalles} Jedes Zeichen des Inputwortes wird
+von $M$ irgendwann gelesen.
 \item\label{50000019:haeltaufblank} Sie h"alt im Zustand $q_{\text{accept}}$
 nur, wenn sie auf ein Blank $\blank$ auf dem Band gestossen ist.
 \end{enumerate}
@@ -23,7 +23,6 @@ Welche Sprache akzeptieren sie?
 \item
 Das Zustandsdiagramm einer Turingmaschine mit drei Zust"anden, die
 Bedingung~\ref{50000019:haeltaufblank} erf"ullt, sieht so aus:
-
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @+5mm {
@@ -38,8 +37,12 @@ Bedingung~\ref{50000019:haeltaufblank} erf"ullt, sieht so aus:
 Nat"urlich fehlen hier noch einige Pfeile. Damit alle Zeichen gelesen werden
 k"onnen, m"ussen im Zustand $q_0$ "Uberg"ange sowohl f"ur \texttt{0}
 wie auch f"ur \texttt{1} m"oglich sein. Damit das ganze Wort gelesen werden
-kann, muss f"ur beide Zeichen die Kopfbewegung nach rechts erfolgen,
-das Zustandsdiagramm muss also wie folgt aussehen:
+kann, muss f"ur beide Zeichen die Kopfbewegung nach rechts erfolgen.
+W"urde n"amlich nach einem Zeichen, z.~B.~\texttt{0} eine Kopfbewegung
+nach links erfolgen, dann k"onnten im Wort \texttt{00} nicht alle
+Zeichen gelesen werden, wie Bedingung~1 dies verlangt.
+
+Das Zustandsdiagramm muss also wie folgt aussehen:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @+5mm {
@@ -58,12 +61,18 @@ werden.
 Da hierf"ur jeweils drei m"ogliche Werte aus $\Gamma$ in Frage kommen,
 gibt es $3^3=27$ verschiedene Turing-Maschinen mit den verlangen Eigenschaften.
 
+Man kann auch ablesen, dass der Zustand $q_{\text{reject}}$ nicht erreicht
+werden kann.
+Damit bleiben nur noch die zwei M"oglichkeiten, dass die Maschine im
+Zustand $q_{\text{accept}}$ h"alt, oder dass sie unendlich lange l"auft.
+
 \item
-Offenbar kommen Kopfbewegungen nach links gar nicht vor.
+Offenbar kommen Kopfbewegungen nach links gar nicht vor, der Kopf bewegt
+sich nach jedem Schritt nach rechts, bis er auf ein $\blank$ trifft.
 Die Zeichen, die geschrieben werden, werden also nicht wieder gelesen, und
 haben daher keinen Einfluss die Sprache.
-Die Machine liest also in jedem Fall einfach nur von links nach rechts,
-bis sie auf ein $\blank$ trifft, und h"alt dann an.
+Die Machine liest also in jedem Fall einfach nur von links nach rechts
+und h"alt beim ersten $\blank$ im Zustad $q_{\text{accept}}$.
 Die akzeptierte Sprache ist also unabh"angig von der Wahl der roten
 {\color{red}?} Fragezeichen immer $L=\Sigma^*$.
 \end{teilaufgaben}
