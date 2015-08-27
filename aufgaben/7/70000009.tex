@@ -16,9 +16,9 @@ auch ``befreundet'' sind.
 \begin{loesung}
 Wir nennen die Aufgabe, eine solche Liste zu produzieren das ``Facebook
 Freundelisten-Problem'' FFLP. Wir zeigen, dass das Problem
-HAMPATH, einen Hamiltonschen Pfad in einem Graphen zu finden,
+UHAMPATH, einen Hamiltonschen Pfad in einem Graphen zu finden,
 polynomiell auf FFLP reduziert werden:
-$\text{HAMPATH}\le_p\text{FFLP}$.
+$\text{UHAMPATH}\le_p\text{FFLP}$.
 Sei $G$ ein Graph, dann konstruieren wir daraus ein FFLP wie
 folgt. Die Vertizes von $G$ werden als Teilnehmer definiert,
 zwei Teilnehmer sind genau dann befreundet, wenn die zugeh"origen
@@ -28,7 +28,7 @@ von Vertizes anzugeben, in der jeder Vertex genau einmal vorkommt,
 und aufeinanderfolgende Vertizes im Graphen mit einer Kante verbunden
 sind. "Ubersetzt bedeutet das, dass ein Liste von Teilnehmern gefunden
 werden muss, so dass zwei aufeinanderfolgende Teilnehmer auch Freunde sind.
-Da HAMPATH NP-vollst"andig ist folgt, dass auch \text{FFLP} NP-vollst"andig
+Da UHAMPATH NP-vollst"andig ist folgt, dass auch \text{FFLP} NP-vollst"andig
 ist.
 \begin{teilaufgaben}
 \item Die Freunde eines Teilnehmers bilden ein FFLP mit relativ wenigen
