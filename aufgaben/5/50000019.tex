@@ -38,9 +38,9 @@ Nat"urlich fehlen hier noch einige Pfeile. Damit alle Zeichen gelesen werden
 k"onnen, m"ussen im Zustand $q_0$ "Uberg"ange sowohl f"ur \texttt{0}
 wie auch f"ur \texttt{1} m"oglich sein. Damit das ganze Wort gelesen werden
 kann, muss f"ur beide Zeichen die Kopfbewegung nach rechts erfolgen.
-W"urde n"amlich nach einem Zeichen, z.~B.~\texttt{0} eine Kopfbewegung
-nach links erfolgen, dann k"onnten im Wort \texttt{00} nicht alle
-Zeichen gelesen werden, wie Bedingung~1 dies verlangt.
+W"urde n"amlich nach einem Zeichen, z.~B.~\texttt{0}, eine Kopfbewegung
+nach links erfolgen, dann k"onnten im Wort \texttt{00} das zweite
+Zeichen nicht gelesen werden, obwohl Bedingung~1 dies verlangt.
 
 Das Zustandsdiagramm muss also wie folgt aussehen:
 \[
@@ -70,7 +70,7 @@ Zustand $q_{\text{accept}}$ h"alt, oder dass sie unendlich lange l"auft.
 Offenbar kommen Kopfbewegungen nach links gar nicht vor, der Kopf bewegt
 sich nach jedem Schritt nach rechts, bis er auf ein $\blank$ trifft.
 Die Zeichen, die geschrieben werden, werden also nicht wieder gelesen, und
-haben daher keinen Einfluss die Sprache.
+haben daher keinen Einfluss auf die Sprache.
 Die Machine liest also in jedem Fall einfach nur von links nach rechts
 und h"alt beim ersten $\blank$ im Zustad $q_{\text{accept}}$.
 Die akzeptierte Sprache ist also unabh"angig von der Wahl der roten
