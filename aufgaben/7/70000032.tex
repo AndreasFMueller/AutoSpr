@@ -55,9 +55,11 @@ Nur die "Uberpr"ufung des Zusammenhangs ist etwas anspruchsvoller.
 Man kann dazu einen Einf"arbe-Algorithmus verwenden:
 \begin{enumerate}
 \item Markiere das erste weisse Feld {\color{red}rot}.
-\item F"ur jedes {\color{red}rot} markierte Feld markiere rekursiv
+\item F"ur jedes {\color{red}rot} markierte Feld markiere 
 alle noch nicht {\color{red}rot} markierten weissen Nachbarfelder ebenfalls
 {\color{red}rot}.
+\item Wiederhole Schritt 2, bis sich in einem Durchgang keine weiteren
+Felder einf"arben liessen.
 \end{enumerate}
 Wenn am Ende dieses Algorithmus weisse Felder "ubrig bleiben, ist die
 in Regel~2 formulierte Bedinung nicht erf"ullt.
@@ -76,6 +78,19 @@ in polynomieller Zeit l"osen kann.
 \end{loesung}
 
 \begin{diskussion}
+Man k"onnte versucht sein, den F"arbealgorithmus zur Feststellung des
+Zusammenhangs rekursiv zu formulieren, dabei trifft man jedoch auf ein
+Dilemma.
+Wenn man von jedem Feld rekursiv alle Nachbarn untersucht, dann besucht
+man jedes Feld mehrmals, insbesondere w"achst die Zahl der Feldbesuche
+exponentiell, man kann so also keinen polynomiellen Algorithmus bekommen.
+Wenn man nur die weissen Nachbarfelder besucht, dann findet man nicht
+alle Felder, denn im Schritt zwei werden ja Felder rot eingef"arbt, ohne 
+dass man pr"uft, ob sie weisse Nachbarn haben.
+Diese weissen Nachbarn wird man dann m"oglicherweise nicht mehr einf"arben
+k"onnen.
+Die iterative Formulierung vermeidet diese Schwierigkeit.
+
 Die Frage, ob ein Heyawake-R"atsel eine L"osung hat hat, ist NP-vollst"andig:
 Markus Holzer und Oliver Ruepp, {\it The Troubles of Interior Design--A
 Complexity Analysis of the Game Heyawake}, Proceedings,
