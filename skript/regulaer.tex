@@ -462,7 +462,7 @@ Ein Wort in $L$ wird also automatisch vom Automaten $A$ akzeptiert.
 Jetzt m"ussen wir noch nachweisen, dass ein von $A$ akzeptiertes Wort $w$
 auch in $L$ drin liegt. Dass $A$ das
 Wort $w$ akzeptiert besagt, dass $\varepsilon \in L(w)$.
-Das ist aber gleichbedeuten damit, dass $w\in L$. Damit ist alles
+Das ist aber gleichbedeutend damit, dass $w\in L$. Damit ist alles
 bewiesen, und wir haben folgenden Satz.
 
 \begin{satz}[Myhill-Nerode]\label{satz_dea_aus_sprache}
@@ -555,10 +555,10 @@ und trotzdem die gleiche Sprache akzeptieren. Kann man auf einfache
 Art herausfinden, ob zwei endliche Automaten die gleiche Sprache
 akzeptieren?
 
-G"abe es f"ur einen Automaten auf eine Standardform bringen, k"onnte
-man diese f"ur einen solchen Vergleich verwenden. Zun"achst m"usste
-man beide Automaten in die Standardform bringen. Wenn sie Standardformen
-"ubereinstimmen, akzeptieren die Automaten die gleiche Sprache.
+G"abe es f"ur einen Automaten die M"oglichkeit, ihn in eine Standardform
+zu bringen, so k"onnte man diese f"ur einen solchen Vergleich verwenden.
+Zun"achst m"usste man beide Automaten in die Standardform bringen. Wenn
+die Standardformen "ubereinstimmen, akzeptieren sie die gleiche Sprache.
 
 Eine Standardform eines Automaten k"onnen wir "uber die Konstruktion
 aus Satz \ref{satz_dea_aus_sprache} ermitteln: Zu einem Automaten
@@ -724,7 +724,7 @@ angegeben.
 
 \subsection{Pumping Lemma f"ur regul"are Sprachen\label{regulaer:pumpinglemma}}
 \index{Pumping Lemma!f\"ur regul\"are Sprachen}
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \includegraphics{images/reg-6.pdf}
 \end{center}
@@ -762,7 +762,7 @@ nachzuweisen, dass sie nicht regul"ar ist. Dazu nimmt man an, dass
 die Sprache regul"ar ist, f"ur sie also die Aussage des Pumping Lemma
 gilt. Dann leitet man daraus einen Widerspruch ab.
 
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \begin{tabular}{l}
 \includegraphics{images/pl-2.pdf}\\
@@ -1064,14 +1064,14 @@ neuen Zeichen des Inputwortes neu berechnet werden.
 Eine separate Speicherung ist nicht erforderlich, wenn man die
 erreichten Zust"ande mit einer Markierung versieht.
 
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \includegraphics{images/reg-1}
 \end{center}
 \caption{Beispiel eines NEA\label{koenntenea}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \begin{tabular}{cccc}
 &%
@@ -1146,7 +1146,7 @@ $\varepsilon$-"Uberg"angen umgehen kann.
 
 \subsubsection{Transformation f"ur NEA ohne $\varepsilon$-"Uberg"ange}
 Der konstruierte DEA muss dar"uber Buch f"uhren, in welchen Zust"anden
-der NEA sein k"onnte. Seine Zust"ande sind als Megen von m"oglichen
+der NEA sein k"onnte. Seine Zust"ande sind als Mengen von m"oglichen
 Zust"anden des NEA. Als Zustandsmenge des DEA wird man also $P(Q)$ 
 erwarten. Wie die "ubrigen Elemente des DEA konstruiert werden m"ussen,
 besagt der folgende Satz.
@@ -1418,11 +1418,10 @@ Satz \ref{satz_neadea} ist nicht nur ein theoretisch interessantes
 Resultat. Wenn man die endliche vielen Zust"ande mit den Zahlen
 $0,\dots,|Q|-1$ identifiziert, kann man die Teilmengen von $Q$ mit
 den $|Q|$-stelligen Bin"arzahlen identifizieren.
-Der Teilmenge $M\subset Q$ entspricht die Bin"arzahlen, die Einsen an
-den Stellen hat, der Nummer
-in $M$ enthalten sind.
+Der Teilmenge $M\subset Q$ entsprichen die Bin"arzahlen, die Einsen an
+den Stellen haben, deren Nummern in $M$ enthalten sind.
 Die grosse Vereinigungen ist ebenfalls sehr einfach
-zu berechnen, sie entspricht der Oder-Verkn"pfung
+zu berechnen, sie entspricht der Oder-Verkn"upfung
 der einzelnen Mengen in (\ref{erreichbar}).
 Somit haben wir nicht nur ein Existenz-Resultat sondern einen
 Algorithmus, mit dem ein beliebiger NEA in einen DEA umgewandelt
@@ -1441,7 +1440,7 @@ an:
 \begin{enumerate}
 \item Wandle $A$ und $B$
 mit dem Algorithmus des Satzes 
-\ref{satz_neadea} in einen DEAs $A'$ und $B'$ um.
+\ref{satz_neadea} in die DEAs $A'$ und $B'$ um.
 \item Reduziert anschliessend $A'$ und $B'$  mit dem Algorithmus
 von Satz \ref{satz_minimalautomat} in Minimalautomaten
 $A''$ und $B''$.
@@ -1475,11 +1474,10 @@ Sind $L_1$ und $L_2$ regul"are Sprachen, dann
 ist auch $L_1\cup L_2$ regul"ar.
 \end{satz}
 
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \includegraphics{images/nea-5}
-\qquad
-\qquad
+\qquad \qquad
 \includegraphics{images/nea-6}
 \end{center}
 \caption{Konstruktion eines NEA 
@@ -1506,8 +1504,8 @@ $A_1$ und $A_2$ auch als Automaten "uber dem Alphabet $\Sigma$
 betrachten, indem man setzt
 \[
 \delta_i(q, x)=\begin{cases}
-\delta_i(q,x)&\qquad q\in Q_i\text{ und }  x\in \Sigma_i\\
-\emptyset&\qquad q\in Q_i\text{ und } x\in \Sigma_{3-i}\setminus \Sigma_i\\
+\delta_i(q,x)&\qquad q\in Q_i\text{ und } x\in \Sigma_i\\
+\emptyset&\qquad q\in Q_i\text{ und } x\in \Sigma_{3-i}\setminus \Sigma_i\\
 \end{cases}
 \]
 Es ist also keine Einschr"ankung, wenn wir annehmen, dass
@@ -1523,7 +1521,7 @@ daf"ur entscheiden, den einen oder anderen Automaten zum
 akzeptieren eines Wortes zu verwenden.
 Also verwenden wir 
 \begin{align*}
-Q&=Q_1\cup Q_1\cup \{q_0\}\\
+Q&=Q_1\cup Q_2\cup \{q_0\}\\
 F&=F_1\cup F_2\\
 \delta(x,a)&=\begin{cases}
 \delta_1(x,a)&\qquad x\in Q_1\\
@@ -1956,7 +1954,7 @@ hierf"ur l"asst sich ein etwas einfacherer Automat im gleichen
 Stil wie f"ur Verkettung und *-Operation finden. Ein neuer Startzustand
 wird dazu mit $\varepsilon$-"Uberg"angen mit den Startzust"anden
 der Automaten $A_1$ und $A_2$ verbunden, wie in Abbildung~\ref{neaalternative}.
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \includegraphics[height=0.4\hsize]{images/nea-5}
 \qquad
@@ -2234,11 +2232,9 @@ auch einen zus"atzlichen Startzustand $q_{\text{start}}$ hinzu.
 %dass diese Pfeile gar nie ``genommen'' werden.
 
 Ausserdem f"ugen wir vom neuen Startzustand $q_{\text{start}}$
-aus einen Pfeil
-Pfeil zu urspr"unglichen Startzustand des NEA mit Beschriftung $\varepsilon$
-hinzu.
+aus einen Pfeil zum urspr"unglichen Startzustand des NEAs mit Beschriftung $\varepsilon$ hinzu.
 
-Alle Akzeptierzust"ande des urspr"unglichen NEA werden jetzt noch mit
+Alle Akzeptierzust"ande des urspr"unglichen NEAs werden jetzt noch mit
 $q_{\text{accept}}$ verbunden, beschriftet mit $\varepsilon$.
 
 Damit haben wir jetzt einen VNEA. Diesen
@@ -2246,9 +2242,8 @@ m"ussen wir jetzt auf einen VNEA reduzieren, der nur noch
 die beiden Zust"ande $q_{\text{start}}$ und $q_{\text{accept}}$
 enth"alt. Dazu reissen wir nacheinander alle Zust"ande des urspr"unglichen
 NEA heraus.
-Die entstehenden L"ocher 
-m"ussen wir nat"urlich reparieren,
-indem wir die verbleibenden Pfeile mit erweiterten regul"aren Ausdr"ucken
+Die entstehenden L"ocher m"ussen wir nat"urlich reparieren, indem wir die
+verbleibenden Pfeile mit erweiterten regul"aren Ausdr"ucken
 anschreiben, welche die verlorengegangenen Teile ersetzen.
 
 Nehmen wir also an, wir m"ochten den Zustand $q_ {\text{rip}}$
@@ -2443,7 +2438,7 @@ Zeichnet man diese NEA, ergibt sich das folgende Zustandsdiagramm:
 }
 \]
 Man kan im unteren Teil sehr sch"on erkennen, wie der Automat, der
-die Dreier-Altenrative {\tt h|s|r} akzeptiert, "uber einen
+die Dreier-Alternative {\tt h|s|r} akzeptiert, "uber einen
 $\varepsilon$-"Ubergang mit dem Automaten verkettet wird, der 
 den String {\tt 10} akzeptiert. Zustand {\tt 14} wurde von Flex
 hinzugef"ugt, er erlaubt das Fileende zu erkennen, so dass das

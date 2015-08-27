@@ -369,7 +369,7 @@ den Ausdruck {\tt 7 * (3 + 5)}.
 Die dabei verwendeten Regeln k"onnen in Baumform wie in
 Abbildung \ref{etf-parse-tree} dargestellt werden.
 
-\begin{figure}
+\begin{figure}[H]
 {
 \small
 \[
@@ -1165,7 +1165,7 @@ S
 \]
 Die Tabellen~\ref{beispiel-tabelle} zeigt den Inhalt des 
 Input und des Stack nach jedem "Ubergang des Stackautomaten.
-\begin{table}
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{|c|l|c|l|}
 \hline
@@ -1302,7 +1302,7 @@ ist, welches zusammen mit dem Ablegen von $x$ vom Input verarbeitet wird,
 und $b$ das Zeichen, das mit dem Entfernen von $x$ verarbeitet wird.
 Der Stack ist zwischen den Zust"anden $r$ und $s$ unver"andert, wir
 k"onnen ihn schematisch wie in Abbildung~\ref{stacknichtleer} darstellen.
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 %\includegraphics[width=0.85\hsize]{images/stack-2.pdf}
 \includegraphics{images/stack-2.pdf}
@@ -1318,7 +1318,7 @@ wieder im selben Zustand wie zu
 Beginn der Berechnung ist, wir k"onnen dies durch
 $A_{pq}\to A_{pr}A_{rq}$ symbolisieren.
 Die Abbildung~\ref{stackleer} zeigt diese Situation schematisch.
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 %\includegraphics[width=0.85\hsize]{images/stack-1.pdf}
 \includegraphics{images/stack-1.pdf}
@@ -1594,18 +1594,18 @@ Sprachen geliefert haben, nicht direkt anwendbar sind. Wir verwenden
 daher nicht einen Stackautomaten, sondern direkt die Grammatik, um
 das Pumping Lemma herzuleiten.
 
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
-\includegraphics[width=0.5\hsize]{images/cfg-1}
+\includegraphics[width=0.35\hsize]{images/cfg-1}
 \end{center}
 \caption{Parse Tree f"ur die Erzeugung des Wortes $uvxyz$ aus der
 Startvariablen $S$.\label{cfg-tree-1}}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \begin{tabular}{cc}
-\includegraphics[width=0.45\hsize]{images/cfg-2}&%
-\includegraphics[width=0.45\hsize]{images/cfg-3}\\
+\includegraphics[width=0.35\hsize]{images/cfg-2}&%
+\includegraphics[width=0.35\hsize]{images/cfg-3}\\
 \end{tabular}
 \end{center}
 \caption{Parse Tree f"ur das aufgepumpte Wort $uv^2xy^2zv$ (links) und das
@@ -1657,7 +1657,7 @@ $uv^kxy^kz\in L$ f"ur alle $k\in\mathbb N$.
 
 \subsection{Beispiele nicht kontextfreier Sprachen}
 \subsubsection{Die Sprache $L=\{a^nb^nc^n\,|\,n\in\mathbb N\}$.}
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=\hsize]{images/pl-5}\\%
 \smallskip
