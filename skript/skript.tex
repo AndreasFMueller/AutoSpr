@@ -7,6 +7,9 @@
 %
 \documentclass[a4paper,12pt]{book}
 \usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{csquotes}
+\usepackage{float} %added see: https://tex.stackexchange.com/questions/8625/force-figure-placement-in-text
 \usepackage{times}
 \usepackage{geometry}
 \geometry{papersize={210mm,297mm},total={160mm,240mm},top=31mm,bindingoffset=15mm}
@@ -29,10 +32,12 @@
 \usepackage{algorithmic}
 \usepackage{makeidx}
 \usepackage{paralist}
-\usepackage{hyperref}
+\usepackage[colorlinks=true]{hyperref}
 \usepackage[backend=bibtex]{biblatex}
 \addbibresource{references.bib}
 \makeindex
+\setlength{\headheight}{15pt}
+\newcommand\myatop[2]{\genfrac{}{}{0pt}{}{#1}{#2}}
 \begin{document}
 \pagestyle{fancy}
 \lhead{Automaten und Sprachen}
@@ -58,7 +63,6 @@ Hochschule f"ur Technik, Rapperswil, 2011-2015
 \end{center}
 \end{titlepage}
 \hypersetup{
-    colorlinks=true,
     linktoc=all,
     linkcolor=blue
 }
