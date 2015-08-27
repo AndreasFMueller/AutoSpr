@@ -53,7 +53,7 @@ Seite einer Regel passt, wendet er die Regel an, reduziert das Wort zu einer
 Variablen und legt das Resultat auf den Stack. Dies ist in Tabelle \ref{shiftreduce}
 dargestellt.
 
-\begin{table}
+\begin{table}[H]
 \input{bison/tabelle1.tex}
 \caption{Vorgehen eins Shift-Reduce-Parser am Beispiel der Sprache $L=\{0^n1^n|n>0\}$
 \label{shiftreduce}}
@@ -90,7 +90,7 @@ hervorgerufen, die anderen zwei waren nur Vorstufen dazu.
 Fasst man diese W"orter
 zusammen als Namen der Zust"ande, k"onnen wir den Parse-Prozess wie in
 Tabelle \ref{lrelemente} durchf"uhren.
-\begin{table}
+\begin{table}[H]
 \input{bison/tabelle2.tex}
 \caption{Shift-Reduce mit $LR(0)$-Elementen\label{lrelemente}}
 \end{table}
@@ -215,7 +215,7 @@ unabh"angig vom Input, oder f"ur eine Schiebeoperation, wobei
 nicht alle Input-Zeichen akzeptabel sind, und verschiedene Eingabezeichen
 zu verschiedenen Ausgabezust"anden f"uhren k"onnen. Das Beispiel
 $L=\{0^n1^n|n>0\}$ f"uhrt auf Tabelle \ref{parsetable}.
-\begin{table}
+\begin{table}[H]
 \input{bison/tabelle3.tex}
 \caption{Parsertabelle f"ur $L=\{0^n1^n|n>0\}$\label{parsetable}}
 \end{table}
@@ -287,7 +287,7 @@ Regel
 \text{\$accept}\rightarrow S\; \text{\$end}
 \]
 hinzu. Wenn also am Ende des Input alles auf die Variable $S$ reduziert
-werden konnte, liegt offenbar ein Wort vor, welches akkzeptiert werden
+werden konnte, liegt offenbar ein Wort vor, welches akzeptiert werden
 muss.
 
 \section{Arithmetische Ausdr"ucke}

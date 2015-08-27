@@ -90,7 +90,7 @@ Kontextfreie Sprachen sind entscheidbar.
 \end{satz}
 Dieser Satz zeigt, dass die entscheidbaren Sprachen eine 
 Obermenge der kontextfreien Sprachen sind, wie in folgender
-Graphik dargestellt.
+Grafik dargestellt.
 \begin{center}
 %\includegraphics[width=0.7\hsize]{images/lang-2}
 \includegraphics{images/lang-2}
@@ -533,7 +533,7 @@ anzuordnen.
 
 \subsection{Reduktionsabbildung}
 \index{Reduktionsabbildung}%
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 %\includegraphics[width=\hsize]{images/red-1}
 \includegraphics{images/red-1}
@@ -793,15 +793,14 @@ in $\overline{\textsl{REGULAR}}_{\text{TM}}$.
 
 \index{Gleichheitsproblem!f\"ur Turingmaschinen}%
 \begin{satz}
-Man kann nicht entscheiden, ob zwei Turingmaschinen die gleiche Sprache
-erkennen:
+Ob zwei Turingmaschinen die gleiche Sprache
 \[
 \text{\it EQ}_{\text{TM}}=\{
 \langle M_1,M_2\rangle\;|\;\text{$M_i$ sind Turingmaschinen und $L(M_1)=L(M_2)$}
 \}
 \]
 \index{EQTM@$\textit{EQ}_{\text{TM}}$}%
-ist nicht entscheidbar.
+erkennen, ist nicht entscheidbar.
 \end{satz}
 
 \begin{proof}[Beweis]
@@ -809,9 +808,9 @@ Wir konstruieren eine Reduktion
 $
 E_{\text{TM}}\le \text{\it EQ}_{\text{TM}}
 $
-Dazu sei $M_0$ eine Turingmaschine, die jeden Input verwirft,
+. Dazu sei $M_0$ eine Turingmaschine, die jeden Input verwirft,
 also $L(M_0)=\emptyset$.
-F"ur die Abbildung $f$ verwendenw ir
+F"ur die Abbildung $f$ verwenden wir
 \[
 f
 \colon
@@ -841,14 +840,13 @@ und kontextfreien Sprachen entscheidbar sind. Dem ist jedoch
 nicht so. Es ist zum Beispiel nicht entscheidbar, ob zwei
 Grammatiken die gleiche Sprache erzeugen.
 
-\begin{satz} Es ist nicht entscheidbar, ob eine kontextfreie
-Grammatik alle W"orter erzeugt:
+\begin{satz} Ob eine kontextfreie Grammatik
 \[
 \text{\it ALL}_{\text{CFG}}=\{\langle G\rangle\;|\; \text{$G$
 ist eine kontextfreie Grammatik und $L(G)=\Sigma^*$}\}
 \]
 \index{ALLCFG@$\textit{ALL}_{\text{CFG}}$}%
-ist nicht entscheidbar.
+alle W"orter erzeugt, ist nicht entscheidbar.
 \end{satz}
 
 \begin{proof}[Beweis]
@@ -1002,7 +1000,6 @@ konstruiert.
 \begin{satz}
 \index{Gleichheitsproblem!f\"ur kontextfreie Grammatiken}%
 Das Gleichheitsproblem f"ur kontextfreie Grammatiken
-ist nicht entscheidbar:
 \[
 \text{\it EQ}_{\text{CFG}}=\{
 \langle G_1,G_2\rangle\;|\;\text{$G_i$ sind kontextfreie Grammatiken
@@ -1024,7 +1021,7 @@ Da $\text{\it ALL}_{\text{CFG}}$ nicht entscheidbar ist, folgt
 auch, dass $\text{\it EQ}_{\text{CFG}}$ nicht entscheidbar
 ist.
 
-Sie $G_0$ die Grammatik, die $\Sigma^*$ erzeugt. Offenbar ist
+Sei $G_0$ die Grammatik, die $\Sigma^*$ erzeugt. Offenbar ist
 $\langle G\rangle$ genau dann in $\text{ALL}_{\text{CFG}}$,
 wenn $G$ und $G_0$ die gleiche Sprache erzeugen, also
 $\langle G,G_0\rangle\in\text{\it EQ}_{\text{CFG}}$.
@@ -1072,12 +1069,11 @@ Wir konstruieren eine Reduktion $A_\text{TM}\le P_{\text{TM}}$.
 Zu einem Paar
 $\langle M,w\rangle$
 m"ussen wir also auf
-berechenbare Weise eine Turingmaschine
-$M'$ konstruieren,
+berechenbare Weise eine Turingmaschine $M'$
 \[
-f\colon \langle M,w\rangle\mapsto M',
+f\colon \langle M,w\rangle\mapsto M'
 \]
-deren Sprache genau dann die Eigenschaft $P$
+konstruieren, deren Sprache genau dann die Eigenschaft $P$
 hat, wenn $M$ das Wort $w$ akzeptiert.
 
 Dazu brauchen wir die beiden Turing-erkennbaren Sprachen $L_1$ und $L_2$,
