@@ -6,16 +6,15 @@ folgenden Regeln erf"ullt sind:
 \item
 Schwarze Quadrate grenzen niemals "uber eine Kante aneinander.
 \item
-Alle weissen Quadrate h"angen "uber Kanten zusammen
+Alle weissen Quadrate h"angen "uber Kanten zusammen.
 \item
-Die Zahlen geben an, wie viele schwarze Quadrate in einem Zimmer vorkommen
+Die Zahlen geben an, wie viele schwarze Quadrate in einem Zimmer vorkommen.
 \item
 Ein Zimmer ohne Zahl kann beliebig viele schwarze Quadrate enthalten
-(solange die anderen Regeln erf"ullt sind)
+(solange die anderen Regeln erf"ullt sind).
 \item
 Eine gerade (horizontale oder vertikale) Linie aus zusammenh"angenden
-weissen Quadraten kann sich h"ochstens "uber zwei
-Zimmer erstrecken.
+weissen Quadraten kann sich h"ochstens "uber zwei Zimmer erstrecken.
 \end{enumerate}
 Das folgende Beispiel zeigt Aufgabe und L"osung:
 \begin{center}
@@ -43,12 +42,12 @@ daf"ur Zeit wie folgt
 Regel&Arbeit&\text{Aufwand}\\
 \hline
 1.&F"ur jedes schwarze Feld 4 Nachbarn "uberpr"ufen&O(nm)\\
-2.&Zusammenhang "uberpr"ufen&O(nm)\\
+2.&Zusammenhang "uberpr"ufen&O(n^2m^2)\\
 3.&F"ur jede Zahl die Anzahl schwarzer Felder im Zimmer pr"ufen&O(nm)\\
 4.&automatisch erf"ullt nach 3.&0\\
 5.&F"ur jedes weisse Feld, "uberpr"ufe Zeilenl"ange&O(nm(n+m))\\
 \hline
-&$c$ ist L"osung des Heyawake-R"atsels&O(nm(n+m))
+&$c$ ist L"osung des Heyawake-R"atsels&O(n^2m^2)
 \end{tabular}
 \end{center}
 Nur die "Uberpr"ufung des Zusammenhangs ist etwas anspruchsvoller.
@@ -63,10 +62,12 @@ Felder einf"arben liessen.
 \end{enumerate}
 Wenn am Ende dieses Algorithmus weisse Felder "ubrig bleiben, ist die
 in Regel~2 formulierte Bedinung nicht erf"ullt.
-Der F"arbealgorithmus besucht jedes Feld h"ochstens einmal, braucht also
-Zeit $O(nm)$.
-F"ur die "Uberpr"ufung, dass es keine weissen Felder gibt, wird ebenfalls
-Zeit $O(nm)$ ben"otigt.
+Der F"arbealgorithmus besucht in jedem Durchgang jedes Feld h"ochstens einmal,
+braucht also f"ur einen Durchgang die Zeit $O(nm)$.
+Im schlimmsten Fall "andert in jedem Durchgang nur ein einziges Feld seine
+Farbe, es braucht also $O(nm)$ Durchg"ange.
+Der gesamte Zeitaufwand f"ur die "Uberpr"ufung des Zusammenhangs
+ist daher $O(n^2m^2)$.
 
 Die "Uberpr"ufung der Regel~5 muss in jedem der $nm$-Felder h"ochstens $n$
 vertikale und $m$ vertikale Felder "uberpr"ufen, daf"ur ist Zeit
