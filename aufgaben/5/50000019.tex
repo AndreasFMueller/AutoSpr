@@ -1,0 +1,107 @@
+Gegeben ist eine Turingmaschine $M$ "uber dem Alphabet
+$\Sigma=\{\texttt{0}, \texttt{1}\}$,
+Bandalphabet
+$\Gamma=\{\texttt{0}, \texttt{1}, \blank\}$
+und mit drei Zust"anden
+(inklusive $q_{\text{accept}}$ und $q_{\text{reject}}$).
+Man weiss folgendes "uber $M$:
+\begin{enumerate}
+\item\label{50000019:liestalles} Jedes Zeichen des Inputwortes wird
+von $M$ irgendwann gelesen.
+\item\label{50000019:haeltaufblank} Sie h"alt im Zustand $q_{\text{accept}}$
+nur, wenn sie auf ein Blank $\blank$ auf dem Band gestossen ist.
+\end{enumerate}
+\begin{teilaufgaben}
+\item
+Wieviele verschiedene Turing-Maschinen mit diesen Eigenschaften gibt es?
+\item
+Welche Sprache akzeptieren sie?
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Da die Turing-Maschine nach Bedingung~1 ganz bestimmt etwas tut, kann
+weder $q_{\text{accept}}$ noch $q_{\text{reject}}$ der Startzustand
+sein.
+
+Das Zustandsdiagramm einer Turingmaschine mit drei Zust"anden, die
+Bedingung~\ref{50000019:haeltaufblank} erf"ullt, sieht so aus:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{} \ar[r]
+        &{q_0} \ar[r]^{\blank\to ?,?}
+		&*++[o][F=]{q_{\text{accept}}}
+\\
+*+\txt{}
+	&*++[o][F=]{q_{\text{reject}}}
+}
+\]
+Nat"urlich fehlen hier noch einige Pfeile. Damit alle Zeichen gelesen werden
+k"onnen, m"ussen im Zustand $q_0$ "Uberg"ange sowohl f"ur \texttt{0}
+wie auch f"ur \texttt{1} m"oglich sein. Damit das ganze Wort gelesen werden
+kann, muss f"ur beide Zeichen die Kopfbewegung nach rechts erfolgen.
+W"urde n"amlich nach einem Zeichen, z.~B.~\texttt{0}, eine Kopfbewegung
+nach links erfolgen, dann k"onnten im Wort \texttt{00} das zweite
+Zeichen nicht gelesen werden, obwohl Bedingung~1 dies verlangt.
+
+Das Zustandsdiagramm muss also wie folgt aussehen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{} \ar[r]
+        &{q_0} \ar[r]^{\blank\to {\color{red}?},{\color{red}?}}
+		\ar@(ur,u)_{\texttt{0}\to {\color{red}?},\text{R}}
+		\ar@(ul,u)^{\texttt{1}\to {\color{red}?},\text{R}}
+		&*++[o][F=]{q_{\text{accept}}}
+\\
+*+\txt{}
+	&*++[o][F=]{q_{\text{reject}}}
+}
+\]
+Nur noch die roten Fragezeichen {\color{red}?} m"ussen festgelegt
+werden.
+Da hierf"ur jeweils drei m"ogliche Werte aus $\Gamma$ in Frage kommen
+und zwei Richtungen,
+gibt es $3^3\cdot 2 =54$ verschiedene Turing-Maschinen mit den verlangten
+Eigenschaften.
+
+Man kann argumentieren, dass die Bewegungsrichtung beim "Ubergang zu 
+$q_{\text{accept}}$ gegenstandslos ist, da unabh"angig von der
+Bewegungsrichtung das berechnete Resultat auf dem Band das gleiche sein wird.
+Wenn man dies akzeptiert, gibt es nur noch 27 verschiedene Turing-Maschinen
+mit den verlangten Eigenschaften.
+
+Man kann auch ablesen, dass der Zustand $q_{\text{reject}}$ nicht erreicht
+werden kann.
+Damit bleiben nur noch die zwei M"oglichkeiten, dass die Maschine im
+Zustand $q_{\text{accept}}$ h"alt, oder dass sie unendlich lange l"auft.
+
+\item
+Offenbar kommen Kopfbewegungen nach links gar nicht vor, der Kopf bewegt
+sich nach jedem Schritt nach rechts, bis er auf ein $\blank$ trifft.
+Die Zeichen, die geschrieben werden, werden also nicht wieder gelesen, und
+haben daher keinen Einfluss auf die Sprache.
+Die Machine liest also in jedem Fall einfach nur von links nach rechts
+und h"alt beim ersten $\blank$ im Zustad $q_{\text{accept}}$.
+Die akzeptierte Sprache ist also unabh"angig von der Wahl der roten
+{\color{red}?} Fragezeichen immer $L=\Sigma^*$.
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item
+Startzustand ({\bf S}) 1 Punkt,
+"Ubergang f"ur $\blank$ ({\bf B}) 1 Punkt,
+"Uberg"ange f"ur \texttt{0} und \texttt{1} haben Kopfbewegung nach rechts
+({\bf R}) 1 Punkt,
+Wahlm"oglichkeiten nur f"ur die geschriebenen Zeichen ({\bf W}) 1 Punkt,
+Anzahl Wahlm"oglichkeiten ({\bf A}) 1 Punkt.
+\item
+Sprache $\Sigma^*$ ({\bf *}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
+
+

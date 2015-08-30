@@ -1,0 +1,157 @@
+Die Programmiersprachen C und Pascal erlauben, aus Anweisungen sogenannte
+Bl"ocke zu bilden, aber sie verwenden verschiedene syntaktische Regeln
+daf"ur.
+In C wird ein Block von geschweiften Klammern \texttt{\{} und \texttt{\}}
+eingefasst, und die Anweisungen m"ussen durch Semikolon beendet werden.
+In Pascal beginnt ein Block mit \texttt{begin} und endet mit \texttt{end},
+und zwischen den einzelnen Anweisungen steht ein Semikolon.
+Das folgende Beispiel einer \texttt{for}-Schleife illustriert den
+Unterschied.
+
+\medskip
+\begin{tabular}{lr}
+\begin{minipage}{0.5\hsize}
+\texttt{for}-Schleife in C:
+\medskip
+\verbatimainput{block.c}
+\end{minipage}&%
+\begin{minipage}{0.5\hsize}
+\texttt{for}-Schleife in Pascal:
+\medskip
+\verbatimainput{block.pas}
+\end{minipage}
+\end{tabular}
+\medskip
+
+Man beachte, dass in Pascal im Gegensatz zu C am Ende der
+zweiten Anweisung kein Semikolon n"otig ist.
+Beide Sprachen erlauben, dass ein Block keine Anweisungen enth"alt.
+
+Konstruieren Sie f"ur jede der Sprachen eine Grammatik f"ur Bl"ocke
+(Verwenden Sie die Variable \texttt{block} daf"ur), die die genannten
+Unterschiede ausdr"uckt.
+Verwenden Sie in Ihrer Grammatik die Variable \texttt{anweisung} f"ur
+Anweisungen.
+Sie m"ussen keine Grammatik f"ur Anweisungen angeben.
+
+\begin{hinweis}
+Es wird {\em nicht} verlangt, eine Grammatik f"ur die
+\texttt{for}-Kontrollstruktur anzugeben, sondern nur f"ur den Block.
+\end{hinweis}
+
+\begin{loesung}
+Die beiden Grammatiken m"ussen die folgenden zwei Unterschiede zwischen
+den Sprachen sichtbar machen: einerseits die Wahl der Zeichen,
+die einen Block begrenzen, und andererseits die unterschiedliche
+Verwendung des Semikolons, welches
+in C ein Terminator, in Pascal aber ein Separator ist.
+
+Bl"ocke worden aus einer Anweisungsfolge konstruiert, in C zum Beispiel
+mit Hilfe der Regel
+\[
+\texttt{block}
+\rightarrow
+\text{'{\tt \{}'}\;\texttt{anweisungsfolge}\; \text{'{\tt\}}'}
+\]
+In Pascal muss man die Blockbegrenzer aus Zeichen zusammensetzen
+\begin{align*}
+\texttt{block}
+&\rightarrow
+B\; \texttt{anweisungsfolge}\;E
+\\
+B&\rightarrow
+\text{'}\texttt{b}\text{'}\;
+\text{'}\texttt{e}\text{'}\;
+\text{'}\texttt{g}\text{'}\;
+\text{'}\texttt{i}\text{'}\;
+\text{'}\texttt{n}\text{'}
+\\
+E&\rightarrow
+\text{'}\texttt{e}\text{'}\;
+\text{'}\texttt{n}\text{'}\;
+\text{'}\texttt{d}\text{'}
+\end{align*}
+Die Konstruktion einer Anweisungsfolge in C verwendet das Semikolon als
+Anweisungsendzeichen:
+\begin{align*}
+\texttt{anweisungsfolge}
+&\rightarrow
+\texttt{anweisungsfolge}
+\;
+\texttt{folgenelement}
+\\
+&\rightarrow\varepsilon
+\\
+\texttt{folgenelement}
+&\rightarrow 
+\texttt{anweisung}
+\;\text{'{\tt ;}'}
+\end{align*}
+In Pascal muss das Semikolon als Trennzeichen verwendet werden:
+\begin{align*}
+\texttt{anweisungsfolge}
+&\rightarrow
+\texttt{anweisungsfolge} \; \text{'{\tt ;}'}\; \texttt{anweisung}
+\end{align*}
+Im Gegensatz zur C-Grammatik kann man hier die Rekursion nicht einfach
+durch eine Regel $\texttt{anweisungsfolge}\to \varepsilon$ terminieren,
+weil sonst alle Anweisungsfolgen mit einem Semikolon beginnen m"ussten.
+Man muss daher mit \texttt{anweisung} terminieren, und den Fall eines
+leeren Blocks in der \texttt{block}-Regel abhandeln.
+
+Zusammengefasst ist die Grammatik f"ur C-Bl"ocke:
+\begin{align*}
+\texttt{block}
+&\rightarrow
+\text{'{\tt \{}'}\;\texttt{anweisungsfolge}\; \text{'{\tt\}}'}
+\\
+\texttt{anweisungsfolge}
+&\rightarrow
+\texttt{anweisungsfolge}
+\;
+\texttt{folgenelement}
+\\
+&\rightarrow\varepsilon
+\\
+\texttt{folgenelement}
+&\rightarrow 
+\texttt{anweisung}
+\;\text{'{\tt ;}'}
+\end{align*}
+Und f"ur Pascal-Bl"ocke ist sie
+\begin{align*}
+\texttt{block}
+&\rightarrow
+B\; \texttt{anweisungsfolge}\;E
+\\
+&\rightarrow
+B\; \;E
+\\
+B&\rightarrow
+\text{'}\texttt{b}\text{'}\;
+\text{'}\texttt{e}\text{'}\;
+\text{'}\texttt{g}\text{'}\;
+\text{'}\texttt{i}\text{'}\;
+\text{'}\texttt{n}\text{'}
+\\
+E&\rightarrow
+\text{'}\texttt{e}\text{'}\;
+\text{'}\texttt{n}\text{'}\;
+\text{'}\texttt{d}\text{'}
+\\
+\texttt{anweisungsfolge}
+&\rightarrow
+\texttt{anweisungsfolge} \; \text{'{\tt ;}'}\; \texttt{anweisung}
+\\
+&\rightarrow\texttt{anweisung}
+\end{align*}
+\end{loesung}
+
+\begin{bewertung}
+\texttt{block} als Startvariable ({\bf B}) 1 Punkt,
+Blockdelimiter in C ($\text{{\bf D}}_{\text{C}}$)
+und Pascal ($\text{{\bf D}}_{\text{Pascal}}$), je 1 Punkt,
+Anweisungsterminator ({\bf T}) in C 1 Punkt,
+Anweisungsseparator ({\bf S}) in Pascale 1 Punkt,
+leere Anweisungsfolge ({\bf E}) 1 Punkt.
+\end{bewertung}
