@@ -92,9 +92,13 @@ In Pascal muss das Semikolon als Trennzeichen verwendet werden:
 \texttt{anweisungsfolge}
 &\rightarrow
 \texttt{anweisungsfolge} \; \text{'{\tt ;}'}\; \texttt{anweisung}
-\\
-&\rightarrow\varepsilon
 \end{align*}
+Im Gegensatz zur C-Grammatik kann man hier die Rekursion nicht einfach
+durch eine Regel $\texttt{anweisungsfolge}\to \varepsilon$ terminieren,
+weil sonst alle Anweisungsfolgen mit einem Semikolon beginnen m"ussten.
+Man muss daher mit \texttt{anweisung} terminieren, und den Fall eines
+leeren Blocks in der \texttt{block}-Regel abhandeln.
+
 Zusammengefasst ist die Grammatik f"ur C-Bl"ocke:
 \begin{align*}
 \texttt{block}
@@ -120,6 +124,9 @@ Und f"ur Pascal-Bl"ocke ist sie
 &\rightarrow
 B\; \texttt{anweisungsfolge}\;E
 \\
+&\rightarrow
+B\; \;E
+\\
 B&\rightarrow
 \text{'}\texttt{b}\text{'}\;
 \text{'}\texttt{e}\text{'}\;
@@ -136,7 +143,15 @@ E&\rightarrow
 &\rightarrow
 \texttt{anweisungsfolge} \; \text{'{\tt ;}'}\; \texttt{anweisung}
 \\
-&\rightarrow\varepsilon
+&\rightarrow\texttt{anweisung}
 \end{align*}
 \end{loesung}
 
+\begin{bewertung}
+\texttt{block} als Startvariable ({\bf B}) 1 Punkt,
+Blockdelimiter in C ($\text{{\bf D}}_{\text{C}}$)
+und Pascal ($\text{{\bf D}}_{\text{Pascal}}$), je 1 Punkt,
+Anweisungsterminator ({\bf T}) in C 1 Punkt,
+Anweisungsseparator ({\bf S}) in Pascale 1 Punkt,
+leere Anweisungsfolge ({\bf E}) 1 Punkt.
+\end{bewertung}

@@ -1,4 +1,4 @@
-In Aufgabe~3 wird ein Spielfeld f"ur ein Heyawake-R"atsel vorgeben.
+In Aufgabe~\ref{70000032} wird ein Spielfeld f"ur ein Heyawake-R"atsel vorgeben.
 Eine maschinenlesbare Version des Spielfeldes k"onnte wie 
 folgt aussehen:
 \begin{center}
@@ -51,4 +51,42 @@ Durch das Abpumpen ist das Wort $w_0$ nicht mehr in der Sprache.
 Dieser Widerspruch zeigt, dass die Sprache der Heyawake-R"atsel nicht
 kontextfrei ist.
 \end{loesung}
+
+\begin{diskussion}
+Der Schl"ussel zu dieser Aufgabe ist bereits in der Aussage enthalten,
+alle Zeilen m"ussten gleich lang sein.
+Wenn es eine Grammatik f"ur diese Sprache g"abe, dann g"abe es auch
+eine Grammatik f"ur die Sprache
+\[
+L=\{ (\texttt{x}^n\texttt{\\n})^m\,|\, n,m>0\}
+=
+\{
+\underbrace{
+\texttt{x}^n\texttt{\\n}
+\texttt{x}^n\texttt{\\n}
+\texttt{x}^n\texttt{\\n}
+\dots
+\texttt{x}^n}_{\text{$m$ Faktoren}}
+\,|\,n>0
+\},
+\]
+welche man erh"alt, indem man in den Heyawake jedes Zeichen ausser 
+\texttt{\textbackslash n} durch \texttt{x}
+ersetzt wurde, und \texttt{\textbackslash n} durch \texttt{n}.
+Diese Sprache kann man f"ur $m>3$ ganz analog zu der in der Vorlesung
+diskutierten Sprache $\{
+\texttt{a}^n
+\texttt{b}^n
+\texttt{c}^n\,|\,n\ge 0\}$
+behandeln.
+\end{diskussion}
+
+\begin{bewertung}
+Erkenntnis, dass dies Sprache nicht kontextfrei ist ({\bf C}) 1 Punkt,
+Pumping Lemma Annahme ({\bf A}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+Beispielwort ({\bf W}) 1 Punkt,
+Unterteilung in f"unf Teile ({\bf U}) 1 Punkt,
+Wort nach Pumpen nicht mehr in der Sprache ({\bf P}).
+\end{bewertung}
 
