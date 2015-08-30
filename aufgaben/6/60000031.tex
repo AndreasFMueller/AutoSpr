@@ -21,3 +21,26 @@ Es gibt also keine M"oglichkeit, einem Auftrag anzusehen, ob er dazu
 f"uhren wird, dass der PDF-Renderer nicht terminieren wird.
 \end{loesung}
 
+\begin{diskussion}
+Die Aussage, dass XSLT Turing-vollst"andig ist, ist ein wesentlicher Schritt.
+Ohne diesen Schritt w"are es denkbar, dass, wegen des begrenzten Sprachumfanges
+der Sprache XSLT, alle Programme terminieren, so wie dies bei der Sprache LOOP
+festgestellt wurde.
+Erst wenn eine Sprache Turing-vollst"andig ist, kann man mit dem Halte-Theorem
+argumentieren, welches ja ausschliesslich f"ur Turing-Maschinen gilt.
+
+Man k"onnte versucht sein, den Satz von Rice anwenden zu wollen.
+Dieser ist jedoch nur auf Turing-erkennbare Sprachen anwendbar.
+Es muss eine Eigenschaft formuliert werden, die eine solche Sprache hat. 
+Der Satz von Rice w"urde uns schliessen lassen, dass es nicht m"oglich ist
+zu entscheiden, ob eine Sprache die Eigenschaft hat.
+Zu jeder XML/XSLT-Kombination m"usste eine Sprache geh"oren, doch
+in der Problemstellung kommt eine solche Sprache gar nicht vor.
+Die XML/XSLT-Programme haben ja keinen Input, der akzeptiert oder
+verworfen werden k"onnte, und so eine Sprache definieren k"onnte.
+\end{diskussion}
+
+\begin{bewertung}
+XSLT ist Turing-vollst"andig ({\bf V}) 2 Punkte,
+Anwendung des Halte-Theorems ({\bf H}) 4 Punkte.
+\end{bewertung}
