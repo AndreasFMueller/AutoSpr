@@ -61,3 +61,36 @@ da diese $N+1+(k-1)|y| < N+2$ verlangt.
 Diese Widerspruch zeigt, dass $L$ nicht regul"ar sein kann.
 \end{loesung}
 
+\begin{diskussion}
+Dieser Beweis mit dem Pumping-Lemma kann nat"urlich mit jedem beliebigen
+anderen Wort der Form $\texttt{a}^N\texttt{b}^{m}$ durchgef"uhrt werden,
+solange $m > N$ ist. Zum Beispiel ist $m=2N$ genauso gut.
+
+Der Beweis ist sogar m"oglich mit dem Wort $w=\texttt{a}^{N-1}\texttt{b}^N$,
+aber man muss einen zus"atzlichen Spezialfall untersuchen.
+Man kann n"amlich $w$ wie folgt unterteilen:
+$x=\texttt{a}^{N-1}$, $y=\texttt{b}$ und $z=\texttt{b}^{N-1}$.
+Beim Aufpumpen dieser Zerlegung gilt
+\[
+w_k=xy^kz=\texttt{a}^{N-1}\texttt{b}^k\texttt{b}^{N-1}
+=
+\texttt{a}^{N-1}\texttt{b}^{k+N-1},
+\]
+die Bedingung der Sprache ist also f"ur $k>0$ immer erf"ullt, beim Aufpumpen
+verl"asst man die Sprache nicht.
+F"ur $k=0$, also beim Abpumpen, entsteht aber das Wort
+$\texttt{a}^{N-1}\texttt{b}^{N-1}\not\in L$, Abpumpen verl"asst also die
+Sprache, man kann den gew"unschten Widerspruch also auch f"ur diese
+Unterteilung des Wortes erhalten.
+\end{diskussion}
+
+\begin{bewertung}
+Annahme regul"ar ({\bf A}) 1 Punkt,
+Pumping length ({\bf N}) 1 Punkt,
+Konstruktion eines Wortes in der Sprache, welches $N$ verwendet ({\bf W})
+1 Punkt,
+Unterteilung (allgemein, keine willk"urliche/spezielle Wahl) ({\bf U}) 1 Punkt,
+Verletzung der Spracheigenschaft beim Pumpen ({\bf P}) 1 Punkt,
+Schluss\-folgerung (nicht regul"ar) ({\bf S}) 1 Punkt.
+\end{bewertung}
+ 

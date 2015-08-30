@@ -34,11 +34,18 @@ sein muss. Die erste Zahl gibt den Versatz in $x$-Richtung an, die zweite
 den Versatz in $y$-Richtung. In beiden Richtungen sind beide Vorzeichen 
 \texttt{+} und \texttt{-} m"oglich.
 
-Finden Sie einen regul"aren Ausdruck, der alle m"oglichen
+Finden Sie einen regul"aren Ausdruck, der genau alle m"oglichen
 Geometrie-Spezifikationen akzeptiert.
 
-
 \begin{loesung}
+Ein solcher regul"arer Ausdruck kann zum Beispiel in einem Programm dazu
+verwendet werden, um mit Hilfe eines Pattern-Matchings die verschiedenen
+F"alle zu unterscheiden, die Parameter herauszulesen, und die entsprechend
+Aktion einzuleiten.
+Dazu ist notwendig, dass der regul"are Ausdruck so aufgebaut wird, dass
+er die m"oglichen F"alle zu unterscheiden erlaubt.
+Die folgende L"osung strebt genau dies an.
+
 Es gibt offenbar vier Arten von Geometriespezifikationen: Skalierungen 
 (erste zwei Zeilen),
 partielle Spezifikationen (Zeilen 3 und 4), vollst"andige Spezifikationen
@@ -49,10 +56,16 @@ F"ur jede kann man einen regul"aren Ausdruck angeben:
 \\
 \text{partiell:}\qquad&r_2 = \texttt{\color{green}[0-9]+|x[0-9]+}
 \\
-\text{vollst"andig:}\qquad&r_3 = \texttt{\color{blue}[0-9]+x[0-9]+[\^{}!><]?}
+\text{vollst"andig:}\qquad&r_3 = \texttt{\color{blue}[0-9]+x[0-9]+[!><\^{}]?}
 \\
-\text{Fl"ache:}\qquad&r_4 = \texttt{\color{yellow}[0-9]*@}
+\text{Fl"ache:}\qquad&r_4 = \texttt{\color{yellow}[0-9]+@}
 \end{align*}
+Man beachte, dass in der Liste der angeh"angten Sonderzeichen bei den
+vollst"andigen Geometriespezifikation das \texttt{\^{}} ganz am Ende
+steht, weil ein \texttt{\^{}} am Anfang einer Zeichenklasse die
+Negation bedeutet.
+
+
 Jedem dieser Ausdr"ucke kann ausserdem eine Offset-Spezifikation angeh"angt
 werden, die auf den regul"aren Ausdruck
 \begin{center}
@@ -74,11 +87,70 @@ oder ausgeschrieben
 \begin{center}
 \texttt{(({\color{red}[0-9]+\%|[0-9]+\%?x[0-9]+\%|[0-9]\%+x[0-9]+\%?})|}%
 \texttt{({\color{green}[0-9]+|x[0-9]+})|}\\
-\texttt{({\color{blue}[0-9]+x[0-9]+[\^{}!><]?}))}%
-\texttt{({\color{yellow}[0-9]*@})?}%
+\texttt{({\color{blue}[0-9]+x[0-9]+[{}!><\^{}]?}))}%
+\texttt{({\color{yellow}[0-9]+@})?}%
 \texttt{)([-+][0-9]+[-+][0-9]+)?}
 \end{center}
 (der regul"are Ausdruck ist aus Platzgr"unden auf zwei Zeilen aufgeteilt,
 beide Teile sind als ein regul"arer Ausdruck ohne Zeilenumbruch zu lesen).
+
+Man kann einen regul"aren Ausdruck auch noch viel direkter bekommen, ohne
+die F"alle in der Tabelle auf Gemeinsamkeiten zu untersuchen.
+Man schreibt einfach f"ur jeden Ausdruck in der Tabelle einen regul"aren
+Ausdruck hin, und verkettet diese alle, also
+\begin{center}
+\texttt{([0-9]+\%)|}
+\texttt{([0-9]+\%x[0-9]+)|}
+\texttt{([0-9]+x[0-9]+\%)|}
+\texttt{([0-9]+\%x[0-9]+\%)|}
+\\
+\texttt{([0-9]+)|}
+\\
+\texttt{(x[0-9]+)|}
+\\
+\texttt{([0-9]+x[0-9]+)|}
+\\
+\texttt{([0-9]+x[0-9]+\^{})|}
+\\
+\texttt{([0-9]+x[0-9]+!)|}
+\\
+\texttt{([0-9]+x[0-9]+>)|}
+\\
+\texttt{([0-9]+x[0-9]+<)|}
+\\
+\texttt{([0-9]+@)}
+\end{center}
+(eine Zeile f"ur jede Spezifikation in der Tabelle).
+Daran h"angt man dann wieder wie oben die Offset\-spezifikation an.
 \end{loesung}
 
+\begin{diskussion}
+Die urspr"ungliche Formulierung konnte so missverstanden werden, dass auch
+der Ausdruck \texttt{.*} eine korrekte Antwort gewesen w"are.
+Es ist aus dem Zusammenhang der Aufgabe klar, dass dies nicht gemeint war.
+\end{diskussion}
+
+\begin{diskussion}
+Der Ausdruck $r_2$ k"onnte auch als \texttt{x?[0-9]+} geschrieben werden,
+doch ist die angegebene Form besser.
+Typische Pattern-Matcher k"onnen nach dem Match auch einzelne markierte
+Teile einer Zeichenkette angeben.
+In der Standard-Regex-Library kann man zum Beispiel mit Klammern solche
+Teile markieren.
+Schreibt man $r_2$ dann in der Form \texttt{([0-9]+)|x([0-9]+)}
+dann welche kann man am Resultat des Matchings ablesen, welcher der
+Teile vorliegt, und kann mit nur einem Match zwischen einer Breitenangabe
+und einer H"ohenangabe unterscheiden. Das folgende Programm illustriert dies:
+{\small
+\verbatimainput{part.c.expanded}
+}
+\end{diskussion}
+
+\begin{bewertung}
+Skalierung wiedergegeben ({\bf S}) 1 Punkt,
+Partielle Gr"ossenangabe ({\bf P}) 1 Punkt,
+vollst"andige Gr"ossenangabe ({\bf V}) 1 Punkt,
+Fl"acheangabe ({\bf F}) 1 Punkt,
+Offset ({\bf O}) 1 Punkt,
+Komposition ({\bf K}) 1 Punkt.
+\end{bewertung}
