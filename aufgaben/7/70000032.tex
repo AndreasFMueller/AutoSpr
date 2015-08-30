@@ -79,6 +79,18 @@ in polynomieller Zeit l"osen kann.
 \end{loesung}
 
 \begin{diskussion}
+Der schwierigste Schritt im Verifikationsalgorithmus ist die "Uberpr"ufung
+des Zusammenhangs der weissen Felder.
+Es reicht leider nicht, nur zu pr"ufen, ob jedes weisse Feld auch einen
+weissen Nachbarn hat.
+Damit kann man nur weisse Felder finden, die vollst"andig von schwarzen
+Feldern eingeschlossen sind.
+Das folgende Feld erf"ullt die Bedingung, trotzdem sind die weissen
+Felder nicht zusammenh"angend:
+\begin{center}
+\includeagraphics[]{feld-1.pdf}
+\end{center}
+
 Man k"onnte versucht sein, den F"arbealgorithmus zur Feststellung des
 Zusammenhangs rekursiv zu formulieren, dabei trifft man jedoch auf ein
 Dilemma.
@@ -92,9 +104,18 @@ Diese weissen Nachbarn wird man dann m"oglicherweise nicht mehr einf"arben
 k"onnen.
 Die iterative Formulierung vermeidet diese Schwierigkeit.
 
-Die Frage, ob ein Heyawake-R"atsel eine L"osung hat hat, ist NP-vollst"andig:
+Die Frage, ob ein Heyawake-R"atsel eine L"osung hat, ist NP-vollst"andig:
 Markus Holzer und Oliver Ruepp, {\it The Troubles of Interior Design--A
 Complexity Analysis of the Game Heyawake}, Proceedings,
 4th International Conference on Fun with Algorithms, LNCS 4475, Springer,
 Berlin/Heidelberg, 2007, pp.~198-212.
 \end{diskussion}
+
+\begin{bewertung}
+Verwendung eines Verifizierers ({\bf V}) 1 Punkt,
+L"osungszertifikat spezifiziert ({\bf L}) 1 Punkt,
+Anzahl schwarze Felder "uberpr"uft ({\bf S}) 1 Punkt,
+Zusammenhang "uberpr"uft ({\bf Z}) 1 Punkt,
+Nachbarschaft und Zeilenl"ange ({\bf N}) 1 Punkt,
+Zeitaufwand ist polynomiell ({\bf P}) 1 Punkt.
+\end{bewertung}
