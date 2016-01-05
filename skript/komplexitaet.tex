@@ -57,7 +57,7 @@ der man die Zahl $n$ auf das Band schreibt, und die Turingmaschine
 stellt dann fest, ob die Zahl eine Primzahl ist. Die Zahl $n$ muss
 als String auf das Band geschrieben werden. Dazu ist eine Codierung
 zu w"ahlen, "ublicherweise wird dies eine Zifferndarstellung in
-irgend einer Basis $b$ sein. Zur Darstellung der Zahl $n$ in Basis $b$
+irgendeiner Basis $b$ sein. Zur Darstellung der Zahl $n$ in Basis $b$
 sind $l=\lfloor \log_bn\rfloor+1$ Zeichen notwendig.
 
 Man k"onnte aber auch die un"are Darstellung verwenden, also so viele
@@ -98,7 +98,7 @@ gibt mit
 \[
 f(n)\le cg(n)\quad \forall n\in\mathbb N\text{ mit } n > n_0.
 \]
-Es ist $f(n)=o(g(n))$ wenn 
+Es ist $f(n)=O(g(n))$ wenn 
 \begin{equation}
 \lim_{n\to\infty}\frac{f(n)}{g(n)}=0.
 \label{oquotientlimit}
@@ -150,7 +150,7 @@ um dann die notwendigen "Anderungen zu bestimmen. Die "Anderungen
 auf dem Band einzutragen erfordert dann nochmals einen Durchgang
 durch das Band.
 
-Wir nehmen an, dass die $t(n)\ge n$, denn sonst k"onnte die
+Wir nehmen an, dass $t(n)\ge n$, denn sonst k"onnte die
 Turingmaschine nicht einmal ihren Input vollst"andig lesen.
 Der tats"achlich benutzte Teil des Bandes kann dann nicht l"anger sein
 als $t(n)$. Zusammen mit den $t(n)$ durchl"aufen erhalten wir,
@@ -252,7 +252,7 @@ Zeit pro Schritt von einer Nanosekunde, ergeben sich
 f"ur die Laufzeit eines Algorithmus
 mit polynomieller Laufzeit, genauer mit $n^5$ und exponentieller Laufzeit,
 genauer mit $2^n$ die Werte in Tabelle~\ref{laufzeittabelle}.
-\begin{table}
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{|l|rr|}
 \hline
@@ -478,7 +478,7 @@ Die Klasse der von einer nichtdeterministischen Turingmaschine
 in polynomieller Zeit entscheidbaren Sprachen heisst NP.
 \end{definition}
 
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \includegraphics{images/lang-5}
 \end{center}
@@ -526,22 +526,22 @@ Die Sprache \textsl{3SAT} ist
 \]
 Wie \textsl{SAT} ist \textsl{3SAT} in NP.
 
-\subsection{Existenz von Cliquen: $k$-\textsl{CLIQUE}}
-\begin{figure}
+\subsection{Existenz von Cliquen: \texorpdfstring{$k$}{k}-\textsl{CLIQUE}}
+\begin{figure}[H]
 \begin{center}
 %\includegraphics[width=0.6\hsize]{images/comp-1}
-\includegraphics{images/comp-1}
+\includegraphics[width=0.35\hsize]{images/comp-1}
 \end{center}
 \caption{Graph mit sechs Knoten, keiner 4-Clique, aber
 vier 3-Cliquen\label{6graph}}
 \end{figure}%
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \begin{tabular}{cccc}
-\includegraphics[width=0.45\hsize]{images/comp-2}&%
-\includegraphics[width=0.45\hsize]{images/comp-3}\\
-\includegraphics[width=0.45\hsize]{images/comp-4}&%
-\includegraphics[width=0.45\hsize]{images/comp-5}
+\includegraphics[width=0.35\hsize]{images/comp-2}&%
+\includegraphics[width=0.35\hsize]{images/comp-3}\\
+\includegraphics[width=0.35\hsize]{images/comp-4}&%
+\includegraphics[width=0.35\hsize]{images/comp-5}
 \end{tabular}
 \end{center}
 \caption{3-Cliquen des Graphen von Abbildung~\ref{6graph}}
@@ -576,9 +576,9 @@ weniger Aufwand als die Gr"osse des Graphen brauchen, die
 Komplexit"at dieses Algorithmus ist also $O(n)$, das
 Cliquen-Problem ist in NP.
 
-\subsection{F"arbeproblem: $k$-\textsl{VERTEX-COLORING}}
+\subsection{F"arbeproblem: \texorpdfstring{$k$}{k}-\textsl{VERTEX-COLORING}}
 \index{F\"arbeproblem}
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \begin{tabular}{ccc}
 \includegraphics{images/comp-6}&
@@ -685,7 +685,7 @@ Die letzten zwei S"atze zeigen, dass sich Sprachen in $P$ und $NP$
 mit Hilfe der polynomiellen in ``leichte'' und ``schwierige'',
 in ``schnell'' bzw.~``langsam'' zu l"osende unterteilen lassen
 (Abbildung \ref{pnporder}).
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \includegraphics{images/lang-6}
 \end{center}
@@ -782,7 +782,7 @@ eingezeichnet f"ur jedes Paar von Variablen in verschiedenen
 Teilformeln, die gleichzeitig wahr sein k"onnen. Die Formel $\varphi$
 ist genau dann erf"ullbar, wenn der Graph eine $k$-Clique enth"alt.
 
-\begin{figure}
+\begin{figure}[H]
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -856,7 +856,7 @@ dargestellt.
 Nat"urlich enth"alt dieser Graph gen"ugend Kanten, so dass es relativ
 leicht ist, eine $4$-Clique zu finden, zum Beispiel die in Abbildung~\ref{phiclique} dargestellte. Man kann daraus ablesen, dass die Formel $\varphi$
 wahr wird, wenn $x_1$ und $x_2$ falsch sind.
-\begin{figure}
+\begin{figure}[H]
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -901,7 +901,7 @@ wahr wird, wenn $x_1$ und $x_2$ falsch sind.
 
 \section{NP-vollst"andige Probleme}
 \rhead{NP-vollst"andige Probleme}
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \includegraphics{images/lang-4}
 \end{center}
@@ -1007,7 +1007,7 @@ f"ur die Zellen $c_{ij}$ die Formel
 \[
 \varphi_{c_{ij}}=
 \biggl(\bigvee_{s\in C} x_{ijs}\biggr)\wedge
-\bigwedge_{s,t\in C\atop s\ne t} (\overline{x_{ijs}}\vee\overline{x_{ijt}}).
+\bigwedge_{\myatop{s,t\in C}{s\ne t}} (\overline{x_{ijs}}\vee\overline{x_{ijt}}).
 \]
 Dies muss f"ur jede Indexkombination gelten, also
 \[
@@ -1018,7 +1018,7 @@ Dies muss f"ur jede Indexkombination gelten, also
 =
 \bigwedge_{1\le i,j\le n^k}\biggl(
 \biggl(\bigvee_{s\in C} x_{ijs}\biggr)\wedge
-\bigwedge_{s,t\in C\atop s\ne t} (\overline{x_{ijs}}\vee\overline{x_{ijt}})
+\bigwedge_{\myatop{s,t\in C}{s\ne t}} (\overline{x_{ijs}}\vee\overline{x_{ijt}})
 \biggr).
 \]
 Da unsere Redukton polynomiell sein soll, m"ussen wir auch bestimmen,
@@ -1030,7 +1030,7 @@ ist ebenfalls $O(n^2k)$.
 
 Als n"achstes dr"ucken wir in einer Formel $\varphi_i$ aus,
 dass die Turingmaschine mit dem
-Wort $w$ initialisiert worden ist. Dazu muss in irgend einer
+Wort $w$ initialisiert worden ist. Dazu muss in irgendeiner
 Zelle der ersten Zeile das Zeichen $q_0$ stehen, und rechts
 anschliessen die Zeichen des Wortes $w=a_1a_2\dots a_{|w|}$.
 Steht $q_0$ in der
@@ -1204,7 +1204,7 @@ muss
 wahr sein. Auch diese Formel l"asst sich in polynomieller Zeit konstruieren
 und sie hat polynomielle L"ange.
 
-Damit die Tabelle eine akzeptierende Berechnung beschreibt, m"uss
+Damit die Tabelle eine akzeptierende Berechnung beschreibt, m"ussen
 alle Teile wahr sein, also ist
 \[
 \varphi =
@@ -1603,7 +1603,7 @@ muss eine Menge von Zahlen $S$ und eine Zahl $t$ gefunden werden,
 die genau dann eine Teilmenge mit Summe $t$ hat, wenn $\varphi$
 erf"ullbar ist.
 
-\begin{table}
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{|c|ccccc|}
 \hline
@@ -1637,7 +1637,7 @@ in der Summe auftreten kann. Dies erreichen wir, wenn wir
 sie gem"ass Tabelle \ref{subsetsumnumbers} w"ahlen.
 Die Auswahl einer Teilmenge mit Summe $t$ ist gleichbedeutend
 mit der Wahl einer Belegung der Variablen $x_i$ mit Wahrheitswerten.
-\begin{table}
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{|c|ccccc|cccc|}
 \hline
@@ -1805,7 +1805,7 @@ zu konstruieren.
 
 Dazu muss zu einer Menge $S$ von ganzen Zahlen und einer Summe $t$
 eine Matrix und ein Vektor konstruiert werden. Als Matrix nehmen wir
-ein Matrix mit einer Zeile, in der die Elemente von $S$ stehen. Als
+eine Matrix mit einer Zeile, in der die Elemente von $S$ stehen. Als
 Vektor $d$ nehmen wir den Vektor mit der einen Komponenten $t$.
 Einen bin"aren Vektor $x$ finden mit $Cx=d$ ist jetzt gleichbedeutend
 damit, eine Auswahl von Zahlen in $S$ zu finden, deren Summe $t$ ist.
@@ -1905,7 +1905,7 @@ $k$, gibt es $k$ Cliquen so, dass jede Ecke in genau einer der Cliquen ist?
 \item[\textsl{3D-MATCHING}:] Sei $T$ eine endliche Menge und $U$ eine 
 Menge von Tripeln aus $T$: $U\subset T\times T\times T$. Gibt es eine
 Teilmenge $W\subset U$ so, dass $|W|=|T|$ und keine zwei Elemente
-von $W$ stimmen in irgend einer Koordinate "uberein?
+von $W$ stimmen in irgendeiner Koordinate "uberein?
 \index{HITTING-SET@\textsl{HITTING-SET}}
 \item[\textsl{HITTING-SET}:] Gegeben eine Menge von Teilmengen $S_i\subset S$,
 gibt es eine Menge $H$, die jede Menge in genau einem Punkt trifft, also
@@ -1962,15 +1962,15 @@ seinem Komplement verbinden, mindestens so gross ist wie $W$:
 \rhead{Minesweeper}
 \index{Minesweeper}
 \subsection{Schaltungen}
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
-\includegraphics{images/mine-1}
+\includegraphics[width=.4\hsize]{images/mine-1}
 \end{center}
 \caption{Grundgatter AND, OR und NOT\label{gatter}}
 \end{figure}%
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
-\includegraphics{images/mine-2}
+\includegraphics[width=.5\hsize]{images/mine-2}
 \end{center}
 \caption{Umsetzung der Formel
 $(\bar x\wedge y)\vee(x\wedge \bar z)$ mit Gattern aus der
@@ -2075,7 +2075,7 @@ solchen Verbindungen. Wir brauchen also einen Spielplan, der die Rolle
 eines Drahtes in einem Schaltschema "ubernehmen kann. Eine solchen Spielplan
 zeigt Abbildung~\ref{minesweeper-wire}.
 
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \begin{tabular}{cc}
 \multicolumn{2}{c}{\includegraphics[width=0.45\hsize]{graphics/wire}}\\
@@ -2099,25 +2099,25 @@ wie in Abbildung~\ref{minesweeper-crosses} dargestellt. Man kann
 erkennen, dass sich die Zust"ande bei der Kreuzung gegenseitig nicht
 ver"andern. Was links als Zustand 0 eingeht, wird auch rechts als Zustand
 0 weitergeleitet.
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.6\hsize]{graphics/cross}
 \end{center}
 \caption{Kreuzung zweier ``Dr"ahte''\label{minesweeper-cross}}
 \end{figure}%
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \begin{tabular}{|l|c|c|}
 \hline
 \raisebox{12ex}{$0$}&
-\raisebox{0pt}[0.395\hsize][0pt]{%
-\includegraphics[width=0.4\hsize]{graphics/cross-11}}&
-\includegraphics[width=0.4\hsize]{graphics/cross-10}\\
+\raisebox{0pt}[0.4\hsize][0pt]{%
+\includegraphics[width=0.41\hsize]{graphics/cross-11}}&
+\includegraphics[width=0.41\hsize]{graphics/cross-10}\\
 \hline
 \raisebox{12ex}{$1$}&
-\raisebox{0pt}[0.395\hsize][0pt]{%
-\includegraphics[width=0.4\hsize]{graphics/cross-01}}&
-\includegraphics[width=0.4\hsize]{graphics/cross-00}\\
+\raisebox{0pt}[0.4\hsize][0pt]{%
+\includegraphics[width=0.41\hsize]{graphics/cross-01}}&
+\includegraphics[width=0.41\hsize]{graphics/cross-00}\\
 \hline
 &\raisebox{0pt}[15pt][7pt]{$0$}&%
 \raisebox{0pt}[15pt][7pt]{$1$}\\
@@ -2134,22 +2134,22 @@ Der von links eingespeiste Zustand wird rechts invertiert weitergeleitet.
 Gleichzeitig wird der eingespeiste Zustand auch unver"andert nach
 oben und unten abgeleitet, so dass man mit dieser Struktur auch
 eine Aufteilung eines Signals in zwei Signale durchf"uhren kann.
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
 \hline
 \multirow{2}{0.4\hsize}{%
-\raisebox{-5ex}[0.36\hsize][0pt]{%
+\raisebox{-5ex}[0.4\hsize][0pt]{%
 \includegraphics[width=\hsize]{graphics/splitter}%
 }}&
 \raisebox{11.5ex}{$0$}&
-\raisebox{0pt}[0.355\hsize][0pt]{%
+\raisebox{0pt}[0.35\hsize][0pt]{%
 \includegraphics[width=0.4\hsize]{graphics/splitter-1}}&
 \raisebox{11ex}{$1$}\\
 \cline{2-4}
 &
 \raisebox{11.5ex}{$1$}&
-\raisebox{0pt}[0.355\hsize][0pt]{%
+\raisebox{0pt}[0.35\hsize][0pt]{%
 \includegraphics[width=0.4\hsize]{graphics/splitter-0}}&
 \raisebox{11ex}{$0$}\\
 \hline
@@ -2162,32 +2162,13 @@ Damit bleibt nur noch das AND-Gatter. Dieses ist in Abbildung~\ref{andgate}
 dargestellt, und in Abbildung~\ref{andstates} kann man die Funktion des
 Gatters verfolgen.
 
-Damit ist gezeigt, dass sich jede Schaltung in polynomieller Zeit in 
-einen Minesweeper-Plan "ubersetzen l"asst. F"ur eine polynomielle
-Reduktion wird aber verlangt, dass eine erf"ullbare Formel auf einen
-Plan abgebildet wird, der am Ausgang eine logische 1 haben.
-Da in unseren ``Dr"ahten'' eine logische 1 einer Bombe im zweiten
-Feld (in Fortpflanzungsrichtung des Signals) entspricht, k"onnen
-wir der Forderung nach einer logischen 1 dadurch Nachdruck verleihen,
-dass wir diese letzte Bombe bereits platzieren. Als letzten Schritt
-in der "Ubersetzung pflanzen wir also im ``letzten'' Feld eine Bombe.
-Der so konstruierte Spielplan hat dann genau dann eine konsistente
-Bombenbelegung, wenn der urspr"ungliche Schaltplan Output 1 haben kann.
-
-Damit ist jetzt gezeigt, dass
-\[
-\text{\textsl{SAT}}\le_P
-\text{\textsl{CIRCUIT}}\le_P\text{\textsl{MINESWEEPER-CONSISTENCY}},
-\]
-und weil \textsl{SAT} NP-vollst"andig ist, folgt auch, dass 
-\textsl{MINESWEEPER-CONSISTENCY} NP-vollst"andig ist.
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
-\includegraphics[width=0.8\hsize]{graphics/and}
+\includegraphics[width=0.55\hsize]{graphics/and}
 \end{center}
 \caption{Minesweeper-Spielplan f"ur das UND-Gatter\label{andgate}}
 \end{figure}%
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
 \hline
@@ -2224,6 +2205,27 @@ und weil \textsl{SAT} NP-vollst"andig ist, folgt auch, dass
 \caption{Nachweis der konsistenten ``Funktion'' des AND-Gatters
 \label{andstates}}
 \end{figure}%
+
+Damit ist gezeigt, dass sich jede Schaltung in polynomieller Zeit in 
+einen Minesweeper-Plan "ubersetzen l"asst. F"ur eine polynomielle
+Reduktion wird aber verlangt, dass eine erf"ullbare Formel auf einen
+Plan abgebildet wird, der am Ausgang eine logische 1 haben.
+Da in unseren ``Dr"ahten'' eine logische 1 einer Bombe im zweiten
+Feld (in Fortpflanzungsrichtung des Signals) entspricht, k"onnen
+wir der Forderung nach einer logischen 1 dadurch Nachdruck verleihen,
+dass wir diese letzte Bombe bereits platzieren. Als letzten Schritt
+in der "Ubersetzung pflanzen wir also im ``letzten'' Feld eine Bombe.
+Der so konstruierte Spielplan hat dann genau dann eine konsistente
+Bombenbelegung, wenn der urspr"ungliche Schaltplan Output 1 haben kann.
+
+Damit ist jetzt gezeigt, dass
+\[
+\text{\textsl{SAT}}\le_P
+\text{\textsl{CIRCUIT}}\le_P\text{\textsl{MINESWEEPER-CONSISTENCY}},
+\]
+und weil \textsl{SAT} NP-vollst"andig ist, folgt auch, dass 
+\textsl{MINESWEEPER-CONSISTENCY} NP-vollst"andig ist.
+
 \subsection{Direkter Beweis}
 Unter Verwendung der eben entwickelten Ideen k"onnte es m"oglich sein,
 einen direkten Beweis der NP-Vollst"andigkeit von
