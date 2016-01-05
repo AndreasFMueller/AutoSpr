@@ -1156,7 +1156,10 @@ besagt der folgende Satz.
 Sei $A=(Q,\Sigma,\delta,q_0,F)$ ein NEA ohne $\varepsilon$-"Uberg"ange.
 Dann gibt es einen DEA $A'$, der die gleiche Sprache akzeptiert: $L(A)=L(A')$.
 Der DEA $A'$ setzt sich zusammen aus
-$(P(Q), \Sigma, \delta', \{q_0\}, F')$,
+\[
+A'=
+(P(Q), \Sigma, \delta', \{q_0\}, F'),
+\]
 die "Ubergangsfunktion ist
 \[
 \delta'\colon P(Q)\times \Sigma: (M, a)\mapsto \bigcup_{q\in M} \delta(q,a)
