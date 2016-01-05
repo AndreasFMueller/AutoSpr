@@ -721,19 +721,21 @@ mit Hilfe des Minimalautomaten m"oglich, dies ist jedoch nicht der
 bestm"ogliche Algorithmus.
 Ein Algorithmus mit linearer Laufzeit wurde von Hopcroft und Karp
 angegeben.
-
-\subsection{Pumping Lemma f"ur regul"are Sprachen\label{regulaer:pumpinglemma}}
-\index{Pumping Lemma!f\"ur regul\"are Sprachen}
-\begin{figure}[H]
+\begin{figure}
 \begin{center}
 \includegraphics{images/reg-6.pdf}
 \end{center}
 \caption{Pumping Lemma: Zerlegung eines Wortes $w$ in drei Teile
 $w=xyz$.\label{regular:pumpinglemma-graph}}
 \end{figure}
-Eine regul"are Sprache wird von einem DEA akzeptiert. Dadurch wird
-die Struktur der W"orter eingeschr"ankt. Ein Wort $w$ beschreibt
-einen Pfad durch den gerichteten beschriftenten Graphen des DEA.
+
+\subsection{Pumping Lemma f"ur regul"are Sprachen\label{regulaer:pumpinglemma}}
+\index{Pumping Lemma!f\"ur regul\"are Sprachen}
+Eine regul"are Sprache wird von einem DEA akzeptiert.
+Dadurch wird die Struktur der W"orter eingeschr"ankt.
+Ein Wort $w$ beschreibt
+einen Pfad durch den gerichteten beschriftenten Graphen des DEA
+(Abbildung~\ref{regular:pumpinglemma-graph}).
 Wenn das Wort l"anger ist als die Anzahl der Zust"ande, dann muss
 mindestens ein Zustand mehrmals vorkommen. Wir k"onnen sogar
 sagen, dass die erste solche Wiederholung innerhalb der ersten
@@ -762,22 +764,6 @@ nachzuweisen, dass sie nicht regul"ar ist. Dazu nimmt man an, dass
 die Sprache regul"ar ist, f"ur sie also die Aussage des Pumping Lemma
 gilt. Dann leitet man daraus einen Widerspruch ab.
 
-\begin{figure}[H]
-\begin{center}
-\begin{tabular}{l}
-\includegraphics{images/pl-2.pdf}\\
-\includegraphics{images/pl-1.pdf}\\
-\includegraphics{images/pl-3.pdf}\\
-\includegraphics{images/pl-4.pdf}
-\end{tabular}
-\end{center}
-\caption{Anwendung des Pumping-Lemmas. Ein gen"ugend langes Wort
-der Sprache $w=0^N1^N$ kann nach dem Pumping Lemma in $w=xyz$ 
-zerlegt werden (2.~Zeile). Das Pumping Lemma verspricht, dass
-abgepumpte W"orter (3.~Zeile) und aufgepumpte W"orter (4.~Zeile)
-auch zur Sprache geh"oren sollen, tun sie aber nicht.
-\label{plimage}}
-\end{figure}
 
 \begin{beispiel}[\bf Eine nicht regul"are Sprache]
 Wir f"uhren dies an dem Beispiel der Sprache $L=\{0^n1^n|n\ge 0\}$
@@ -801,6 +787,22 @@ dass ein Wort in $L$ gleich viele Nullen wie Einsen haben muss, also
 $xy^kz\not\in L$ f"ur $k>1$. Dieser Widerspruch zeigt, dass die urspr"ungliche
 Annahme, $L$ sei regul"ar gewesen, nicht haltbar ist. Also ist
 die Sprache nicht regul"ar.
+\begin{figure}
+\begin{center}
+\begin{tabular}{l}
+\includegraphics{images/pl-2.pdf}\\
+\includegraphics{images/pl-1.pdf}\\
+\includegraphics{images/pl-3.pdf}\\
+\includegraphics{images/pl-4.pdf}
+\end{tabular}
+\end{center}
+\caption{Anwendung des Pumping-Lemmas. Ein gen"ugend langes Wort
+der Sprache $w=0^N1^N$ kann nach dem Pumping Lemma in $w=xyz$ 
+zerlegt werden (2.~Zeile). Das Pumping Lemma verspricht, dass
+abgepumpte W"orter (3.~Zeile) und aufgepumpte W"orter (4.~Zeile)
+auch zur Sprache geh"oren sollen, tun sie aber nicht.
+\label{plimage}}
+\end{figure}
 \end{beispiel}
 
 \subsubsection{Beispiel}
@@ -1064,14 +1066,14 @@ neuen Zeichen des Inputwortes neu berechnet werden.
 Eine separate Speicherung ist nicht erforderlich, wenn man die
 erreichten Zust"ande mit einer Markierung versieht.
 
-\begin{figure}[H]
+\begin{figure}
 \begin{center}
-\includegraphics{images/reg-1}
+\includegraphics{images/reg-2}
 \end{center}
 \caption{Beispiel eines NEA\label{koenntenea}}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}
 \begin{center}
 \begin{tabular}{cccc}
 &%
@@ -1477,7 +1479,7 @@ Sind $L_1$ und $L_2$ regul"are Sprachen, dann
 ist auch $L_1\cup L_2$ regul"ar.
 \end{satz}
 
-\begin{figure}[H]
+\begin{figure}
 \begin{center}
 \includegraphics{images/nea-5}
 \qquad \qquad
@@ -1875,7 +1877,7 @@ akzeptieren und den Automaten in den Startzustand zur"uckversetzen.
 
 F"ur die *-Operation darf also der Automat
 \begin{center}
-\includegraphics[width=0.3\hsize]{images/nea-3}
+\includegraphics{images/nea-3}
 \end{center}
 nicht modifiziert werden, insbesondere darf der naheligende
 $\varepsilon$-"Ubergnag von einem Akzeptierzustand zum Startzustand
@@ -1886,7 +1888,7 @@ verwenden, indem man von den Aktzeptierzust"anden von $A$ zu diesem
 neuen Zustand zur"uckkehrt.
 So erh"alt man den Automaten
 \begin{center}
-\includegraphics[width=0.5\hsize]{images/nea-4}
+\includegraphics{images/nea-4}
 \end{center}
 
 Formal kann man das Resultat wie folgt zusammenfassen:
@@ -1940,7 +1942,7 @@ im Unterschied zu $L^*$ kommt aber mindestens ein Wort vor.
 Einen Automaten daf"ur kann man auf verschiedene Arten gewinnen,
 sie laufen aber alle im Wesentlichen auf die L"osung
 \begin{center}
-\includegraphics[width=0.5\hsize]{images/nea-7}
+\includegraphics{images/nea-7}
 \end{center}
 hinaus. Wesentlich ist, dass man den Automaten durchlaufen muss, bevor
 etwas akzeptiert werden kann, und dass man von den Akzeptierzust"anden
@@ -1957,12 +1959,12 @@ hierf"ur l"asst sich ein etwas einfacherer Automat im gleichen
 Stil wie f"ur Verkettung und *-Operation finden. Ein neuer Startzustand
 wird dazu mit $\varepsilon$-"Uberg"angen mit den Startzust"anden
 der Automaten $A_1$ und $A_2$ verbunden, wie in Abbildung~\ref{neaalternative}.
-\begin{figure}[H]
+\begin{figure}
 \begin{center}
-\includegraphics[height=0.4\hsize]{images/nea-5}
+\includegraphics{images/nea-5}
 \qquad
 \qquad
-\includegraphics[height=0.4\hsize]{images/nea-6}
+\includegraphics{images/nea-6}
 \end{center}
 \caption{Automatenkonstruktion f"ur die Alternative, rechts der Automat
 f"ur die Sprache $L(A_1)\cup L(A_2)$\label{neaalternative}}
