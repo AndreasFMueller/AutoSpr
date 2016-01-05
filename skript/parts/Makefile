@@ -44,8 +44,8 @@ skript-07-chapter7.pdf:	../skript.pdf
 skript-08-chapter8.pdf:	../skript.pdf
 	pdfjam --outfile skript-08-chapter8.pdf ../skript.pdf 173-178
 
-skript-09-algorithmen.pdf:	./skript.pdf
-	pdfjam --outfile skript-09-algorithmen.pdf ./skript.pdf 179-189
+skript-09-algorithmen.pdf:	../skript.pdf
+	pdfjam --outfile skript-09-algorithmen.pdf ../skript.pdf 179-189
 
-skript-10-index.pdf:	./skript.pdf
-	pdfjam --outfile skript-10-index.pdf ./skript.pdf 199-193
+skript-10-index.pdf:	../skript.pdf
+	pdfjam --outfile skript-10-index.pdf ../skript.pdf 190-193
