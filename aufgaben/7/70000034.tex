@@ -1,0 +1,65 @@
+Das Spiel {\em Light Up} wird auf einem $n\times m$ Feld gespielt.
+Einzelne Felder sind schwarz gef"arbt, manche davon sind zus"atzlich
+mit einer Zahl versehen.
+Auf den weissen Quadraten m"ussen Gl"uhbirnen plaziert werden,
+so dass die folgenden Regeln eingehalten werden: 
+\begin{itemize}
+\item
+Die Zahlen auf den schwarzen Quadraten geben an, wieviele Gl"uhbirnen
+auf weissen Feldern sind, die "uber eine Kante an dieses schwarze Feld grenzen. 
+\item
+Jedes weisse Feld wird von mindestens einer Gl"uhbirne beleuchtet.
+Eine Gl"uhbirne leuchtet waagrecht und senkrecht bis zu einem schwarzen Feld
+oder zum Rand des Spielfeldes. 
+\item
+Gl"uhbirnen d"urfen sich nicht gegenseitig beleuchten. 
+\end{itemize}
+Hier ein {\em Light Up}-R"atsel mit L"osung:
+\begin{center}
+\includeagraphics[width=0.33\hsize]{lightup.png}
+\qquad
+\includeagraphics[width=0.33\hsize]{lightup-solution.png}
+\end{center}
+
+Kann eine nichtdeterministische Turing-Maschine in polynomieller Zeit
+entscheiden, ob ein {\em Light Up}-R"atsel eine L"osung hat?
+
+\begin{loesung}
+Eine nicht deterministische Turing-Maschine kann genau dann in polynomieller
+Zeit entscheiden, ob ein {\em Light Up}-R"atsel eine L"osung hat,
+wenn es einen polynomiellen Verifizierer gibt.
+Als L"osungszertifikat verwenden wir die Platzierung der Gl"uhbirnen.
+Der Verifizierer muss dann folgendes "uberpr"ufen:
+\begin{center}
+\begin{tabular}{rll}
+  &Verifikation&Aufwand\\
+\hline
+1.&\begin{minipage}[t]{12cm}\strut
+F"ur jedes schwarze Feld mit einer Zahl "uberpr"ufe, ob die Anzahl
+der Gl"uhbirnen auf den vier Nachbarfeldern der Zahl entspricht.
+\strut\end{minipage}&$O(4nm)$\\
+2.&\begin{minipage}[t]{12cm}\strut
+F"ur jedes weisse Feld, welches eine Gl"uhbirne enth"alt kontrolliere,
+ob in der gleichen Zeile oder Spalte eine weitere Gl"uhbirne vorkommt.
+\strut\end{minipage}&$O(mn(m+n))$\\
+3.&\begin{minipage}[t]{12cm}\strut
+F"ur jedes weisse Feld "uberpr"ufe, ob in der gleichen Zeile oder
+Spalte eine Gl"uhbiren vorhanden ist.
+\strut\end{minipage}&$O(mn(m+n))$\\
+\hline
+&Gesamtaufwand&$O(mn(m+n))$
+\end{tabular}
+\end{center}
+Da der Gesamtaufwand $O(mn(m+n)$ h"angt polynomiell von $m$ und $n$
+ab, somit haben wir einen polynomiellen Verifizierer konstruiert.
+\end{loesung}
+
+\begin{diskussion}
+Brandon McPhail hat bewiesen, dass {\em Light Up} NP-vollst"andig ist,
+wobei er eine "ahnliche Technik verwendet hat wie sie im Skript zur
+Beweisskizze der NP-Vollst"andigkeit von \textsl{MINESWEEPER-CONSISTENCY}
+verwendet wurde.
+Sein Paper ist unter
+\url{http://www.mountainvistasoft.com/docs/lightup-is-np-complete.pdf}
+herunterzuladen.
+\end{diskussion}
