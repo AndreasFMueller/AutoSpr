@@ -1,0 +1,112 @@
+Sei $\Sigma=\{\texttt{a},\texttt{b},\texttt{A},\texttt{B},\blank\}$
+das Alphabet, die W"orter der Sprache $L$ "uber $\Sigma$ bestehen
+jeweils aus zwei gleich langen Teilen getrennt von einem Blank.
+Die einzelnen Teile enthalten keine Blanks,
+sie enthalten die gleichen Buchstaben, einzige die
+Gross-/Kleinschreibung hat gewechselt.
+Es geh"oren also zu $L$ zum Beispiel
+\[
+\texttt{aaa\blank AAA},\quad
+\texttt{aBbA\blank AbBa},\quad
+\texttt{aaaaaaaa\blank AAAAAAAAA}
+\]
+aber nicht
+\[
+\texttt{aaa\blank aab},\quad
+\texttt{aba\blank ABa},\quad
+\texttt{Aaa\blank Baa}
+\]
+
+Finden Sie das Zustandsdiagramm einer Turing-Maschine, die $L$ erkennt.
+
+\begin{loesung}
+Wir verwenden eine zus"atzliches Alphabet-Zeichen \texttt{x}, mit welchem
+wir diejenigen Zeichen "uberschreiben, die wir schon gepr"uft haben.
+
+Wir beginnen beim ersten Zeichen, welches wir uns merken, und fahren
+dann bis zum n"achsten Blank und eventuell danach folgende \texttt{x}
+bis wir einen Buchstaben finden.
+Dieser muss in der anderen Schreibung sein wie der, mit dem wir
+gestartet sind.
+Dann fahren wir wieder zum Blank zun weiter bis zum \texttt{x}, wo alles
+von vorne beginnt.
+
+Wenn der erste Buchstabe ein \texttt{a} ist, dann suchen wir ein passends
+\texttt{A} wie folgt:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{} \ar[r]^{\texttt{a}\to\texttt{x},R}
+	&{q_1}\ar[r]^{\blank\rightarrow\blank,R}
+		\ar@(ur,ul)_{.\to.,R}
+		&{q_2}\ar[r]^{\texttt{A}\to\texttt{x},L}
+			\ar@(ur,ul)_{\texttt{x}\to\texttt{x},R}
+			&{q_3}\ar[r]^{\blank\to\blank,L}
+				\ar@(ur,ul)_{\texttt{x}\to\texttt{x},L}
+				&{q_4}\ar[r]^{\texttt{x}\to\texttt{x},R}
+					\ar@(ur,ul)_{.\to.,L}
+					&{q_5}
+}
+\]
+Dabei sind "Uberg"ange $\texttt{.}\to\texttt{.}$ als ``f"ur alle anderen
+Zeichen'' zu verstehen.
+F"ur die Buchstaben \texttt{b}, \texttt{A} und \texttt{B} m"ussen wir dasselbe
+machen, der hintere Teil sogar identisch. Wir bekommen
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{}
+	&*+\txt{}
+		&{q_1}\ar[rr]^{\blank\rightarrow\blank,R}
+			\ar@(ur,ul)_{.\to.,R}
+			&*+\txt{}
+			&{q_2}\ar[rrddd]^{\texttt{A}\to\texttt{x},L}
+				\ar@(ur,ul)_{\texttt{x}\to\texttt{x},R}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{q_1}\ar[rr]^{\blank\rightarrow\blank,R}
+			\ar@(ur,ul)_{.\to.,R}
+			&*+\txt{}
+			&{q_2}\ar[rrdd]^{\texttt{B}\to\texttt{x},L}
+				\ar@(ur,ul)_{\texttt{x}\to\texttt{x},R}
+\\
+*+\txt{}
+\ar[d]
+	&*+\txt{}
+		&{q_1}\ar[rr]^{\blank\rightarrow\blank,R}
+			\ar@(ur,ul)_{.\to.,R}
+			&*+\txt{}
+			&{q_2}\ar[rrd]^{\texttt{a}\to\texttt{x},L}
+				\ar@(ur,ul)_{\texttt{x}\to\texttt{x},R}
+\\
+{q_0}	\ar[rr]^{\texttt{B}\to\texttt{x},R}
+	\ar[rru]^{\texttt{A}\to\texttt{x},R}
+	\ar[rruu]^{\texttt{b}\to\texttt{x},R}
+	\ar[rruuu]^{\texttt{a}\to\texttt{x},R}
+	\ar[d]^{\blank\to\blank,R}
+	&*+\txt{}
+		&{q_1}\ar[rr]^{\blank\rightarrow\blank,R}
+			\ar@(ur,ul)_{.\to.,R}
+			&*+\txt{}
+			&{q_2}\ar[rr]^{\texttt{b}\to\texttt{x},L}
+				\ar@(ur,ul)_{\texttt{x}\to\texttt{x},R}
+				&*+\txt{}
+					&{q_3}\ar[dlll]^{\blank\to\blank,L}
+						\ar@(ur,r)^{\texttt{x}\to\texttt{x},L}
+\\
+{q_5}\ar@(ul,l)_{\texttt{x}\to\texttt{x},R}
+	\ar[r]^{\blank\to\blank,R}
+	&*++[o][F=]{q_{\text{accept}}}
+		&*+\txt{}
+		&{q_4}\ar[ulll]_{\texttt{x}\to\texttt{x},R}
+			\ar@(ur,ul)_{.\to.,L}
+}
+\]
+Darin haben wir am Ende noch die Pr"ufung angeh"angt, dass im zweiten Teil
+keine weiteren Buchstaben vorkommen.
+Damit haben wir eine Turing-Maschine f"ur das gestellte Problem gefunden.
+\end{loesung}
+
+
+
