@@ -1,0 +1,30 @@
+Student Xaver Tecco soll im Rahmen einer Big-Data-Studienarbeit die 
+Kunden einer grossen Shop-Website untersuchen und klassifizieren.
+Es steht eine grosse Zahl von bin"aren Eigenschaften zur Verf"ugung,
+zum Beispiel ob Kunden ein bestimmtes Produkt gekauft haben, oder
+ob ein Kunde nur im Dezember einkauft.
+Herr Tecco soll herausfinden, ob es eine Teilmenge von Kriterien derart
+gibt, dass jeder Kunde genau eine der Eigenschaften hat.
+Die Abgabe der Arbeit steht in zwei Tagen bevor, und er hat noch keinen
+funktionierenden Algorithmus.
+Muss er sich Sorgen machen?
+
+\begin{loesung}
+Dieses Problem ist "aquivalent mit dem bekanntermassen NP-vollst"andigen
+Problem \textsl{EXACT-COVER}:
+\begin{align*}
+\text{Eigenschaft}&\leftrightarrow \text{Menge $S_j$}\\
+\text{Teilmenge von Eigenschaften}&\leftrightarrow \text{Unterfamilie $S_{j_i}$}\\
+\text{genau eine der Eigenschaften}&\leftrightarrow S_{j_i}\cap S_{j_k}=\emptyset\quad\forall i\ne k\\
+\text{alle Kunden erfasst}&\leftrightarrow \bigcup_{j=1} nS_j=\bigcup_{i=1}^m S_{j_i}
+\end{align*}
+Da nach heutigem Wissen NP-vollst"andige Problem nicht mit einem polynomiellen
+Algorithmus gel"ost werden k"onnen, ist nicht mit einer schnellen L"osung
+des Problems zu rechnen.
+\end{loesung}
+
+\begin{diskussion}
+Der Name \textsl{Xaver Tecco} ist eine Anagramm von \textsl{EXACT-COVER}.
+\end{diskussion}
+
+
