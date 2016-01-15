@@ -1,0 +1,47 @@
+Sei $\Sigma=\{\texttt{a},\texttt{b},\dots,\texttt{z}\}$ das Alphabet bestehend
+aus allen Kleinbuchstaben.
+Die Sprache
+\[
+L=\{w\in\Sigma^*\;|\;\text{es gibt zwei verschiedene Buchstaben
+$a,b\in\Sigma$ mit $|w|_a=|w|_b > 1$}\}
+\]
+besteht aus W"ortern, die mindestens zwei Buchstaben mehr als einmal
+und in gleicher Anzahl enthalten.
+Die W"orter
+\[
+\texttt{essen},\qquad
+\texttt{rapperswil},\qquad
+\texttt{seenachtfest}
+\]
+sind in $L$, nicht aber
+\[
+\texttt{trinken},\qquad
+\texttt{pfaeffikon},\qquad
+\texttt{montag}.
+\]
+Ist die Sprache $L$ regul"ar?
+
+\begin{loesung}
+Nein, wie man mit dem Pumping-Lemma f"ur regul"are Sprachen bewesein kann.
+Wir nehmen dazu an, dass $L$ regul"ar sei, das Pumping Lemma f"ur regul"are
+Sprachen besagt dann, dass es eine Zahl $N$, die Pumping Length, gibt,
+so dass W"orter gr"osserer L"ange die Pumpeigenschaft haben.
+
+Wir konstruieren daher ein Wort in $L$, welches diese Eigenschaft hat:
+\[
+w=\texttt{a}^N\texttt{b}^N
+\]
+Das Wort ist in $L$, wenn $N>1$ ist, was wir im Folgenden annehmen.
+Das Pumping-Lemma besagt jetzt, dass es eine Zerlegung in drei 
+Teile $w=xyz$ gibt, wobei $|xy|\le N$ und $|y|>1$ ist.
+Insbesondere bestehen $x$ und $y$ ausschliesslich aus Buchstaben \texttt{a}.
+Ein aufgepumptes Wort hat die Form
+\[
+w_k=xy^kz=\texttt{a}^{N+|y|(k-1)}\texttt{b}^N,
+\]
+d.~h.~f"ur $k>1$ ist die Zahl der einzigen beiden vorkommenden Buchstaben
+\texttt{a} und \texttt{b} nicht mehr gleich, also $w_k\not\in L$,
+im Widerspruch zur Behauptung des Pumping-Lemmas.
+Dieser Widerspruch zeigt, dass $L$ nicht regul"ar sein kann.
+\end{loesung}
+
