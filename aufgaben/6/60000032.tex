@@ -1,0 +1,32 @@
+Die SlemBunk Malware f"ur Android geh"ort zu einem ausgefeilten
+System, mit dem Internet Banking unterwandert werden kann.
+Die App enth"alt keine ``verd"achtige'' Funktionalit"at als direkt
+einsehbaren Code. 
+Vielmehr ist der Code, der die endg"ultige Malware herunterl"adt,
+unscheinbar verpackt, und wir von der App erst zur Laufzeit
+ausgepackt und in den Speicher geladen, wo er dann auch ausgef"uhrt
+werden kann.
+Wegen dieses komplizierten Verfahrens sch"opft der App-Scanner von
+Android keinen Verdacht.
+Gibt es eine M"oglichkeit, den Scanner so zu erweitern, dass er 
+von jeder App erkennen kann, ob sie je einen Internet-Download
+ausf"uhren wird?
+
+\begin{loesung}
+Nein, den damit liesse sich das Halteproblem l"osen.
+Ein Programm $P_1$ kann man immer in ein gr"osseres Programm $P_2$
+einbettet, welches einen Internet-Download ausf"uhrt, sobald $P_1$
+anh"alt.
+Wendet man den Scanner auf $P_2$ an,
+kann man herausfinden, ob $P_2$
+je einen Internet-Download ausf"uhren wird, und damit auch, ob
+$P_1$ je anhalten wird.
+Damit ist das Halteproblem gel"ost.
+Da das Halteproblem nicht l"osbar ist, kann es auch keinen solchen
+Scanner geben.
+\end{loesung}
+
+
+
+
+
