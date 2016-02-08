@@ -16,15 +16,51 @@ Problem \textsl{EXACT-COVER}:
 \text{Eigenschaft}&\leftrightarrow \text{Menge $S_j$}\\
 \text{Teilmenge von Eigenschaften}&\leftrightarrow \text{Unterfamilie $S_{j_i}$}\\
 \text{genau eine der Eigenschaften}&\leftrightarrow S_{j_i}\cap S_{j_k}=\emptyset\quad\forall i\ne k\\
-\text{alle Kunden erfasst}&\leftrightarrow \bigcup_{j=1} nS_j=\bigcup_{i=1}^m S_{j_i}
+\text{alle Kunden erfasst}&\leftrightarrow \bigcup_{j=1}^nS_j=\bigcup_{i=1}^m S_{j_i}
 \end{align*}
 Da nach heutigem Wissen NP-vollst"andige Problem nicht mit einem polynomiellen
 Algorithmus gel"ost werden k"onnen, ist nicht mit einer schnellen L"osung
 des Problems zu rechnen.
+
+Es sind auch andere Vergleiche m"oglich.
+Zu jeder Eigenschaft $i$ gibt es eine Menge $M_i$ von Kunden, die diese
+Eigenschaft haben.
+Diese Menge kann man im $n$-adischen System codieren.
+Wenn Kunden $k$ die Eigenschaft $i$ hat, dann wird die $k$-te Stelle
+auf $1$ gesetzt, sonst auf $0$.
+Zur Eigenschaft $i$ gibt es also die Zahl $n_i$, die Menge $M_i$
+codiert.
+Sei $S$ die Menge all dieser Zahlen.
+Gesucht wird jetzt eine Teilmenge, so dass deren Summe die Zahl
+bestehend aus lauter $1$ ist, d.~h.~jeder Kunde wird abgedeckt, aber
+nur genau einmal.
+Dies ist das Problem \textsl{SUBSET-SUM}.
+Damit hat man aber nur gezeigt, dass das gestellte Problem leichter ist
+als \textsl{SUBSET-SUM}, man m"usste die umgekehrte Richtung haben.
+Dies reicht also nicht als Nachweis, dass das gestellte Problem
+NP-vollst"andig ist.
+
+Das Problem klingt auch sehr "ahnlich wie \textsl{HITTING-SET}.
+Man k"onnte mit $S$ die Menge aller Eigenschaften bezeichnen,
+und mit $S_i$ die Menge der Eigenschaften, die Kunden $i$ hat.
+Das Problem \textsl{HITTING-SET} versucht dann eine Menge $H\subset S$
+von Eigenschaften zu finden, so dass jeder Kunde genau eine der
+Eigenschaften in $H$ hat.
+Dies ist nat"urlich die Technik, mit der \textsl{HITTING-SET}
+als NP-vollst"andig bewiesen wird.
 \end{loesung}
 
 \begin{diskussion}
 Der Name \textsl{Xaver Tecco} ist eine Anagramm von \textsl{EXACT-COVER}.
 \end{diskussion}
+
+\begin{bewertung}
+Reduktionsprinzip ({\bf R}) 1 Punkt,
+Vergleichsproblem \textsl{EXACT-COVER} ({\bf V}) 1 Punkt,
+Mapping f"ur Eigenschaften ({\bf E}) 1 Punkt,
+f"ur genau eine Eigenschaft ({\bf G}) 1 Punkt,
+f"ur alle Kunden erfasst ({\bf A}) 1 Punkt,
+Schlussfolgerung NP-vollst"andig ({\bf N}) 1 Punkt.
+\end{bewertung}
 
 
