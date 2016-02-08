@@ -6,8 +6,8 @@ Er besteht aus den folgenden Komponenten
 \hline
 Nummer&Feldname                          &Datentyp          &Beschreibung\\
 \hline
-  1   &time\_low                         &uint32\_t         &Zeitstempel niederwertigste 32bits\\
-  2   &time\_mid                         &uint16\_t         &Zeitstempel, mittlere 16bits\\
+  1   &time\_low                         &\texttt{uint32\_t}&Zeitstempel niederwertigste 32bits\\
+  2   &time\_mid                         &\texttt{uint16\_t}&Zeitstempel, mittlere 16bits\\
   3   &time\_hi\_and\_version            &\texttt{uint16\_t}&Zeitstempel, Versionsnummer\\
   4   &clock\_seq\_high\_and\_reserverved&\texttt{uint8\_t} &Clocksequenz\\
   5   &clock\_seq\_low                   &\texttt{uint8\_t} &Clocksequenz\\
@@ -63,18 +63,25 @@ und erhalten somit den regul"aren Ausdruck:
 \end{center}
 \item
 Das erste Zeichen des zweitletzten Feldes kann jetzt nur noch
-\texttt{c} (bin"ar \texttt{1000}) oder \texttt{d} (bin"ar \text{1001})
+\texttt{8} (bin"ar \texttt{1000}) oder \texttt{9} (bin"ar \texttt{1001})
 sein, der regul"are Ausdruck muss daher wie folgt abge"andert
 werden:
 \begin{center}
 \texttt{[0-9a-fA-F]\{8\}-%
 [0-9a-fA-F]\{4\}-%
 [0-9a-fA-F]\{4\}-%
-(c|d)[0-9a-fA-F]\{3\}-%
+(8|9)[0-9a-fA-F]\{3\}-%
 [0-9a-fA-F]\{12\}}
 \end{center}
 \end{teilaufgaben}
 \end{loesung}
 
-
+\begin{bewertung}
+nur Hex-Ziffern ({\bf H}) 1 Punkt,
+Gross- und Kleinschreibung ({\bf K}) 1 Punkt,
+L"angen der Hex-Bl"ocke festgelegt ({\bf L}) 1 Punkt,
+Bindestriche als Trennzeichen ({\bf B}) 1 Punkt,
+Hex-Codierung von \texttt{1000} und \texttt{1001} ({\bf 8}) 1 Punkt,
+Einschr"ankung in Teilaufgabe b) ({\bf E}) 1 Punkt.
+\end{bewertung}
 
