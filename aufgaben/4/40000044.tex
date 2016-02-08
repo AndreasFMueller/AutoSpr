@@ -18,8 +18,8 @@ Konstruieren Sie eine kontextfreie Grammatik f"ur $L_{ab}$.
 \item
 Bestimmen Sie f"ur jede Regel der Grammatik aus a), ob sie der
 Chomsky-Normalform entspricht, und wenn nicht, warum nicht.
-%\item
-%Bringen Sie die Grammatik von a) in Chomsky-Normalform.
+\item
+Bringen Sie die Grammatik von a) in Chomsky-Normalform.
 \item
 K"onnen Sie daraus eine Aussage dar"uber ableiten, ob die Sprache 
 \[
@@ -35,7 +35,7 @@ $a,b\in\Sigma$ mit $|w|_a=|w|_b > 1$}\}
 Die Sprache $L_{ab}$ ist kontextfrei, weil sich daf"ur eine kontextfreie
 Grammatik angeben l"asst.
 Die Grammatik f"ugt die Buchstaben $a$ und $b$ jeweils paarweise
-hinzu, w"ahrend sie andere Buchstaben beliebig oft hinzuf"ugt:
+hinzu, w"ahrend sie andere Buchstaben einzeln hinzuf"ugt:
 \begin{align}
 S&\rightarrow aSb\;|\; bSa \label{40000044:1}\\
  &\rightarrow SU \;|\; US  \label{40000044:2}\\
@@ -46,65 +46,65 @@ U&\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$} \label{40000044:4}
 Die Startvariable kommt auf der rechten Seite vor in (\ref{40000044:1})
 und (\ref{40000044:2}).
 In (\ref{40000044:1}) kommen auf der rechten Seite mehr als zwei Symbole vor.
-%\item
-%Die Grammatik ist noch nicht in Chomsky-Normalform.
-%Zun"achst kommt die Startvariable auch rechts vor, was wir durch eine
-%zus"atzliche Startvariable erreichen k"onnen:
-%\begin{align*}
-%S_0&\rightarrow S\\
-%S  &\rightarrow aSb\;|\; bSa\\
-%   &\rightarrow SU \;|\; US\\
-%   &\rightarrow \varepsilon\\
-%U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}
-%\end{align*}
-%Jetzt ist aber eine unzul"assige $\varepsilon$-Regel vorhanden, die entfernt
-%werden muss:
-%\begin{align*}
-%S_0&\rightarrow S\;|\;\varepsilon\\
-%S  &\rightarrow aSb\;|\; bSa\;|\;ab\;|\;ba\\
-%   &\rightarrow SU \;|\; US\;|\;U\;\\
-%U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}
-%\end{align*}
-%Jetzt hat man aber zwei Unit-Rules, die entfernt werden m"ussen.
-%Zuerst $S\rightarrow U$:
-%\begin{align*}
-%S_0&\rightarrow S\;|\;\varepsilon\\
-%S  &\rightarrow aSb\;|\; bSa\;|\;ab\;|\;ba\\
-%   &\rightarrow SU \;|\; US\\
-%   &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
-%U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}
-%\end{align*}
-%Nun $S_0\rightarrow S$:
-%\begin{align*}
-%S_0&\rightarrow aSb\;|\; bSa\;|\;ab\;|\;ba\\
-%   &\rightarrow SU \;|\; US\\
-%   &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
-%   &\rightarrow \varepsilon\\
-%S  &\rightarrow aSb\;|\; bSa\;|\;ab\;|\;ba\\
-%   &\rightarrow SU \;|\; US\\
-%   &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
-%U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}
-%\end{align*}
-%Jetzt sind nur noch die Regeln, die $a$ oder $b$ auf der rechten
-%Seite enthalten nicht gem"ass der Chomsky-Normalform.
-%Dazu brauchen wir zus"atzliche Variablen:
-%\begin{align*}
-%S_0&\rightarrow AC\;|\; DA \\
-%   &\rightarrow AB\;|\;BA\\
-%   &\rightarrow SU \;|\; US\\
-%   &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
-%   &\rightarrow \varepsilon\\
-%S  &\rightarrow AC\;|\; DA \\
-%   &\rightarrow AB\;|\;BA\\
-%   &\rightarrow SU \;|\; US\\
-%   &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
-%U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
-%A  &\rightarrow a \\
-%B  &\rightarrow b \\
-%C  &\rightarrow SB \\
-%D  &\rightarrow SA
-%\end{align*}
-%Damit ist die Grammatik in Chomsky-Normalform.
+\item
+Die Grammatik ist noch nicht in Chomsky-Normalform.
+Zun"achst kommt die Startvariable auch rechts vor, was wir durch eine
+zus"atzliche Startvariable erreichen k"onnen:
+\begin{align*}
+S_0&\rightarrow S\\
+S  &\rightarrow aSb\;|\; bSa\\
+   &\rightarrow SU \;|\; US\\
+   &\rightarrow \varepsilon\\
+U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}
+\end{align*}
+Jetzt ist aber eine unzul"assige $\varepsilon$-Regel vorhanden, die entfernt
+werden muss:
+\begin{align*}
+S_0&\rightarrow S\;|\;\varepsilon\\
+S  &\rightarrow aSb\;|\; bSa\;|\;ab\;|\;ba\\
+   &\rightarrow SU \;|\; US\;|\;U\;\\
+U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}
+\end{align*}
+Jetzt hat man aber zwei Unit-Rules, die entfernt werden m"ussen.
+Zuerst $S\rightarrow U$:
+\begin{align*}
+S_0&\rightarrow S\;|\;\varepsilon\\
+S  &\rightarrow aSb\;|\; bSa\;|\;ab\;|\;ba\\
+   &\rightarrow SU \;|\; US\\
+   &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
+U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}
+\end{align*}
+Nun $S_0\rightarrow S$:
+\begin{align*}
+S_0&\rightarrow aSb\;|\; bSa\;|\;ab\;|\;ba\\
+   &\rightarrow SU \;|\; US\\
+   &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
+   &\rightarrow \varepsilon\\
+S  &\rightarrow aSb\;|\; bSa\;|\;ab\;|\;ba\\
+   &\rightarrow SU \;|\; US\\
+   &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
+U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}
+\end{align*}
+Jetzt sind nur noch die Regeln, die $a$ oder $b$ auf der rechten
+Seite enthalten nicht gem"ass der Chomsky-Normalform.
+Dazu brauchen wir zus"atzliche Variablen:
+\begin{align*}
+S_0&\rightarrow AC\;|\; DA \\
+   &\rightarrow AB\;|\;BA\\
+   &\rightarrow SU \;|\; US\\
+   &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
+   &\rightarrow \varepsilon\\
+S  &\rightarrow AC\;|\; DA \\
+   &\rightarrow AB\;|\;BA\\
+   &\rightarrow SU \;|\; US\\
+   &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
+U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
+A  &\rightarrow a \\
+B  &\rightarrow b \\
+C  &\rightarrow SB \\
+D  &\rightarrow SA
+\end{align*}
+Damit ist die Grammatik in Chomsky-Normalform.
 \item
 Die Sprache $L$ ist die Vereinigung aller Sprachen $L_{ab}$,
 \[
@@ -114,4 +114,20 @@ und da Vereinigung eine regul"are Operation ist, und kontextfreie Sprachen
 unter Vereinigung abgeschlossen sind, muss auch $L$ kontextfrei sein.
 \end{teilaufgaben}
 \end{loesung}
+
+\begin{diskussion}
+Die Aufgabe ist in der Pr"ufung ohne Teilaufgabe c) gestellt worden.
+\end{diskussion}
+
+\begin{bewertung}
+Buchstaben $a$ und $b$ werden paarweise ({\bf P}) und in beliebiger
+Reihenfolge ({\bf R}) hinzugef"ugt, je 1 Punkt,
+Leeres Wort wird erzeugt ({\bf E}) 1 Punkt,
+beliebige andere Buchstaben k"onnen vorne oder hinten angef"ugt werden
+({\bf A}) 1 Punkt,
+Paarregel ({\bf CP}) 1 Punkt,
+Vereinigung f"ur Teilaufgabe d) ({\bf U}) 1 Punkt.
+\end{bewertung}
+
+
 
