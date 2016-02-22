@@ -2,8 +2,8 @@ Zeigen Sie, dass die logischen Formeln
 \[
 x\vee y\qquad\text{und}\qquad (x\vee z)\wedge (y\vee \neg z)
 \]
-"aquivalent sind, d.\,h.~die Variablen der einen Formel k"onnen
-genau dann so mit Wahrheitswerten
+``"aquivalent'' sind im folgenden Sinne: die Variablen der einen Formel
+k"onnen genau dann so mit Wahrheitswerten
 belegt werden, dass die Formel wahr wird, wenn dies f"ur die andere Formel
 m"oglich ist.
 
@@ -22,6 +22,44 @@ wahr, also muss $y$ wahr sein. Dann ist auch $x\vee y$ wahr. Dasselbe
 Argument funktioniert auch, wenn $z$ falsch ist, dann folgt, dass $x$
 wahr sein muss, und wieder ist $x\vee y$ wahr.
 Ist die zweite Formel immer falsch, dann gibt es keine Belegung von
-$z$ so, dass beide Terme wahr sind. D.\,h.~aber, dass $x$ und $y$
-beide falsch sein m"ussen, also ist auch $x\vee y$ falsch.
+$z$ so, dass beide Terme wahr sind.
+D.\,h.~aber, dass $x$ und $y$ beide falsch sein m"ussen, also ist auch
+$x\vee y$ falsch.
+
+Alternativ kann man die ``"Aquivalenz'' im obigen Sinne auch mit Hilfe
+einer Tabelle von Wahrheitswerten pr"ufen:
+\begin{center}
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
+\hline
+                   x&                   y&x\vee z
+	&z&x\vee y&y\vee\neg z&(x\vee z)\wedge(y\vee\neg z)\\
+\hline
+\multirow{2}{*}{$t$}&\multirow{2}{*}{$t$}&\multirow{2}{*}{$\color{red}t$}
+	&t&   t   &     t     &   \color{red}t           \\
+                    &                    &                   
+	&f&   t   &     t     &   \color{red}t           \\
+\hline
+\multirow{2}{*}{$t$}&\multirow{2}{*}{$f$}&\multirow{2}{*}{$\color{red}t$}
+	&t&   t   &     f     &              f           \\
+                   & &            &f&   t   &     t     &   \color{red}t           \\
+\hline
+\multirow{2}{*}{$f$}&\multirow{2}{*}{$t$}&\multirow{2}{*}{$\color{red}t$}
+	&t&   t   &     t     &   \color{red}t           \\
+                    &                    &            
+	&f&   f   &     t     &              f           \\
+\hline
+\multirow{2}{*}{$f$}&\multirow{2}{*}{$f$}&\multirow{2}{*}{$f$}
+	&t&   t   &     f     &              f           \\
+                    &                    &            
+	&f&   f   &     t     &              f           \\
+\hline
+\end{tabular}
+\end{center}
+F"ur jedes rote $\color{red}t$ muss es m"oglich sein, mit Hilfe eines
+geeigneten Wahrheitswertes f"ur $z$ in der Spalte ganz rechts ebenfalls
+ein rotes $\color{red}t$ zu erzeugen.
+Und wenn $x\vee y$ nicht wahr ist, wie in der letzten Zeile der Tabelle,
+dann darf auch kein Wahrheitswert f"ur $z$ den Ausdruck
+$(x\vee z)\wedge(y\vee \neg z)$ wahr machen.
 \end{loesung}
+
