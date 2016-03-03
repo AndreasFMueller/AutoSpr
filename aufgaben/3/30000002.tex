@@ -62,7 +62,7 @@ $z_3$&beginnt mit {\tt b} oder mehr als ein {\tt b}
 }
 \]
 
-Selbstverst"andlich kann man diese Aufgabe auch mit Hilfe des Satzes~3.1
+Selbstverst"andlich kann man diese Aufgabe auch mit Hilfe des Satzes~3.4
 aus der Vorlesung l"osen. Dazu m"ussen die Mengen $L(w)$ bestimmt
 werden:
 \begin{center}
@@ -125,8 +125,9 @@ $\varepsilon$&$L$&$=L_0$&nein\\
 \end{tabular}
 \end{center}
 Die Zust"ande $L_i$ entsprechen den $z_i$ im Zustandsdiagramm.
+
 \item Die Zeilen codieren den Zweierrest der Anzahl {\tt b}s,
-die Spalten den Zweierrest der Anzahl {\tt a}s.
+die Spalten den Zweierrest der L"ange von $w$.
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @-1mm {
@@ -159,6 +160,7 @@ $\varepsilon$&$L$&$=L_0$&nein\\
 \end{tabular}
 \end{center}
 Die Zustande $L_i$ entsprechen wieder den $z_i$ von vorhin.
+
 \item
 In den Zust"anden $z_i,i <3$ hat das Worte genau $i$ {\tt a}s,
 im Zustand $z_3$ hat das Wort 3 oder mehr {\tt a}s.
@@ -195,6 +197,7 @@ $\varepsilon$&$L$&$=L_0$&nein\\
 \hline
 \end{tabular}
 \end{center}
+
 \item Bedeutung der Zust"ande:
 \begin{center}
 \begin{tabular}{c|l}
@@ -224,7 +227,7 @@ $w$&$L(w)$&$z_i$&$\varepsilon\in L(w)$\\
 \hline
 $\varepsilon$&$L$&$=L_0$&ja\\
   {\tt 0}&$\emptyset$&$=L_0$&ja\\
-  {\tt 1}&$\{ w\in\Sigma_2^*\;|\; \text{an jeder geraden Stelle eine {\tt 1}}\}$&$=L_1$&nein\\
+  {\tt 1}&$\{ w\in\Sigma_2^*\;|\; \text{an jeder geraden Stelle eine {\tt 1}}\}$&$=L_1$&ja\\
  {\tt 00}&$\emptyset$&$=L_2$&nein\\
  {\tt 01}&$\emptyset$&$=L_2$&nein\\
  {\tt 10}&$L$&$=L_0$&ja\\
@@ -236,10 +239,11 @@ $\varepsilon$&$L$&$=L_0$&ja\\
 {\tt 100}&$\emptyset$&$=L_2$&nein\\
 {\tt 101}&$L$&$=L_0$&ja\\
 {\tt 110}&$\emptyset$&$=L_2$&nein\\
-{\tt 111}&$\{ w\in\Sigma_2^*\;|\; \text{an jeder geraden Stelle eine {\tt 1}}\}$&$=L_1$&nein\\
+{\tt 111}&$\{ w\in\Sigma_2^*\;|\; \text{an jeder geraden Stelle eine {\tt 1}}\}$&$=L_1$&ja\\
 \hline
 \end{tabular}
 \end{center}
+
 \item Zustand $z_i, i <6$ bedeutet, dass das Wort genau $i$
 Zeichen lang ist. Zustand $z_6$ bedeutet, dass das Wort mindestens
 $6$ Zeichen lang ist.
