@@ -6,7 +6,6 @@ L=\{ w{\tt =}w|w\in \{{\tt 0},{\tt 1}\}^*\}
 \]
 regul"ar?
 
-\ifthenelse{\boolean{loesungen}}{
 \begin{loesung}
 Die Sprache ist nicht regul"ar, wie man mit Hilfe des Pumping
 Lemmas beweisen kann. Dazu nehmen wir an, die Sprache sei regul"ar.
@@ -18,12 +17,18 @@ w=\text{\tt 10}^N\text{\tt =10}^N,
 \]
 welches offenbar zur Sprache geh"ort und auch l"anger ist als $N$.
 Das Pumping Lemma garantiert, dass $w=xyz$  geschrieben werden kann
-mit $|xy|\le N$ und $|y|>0$. Aus der Konstruktion sieht man, dass $y$
-eine der beiden Formen
+mit $|xy|\le N$ und $|y|>0$:
+\begin{center}
+\includeagraphics[]{pl-1.pdf}
+\end{center}
+Aus der Konstruktion sieht man, dass $y$ eine der beiden Formen
 \[
-\text{\tt 10}^k\quad\text{oder}\quad\text{\tt 0}^k
+\text{\tt 0}^k
+\quad\text{oder}\quad
+\text{\tt 10}^k
 \]
-haben muss. Welche Form auch immer $y$ hat, nach dem Aufpumpen wird
+haben muss (die zweite nur falls $|x|=0$).
+Welche Form auch immer $y$ hat, nach dem Aufpumpen wird
 auf der linken Seite des Gleichheitszeichens eine Bin"arzahl mit
 einer f"uhrenden {\tt 1} und mit mehr Stellen stehen, die Gleichheit
 ist also nicht mehr erf"ullt, das aufgepumpte Wort ist nicht in der
@@ -32,5 +37,4 @@ Lemmas zeigt, dass die Annahme, $L$ sei regul"ar, falsch gewesen
 sein muss.
 \end{loesung}
 
-}{}
 
