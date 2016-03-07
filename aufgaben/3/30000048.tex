@@ -1,0 +1,75 @@
+Finden Sie nicht deterministische endliche Automaten f"ur die folgenden
+Sprachen
+\begin{teilaufgaben}
+\item
+$\{w\in\Sigma^*\,|\, |w|_{\texttt{0}}\ge 2\}$ mit
+$\Sigma=\{\texttt{0},\texttt{1}\}$.
+\item
+$\{w\in\Sigma^*\,|\, |w|_{\texttt{0}}\le 2\}$ mit
+$\Sigma=\{\texttt{0},\texttt{1}\}$.
+\item
+Sei $\Sigma=\{\texttt{a},\texttt{b},\texttt{c}\}$.
+Ein Wort $w\in\Sigma^*$ ist genau dann in der Sprache, wenn vor jedem
+Buchstaben des Wortes alle alphabetisch fr"uhren Buchstaben vor dem Buchstaben
+schon vorgekommen sind.
+Es geh"oren also zur Sprache
+\[
+\texttt{aaa},\quad
+\texttt{abc},\quad
+\texttt{aaababc}
+\]
+aber nicht
+\[
+\texttt{ac}
+\quad\text{oder}\quad
+\texttt{bc}
+\]
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+        &{q_0}\ar[r]^{\texttt{0}}
+              \ar@(ur,ul)_{\texttt{0},\texttt{1}}
+		&{q_1}\ar[r]^{\texttt{0}}
+		      \ar@(ur,ul)_{\texttt{0},\texttt{1}}
+			&*++[o][F=]{q_2}
+		      		\ar@(ur,ul)_{\texttt{0},\texttt{1}}
+}
+\]
+\item
+\[
+\entrymodifiers={++[o][F=]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+        &{q_0}\ar[r]^{\texttt{0}}
+              \ar@(ur,ul)_{\texttt{1}}
+		&{q_1}\ar[r]^{\texttt{0}}
+		      \ar@(ur,ul)_{\texttt{1}}
+			&*++[o][F=]{q_2}
+		      		\ar@(ur,ul)_{\texttt{1}}
+}
+\]
+\item
+\[
+\entrymodifiers={++[o][F=]}
+\xymatrix @-1mm {
+*+\txt{}\ar[r]
+        &{q_0}\ar[r]^{\texttt{a}}
+		&{q_1}\ar[r]^{\texttt{b}}
+		      \ar@(ur,ul)_{\texttt{a}}
+			&{q_2}\ar[r]^{\texttt{c}}
+			      \ar@(ur,ul)_{\texttt{a},\texttt{b}}
+				&{q_3}
+				 \ar@(ur,ul)_{\texttt{a},\texttt{b},\texttt{c}}
+}
+\]
+Obwohl alle Zust"ande Akzeptierzust"ande sind werden nicht alle W"orter
+akzeptiert.
+\end{teilaufgaben}
+\end{loesung}
+
