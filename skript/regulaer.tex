@@ -835,10 +835,18 @@ also in $L$.
 \item Das Pumping Lemma garantiert jetzt eine Zerlegung des Wortes
 in drei Teile $xyz$, mit den Eigenschaften $|xy|\le N$, $|y|\ge 1$ und
 $xy^kz\in L\forall k\in\mathbb N$.
-\item Wir pr"ufen dies nach f"ur $k=2$. Da $|xy|\le N$, bestehen
-sowohl $x$ als auch $y$ aus lauter Nullen. Die $1$ befindet sich im Teil $z$.
+\item Wir pr"ufen dies nach f"ur $k=2$ (Abbildung~\ref{regular:pl-palindrome}).
+\begin{figure}
+\centering
+\includegraphics{images/palindrom-1.pdf}
+\caption{Anwendung des Pumping-Lemmas auf die Sprache der Palindrome
+\label{regular:pl-palindrome}}
+\end{figure}
+Da $|xy|\le N$, bestehen sowohl $x$ als auch $y$ aus lauter Nullen.
+Die $1$ befindet sich im Teil $z$.
 Das Wort $xyyz$ hat daher $N+|y|$ Nullen vor der $1$, aber nur $N$ Nullen
-nach der $1$, ist also kein Palindrom mehr. Es ist also $xy^2z\not\in L$,
+nach der $1$, ist also kein Palindrom mehr.
+Es ist also $xy^2z\not\in L$,
 im Widerspruch zur Ausssage des Pumping Lemma (vorangegangener Schritt).
 \end{compactenum}
 Der Widerspruch zeigt jetzt, dass die Annahme, $L$ sei regul"ar, nicht

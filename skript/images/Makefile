@@ -19,10 +19,11 @@ COMPFILES = comp-1.pdf comp-2.pdf comp-3.pdf comp-4.pdf comp-5.pdf \
 GRAPHFILES = graph-1.pdf
 STACKFILES = stack-1.pdf stack-2.pdf
 SUDOKUFILES = sudoku-1.pdf
+PALINDROMFILES = palindrom-1.pdf
 
 timestamp:	$(REGFILES) $(NEAFILES) $(CFGFILES) $(TURINGFILES) \
 		$(LANGFILES) $(MINEFILES) $(PLFILES) $(REDFILES) $(COMPFILES) \
-		$(GRAPHFILES) $(STACKFILES) $(SUDOKUFILES)
+		$(GRAPHFILES) $(STACKFILES) $(SUDOKUFILES) $(PALINDROMFILES)
 	touch timestamp
 
 nea:	$(NEAFILES)
@@ -143,5 +144,15 @@ $(SUDOKUFILES):	sudoku.mp Makefile
 		echo $${f}; \
 		i=`expr $${f} : "sudoku\.\(.\)"`; \
 		mptopdf sudoku.$${i}; \
+	done
+
+palindrom:	$(PALINDROMFILES)
+$(PALINDROMFILES):	palindrom.mp Makefile
+	TEX=latex mpost palindrom.mp
+	for f in palindrom.?; \
+	do \
+		echo $${f}; \
+		i=`expr $${f} : "palindrom\.\(.\)"`; \
+		mptopdf palindrom.$${i}; \
 	done
 
