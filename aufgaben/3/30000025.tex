@@ -1,10 +1,21 @@
 In dieser Aufgabe geht es um die Frage, ob man bin"are Ganzzahlen mit
 Hilfe eines endlichen Automaten auf Gleichheit testen kann.
-Sei $\Sigma=\{{\tt 0},{\tt 1}, {\tt =}\}$. Ist die Sprache
+Sei $\Sigma=\{\texttt{0},\texttt{1},\texttt{=}\}$. Ist die Sprache
 \[
-L=\{ w{\tt =}w|w\in \{{\tt 0},{\tt 1}\}^*\}
+L=\{ w\texttt{=}w|w\in \{\texttt{0},\texttt{1}\}^*\}
 \]
 regul"ar?
+
+\begin{hinweis}
+Bitte beachten Sie die beiden unterschiedlichen Bedeutungen von $=$
+bzw.~\texttt{=}.
+Das eine ist das mathematische Gleichheitszeichen, das andere ein Symbol
+im Alphabet $\Sigma$.
+Die beiden Zeichen sind zwar in zwei verschiedenen Schriftarten gesetzt,
+die normalerweise Zeichen von Formelsymbolen zu unterscheiden gestatten,
+aber im Falle des Gleichheitszeichens sind die Unterschiede verschwindend
+klein.
+\end{hinweis}
 
 \begin{loesung}
 Die Sprache ist nicht regul"ar, wie man mit Hilfe des Pumping
@@ -13,7 +24,7 @@ Das Pumping Lemma garantiert, dass es eine Zahl $N$ gibt, so dass
 sich W"orter l"anger als diese Zahl in einer speziellen Art
 zerlegen und ``aufpumpen'' lassen. Wir w"ahlen das Wort
 \[
-w=\text{\tt 10}^N\text{\tt =10}^N,
+w=\texttt{10}^N\texttt{=10}^N,
 \]
 welches offenbar zur Sprache geh"ort und auch l"anger ist als $N$.
 Das Pumping Lemma garantiert, dass $w=xyz$  geschrieben werden kann
@@ -23,14 +34,14 @@ mit $|xy|\le N$ und $|y|>0$:
 \end{center}
 Aus der Konstruktion sieht man, dass $y$ eine der beiden Formen
 \[
-\text{\tt 0}^k
+\texttt{0}^k
 \quad\text{oder}\quad
-\text{\tt 10}^k
+\texttt{10}^k
 \]
 haben muss (die zweite nur falls $|x|=0$).
 Welche Form auch immer $y$ hat, nach dem Aufpumpen wird
 auf der linken Seite des Gleichheitszeichens eine Bin"arzahl mit
-einer f"uhrenden {\tt 1} und mit mehr Stellen stehen, die Gleichheit
+einer f"uhrenden \texttt{1} und mit mehr Stellen stehen, die Gleichheit
 ist also nicht mehr erf"ullt, das aufgepumpte Wort ist nicht in der
 Sprache, $xy^lz\not\in L$. Dieser Widerspruch zur Aussage des Pumping
 Lemmas zeigt, dass die Annahme, $L$ sei regul"ar, falsch gewesen
