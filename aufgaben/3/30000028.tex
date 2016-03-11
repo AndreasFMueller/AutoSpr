@@ -1,16 +1,35 @@
 Zeigen Sie, dass die Sprache
 \[
 L=\{
-0^m1^n|m\ne n
+\texttt{0}^m\texttt{1}^n|m\ne n
 \}
 \]
-"uber dem Alphabet $\Sigma=\{0,1\}$ nicht regul"ar ist.
+"uber dem Alphabet $\Sigma=\{\texttt{0},\texttt{1}\}$ nicht regul"ar ist.
 
 \begin{loesung}
 Der einfachste Beweis verwendet die Mengenoperationen:
-W"are $L$ regul"ar, m"usste auch das Komplement regul"ar sein.
-Das Komplement der Sprache $L$ ist die Sprache
-$$\{0^n1^n|n\ge 0\},$$
+Die Sprache
+\[
+L'=\{\texttt{0}^n\texttt{1}^m\,|\,n,m\ge 0\}
+\]
+ist regul"ar, denn sie wird von dem Automaten
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &*++[o][F=]{z_0}\ar[r]^{\texttt{1}} \ar@(ur,ul)_{\texttt{0}}
+                &*++[o][F=]{z_1} \ar[r]^{\texttt{0}} \ar@(ur,ul)_{\texttt{1}}
+			& {z_2}\ar@(ur,dr)^{\texttt{0},\texttt{1}}
+}
+\]
+akzeptiert.
+W"are $L$ regul"ar, m"usste auch $L'\setminus L$ regul"ar sein.
+Doch $L'\setminus L$ ist die Sprache
+\[
+L'\setminus L
+=
+\{\texttt{0}^n\texttt{1}^n\,|\,n\ge 0\},
+\]
 von der in der Vorlesung gezeigt wurde, dass sie nicht regul"ar
 ist. Dieser Widerspruch zeigt, dass auch $L$ nicht regul"ar sein kann.
 
@@ -21,27 +40,28 @@ wobei $|uv|\le N$, und alle W"orter $uv^nw\in L$, f"ur alle $n\ge 1$.
 Dem Teilwort $v$ entspricht eine Schleife im endlichen Automaten, der
 $L$ akzeptiert.
 
-Wir w"ahlen jetzt ein Wort $x=0^N1^{N+b}$. Dieses Wort kann
-$x=uvw$ geschrieben werden, wobei dem Teilwort $v$ eine Schleife im
-Graphen des Automaten entspricht.
-Das Wort $v$ enth"alt nur Nullen, da $|uv|\le N$ sein muss. Vergr"ossert
-man $b$, ist der erste Teil des Wortes davon unber"uhrt, es gilt also immer
-noch die gleiche Aufteilung in $u$ und $v$, $w$ wird um einige Einsen l"anger.
+Wir w"ahlen jetzt ein Wort $x=\texttt{0}^N\texttt{1}^{N+b}$.
+Es hat L"ange $2N+b$ und ist f"ur $b>0$ in $L$, es erf"ullt also die
+Voraussetzungen des Pumping Lemma.
+Also kann es als $x=uvw$ geschrieben werden, wobei dem Teilwort $v$ eine
+Schleife im Graphen des Automaten entspricht.
+Das Wort $v$ enth"alt nur Nullen, da $|uv|\le N$ sein muss.
+Vergr"ossert man $b$, ist der erste Teil des Wortes davon unber"uhrt,
+es gilt also immer noch die gleiche Aufteilung in $u$ und $v$,
+$w$ wird um einige Einsen l"anger.
 
-Versuchen wir jetzt, das Wort aufzupumpen, also $uv^nw$ zu bilden, wird es
-die Form
-$$uv^nw=0^{|u|+n|v|+|w|_0}1^{|w|_1}
-=
-0^{|u|+n|v|+N-|u|-|v|}1^{N+b}
-=
-0^{(n-1)|v|+N}1^{N+b}
-$$
-haben. Wir m"ussen zeigen, dass wir erreichen k"onnen, dass die beiden
-Exponenten "ubereinstimmen, also $(n-1)|v|=b$. Wenn $|v|=1$ ist, kann man
-einfach $b$ mal aufpumpen (also $n=b+1$ setzen), um ein Wort zu erhalten,
-welches nicht in $L$ ist.
-Wenn aber $|v|>1$ ist, dann m"ussen wir zum Beispiel $b=|v|$ w"ahlen,
-wie oben argumentiert "andert sich dadurch das $v$ nicht. Dann wird f"ur
-$n=2$ das Wort $0^{N+b}1^{N+b}\not\in L$ entstehen, ein Widerspruch. Somit
-kann $L$ nicht regul"ar sein.
+Wir versuchen jetzt das Wort genau einmal aufzupumpen, also $uv^ky$ mit
+$k=2$ zu bilden m"ochten erreichen, dass dieses Wort nicht mehr in $L$
+ist.
+Da durch das Aufpumpten genau so viele \texttt{0} hinzukommen wie das
+Teilwort $v$ lang ist, das Wort $uv^2w$ beginnt also mit $N+|v|$ Nullen.
+Damit $uv^2w$ nicht mehr in der Sprache ist, m"ussen gleich viele Nullen
+wie Einsen vorhanden sein, es muss also $N+|v|=N+b$ gelten.
+\begin{center}
+\includeagraphics[]{pl-1.pdf}
+\end{center}
+Wenn man also $b=|v|$ w"ahlt, ist das einmal aufgepumpte Wort nicht
+mehr in $L$, im Widerspruch zur Behauptung des Pumping Lemma.
+
+Somit kann $L$ nicht regul"ar sein.
 \end{loesung}
