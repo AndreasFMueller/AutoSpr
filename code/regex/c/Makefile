@@ -8,3 +8,6 @@ regex:	regex.c
 
 test:	regex
 	./regex
+
+clean:
+	rm ./regex
