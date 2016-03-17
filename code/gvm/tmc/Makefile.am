@@ -26,26 +26,26 @@ tmp:
 test:	tmc tmp 
 	./tmc -d -p 3 -o tmp/beaver3.goto pgm/beaver3
 
-tmp/add2.goto:	pgm/add2 Makefile.am
-	./tmc -p 0 -t '10100001011 01011001111' -o tmp/add2.goto pgm/add2
+tmp/add.goto:	pgm/add Makefile.am
+	./tmc -p 0 -t '10100001011 01011001111' -o tmp/add.goto pgm/add
 
-add:	tmc tmp tmp/add2.goto
-	../vm/gvm -s $(sleepinterval) tmp/add2.goto
+add:	tmc tmp tmp/add.goto
+	../vm/gvm -s $(sleepinterval) tmp/add.goto
 
-tmp/add1.goto:	tmc tmp pgm/add2 data/addtape1
-	./tmc -p 0 -T data/addtape1 -o tmp/add1.goto pgm/add2
+tmp/add1.goto:	tmc tmp pgm/add data/addtape1
+	./tmc -p 0 -T data/addtape1 -o tmp/add1.goto pgm/add
 
 add1:	tmp/add1.goto
 	../vm/gvm -s $(sleepinterval) tmp/add1.goto
 
-tmp/add2.goto:	tmc tmp pgm/add2 data/addtape2
-	./tmc -p 2 -T data/addtape2 -o tmp/add2.goto pgm/add2
+tmp/add2.goto:	tmc tmp pgm/add data/addtape2
+	./tmc -p 2 -T data/addtape2 -o tmp/add2.goto pgm/add
 
 add2:	tmp/add2.goto
 	../vm/gvm -s $(sleepinterval) tmp/add2.goto
 
-tmp/add3.goto:	tmc tmp pgm/add2 data/addtape3
-	./tmc -p 2 -T data/addtape3 -o tmp/add2.goto pgm/add2
+tmp/add3.goto:	tmc tmp pgm/add data/addtape3
+	./tmc -p 2 -T data/addtape3 -o tmp/add3.goto pgm/add
 
 add3:	tmp/add2.goto
 	../vm/gvm -s $(sleepinterval) tmp/add2.goto

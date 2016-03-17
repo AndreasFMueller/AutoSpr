@@ -1,0 +1,16 @@
+#! /bin/bash
+#
+# count -- count up in binary
+#
+# (c) 2016 Prof Dr Andreas Mueller, Hochschule Rapperswil
+#
+(
+	echo obase=2
+	counter=0
+	while [ ${counter} -lt 100 ]
+	do
+		echo $counter
+		counter=`expr ${counter} + 1`
+	done
+) | bc -l 
+
