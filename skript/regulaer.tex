@@ -10,7 +10,7 @@ Speicher.
 Trotzdem defineren endliche Automaten eine Menge von Sprachen, die 
 mathematisch und f"ur die Praxis sehr zweckm"assige Eigenschaften
 haben.
-Ausserdem gibt es eine besonders einfach Syntax, um
+Ausserdem gibt es ein besonders einfachen Syntax, um
 solche Sprachen zu beschreiben: die regul"aren Ausdr"ucke.
 Es geht in diesem Kapitel allerdings nicht darum, das Arbeiten
 mit regul"aren Ausdr"ucken zu lernen.
@@ -47,7 +47,7 @@ Schematisch k"onnen wird das wie folgt darstellen:
 \]
 Wir sehen hier bereits eine M"oglichkeit, Inputfolgen zu beobachten, 
 aber es kann noch nicht entschieden werden, welche Inputs akzeptabel
-sind. Dazu m"ussen die einzelne Zust"ande ausgezeichnet werden.
+sind. Dazu m"ussen die einzelnen Zust"ande ausgezeichnet werden.
 Zum Beispiel k"onnte man verlangen, dass nur Abl"aufe akzeptabel
 sind, bei denen das Drehkreuz am Ende im verriegelten Zustand steht,
 also nicht offen stehen bleibt. Symbolisch bezeichnen wir dies durch
@@ -468,7 +468,7 @@ bewiesen, und wir haben folgenden Satz.
 \begin{satz}[Myhill-Nerode]\label{satz_dea_aus_sprache}
 \index{Myhill-Nerode!Satz von}
 Ist $L$ eine regul"are Sprache, dann wird $L$ von dem 
-endlichen Automat $A=(Q,\Sigma,\delta,q_0,F)$ akzeptiert mit
+endlichen Automaten $A=(Q,\Sigma,\delta,q_0,F)$ akzeptiert mit
 \begin{align*}
 Q&=\{L(w)\;|\;w\in\Sigma^*\}\\
 q_0&=L\\
@@ -1432,12 +1432,12 @@ Satz \ref{satz_neadea} ist nicht nur ein theoretisch interessantes
 Resultat. Wenn man die endliche vielen Zust"ande mit den Zahlen
 $0,\dots,|Q|-1$ identifiziert, kann man die Teilmengen von $Q$ mit
 den $|Q|$-stelligen Bin"arzahlen identifizieren.
-Der Teilmenge $M\subset Q$ entsprichen die Bin"arzahlen, die Einsen an
+Der Teilmenge $M\subset Q$ entsprechen die Bin"arzahlen, die Einsen an
 den Stellen haben, deren Nummern in $M$ enthalten sind.
 Die grosse Vereinigungen ist ebenfalls sehr einfach
 zu berechnen, sie entspricht der Oder-Verkn"upfung
 der einzelnen Mengen in (\ref{erreichbar}).
-Somit haben wir nicht nur ein Existenz-Resultat sondern einen
+Somit haben wir nicht nur ein Existenz-Resultat, sondern einen
 Algorithmus, mit dem ein beliebiger NEA in einen DEA umgewandelt
 werden kann.
 Daraus k"onnen wir jetzt einen Vergleichsalgorithmus f"ur regul"are
@@ -2030,7 +2030,7 @@ Regul"are Ausdr"ucke bauen regul"are Sprachen aus einzelnen
 Zeichen und regul"aren Operationen aus.
 Ist $r$ ein regul"arer Ausdruck, dann schreiben wir  $L(r)$ f"ur die
 Sprache, die vom regul"aren Ausdruck $r$ beschrieben wird.
-F"ur die regul"aren Operation verwenden wir die Notation
+F"ur die regul"aren Operationen verwenden wir die Notation
 gem"ass Tabelle~\ref{regtab2}
 \begin{table}
 \begin{center}
@@ -2200,7 +2200,7 @@ n"otig ist:
 }
 \]
 \end{beispiel}
-Diese Beispiel illustrieren, dass sich aus jedem regul"aren Ausdruck
+Diese Beispiele illustrieren, dass sich aus jedem regul"aren Ausdruck
 ein NEA bauen l"asst. Die Konstruktion hat die Form eines Algorithmus,
 l"asst sich also auch mit einem Computer implementieren, sie geht
 auf Ken Thompson zur"uck.
@@ -2681,7 +2681,7 @@ ist, kann man einen DEA finden, der die Sprache akzeptiert
 (\ref{regulaer:pumpinglemma}).
 Eine Sprache ist nicht regul"ar, wenn sie ein Wort enth"alt, welches
 nicht aufgepumpt werden kann: wie auch immer man das Wort
-auf eine vom Pumping Lemma zerlegt, mindestens eine aufgepumptes
+auf ein Pumping Lemma zerlegt, mindestens ein aufgepumptes
 oder abgepumptes Wort ist nicht mehr in der Sprache drin.
 \item Die regul"aren Operationen Vereinigung, Verkettung und $*$-Operation
 erzeugen aus regul"aren Sprachen neue regul"are Sprachen
