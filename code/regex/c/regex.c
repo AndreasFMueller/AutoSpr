@@ -22,8 +22,7 @@ int	main(int argc, char *argv[]) {
 
 	/* baue regulaeren Ausdruck und Teststring fuer Laengen zwischen
            1 und N */
-	int	i;
-	for (i = 1; i <= N; i++) {
+	for (int i = 1; i <= N; i++) {
 		/* Komponenten s1 und s2 um je ein Teilstueck verlaengern */
 		strcat(s1, "a?");
 		strcat(s2, "a");
@@ -37,7 +36,7 @@ int	main(int argc, char *argv[]) {
 		if (match) {
 			printf("%*s matches %s\n", N, s2, regex);
 		} else {
-			printf("%*s matches %s\n", N, s2, regex);
+			printf("%*s doesn\'t match %s\n", N, s2, regex);
 		}
 	}
 	exit(EXIT_SUCCESS);
