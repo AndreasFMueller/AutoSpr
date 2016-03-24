@@ -9,7 +9,7 @@ while i < 29:
 	r2 += "a"
 	r = r1 + r2
 	if re.match(r, r2):
-		print r2 + " matches " + r
+		print(r2 + " matches " + r)
 	else:
-		print "matching failure\n"
+		print("matching failure\n")
 

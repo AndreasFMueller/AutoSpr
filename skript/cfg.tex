@@ -132,7 +132,7 @@ Regeln sollen jedoch nicht zugelassen sein.
 Eine Grammatik erzeugt eine Sprache auf die folgende Weise.
 Auf die Startvariable werden beliebige Regeln angewendet,
 bis keine Variablen mehr vorhanden sind, jetzt steht nur noch
-ein Kette von Terminalsymbolen da. Dies wollen wir wie folgt
+eine Kette von Terminalsymbolen da. Dies wollen wir wie folgt
 formalisieren.
 
 \begin{definition}
@@ -557,7 +557,7 @@ in Chomsky Normalform.
 \end{satz}
 
 \begin{proof}[Beweis]
-Ein kontextfreie Sprache $L$ wird von einer kontextfreien Grammatik
+Eine kontextfreie Sprache $L$ wird von einer kontextfreien Grammatik
 $G$ akzeptiert. Es ist zu zeigen, dass diese Grammatik in
 "aquivalente Chomsky Normalform gebracht werden kann.
 Weiter oben haben wir eine Liste
@@ -762,7 +762,7 @@ Um das leere Wort zu erzeugen, muss die Regel $S\to\varepsilon$
 angewendet werden, falls sie vorhanden ist.
 
 Ein Wort $w$ mit L"ange $|w|=1$ kann genau dann aus der Variablen 
-$A$ abgeleitet werden wenn es eine Regel $S\to a$ gibt. 
+$A$ abgeleitet werden, wenn es eine Regel $S\to a$ gibt. 
 Es kann h"ochstens $|\Sigma|$ solche Regeln geben.
 
 Um ein Wort der L"ange $|w|>1$ zu erzeugen, muss mindestens eine
@@ -944,7 +944,7 @@ gab es daf"ur keinen Platz, aber der Stack eines Stackautomaten kann
 diese Aufgabe "ubernehmen.
 
 Um zu erkennen, dass der Stack wieder leer ist, braucht man ein Zeichen,
-welches den Anfang des Stack markiert. Das Stack-Alphabet muss also 
+welches den Anfang des Stacks markiert. Das Stack-Alphabet muss also 
 etwas gr"osser sein, wir f"ugen das Zeichen {\tt \$} hinzu, also
 $\Gamma=\{{\tt 0},{\tt 1},{\tt \$}\}$.
 Die Idee des konstruierten Stackautomaten ist den Stack als Ablage der
@@ -1164,7 +1164,7 @@ S
 {\tt 0011}
 \]
 Die Tabellen~\ref{beispiel-tabelle} zeigt den Inhalt des 
-Input und des Stack nach jedem "Ubergang des Stackautomaten.
+Input und des Stacks nach jedem "Ubergang des Stackautomaten.
 \begin{table}
 \begin{center}
 \begin{tabular}{|c|l|c|l|}
@@ -1293,8 +1293,8 @@ auf diese Weise erzeugt werden k"onnen.
 Dazu m"ussen wir verstehen, wie die W"orter entstehen, die von $P$
 akzeptiert werden. W"ahrend der Berechnung, die zum Akzeptieren des
 Wortes $w$ f"uhrt, wird zun"achst
-irgend ein Zeichen $x$ auf den Stack gelegt, und am Ende muss ein
-Zeichen entfernt werden, welches $x$ oder auch etwas anderes sein kann.
+irgendein Zeichen $x$ auf den Stack gelegt, und am Ende muss ein
+Zeichen entfernt werden, welches $x$ oder auch etwas Anderes sein kann.
 
 Falls das am Ende entfernte Zeichen $x$ ist, k"onnen wir dies durch
 die Regel $A_{pq}\to aA_{rs}b$ symbolisieren, wobei $a$ das Zeichen
@@ -1452,7 +1452,7 @@ Stack abgeleitet werden kann.
 
 Nehmen wir jetzt an, dass bereits bekannt ist, dass Berechnungen mit
 $k$ Schritten, welche $P$ mit dem Input-Wort $w$ vom Zustand $p$
-in den Zustand $q$ je mit leerem Stack dazu f"uhren dass
+in den Zustand $q$ je mit leerem Stack dazu f"uhren, dass
 $A_{pq}\overset{*}{\Rightarrow} x$.
 
 Sei jetzt also eine Berechnung mit Inputwort $x$
@@ -1686,7 +1686,7 @@ besagt das Pumping Lemma, dass es eine Zahl $N$ gibt, so dass
 W"orter mit L"ange mindestens $N$ besondere Eigenschaften haben.
 Als solches langes Wort nehmen wir $w=a^Nb^Nc^N$. Nach dem
 Pumping Lemma gibt es eine Zerlegung in f"unf Teile
-$w=uvxyz$, wobei der mittlere Teile nicht zu lang ist:
+$w=uvxyz$, wobei der mittlere Teil nicht zu lang ist:
 $|vxy|\le N$ (Abbildung~\ref{pumpingcfgimage}).
 Insbesondere enth"alt $|vxy|$ h"ochstens zwei
 Arten von Zeichen, denn es ist zu kurz, die $N$ $b$s in der Mitte
