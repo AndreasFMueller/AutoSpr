@@ -54,25 +54,6 @@ Das Pumping Lemma behauptet, dass alle W"orter $w_k$ wieder $b$-adische
 Darstellungen von Primzahlen sind.
 Es gen"ugt also ein $k$ zu finden, so dass $v_b(w_k)$ nicht prim ist.
 
-F"ur $b=1$ ist dies sehr einfach zu bewerkstelligen.
-Die L"ange von $w_k$ ist
-\[
-v_1(w_k)=|x| + k|y| + |z|.
-\]
-Verwendet man $k=p+1$, dann ist
-\[
-v_1(w_{p+1})
-=
-|x| + (p+1)|y| + |z|
-=
-\underbrace{|x| + |y| + |z|}_{p} + p|y|
-=
-p(1+|y|).
-\]
-Diese Zahl ist also durch $p$ teilbar, insbesondere kann es keine
-Primzahl sein.
-
-F"ur $b>1$ ist die Pumpoperation etwas komplizierter.
 Den Zeichenketten $x$, $y$ und $z$ entsprechen die drei Zahlen
 \begin{align*}
 d&= v_b(x) b^{|y| + |z|},
