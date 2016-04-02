@@ -714,16 +714,18 @@ A&\to AA_1 \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a} \;|\; {\tt b}\\
 A_1&\to SA\\
 B&\to{\tt b}\\
 \end{align*}
-Bleiben nur noch die Regeln $A\to{\tt a}B$ und $S\to{\tt a}B$. Dazu
-wird eine weitere Variable $U$ die zusammen mit der Regel $U\to{\tt a}$
-das Terminalsymbol {\tt a} in den genannten Regeln ersetzen kann:
+Bleiben nur noch die Regeln $S_0\to{\tt a}B$, $S\to{\tt a}B$ und
+$A\to{\tt a}B$.
+Dazu wird eine weitere Variable $U$ hinzugef"ugt, die zusammen mit
+der Regel $U\to{\tt a}$ das Terminalsymbol {\tt a} in den genannten
+Regeln ersetzen kann:
 \begin{align*}
 S_0&\to AA_1 \;|\; AS \;|\; SA \;|\; UB\;|\;{\tt a}\\
 S&\to AA_1 \;|\; AS \;|\; SA \;|\; UB\;|\;{\tt a}\\
 A&\to AA_1 \;|\; AS \;|\; SA \;|\; UB\;|\;{\tt a} \;|\; {\tt b}\\
 A_1&\to SA\\
 U&\to {\tt a}\\
-B&\to{\tt b}\\
+B&\to{\tt b}
 \end{align*}
 Damit ist die Grammatik in Chomsky Normalform gefunden.
 \end{enumerate}
