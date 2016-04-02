@@ -648,6 +648,7 @@ B&\to{\tt b}\;|\; \varepsilon
 in Chomsky Normalform.
 
 \begin{enumerate}
+% 1. Schritt: neue Startvariable
 \item Neue Startvariable hinzuf"ugen:
 \begin{align*}
 S_0&\to S\\
@@ -655,6 +656,7 @@ S&\to ASA\;|\; {\tt a}B\\
 A&\to B\;|\; S\\
 B&\to{\tt b}\;|\; \varepsilon
 \end{align*}
+% 2. Schritt: epsilon-Uebergaenge
 \item $\varepsilon$-"Uberg"ange entfernen: Die einzige $\varepsilon$-Regel
 ist $B\to\varepsilon$, d.\,h.~zu jeder Regel mit $B$ auf der rechten
 Seite gibt es auch eine Regel, in welcher auf der rechten Seite das $B$
@@ -673,9 +675,10 @@ S&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\\
 A&\to B \;|\; S\\
 B&\to{\tt b}
 \end{align*}
-\item Einheits-Regeln sind $A\to B$, $A\to S$ und $S_0\to S$,
-die alle angewendet werden
-m"ussen. Zuerst $A\to B$:
+% 3. Schrit: Unit rules
+\item Einheits-Regeln (unit rules) sind $A\to B$, $A\to S$ und $S_0\to S$,
+die alle angewendet werden m"ussen.
+Zuerst $A\to B$:
 \begin{align*}
 S_0&\to S\\
 S&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\\
@@ -683,27 +686,31 @@ A&\to S\\
 B&\to{\tt b}\\
 A&\to{\tt b}
 \end{align*}
-dann $A\to S$
+Im Folgenden fassen wir die von $A$ ausgehenden Regeln wieder auf
+einer Zeile zusammen.
+Als n"achstes wenden wir $A\to S$ an, aus $A$ lassen sich die gleichen
+W"orter produzieren wie aus $S$, aber zus"atzlich noch das $\texttt{b}$:
 \begin{align*}
 S_0&\to S\\
 S&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\\
 A&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\;|\;{\tt b}\\
 B&\to{\tt b}
 \end{align*}
-und zum Schluss $S_0\to S$
+Und zum Schluss $S_0\to S$
 \begin{align*}
 S_0&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\\
 S&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\\
 A&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\;|\;{\tt b}\\
 B&\to{\tt b}
 \end{align*}
-Wobei wir die von $A$ ausgehenden Regeln zusammenfassen k"onnen:
-\begin{align*}
-S_0&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\\
-S&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\\
-A&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\;|\; {\tt b}\\
-B&\to{\tt b}
-\end{align*}
+%Wobei wir die von $A$ ausgehenden Regeln zusammenfassen k"onnen:
+%\begin{align*}
+%S_0&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\\
+%S&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\\
+%A&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\;|\; {\tt b}\\
+%B&\to{\tt b}
+%\end{align*}
+% 4. Schritt
 \item L"angere Verkettungen gibt es nur bei $S\to ASA$, wir f"uhren
 also eine zus"atzliche Variable $A_1$ und ersetzen $S\to ASA$ durch
 die Regeln $S\to AA_1$ und $A_1\to SA$:
@@ -712,7 +719,7 @@ S_0&\to AA_1 \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\\
 S&\to AA_1 \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\\
 A&\to AA_1 \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a} \;|\; {\tt b}\\
 A_1&\to SA\\
-B&\to{\tt b}\\
+B&\to{\tt b}
 \end{align*}
 Bleiben nur noch die Regeln $S_0\to{\tt a}B$, $S\to{\tt a}B$ und
 $A\to{\tt a}B$.
