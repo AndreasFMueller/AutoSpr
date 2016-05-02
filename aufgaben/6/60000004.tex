@@ -24,13 +24,14 @@ Inputwort aber auch nicht akzeptabel.
 Im Detail kann man dies f"ur Turing-Maschinen auch wie folgt
 beschreiben.
 \begin{teilaufgaben}
-\item Wir k"onnen nicht einfach beide Turing Maschinen nach einander
-auf dem Input laufen lassen, da erste ja nicht terminieren k"onnte und
+\item
+Wir k"onnen nicht einfach beide Turing Maschinen nach einander
+auf dem Input laufen lassen, da die erste ja nicht terminieren k"onnte und
 somit verunm"oglichen k"onnte, dass die zweite das Wort akzeptieren kann.
 Wir konstruieren daher eine Turing-Maschine mit zwei B"andern, welche
-beide mit dem Input-Wort initialisiert wird. In jedem Schritt der
-Maschine wird auf Band 1 ein Schritt von $M_1$ ausgef"uhrt,
-und auf Band 2 ein Schritt von $M_2$.
+beide mit dem Input-Wort initialisiert werden.
+In jedem Schritt der Maschine wird auf Band 1 ein Schritt von $M_1$
+ausgef"uhrt, und auf Band 2 ein Schritt von $M_2$.
 Die Maschine akzeptiert, wenn eine der Teilmaschinen
 akzeptiert.
 
@@ -40,8 +41,8 @@ Prozesse realisieren, dann w"urde das Betriebssystem die Umschaltung
 zwischen den beiden Prozessen "ubernehmen.
 
 In Java k"onnte man das realisieren, indem man zwei Threads startet,
-in jedem Thread wird eine der Turingmaschinen ausgef"uhrt. Sobald
-einer der Threads terminiert, kann der andere ``abgeschossen'' werden,
+in jedem Thread wird eine der Turingmaschinen ausgef"uhrt.
+Sobald einer der Threads terminiert, kann der andere ``abgeschossen'' werden,
 das Resultat steht ja dann fest.
 \item
 Um zu verhindern, dass die Turing Maschine auf einem Wort der
@@ -50,8 +51,9 @@ beschr"ankte Anzahl Schritte $l$ laufen.
 F"ur jede Berechnungsl"ange $l$ und jede Aufteilung des Wortes in zwei
 Teilw"orter $w=w_1w_2$ lassen wir auf zwei Tapes parallel die
 Maschinen $M_1$ und $M_2$ auf dem Input $w_1$ bzw.~$w_2$ w"ahrend
-maximal $l$ Schritten laufen. Akzeptieren beide, akzeptieren wir das
-Wort. Falls nicht, probieren wir die n"achste der $|w|+1$ Aufteilungen,
+maximal $l$ Schritten laufen.
+Akzeptieren beide, akzeptieren wir das Wort.
+Falls nicht, probieren wir die n"achste der $|w|+1$ Aufteilungen,
 oder, falls alle Aufteilungen bereits probiert wurden, die n"achste
 Berechnungsl"ange $l+1$.
 \item
@@ -61,8 +63,10 @@ lassen
 wir auf jedem Teilst"uck die Turingmaschine w"ahrend $l$ Schritten
 laufen, die
 $L_1$ erkennt. Akzeptiert sie auf allen Teilst"ucken, akzeptieren wir
-das Wort. Falls nicht, versuchen wir die n"achste Aufteilung, oder falls
-bereits alle Aufteilungen durchprobiert worden sind, die n"achste Berechnungsl"ange $l$.
+das Wort.
+Falls nicht, versuchen wir die n"achste Aufteilung, oder falls
+bereits alle Aufteilungen durchprobiert worden sind, die n"achste
+Berechnungsl"ange $l$.
 \item Wir verwenden eine Turing-Maschine analog zu der in Teilaufgaben a)
 konstruierten, akzeptieren aber erst, wenn beide Teilmaschinen
 $M_1$ und $M_2$ akzeptiert haben.

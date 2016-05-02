@@ -3,7 +3,7 @@ System, mit dem Internet Banking unterwandert werden kann.
 Die App enth"alt keine ``verd"achtige'' Funktionalit"at als direkt
 einsehbaren Code. 
 Vielmehr ist der Code, der die endg"ultige Malware herunterl"adt,
-unscheinbar verpackt, und wir von der App erst zur Laufzeit
+unscheinbar verpackt, und wird von der App erst zur Laufzeit
 ausgepackt und in den Speicher geladen, wo er dann auch ausgef"uhrt
 werden kann.
 Wegen dieses komplizierten Verfahrens sch"opft der App-Scanner von
@@ -15,7 +15,7 @@ ausf"uhren wird?
 \begin{loesung}
 Nein, den damit liesse sich das Halteproblem l"osen.
 Ein Programm $P_1$ kann man immer in ein gr"osseres Programm $P_2$
-einbettet, welches einen Internet-Download ausf"uhrt, sobald $P_1$
+einbetten, welches einen Internet-Download ausf"uhrt, sobald $P_1$
 anh"alt.
 Wendet man den Scanner auf $P_2$ an,
 kann man herausfinden, ob $P_2$
@@ -28,7 +28,7 @@ Scanner geben.
 
 \begin{bewertung}
 Reduktion auf Halteproblem ({\bf R}) 3 Punkte,
-Halteproblem ist nicht entscheidber ({\bf H}) 3 Punkte.
+Halteproblem ist nicht entscheidbar ({\bf H}) 3 Punkte.
 \end{bewertung}
 
 
