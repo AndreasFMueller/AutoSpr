@@ -1,11 +1,11 @@
-Das 8-Damen-Problem ist die Schach-Aufgabe, 8 Damen so auf einem Schachbrett
-aufzustellen, dass sie sich nicht gegenseitig schlagen k"onnen.
+Das Acht-Damen-Problem ist die Schach-Aufgabe, acht Damen so auf einem
+Schachbrett aufzustellen, dass sie sich nicht gegenseitig schlagen k"onnen.
 Eine Dame kann eine andere Figur schlagen, die sich in der gleichen Zeile,
 Spalte oder Diagonale befindet.
-Offenbar ist 8 die maximale Anzahl von Damen, die man auf diese Art auf
+Offenbar ist acht die maximale Anzahl von Damen, die man auf diese Art auf
 einem Schachbrett platzieren kann.
 
-Betrachten Sie jetzt das etwas einfachere Problem
+Betrachten Sie jetzt das allgemeinere Problem
 \[
 \textsl{DAMEN}
 =
@@ -20,7 +20,7 @@ die sich nicht gegenseitig schlagen k"onnen
 \item
 Konstruieren Sie eine Reduktion von \textsl{DAMEN} auf \textsl{SAT}.
 \item
-Bestimmen Sie den Rechenaufwand Ihrer der Konstruktion in Abh"angigkeit von $n$.
+Bestimmen Sie den Rechenaufwand Ihrer Konstruktion in Abh"angigkeit von $n$.
 \end{teilaufgaben}
 
 \begin{hinweis}
@@ -38,7 +38,7 @@ wenn sich $n$ Damen auf dem Feld platzieren lassen, die sich nicht schlagen
 lassen.
 
 Diese Formel muss ausdr"ucken, dass in der gleichen Zeile, Spalte und
-Diagonalen wie keine weitere Dame steht.
+Diagonalen keine weitere Dame steht.
 Wenn auf dem Feld $(i,j)$ eine Dame steht, dann wird dies gem"ass Hinweis
 dadurch ausgedr"uckt, dass $x_{ij}$ wahr ist.
 Wir m"ussen daher eine Formel bauen, die sicherstellt, dass in diesem Fall
@@ -46,27 +46,27 @@ alle $x_{kl}$ falsch sind, die zur gleichen Zeile, Spalte oder Diagonalen
 geh"oren.
 
 Wir schreiben $\oplus$ f"ur die XOR-Verkn"upfung.
-Die Bedinung, dass keine weiteren Damen in der gleichen Zeile stehen,
+Die Bedingung, dass keine weiteren Damen in der gleichen Zeile stehen,
 kann man durch die Formel
 \begin{align*}
 \varphi_{ij,\text{Zeile}}
 &=
-x_{ij}\oplus(x_{i1}\vee x_{i2}\vee \dots \vee \hat x_{ij}\vee\dots x_{in})
+x_{ij}\oplus(x_{i1}\vee x_{i2}\vee \dots \vee \hat x_{ij}\vee\dots\vee x_{in})
 \\
 &=
 x_{ij}\oplus\biggl(\bigvee_{k\ne j} x_{ik}\biggr)
-\intertext{ausdr"ucken. Dabei bedeutet $\hat x_{ij}$, dass die Variable in
-der Klammer auf der rechten Seite weggelassen werden soll.
+\intertext{ausdr"ucken. Dabei bedeutet $\hat x_{ij}$, dass die Variable
+$x_{ij}$ in der Klammer auf der rechten Seite weggelassen werden soll.
 Analog kann man auch die Bedingungen f"ur die Spalten und die Diagonalen
 ausdr"ucken:}
 \varphi_{ij,\text{Spalte}}
 &=
-x_{ij}\oplus(x_{1j}\vee\dots\vee\hat x_{ij}\vee\dots x_{nj})
+x_{ij}\oplus(x_{1j}\vee\dots\vee\hat x_{ij}\vee\dots\vee x_{nj})
 \\
 &=
 x_{ij}\oplus\biggl(\bigvee_{l\ne i} x_{lj}\biggr)
 \\
-\varphi_{ij,\text{Spalte}}
+\varphi_{ij,\text{Diagonalen}}
 &=
 x_{ij}\oplus\biggl(\bigvee_{\text{$k,l$ in Diagonalen von $i,j$}}x_{kl}\biggr)
 \end{align*}
@@ -89,6 +89,7 @@ Die gesuchte Formel ist daher
 F"ur den Aufbau dieser Formel braucht f"ur jedes Paar $(i,j)$ den gleichen
 Aufwand $O(n)$.
 Es gibt $n^ 2$ solche Paare, der gesamte Aufwand ist daher $O(n^3)$.
+\qedhere
 \end{teilaufgaben}
 \end{loesung}
 
