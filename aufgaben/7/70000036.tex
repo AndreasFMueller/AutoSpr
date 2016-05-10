@@ -1,0 +1,107 @@
+Das 8-Damen-Problem ist die Schach-Aufgabe, 8 Damen so auf einem Schachbrett
+aufzustellen, dass sie sich nicht gegenseitig schlagen k"onnen.
+Eine Dame kann eine andere Figur schlagen, die sich in der gleichen Zeile,
+Spalte oder Diagonale befindet.
+Offenbar ist 8 die maximale Anzahl von Damen, die man auf diese Art auf
+einem Schachbrett platzieren kann.
+
+Betrachten Sie jetzt das etwas einfachere Problem
+\[
+\textsl{DAMEN}
+=
+\left\{\; n
+\;\left|\;
+\begin{minipage}{0.7\hsize}
+Es gibt ist eine Platzierung von $n$ Damen auf einem $n\times n$-Schachbrett,
+die sich nicht gegenseitig schlagen k"onnen
+\end{minipage}\right.\right\}.
+\]
+\begin{teilaufgaben}
+\item
+Konstruieren Sie eine Reduktion von \textsl{DAMEN} auf \textsl{SAT}.
+\item
+Bestimmen Sie den Rechenaufwand Ihrer der Konstruktion in Abh"angigkeit von $n$.
+\end{teilaufgaben}
+
+\begin{hinweis}
+Verwenden Sie als Codierung von $D$ die logischen Variablen $x_{ij}$
+mit $1\le i,j\le n$, die angeben, ob auf dem Feld $(i,j)$ eine Dame
+steht.
+\end{hinweis}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Wir m"ussen f"ur jede Zahl $n$ eine Formel $\varphi_n$ in den Variablen
+$x_{ij}$ mit $1\le i,j\le n$ konstruieren, die genau dann erf"ullbar ist,
+wenn sich $n$ Damen auf dem Feld platzieren lassen, die sich nicht schlagen
+lassen.
+
+Diese Formel muss ausdr"ucken, dass in der gleichen Zeile, Spalte und
+Diagonalen wie keine weitere Dame steht.
+Wenn auf dem Feld $(i,j)$ eine Dame steht, dann wird dies gem"ass Hinweis
+dadurch ausgedr"uckt, dass $x_{ij}$ wahr ist.
+Wir m"ussen daher eine Formel bauen, die sicherstellt, dass in diesem Fall
+alle $x_{kl}$ falsch sind, die zur gleichen Zeile, Spalte oder Diagonalen
+geh"oren.
+
+Wir schreiben $\oplus$ f"ur die XOR-Verkn"upfung.
+Die Bedinung, dass keine weiteren Damen in der gleichen Zeile stehen,
+kann man durch die Formel
+\begin{align*}
+\varphi_{ij,\text{Zeile}}
+&=
+x_{ij}\oplus(x_{i1}\vee x_{i2}\vee \dots \vee \hat x_{ij}\vee\dots x_{in})
+\\
+&=
+x_{ij}\oplus\biggl(\bigvee_{k\ne j} x_{ik}\biggr)
+\intertext{ausdr"ucken. Dabei bedeutet $\hat x_{ij}$, dass die Variable in
+der Klammer auf der rechten Seite weggelassen werden soll.
+Analog kann man auch die Bedingungen f"ur die Spalten und die Diagonalen
+ausdr"ucken:}
+\varphi_{ij,\text{Spalte}}
+&=
+x_{ij}\oplus(x_{1j}\vee\dots\vee\hat x_{ij}\vee\dots x_{nj})
+\\
+&=
+x_{ij}\oplus\biggl(\bigvee_{l\ne i} x_{lj}\biggr)
+\\
+\varphi_{ij,\text{Spalte}}
+&=
+x_{ij}\oplus\biggl(\bigvee_{\text{$k,l$ in Diagonalen von $i,j$}}x_{kl}\biggr)
+\end{align*}
+Die Variablen $x$ repr"asentieren genau dann eine akzeptable Platzierung
+wenn f"ur jedes Paar $(i,j)$ alle drei soeben entwickelten Formeln war werden:
+\[
+\varphi_{ij}
+=
+\varphi_{ij,\text{Zeile}}
+\wedge
+\varphi_{ij,\text{Spalte}}
+\wedge
+\varphi_{ij,\text{Diagonalen}}.
+\]
+Die gesuchte Formel ist daher
+\[
+\varphi = \bigwedge_{i,j=1}^n \varphi_{ij}.
+\]
+\item
+F"ur den Aufbau dieser Formel braucht f"ur jedes Paar $(i,j)$ den gleichen
+Aufwand $O(n)$.
+Es gibt $n^ 2$ solche Paare, der gesamte Aufwand ist daher $O(n^3)$.
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{diskussion}
+Diese Reduktion ist je nach Codierung von $n$ keine polynomielle Reduktion.
+Zwar ist der Aufwand f"ur die Konstruktion $O(n^3)$, doch f"ur eine
+polynomielle Reduktion brauchen wir, dass die Laufzeit polynomiell in
+der Inputl"ange ist.
+Codiert man $n$ bin"ar, dann ist die Inputl"ange $N=\log_2n$, die Laufzeit
+der Reduktion ist daher $O(2^{3N})$, also exponentiell.
+W"ahlt man aber die un"are Darstellung, in der die Zahl $n$ durch $n$ Einsen
+codiert werden, dann ist die Inputl"ange von $n$ auch $n$, und die Laufzeit
+ist $O(n^ 3)$, also polynomiell.
+\end{diskussion}
+
+
