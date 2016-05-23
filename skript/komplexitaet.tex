@@ -917,7 +917,7 @@ l"ost man damit automatisch auch $A$ f"ur alle diese $A$.
 M"ochte man $\text{P} = \text{NP}$ beweisen, dann muss man nach
 m"oglichst ``schwierigen'' Problemen suchen, also nach solchen,
 deren polynomielle L"osung die polynomielle L"osung vieler anderer
-Problem nach sich ziehen w"urde. 
+Probleme nach sich ziehen w"urde. 
 
 \begin{definition}
 \index{NP-vollst\"andig}
@@ -929,7 +929,7 @@ Eine Sprache $B$ heisst NP-vollst"andig, wenn
 \end{definition}
 
 Wenn man die polynomielle L"osung eines NP-vollst"andigen Problemes
-findet, sind auch alle anderen Problem in NP in polynomieller Zeit
+findet, sind auch alle anderen Probleme in NP in polynomieller Zeit
 l"osbar:
 
 \begin{satz}
@@ -958,6 +958,7 @@ der beweist, dass \textsl{SAT} NP-vollst"andig ist.
 \end{satz}
 
 \input sudoku.tex
+\input ausfuellraetsel.tex
 
 \subsection{Beweis des Satzes von Cook-Levin}
 
@@ -1186,7 +1187,7 @@ x_{i+2,j+1,a_6}.
 \]
 Davon muss eine wahr sein, also
 \[
-\varphi_{\text{ausschnitt}_{ij}}
+\varphi_{\text{Ausschnitt}_{ij}}
 =
 \bigvee_{\text{$a_1,\dots,a_6$ korrekt}}
 x_{i,j,a_1}\wedge
@@ -1199,7 +1200,7 @@ x_{i+2,j+1,a_6}.
 Ausserdem muss jeder Ausschnitt g"ultig belegt sein, also
 muss
 \[
-\varphi_{\text{ausschnitt}} =\bigwedge_{1\le i,j\le n^k}\varphi_{\text{ausschnit}_{ij}}
+\varphi_{\text{Ausschnitt}} =\bigwedge_{1\le i,j\le n^k}\varphi_{\text{Ausschnitt}_{ij}}
 \]
 wahr sein. Auch diese Formel l"asst sich in polynomieller Zeit konstruieren
 und sie hat polynomielle L"ange.
@@ -1211,7 +1212,7 @@ alle Teile wahr sein, also ist
 \varphi_{c}\wedge
 \varphi_{\text{start}}\wedge
 \varphi_{\text{accept}}\wedge
-\varphi_{\text{ausschnitt}}
+\varphi_{\text{Ausschnitt}}
 \]
 die gesuchte Formel, die genau dann erf"ullbar ist, wenn $w$ von der
 Turingmaschine $M$ akzeptiert werden kann.
@@ -1953,6 +1954,14 @@ $S$ der Vertizes, so dass das Gesamtgewicht der Kanten, die $S$ mit
 seinem Komplement verbinden, mindestens so gross ist wie $W$:
 \[
 \sum_{\{u,v\}\in E\wedge u\in S\wedge v\not\in S} w(\{u,v\})\ge W
+\]
+\index{SET-PACKING@\textsl{SET-PACKING}}
+\item[\textsl{SET-PACKING}:] Gegeben eine Familie $(S_i)_{i\in I}$ von
+Mengen und eine Zahl $k\in \mathbb N$.
+Gibt es eine Teilfamilie $(S_i)_{i\in J}$ mit $J\subset I$ derart,
+dass die Mengen der Teilfamilie paarweise diskjunkt sind, also 
+\[
+	S_i \cap S_j = \emptyset \quad\forall i,j\in J.
 \]
 \end{description}
 

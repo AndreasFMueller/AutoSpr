@@ -1,0 +1,93 @@
+\subsection{Ausf"ullr"atsel}
+Im vorangegangenen Abschnitt haben wir \textsl{SUDOKU} auf \textsl{SAT}
+reduziert.
+Ein \textsl{SUDOKU}-Problem wurde in eine Formel verwandelt, die genau
+dann erf"ullbar war, wenn das \textsl{SUDOKU}-R"atsel l"osbar war.
+In diesem Abschnitt zeigen wir, dass diese Idee viel allgemeiner ist.
+
+\begin{figure}
+\centering
+\includegraphics{images/ausfuell-1.pdf}
+\qquad
+\qquad
+\includegraphics{images/ausfuell-2.pdf}
+\caption{Ausf"ullr"atsel zum Grapheinf"arbeproblem aus
+Abbildung~\ref{vertex-coloring-examples}, links das leere `Spielfeld',
+rechts ausgef"ullt mit den Farben der Knoten.
+\label{ausfuell:coloring}}
+\end{figure}
+Sehr viele R"atsel werden auf einem rechteckigen Feld von Zellen
+bespielt, in die man etwas eintragen muss.
+Sogar das Graphenf"arbeproblem (\textsl{VERTEX-COLORING}) kann man
+so auffassen.
+Dazu formt man den gegebenen Graphen mit $n$ in eine
+$n\times n$-Tabelle um, die Zeilen und Spalten entsprechen den Knoten
+des Graphen, die Felder den m"oglichen Kanten.
+Alle Felder, die zu im Graphen nicht existierenden Kanten geh"oren,
+werden schwarz gef"arbt.
+In die weissen Felder m"ussen jetzt Paare von verschiedenen Farben
+eingetragen werden, so dass in jeder Zeile die erste Farbe immer
+gleich ist, und in jeder Spalte die zweite Farbe.
+Ausserdem muss die Farbe einer Spalte und der entsprechenden Zeile
+gleich sein.
+Der Graph ist einff"arbbar, wenn es m"oglich ist, die Tabelle wie
+beschrieben auszuf"ullen (Abbildung~\ref{ausfuell:coloring}).
+
+\begin{definition}
+Ein {\em polynomielles Ausf"ullr"atsel} ist eine $n\times m$-Tabelle,
+in die Zeichen eines Alphabets $\Sigma$ werden m"ussen, so dass gewisse
+Regeln eingehalten werden. 
+Die einzuhaltenden Regeln k"onnen durch eine logische Formel beschrieben
+werden, die in einer Zeit polynomiell in $nm$ berechnet werden kann.
+\end{definition}
+
+Die Bedingung der Berechenbarkeit in polynomieller Zeit ist meistens
+offensichtlich.
+Oft entsteht die Formel n"amlich durch Anpassung der immer gleichen
+Regeln f"ur jedes Feld.
+In solchen F"allen gen"ugt es, wenn die resultierende Formel polynomielle
+L"ange hat.
+
+\begin{beispiel}
+Die Formel, die die Sudoku-Regeln f"ur das $n^2\times n^2$-beschreibt,
+besteht aus einer 
+Teilformel f"ur jedes Feld, welche wiederum aus einer Teilformel
+f"ur Zeilen, Spalten und Unterfelder besteht.
+Diese Teilformeln "uberpr"ufen die Werte aller $n^2$ Felder der Zeile,
+Spalte oder des Unterfeldes, dabei sind $n^2$ m"ogliche Feldinhalte
+zu ber"ucksichtigen.
+Im Abschnitt~\ref{subsection:sudoku-und-sat} wurde gezeigt, wie die
+Teilformel aufzubauen ist, ihre L"ange ist
+\[
+O(\underbrace{n^2}_{\text{Vergleichsfelder}}\cdot
+\underbrace{n^2}_{\text{Zeichen}}) = O(n^4).
+\]
+Die gesamte Formel hat damit die L"ange
+\[
+O(\underbrace{n^4}_{\text{Felder}}\cdot
+\underbrace{n^2}_{\text{Vergleichsfelder}}\cdot
+\underbrace{n^2}_{\text{Zeichen}}) = O(n^8).
+\]
+Insbesondere ist die L"ange der Formel polynomiell in der Feldgr"osse $n^4$,
+\textsl{SUDOKU}
+ist also ein polynomielles Ausf"ullr"atsel im genannten Sinn.
+\end{beispiel}
+
+\begin{satz}
+Ein polynomielles Ausf"ullr"atsel $A$ l"asst sich polynomiell auf 
+\textsl{SAT} reduzieren.
+\end{satz}
+
+\begin{proof}[Beweis]
+Polynomielle Reduktion auf \textsl{SAT} bedeutet, dass man zu jeder
+Probleminstanz eine logische Formel $\varphi$ konstruieren muss,
+deren L"ange polynomiell in der Gr"osse des Ausgangsproblems ist.
+Die Formel muss genau dann erf"ullbar sein, wenn das urspr"ungliche
+Problem l"osbar ist.
+Ein polynomielles Ausf"ullr"atsel f"uhrt aber nach Definition auf
+eine solche Formel.
+\end{proof}
+
+Als Konsequenz dieser Konstruktion k"onnen wir auch schliessen, dass
+jedes Ausf"ullr"atsel in NP liegt.
+

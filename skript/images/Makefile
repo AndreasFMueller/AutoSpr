@@ -4,7 +4,7 @@
 # (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
 # $Id$
 #
-all:	cfg turing nea lang red comp pl reg mine graph stack sudoku
+all:	cfg turing nea lang red comp pl reg mine graph stack sudoku ausfuell
 
 REGFILES = reg-1.pdf reg-2.pdf reg-3.pdf reg-4.pdf reg-5.pdf reg-6.pdf
 NEAFILES = nea-1.pdf nea-2.pdf nea-3.pdf nea-4.pdf nea-5.pdf nea-6.pdf nea-7.pdf
@@ -20,6 +20,7 @@ GRAPHFILES = graph-1.pdf
 STACKFILES = stack-1.pdf stack-2.pdf
 SUDOKUFILES = sudoku-1.pdf
 PALINDROMFILES = palindrom-1.pdf
+AUSFUELLFILES = ausfuell-1.pdf ausfuell-2.pdf
 
 timestamp:	$(REGFILES) $(NEAFILES) $(CFGFILES) $(TURINGFILES) \
 		$(LANGFILES) $(MINEFILES) $(PLFILES) $(REDFILES) $(COMPFILES) \
@@ -156,3 +157,12 @@ $(PALINDROMFILES):	palindrom.mp Makefile
 		mptopdf palindrom.$${i}; \
 	done
 
+ausfuell:	$(AUSFUELLFILES)
+$(AUSFUELLFILES):	ausfuell.mp Makefile
+	TEX=latex mpost ausfuell.mp
+	for f in ausfuell.?; \
+	do \
+		echo $${f}; \
+		i=`expr $${f} : "ausfuell\.\(.\)"`; \
+		mptopdf ausfuell.$${i}; \
+	done
