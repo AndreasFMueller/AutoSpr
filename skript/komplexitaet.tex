@@ -980,7 +980,15 @@ Konfigurationen durchlaufen. Schreibt man diese untereinander,
 haben alle Konfigurationen in einem Quadrat $n^k\times n^k$
 Platz.
 
-Wir m"ochten jetzt eine Formel aufstellen, die genau dann erf"ullbar
+Die Aufgabe ist jetzt also, das $n^k \times n^k$-Quadrat so mit Zust"anden
+und Symbolen auszuf"ullen, dass eine g"ultige Berechnung beschrieben wird,
+die im Zustand $q_{\text{accept}}$ endet.
+Dies ist ein Ausf"ull-R"atsel, es bleibt uns also nur noch zu verstehen,
+dass es sich auch um ein polynomielles Ausf"ullr"atsel handelt,
+dass wir also die Bedingungen, denen die Symbole unterworfen sind,
+in eine polynomielle Formel gefasst werden k"onnen.
+
+Wir m"ochten jetzt also eine Formel aufstellen, die genau dann wahr
 ist, wenn sich in das Quadrat $n^k\times n^k$ die Bandsymbole und
 Zust"ande so hineinschreiben lassen, dass die Konfigurationen eine
 Abfolge beschreiben, die einer g"ultigen Berechnung entsprechen.
@@ -1840,20 +1848,20 @@ Karp folgenden Baum
 einen hamiltonschen Pfad zu finden. Die anderen Probleme sind wie
 folgt definiert:
 \begin{description}
-\index{VERTEX-COVER@\textsl{VERTEX-COVER}}
+\index{VERTEX-COVER@\textsl{VERTEX-COVER}}%
 \item[\textsl{VERTEX-COVER}:] Gegeben ein Graph $G$ und eine Zahl
 $k$, gibt es eine Teilmenge von $k$ Vertizes so, dass jede
 Kante des Graphen ein Ende in dieser Teilmenge hat?
-\index{FEEDBACK-NODE-SET@\textsl{FEEDBACK-NODE-SET}}
+\index{FEEDBACK-NODE-SET@\textsl{FEEDBACK-NODE-SET}}%
 \item[\textsl{FEEDBACK-NODE-SET}:] Gegeben ein gerichteter Graph $G$
 und eine Zahl $k$, gibt es eine endliche Teilmenge von $k$ Vertizes
 von $G$ so, dass jeder Zyklus in $G$ einen Vertex in der Teilmenge 
 enth"alt?
-\index{FEEDBACK-ARC-SET@\textsl{FEEDBACK-ARC-SET}}
+\index{FEEDBACK-ARC-SET@\textsl{FEEDBACK-ARC-SET}}%
 \item[\textsl{FEEDBACK-ARC-SET}:] Gegeben ein gerichteter Graph $G$
 und eine Zahl $k$, gibt es eine Teilmenge von $k$ Kanten so, dass
 jeder Zyklus in $G$ eine Kante aus der Teilmenge enth"alt?
-\index{SET-COVERING@\textsl{SET-COVERING}}
+\index{SET-COVERING@\textsl{SET-COVERING}}%
 \item[\textsl{SET-COVERING}:] Gegeben eine endliche Familie endlicher
 Mengen $(S_j)_{1\le j\le n}$ und eine Zahl $k$, gibt es eine Unterfamilie
 bestehend aus $k$ Mengen, die die gleiche Vereinigung hat?
@@ -2047,14 +2055,21 @@ und
 \textsl{MINESWEEPER-CONSISTENCY}
 "aquivalent sind.
 
-Wir k"onnten dies zum Beispiel dadurch tun, dass wir eine polynomielle
-Reduktion von \textsl{SAT} auf \textsl{MINESWEEPER-CONSISTENCY}
-konstruieren.
-Zu einer beliebigen Formel $\varphi$ m"ussen wir ein Minesweeper-Spielfeld
-finden, welches sich genau dann konsistent mit Bomben f"ullen l"asst,
-wenn die Formel erf"ullbar ist.
+Man kann n"amlich direkt einsehen, dass \textsl{MINESWEEPER-CONSISTENCY}
+ein Ausf"ullr"atsel ist.
+Das Spielfeld muss n"amlich mit zwei Zeichen ausgef"ullt werden, ``Bombe''
+und ``Keine Bombe''.
+Es ist die Regel einzuhalten, dass die Zahl der Bomben auf den Nachbarfeldern
+mit der Zahl auf dem Feld "ubereinstimmt.
+Ausserdem kann man verifizieren, dass diese Regel als polynomielle Formel
+ausgedr"uckt werden kann.
+Also ist \textsl{MINESWEEPER-CONSISTENCY} ein polynomielles
+Ausf"ullr"atsel, und damit polynomiell auf \textsl{SAT} reduzierbar.
 
-Wir konstruieren eine solche Reduktion in zwei Schritten. Zun"achst ist
+Umgekehrt k"onnen wir auch eine Reduktion von \textsl{SAT} auf
+\textsl{MINESWEEPER-CONSISTENCY} konstruieren, wir tun dies in
+zwei Schritten.
+Zun"achst ist
 klar, dass wir jede Formel in eine Schaltung umwandeln k"onnen, und
 dass dies in polynomieller Zeit geht. Wir haben also auf jeden
 Fall eine polynomielle Reduktion $\text{\textsl{SAT}}\le_P\text{\textsl{CIRCUIT}}$.

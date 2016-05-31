@@ -268,6 +268,8 @@ anzuwenden sind. Einen wesentlichen Einfluss auf die M"oglichkeiten,
 was sich mit einer Programmiersprache ausdr"ucken lassen, haben die
 Kontrollstrukturen.
 
+\newcommand{\assignment}{\mathbin{\texttt{:=}}}
+
 \subsection{LOOP}
 \index{LOOP}
 Die Programmiersprache
@@ -284,7 +286,7 @@ LOOP hat folgende Syntax-Elemente
 \begin{compactitem}
 \item Variablen $x_0$, $x_1$, $x_2$,\dots
 \item Konstanten: {\tt 0}, {\tt 1}, {\tt 2}, \dots
-\item Zuweisung: {\tt :=}
+\item Zuweisung: $\assignment$
 \item Trennung von Anweisungen: {\tt ;}
 \item Operatoren: {\tt +} und {\tt -}
 \item Schl"usselw"orter: {\tt LOOP}, {\tt DO}, {\tt END}
@@ -293,12 +295,12 @@ Die einzige M"oglichkeit, den Wert einer Variablen zu "andern ist die
 Zuweisung.  Diese ist entweder die Zuweisung einer Konstante als
 Wert einer Variable:
 \begin{algorithmic}
-\STATE $x_i${\tt :=} $c$
+\STATE $x_i\assignment c$
 \end{algorithmic}
 oder eine Berechnung mit den beiden vorhandenen Operatoren
 \begin{algorithmic}
-\STATE $x_i$ {\tt :=} $x_j$ {\tt +} $c$
-\STATE $x_i$ {\tt :=} $x_j$ {\tt -} $c$
+\STATE $x_i \assignment x_j$ {\tt +} $c$
+\STATE $x_i \assignment x_j$ {\tt -} $c$
 \end{algorithmic}
 Dabei ist das Resultat der Subtraktion als $0$ definiert, wenn
 der Minuend kleiner ist als der Subtrahend.
@@ -329,9 +331,9 @@ bereits, um auch die Summe zweier Variablen zu berechnen. Der folgende
 Code berechnet die Summe von $x_1$ und $x_2$ und legt das Resultat in
 $x_0$ ab:
 \begin{algorithmic}
-\STATE $x_0$ {\tt := } $x_1$
+\STATE $x_0 \assignment x_1$
 \STATE {\tt LOOP} $x_2$ {\tt DO}
-\STATE{\tt \ \ \ \ }$x_0:=x_0$ {\tt +} $1$
+\STATE{\tt \ \ \ \ }$x_0 \assignment x_0$ {\tt +} $1$
 \STATE{\tt END}
 \end{algorithmic}
 
@@ -343,10 +345,10 @@ Zahlen, die in den Variablen $x_1$ und $x_2$ "ubergeben werden,
 zu berechnen:
 
 \begin{algorithmic}
-\STATE $x_0$ {\tt := } $0$
+\STATE $x_0 \assignment 0$
 \STATE {\tt LOOP} $x_1$ {\tt DO}
 \STATE{\tt \ \ \ \ LOOP} $x_2$ {\tt DO}
-\STATE{\tt \ \ \ \ \ \ \ \ }$x_0:=x_0$ {\tt +} $1$
+\STATE{\tt \ \ \ \ \ \ \ \ }$x_0 \assignment x_0$ {\tt +} $1$
 \STATE{\tt \ \ \ \ END}
 \STATE{\tt END}
 \end{algorithmic}
@@ -361,8 +363,8 @@ Eine Anweisung
 kann unter Verwendung einer zus"atzlichen Variable $y$ in LOOP ausgedr"uckt
 werden:
 \begin{algorithmic}[1]
-\STATE $y=1${\tt ;}
-\STATE {\tt LOOP }$x${\tt\ DO }$y$ {\tt :=} $0$ {\tt END;}
+\STATE $y \assignment 1${\tt ;}
+\STATE {\tt LOOP }$x${\tt\ DO }$y \assignment 0$ {\tt END;}
 \STATE {\tt LOOP }$y${\tt\ DO }$P$ {\tt END;}
 \end{algorithmic}
 Nat"urlich wird die {\tt LOOP}-Anweisung in Zeile 2 meistens viel "ofter
@@ -425,8 +427,8 @@ notwendig, denn
 \end{algorithmic}
 kann durch
 \begin{algorithmic}
-\STATE$y:= x$;
-\STATE{\tt WHILE }$y>0${\tt\ DO }$P$; $y:=y-1${\tt\ END}
+\STATE$y \assignment x$;
+\STATE{\tt WHILE }$y>0${\tt\ DO }$P$; $y \assignment y-1${\tt\ END}
 \end{algorithmic}
 nachgebildet werden.
 
@@ -453,7 +455,7 @@ Nat"urlich l"asst sich damit auch eine unbedingte Sprunganweisung
 implementieren:
 \begin{center}
 \begin{tabular}{rl}
-$M_l$:&$x_i=c$;\\
+$M_l$:&$x_i \assignment c$;\\
 $M_{l+1}$:&{\tt IF\ }$x_i=c${\tt\ THEN GOTO\ }$M_j$
 \end{tabular}
 \end{center}
@@ -476,21 +478,21 @@ Eine Funktion ist genau dann mit einem GOTO-Programm berechenbar,
 wenn sie mit einem WHILE-Programm berechenbar ist.
 \end{satz}
 \begin{proof}[Beweis]
-Man braucht nur zu zeigen, dass man ein WHILE-Programm in ein "aquivalentes
-GOTO-Programm "ubersetzen kann, und umgekehrt.
+Man braucht nur zu zeigen, dass man ein GOTO-Programm in ein "aquivalentes
+WHILE-Programm "ubersetzen kann, und umgekehrt.
 
 Um eine GOTO-Programm zu "ubersetzen, verwenden wir eine zus"atzliche Variable
 $z$, die die Funktion des Programm-Z"ahlers "ubernimmt.
 Aus dem GOTO-Programm machen wir dann folgendes WHILE-Programm
 \begin{algorithmic}
-\STATE $z:=1$
+\STATE $z \assignment 1$
 \STATE{\tt WHILE\ }$z>0${\tt\ DO}
 \STATE{\tt IF\ }$z=1${\tt\ THEN\ }$A_1'${\tt\ END};
 \STATE{\tt IF\ }$z=2${\tt\ THEN\ }$A_2'${\tt\ END};
 \STATE{\tt IF\ }$z=3${\tt\ THEN\ }$A_3'${\tt\ END};
 \STATE\dots
 \STATE{\tt IF\ }$z=k${\tt\ THEN\ }$A_k'${\tt\ END};
-\STATE{\tt IF\ }$z=k+1${\tt\ THEN\ }$z:=0${\tt\ END};
+\STATE{\tt IF\ }$z=k+1${\tt\ THEN\ }$z \assignment 0${\tt\ END};
 \STATE{\tt END}
 \end{algorithmic}
 Die Anweisung $A_i'$ entsteht aus der Anweisung $A_i$ nach folgenden
@@ -498,10 +500,11 @@ Regeln
 \begin{itemize}
 \item Falls $A_i$ eine Zuweisung ist, wird ihr eine weitere Zuweisung
 \begin{algorithmic}
-\STATE $z:=z+1$
+\STATE $z \assignment z+1$
 \end{algorithmic}
-angeh"angt. Dies hat zur Folge, dass nach $A_k'$ als n"achste Anweisung
-$A_{k+1}$ ausgef"uhrt wird.
+angeh"angt.
+Dies hat zur Folge, dass nach $A_z'$ als n"achste Anweisung
+$A_{z+1}$ ausgef"uhrt wird.
 \item
 Falls $A_i$ eine bedingte Sprunganweisung
 \begin{center}
@@ -511,7 +514,7 @@ $M_l$:&{\tt IF\ }$x_i=c${\tt\ THEN GOTO\ }$M_j$
 \end{center}
 ist, wird $A_i'$
 \begin{algorithmic}
-\STATE{\tt IF\ }$x_i=c${\tt\ THEN\ }$z:=j${\tt\ ELSE }$z=z+1$;
+\STATE{\tt IF\ }$x_i=c${\tt\ THEN\ }$z \assignment j${\tt\ ELSE }$z=z+1$;
 \end{algorithmic}
 Dies ist zwar keine WHILE-Anweisung, aber es wurde bereits
 fr"uher gezeigt, wie man sie in WHILE "ubersetzen kann.
@@ -634,17 +637,17 @@ beschreibt also ein Programm, welches die Turing-Maschine implementiert
 \STATE L"osche das aktuelle Zeichen auf dem Band
 \STATE {\tt IF\ }$s=0${\tt\ THEN}
 \STATE {\tt \ \ \ \ IF\ }$z=0${\tt\ THEN}
-\STATE {\tt \ \ \ \ \ \ \ \ }$s:=\delta_1(0,0)$
-\STATE {\tt \ \ \ \ \ \ \ \ }$z:=\delta_2(0,0)$
-\STATE {\tt \ \ \ \ \ \ \ \ }$m:=\delta_3(0,0)$
+\STATE {\tt \ \ \ \ \ \ \ \ }$s\assignment\delta_1(0,0)$
+\STATE {\tt \ \ \ \ \ \ \ \ }$z\assignment\delta_2(0,0)$
+\STATE {\tt \ \ \ \ \ \ \ \ }$m\assignment\delta_3(0,0)$
 \STATE {\tt \ \ \ \ END}
 \STATE {\tt END}
 \STATE {\tt IF\ }$s=1${\tt\ THEN}
 \STATE {\tt \ \ \ \ }\dots
 \STATE {\tt END}
 \STATE Zeichen $z$ schreiben
-\STATE {\tt IF\ }$m=1${\tt\ THEN }$h:=h/k$
-\STATE {\tt IF\ }$m=2${\tt\ THEN }$h:=h\cdot k$
+\STATE {\tt IF\ }$m=1${\tt\ THEN }$h\assignment h/k$
+\STATE {\tt IF\ }$m=2${\tt\ THEN }$h\assignment h\cdot k$
 \STATE \dots
 \STATE {\tt GOTO\ }1
 \end{algorithmic}
@@ -718,14 +721,14 @@ Ook ist eine einfache Umcodierung von Brainfuck:
 \hline
 Ook&Brainfuck\\
 \hline
-{\tt Ook. Ook.}&{\tt +}\\
-{\tt Ook! Ook!}&{\tt -}\\
 {\tt Ook. Ook?}&{\tt >}\\
 {\tt Ook? Ook.}&{\tt <}\\
-{\tt Ook! Ook?}&{\tt [}\\
-{\tt Ook? Ook!}&{\tt ]}\\
+{\tt Ook. Ook.}&{\tt +}\\
+{\tt Ook! Ook!}&{\tt -}\\
 {\tt Ook! Ook.}&{\tt .}\\
 {\tt Ook. Ook!}&{\tt ,}\\
+{\tt Ook! Ook?}&{\tt [}\\
+{\tt Ook? Ook!}&{\tt ]}\\
 \hline
 \end{tabular}
 \end{center}
