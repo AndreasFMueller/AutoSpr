@@ -1,0 +1,93 @@
+Finden Sie eine Grammatik in Chomsky-Normalform f"ur die Sprache
+\[
+L=\{
+\texttt{a}^n\texttt{b}^m\texttt{a}^n
+\;|\;
+n\ge 0, m\ge 1
+\}.
+\]
+
+\begin{loesung}
+Zun"achst stellen wir eine Grammatik auf.
+W"orter in $L$ bestehen aus einem Block von Zeichen $\texttt{b}$,
+welcher mit der Grammatik
+\begin{align*}
+R&\rightarrow \texttt{b} \\
+ &\rightarrow R\texttt{b}
+\end{align*}
+Dieser Block kann aber noch zus"atzlich mit beliebig vielen 
+\texttt{a} eingeklammert werden, was durch die Grammatik
+\begin{align*}
+S&\rightarrow R \\
+ &\rightarrow \texttt{a} S \texttt{a}\\
+R&\rightarrow \texttt{b} \\
+ &\rightarrow R\texttt{b}
+\end{align*}
+ausgedr"uckt werden kann.
+
+Diese Grammatik hat nicht Chomsky-Normalform: sie enth"alt zum Beispiel die
+Unit-Rule $S\rightarrow R$.
+Wir wenden den Standardalgorithmus an:
+\begin{enumerate}
+\item Startvariable: 
+\begin{align*}
+S_0&\rightarrow S                      \\
+S  &\rightarrow R  \;|\; \texttt{a} S \texttt{a}\\
+R  &\rightarrow \texttt{b} \;|\; R\texttt{b}
+\end{align*}
+\item $\varepsilon$-Regeln: es gibt keine $\varepsilon$-Regeln, damit
+entf"allt dieser Schritt.
+\item Unit-Rules: Wir beginnen mit der Regel $S_0\rightarrow S$:
+\begin{align*}
+S_0&\rightarrow \color{red} R  \;|\; \texttt{a} S \texttt{a}\\
+S  &\rightarrow R  \;|\; \texttt{a} S \texttt{a}\\
+R  &\rightarrow \texttt{b} \;|\; R\texttt{b}
+\end{align*}
+Regel $S_0\rightarrow R$:
+\begin{align*}
+S_0&\rightarrow \texttt{a} S \texttt{a} \;|\; \color{red}\texttt{b} \;|\; R\texttt{b} \\
+S  &\rightarrow R  \;|\; \texttt{a} S \texttt{a}\\
+R  &\rightarrow \texttt{b} \;|\; R\texttt{b}
+\end{align*}
+Regel $S\rightarrow R$:
+\begin{align*}
+S_0&\rightarrow \texttt{a} S \texttt{a} \;|\; \texttt{b} \;|\; R\texttt{b} \\
+S  &\rightarrow \texttt{a} S \texttt{a} \;|\; \color{red} \texttt{b} \;|\; R\texttt{b}\\
+R  &\rightarrow \texttt{b} \;|\; R\texttt{b}
+\end{align*}
+Damit sind alle Unit-Rules entfernt.
+\item Verkettungsregeln: Zun"achst f"ugen wir zwei Regeln f"ur die
+Terminalsymbole \texttt{a} und \texttt{b} hinzu:
+\begin{align*}
+S_0&\rightarrow {\color{red}A}S{\color{red}A} \;|\; \texttt{b} \;|\; R{\color{red}B} \\
+S  &\rightarrow {\color{red}A}S{\color{red}A} \;|\; \texttt{b} \;|\; R{\color{red}B} \\
+R  &\rightarrow \texttt{b} \;|\; R{\color{red}B} \\
+\color{red}A  &\color{red}\rightarrow \texttt{a} \\
+\color{red}B  &\color{red}\rightarrow \texttt{b}
+\end{align*}
+Damit entsprechen jetzt nur noch die Regeln $S\rightarrow ASA$ und
+$S_0\rightarrow ASA$ nicht der Chomsky-Normalform.
+Wir k"onnen das aber durch eine neue Variable $U$ erreichen:
+\begin{align*}
+S_0&\rightarrow {\color{red}U}A \;|\; \texttt{b} \;|\; RB \\
+S  &\rightarrow {\color{red}U}A \;|\; \texttt{b} \;|\; RB \\
+R  &\rightarrow \texttt{b} \;|\; RB \\
+A  &\rightarrow \texttt{a} \\
+B  &\rightarrow \texttt{b} \\
+\color{red}U  &\color{red}\rightarrow AS
+\end{align*}
+In dieser Grammatik entsprechen alle Regeln den Anforderungen der
+Chomsky Normalform.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+Grammatikteil $R$ ({\bf R}) 1 Punkt,
+Grammatikteil $S$ ({\bf S}) 1 Punkt,
+CNF Startvariable ({\bf S0}) 1 Punkt,
+CNF Unit-Rules ({\bf U}) 1 Punkt,
+CNF Terminalsymbolregeln ({\bf T}) 1 Punkt,
+CNF Verkettungsregel ({\bf V}) 1 Punkt.
+\end{bewertung}
+
