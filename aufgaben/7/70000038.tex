@@ -1,0 +1,30 @@
+F"ur ein Untersuchung steht eine grosse Menge von Probanden zur Verf"ugung.
+Sie sind bereits auf Allergien getestet worden, man weiss also von jedem
+Probanden, auf welche Allergene (Pollen, Katzenhaare, Hausstaub, Lactose,\dots)
+er alergisch reagiert.
+Die Untersuchung soll sich auf eine Teilmenge von $k=17$ ausgew"ahlten
+Allergenen beschr"anken, die so beschaffen ist, dass kein Proband auf mehr als 
+eines der ausgew"ahlten Allergene reagiert.
+Dies stellt sich als schwierig heraus, warum?
+
+\begin{loesung}
+Dies ist das Problem {\em SET-PACKING}, wenn man folgende Identifikation
+vornimmt:
+\begin{align*}
+\text{Allergene}                           &\quad\leftrightarrow\quad I\\
+\text{auf Allergen $i$ alergische Probanden}&\quad\leftrightarrow\quad S_i\\
+\text{ausgew"ahlte Allergene}              &\quad\leftrightarrow\quad J\\
+\text{Ausschlussbedingung zwischen Allergenen $i$ und $j$}&\quad\leftrightarrow\quad S_i\cap S_j = \emptyset
+\end{align*}
+Es wird verlangt, $k$ Allergene auszuw"ahlen, also eine Teilmenge
+$J\subset I$ mit $|J|=k$ zu finden.
+\end{loesung}
+
+\begin{bewertung}
+Reduktionsmethode ({\bf R}) 1 Punkt,
+Vergleichsproblem ({\bf V}) 1 Punkt,
+Mappings f"ur Allergene ({\bf A}), allergisch reagierende Probanden ({\bf S})
+und Auswahl ({\bf W}) je 1 Punkt,
+Mapping f"ur $k$ ({\bf K}) 1 Punkt.
+\end{bewertung}
+
