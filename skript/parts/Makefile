@@ -39,13 +39,13 @@ skript-06-chapter6.pdf:	../skript.pdf Makefile
 	pdfjam --outfile skript-06-chapter6.pdf ../skript.pdf 117-132
 
 skript-07-chapter7.pdf:	../skript.pdf Makefile
-	pdfjam --outfile skript-07-chapter7.pdf ../skript.pdf 133-172
+	pdfjam --outfile skript-07-chapter7.pdf ../skript.pdf 133-174
 
 skript-08-chapter8.pdf:	../skript.pdf Makefile
-	pdfjam --outfile skript-08-chapter8.pdf ../skript.pdf 173-184
+	pdfjam --outfile skript-08-chapter8.pdf ../skript.pdf 175-186
 
 skript-09-algorithmen.pdf:	../skript.pdf Makefile
-	pdfjam --outfile skript-09-algorithmen.pdf ../skript.pdf 185-189
+	pdfjam --outfile skript-09-algorithmen.pdf ../skript.pdf 187-191
 
 skript-10-index.pdf:	../skript.pdf Makefile
-	pdfjam --outfile skript-10-index.pdf ../skript.pdf 190-193
+	pdfjam --outfile skript-10-index.pdf ../skript.pdf 192-195
