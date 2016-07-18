@@ -1,0 +1,38 @@
+Sei $\Sigma$ ein Alphabet und $L$ die Sprache
+\[
+L=\{ w\in\Sigma^* \;|\; |w|_a \ne |w|_b\;\forall a,b\in\Sigma, a\ne b\}
+\]
+bestehend aus W"ortern, die keine zwei verschiedenen Buchstaben in gleicher
+Anzahl enthalten.
+Gibt es einen regul"aren Ausdruck daf"ur?
+
+\begin{loesung}
+Es gibt keinen regul"aren Ausdruck daf"ur, weil die Sprache $L$ nicht regul"ar
+ist, wie man mit dem Pumping Lemma einsehen kann:
+\begin{enumerate}
+\item Angenommen, $L$ ist regul"ar.
+\item Dann gibt es die Pumping Length $N$.
+\item Wir konstruieren das Wort $w=\texttt{a}^N\texttt{b}^{N+c}$, wobei
+wir die Zahl $c>0$ sp"ater bestimmen werden.
+Wegen $N\ne N+c$ ist $w$ tats"achlich ein Wort in $L$.
+\item Nach dem Pumping-Lemma gibt es eine Unterteilung $w=xyz$, wobei
+$x$ und $y$ ausschliesslich aus \texttt{a} bestehen.
+Wir w"ahlen $c=|y|$.
+\item Pumpt man jetzt das Wort $w$ mit $k=2$ auf, bildet man also
+$w_2=xy^2z$, dann wird der \texttt{a}-Teil um $|y|=c$ Zeichen \texttt{a}
+verl"angert, er bekommt also neu die L"ange $N+c$, und ist damit gleich
+lang wie der \texttt{b}-Teil.
+Das aufgepumpte Wort $w_2$ ist daher nicht mehr in der Sprache $L$.
+\item Das Pumping Lemma verlangt, dass jedes aufgepumpte Wort in $L$
+sein muss.
+Dieser Widerspruch zeigt, dass die Annahme, $L$ sei regul"ar, nicht
+zutreffen kann.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+Jeder Punkt des Pumping-Lemma-Beweises ein Punkt.
+\end{bewertung}
+
+
