@@ -1,0 +1,126 @@
+Gegeben ist die Turingmaschine mit dem Zustandsdiagramm
+\[
+%\xymatrixrowsep{1in}
+%\xymatrixcolsep{1in}
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+	&*+\txt{}
+		&*+\txt{}
+			&{q_1} \ar[ddrrr]^{\blank\to\blank,R}
+			       \ar[dd]^{\texttt{0}\to\texttt{x},L}
+			       \ar@(ur,ul)_{\substack{\texttt{1}\to\texttt{1},R
+						\\
+						\texttt{x}\to\texttt{x},R}}
+\\
+*+\txt{}
+\\
+*+\txt{} \ar[r]
+	&{q_0} \ar[dl]_{\blank\to\blank,R}
+	       \ar[uurr]^{\texttt{1}\to\texttt{x},R}
+	       \ar[ddrr]_{\texttt{0}\to\texttt{x},R}
+	       \ar@(u,ul)_{\texttt{x}\to\texttt{x},R}
+		&*+\txt{}
+			&{q_3} \ar[ll]_{\blank\to\blank,R}
+			       \ar@(ur,dr)^{\substack{
+{\texttt{0}\to\texttt{0},L}\\
+{\texttt{1}\to\texttt{1},L}\\
+{\texttt{x}\to\texttt{x},L}}}
+				&*+\txt{}
+					&*+\txt{}
+						&*++[o][F=]{q_{\text{reject}}}
+\\
+*++[o][F=]{q_{\text{accept}}}
+\\
+*+\txt{}
+	&*+\txt{}
+		&*+\txt{}
+			&{q_2} \ar[uurrr]_{\blank\to\blank,R}
+			       \ar[uu]_{\texttt{1}\to\texttt{x},L}
+			       \ar@(dr,dl)^{\substack{\texttt{0}\to\texttt{0},R
+					\\
+					\texttt{x}\to\texttt{x},R}}
+}
+\]
+"uber dem Alphabet
+$\Sigma = \{\texttt{0},\texttt{1}\}$
+und dem Bandalphabet
+$\Gamma = \{\texttt{0},\texttt{1},\texttt{x},\blank\}$.
+
+\begin{teilaufgaben}
+\item Wird das Wort \texttt{101} akzeptiert?
+\item Wird das Wort \texttt{0110} akzeptiert?
+\item Falls der Input auf dem Band ein $\blank$ enth"alt, kann der Teil
+des Inputs 
+rechts vom $\blank$ einen Einfluss darauf haben, ob das Wort akzeptiert
+wird?
+\item Wird ein Wort $w$ mit $|w|_{\texttt{0}}=|w|_{\texttt{1}}$ akzeptiert?
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Die Verarbeitung des Wortes \texttt{101} ist (Zeichen unter dem
+Schreib-/Lesekopf jeweils rot)
+\begin{center}
+\def\r{\color{red}}
+\begin{tabular}{>{$}r<{$}|>{\tt}c>{\tt}c>{\tt}c>{\tt}c>{\tt}c>{\tt}c}
+q_0              &    \blank & \r 1 &    0 &    1 &    \blank &    \blank \\
+q_1              &    \blank &    x & \r 0 &    1 &    \blank &    \blank \\
+q_3              &    \blank & \r x &    x &    1 &    \blank &    \blank \\
+q_3              & \r \blank &    x &    x &    1 &    \blank &    \blank \\
+q_0              &    \blank & \r x &    x &    1 &    \blank &    \blank \\
+q_0              &    \blank &    x & \r x &    1 &    \blank &    \blank \\
+q_0              &    \blank &    x &    x & \r 1 &    \blank &    \blank \\
+q_1              &    \blank &    x &    x &    x & \r \blank &    \blank \\
+q_{\text{reject}}&     \blank&    x &    x &    x &    \blank & \r \blank
+\end{tabular}
+\end{center}
+Das Wort \texttt{101} wird nicht akzeptiert.
+\item
+Die Verarbeitung des Wortes \texttt{0110} ist (Zeichen unter dem
+Schreib-/Lesekopf jeweils rot)
+\begin{center}
+\def\r{\color{red}}
+\begin{tabular}{>{$}r<{$}|>{\tt}c>{\tt}c>{\tt}c>{\tt}c>{\tt}c>{\tt}c>{\tt}c}
+q_0 &  \blank&\r 0&   1&   1&   0&  \blank&  \blank\\
+q_2 &  \blank&   x&\r 1&   1&   0&  \blank&  \blank\\
+q_3 &  \blank&\r x&   x&   1&   0&  \blank&  \blank\\
+q_3 &\r\blank&   x&   x&   1&   0&  \blank&  \blank\\
+q_0 &  \blank&\r x&   x&   1&   0&  \blank&  \blank\\
+q_0 &  \blank&   x&\r x&   1&   0&  \blank&  \blank\\
+q_0 &  \blank&   x&   x&\r 1&   0&  \blank&  \blank\\
+q_1 &  \blank&   x&   x&   x&\r 0&  \blank&  \blank\\
+q_3 &  \blank&   x&   x&\r x&   x&  \blank&  \blank\\
+q_3 &  \blank&   x&\r x&   x&   x&  \blank&  \blank\\
+q_3 &  \blank&\r x&   x&   x&   x&  \blank&  \blank\\
+q_3 &\r\blank&   x&   x&   x&   x&  \blank&  \blank\\
+q_0 &  \blank&\r x&   x&   x&   x&  \blank&  \blank\\
+q_0 &  \blank&   x&\r x&   x&   x&  \blank&  \blank\\
+q_0 &  \blank&   x&   x&\r x&   x&  \blank&  \blank\\
+q_0 &  \blank&   x&   x&   x&\r x&  \blank&  \blank\\
+q_0 &  \blank&   x&   x&   x&   x&\r\blank&  \blank\\
+q_{\text{accept}} &  \blank&   x&   x&   x&   x&  \blank&\r\blank\\
+\end{tabular}
+\end{center}
+Das Wort \texttt{0110} wird also akzeptiert.
+\item
+Das erste $\blank$-Zeichen rechts vom Wortanfang kann nur durch die "Uberg"ange 
+von $q_1$ nach $q_{\text{reject}}$
+und
+von $q_2$ nach $q_{\text{reject}}$
+"uberschritten werden.
+Da die Maschine dann aber anh"alt, wird der nachfolgende Teil des Bandes nie
+gelesen, und kann daher auch den Ausgang nicht beeinflussen.
+\item
+Die Turingmaschine "uberschreibt \texttt{0} und \texttt{1} paarweise mit
+\texttt{x} und akzeptiert, wenn am Schluss nur \texttt{x} dastehen.
+Die akzeptierte Sprache ist daher
+\[
+L=\{ w\in\Sigma^* \;|\; |w|_{\texttt{0}}=|w|_{\texttt{1}}\}.
+\]
+\end{teilaufgaben}
+\end{loesung}
+
+
+
