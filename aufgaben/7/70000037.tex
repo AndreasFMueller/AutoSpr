@@ -54,6 +54,15 @@ Damit ist gezeigt, dass das Problem in NP ist, also dass eine nicht
 deterministische Turingmaschine das Problem in polynomieller Zeit l"osen
 kann.
 
+Je nach gew"ahlter Datenstruktur f"ur das Spiel und das L"osungszertifikat
+kann der Verifikationsalgorithmus in Details abweichen.
+W"ahlt man zum Beispiel f"ur das Zertifikat als Datenstruktur eine Map,
+die jeder Farbe einen Pfad zuordnet, dann ist die Gleichfarbigkeit der
+Pfade und ihr Zusammenhang bereits sichergestellt, in diesem Fall
+ist also weniger zu verifizieren.
+Die zus"atzliche Arbeit ist Aufgabe des Orakels, welches das Zertifikat
+liefert.
+
 Man kann ein \spielname-Spiel auch als ein Ausf"ullr"atsel betrachten.
 Jedes Feld muss mit der Farbe eines der vorgegebenen Punkte oder scharz 
 und einem Zeichen aus $\Gamma$ versehen werden.
