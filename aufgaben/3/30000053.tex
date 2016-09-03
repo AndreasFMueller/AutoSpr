@@ -31,8 +31,46 @@ zutreffen kann.
 \end{enumerate}
 \end{loesung}
 
+\begin{diskussion}
+W"orter der Form $a^Nb^{N+1}$ oder $a^Nb^{2N}$ sind nicht geeignet, da
+beim Pumpen nicht immer $|w|_a=|w|_b$ erreicht werden kann.
+Statt des Wortes $a^Nb^{N+c}$ kann man auch ein Wort der Form $a^Nb^{cN}$
+versuchen.
+Beim Pumpen wird daraus
+$a^{N+(k-1)|y|}b^{cN}$, welches nicht mehr in der Sprache ist, wenn
+\[
+N+(k-1)|y|=cN
+\qquad\Leftrightarrow\qquad
+({\color{red}k}-1)|y|=({\color{red}c}-1)N
+\]
+Die {\color{red}roten} Variablen sind noch zu w"ahlen.
+Die Gleichung wird erf"ullt, wenn man $c-1=|y|$ und $k-1=N$ w"ahlt, also
+\[
+c=|y|+1\qquad\text{und}\qquad k=N+1.
+\]
+
+Die folgende Idee ist sehr am"usant, funktioniert aber leider nicht ganz.
+Man verwendet das Wort
+\[
+w=\texttt{a}^{N+1}\texttt{b}^N\texttt{c}^{N-1}\texttt{d}^{N-2}\dots
+\]
+Ausser dem Buchstaben \texttt{a} kommt also jeder andere Buchstabe
+mit jeder beliebigen Anzahl $\le N$ vor. 
+Pumpt man jetzt ab, wird die Anzahl der \texttt{a} verringert, ihre
+Anzahl ist jetzt also auch $\le N$, gleich wie die Anzahl eines der
+anderen Buchstaben.
+Leider funktioniert dieser Beweis nur, wenn im Alphabet gen"ugend viele
+verschiedene Buchstaben zur Verf"ugung stehen, also $|\Sigma| > N$.
+\end{diskussion}
+
 \begin{bewertung}
-Jeder Punkt des Pumping-Lemma-Beweises ein Punkt.
+Jeder Punkt des Pumping-Lemma-Beweises ein Punkt:
+Annahme ({\bf A}), Pumping Length ({\bf N}), Beispielwort ({\bf W}),
+Zerlegung ({\bf Z}), Widerspruch beim Pumpen ({\bf P}), 
+Folgerung ({\bf F}).
+Damit der Punkt {\bf P} gegeben wurde, musste in diesem Schritt zum 
+Ausdruck gebracht sein, dass beim Pumpen die Gleichheit der Anzahlen
+von $a$ und $b$ angestrebt wurde.
 \end{bewertung}
 
 

@@ -1,20 +1,22 @@
-F"ur ein Untersuchung steht eine grosse Menge von Probanden zur Verf"ugung.
+F"ur ein medizinische Studie ist eine grosse Zahl von Probanden rekrutiert
+worden.
 Sie sind bereits auf Allergien getestet worden, man weiss also von jedem
 Probanden, auf welche Allergene (Pollen, Katzenhaare, Hausstaub, Lactose,\dots)
-er alergisch reagiert.
+er allergisch reagiert.
 Die Untersuchung soll sich auf eine Teilmenge von $k=17$ oder noch
 mehr ausgew"ahlten
 Allergenen beschr"anken, die so beschaffen ist, dass kein Proband auf mehr als 
 eines der ausgew"ahlten Allergene reagiert.
-Dies stellt sich als schwierig heraus, warum?
+Es stellt sich als schwierig heraus, eine solche Teilmenge zu finden.
+Warum?
 
 \begin{loesung}
 Dies ist das Problem {\em SET-PACKING}, wenn man folgende Identifikation
 vornimmt:
 \begin{align*}
-\text{Allergene}                           &\quad\leftrightarrow\quad I\\
-\text{auf Allergen $i$ alergische Probanden}&\quad\leftrightarrow\quad S_i\\
-\text{ausgew"ahlte Allergene}              &\quad\leftrightarrow\quad J\\
+\text{Allergene}                            &\quad\leftrightarrow\quad I\\
+\text{auf Allergen $i$ allergische Probanden}&\quad\leftrightarrow\quad S_i\\
+\text{ausgew"ahlte Allergene}               &\quad\leftrightarrow\quad J\\
 \text{Ausschlussbedingung zwischen Allergenen $i$ und $j$}&\quad\leftrightarrow\quad S_i\cap S_j = \emptyset
 \end{align*}
 Es wird verlangt, $k$ Allergene auszuw"ahlen, also eine Teilmenge
