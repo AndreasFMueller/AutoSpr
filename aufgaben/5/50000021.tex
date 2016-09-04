@@ -109,6 +109,13 @@ q_{\text{accept}} &  \blank&   x&   x&   x&   x&  \blank&\r\blank\\
 \end{center}
 Das Wort \texttt{0110} wird also akzeptiert.
 \item
+Zun"achst ist festzuhalten, dass $\Sigma$ das Zeichen $\blank$ nicht enth"alt,
+dass diese hypothetische Situation also normalerweise nicht auftritt.
+Leerzeichen zeigen also immer an, dass man auf einen Teil des Bandes
+gestossen ist, der nicht vom Input-Wort initialisiert worden ist.
+Es geht also um die hypothetische Situation, dass man im Input $\blank$-Zeichen
+zul"asst, und man m"ochte wissen, ob wie die Maschine damit umgeht.
+
 Das erste $\blank$-Zeichen rechts vom Wortanfang kann nur durch die "Uberg"ange 
 von $q_1$ nach $q_{\text{reject}}$
 und
@@ -126,5 +133,12 @@ L=\{ w\in\Sigma^* \;|\; |w|_{\texttt{0}}=|w|_{\texttt{1}}\}.
 \end{teilaufgaben}
 \end{loesung}
 
-
+\begin{bewertung}
+Teilaufgabe a) ({\bf A}) 1 Punkt,
+Teilaufgabe b) ({\bf B}) 1 Punkt,
+Teilaufgabe c): korrekte Antwort ($\textbf{C}_a$) 1 Punkt,
+Begr"undung ($\textbf{C}_b$) 1 Punkt,
+Teilaufgabe d): korrekte Antwort ($\textbf{D}_a$) 1 Punkt,
+Begr"undung ($\textbf{D}_b$) 1 Punkt.
+\end{bewertung}
 
