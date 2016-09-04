@@ -2,7 +2,7 @@ Sei $\Sigma=\{\texttt{a},\texttt{b},\dots,\texttt{z}\}$ das Alphabet
 bestehend aus den Kleinbuchstaben.
 Die Sprache
 \[
-L_{ab}=\{w\in\Sigma^*\;|\; |w|_a=|w|_b>1\}
+L_{ab}=\{w\in\Sigma^*\;|\; |w|_a=|w|_b\}
 \]
 besteht aus den W"ortern, die die Buchstaben $a\in \Sigma$ und $b\in\Sigma$
 mehr als einmal enthalten, aber beide gleich oft.
@@ -20,13 +20,13 @@ Bestimmen Sie f"ur jede Regel der Grammatik aus a), ob sie der
 Chomsky-Normalform entspricht, und wenn nicht, warum nicht.
 \item
 Bringen Sie die Grammatik von a) in Chomsky-Normalform.
-\item
-K"onnen Sie daraus eine Aussage dar"uber ableiten, ob die Sprache 
-\[
-L=\{w\in\Sigma^*\;|\;\text{es gibt zwei verschiedene Buchstaben
-$a,b\in\Sigma$ mit $|w|_a=|w|_b > 1$}\}
-\]
-(siehe auch Aufgabe~\ref{30000047}) kontextfrei ist?
+%\item
+%K"onnen Sie daraus eine Aussage dar"uber ableiten, ob die Sprache 
+%\[
+%L=\{w\in\Sigma^*\;|\;\text{es gibt zwei verschiedene Buchstaben
+%$a,b\in\Sigma$ mit $|w|_a=|w|_b > 1$}\}
+%\]
+%(siehe auch Aufgabe~\ref{30000047}) kontextfrei ist?
 \end{teilaufgaben}
 
 \begin{loesung}
@@ -105,13 +105,13 @@ C  &\rightarrow SB \\
 D  &\rightarrow SA
 \end{align*}
 Damit ist die Grammatik in Chomsky-Normalform.
-\item
-Die Sprache $L$ ist die Vereinigung aller Sprachen $L_{ab}$,
-\[
-L=\bigcup_{a,b\in\Sigma\atop a\ne b}L_{ab},
-\]
-und da Vereinigung eine regul"are Operation ist, und kontextfreie Sprachen
-unter Vereinigung abgeschlossen sind, muss auch $L$ kontextfrei sein.
+%\item
+%Die Sprache $L$ ist die Vereinigung aller Sprachen $L_{ab}$,
+%\[
+%L=\bigcup_{a,b\in\Sigma\atop a\ne b}L_{ab},
+%\]
+%und da Vereinigung eine regul"are Operation ist, und kontextfreie Sprachen
+%unter Vereinigung abgeschlossen sind, muss auch $L$ kontextfrei sein.
 \qedhere
 \end{teilaufgaben}
 \end{loesung}

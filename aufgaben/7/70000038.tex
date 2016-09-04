@@ -1,0 +1,79 @@
+F"ur ein medizinische Studie ist eine grosse Zahl von Probanden rekrutiert
+worden.
+Sie sind bereits auf Allergien getestet worden, man weiss also von jedem
+Probanden, auf welche Allergene (Pollen, Katzenhaare, Hausstaub, Lactose,\dots)
+er allergisch reagiert.
+Die Untersuchung soll sich auf eine Teilmenge von $k=17$ oder noch
+mehr ausgew"ahlten
+Allergenen beschr"anken, die so beschaffen ist, dass kein Proband auf mehr als 
+eines der ausgew"ahlten Allergene reagiert.
+Es stellt sich als schwierig heraus, eine solche Teilmenge zu finden.
+Warum?
+
+\begin{loesung}
+Dies ist das Problem {\em SET-PACKING}, wenn man folgende Identifikation
+vornimmt:
+\begin{align*}
+\text{Allergene}                            &\quad\leftrightarrow\quad I\\
+\text{auf Allergen $i$ allergische Probanden}&\quad\leftrightarrow\quad S_i\\
+\text{ausgew"ahlte Allergene}               &\quad\leftrightarrow\quad J\\
+\text{Ausschlussbedingung zwischen Allergenen $i$ und $j$}&\quad\leftrightarrow\quad S_i\cap S_j = \emptyset
+\end{align*}
+Es wird verlangt, $k$ Allergene auszuw"ahlen, also eine Teilmenge
+$J\subset I$ mit $|J|=k$ zu finden.
+\end{loesung}
+
+\begin{diskussion}
+Man\footnote{zum Beispiel viele Pr"ufungsteilnehmer im FS 16}
+k"onnte auch eine Reduktion auch auf {\em HITTING-SET} versuchen, etwa
+mit der folgenden Identifikation:
+\begin{align*}
+\text{Allergene}                    &\qquad\leftrightarrow\qquad S             \\
+\text{Probanden}                    &\qquad\leftrightarrow\qquad I             \\
+\text{Allergien eines Probanden $i$}&\qquad\leftrightarrow\qquad S_i, i\in I   \\
+\text{Auswahl von Allergenen}       &\qquad\leftrightarrow\qquad H\subset S    \\
+\text{Proband hat nur eine der Allergien}&\qquad\leftrightarrow\qquad |S_i\cap H|=1\forall i\in I
+\end{align*}
+Leider funktioniert das nicht, weil im Aufgabenproblem die Anzahl der Allergene
+vorgegeben ist, das entspr"ache hier der Vorgabe der Anzahl der Elemente
+von $H$.
+Es fehlt also ein Element des Aufgabenproblems in {\em HITTING-SET}.
+
+Manchmal ist es schwierig {\em SET-COVERING}, {\em EXACT-COVER} und
+{\em SET-PACKING} auseinander zu halten.
+Man beachte:
+\begin{itemize}
+\item
+In {\em SET-COVERING} und in {\em SET-PACKING} kommt eine Zahl $k$ vor,
+nicht aber in {\em EXACT-COVER}.
+\item
+In {\em SET-COVERING} d"urfen sich die Mengen schneiden, m"ussen aber auch
+alles abdecken. 
+In {\em SET-PACKING} d"urfen sich die Mengen nicht schneiden, m"ussen aber
+auch nicht alles abdecken.
+\item
+In {\em EXACT-COVER} d"urfen sich die Mengen nicht schneiden, m"ussen alles
+abdecken, aber es kommt nicht auf ihre Anzahl an.
+\end{itemize}
+Oder tabellarisch:
+\[
+\begin{tabular}{r|ccc}
+                       &{\em SET-COVERING}&{\em SET-PACKING}&{\em EXACT-COVER}\\
+\hline
+Anzahl Mengen          &$k$               &$k$              &           \\
+Vereinigung            &ganze Menge       &                 &ganze Menge\\
+paarweise Schnittmengen&                  &$\emptyset$      &$\emptyset$
+\end{tabular}
+\]
+\end{diskussion}
+
+\begin{bewertung}
+Reduktionsmethode ({\bf R}) 1 Punkt,
+Vergleichsproblem ({\bf V}) 1 Punkt,
+Mappings f"ur Allergene ({\bf A}), allergisch reagierende Probanden ({\bf S})
+und Auswahl ({\bf W}) je 1 Punkt,
+Mapping f"ur $k$ ({\bf K}) 1 Punkt.
+Eine Reduktion auf die naheliegenden Vergleichsprobleme {\em HITTING-SET},
+{\em EXACT-COVER} oder {\em SET-COVERING} gab 3 Punkte.
+\end{bewertung}
+

@@ -1,0 +1,71 @@
+Der Sprachforscher Stuart M.~Shieber hat aus Beispielen wie dem Satz
+\begin{center}
+De Jan s"ait das mer d'chind em Hans es hus h"and wele laa h"alfe aastriiche.
+\end{center}
+abgeleitet, dass das Schweizderdeutsch grammatische Konstruktionen
+zul"asst, die auf W"orter der Form
+\[
+wa^mb^nxc^md^ny
+\]
+hinaus laufen\footnote{Stuart M.~Shieber,
+{\em Evidence against the context-freeness of natural language},
+Linguistics and Philosophy, {\bf 8} (1985) 333--343}.
+Zeigen Sie, dass diese Sprache nicht kontextfrei ist.
+
+\begin{loesung}
+Wir wenden das Pumping Lemma f"ur kontextfreie Sprachen auf die Sprache
+\[
+L=\{
+wa^mb^nxc^md^ny
+\;|\; m,n\ge 0
+\}
+\]
+an.
+\begin{enumerate}
+\item Annahme: $L$ ist kontextfrei.
+\item Nach dem Pumping-Lemma gibt es die Pumping-Length $N$.
+\item Wir konstruieren das Beispielwort
+\[
+z=wa^Nb^Nx^Nd^N,
+\]
+es ist offensichtlich in der Sprache $L$
+und es ist ausreichend lang, dass die Schlussfolgerungen des Pumping-Lemma
+darauf anwendbar sind.
+\item
+Gem"ass Pumping Lemma gibt es eine Unterteilung
+\[
+z=pqrst,
+\]
+wobei $|qrs|\le N$ gelten muss.
+Es folgt, dass $q$ und $s$ nur jeweils zwei benachbarte der
+vier ``langen'' Bl"ocke $a^N$, $b^N$, $c^N$ oder $d^N$ ber"uhren k"onnen.
+\item 
+Beim Aufpumpen werden zwei benachbarte langen Bl"ocke ver"andert.
+Die Bedingung, dass alternierende Bl"ocke, also $a^N$ und $c^N$
+bzw.~$b^N$ und $d^N$ gleich lang sein m"ussen, wird nach dem Pumpen
+daher nicht mehr erf"ullt sein.
+Ein aufgepumptes Wort wird daher nicht mehr in $L$ sein.
+\item Dieser Widerspruch zeigt, dass die Annahme, $L$ sei kontextfrei,
+nicht haltbar ist.
+\end{enumerate}
+\end{loesung}
+
+\begin{diskussion}
+Dies bedeutet nat"urlich nicht, dass Schweizerdeutsch eine nicht
+kontextfreie Sprache ist.
+In der Wirklichkeit sind die S"atze n"amlich immer von endlicher L"ange,
+die Exponenten $n$ und $m$ k"onnen daher nicht beliebig gross sein.
+Das m"ussen Sie aber, denn der Pumping-Lemma-Beweis verlangt, dass man
+$n=m=N$ setze k"onnen muss, wobei die Pumping-Length $N$ eben sehr gross
+sein kann.
+\end{diskussion}
+
+\begin{bewertung}
+Jeder Punkt des Pumping-Lemma-Beweises ein Punkt:
+Annahme ({\bf A}), Pumping Length ({\bf N}), Beispielwort ({\bf W}),
+Zerlegung ({\bf Z}), Widerspruch beim Pumpen ({\bf P}), 
+Folgerung ({\bf F}).
+Der Punkt ({\bf Z}) wird nur gegeben, wenn zum Beispiel aus dem nachfolgenden
+Pumpschritt klar wird, dass es mehrere m"ogliche Unterteilungen gibt.
+\end{bewertung}
+

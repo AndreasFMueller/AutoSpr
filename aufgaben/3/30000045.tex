@@ -66,22 +66,16 @@ Dieser Beweis mit dem Pumping-Lemma kann nat"urlich mit jedem beliebigen
 anderen Wort der Form $\texttt{a}^N\texttt{b}^{m}$ durchgef"uhrt werden,
 solange $m > N$ ist. Zum Beispiel ist $m=2N$ genauso gut.
 
-Der Beweis ist sogar m"oglich mit dem Wort $w=\texttt{a}^{N-1}\texttt{b}^N$,
-aber man muss einen zus"atzlichen Spezialfall untersuchen.
-Man kann n"amlich $w$ wie folgt unterteilen:
-$x=\texttt{a}^{N-1}$, $y=\texttt{b}$ und $z=\texttt{b}^{N-1}$.
-Beim Aufpumpen dieser Zerlegung gilt
+Der Beweis ist aber nicht mehr m"oglich mit dem Wort
+$w=\texttt{a}^{N-1}\texttt{b}^N$.
+Die meisten Unterteilungen f"uhren zwar immer noch zu einem
+Widerspruch, aber bei der Untertteilung
 \[
-w_k=xy^kz=\texttt{a}^{N-1}\texttt{b}^k\texttt{b}^{N-1}
-=
-\texttt{a}^{N-1}\texttt{b}^{k+N-1},
+x = a^{N-2}, \quad y=ab, \quad z= b^{N-1}
 \]
-die Bedingung der Sprache ist also f"ur $k>0$ immer erf"ullt, beim Aufpumpen
-verl"asst man die Sprache nicht.
-F"ur $k=0$, also beim Abpumpen, entsteht aber das Wort
-$\texttt{a}^{N-1}\texttt{b}^{N-1}\not\in L$, Abpumpen verl"asst also die
-Sprache, man kann den gew"unschten Widerspruch also auch f"ur diese
-Unterteilung des Wortes erhalten.
+bleibt beim Pumpen die Zahl der $a$ immer um 1 kleiner als
+die Zahl der $b$.
+(Beobachtung von Pascal Schweizer, Student HSR 2016)
 \end{diskussion}
 
 \begin{bewertung}

@@ -1,0 +1,83 @@
+\def\spielname{Flow}
+Beim Spiel \spielname{} (als App {\em Flow Free} im AppStore erh"altlich)
+sind auf einem $n\times m$-Spielfeld Paare von farbigen
+Punkten vorgegeben (Abbildung links).
+Der Spieler muss jeweils gleichfarbige Punkte durch einen Weg verbinden,
+der vollst"andig "uber freie Felder des Spielfeldes verl"auft.
+Dabei darf ein Feld nicht von zwei verschiedenen Wegen benutzt werden
+(Abbildung rechts).
+\begin{center}
+\includeagraphics[width=0.4\hsize]{\spielname-aufgabe.png}
+\qquad
+\includeagraphics[width=0.4\hsize]{\spielname-loesung.png}
+\end{center}
+Kann eine nicht deterministische Turing-Maschine ein \spielname-R"atsel in
+polynomieller Zeit l"osen?
+
+\begin{loesung}
+Ein \spielname-R"atsel kann von einer nicht deterministischen Turing-Maschine
+in polynomieller Zeit gel"ost werden, wenn es einen polynomiellen
+Verifizierer gibt.
+Als L"osungszertifikat verlangen wir die gesuchten farbigen Pfade,
+wobei die Farbe eines Pfades die Farbe der zwei Vorgabepunkte ist, die er
+verbindet.
+Die Pfade k"onnen dadurch beschrieben werden, dass in jedem Feld die Farbe 
+angegeben wird und welche Kanten des Feldes miteinander verbunden werden.
+Dies kann zum Beispiel durch die sechs Symbole
+$\Gamma = \{-,\vert,\urcorner,\lrcorner,\ulcorner, \llcorner\}$
+bewerkstelligt werden.
+Man sagt, ein Feld f"uhrt zu einem Nachbarfeld, wenn das Symbol aus
+$\Gamma$ im Feld mit einem Ende zum Nachbarfeld zeigt.
+Enth"alt ein Feld zum Beispiel das Symbol $\llcorner$, dann f"uhrt
+das Feld auf die Nachbarfelder oben und rechts.
+
+Der Verifikationsalgorithmus pr"uft folgendes:
+\begin{enumerate}
+\item Jedes Vorgabefeld hat genau ein Nachbarfeld gleicher Farbe, welches
+auf das Vorgabefeld f"uhrt.
+\item Jedes Feld f"uhrt ausschliesslich zu Feldern gleicher Farbe.
+\item F"uhrt ein Feld auf ein Nachbarfeld, welches kein Vorgabefeld ist,
+dann f"uhrt das Nachbarfeld auch zur"uck auf das Ausgangsfeld.
+\end{enumerate}
+Der Aufwand f"ur diese Pr"ufungen ist
+\begin{center}
+\begin{tabular}{rl>{$}c<{$}}
+1.&Pfade enden in Vorgabepunkten          &O(nm)\\
+2.&Gleichfarbigkeit innerhalb eines Pfades&O(nm)\\
+3.&Zusammenhang von Pfaden                &O(nm)\\
+ &Total                                  &O(nm)
+\end{tabular}
+\end{center}
+Der Aufwand ist also polynomiell in der Problemgr"osse $nm$, der Verifizierer
+hat polynomielle Laufzeit.
+Damit ist gezeigt, dass das Problem in NP ist, also dass eine nicht
+deterministische Turingmaschine das Problem in polynomieller Zeit l"osen
+kann.
+
+Je nach gew"ahlter Datenstruktur f"ur das Spiel und das L"osungszertifikat
+kann der Verifikationsalgorithmus in Details abweichen.
+W"ahlt man zum Beispiel f"ur das Zertifikat als Datenstruktur eine Map,
+die jeder Farbe einen Pfad zuordnet, dann ist die Gleichfarbigkeit der
+Pfade und ihr Zusammenhang bereits sichergestellt, in diesem Fall
+ist also weniger zu verifizieren.
+Die zus"atzliche Arbeit ist Aufgabe des Orakels, welches das Zertifikat
+liefert.
+
+Man kann ein \spielname-Spiel auch als ein Ausf"ullr"atsel betrachten.
+Jedes Feld muss mit der Farbe eines der vorgegebenen Punkte oder scharz 
+und einem Zeichen aus $\Gamma$ versehen werden.
+Die dabei einzuhaltenden Regeln sind die Regeln 1--3, die oben aufgelistet
+wurden.
+Die Aufwandsberechnung zeigt, dass dies ein polynomielles Ausf"ullr"atsel ist.
+\end{loesung}
+
+\begin{bewertung}
+Polynomieller Verifizierer {\bf V} 1 Punkt,
+L"osungszertifikat {\bf C} 1 Punkt,
+Verifikationsalgorithmus: Pfadenden {\bf E} 1 Punkt,
+Gleichfarbigkeit {\bf G} 1 Punkt,
+Zusammenhang {\bf Z} 1 Punkt,
+Aufwandsch"atzung ist polynomiell {\bf A} 1 Punkt.
+\end{bewertung}
+
+
