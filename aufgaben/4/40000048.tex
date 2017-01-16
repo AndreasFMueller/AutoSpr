@@ -1,0 +1,76 @@
+Bringen Sie die Grammatik mit den Regeln
+\begin{align*}
+S&\rightarrow (S)S
+\\
+ &\rightarrow \varepsilon
+\end{align*}
+in Chomsky-Normalform.
+
+\begin{loesung}
+Die Reduktion auf Chomsky-Normalform vollzieht sich in den folgenden Schritten:
+\begin{enumerate}
+\item
+Neue Startvariable:
+\begin{align*}
+S_0&\rightarrow S
+\\
+S&\rightarrow \texttt{(}S\texttt{)}S
+\\
+ &\rightarrow \varepsilon
+\end{align*}
+\item
+$\varepsilon$-Regeln entfernen:
+\begin{align*}
+S_0&\rightarrow S \;|\; \varepsilon
+\\
+S&\rightarrow \texttt{(}S\texttt{)}S \;|\; \texttt{(}\texttt{)}S \;|\;
+  \texttt{(}S\texttt{)} \texttt{(}\texttt{)}
+\end{align*}
+\item
+Unit-Rules entfernen: Es muss nur die Unit-Rule $S_0\to S$ entfernt
+werden:
+\begin{align*}
+S_0& \rightarrow \texttt{(}S)S \;|\; \texttt{(})S \;|\; \texttt{(}S) \;|\;
+	\texttt{(})
+\\
+   &\rightarrow \varepsilon
+\\
+S&\rightarrow \texttt{(}S\texttt{)}S \;|\; \texttt{(}\texttt{)}S \;|\;
+	\texttt{(}S\texttt{)} \;|\; \texttt{(}\texttt{)}
+\end{align*}
+\item Terminalsymbole in eigene Regeln auslagern:
+\begin{align*}
+S_0& \rightarrow ASBS \;|\; ABS \;|\; ASB \;|\; AB
+\\
+   &\rightarrow \varepsilon
+\\
+S&\rightarrow ASBS \;|\; ABS \;|\; ASB \;|\; AB
+\\
+A&\rightarrow \texttt{(}
+\\
+B&\rightarrow \texttt{)}
+\end{align*}
+Die rechten Seiten mit mehr als zwei Symbolen m"ussen nun noch Schrittweise
+aufgebaut werden:
+\begin{align*}
+S_0& \rightarrow AU_1 \;|\; AU_2 \;|\; AV \;|\; AB
+\\
+   &\rightarrow \varepsilon
+\\
+S&\rightarrow AU_1 \;|\; AU_2 \;|\; AV \;|\; AB
+\\
+A&\rightarrow \texttt{(}
+\\
+B&\rightarrow \texttt{)}
+\\
+U_1&\rightarrow SU_2\\
+U_2&\rightarrow BS\\
+V  &\rightarrow SB
+\end{align*}
+\end{enumerate}
+Damit ist die Grammatik vollst"andig in Chomsky-Normalform umgewandelt.
+\end{loesung}
+
+\begin{bewertung}
+\end{bewertung}
+
