@@ -1,0 +1,59 @@
+In einer Programmiersprache wird unterschieden zwischen Deklaration
+und Definition einer Funktion.
+Definitionen und Deklarationen k"onnen beliebig gemischt werden,
+solange Deklarationen immer vor Definitionen kommen.
+Eine Deklaration besteht aus dem Funktionsnamen $f$ und einer Argumentliste,
+wir schreiben symbolisch $a^n$  f"ur die aus $n$ Argumenten bestehende
+Argumentliste.
+Definitionen enthalten zus"atzlich einen Block mit ausf"uhrbarem Code.
+Die Programmiersprache l"asst also Konstruktionen der Form
+\[
+\underbrace{f_1a^n}_{\text{Deklaration von $f_1$}}
+\underbrace{f_2a^m}_{\text{Deklaration von $f_2$}}
+\underbrace{f_1a^nb_1}_{\text{Definition von $f_1$}}
+\underbrace{f_2a^m b_2}_{\text{Definition von $f_2$}}
+\]
+zu.
+Kann man durch Wahl einer geeigneten Grammatik erzwingen, dass die
+Anzahl der Argument Argumentliste in Deklaration und Definition jeweils 
+"ubereinstimmt?
+
+
+
+
+\begin{loesung}
+Dies w"urde bedeuten, dass die Sprache kontextfrei ist.
+Diese Sprache ist aber nicht kontextfrei, wie man mit dem Pumping Lemma
+f"ur kontextfreie Sprachen beweisen kann.
+\begin{enumerate}
+\item
+Wir nehmen an, die Sprache sei kontextfrei.
+\item
+Nach dem Pumping-Lemma gibt es dann die Pumping Length $N$ so,
+dass W"orter mit L"ange $\ge N$ aufgepumpt werden k"onnen.
+\item
+Wir konstruieren das Wort
+\[
+w=f_1a^N f_2a^N f_1a^Nb_1f_2a^Nb_2
+\]
+welches ganz offensichtlich in der Sprache drin ist.
+\item
+Nach dem Pumping-Lemma gibt es dann eine Unterteilung des Wortes $w$ in
+f"unf Teile $w=xyzuv$ derart, dass $|yzu|\le N$.
+Dies bedeutet, dass $y$ und $u$ Zeichen $a$ aus h"ochstens zwei verschiedenen
+$a$-Bl"ocken enthalten k"onnen.
+\item
+Beim Aufpumpen wird also notwendigerweise die Anzahl der $a$ einer
+Deklaration und einer nicht dazu passenden Definition ver"andert,
+so dass nach dem Aufpumpen die Definition nicht mehr zur Deklaration 
+passt.
+Das aufgepumpte Wort ist also nicht mehr in der Sprache.
+\item
+Dieser Widerspruch zeigt, dass die Sprache nicht kontextfrei sein kann.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+\end{bewertung}
+
