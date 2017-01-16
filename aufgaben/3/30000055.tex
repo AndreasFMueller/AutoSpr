@@ -1,0 +1,40 @@
+Ist die Sprache
+\[
+L=\{ \texttt{a}^n\texttt{b}^m\texttt{c}^{n+m}\,|\,n,m\ge 0\}
+\]
+"uber dem Alphabet $\Sigma= \{\texttt{a},\texttt{b},\texttt{c}\}$
+regul"ar?
+
+\begin{loesung}
+Nein, wie man mit dem Pumping-Lemma beweisen kann.
+\begin{enumerate}
+\item
+Wir nehmen an, $L$ sei regul"ar.
+\item
+Nach dem Pumping Lemma gibt es eine Zahl $N$ derart, dass jedes
+Wort $w\in L$ mit L"ange $|w|\ge N$ aufgepumpt werden kann.
+\item
+Wir konstruieren das Wort
+\[
+w=\texttt{a}^N\texttt{b}^N\texttt{c}^{2N}
+\]
+Es ist offensichtlich in $L$.
+\item
+Nach den Annahmen des Pumping Lemma gibt es eine Aufteilung des
+Wortes in drei Teile $w=xyz$, wobei $|xy|\le N$, die ersten beiden
+Teile befinden sich also vollst"andig im \texttt{a}-Teil.
+Auch enth"alt $y$ mindestens einen Buchstaben \texttt{a}.
+\item
+Beim Pumpen wird die Anzahl der \texttt{a} vergr"ossert, ohne dass auch
+die Anzahl der \texttt{c} vergr"ossert wird.
+Aufgepumpte W"orter $xy^kz$ mit $k>1$ sind daher nicht mehr in $L$,
+ein Widerspruch zur Ausssage des Pumping Lemma.
+\item 
+Der Widerspruch zeigt, dass die Sprache $L$ nicht regul"ar sein kann.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+\end{bewertung}
+
