@@ -1,0 +1,28 @@
+Eine ``Programmierumgebung'' f"ur jedermann erlaubt, Berechnung mit
+Graphen zu beschreiben, die vereinfachte Flussdiagramme sind.
+Der Berechnung steht ein im Wesentlichen unbeschr"ankter Speicher
+zur Verf"ugung.
+Die Knoten des Graphen beschreiben arithmetische Operationen
+oder bedingte Entscheidungen, bei welchem Nachbarknoten die
+Berechnung fortgesetzt werden.
+Jetzt soll ein Programm geschrieben werden, welches ermittelt,
+ob so beschriebene Programme anhalten werden.
+Ist dies m"oglich?
+
+\begin{loesung}
+Nein, denn ein solches Programm  w"urde das Halteproblem l"osen.
+
+Die Programme, die von solchen Flussdiagrammen beschrieben werden
+k"onnen, entsprechen genau den F"ahigkeiten der Sprache GOTO.
+Man kann dies einsehen indem man alle Knoten des Graphen numeriert und
+die Verbindungen zwischen Knoten durch GOTO-Anweisungen realisiert.
+Die Sprache GOTO ist Turing-vollst"andig.
+Insbesondere ist das Halteproblem f"ur GOTO-Programme nicht l"osbar.
+\end{loesung}
+
+\begin{bewertung}
+\end{bewertung}
+
+
+
+
