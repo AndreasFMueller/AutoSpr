@@ -1,0 +1,78 @@
+Betrachten Sie die Turing-Maschine mit Input-Alphabet
+$\{\texttt{0},\texttt{1}\}$ und mit dem folgenden Zustandsdiagramm
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{} 
+	&*+\txt{} 
+		&{q_1}	\ar[dr]_{\blank\to\blank,L}
+			\ar[drrr]^{\texttt{1}\to\texttt{1},R}
+			\ar@(ur,ul)_{\texttt{0}\to\texttt{0},R}
+\\
+*+\txt{} \ar[r]
+	&{q_0}	\ar[dl]_{\blank\to\blank,R}
+		\ar[ur]^{\texttt{0}\to\texttt{0},R}
+		\ar[dr]_{\texttt{1}\to\texttt{1},R}
+		&*+\txt{}
+			&{q_3}	\ar@(ur,dr)^{\texttt{0}\to\texttt{1},L
+					\atop \texttt{1}\to\texttt{0},L}
+				\ar[ll]^{\blank\to\blank,R}
+				&*+\txt{}
+					&*++[o][F=]{q_{\text{accept}}}
+\\
+*++[o][F=]{q_{\text{reject}}}
+	&*+\txt{}
+		&{q_2}	\ar[ur]^{\blank\to\blank,L}
+			\ar[urrr]_{\texttt{0}\to\texttt{0},R}
+			\ar@(dr,dl)^{\texttt{1}\to\texttt{1},R}
+}
+\]
+\begin{teilaufgaben}
+\item
+Welche W"orter werden von dieser Maschine verworfen?
+\item
+Finden sie die zwei k"urzesten W"orter, die von dieser Maschine
+akzeptiert werden.
+\item
+Gibt es W"orter, auf denen die Maschine nicht anh"alt?
+\item
+Ist die von dieser Maschine akzeptierte Sprache regul"ar?
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Das leere Wort f"uhrt die Maschine unmittelbar in den Zustand
+$q_{\text{reject}}$.
+\item
+Der k"urzeste Weg zum Zustand $q_{\text{accept}}$ f"uhrt auf
+direktem Weg von $q_0$ "uber $q_1$ oder $q_2$ nach $q_{\text{accept}}$.
+Er wird genommen, wenn auf dem Band die W"orter \texttt{01} bzw.~\texttt{10}
+stehen.
+Insbesondere folgt auch, dass ein Wort nur akzeptiert werden kann, wenn es
+verschiedene Zeichen enth"alt.
+\item
+Die Maschine kann nur dann nicht anhalten, wenn sie den Weg "uber den
+Zustand $q_3$ zur"uck zum Zustand $q_0$ nimmt.
+Dazu darf sie von $q_1$ aus niemals ein Zeichen \texttt{1} treffen
+oder von $q_2$ aus niemals ein Zeichen \texttt{0}, in beiden
+F"allen besteht das Wort also nur aus einer Art Zeichen.
+Im Zustand $q_3$ werden diese Zeichen durch das entgegengesetzte Zeichen
+ersetzt, so dass bei der Ankunft im Zustand $q_0$ ein urspr"unglich aus
+Einsen bestehendes Wort durch ein gleichlanges Wort aus Nullen ersetzt 
+worden ist und umgekehrt.
+Auf W"orter aus nur einer Art von Zeichen terminiert die Maschine also nicht.
+\item
+Die Sprache akzeptiert genau die W"orter, die verschiedene Zeichen enthalten.
+Nicht akzeptiert werden die W"orter die auf den regul"aren Ausdruck
+\texttt{0*|1*} passen.
+Da das Komplement einer regul"aren Sprache wieder regul"ar ist, ist
+die akzeptierte Sprache ebenfalss regul"ar.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+
+\begin{bewertung}
+\end{bewertung}
+
