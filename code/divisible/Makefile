@@ -6,7 +6,7 @@
 all:	divisible
 
 divisible.c:	divisible.l Makefile
-	flex -o divisible.c --verbose --interactive divisible.l
+	flex -o divisible.c --verbose --interactive --trace divisible.l 2>divisible.trace
 
 divisible:	divisible.c d3.c
 	gcc -o divisible -Wall -g -O2 divisible.c d3.c

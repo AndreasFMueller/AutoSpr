@@ -567,7 +567,7 @@ int	main(int argc, char *argv[]) {
 		case 'h':
 		case '?':
 			usage(argv[0]);
-			break;
+			return EXIT_SUCCESS;
 		}
 
 	/* next argument should be machine description */

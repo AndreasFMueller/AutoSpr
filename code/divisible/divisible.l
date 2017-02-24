@@ -13,7 +13,13 @@ long	value(const char *s) {
 %%
 (0|1(01*0)*1)*			{ printf("%s = %ld: divisible\n", yytext, value(yytext)); }
 (0|(1(01*0)*1))*1(01*0)*	{ printf("%s = %ld: remainder 1\n", yytext, value(yytext)); }
-(0|1(01*0)*)*1(01*0)*01*	{ printf("%s = %ld: remainder 2\n", yytext, value(yytext)); }
+0*1(01*0|10*1)*01* { printf("%s = %ld: remainder 2\n", yytext, value(yytext)); }
 .*		{ printf("?\n"); }
 \n		{ }
 %%
+/*
+(0|11|1001)*10(1|00)* 		{ printf("%s = %ld: remainder 2\n", yytext, value(yytext)); }
+(0|(1(01*0)*1))*1(01*0)*	{ printf("%s = %ld: remainder 1\n", yytext, value(yytext)); }
+0*1(10*1)*0(1|0(10*1)*0)* { printf("%s = %ld: remainder 2\n", yytext, value(yytext)); }
+0*1(01*0|10*1)*01* { printf("%s = %ld: remainder 2\n", yytext, value(yytext)); }
+*/
