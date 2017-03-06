@@ -36,9 +36,15 @@ add2:	turing
 add3:	turing
 	./turing -c -p 10000 -v -o 2 -s 50 -t data/addtape3 pgm/add
 
-dist:	turing-$(VERSION).tar.gz
+dist:	turing-$(VERSION).tar.gz turing-$(VERSION).tar.gz.uu
 
-turing-$(VERSION).tar.gz:
+turing-$(VERSION).tar.gz.uu turing-$(VERSION).tar.gz:
+	if [ -d turing-$(VERSION) ]; \
+	then \
+		rm -rf turing-$(VERSION); \
+	fi
 	mkdir turing-$(VERSION)
 	cp -r pgm data README turing.c Makefile turing-$(VERSION)
 	tar czf turing-$(VERSION).tar.gz turing-$(VERSION)
+	uuencode -o turing-$(VERSION).tar.gz.uu turing-$(VERSION).tar.gz \
+		turing-$(VERSION).tar.gz

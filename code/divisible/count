@@ -7,7 +7,7 @@
 (
 	echo obase=2
 	counter=0
-	while [ ${counter} -lt 100 ]
+	while [ ${counter} -lt 200 ]
 	do
 		echo $counter
 		counter=`expr ${counter} + 1`

@@ -19,3 +19,9 @@ grammar.h grammar.c:	grammar.y
 
 test:	gvm test.goto
 	./gvm -d test.goto
+
+add1:	gvm ../tmc/tmp/add1.goto
+	./gvm ../tmc/tmp/add1.goto
+
+add3:	gvm ../tmc/tmp/add3.goto
+	./gvm ../tmc/tmp/add3.goto
