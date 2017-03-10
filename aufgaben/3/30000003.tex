@@ -37,6 +37,17 @@ Der \texttt{0}-"Ubergang von $z_0$ und $z_2$ f"uhrt zu $z_0$, der
 \texttt{1}-"Ubergang zu $z_1$, in beiden F"allen kann man also
 kein neues Kreuz im Feld $(z_0,z_2)$ machen, der Algorithmus endet.
 Man schliesst, dass $z_0$ und $z_2$ "aquivalent sein m"ussen.
+
+Legt man $z_0$ und $z_2$ zusammen, wird der Automat vereinfacht zu
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+        &{z_0,z_2}\ar@/^/[r]^{\tt 1} \ar@(ur,ul)_{\tt 0}
+                &*++[o][F=]{z_1} \ar@/^/[l]^{\tt 0} \ar@(dr,ur)_{\tt 1}
+}
+\qedhere
+\]
 \end{loesung}
 
 
