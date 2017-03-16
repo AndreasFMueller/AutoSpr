@@ -12,6 +12,7 @@
 #include <chrono>
 
 namespace Regex {
+
 void test(std::ostream & out, std::size_t const & numberOfRounds) {
 	std::string regexString { };
 	std::string searchString { };
@@ -31,4 +32,5 @@ void test(std::ostream & out, std::size_t const & numberOfRounds) {
 	auto end = std::chrono::high_resolution_clock::now();
 	out << "Runtime: " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count() << "ns" << '\n';
 }
-}
+
+} // namespace Regex
