@@ -651,7 +651,7 @@ Zeichen $i\in\Gamma$ sich unter dem Schreib-/Lesekopf befindet.
 Ein "Ubergang
 \[
 \entrymodifiers={++[o][F]}
-\xymatrix{
+\xymatrix@C+1pc{
 q\ar[r]^{a\to b,\text{R}}
 	&p
 }
@@ -661,7 +661,7 @@ Zwischenzustand, von dem aus das Codewort von $b$ geschrieben.
 wird. Wird $b$ als $b_1\dots b_l$ codiert, wird daraus also
 \[
 \entrymodifiers={++[o][F]}
-\xymatrix{
+\xymatrix@C+1pc{
 q_a\ar[r]^{.\to b_1,\text{R}}
 	&\ar[r]^{.\to b_2,\text{R}}
 		&p
@@ -670,7 +670,7 @@ q_a\ar[r]^{.\to b_1,\text{R}}
 Falls dem "Ubergang jedoch eine Kopfbewegung nach links folgt, wie in
 \[
 \entrymodifiers={++[o][F]}
-\xymatrix{
+\xymatrix@C+1pc{
 q\ar[r]^{a\to b,\text{L}}
 	&p
 }
@@ -678,7 +678,7 @@ q\ar[r]^{a\to b,\text{L}}
 dann muss diese ebenfalls noch angeh"angt werden:
 \[
 \entrymodifiers={++[o][F]}
-\xymatrix{
+\xymatrix@C+1pc{
 q_a\ar[r]^{.\to b_1,\text{R}}
 	&\ar[r]^{.\to b_2,\text{R}}
 		&\ar[r]^{.\to .,\text{L}}
@@ -1249,7 +1249,7 @@ der kontextfreien Grammatiken eine Aufz"ahlung der kontextfreien Sprachen.
 \item Stackautomaten sind nichtdeterministische endliche Automaten mit
 zus"atzlicher Beschriftung der "Ubergangspfeile. Trotzdem bleibt die
 Anzahl der Stackautomaten mit $k$ Zust"anden endlich, also ist die
-Menge der Stackautomaten abz"ahlbar.
+Menge der Stackautomaten abz"ahlbar unendlich.
 \item Turingmaschinen sind im wesentlichen deterministische endliche Automaten
 mit zus"atzlichen Beschriftungen der Pfeile. Wie in 1.~gibt es nur endlich
 viele Turingmaschinen mit $k$ Zust"anden, also ist die Menge der Turingmaschinen

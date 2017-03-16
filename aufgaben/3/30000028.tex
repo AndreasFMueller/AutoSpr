@@ -34,15 +34,20 @@ von der in der Vorlesung gezeigt wurde, dass sie nicht regul"ar
 ist. Dieser Widerspruch zeigt, dass auch $L$ nicht regul"ar sein kann.
 
 Man kann die Behauptung aber auch direkt mit dem Pumping-Lemma beweisen.
-Wir nehmen also an, die Sprache sei regul"ar. Sei $N$ die Pumping Length.
+\ding{182}
+Wir nehmen also an, die Sprache sei regul"ar.
+\ding{183}
+Sei $N$ die Pumping Length.
 Jedes gen"ugend lange Wort $x$ der Sprache kann dann geschrieben werden als $uvw$,
 wobei $|uv|\le N$, und alle W"orter $uv^nw\in L$, f"ur alle $n\ge 1$.
 Dem Teilwort $v$ entspricht eine Schleife im endlichen Automaten, der
 $L$ akzeptiert.
 
+\ding{184}
 Wir w"ahlen jetzt ein Wort $x=\texttt{0}^N\texttt{1}^{N+b}$.
 Es hat L"ange $2N+b$ und ist f"ur $b>0$ in $L$, es erf"ullt also die
 Voraussetzungen des Pumping Lemma.
+\ding{185}
 Also kann es als $x=uvw$ geschrieben werden, wobei dem Teilwort $v$ eine
 Schleife im Graphen des Automaten entspricht.
 Das Wort $v$ enth"alt nur Nullen, da $|uv|\le N$ sein muss.
@@ -50,6 +55,7 @@ Vergr"ossert man $b$, ist der erste Teil des Wortes davon unber"uhrt,
 es gilt also immer noch die gleiche Aufteilung in $u$ und $v$,
 $w$ wird um einige Einsen l"anger.
 
+\ding{186}
 Wir versuchen jetzt das Wort genau einmal aufzupumpen, also $uv^ky$ mit
 $k=2$ zu bilden m"ochten erreichen, dass dieses Wort nicht mehr in $L$
 ist.
@@ -63,5 +69,6 @@ wie Einsen vorhanden sein, es muss also $N+|v|=N+b$ gelten.
 Wenn man also $b=|v|$ w"ahlt, ist das einmal aufgepumpte Wort nicht
 mehr in $L$, im Widerspruch zur Behauptung des Pumping Lemma.
 
+\ding{187}
 Somit kann $L$ nicht regul"ar sein.
 \end{loesung}
