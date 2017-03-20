@@ -4,7 +4,9 @@
 #include <iosfwd>
 
 namespace Regex {
-void test(std::ostream & out, std::size_t const & numberOfRounds);
-}
+
+void test(std::ostream & out, size_t const & numberOfRounds);
+
+} // namespace Regex
 
 #endif /* REGEX_H_ */
