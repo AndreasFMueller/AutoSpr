@@ -40,13 +40,13 @@ dass der Input auf den vom Prozess erzeugten String passt.
 Ein deterministischer Prozess muss stattdessen vom Input kontrolliert werden.
 Das Input-Zeichen oder der aktuelle Stackinhalt m"ussen bestimmen, was
 als n"achstes zu geschehen hat. Wie das erreicht werden k"onnte, kann man am
-Beispiel der Sprache $L=\{0^n1^n|n> 0\}$ erahnen, welche die
+Beispiel der Sprache $L=\{\texttt{0}^n\texttt{1}^n|n> 0\}$ erahnen, welche die
 Grammatik
 \begin{align}
-w&\rightarrow 0\;w\;1\tag{1}\\
-&\rightarrow 01\tag{2}
+w&\rightarrow \texttt{0}\;w\;\texttt{1}\tag{1}\\
+&\rightarrow \texttt{01}\tag{2}
 \end{align}
-hat. Ein Parser k"onnte bei der Analyse des Wortes $000111$ wie folgt vorgehen.
+hat. Ein Parser k"onnte bei der Analyse des Wortes $\texttt{000111}$ wie folgt vorgehen.
 Er schiebt Zeichen um Zeichen vom Input auf den Stack. Sobald
 er erkennt, dass auf dem Stack eine Folge von Zeichen liegt, die auf die rechte
 Seite einer Regel passt, wendet er die Regel an, reduziert das Wort zu einer
@@ -55,7 +55,7 @@ dargestellt.
 
 \begin{table}[H]
 \input{bison/tabelle1.tex}
-\caption{Vorgehen eins Shift-Reduce-Parser am Beispiel der Sprache $L=\{0^n1^n|n>0\}$
+\caption{Vorgehen eins Shift-Reduce-Parser am Beispiel der Sprache $L=\{\texttt{0}^n\texttt{1}^n|n>0\}$
 \label{shiftreduce}}
 \end{table}
 Offenbar konnte das Wort durch systematisches Anwenden der Regeln aus dem Input
@@ -76,15 +76,15 @@ Ein Stackautomat kann sich nur dann an den den Stackinhalt unterhalb des oberste
 Stackelementes erinnern, wenn er diese Information in Zust"anden codieren kann.
 Im Beispiel kamen folgende relevanten Stackinhalte vor 
 \[
-0
+\texttt{0}
 \qquad
-01
+\texttt{01}
 \qquad
-0w
+\texttt{0}w
 \qquad
-0w1
+\texttt{0}w\texttt{1}
 \]
-Die Inhalte $01$ und $0w1$ haben die Anwendung einer wohl bestimmten
+Die Inhalte $\texttt{01}$ und $\texttt{0}w\texttt{1}$ haben die Anwendung einer wohl bestimmten
 Reduktionsregel
 hervorgerufen, die anderen zwei waren nur Vorstufen dazu.
 Fasst man diese W"orter
@@ -103,13 +103,13 @@ Reduktionsschritt in Frage kommen k"onnten.
 Wir markieren innerhalb einer Regel die ``Position des Lesers'' mit
 einem Punkt, wir erhalten dann aus der Grammatik
 \begin{align}
-\cdot\;0\;w\;1&\leftarrow w\tag{1}\\
-0\;\cdot\;w\;1&\leftarrow w\tag{1}\\
-0\;w\;\cdot\;1&\leftarrow w\tag{1}\\
-0\;w\;1\;\cdot&\leftarrow w\tag{1}\\
-\cdot\;0\;1&\leftarrow w\tag{2}\\
-0\;\cdot\;1&\leftarrow w\tag{2}\\
-0\;1\;\cdot&\leftarrow w\tag{2}
+\cdot\;\texttt{0}\;w\;\texttt{1}&\leftarrow w\tag{1}\\
+\texttt{0}\;\cdot\;w\;\texttt{1}&\leftarrow w\tag{1}\\
+\texttt{0}\;w\;\cdot\;\texttt{1}&\leftarrow w\tag{1}\\
+\texttt{0}\;w\;\texttt{1}\;\cdot&\leftarrow w\tag{1}\\
+\cdot\;\texttt{0}\;\texttt{1}&\leftarrow w\tag{2}\\
+\texttt{0}\;\cdot\;\texttt{1}&\leftarrow w\tag{2}\\
+\texttt{0}\;\texttt{1}\;\cdot&\leftarrow w\tag{2}
 \end{align}
 Der Teil links vom $\cdot$ zeigt an, was bereits gelesen wurde,
 rechts davon findet
@@ -132,67 +132,67 @@ Hilfe eines Stackautomaten durchf"uhrbar sind. Die einfachste ist nat"urlich
 die Shift-Ope\-ration. Da diese jedoch abh"angig ist vom aktuellen Element zuoberst
 auf dem Stack, braucht es daf"ur zwei Schritte:
 \[
-\boxed{0}\xrightarrow{0,\scalebox{0.7}{\boxed{0}$\rightarrow$\boxed{0}}}\cdot
-\xrightarrow{\varepsilon,\varepsilon\rightarrow\scalebox{0.7}{\boxed{0}}}\boxed{0}
+\boxed{\texttt{0}}\xrightarrow{\texttt{0},\scalebox{0.7}{\boxed{\texttt{0}}$\rightarrow$\boxed{\texttt{0}}}}\cdot
+\xrightarrow{\varepsilon,\varepsilon\rightarrow\scalebox{0.7}{\boxed{\texttt{0}}}}\boxed{\texttt{0}}
 \]
 oder
 \[
-\boxed{0}\xrightarrow{1,\scalebox{0.7}{\boxed{0}$\rightarrow$\boxed{0}}}\cdot
-\xrightarrow{\varepsilon,\varepsilon\rightarrow\scalebox{0.7}{\boxed{01}}}\boxed{01},
+\boxed{\texttt{0}}\xrightarrow{\texttt{1},\scalebox{0.7}{\boxed{\texttt{0}}$\rightarrow$\boxed{\texttt{0}}}}\cdot
+\xrightarrow{\varepsilon,\varepsilon\rightarrow\scalebox{0.7}{\boxed{\texttt{01}}}}\boxed{\texttt{01}},
 \]
 in beiden F"allen wird ein neuer Zwischenzustand ben"otigt, symbolisiert mit dem Zeichen
 `$\cdot$'.
 
 Die Reduktion mit der Regel 2 muss zwei Zust"ande vom Stack entfernen.
-Wenn anschliessend der Zustand $\boxed{0}$ auf dem Stack liegt, ist der
-n"achste Zustand $\boxed{0w}$. Dies kann man mit folgenden "Uberg"angen
+Wenn anschliessend der Zustand $\boxed{\texttt{0}}$ auf dem Stack liegt, ist der
+n"achste Zustand $\boxed{\texttt{0}w}$. Dies kann man mit folgenden "Uberg"angen
 realisieren:
 \[
-\boxed{01}
-\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{01}}\to\varepsilon}
+\boxed{\texttt{01}}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{\texttt{01}}}\to\varepsilon}
 \cdot
-\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0}}\to\varepsilon}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{\texttt{0}}}\to\varepsilon}
 \cdot
-\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0}}\to\scalebox{0.7}{\boxed{0}}}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{\texttt{0}}}\to\scalebox{0.7}{\boxed{\texttt{0}}}}
 \cdot
-\xrightarrow{\varepsilon,\varepsilon\to\scalebox{0.7}{\boxed{0w}}}
-\boxed{0w}
+\xrightarrow{\varepsilon,\varepsilon\to\scalebox{0.7}{\boxed{\texttt{0}w}}}
+\boxed{\texttt{0}w}
 \]
 Analog kann die Reduktion mit der Regel 1 durchgef"uhrt werden:
 \[
-\boxed{0w1}
-\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0w1}}\to\varepsilon}
+\boxed{\texttt{0}w\texttt{1}}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{\texttt{0}w\texttt{1}}}\to\varepsilon}
 \cdot
-\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0w}}\to\varepsilon}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{\texttt{0}w}}\to\varepsilon}
 \cdot
-\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0}}\to\varepsilon}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{\texttt{0}}}\to\varepsilon}
 \cdot
-\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0}}\to\scalebox{0.7}{\boxed{0}}}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{\texttt{0}}}\to\scalebox{0.7}{\boxed{\texttt{0}}}}
 \cdot
-\xrightarrow{\varepsilon,\varepsilon\to\scalebox{0.7}{\boxed{0w}}}
-\boxed{0w}
+\xrightarrow{\varepsilon,\varepsilon\to\scalebox{0.7}{\boxed{\texttt{0}w}}}
+\boxed{\texttt{0}w}
 \]
 Wir k"onnen diese "Uberg"ange etwas einfacher schreiben, wenn wir in der
 Beschriftung der Pfeile erlauben, mehrere Operationen zusammenzufassen.
 Die Shift-Ope\-rationen werden dann zu
 \begin{gather*}
-\boxed{0}\xrightarrow{0,\scalebox{0.7}{\boxed{0}$\rightarrow$\boxed{0}\,\boxed{0}}}\boxed{0}
+\boxed{\texttt{0}}\xrightarrow{\texttt{0},\scalebox{0.7}{\boxed{\texttt{0}}$\rightarrow$\boxed{\texttt{0}}\,\boxed{\texttt{0}}}}\boxed{\texttt{0}}
 \\
-\boxed{0}\xrightarrow{1,\scalebox{0.7}{\boxed{0}$\rightarrow$\boxed{0}\,\boxed{01}}}\boxed{01}
+\boxed{\texttt{0}}\xrightarrow{\texttt{1},\scalebox{0.7}{\boxed{\texttt{0}}$\rightarrow$\boxed{\texttt{0}}\,\boxed{\texttt{01}}}}\boxed{\texttt{01}}
 \end{gather*}
 die Reduktionsoperationen zu
 \begin{gather*}
-\boxed{01}
-\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0}\,\boxed{01}}\to\varepsilon}
+\boxed{\texttt{01}}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{\texttt{0}}\,\boxed{\texttt{01}}}\to\varepsilon}
 \cdot
-\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0}}\to\scalebox{0.7}{\boxed{0}\,\boxed{0w}}}
-\boxed{0w}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{\texttt{0}}}\to\scalebox{0.7}{\boxed{\texttt{0}}\,\boxed{\texttt{0}w}}}
+\boxed{\texttt{0}w}
 \\
-\boxed{0w1}
-\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0}\,\boxed{0w}\,\boxed{0w1}}\to\varepsilon}
+\boxed{\texttt{0}w\texttt{1}}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{\texttt{0}}\,\boxed{\texttt{0}w}\,\boxed{\texttt{0}w\texttt{1}}}\to\varepsilon}
 \cdot
-\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{0}}\to\scalebox{0.7}{\boxed{0}\,\boxed{0w}}}
-\boxed{0w}
+\xrightarrow{\varepsilon,\scalebox{0.7}{\boxed{\texttt{0}}}\to\scalebox{0.7}{\boxed{\texttt{0}}\,\boxed{\texttt{0}w}}}
+\boxed{\texttt{0}w}
 \end{gather*}
 In diesem einfachen Bespiel gibt es nur eine M"oglichkeit f"ur den zweiten
 Schritt, in einer komplexeren Grammatik k"onnte nach der Reduktion jedoch
@@ -214,14 +214,14 @@ entscheidet man sich immer entweder f"ur einen Reduktionsschritt
 unabh"angig vom Input, oder f"ur eine Schiebeoperation, wobei
 nicht alle Input-Zeichen akzeptabel sind, und verschiedene Eingabezeichen
 zu verschiedenen Ausgabezust"anden f"uhren k"onnen. Das Beispiel
-$L=\{0^n1^n|n>0\}$ f"uhrt auf Tabelle \ref{parsetable}.
+$L=\{\texttt{0}^n\texttt{1}^n|n>0\}$ f"uhrt auf Tabelle \ref{parsetable}.
 \begin{table}[H]
 \input{bison/tabelle3.tex}
-\caption{Parsertabelle f"ur $L=\{0^n1^n|n>0\}$\label{parsetable}}
+\caption{Parsertabelle f"ur $L=\{\texttt{0}^n\texttt{1}^n|n>0\}$\label{parsetable}}
 \end{table}
 Die Tabelle ist wie folgt zu lesen. In Spalten 3 und 4 wird jeweils
 angegeben, was f"ur eine Aktion ausgef"uhrt werden soll, wenn das
-Zeichen $0$ bzw.~$1$ vom Input gelesen wird. Ein s$n$ bedeutet, dass
+Zeichen $\texttt{0}$ bzw.~$\texttt{1}$ vom Input gelesen wird. Ein s$n$ bedeutet, dass
 eine Schiebeoperation ausgef"uhrt wird, und anschliessend in den
 Zustand $n$ gewechselt wird. Dagegen bedeutet r$n$,
 dass die Reduktionsregel mit der Nummer $n$ angewendet wird.
@@ -255,16 +255,16 @@ Sind mehrere Operationen m"oglich, spricht man von einem Konflikt.
 In der folgenden Grammatik ist nicht klar, welche der beiden Reduktionsregeln
 angewendet werden soll
 \begin{align*}
-A&\rightarrow 01\\
-B&\rightarrow 01
+A&\rightarrow \texttt{01}\\
+B&\rightarrow \texttt{01}
 \end{align*}
 
 \subsubsection{Shift-Reduce Konflikt}
 \index{Konflikt!shift-reduce}
 In der folgenden Grammatik ist nach dem Lesen einer $1$ nicht klar
 \begin{align*}
-A&\rightarrow 1\tag{1}\\
-A&\rightarrow 1\,A\tag{2}
+A&\rightarrow \texttt{1}\tag{1}\\
+A&\rightarrow \texttt{1}\,A\tag{2}
 \end{align*}
 ob man die Regel (1) anwenden soll (Reduce), oder ob man
 in der Hoffnung, irgendwann ein $A$ zu finden, weiterlesen
@@ -272,8 +272,8 @@ soll. Diese Frage kann offenbar nur dadurch entschieden werden, dass
 man vorausschaut. Dies ist in einem $LR(0)$-Parser nicht erlaubt.
 Formuliert man obige Grammatik jedoch mit den Regeln
 \begin{align*}
-A&\rightarrow 1\tag{1}\\
-A&\rightarrow A\,1\tag{2}
+A&\rightarrow \texttt{1}\tag{1}\\
+A&\rightarrow A\,\texttt{1}\tag{2}
 \end{align*}
 kann die Regel (1) jederzeit angewendet werden, der Konflikt ist
 weggefallen. 

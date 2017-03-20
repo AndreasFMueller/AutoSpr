@@ -10,6 +10,7 @@ TEXFILES = cfg.tex grundlagen.tex komplexitaet.tex regulaer.tex \
 	skript.tex sprachen.tex turing.tex entscheidbarkeit.tex \
 	einleitung.tex vollstaendig.tex realworldparser.tex karp.tex \
 	sudoku.tex algorithmen.tex ausfuellraetsel.tex \
+	bison/tabelle2.tex bison/tabelle3.tex \
 	references.bib
 
 images/timestamp:
