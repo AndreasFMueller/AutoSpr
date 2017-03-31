@@ -775,7 +775,7 @@ Um das leere Wort zu erzeugen, muss die Regel $S\to\varepsilon$
 angewendet werden, falls sie vorhanden ist.
 
 Ein Wort $w$ mit L"ange $|w|=1$ kann genau dann aus der Variablen 
-$A$ abgeleitet werden, wenn es eine Regel $S\to a$ gibt. 
+$A$ abgeleitet werden, wenn es eine Regel $A\to a$ gibt. 
 Es kann h"ochstens $|\Sigma|$ solche Regeln geben.
 
 Um ein Wort der L"ange $|w|>1$ zu erzeugen, muss mindestens eine
@@ -1187,7 +1187,7 @@ Input und des Stacks nach jedem "Ubergang des Stackautomaten.
                          &{\tt 0011}&$q_0$&\\
                          &{\tt 0011}&$S$  &${\tt \$}$\\
                          &{\tt 0011}&$R$  &$S\quad {\tt \$}$\\
-(\ref{beispiel-0s1regel})&{\tt 0011}&$q_1$&{\tt 1}\\
+(\ref{beispiel-0s1regel})&{\tt 0011}&$q_1$&${\tt 1}\quad{\tt \$}$\\
 (\ref{beispiel-0s1regel})&          &$q_2$&$S\quad {\tt 1}\quad{\tt \$}$\\
 (\ref{beispiel-0s1regel})&          &$R$  &${\tt 0}\quad S\quad {\tt 1}\quad{\tt \$}$\\
 (\ref{beispiel-tregel})  &{\tt 011} &$R$  &$S\quad {\tt 1}\quad{\tt \$}$\\
