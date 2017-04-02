@@ -21,9 +21,12 @@ Kann ein Stackautomat diese Sprache erkennen?
 Ein Stackautomat kann kontextfreie Sprachen, diese Sprache ist aber nicht
 kontextfrei, wie man mit dem Pumping-Lemma f"ur kontextfreie
 Sprachen zeigen kann.
+\ding{182}~%
 Dazu nehmen wir an, $L$ sei kontextfrei.
+\ding{183}~%
 Dann m"usste es eine Zahl $N$, die Pumping Length, geben, mit der Eigenschaft,
 dass W"orter mit mindestens L"ange $N$ die Pumpeigenschaft haben.
+\ding{184}~%
 Wir w"ahlen das Wort
 \[
 w=
@@ -33,9 +36,11 @@ w=
 \texttt{b}^{2N}
 \in L.
 \]
+\ding{185}~%
 Dann gibt es eine Zerlegung des Wortes $w$ in f"unf Teile $w=uvxyz$ mit
 $|vxy|\le N$ und $|vy|>0$, so dass $uv^kxy^kz\in L$ f"ur jedes $k\ge 0$.
 
+\ding{186}~%
 Pumpt man ab, d.~h.~setzt man $k=0$, dann werden zwar einige \texttt{a}
 und \texttt{b} entfernt, aber weil wir die \texttt{a}- und \texttt{b}-Bl"ocke
 so lange gew"ahlt haben, besteht das Wort immer noch nur aus
@@ -46,6 +51,7 @@ bzw.~\texttt{b}-Teile gleich lang sein, beim Abpumpen m"ussen also
 gleich viele Buchstaben aus jedem Teil entfernt worden sein.
 Die beiden \texttt{a}-Teile sind aber zu weit auseinander, Abpumpen
 kann nur aus einem Buchstaben entfernen, das Gleiche gilt f"ur \texttt{b}.
+\ding{187}~%
 Dieser Widerspruch zeigt, dass die Annahme, $L$ sei kontextfrei, nicht
 zu halten ist.
 \end{loesung}
