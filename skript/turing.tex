@@ -281,7 +281,7 @@ $\delta(q_1,a)=(q_2,b,\text{L})$
 
 \subsection{Beispiel}
 Wir konstruieren eine Turingmaschine, welche die bereits als weder regul"ar
-noch kontextfrei erkannte Sprache $L=\{0^{2^n}\;|\; n\in\mathbb N\}$
+noch kontextfrei erkannte Sprache $L=\{\texttt{0}^{2^n}\;|\; n\in\mathbb N\}$
 erkennt.
 
 Zweierpotenzen kann man daran erkennen, dass man die Zahl ohne
@@ -291,32 +291,32 @@ nachbilden. Die Maschine muss also folgendes tun:
 
 Auf dem Input $w$:
 \begin{compactenum}
-\item Fahre von links nach rechts "uber das Band und streiche jedes zweite $0$.
-\item Falls im Schritt 1 das Band genau eine $0$ enthielt, {\it akzeptiere}.
-\item Falls im Schritt 1 das Band eine ungerade Zahl und mehr als ein $0$
+\item Fahre von links nach rechts "uber das Band und streiche jedes zweite $\texttt{0}$.
+\item Falls im Schritt 1 das Band genau eine $\texttt{0}$ enthielt, {\it akzeptiere}.
+\item Falls im Schritt 1 das Band eine ungerade Zahl und mehr als ein $\texttt{0}$
 enthielt, {\it verwerfe}.
 \item Fahre mit dem Kopf zur"uck zum linken Ende des Bandes
 \item Weiter bei Schritt 1
 \end{compactenum}
 In jedem Durchgang wird die Anzahl der Nullen halbiert, es sei denn,
 sie war nicht gerade. In diesem Fall bleibt nach dem Durchgang eine
-ungerade Anzahl $0$ auf dem Band stehen, was beim darauffolgenden Durchgang
+ungerade Anzahl $\texttt{0}$ auf dem Band stehen, was beim darauffolgenden Durchgang
 in Schritt~3 erkannt wird. Geht die Division immer auf, bleibt am Schluss
-nur genau eine $0$ stehen, was im Schritt~2 erkannt wird. Daher funktioniert
+nur genau eine $\texttt{0}$ stehen, was im Schritt~2 erkannt wird. Daher funktioniert
 dieser Algorithmus.
 
 Um den Algorithmus mit einer Turing-Maschine zu realisieren, brauchen wir
 ein neues Zeichen {\tt x}, mit dem wir gestrichene Zeichen markieren
-k"onnen. Es ist also $\Gamma = \{0,{\tt x},\blank\}$.
+k"onnen. Es ist also $\Gamma = \{\texttt{0},{\tt x},\blank\}$.
 Ausserdem brauchen wir
-Zust"ande, mit denen man die Parit"at der Anzahl $0$ bestimmen kann, und
+Zust"ande, mit denen man die Parit"at der Anzahl $\texttt{0}$ bestimmen kann, und
 mit denen man die Aktivit"aten in Schritt 4 von den anderen unterscheiden
 kann. Schritt $4$ wird zum Beispiel implementiert durch das
 Zustandsdiagramm
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
-{}\ar@(ul,ur)^{\genfrac{}{}{0pt}{1}{0\to 0,\text{L}}{{\tt x}\to{\tt x},\text{L}}}
+{}\ar@(ul,ur)^{\genfrac{}{}{0pt}{1}{\texttt{0}\to \texttt{0},\text{L}}{{\tt x}\to{\tt x},\text{L}}}
 \ar[r]^{\blank\to\blank,\text{R}}
 	&
 }
@@ -327,9 +327,9 @@ Jede zweite Null streichen wird implementiert durch
 \xymatrix{
 *+\txt{}\ar[d]
 \\
-\ar@/^/[r]^{0\to{\tt x},\text{R}}
+\ar@/^/[r]^{\texttt{0}\to{\tt x},\text{R}}
 \ar@(ul,dl)_{\tt x\to\tt x,\text{R}}
-	&\ar@/^/[l]^{0\to 0,\text{R}}
+	&\ar@/^/[l]^{\texttt{0}\to \texttt{0},\text{R}}
          \ar@(ur,dr)^{\tt x\to\tt x,\text{R}}
 	 \ar[d]^{\blank\to\blank,?}
 \\
@@ -337,15 +337,15 @@ Jede zweite Null streichen wird implementiert durch
 	&{}
 }
 \]
-Dass akzeptiert werden soll, wenn nach dem Ersetzen einer $0$ durch
-ein {\tt x} keine weiteren $0$ mehr gefunden werden k"onnen, kann durch
+Dass akzeptiert werden soll, wenn nach dem Ersetzen einer $\texttt{0}$ durch
+ein {\tt x} keine weiteren $\texttt{0}$ mehr gefunden werden k"onnen, kann durch
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
-\ar[r]^{0\to{\tt x},\text{R}}
+\ar[r]^{\texttt{0}\to{\tt x},\text{R}}
 	&{} \ar@(dl,dr)_{{\tt x}\to{\tt x},\text{R}}
 	    \ar[r]^{\blank\to\blank,\text{R}}
-		&*++[o][F=]{q_a}
+		&*++[o][F=]{q_{\text{accept}}}
 }
 \]
 ausgedr"uckt werden. Die Schleife beim mittleren Zustand
@@ -353,8 +353,8 @@ bildet ab, dass {\tt x}-Zeichen "ubersprungen werden sollen.
 Mit solchen Elementen k"onnen wir die Turingmaschine jetzt schrittweise
 aufbauen.
 
-Zun"achst stellen wir sicher, dass der Input tats"achlich aus Nullen
-besteht:
+Zun"achst stellen wir sicher, dass der Input tats"achlich mit \texttt{0}
+beginnt:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -362,10 +362,10 @@ besteht:
 \\
 {q_1}\ar[d]_{\genfrac{}{}{0pt}{1}{\blank\to\blank,\text{R}}{{\tt x}\to{\tt x},\text{R}}}
 \\
-*++[o][F=]{q_r}
+*++[o][F=]{q_\text{reject}}
 }
 \]
-Jetzt h"angen wir das Segment an, welches pr"uft, ob es noch genau ein $0$
+Jetzt h"angen wir das Segment an, welches pr"uft, ob es noch genau ein $\texttt{0}$
 auf dem Band hat:
 \[
 \entrymodifiers={++[o][F]}
@@ -373,12 +373,12 @@ auf dem Band hat:
 *+\txt{}\ar[d]
 \\
 {q_1}\ar[d]_{\genfrac{}{}{0pt}{1}{\blank\to\blank,\text{R}}{{\tt x}\to{\tt x},\text{R}}}
-	\ar[r]^{0\to{\tt x},\text{R}}
+	\ar[r]^{\texttt{0}\to{\tt x},\text{R}}
 	&{q_2}\ar[d]^{\blank\to\blank,\text{R}}
               \ar@(u,ul)_{{\tt x}\to {\tt x},\text{R}}
 \\
-*++[o][F=]{q_r}
-	&*++[o][F=]{q_a}
+*++[o][F=]{q_{\text{reject}}}
+	&*++[o][F=]{q_\text{accept}}
 }
 \]
 Falls dies nicht zutrifft, m"ussen weitere Nullen weggestrichen werden,
@@ -390,23 +390,23 @@ muss. Daf"ur braucht es die beiden Zust"ande $q_3$ und $q_4$:
 *+\txt{}\ar[d]
 \\
 {q_1}\ar[d]_{\genfrac{}{}{0pt}{1}{\blank\to\blank,\text{R}}{{\tt x}\to{\tt x},\text{R}}}
-	\ar[r]^{0\to\blank,\text{R}}
+	\ar[r]^{\texttt{0}\to\blank,\text{R}}
 	&{q_2}\ar[d]_{\blank\to\blank,\text{R}}
-	      \ar[r]^{0\to{\tt x},\text{R}}
+	      \ar[r]^{\texttt{0}\to{\tt x},\text{R}}
               \ar@(u,ul)_{{\tt x}\to {\tt x},\text{R}}
 		&{q_3}\ar@(u,r)^{{\tt x}\to{\tt x},\text{R}}
-		      \ar@/^/[d]^{0\to 0,\text{R}}
+		      \ar@/^/[d]^{\texttt{0}\to \texttt{0},\text{R}}
 \\
-*++[o][F=]{q_r}
-	&*++[o][F=]{q_a}
-		&{q_4}\ar@/^/[u]^{0\to {\tt x},\text{R}}
+*++[o][F=]{q_\text{reject}}
+	&*++[o][F=]{q_\text{accept}}
+		&{q_4}\ar@/^/[u]^{\texttt{0}\to {\tt x},\text{R}}
 		      \ar@(d,r)_{{\tt x}\to{\tt x},\text{R}}
 }
 \]
-Wenn die Maschine nach dem Abarbeiten aller 0 und {\tt x} auf einen
+Wenn die Maschine nach dem Abarbeiten aller \texttt{0} und {\tt x} auf einen
 neuen Blank \textvisiblespace\ trifft, ist sie entweder im Zustand
 $q_3$ oder in $q_4$. Im letzten Fall hat sie ein ungerade Anzahl
-von 0 gefunden, gem"ass Schritt 3 des Algorithmus muss also verworfen
+von \texttt{0} gefunden, gem"ass Schritt 3 des Algorithmus muss also verworfen
 werden:
 \[
 \entrymodifiers={++[o][F]}
@@ -414,16 +414,16 @@ werden:
 *+\txt{}\ar[d]
 \\
 {q_1}\ar[d]_{\genfrac{}{}{0pt}{1}{\blank\to\blank,\text{R}}{{\tt x}\to{\tt x},\text{R}}}
-	\ar[r]^{0\to\blank,\text{R}}
+	\ar[r]^{\texttt{0}\to\blank,\text{R}}
 	&{q_2}\ar[d]_{\blank\to\blank,\text{R}}
-	      \ar[r]^{0\to{\tt x},\text{R}}
+	      \ar[r]^{\texttt{0}\to{\tt x},\text{R}}
               \ar@(u,ul)_{{\tt x}\to {\tt x},\text{R}}
 		&{q_3}\ar@(u,r)^{{\tt x}\to{\tt x},\text{R}}
-		      \ar@/^/[d]^{0\to 0,\text{R}}
+		      \ar@/^/[d]^{\texttt{0}\to \texttt{0},\text{R}}
 \\
-*++[o][F=]{q_r}
-	&*++[o][F=]{q_a}
-		&{q_4}\ar@/^/[u]^{0\to {\tt x},\text{R}}
+*++[o][F=]{q_\text{reject}}
+	&*++[o][F=]{q_\text{accept}}
+		&{q_4}\ar@/^/[u]^{\texttt{0}\to {\tt x},\text{R}}
 		      \ar@(d,r)_{{\tt x}\to{\tt x},\text{R}}
 		      \ar@/^20pt/[ll]^{\blank\to\blank,\text{R}}
 }
@@ -436,23 +436,23 @@ man mit Hilfe eines weitere Zustands $q_5$.
 \xymatrix{
 *+\txt{}\ar[d]
 	&*+\txt{}
-		&{q_5}\ar@(ul,ur)^{\genfrac{}{}{0pt}{1}{0\to 0,\text{L}}{{\tt x}\to {\tt x},\text{L}}}
+		&{q_5}\ar@(ul,ur)^{\genfrac{}{}{0pt}{1}{\texttt{0}\to \texttt{0},\text{L}}{{\tt x}\to {\tt x},\text{L}}}
 		      \ar[dl]_{\blank\to\blank,\text{R}}
 \\
 {q_1}\ar[d]_{\genfrac{}{}{0pt}{1}{\blank\to\blank,\text{R}}{{\tt x}\to{\tt x},\text{R}}}
-	\ar[r]^{0\to\blank,\text{R}}
+	\ar[r]^{\texttt{0}\to\blank,\text{R}}
 	&{q_2}\ar[d]_{\blank\to\blank,\text{R}}
-	      \ar[rr]^{0\to{\tt x},\text{R}}
+	      \ar[rr]^{\texttt{0}\to{\tt x},\text{R}}
               \ar@(u,ul)_{{\tt x}\to {\tt x},\text{R}}
 		&*+\txt{}
 			&{q_3}\ar@(u,r)^{{\tt x}\to{\tt x},\text{R}}
-			      \ar@/^/[d]^{0\to 0,\text{R}}
+			      \ar@/^/[d]^{\texttt{0}\to \texttt{0},\text{R}}
 			      \ar[ul]_{\blank\to\blank,\text{L}}
 \\
-*++[o][F=]{q_r}
-	&*++[o][F=]{q_a}
+*++[o][F=]{q_\text{reject}}
+	&*++[o][F=]{q_\text{accept}}
 		&*+\txt{}
-			&{q_4}\ar@/^/[u]^{0\to {\tt x},\text{R}}
+			&{q_4}\ar@/^/[u]^{\texttt{0}\to {\tt x},\text{R}}
 			      \ar@(d,r)_{{\tt x}\to{\tt x},\text{R}}
 			      \ar@/^20pt/[lll]^{\blank\to\blank,\text{R}}
 }
@@ -562,19 +562,19 @@ die Daten enthalten:
 \subsection{Bandalphabet}
 Auch das Bandalphabet hat keinen Einfluss auf die M"oglichkeiten einer
 Turingmaschine. Die Festplatte eines modernen Computers ist eigentlich
-ein ``Band'' mit Bandalphabet $\{0,1,\blank\}$, erst zus"atzliche
+ein ``Band'' mit Bandalphabet $\{\texttt{0},1,\blank\}$, erst zus"atzliche
 Logik im Controller macht daraus einzelne Bytes, also ein gr"ossers
 Bandalphabet.
 
 \begin{satz}
 Jede Turingmaschine mit Bandalphabet $\Gamma$ kann auf einer Turingmaschine
-mit Bandalphabet $\{0,1,\blank\}$ simuliert werden.
+mit Bandalphabet $\{\texttt{0},1,\blank\}$ simuliert werden.
 \end{satz}
 
 \begin{proof}[Beweis]
 Sei also $M$ eine Turingmaschine mit Bandalphabet $\Gamma$ gegeben. Wir
 wollen daraus eine Turingmaschine $M'$ mit dem Alphabet
-$\Gamma_0= \{0,1,\blank\}$ konstruieren, die dieselbe
+$\Gamma_0= \{\texttt{0},\texttt{1},\blank\}$ konstruieren, die dieselbe
 Sprache erkennt. Dazu m"ussen wir die Zeichen aus $\Gamma$ als
 Bitfolgen codieren, eine beliebige injektive Abbildung
 \[
@@ -582,8 +582,8 @@ e\colon\Gamma\to \Gamma_0^l
 \]
 l"ost dieses Problem, eine solche existiert, wenn $2^l>|\Gamma|$.
 Zus"atzlich k"onnen
-wir verlangen, dass $e(x)\in \{0,1\}^l$, die Zeichen $\ne\blank$
-also ausschliesslich mit $0$ und $1$ codiert werden, und
+wir verlangen, dass $e(x)\in \{\texttt{0},\texttt{1}\}^l$, die Zeichen $\ne\blank$
+also ausschliesslich mit $\texttt{0}$ und $\texttt{1}$ codiert werden, und
 $e(\blank)=(\blank,\dots,\blank)$.
 
 Mit der Codierung $e$ wird der Bandinhalt jetzt umcodiert. Der Inhalt
@@ -593,7 +593,7 @@ des Bandes von $M'$ verteilt, die mit den einzelnen Komponenten
 von $e(x)$ gef"ullt werden.
 
 In den folgenden Darstellungen verwenden wir der gr"osseren
-"Ubersichtlichkeit halber $\Gamma=\{0,1,2,3\}$, wobei eines der
+"Ubersichtlichkeit halber $\Gamma=\{\texttt{0},\texttt{1},2,3\}$, wobei eines der
 Zeichen die Rolle von $\blank$ "ubernimmt. Ausserdem ist $l=2$.
 
 Jetzt m"ussen auch die "Uberg"ange in $M$
@@ -610,14 +610,14 @@ und den Kopf wieder auf den Anfang des Codewortes zur"uckf"ahrt:
 *+\txt{}
 	&*+\txt{}
 		&*+\txt{}
-			&q\ar[dll]_{0\to 0,\text{R}} \ar[drr]^{1\to 1,\text{R}}
+			&q\ar[dll]_{\texttt{0}\to \texttt{0},\text{R}} \ar[drr]^{\texttt{1}\to \texttt{1},\text{R}}
 \\
 *+\txt{}
-	&\ar[dl]_{0\to 0,\text{R}} \ar[dr]^{1\to 1,\text{R}}
+	&\ar[dl]_{\texttt{0}\to \texttt{0},\text{R}} \ar[dr]^{\texttt{1}\to \texttt{1},\text{R}}
 		&*+\txt{}
 			&*+\txt{}
 				&*+\txt{}
-					&\ar[dl]_{0\to 0,\text{R}} \ar[dr]^{1\to 1,\text{R}}
+					&\ar[dl]_{\texttt{0}\to \texttt{0},\text{R}} \ar[dr]^{\texttt{1}\to \texttt{1},\text{R}}
 						&*+\txt{}
 \\
 \ar[d]^{.\to .,\text{L}}
@@ -656,7 +656,7 @@ q\ar[r]^{a\to b,\text{R}}
 	&p
 }
 \]
-muss jetzt "ubersetzt werden in einen "Ubergang von $q_a$ in einen
+muss jetzt "ubersetzt werden in einen "Ubergang von $q_\text{accept}$ in einen
 Zwischenzustand, von dem aus das Codewort von $b$ geschrieben.
 wird. Wird $b$ als $b_1\dots b_l$ codiert, wird daraus also
 \[
@@ -689,7 +689,7 @@ q_a\ar[r]^{.\to b_1,\text{R}}
 }
 \]
 Diese Konstruktion zeigt, dass sich die Turingmaschine $M$ auf einer
-Turingmaschine $M'$ mit Bandalphabet $\{0,1,\blank\}$ simulieren
+Turingmaschine $M'$ mit Bandalphabet $\{\texttt{0},\texttt{1},\blank\}$ simulieren
 l"asst.
 \end{proof}
 
