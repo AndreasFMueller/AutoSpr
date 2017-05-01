@@ -13,6 +13,14 @@ Zeigen sie, dass
 \]
 
 \begin{loesung}
+Zunächst müssen wir sicherstellen, dass das Problem tatsächlich
+entscheidbar sind.
+Ist $N$ die Zahl der Felder, dann gibt es $2^N$ Bombenkonfigurationen.
+Diese können in endlicher Zeit durchprobiert werden, also ist das
+Problem entscheidbar.
+
+Um herauszufinden, ob das Problem in NP ist, konstruieren wir
+einen polynomiellen Verifizierer.
 Als L"osungszertifikat brauchen wir die Verteilung der Bomben.
 Zur Verifikation m"ussen wir dann die Anzahl der Bomben auf den
 Nachbarfeldern z"ahlen, was in Laufzeit $O(n^2)$ m"oglich ist,
