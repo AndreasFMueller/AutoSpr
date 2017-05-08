@@ -1,6 +1,12 @@
 Konstruieren Sie eine Reduktion
 $\textsl{SUDOKU}\le_P\textsl{VERTEX-COLORING}$.
 
+\begin{hinweis}
+Es reicht, die Reduktion für den Fall $n=2$ durchzuführen, also für
+das $2^2\times 2^2$-Sudoku, wenn daraus klar
+wird, wie die Verallgemeinerung für grösser $n$ zu handhaben ist.
+\end{hinweis}
+
 \begin{loesung}
 Zu einem Sudoku-R"atsel konstruieren wir einen Graphen wie folgt:
 Jedes Feld des Sudoku-R"atsel wird zu einem Vertex des Graphen.
@@ -191,7 +197,7 @@ Ist umgekehrt der konstruierte Graph mit $k$ Farben einf"arbbar, dann kann man
 die Farben der Zeichen-Vertizes verwenden, um allen anderen Vertizes
 ebenfalls ein Zeichen zuzuordnen. Diese Zeichenbelegung ist automatisch
 eine L"osung. Die Kanten innerhalb des Sudoku-Feldes sorgen daf"ur, dass
-die Sudoku-Regeln eingehalten werden, die Kanten zu den Zeichen-Vertices
+die Sudoku-Regeln eingehalten werden, die Kanten zu den Zeichen-Vertizes
 sorgen daf"ur, dass die Vorgaben erf"ullt sind.
 
 Wir haben damit gezeigt, dass der konstruierte Graph genau dann mit
