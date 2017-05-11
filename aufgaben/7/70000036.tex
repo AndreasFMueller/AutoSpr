@@ -48,13 +48,15 @@ geh"oren.
 Wir schreiben $\oplus$ f"ur die XOR-Verkn"upfung.
 Die Bedingung, dass keine weiteren Damen in der gleichen Zeile stehen,
 kann man durch die Formel
-\begin{align*}
+\begin{align}
 \varphi_{ij,\text{Zeile}}
 &=
 x_{ij}\oplus(x_{i1}\vee x_{i2}\vee \dots \vee \hat x_{ij}\vee\dots\vee x_{in})
+\label{70000036:oder}
 \\
 &=
 x_{ij}\oplus\biggl(\bigvee_{k\ne j} x_{ik}\biggr)
+\notag
 \intertext{ausdr"ucken. Dabei bedeutet $\hat x_{ij}$, dass die Variable
 $x_{ij}$ in der Klammer auf der rechten Seite weggelassen werden soll.
 Analog kann man auch die Bedingungen f"ur die Spalten und die Diagonalen
@@ -62,14 +64,17 @@ ausdr"ucken:}
 \varphi_{ij,\text{Spalte}}
 &=
 x_{ij}\oplus(x_{1j}\vee\dots\vee\hat x_{ij}\vee\dots\vee x_{nj})
+\notag
 \\
 &=
-x_{ij}\oplus\biggl(\bigvee_{l\ne i} x_{lj}\biggr)
+x_{ij}\oplus\biggl(\bigvee_{l\ne i} x_{lj}\biggr),
+\notag
 \\
 \varphi_{ij,\text{Diagonalen}}
 &=
-x_{ij}\oplus\biggl(\bigvee_{\text{$k,l$ in Diagonalen von $i,j$}}x_{kl}\biggr)
-\end{align*}
+x_{ij}\oplus\biggl(\bigvee_{\text{$k,l$ in Diagonalen von $i,j$}}x_{kl}\biggr).
+\notag
+\end{align}
 Die Variablen $x$ repr"asentieren genau dann eine akzeptable Platzierung
 wenn f"ur jedes Paar $(i,j)$ alle drei soeben entwickelten Formeln wahr werden:
 \[
@@ -94,6 +99,15 @@ Es gibt $n^ 2$ solche Paare, der gesamte Aufwand ist daher $O(n^3)$.
 \end{loesung}
 
 \begin{diskussion}
+Es stellt sich vielleicht die Frage, warum diese Formeln garantieren, dass
+genau $n$ Damen auf dem Feld platziert worden sind.
+In der Formel~\eqref{70000036:oder} kommt jede Variable einer Zeile vor.
+Würde die Zeile keine Damen enhalten, wäre auch keine dieser
+Formeln $\varphi_{ij,\text{Zeile}}$ war, und damit auch nicht $\varphi_{ij}$
+und $\varphi$.
+Es muss also in jeder Zeile und Spalte eine Dame vorkommen, also $n$
+Damen.
+
 Diese Reduktion ist je nach Codierung von $n$ keine polynomielle Reduktion.
 Zwar ist der Aufwand f"ur die Konstruktion $O(n^3)$, doch f"ur eine
 polynomielle Reduktion brauchen wir, dass die Laufzeit polynomiell in
