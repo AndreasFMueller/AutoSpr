@@ -1,10 +1,20 @@
 Konstruieren Sie eine Reduktion
 $\textsl{SUDOKU}\le_P\textsl{VERTEX-COLORING}$.
 
+\begin{figure}
+\begin{center}
+\includeagraphics[width=0.25\hsize]{sudoku-1.pdf}
+\end{center}
+\caption{$2^2\times 2^2$-Sudoku zu Aufgabe \ref{70000028}
+\label{70000028:sudoku}}
+\end{figure}
+
 \begin{hinweis}
 Es reicht, die Reduktion für den Fall $n=2$ durchzuführen, also für
 das $2^2\times 2^2$-Sudoku, wenn daraus klar
-wird, wie die Verallgemeinerung für grösser $n$ zu handhaben ist.
+wird, wie die Verallgemeinerung für grössere $n$ zu handhaben ist.
+Sie können ganz konkret das Beispiel aus Abbildung~\ref{70000028:sudoku}
+für Ihre Konstruktion verwenden.
 \end{hinweis}
 
 \begin{loesung}
@@ -82,13 +92,6 @@ Wir nennen diese Vertizes die {\em Zeichenvertices}.
 Die Vorgabefelder werden mit all den Zeichenvertices verbunden, die verschieden
 sind vom Vorgabezeichen.
 F"ur das $2^2\times 2^2$-Sudoku aus Abbildung \ref{70000028:sudoku}
-\begin{figure}
-\begin{center}
-\includeagraphics[width=0.25\hsize]{sudoku-1.pdf}
-\end{center}
-\caption{$2^2\times 2^2$-Sudoku zu Aufgabe \ref{70000028}
-\label{70000028:sudoku}}
-\end{figure}
 m"ussen wir zum Graphen (\ref{70000028:graph}) noch die folgenden Kanten
 hinzuf"ugen:
 \begin{equation}
