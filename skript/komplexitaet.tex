@@ -788,7 +788,7 @@ ist genau dann erf"ullbar, wenn der Graph eine $k$-Clique enth"alt.
 \xymatrix{
 *+\txt{}
 	&{\bar x_1}
-		\ar@{-}[dl] \ar@{-}[ddl] \ar@{-}[dddl]
+		\ar@{-}[dl] \ar@{-}[drrr] \ar@{-}[ddl] \ar@{-}[dddl]
 		\ar@{-}[dddd] \ar@{-}[ddddr] 
 		%\ar@{-}[drrr]
 		\ar@{-}[ddrrr] \ar@{-}[dddrrr]
@@ -1459,7 +1459,8 @@ noch mehrere Variablen pro Klausel enthalten. Sei
 \[
 (x_1\vee x_2\vee \dots\vee x_n)
 \]
-eine solche Klausel. Wir m"ussen sie ersetze durch eine
+eine solche Klausel.
+Wir m"ussen sie ersetzen durch eine
 Formel in konjunktiver Normalform mit drei Variablen pro Klausel.
 Dazu kann man den folgenden Trick verwenden.
 Die Formel $(\varphi\vee\psi)$ wird wahr, wenn eine der Unterformeln
@@ -1979,7 +1980,8 @@ erf"ullen.
 $k$, gibt es $k$ Cliquen so, dass jede Ecke in genau einer der Cliquen ist?
 \index{3D-MATCHING@\textsl{3D-MATCHING}}
 \item[\textsl{3D-MATCHING}:] Sei $T$ eine endliche Menge und $U$ eine 
-Menge von Tripeln aus $T$: $U\subset T\times T\times T$. Gibt es eine
+Menge von Tripeln aus $T$: $U\subset T\times T\times T$.
+Gibt es eine
 Teilmenge $W\subset U$ so, dass $|W|=|T|$ und keine zwei Elemente
 von $W$ stimmen in irgendeiner Koordinate "uberein?
 \index{HITTING-SET@\textsl{HITTING-SET}}
@@ -2024,7 +2026,8 @@ $c_i$ identisch ist:
 \]
 \index{MAX-CUT@\textsl{MAX-CUT}}
 \item[\textsl{MAX-CUT}:] Gegeben ein Graph $G$ mit einer Gewichtsfunktion
-$w\colon E\to\mathbb Z$ und eine ganze Zahl $W$. Gibt es eine Teilmenge
+$w\colon E\to\mathbb Z$ und eine ganze Zahl $W$.
+Gibt es eine Teilmenge
 $S$ der Vertizes, so dass das Gesamtgewicht der Kanten, die $S$ mit
 seinem Komplement verbinden, mindestens so gross ist wie $W$:
 \[
@@ -2034,14 +2037,12 @@ seinem Komplement verbinden, mindestens so gross ist wie $W$:
 \item[\textsl{SET-PACKING}:] Gegeben eine Familie $(S_i)_{i\in I}$ von
 Mengen und eine Zahl $k\in \mathbb N$.
 Gibt es eine $k$-elementige Teilfamilie $(S_i)_{i\in J}$ mit $J\subset I$,
-$|J|=k$,
-Gibt es eine $k$-elementige Teilfamilie $(S_i)_{i\in J}$ mit $J\subset I$
+d.~h.~$|J|=k$,
 derart,
 dass die Mengen der Teilfamilie paarweise diskjunkt sind, also 
 \[
-	S_i \cap S_j = \emptyset \quad\forall i,j\in J.
+	S_i \cap S_j = \emptyset \quad\forall i,j\in J \;\text{mit}\; i\ne j?
 \]
-$k$-elementig heisst $|J| = k$.
 \end{description}
 
 \input karp.tex
