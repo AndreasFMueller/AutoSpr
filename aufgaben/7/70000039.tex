@@ -1,0 +1,64 @@
+Beim Spiel Flood-It sind die Felder eines $n\times m$-Spielfeld mit 
+mindestens drei verschiedenen Farben eingef"arbt.
+Man sagt, zwei Felder seine verbunden, wenn sie die gleiche Farbe
+haben und "uber eine Kante benachbart sind.
+Ein Gebiet besteht aus allen untereinander verbundenen Feldern.
+Der Spieler kann jetzt jeweils die Farbe des Feldes in der linken
+oberen Ecke "andern, dabei wird auch die Farbe des ganzen zugeh"origen
+Gebietes ge"andert.
+Da an das Gebiet Felder der neuen Farbe anstossen k"onnen, kann das
+Gebiet durch den Farbwechsel gr"osser werden.
+Ziel ist, das Gebiet der linken oberen Ecke in m"oglichst wenigen
+Farbwechseln so anwachsen zu lassen, dass es das ganze Spielfeld "uberdeckt.
+
+Im folgenden Bild sind vier Schritte des Spiels dargestellt, das Gebiet
+des Feldes in der linken oberen Ecke ist jeweisl fett ausgezogen.
+\begin{center}
+\includeagraphics[width=\hsize]{floodit-1.pdf}
+\end{center}
+Kann eine nichtdeterministische Turing-Maschine in polynomieller Zeit 
+herausfinden, ob zu einer vorgegeben Zahl $k$ ein Flood-It
+R"atsel in h"ochstens $k$ Schritten gel"ost werden kann?
+
+\begin{loesung}
+Es gibt $c^k$ Abfolgen von Farbwechseln, wenn $c$ die Anzahl der Farben ist.
+Indem man alle diese Abfolgen durchprobiert, kann man entscheiden, ob
+das Problem eine L"osung hat.
+Das Problem ist also entscheidbar.
+
+Um nachzuweisen, dass das Problem von einer nichtdeterministischen
+Turing-Maschine in polynomieller Zeit entschieden werden kann,
+suchen wir jetzt einen polynomiellen Verifizierer.
+
+Als L"osungszertifikat f"ur den Verifizierer verlangen wir die Abfolge
+von Farben, die f"ur die L"osung des Flood-It-R"atsels n"otig ist.
+Dann simulieren wir das Spiel, wobei wir in jedem Schritt
+die $nm$ Felder "uberpr"ufen m"ussen und feststellen m"ussen, welche
+Felder jetzt das Gebiet ausmachen, also welche Felder mit der neuen
+Farbe eingef"arbt werden m"ussen.
+Dazu sind maximal $nm$ Pr"ufungen n"otig.
+Nach maximal $k$ Schritten m"ussen wir "uberpr"ufen, ob das ganze Feld
+mit der gleichen Farbe eingef"arbt ist.
+Dazu sind nochmals $nm$ Pr"ufungen n"otig.
+Der Rechenaufwand f"ur Verifikation ist also $O((k+1)nm)$.
+Wir wissen ausserdem, dass $k\le nm-1$, also ist der Aufwand f"ur die
+Verifikation $O((nm)^2)$ und damit sicher polynomiell.
+Somit ist nachgewiesen, dass das Problem in polynomieller Zeit von
+einer nichtdeterministischen Turing-Maschine entscheidbar ist.
+\end{loesung}
+
+\begin{diskussion}
+Clifford, Jalsenius, Montanaro und Sach haben in
+\url{https://arxiv.org/pdf/1001.4420v3.pdf} bewiesen, dass die oben
+beschriebene Version von Flood-It NP-vollst"andig ist.
+Sie haben auch weitere Version diskutiert, und approximative L"osungen
+mit polynomieller Laufzeit angegeben.
+\end{diskussion}
+
+\begin{bewertung}
+Verifizierer ({\bf V}) 1 Punkt,
+Zertifikat ({\bf Z}) 1 Punkt,
+Verifikationsalgorithmus ({\bf A}) 2 Punkte,
+Nachweis, dass Aufwand polynomiell ist ({\bf P}) 2 Punkte.
+\end{bewertung}
+

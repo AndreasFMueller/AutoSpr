@@ -1,0 +1,76 @@
+F"ur die Input-Validierung in einer Anwendung wurde beschlossen, regul"are
+Ausdr"ucke zu verwenden.
+Gegen Sie f"ur jede im folgenden beschriebene Art von Eingabefeldern einen
+regul"aren Ausdruck an, der genau auf die akzeptable Eingaben passt.
+Sie d"urfen annehmen, dass Whitespace am Anfang und Ende eines Eingabefeldes
+bereits entfernt worden ist.
+\begin{teilaufgaben}
+\item
+Eingabefeld f"ur eine Pr"ufungsnote: eine Zahl $n$ mit $1\le n\le 6$
+und maximal zwei Nachkommastellen.
+Zahlen mit Dezimalpunkt aber ohne Nachkommateil m"ussen akzeptiert sein.
+\item
+Eingabefeld f"ur ein Datum im europ"aischen Format: Tageszahl mit Punkt,
+Monatszahl mit Punkt Jahreszahl. Zwischen den Komponenten d"urfen Leerzeichen
+vorhanden sein.
+Sowohl die Tageszahl wie auch die Monatszahl d"urfen f"uhrende Nullen haben.
+Es sollen nur tats"achlich existierende Monatszahlen
+und Tageszahlen eingegeben werden k"onnen, es wird aber nicht verlangt,
+dass nicht existierende Kombinationen wie der 31.~Februar ausgeschlossen
+sind.
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item In der Standard-Syntax aus der Vorlesung ist dies
+\[
+\texttt{[1-5](|.(|[0-9](|[0-9])))|6(|.(|0(|0)))}
+\]
+Mit erweiterer Syntax f"ur regul"are Ausdr"ucke kann des etwas kompakter
+ausdr"ucken:
+\[
+\texttt{[1-5](.[0-9]\{0,2\})?|6(.[0]\{0,2\})?}
+\]
+\item Die einzeln Teile sind
+\begin{align*}
+r_{\text{Tageszahl}}
+&=
+\texttt{(|0)[1-9]|[12][0-9]|3[01].}
+\\
+r_{\text{Monatszahl}}
+&=
+\texttt{1[0-2]|(|0)[1-9].}
+\\
+r_{\text{Jahreszahl}}
+&=
+\texttt{[12][0-9][0-9][0-9][0-9]}
+\\
+\end{align*}
+Zusammengesetzt zu einem Datum mit optionalem Whitespace
+\begin{align*}
+r
+&=
+r_{\text{Tageszahl}}
+\texttt{ *}
+r_{\text{Monatszahl}}
+\texttt{ *}
+r_{\text{Jahreszahl}}
+\\
+&=
+\texttt{(|0)[1-9]|[12][0-9]|3[01].}
+\texttt{ *}
+\texttt{1[0-2]|(|0)[1-9].}
+\texttt{ *}
+\texttt{[12][0-9][0-9][0-9][0-9]}
+\end{align*}
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item 2 Punkte
+\item Tageszahl ({\bf T}) 1 Punkt, Monatszahl ({\bf M}) 1 Punkt,
+Jahreszahl ({\bf J}) 1 Punkt, Verkettung (Whitespace) ({\bf V}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
+
