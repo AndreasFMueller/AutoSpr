@@ -1,0 +1,29 @@
+Gibt es einen regulären Ausdruck, mit dem sich die Sprache
+\[
+L=\{
+w\in\{\texttt{0},\texttt{1}\}^*
+\,|\,
+2|w|_{\texttt{0}}
+=
+|w|_{\texttt{1}}
+\}
+\]
+über dem Alphabet $\Sigma=\{\texttt{0},\texttt{1}\}$ beschreiben lässt.
+
+\begin{loesung}
+Nein, wie man mit dem Pumping-Lemma beweisen kann.
+Nehmen wir also an, dass die Sprache $L$ regulär ist.
+Dann gibt es die Pumping Length $N$.
+Wir konstruieren das Wort $w=\texttt{0}^N\texttt{1}^{2N}$, welches
+offensichtlich in $L$ ist.
+Gemäss Pumping-Lemma gibt es eine Unterteilung des Wortes in
+$w=xyz$ derart, dass $|xy|\le N$, d.~h.~die Teile $x$ und $y$ bestehen
+aus lauter \texttt{0}.
+Beim Pumpen wird die Anzahl der \texttt{0} verändert, da $|y|>0$ sein
+muss, aber die Anzahl der \texttt{1} wird nicht verändert.
+Damit kann das gepumpte Wort nicht mehr in $L$ sein.
+Der Widerspruch zeigt, dass $L$ nicht regulär sein kann, also auch nicht
+durch einen regulären Ausdruck beschrieben werden kann.
+\end{loesung}
+
+
