@@ -1,0 +1,54 @@
+Betrachten Sie die folgenden zwei Sprachen über dem Alphabet
+$\Sigma=\{\texttt{a},\texttt{b},\texttt{c}, \texttt{d}\}$:
+\begin{align*}
+L_1
+&=
+\{ \texttt{a}^n\texttt{b}^m\texttt{c}^n\texttt{d}^m
+\;|\; m,n>0
+\}
+\qquad\text{und}
+\\
+L_2
+&=
+\{ \texttt{a}^n\texttt{b}^m\texttt{c}^m\texttt{d}^n
+\;|\; m,n>0
+\}.
+\end{align*}
+Sind diese Sprachen kontextfrei?
+
+\begin{loesung}
+Die Sprache $L_2$ hat die Grammatik
+\begin{align*}
+S&\rightarrow R
+\\
+ &\rightarrow \texttt{a}\; S \;\texttt{d}
+\\
+R&\rightarrow \varepsilon
+\\
+ &\rightarrow \texttt{b}\; R \;\texttt{c}
+\end{align*}
+Die Sprache $L_1$ dagegen ist nicht kontextfrei, wie wir mit dem Pumping-Lemma
+für kontextfreie Sprachen beweisen können.
+Dazu nehmen wir an, dass $L_1$ kontextfrei ist, dann gibt es die Zahl $N$,
+die Pumping length von $L_1$.
+Damit konstruieren wir jetzt das Wort
+$w=
+\texttt{a}^N
+\texttt{b}^N
+\texttt{c}^N
+\texttt{d}^N
+$.
+Gemäss dem Pumping Lemma gibt es eine Unterteilung $w=uvxyz$ derart,
+dass $|vxy|\le N$ und $|vy|>0$.
+Die beiden Teilwörter $v$ und $y$ befinden sich in benachbarten Blöcken,
+die die Längen $m$ und $n$ haben.
+Beim Pumpen werden diese Blöcke länger, nicht aber die Blöcke, ebenfalls
+mit Länge $m$ und $n$, die nicht von $v$ und $y$ berührt werden.
+Damit fällt das Wort beim Aufpumpen aus der Sprache $L_1$ heraus, im
+Widerspruch zur Aussage des Pumping Lemmas.
+Dieser Widerspruch zeigt, dass $L_1$  nicht kontextfrei sein kann.
+\end{loesung}
+
+
+
+
