@@ -1,0 +1,60 @@
+Sei $\Sigma=\{
+\texttt{(},
+\texttt{)},
+\texttt{[},
+\texttt{]},
+\texttt{\{},
+\texttt{\}}
+\}$
+die Menge aller Klammern.
+\begin{teilaufgaben}
+\item
+Geben Sie eine kontextfreie Grammatik für die Sprache aller korrekten
+Klammerausdrücke über diesem Alphabet.
+\item
+Führt Ihre Grammatik auf eindeutige Parse-Trees?
+\item
+Können Sie ihre Grammatik so modifizieren, dass sie eineutige Parse-Trees hat?
+\item
+Hat Ihre Grammatik Chomsky Normalform?
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Eine mögliche Grammatik ist
+\begin{align}
+S&\rightarrow \varepsilon 
+\\
+ &\rightarrow \texttt{(} \; L \; \texttt{)}
+\\
+ &\rightarrow \texttt{[} \; L \; \texttt{]}
+\\
+ &\rightarrow \texttt{\{} \; L \; \texttt{\}}
+\\
+L&\rightarrow LS
+\\
+ &\rightarrow S
+\end{align}
+Sie besagt, dass Klammerausdrücke gebildet werden, indem man Listen
+von Klammerausdrücken ($L$) einklammert.
+$L$ steht für eine Verkettung von Klammerausdrücken.
+\item
+Da Regel $L\rightarrow LS$ stellt sicher, dass Klammerausdrücke von links
+nach rechts aufgebaut werden, dass also der Parse-Tree eindeutig ist.
+\item
+Eine Regel der Form $S\rightarrow SS$, wie wir ihn im Skript und den
+Übungen getroffen haben, führt auf nicht eindeutige Parse-Trees.
+Die vorgeschlagene Lösung vermeidet diese Bildung.
+\item
+Die Regeln 
+(2), (3) und (4) sind in der CNF verboten, weil nicht mehr als zwei
+Zeichen auf der rechten Seite einer Regel stehen dürfen.
+Regel (6) ist eine Unit-Rule, die ebenfalls verboten ist.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+
+
+
