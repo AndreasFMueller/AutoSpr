@@ -23,7 +23,7 @@ plausibilisiert werden können.
 \begin{loesung}
 Die einzelnen Gruppen werden durch den regulären Ausdruck
 \[
-r_1 = \texttt{[0-9a-f]\{1,4\}}
+r_1 = \texttt{[0-9a-f]\char`\{1,4\char`\}}
 \]
 beschrieben.
 Dieser Ausdruck akzeptiert das leere Wort nicht.
@@ -33,13 +33,13 @@ den regulären Ausdruck
 \begin{align*}
 r_2
 &=
-r_1\texttt{(:}r_1\texttt{)\{7\}}
+r_1\texttt{(:}r_1\texttt{)\char`\{7\char`\}}
 \\
 &=
-\texttt{[0-9a-f]\{1,4\}}
+\texttt{[0-9a-f]\char`\{1,4\char`\}}
 \texttt{(:}
-\texttt{[0-9a-f]\{1,4\}}
-\texttt{)\{7\}}
+\texttt{[0-9a-f]\char`\{1,4\char`\}}
+\texttt{)\char`\{7\char`\}}
 \end{align*}
 beschrieben.
 
@@ -52,24 +52,21 @@ r_3 &= r_4\texttt{::}r_4
 \text{mit}\qquad
 r_4
 &=
-\texttt{(}r_1 \texttt{(:}r_2\texttt{)\{,6\}}\texttt{)?}
+\texttt{(}r_1 \texttt{(:}r_1\texttt{)\char`\{,6\char`\}}\texttt{)?}
 \\
 &=
 \texttt{(}
-\texttt{[0-9a-f]\{1,4\}}
+\texttt{[0-9a-f]\char`\{1,4\char`\}}
 \texttt{(:}
-r_1\texttt{(:}r_1\texttt{)\{7\}}
-\texttt{)\{,6\}}\texttt{)?}
+\texttt{[0-9a-f]\char`\{1,4\char`\}}
+\texttt{)\char`\{,6\char`\}}\texttt{)?}
 \\
 &=
 \texttt{(}
-\texttt{[0-9a-f]\{1,4\}}
+\texttt{[0-9a-f]\char`\{1,4\char`\}}
 \texttt{(:}
-\texttt{[0-9a-f]\{1,4\}}
-\texttt{(:}
-\texttt{[0-9a-f]\{1,4\}}
-\texttt{)\{7\}}
-\texttt{)\{,6\}}\texttt{)?}
+\texttt{[0-9a-f]\char`\{1,4\char`\}}
+\texttt{)\char`\{,6\char`\}}\texttt{)?}
 \end{align*}
 
 Eine beliebige IPv6-Adresse passt daher auf den regulären Ausruck
