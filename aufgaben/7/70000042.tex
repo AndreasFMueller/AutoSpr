@@ -1,0 +1,25 @@
+Ein Orchester soll Konzertprogramme für eine Saison zusammenstellen.
+Zur Verfügung steht eine Menge von Werken, die das Orchester im Repertoire hat.
+Aus diesen Werken sollen Programme mit jeweils drei Werken zusammengesetzt
+werden.
+Je ein Werk zur Eröffnung, für den Mittelteil und zum Abschluss des
+Konzertes.
+Die Werke lassen sich nicht beliebig kombinieren, weil zum Beispiel die
+Tonarten nicht zu verschieden sein dürfen.
+Die Anzahl der Werke und der Konzertabende der Saison ist gleich.
+Es stellt sich heraus, dass es ziemlich schwierig ist, Programme so
+zu konstruieren, dass kein Werk in der gleichen Phase eines Konzerts
+mehr als einmal gespielt wird.
+Warum?
+
+\begin{loesung}
+Dies ist eine Instanz des 3D-Matching-Problems.
+Die Menge der Werke ist $T$, die Menge der möglichen Programme (Einschränkungen
+zum Beispiel durch Tonart) ist $U\subset T\times T\times T$.
+Gesucht werden solle eine Menge von Programmen $W\subset U$, mit
+$|W|=|T|$, so dass keine zwei Element in irgend einer Koordinate
+übereinstimmen.
+\end{loesung}
+
+
+
