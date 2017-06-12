@@ -1,0 +1,62 @@
+Sei $\Sigma=\{\texttt{0},\texttt{1}\}$ und
+\[
+L
+=
+\left\{
+w\in\Sigma^*
+\;\left|\;
+\begin{minipage}{0.5\hsize}
+$w$ besteht abwechselnd aus \texttt{0} und \texttt{1} und hört mit
+dem gleichen Zeichen auf wie es beginnt
+\end{minipage}
+\right.
+\right\}
+\]
+Finden Sie das Zustandsdiagramm einer Turing-Maschine, die $L$ entscheidet.
+
+\begin{loesung}
+Die Turing-Maschine muss die beiden Fälle unterscheiden, dass das Wort 
+mit \texttt{0} oder mit \texttt{1} beginnt, dazu dienen der obere
+und der untere Ast des Diagramms.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+15mm {
+*+\txt{}
+	&*+\txt{}
+		&{q_1}	\ar@/^/[r]^{\texttt{1}\to\texttt{1},R}
+			\ar[dr]^{\texttt{0}\to\texttt{0},R}
+			\ar[d]^{\blank\to\blank,R}
+			&{q_2} \ar@/^/[l]^{\texttt{0}\to\texttt{0},R}
+				\ar[d]^{\texttt{*}}
+\\
+*+\txt{} \ar[r]
+	&{q_0}
+		\ar[r]^{\blank\to\blank,R}
+		\ar[ur]^{\texttt{0}\to\texttt{0},R}
+		\ar[dr]_{\texttt{1}\to\texttt{1},R}
+		&*++[o][F=]{q_{\text{accept}}}
+			&*++[o][F=]{q_{\text{reject}}}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{q_3} \ar@/^/[r]^{\texttt{0}\to\texttt{0},R}
+			\ar[u]_{\blank\to\blank,R}
+			\ar[ur]_{\texttt{1}\to\texttt{1},R}
+			&{q_4} \ar@/^/[l]^{\texttt{1}\to\texttt{1},R}
+				\ar[u]_{\texttt{*}}
+}
+\]
+Darin bedeuten die mit \texttt{*} bezeichneten Pfeile alle Übergänge, für die
+es ausgehend von diesem Zustand noch keinen Übergang gibt.
+
+Im Zustand $q_1$ bzw.~$q_3$ hat die Maschine jeweils das gleiche Zeichen
+verarbeitet, mit dem das Wort begonnen hat.
+Nur von diesen Zuständen aus ist daher ein Übergang zu $q_{\text{accept}}$
+möglich, aber auch nur mit dem Zeichen \blank.
+Alle anderen Zeichen müssen zu $q_{\text{reject}}$ führen.
+\end{loesung}
+
+
+
+
+
