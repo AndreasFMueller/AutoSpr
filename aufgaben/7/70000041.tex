@@ -1,9 +1,20 @@
 Die japanische Designerin Non Ishida hat im Jahre 1986 eine Art von
 Logikrätsel erfunden, die ihr zu Ehren Nonogramme genannt werden.
-In einem $n\times m$ Spielfeld sind die einzelnen Felder mit einer Farben
-zu füllen.
-Am Rand des Feldes wird angegeben, wie lange Folgen gleichfarbiger
-Felder in einer Zeile oder Spalte jeweils sind.
+In einem $n\times m$ Spielfeld sind die einzelnen Felder mit einer
+von mehreren möglichen Farben zu füllen.
+Am Rand des Feldes wird angegeben, wie lange Folgen benachbarter
+gleichfarbiger Felder in einer Zeile oder Spalte jeweils zu finden sind:
+\begin{center}
+\begin{tabular}{ccc}
+Aufgabe&\qquad\qquad&Lösung\\[10pt]
+\includeagraphics[]{nonogram-1.pdf}
+&&
+\includeagraphics[]{nonogram-2.pdf}
+\end{tabular}
+\end{center}
+Die Vorgabe blau 1, rot 3, blau 3 in der dritteuntersten Zeile bedeutet,
+dass in dieser Zeile zunächst ein einzelnes blaues Feld vorkommen muss,
+dann drei benachbarte rote Felder gefolgt von 3 benachbarten blauen Feldern.
 
 Das Problem {\em NONOGRAM} ist also die Aufgabe, zu entscheiden, ob
 ein Nonogramm-Rätsel überhaupt lösbar ist.
@@ -16,10 +27,51 @@ polynomieller Zeit lösen?
 \begin{loesung}
 \begin{teilaufgaben}
 \item
+Wenn $c$ verschiedene Farben gewählt werden können, dann gibt es für
+jedes der $nm$ Felder $c+1$ Wahlmöglichkeiten. 
+Das Feld kann daher auf $(c+1)^{nm}$ verschiedene Arten ausgfüllt
+werden.
+Indem man alle diese Möglichkeiten durchprobiert kann man immer entscheiden,
+ob die Aufgabe lösbar ist.
+Das Problem ist also entscheidbar.
 \item
+Wir brauchen einen polynomiellen Entscheider.
+Als Lösungszertifikat verlangen wir die Belegung der Felder mit Farben.
+folgendes muss überprüft werden:
+\begin{center}
+\begin{tabular}{lrrr}
+Was&Anzahl&Aufwand&Total\\
+\hline
+\begin{minipage}[t]{0.6\hsize}
+\strut
+Jede Zeile durchlesen und überrüfen, ob die vorgeschriebenen Lauflängen
+jeder Farbe vorliegen.\strut
+\end{minipage}&$n$&$O(m)$&$O(mn)$\\
+\begin{minipage}[t]{0.6\hsize}
+\strut
+Jede Spalte durchlesen und überrüfen, ob die vorgeschriebenen Lauflängen
+jeder Farbe vorliegen.\strut
+\end{minipage}&$m$&$O(n)$&$O(mn)$\\
+\hline
+\strut
+Total&&&$O(mn)$
+\end{tabular}
+\end{center}
+Dies zeigt, dass die Lösung in polynomieller Zeit in der Problemgrösse
+$N=mn$ verifiziert werden kann. 
+Es folgt, dass das Problem
+{\em NOMOGRAM} in NP ist.
+\qedhere
 \end{teilaufgaben}
 \end{loesung}
 
-
+\begin{diskussion}
+Nobuhisa Ueda und Tadaaki Nagao haben 1996 bewiesen, dass
+{\em NONOGRAM} NP-vollständig ist:
+{\em NP-completeness Results for NONOGRAM via Parsimonious Reductions},
+Technical Report,
+Departement of Computer Science,
+Tokyo Institue of Technology, doi:10.1.1.57.5277
+\end{diskussion}
 
 
