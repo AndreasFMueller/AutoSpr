@@ -1,0 +1,23 @@
+Für die Vorlesung AutoSpr soll ein Webservice bereitgestellt werden, mit
+welchem Studenten ihre Programme in verschiedenen vereinfachten
+Programmiersprachen testen können.
+Natürlich möchte man sicherstellen, dass ein solches Programm den 
+Service nicht monopolisieren kann.
+Man möchte also vermeiden, dass ein Programm nicht anhält,
+indem man den Code analysiert, bevor er ausgeführt wird.
+Wie kann man dies für die Sprachen LOOP, WHILE und GOTO sicherstellen?
+
+\begin{loesung}
+Die Sprache LOOP ist nicht Turing-vollständig, wir wissen sogar,
+dass jedes LOOP-Pro\-gramm terminiert, für die Sprache LOOP ist so ein
+Webservice also kein Problem.
+
+Die Sprachen WHILE und GOTO sind dagegen Turing-vollständig und damit
+ist das Halteproblem für Programme in diesen Sprachen nicht lösbar.
+Insbesondere gibt es keine Möglichkeit zu verhindern, dass ein diesem
+Webservice aufgegebenes Programm nicht anhalten wird.
+\end{loesung}
+
+
+
+
