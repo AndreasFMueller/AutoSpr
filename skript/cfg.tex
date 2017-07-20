@@ -96,7 +96,9 @@ Eine kontextfreie Grammatik ist ein Quadrupel $(V,\Sigma,R,S)$ mit
 auch genannt die Terminalsymbole.
 \item $R$ ist eine Menge von Regeln, eine Regel besteht aus einer
 Variable und einer Kette von Variablen und Terminalsymbolen, geschrieben
-in der Form $A\to BC{\tt x}$.
+in der Form $A\to BC{\tt x}$, wobei rechts eine beliebige Folge von
+Variablen (in diesem Fall $A$ und $B$) und Terminalsymbolen (in diesem Fall
+\texttt{x}) stehen kann.
 \index{Regel!einer kontextfreien Grammatik}
 \item $S\in V$ ist die Startvariable.
 \index{Startvariable}
@@ -171,7 +173,7 @@ Die Reihenfolge der Regelanwendung ist nicht eindeutig.
 Die Menge aller W"orter, die von einer kontextfreien Grammatik 
 $G$ erzeugt werden k"onnen wir mit
 \[
-L(G)=\{w\in\Sigma^*\;|\; S\overset{*}{\Rightarrow} u\}
+L(G)=\{w\in\Sigma^*\;|\; S\overset{*}{\Rightarrow} w\}
 \]
 bezeichnen.
 \end{definition}
@@ -465,11 +467,11 @@ Ableitungen immer eindeutig sind. Die
 arithmetische Ausdr"ucke erf"ullt diese Bedingung. 
 Ein Beispiel f"ur eine zweideutige Grammatik ist
 \[
-G=(\{S\}, \{0,1\}, \{S\to 0S1|1S0|SS|\varepsilon\}, S).
+G=(\{S\}, \{\texttt{0},\texttt{1}\}, \{S\to \texttt{0}S\texttt{1}|\texttt{1}S\texttt{0}|SS|\varepsilon\}, S).
 \]
 $G$ erzeugt die Sprache
-$\{w\in \{0,1\}^*\,|\, |w|_0 = |w|_1\}$, aber das Wort
-$001011$ hat mindestens zwei verschiedene Ableitungen:
+$\{w\in \{\texttt{0},\texttt{1}\}^*\,|\, |w|_{\texttt{0}} = |w|_\texttt{1}\}$, aber das Wort
+$\texttt{001011}$ hat mindestens zwei verschiedene Ableitungen:
 \[
 \xymatrix{
 &&&S\ar@/_10pt/[dddddlll]\ar[d]\ar@/^30pt/[dddddrrrr]
@@ -482,7 +484,7 @@ $001011$ hat mindestens zwei verschiedene Ableitungen:
 \\
  & &\varepsilon& & &\varepsilon& & 
 \\
-0&0&           &1&0&           &1&1
+\texttt{0}&\texttt{0}& &\texttt{1}&\texttt{0}& &\texttt{1}&\texttt{1}
 }
 \]
 oder
@@ -498,7 +500,7 @@ oder
 \\
 &&&\varepsilon&&&
 \\
-0&0&1&&0&1&1
+\texttt{0}&\texttt{0}&\texttt{1}&&\texttt{0}&\texttt{1}&\texttt{1}
 }
 \]
 
@@ -773,7 +775,7 @@ Um das leere Wort zu erzeugen, muss die Regel $S\to\varepsilon$
 angewendet werden, falls sie vorhanden ist.
 
 Ein Wort $w$ mit L"ange $|w|=1$ kann genau dann aus der Variablen 
-$A$ abgeleitet werden, wenn es eine Regel $S\to a$ gibt. 
+$A$ abgeleitet werden, wenn es eine Regel $A\to a$ gibt. 
 Es kann h"ochstens $|\Sigma|$ solche Regeln geben.
 
 Um ein Wort der L"ange $|w|>1$ zu erzeugen, muss mindestens eine
@@ -1185,7 +1187,7 @@ Input und des Stacks nach jedem "Ubergang des Stackautomaten.
                          &{\tt 0011}&$q_0$&\\
                          &{\tt 0011}&$S$  &${\tt \$}$\\
                          &{\tt 0011}&$R$  &$S\quad {\tt \$}$\\
-(\ref{beispiel-0s1regel})&{\tt 0011}&$q_1$&{\tt 1}\\
+(\ref{beispiel-0s1regel})&{\tt 0011}&$q_1$&${\tt 1}\quad{\tt \$}$\\
 (\ref{beispiel-0s1regel})&          &$q_2$&$S\quad {\tt 1}\quad{\tt \$}$\\
 (\ref{beispiel-0s1regel})&          &$R$  &${\tt 0}\quad S\quad {\tt 1}\quad{\tt \$}$\\
 (\ref{beispiel-tregel})  &{\tt 011} &$R$  &$S\quad {\tt 1}\quad{\tt \$}$\\
@@ -1236,7 +1238,7 @@ werden dann zu gew"ohnlichen Zust"anden degradiert:
 Der modifizierte Automat akzeptiert die gleichen W"orter wie $P$.
 \item Vor dem Akzeptieren wird der Stack geleert. Dazu wird ein zus"atzliches
 Zeichen ben"otigt, welches das Ende des Stacks signalisiert. Es wird zu
-beginn auf den Stack geschrieben, und als letzter "Ubergang wieder
+Beginn auf den Stack geschrieben, und als letzter "Ubergang wieder
 vom Stack genommen. Der Startzustand $q_0$ wird also ersetzt durch einen neuen
 Startzustand $q_0'$, mit dem einzigen "Ubergang 
 \[
@@ -1619,7 +1621,7 @@ Startvariablen $S$.\label{cfg-tree-1}}
 \includegraphics[width=0.35\hsize]{images/cfg-3}\\
 \end{tabular}
 \end{center}
-\caption{Parse Tree f"ur das aufgepumpte Wort $uv^2xy^2zv$ (links) und das
+\caption{Parse Tree f"ur das aufgepumpte Wort $uv^2xy^2z$ (links) und das
 abgepumpte Wort $uxz$ (rechts).\label{cfg-tree-2}}
 \end{figure}
 

@@ -1,6 +1,22 @@
 Konstruieren Sie eine Reduktion
 $\textsl{SUDOKU}\le_P\textsl{VERTEX-COLORING}$.
 
+\begin{figure}
+\begin{center}
+\includeagraphics[width=0.25\hsize]{sudoku-1.pdf}
+\end{center}
+\caption{$2^2\times 2^2$-Sudoku zu Aufgabe \ref{70000028}
+\label{70000028:sudoku}}
+\end{figure}
+
+\begin{hinweis}
+Es reicht, die Reduktion für den Fall $n=2$ durchzuführen, also für
+das $2^2\times 2^2$-Sudoku, wenn daraus klar
+wird, wie die Verallgemeinerung für grössere $n$ zu handhaben ist.
+Sie können ganz konkret das Beispiel aus Abbildung~\ref{70000028:sudoku}
+für Ihre Konstruktion verwenden.
+\end{hinweis}
+
 \begin{loesung}
 Zu einem Sudoku-R"atsel konstruieren wir einen Graphen wie folgt:
 Jedes Feld des Sudoku-R"atsel wird zu einem Vertex des Graphen.
@@ -76,13 +92,6 @@ Wir nennen diese Vertizes die {\em Zeichenvertices}.
 Die Vorgabefelder werden mit all den Zeichenvertices verbunden, die verschieden
 sind vom Vorgabezeichen.
 F"ur das $2^2\times 2^2$-Sudoku aus Abbildung \ref{70000028:sudoku}
-\begin{figure}
-\begin{center}
-\includeagraphics[width=0.25\hsize]{sudoku-1.pdf}
-\end{center}
-\caption{$2^2\times 2^2$-Sudoku zu Aufgabe \ref{70000028}
-\label{70000028:sudoku}}
-\end{figure}
 m"ussen wir zum Graphen (\ref{70000028:graph}) noch die folgenden Kanten
 hinzuf"ugen:
 \begin{equation}
@@ -176,10 +185,14 @@ hinzuf"ugen:
 }
 \label{70000028:vorgaben}
 \end{equation}
+Um sicherzustellen, dass diese neuen Knoten verschiedene Farbe erhalten,
+müssen diese untereinander alle verbunden werden, sie müssen also
+einen vollständigen Teilgraphen bilden.
+Diese Verbindungen sind der Übersichtlichkeit halber nicht eingezeichnet.
+
 Die Vereinigung der Kanten in (\ref{70000028:graph}) und
 (\ref{70000028:vorgaben}) liefert den Graphen, der dem gegebenen
 Sudoku-R"atsel zugeordnet wird.
-
 F"ur die Zahl der Farben setzen wir $k=|\Sigma|$, im Beispiel des
 $2^2\times 2^2$-Sudokus aus Abbildung~\ref{70000028:sudoku} ist $k=4$.
 
@@ -191,7 +204,7 @@ Ist umgekehrt der konstruierte Graph mit $k$ Farben einf"arbbar, dann kann man
 die Farben der Zeichen-Vertizes verwenden, um allen anderen Vertizes
 ebenfalls ein Zeichen zuzuordnen. Diese Zeichenbelegung ist automatisch
 eine L"osung. Die Kanten innerhalb des Sudoku-Feldes sorgen daf"ur, dass
-die Sudoku-Regeln eingehalten werden, die Kanten zu den Zeichen-Vertices
+die Sudoku-Regeln eingehalten werden, die Kanten zu den Zeichen-Vertizes
 sorgen daf"ur, dass die Vorgaben erf"ullt sind.
 
 Wir haben damit gezeigt, dass der konstruierte Graph genau dann mit

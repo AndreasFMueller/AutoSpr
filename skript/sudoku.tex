@@ -45,6 +45,7 @@ es m"usste sich also auch \textsl{SUDOKU} polynomiell auf \textsl{SAT}
 reduzieren lassen:
 
 \begin{satz} $\textsl{SUDOKU}\le_P\textsl{SAT}$.
+\label{skript:satz:sudoku-sat}
 \end{satz}
 
 \begin{proof}[Beweis]
@@ -159,3 +160,35 @@ erh"alt man eine neue Formel $\varphi$, die nur noch die logischen
 Variablen $x_{ijc}$ enth"alt. Die neue Formel ist genau dann erf"ullbar,
 wenn das Sudoku-R"atsel eine L"osung hat.
 \end{proof}
+
+\subsection{Vergleichsformeln}
+Aus dem letzten Teil des Beweises von Satz~\ref{skript:satz:sudoku-sat}
+können wir ausserdem ablesen, dass die Übersetzung von den Variablen $z_{ij}$
+in eine logische Formel mit den logischen Variablen $x_{ijc}$ ebenfalls
+algorithmisch möglich ist.
+Voraussetzung dafür ist, dass es die Regeln als eine logische Formel
+in den Ausdrücken $z_{ij}=z_{kl}$ formuliert werden können.
+Wir nennen eine solche Formel eine {\em Vergleichsformel}.
+
+\begin{definition}
+Eine {\em Vergleichsformel} in den Variablen $z_{ij}$ ist eine
+logische Formel in den Teilformeln $f_{ijkl}=(z_{ij}=z_{kl})$.
+\end{definition}
+
+Durch Verwendung der Variablen $x_{ijc}$ mit $c\in\Sigma$ kann man
+jeden Ausdruck $f_{ijkl}$ in polynomieller Zeit in eine logische
+Formel in den Variablen $x_{ijc}$ umwandeln.
+Dies beweist den folgenden Satz.
+
+\begin{satz}
+\label{skript:satz:vergleichsformel}
+Eine Vergleichsformel in den Variablen $z_{ij}$, deren Werte in $\Sigma$
+liegen, kann in polynomieller Zeit in eine logische Formel in Variablne
+$x_{ijc}$, $c\in\Sigma$ umgewandelt werden, die genau dann erfüllbar ist,
+wenn die Vergleichsformel erfüllbar ist.
+\end{satz}
+
+
+
+
+

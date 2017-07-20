@@ -1,0 +1,42 @@
+An einer Veranstaltung werden verschiedene m"ogliche Aktivit"aten angeboten,
+allerdings steht nicht gen"ugend Zeit zur Verf"ugung, so dass jeder
+Teilnehmer nur an einer Aktivit"at teilnehmen kann.
+Der Veranstalter bittet die Teilnehmer in der Anmeldung, auf einem
+Formular alle Aktivit"aten anzukreuzen, f"ur die sie sich interessieren.
+Aus Kostengr"unden will der Veranstalter dann aber nur $k$ Angebote
+auch realisieren, die dann auch genutzt werden sollen.
+Diese sollten zudem so sein, dass kein Teilnehmer sich f"ur mehr als
+eines der realisierten Angebote angemeldet hat.
+Ausserdem ist ihm egal, dass m"oglicherweise einige Teilnehmer nichts tun
+werden.
+
+Das Veranstaltungs-Sekretariat soll jetzt die Aktivit"aten ermitteln, 
+die realisiert werden sollen.
+Dies stellt sich als schwierig heraus, warum?
+
+\begin{loesung}
+Dies ist das NP-vollst"andige Problem \textsl{SET-PACKING}, wie man 
+mittels der Reduktion
+\begin{align*}
+\textsl{SET-PACKING}&\phantom{\mathstrut\mapsto\mathstrut}\textrm{Aktivit"aten an einer Veranstaltung}
+\\[5pt]
+i&\mapsto \textrm{Aktivit"at}
+\\
+S_i&\mapsto \textrm{Teilnehmer, die sich f"ur $i$ angemeldet haben}
+\\
+k&\mapsto \textrm{Anzahl realisierte Aktivit"aten}
+\\
+J&\mapsto \textrm{tats"achlich realisierte Aktivit"aten}
+\\
+S_i\cap S_j=\emptyset\forall i\ne j
+&\mapsto \textrm{Teilnehmer sind f"ur h"ochstens eine realisierte Aktivit"at angemeldet}
+\end{align*}
+erkennen kann.
+\end{loesung}
+
+\begin{bewertung}
+1-1-Reduktionsmethode ({\bf R}) 1 Punkt,
+richtiges Vergleichsproblem ({\bf V}) 1 Punkt,
+Mapping ({\bf M}) 4 Punkte.
+\end{bewertung}
+

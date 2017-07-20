@@ -954,7 +954,7 @@ $(Q,\Sigma,\delta, q_0,F)$ mit
 \item $F\subset Q$ heisst die Menge der Akzeptierzustände.
 \end{compactenum}
 \end{definition}
-\index{$\varepsilon$-\Übergänge}
+\index{$\varepsilon$-Übergänge}
 Übergänge mit $\varepsilon$ als ``Input'' heissen $\varepsilon$-Übergänge.
 Ein NEA kann einen solchen Übergang durchführen ``wann er Lust hat''.
 Wir bezeichnen NEAs mit $\varepsilon$-Übergängen auch als
@@ -1184,7 +1184,7 @@ Menge der erreichbaren Zustände $\delta(q_0,{\tt baa})$.
 
 Nach Verarbeitung des ganzen Wortes kann der NEA in den Zuständen
 $\{q_0,q_1,q_2\}$ sein.
-Da der Akzeptierzustand $q_0$ in diese Menge
+Da der Akzeptierzustand $q_0$ in dieser Menge
 enthalten ist, gibt es eine Kombination von nichtdeterministischen
 Entscheidungen, die zu $q_0$ führen, das Wort {\tt baa} kann also
 akzeptiert werden.
@@ -1259,7 +1259,7 @@ F'=\{M\in P(Q)\;|\;M\cap F\ne \emptyset\}.
 \end{satz}
 \begin{proof}[Beweis]
 Es ist klar, dass mit dieser Übergangsfunktion $\delta'$ und den
-Akzeptierzuständen $F'$ ein NEA definiert ist, es muss nur noch
+Akzeptierzuständen $F'$ ein DEA definiert ist, es muss nur noch
 bewiesen werden, dass er die gleiche Sprache akzeptiert, also
 $L(A)=L(A')$.
 Das wird zutreffen, wenn $L(A)\subset L(A')$ und
@@ -1391,7 +1391,7 @@ Es ist
 Q'&=P(Q)\\
 \delta'(M,a)&=E(\delta(M, a))\quad M\in P(Q)\\
 q_0'&=E(q_0)\\
-F'&=\{M\in P(Q)\;|\, M\cap Q\ne \emptyset\}
+F'&=\{M\in P(Q)\;|\, M\cap F\ne \emptyset\}
 \end{align*}
 \end{satz}
 
@@ -1403,7 +1403,7 @@ mehreren $\varepsilon$-Übergängen beginnen.
 Falls $E(q_0)\cap F\ne \emptyset$
 wird der Anfangszustand auch zu einem Endzustand.
 
-Zudem erweitern wir in der Definition des Bildes in a um alle Zustände,
+Zudem erweitern wir in der Definition des Bildes $\delta(M,a)$ um alle Zustände,
 die durch einen angehängten $\varepsilon$-Übergang erreicht werden
 können.
 \end{proof}
@@ -1656,7 +1656,7 @@ Wir müssen jetzt einen Automaten
 \[
 A = (Q, \Sigma, \delta, q_0, F)
 \]
-konstruieren, der $L_1\cap L_2$ akzeptieren.
+konstruieren, der $L_1\cap L_2$ akzeptiert.
 
 Für die Schnittmenge brauchen wir einen Automaten, der die Abläufe 
 in beiden Teilautomaten gleichzeitig codiert.
@@ -1726,7 +1726,7 @@ Der Produktautomat ist jetzt
 \]
 
 Man kann den Produktautomaten auch
-verwenden, einen Automaten zu bauen, der $L_1\cup L_2$
+verwenden, um einen Automaten zu bauen, der $L_1\cup L_2$
 akzeptiert.
 Der kartesische Produktautomat simuliert ja sozusagen
 beide Teilautomaten in den beiden Komponenten der Zustände.
@@ -1939,9 +1939,12 @@ Q&=Q_1\cup Q_2\\
 F&=F_2\\
 q_0&=q_{01}\\
 \delta(q,a)&=\begin{cases}
-\delta_1(q,a)\cup\{q_{02}\}&\qquad q\in F_1, a=\varepsilon\\
-\delta_1(q,a)&\qquad q\in Q_1\setminus F_1\\
-\delta_2(q,a)&\qquad q\in Q_2
+\delta_1(\varepsilon,a)\cup\{q_{02}\}&\qquad q\in F_1 \wedge a=\varepsilon\\
+\delta_1(q,a)                        &\qquad q\in F_1 \wedge a\ne\varepsilon
+\quad\text{oder}\quad q\in Q_1\setminus F_1\\
+%\\
+%\delta_1(q,a)                        &\qquad q\in Q_1\setminus F_1\\
+\delta_2(q,a)                        &\qquad q\in Q_2
 \end{cases}
 \end{align*}
 \end{proof}

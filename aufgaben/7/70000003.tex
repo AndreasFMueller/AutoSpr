@@ -4,7 +4,7 @@ denen sich eine Bombe befindet. Der Spieler soll dann nur diejenigen
 Felder betreten, unter denen sich keine Bombe versteckt, und alle
 Felder markieren, unter denen eine Bombe liegt. Betrachten Sie das
 Problem {\it MINE-SWEEPER-CONSISTENCY}, in dem zu einer Belegung der
-Felder mit Zahlen (der Anzahl Bomben auf Nachbarfeldern) entscheiden
+Felder mit Zahlen (der Anzahl Bomben auf Nachbarfeldern) entschieden
 werden muss, ob diese Zahlen konsistent sind, ob also Bomben so
 auf dem Spielfeld verteilt werden k"onnen, dass die Zahlen stimmen.
 Zeigen sie, dass
@@ -13,6 +13,14 @@ Zeigen sie, dass
 \]
 
 \begin{loesung}
+Zunächst müssen wir sicherstellen, dass das Problem tatsächlich
+entscheidbar sind.
+Ist $N$ die Zahl der Felder, dann gibt es $2^N$ Bombenkonfigurationen.
+Diese können in endlicher Zeit durchprobiert werden, also ist das
+Problem entscheidbar.
+
+Um herauszufinden, ob das Problem in NP ist, konstruieren wir
+einen polynomiellen Verifizierer.
 Als L"osungszertifikat brauchen wir die Verteilung der Bomben.
 Zur Verifikation m"ussen wir dann die Anzahl der Bomben auf den
 Nachbarfeldern z"ahlen, was in Laufzeit $O(n^2)$ m"oglich ist,

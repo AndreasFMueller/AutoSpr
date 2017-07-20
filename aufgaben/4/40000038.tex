@@ -16,18 +16,25 @@ Man kann dies mit dem Pumping-Lemma f"ur kontextfreie Sprachen nachweisen,
 wobei man sogar das gleiche Beispielwort verwenden kann wie im Falle der
 Sprache $\{ \texttt{a}^n \texttt{b}^n \texttt{c}^n\;|\; n \ge 0\}$ .
 
+\ding{182}~%
 Man nimmt dazu an, dass $L$ kontextfrei sei.
-Gem"asst Pumping-Lemma gibt es daher die Pumping-Length $N$.
+\ding{183}~%
+Gem"ass Pumping-Lemma gibt es daher die Pumping-Length $N$.
+\ding{184}~%
 Wir konstruieren jetzt ein Wort
 $w=\texttt{a}^N\texttt{b}^N\texttt{c}^N$, welches die Voraussetzungen
 des Pumping-Lemma sicher erf"ullt.
+\ding{185}~%
 Es muss also eine Unterteilung $w=uvxyz$ geben, so dass $|vxy|\le N$ ist.
+\ding{186}~%
 Diese letzte Bedingung hat zur Folge, dass $v$ und $y$ h"ochstens in
-zwei der drei Bl"ocke $\texttt{a}^N$, $\texttt{b}^N$ oder $\texttt{c}^N$ liegen k"onnen.
+zwei der drei Bl"ocke $\texttt{a}^N$, $\texttt{b}^N$ oder $\texttt{c}^N$
+liegen k"onnen.
 Insbesondere "andert sich beim Pumpen nur die Anzahl von zwei der drei
 Buchstaben, nach auf- oder abpumpen erh"alt man also ein Wort, bei dem 
 die Anzahl jedes der drei Buchstaben nicht mehr gleich ist, also kein
 Wort mehr aus $L$, im Widerspruch zur Aussage des Pumping-Lemma.
+\ding{187}~%
 Daher kann $L$ nicht kontextfrei sein.
 \end{loesung}
 

@@ -788,7 +788,7 @@ ist genau dann erf"ullbar, wenn der Graph eine $k$-Clique enth"alt.
 \xymatrix{
 *+\txt{}
 	&{\bar x_1}
-		\ar@{-}[dl] \ar@{-}[ddl] \ar@{-}[dddl]
+		\ar@{-}[dl] \ar@{-}[drrr] \ar@{-}[ddl] \ar@{-}[dddl]
 		\ar@{-}[dddd] \ar@{-}[ddddr] 
 		%\ar@{-}[drrr]
 		\ar@{-}[ddrrr] \ar@{-}[dddrrr]
@@ -995,7 +995,7 @@ Abfolge beschreiben, die einer g"ultigen Berechnung entsprechen.
 
 Die einzelnen Zellen $c_{ij}$ der Tabelle sind mit einer Zeilennummer $i$
 und einer Spaltennummer $j$ indiziert, in jede Zelle kann
-genau ein Zeichen geschrieben werden.
+genau ein Zeichen $z_{ij}$ geschrieben werden.
 Zeichen k"onnen entweder Bandalphabetzeichen oder Zust"ande sein.
 Der gr"osseren Einheitlichkeit wegen markieren wir die Enden des verwendeten
 Bandabschnittes mit einem weiteren, bisher unbenutzten Zeichen {\tt\#}.
@@ -1004,39 +1004,45 @@ Wir verwenden die logischen
 Variablen $x_{ijs}$ mit $1\le i,j\le n^k$ und $s\in C$, die
 genau dann wahr ist, wenn die Zelle $c_{ij}$ das Zeichen $s$ enth"alt.
 
-In jede Zelle muss genau ein Zeichen geschrieben werden. Damit die Zelle
-$c_{ij}$ ein Zeichen enth"alt, muss mindestens eine der Variablen $x_{ijs}$
-wahr sein. Es d"urfen aber keine zwei Zeichen einer Zelle zugeordnet sein,
-$x_{ijs}\wedge x_{ijt}$ f"ur zwei verschiedenen Zeichen $s$ und $t$ darf
-also nicht wahr sein. Also muss jede Formel
-$\neg(x_{ijs}\wedge x_{ijt})=\overline{x_{ijs}}\vee\overline{x_{ijt}}$
-f"ur zwei verschiedene Zeichen wahr sein, zusammen mit der
-Bedingung, dass ein Zeichen in der Zelle steht, erhalten wir
-f"ur die Zellen $c_{ij}$ die Formel
-\[
-\varphi_{c_{ij}}=
-\biggl(\bigvee_{s\in C} x_{ijs}\biggr)\wedge
-\bigwedge_{\myatop{s,t\in C}{s\ne t}} (\overline{x_{ijs}}\vee\overline{x_{ijt}}).
-\]
-Dies muss f"ur jede Indexkombination gelten, also
-\[
-\varphi_c
-=
-\bigwedge_{1\le i,j\le n^k}
-\varphi_{c_{ij}}
-=
-\bigwedge_{1\le i,j\le n^k}\biggl(
-\biggl(\bigvee_{s\in C} x_{ijs}\biggr)\wedge
-\bigwedge_{\myatop{s,t\in C}{s\ne t}} (\overline{x_{ijs}}\vee\overline{x_{ijt}})
-\biggr).
-\]
-Da unsere Redukton polynomiell sein soll, m"ussen wir auch bestimmen,
-wie lang die Formel $\varphi_c$ ist. Alle Formeln $\varphi_{c_{ij}}$
-sind gleich gross, abh"angig nur von $|C|$, also einer Konstanten.
-Damit ist die L"ange von $\varphi_c$ bestimmt durch die Gr"osse der
-Tabelle, also $O(n^2k)$. Die zum Aufbau von $\varphi_c$ notwendig Zeit
-ist ebenfalls $O(n^2k)$.
+Wir wissen bereits aus Satz~\ref{skript:satz:vergleichsformel}, dass wir
+eine Vergleichsformel polynomiell in eine logische Formel umwandeln
+können, es ist also nur noch nötig, die Bedingungen für das Ausfüllrätsel
+als Vergleichsformel zu schrieben.
 
+%In jede Zelle muss genau ein Zeichen geschrieben werden. Damit die Zelle
+%$c_{ij}$ ein Zeichen enth"alt, muss mindestens eine der Variablen $x_{ijs}$
+%wahr sein. Es d"urfen aber keine zwei Zeichen einer Zelle zugeordnet sein,
+%$x_{ijs}\wedge x_{ijt}$ f"ur zwei verschiedenen Zeichen $s$ und $t$ darf
+%also nicht wahr sein. Also muss jede Formel
+%$\neg(x_{ijs}\wedge x_{ijt})=\overline{x_{ijs}}\vee\overline{x_{ijt}}$
+%f"ur zwei verschiedene Zeichen wahr sein, zusammen mit der
+%Bedingung, dass ein Zeichen in der Zelle steht, erhalten wir
+%f"ur die Zellen $c_{ij}$ die Formel
+%\[
+%\varphi_{c_{ij}}=
+%\biggl(\bigvee_{s\in C} x_{ijs}\biggr)\wedge
+%\bigwedge_{\myatop{s,t\in C}{s\ne t}} (\overline{x_{ijs}}\vee\overline{x_{ijt}}).
+%\]
+%Dies muss f"ur jede Indexkombination gelten, also
+%\[
+%\varphi_c
+%=
+%\bigwedge_{1\le i,j\le n^k}
+%\varphi_{c_{ij}}
+%=
+%\bigwedge_{1\le i,j\le n^k}\biggl(
+%\biggl(\bigvee_{s\in C} x_{ijs}\biggr)\wedge
+%\bigwedge_{\myatop{s,t\in C}{s\ne t}} (\overline{x_{ijs}}\vee\overline{x_{ijt}})
+%\biggr).
+%\]
+%Da unsere Redukton polynomiell sein soll, m"ussen wir auch bestimmen,
+%wie lang die Formel $\varphi_c$ ist. Alle Formeln $\varphi_{c_{ij}}$
+%sind gleich gross, abh"angig nur von $|C|$, also einer Konstanten.
+%Damit ist die L"ange von $\varphi_c$ bestimmt durch die Gr"osse der
+%Tabelle, also $O(n^2k)$. Die zum Aufbau von $\varphi_c$ notwendig Zeit
+%ist ebenfalls $O(n^2k)$.
+
+\subsubsection{Start mit dem Wort $w$}
 Als n"achstes dr"ucken wir in einer Formel $\varphi_i$ aus,
 dass die Turingmaschine mit dem
 Wort $w$ initialisiert worden ist. Dazu muss in irgendeiner
@@ -1065,20 +1071,29 @@ stehen, wird eine der Formeln war, also
 Auch diese Formel ist nicht gr"osser als $O(n^{2k})$ und kann in
 polynomieller Zeit erzeugt werden.
 
+\subsubsection{Akzeptierzustand}
+In der letzten Zeile der Tabelle muss der Zustand $q_\text{accept}$ stehen,
+wir können dies durch den 
 Irgendwo in der Tabelle muss der Akzeptierzustand stehen, also
 \[
 \varphi_{\text{accept}} 
 =
-\bigvee_{1\le i,j\le n^k} x_{i,j,q_{\text{accept}}}.
+\bigvee_{1\le i\le n^k} x_{N,i,q_{\text{accept}}}.
 \]
+ausdrücken.
 
+\subsubsection{Berechnungsgeschichte}
 Die Konfigurationen in der Tabelle m"ussen alle durch
-Turingmaschinen"uberg"ange auseinander hervorgehen. Ob dies
-der Fall ist, kann durch die Betrachtung von zwei Zeilen
+Turingmaschinen"uberg"ange auseinander hervorgehen, die Tabelle muss
+mit einer Berechnungsgeschichte ausgefüllt werden.
+Ob dies der Fall ist, kann durch die Betrachtung von zwei Zeilen
 hohen und drei Zellen breiten Ausschnitten aus der Tabelle
-"uberpr"uft werden. Solche Ausschnitte zeigen fast immer zwei
+"uberpr"uft werden.
+Solche Ausschnitte zeigen fast immer zwei
 gleiche Zeilen, ausser an der aktuellen Kopfposition, wo
-sich etwas "andern kann. Ein "Ubergang
+sich etwas "andern kann.
+
+Ein "Ubergang
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -1173,57 +1188,109 @@ $b$&$x$&$y$\\
 Es gibt eine endliche Anzahl korrekter Belegungen solcher
 $2\times 3$-Ausschnitte mit den Zeichen aus $C$, die Anzahl
 h"angt nur von $|C|$ und den "Uberg"angen der Turingmaschine ab.
-Die Belegung
+
+Jetzt müssen wir zeigen, dass wir gültige Übergänge, die durch erlaubte
+Inhalte von $2\times 3$-Ausschnitten charakterisiert sind, mit
+einer Vergleichsformel erkennen können.
+Wir können aber für jede Ausschnitt-Position eine Vergleichsformel
+aufstellen, die wahr wird, wenn die Zeichen im Ausschnitt 
+gleich sind zu einem erlaubten Ausschnitt.
+Insbesondere gibt es eine Vergleichsformel für Ausschnitt-Inhalte.
+
+%Die Belegung
+%\[
+%\begin{tabular}{|c|c|c|}
+%\hline
+%$a_1$&$a_2$&$a_3$\\
+%\hline
+%$a_4$&$a_5$&$a_6$\\
+%\hline
+%\end{tabular}
+%\]
+%eines Ausschnitts mit der Zelle $c_{ij}$ in der
+%linken oberen Ecke entspricht 
+%\[
+%x_{i,j,a_1}\wedge
+%x_{i+1,j,a_2}\wedge
+%x_{i+2,j,a_3}\wedge
+%x_{i,j+1,a_4}\wedge
+%x_{i+1,j+1,a_5}\wedge
+%x_{i+2,j+1,a_6}.
+%\]
+%Davon muss eine wahr sein, also
+%\[
+%\varphi_{\text{Ausschnitt}_{ij}}
+%=
+%\bigvee_{\text{$a_1,\dots,a_6$ korrekt}}
+%x_{i,j,a_1}\wedge
+%x_{i+1,j,a_2}\wedge
+%x_{i+2,j,a_3}\wedge
+%x_{i,j+1,a_4}\wedge
+%x_{i+1,j+1,a_5}\wedge
+%x_{i+2,j+1,a_6}.
+%\]
+%Ausserdem muss jeder Ausschnitt g"ultig belegt sein, also
+%muss
+%\[
+%\varphi_{\text{Ausschnitt}} =\bigwedge_{1\le i,j\le n^k}\varphi_{\text{Ausschnitt}_{ij}}
+%\]
+%wahr sein. Auch diese Formel l"asst sich in polynomieller Zeit konstruieren
+%und sie hat polynomielle L"ange.
+
+\subsubsection{Maschine hält auf einem Akzeptierzustand an}
+Die Maschine kann schon wesentlich früher anhalten, also die worst case
+Laufzeit anzeigt.
+Wir müssen die Tabelle daher nach Ende der Berechnung mit immer gleichen
+Zeilen ausfüllen.
+Wir können dies erreichen, indem wir den erlaubten Ausschnitt-Inhalten
+die drei Ausschnitte
 \[
-\begin{tabular}{|c|c|c|}
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|}
 \hline
-$a_1$&$a_2$&$a_3$\\
+q_*&x&y\\
 \hline
-$a_4$&$a_5$&$a_6$\\
+q_*&x&y\\
+\hline
+\end{tabular}
+\qquad\text{oder}\qquad
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|}
+\hline
+x&q_*&y\\
+\hline
+x&q_*&y\\
+\hline
+\end{tabular}
+\qquad\text{oder}\qquad
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|}
+\hline
+x&y&q_*\\
+\hline
+x&y&q_*\\
 \hline
 \end{tabular}
 \]
-eines Ausschnitts mit der Zelle $c_{ij}$ in der
-linken oberen Ecke entspricht der Formel
-\[
-x_{i,j,a_1}\wedge
-x_{i+1,j,a_2}\wedge
-x_{i+2,j,a_3}\wedge
-x_{i,j+1,a_4}\wedge
-x_{i+1,j+1,a_5}\wedge
-x_{i+2,j+1,a_6}.
-\]
-Davon muss eine wahr sein, also
-\[
-\varphi_{\text{Ausschnitt}_{ij}}
-=
-\bigvee_{\text{$a_1,\dots,a_6$ korrekt}}
-x_{i,j,a_1}\wedge
-x_{i+1,j,a_2}\wedge
-x_{i+2,j,a_3}\wedge
-x_{i,j+1,a_4}\wedge
-x_{i+1,j+1,a_5}\wedge
-x_{i+2,j+1,a_6}.
-\]
-Ausserdem muss jeder Ausschnitt g"ultig belegt sein, also
-muss
-\[
-\varphi_{\text{Ausschnitt}} =\bigwedge_{1\le i,j\le n^k}\varphi_{\text{Ausschnitt}_{ij}}
-\]
-wahr sein. Auch diese Formel l"asst sich in polynomieller Zeit konstruieren
-und sie hat polynomielle L"ange.
+mit $q_*\in\{q_\text{accept},q_\text{reject}\}$ und beliebigen
+Bandalphabetzeichen $x$ und $y$ hinzufügen.
 
-Damit die Tabelle eine akzeptierende Berechnung beschreibt, m"ussen
-alle Teile wahr sein, also ist
-\[
-\varphi =
-\varphi_{c}\wedge
-\varphi_{\text{start}}\wedge
-\varphi_{\text{accept}}\wedge
-\varphi_{\text{Ausschnitt}}
-\]
-die gesuchte Formel, die genau dann erf"ullbar ist, wenn $w$ von der
-Turingmaschine $M$ akzeptiert werden kann.
+Wir haben also mehrere logische Formeln und Vergleichsformeln
+gefunden, die genau dann alle wahr sind, wenn die Tabelle mit einer
+akzeptierenden Berechnungsgeschichte gefüllt ist.
+Die einzelnen Teile sind von polynomieller Grösse, also auch deren
+Konjunktion.
+Damit ist gezeigt, dass sich $A$ polynomiell auf ein polynomielles
+Ausfüllrätsel reduzieren lässt.
+
+%Damit die Tabelle eine akzeptierende Berechnung beschreibt, m"ussen
+%alle Teile wahr sein, also ist
+%\[
+%\varphi =
+%\varphi_{c}\wedge
+%\varphi_{\text{start}}\wedge
+%\varphi_{\text{accept}}\wedge
+%\varphi_{\text{Ausschnitt}}
+%\]
+%die gesuchte Formel, die genau dann erf"ullbar ist, wenn $w$ von der
+%Turingmaschine $M$ akzeptiert werden kann.
 
 \section{Beispiele NP-vollst"andiger Probleme}
 \rhead{NP-vollst"andige Probleme}
@@ -1392,7 +1459,8 @@ noch mehrere Variablen pro Klausel enthalten. Sei
 \[
 (x_1\vee x_2\vee \dots\vee x_n)
 \]
-eine solche Klausel. Wir m"ussen sie ersetze durch eine
+eine solche Klausel.
+Wir m"ussen sie ersetzen durch eine
 Formel in konjunktiver Normalform mit drei Variablen pro Klausel.
 Dazu kann man den folgenden Trick verwenden.
 Die Formel $(\varphi\vee\psi)$ wird wahr, wenn eine der Unterformeln
@@ -1912,7 +1980,8 @@ erf"ullen.
 $k$, gibt es $k$ Cliquen so, dass jede Ecke in genau einer der Cliquen ist?
 \index{3D-MATCHING@\textsl{3D-MATCHING}}
 \item[\textsl{3D-MATCHING}:] Sei $T$ eine endliche Menge und $U$ eine 
-Menge von Tripeln aus $T$: $U\subset T\times T\times T$. Gibt es eine
+Menge von Tripeln aus $T$: $U\subset T\times T\times T$.
+Gibt es eine
 Teilmenge $W\subset U$ so, dass $|W|=|T|$ und keine zwei Elemente
 von $W$ stimmen in irgendeiner Koordinate "uberein?
 \index{HITTING-SET@\textsl{HITTING-SET}}
@@ -1957,7 +2026,8 @@ $c_i$ identisch ist:
 \]
 \index{MAX-CUT@\textsl{MAX-CUT}}
 \item[\textsl{MAX-CUT}:] Gegeben ein Graph $G$ mit einer Gewichtsfunktion
-$w\colon E\to\mathbb Z$ und eine ganze Zahl $W$. Gibt es eine Teilmenge
+$w\colon E\to\mathbb Z$ und eine ganze Zahl $W$.
+Gibt es eine Teilmenge
 $S$ der Vertizes, so dass das Gesamtgewicht der Kanten, die $S$ mit
 seinem Komplement verbinden, mindestens so gross ist wie $W$:
 \[
@@ -1967,14 +2037,12 @@ seinem Komplement verbinden, mindestens so gross ist wie $W$:
 \item[\textsl{SET-PACKING}:] Gegeben eine Familie $(S_i)_{i\in I}$ von
 Mengen und eine Zahl $k\in \mathbb N$.
 Gibt es eine $k$-elementige Teilfamilie $(S_i)_{i\in J}$ mit $J\subset I$,
-$|J|=k$,
-Gibt es eine $k$-elementige Teilfamilie $(S_i)_{i\in J}$ mit $J\subset I$
+d.~h.~$|J|=k$,
 derart,
 dass die Mengen der Teilfamilie paarweise diskjunkt sind, also 
 \[
-	S_i \cap S_j = \emptyset \quad\forall i,j\in J.
+	S_i \cap S_j = \emptyset \quad\forall i,j\in J \;\text{mit}\; i\ne j?
 \]
-$k$-elementig heisst $|J| = k$.
 \end{description}
 
 \input karp.tex

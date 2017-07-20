@@ -19,7 +19,13 @@ polynomieller Zeit entscheiden kann, ob ein Hashiwokakero-R"atsel
 eine L"osung hat.
 
 \begin{loesung}
-Man muss zeigen, dass HASHIWOKAKERO in NP ist. Dazu gen"ugt es, einen
+Zunächst muss man sicherstellen, dass HASHIWOKAKERO entscheidbar ist.
+Dazu muss man alle Brückenkombinationen druchproberen, wovon es sicher
+weniger als $O(n^4)$ gibt.
+Dies ist immer in endlicher Zeit möglich, also ist das Problem
+entscheidbar.
+
+Nun muss man zeigen, dass HASHIWOKAKERO in NP ist. Dazu gen"ugt es, einen
 polynomiellen Verifizierer zu finden. Als Zertifikat f"ur den
 Verifizierer verlangen wir die Anzahl der Br"ucken zwischen jedem 
 Paar von Inseln des R"atsels.
@@ -48,11 +54,12 @@ Die Verifikation ist also in polynomieller Zeit durchf"uhrbar.
 \end{loesung}
 
 \begin{bewertung}
-Beobachtung, dass es reicht, einen polynomiellen Verifizerer ({\bf (V)})
+Entscheidbar ({\bf E}) 1 Punkt,
+Beobachtung, dass es reicht, einen polynomiellen Verifizerer ({\bf V})
 zu finden 1 Punkt,
 Definition des Zertifikats ({\bf Z}) 1 Punkt,
 Definition des Verifikationsalgorithmus ({\bf A}) 2 Punkte,
-Absch"atzung der Laufzeitkomplexit"at ({\bf L}) 2 Punkte.
+Absch"atzung der Laufzeitkomplexit"at ({\bf L}) 1 Punkte.
 \end{bewertung}
 
 \begin{diskussion}
