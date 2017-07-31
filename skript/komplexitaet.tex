@@ -153,7 +153,7 @@ durch das Band.
 Wir nehmen an, dass $t(n)\ge n$, denn sonst k"onnte die
 Turingmaschine nicht einmal ihren Input vollst"andig lesen.
 Der tats"achlich benutzte Teil des Bandes kann dann nicht l"anger sein
-als $t(n)$. Zusammen mit den $t(n)$ durchl"aufen erhalten wir,
+als $t(n)$. Zusammen mit den $t(n)$ Durchl"aufen erhalten wir,
 dass die simulierte Turingmaschine die Laufzeit $O(t(n)^2)$ hat.
 \end{proof}
 
@@ -322,7 +322,7 @@ kann in Zeit $O(n^3)$ durchgef"uhrt werden.
 
 Sei $G$ ein gerichteter Graph und $s$ und $t$ zwei Vertizes
 des Graphen. Das Pfad-Problem fragt, ob es einen von $s$ nach $t$
-f"uhrend Pfad in dem Graphen gibt. "Ubersetzt in ein Spracheproblem
+f"uhrenden Pfad in dem Graphen gibt. "Ubersetzt in ein Spracheproblem
 liefert es uns den folgenden Satz.
 
 \begin{satz}
@@ -506,9 +506,9 @@ bestimmt kein Algorithmus in P.
 
 \textsl{SAT} ist aber in NP,
 denn wir k"onnen einen polynomiellen Verifizierer angeben.
-Der Verifizierer verlangt als L"osungszertifikate $c$ eine
+Der Verifizierer verlangt als L"osungszertifikat $c$ eine
 Belegung der Variablen mit Wahrheitswerten $c=(x_1,\dots,x_n)$,
-und "uberpr"uft, ob durch einsetzen der Werte $x_1,\dots,x_n$
+und "uberpr"uft, ob durch Einsetzen der Werte $x_1,\dots,x_n$
 die Formel $\varphi(x_1,\dots,x_n)$ wahr wird.
 
 Eine Variante von \textsl{SAT} ist \textsl{3SAT}.
@@ -562,7 +562,7 @@ Das Cliquen-Problem
 \]
 ist entscheidbar. Man probiert alle m"oglichen $k$-elementigen
 Teilmengen der Ecken des Graphen durch, ob sie eine Clique
-bilden. Da Zahl der Teilmengen ist $\binom{n}{k}$, wenn $n$
+bilden. Da die Zahl der Teilmengen $\binom{n}{k}$ ist, wenn $n$
 die Zahl der Ecken ist, und $\binom{n}{k}$ von der Gr"ossenordnung
 $O(n^k)$ ist, ist dieser Algorithmus nicht in P.
 
@@ -613,7 +613,7 @@ d"urfen.
 $k$-\textsl{VERTEX-COLORING} ist in NP, denn ein polynomieller Verifizierer
 wird als L"osungszertifikat die Farbzuordnung $c=(c_1,\dots,c_n)$ der
 Ecken $1,\dots,n$ des Graphen verlangen, und kann damit in polynomieller
-Zeit pr"ufen, ob die Bedingung verschiedener Farbe an den Enden
+Zeit pr"ufen, ob die Bedingung verschiedener Farben an den Enden
 jeder Kante erf"ullt ist.
 
 \section{Reduktion}
@@ -655,7 +655,7 @@ Da $B\in\text{P}$ gibt es eine Turingmaschine $M$ mit polynomieller Laufzeit,
 die $w\in B$ entscheiden kann. Der folgende Algorithmus entscheidet
 jetzt auch $w\in A$:
 \begin{compactenum}
-\item Berechnen $f(w)$
+\item Berechne $f(w)$
 \item Wende $M$ auf $f(w)$ an.
 \end{compactenum}
 Wir m"ussen uns nur noch versichern, dass dieser Algorithmus 
@@ -770,7 +770,7 @@ Sei also die Formel von der Form
 wobei jede Teilformel $\varphi_i$ nur eine Disjunktion (Oder-Verkn"upfung)
 von Variablen oder negierten Variablen ist. Damit $\varphi$
 erf"ullbar ist, muss es eine Zuordnung von Wahrheitswerten zu
-den Variable geben, so dass jede der Teilformeln $\varphi_i$ wahr
+den Variablen geben, so dass jede der Teilformeln $\varphi_i$ wahr
 wird. In jeder Teilformel gibt es also eine Variable oder 
 negierte Variable, die wahr ist. Es w"urde also gen"ugen,
 die Terme in den $\varphi_i$ zu finden, die alle gleichzeitig
@@ -949,7 +949,7 @@ in NP sind also auch in P, oder $\text{P}=\text{NP}$.
 \index{Cook, Steven}
 \index{Levin, Leonid}
 Bislang ist noch nicht klar, dass es "uberhaupt NP-vollst"andige
-Problem gibt. Dies "anderte sich mit dem Satz von Cook und Levin,
+Probleme gibt. Dies "anderte sich mit dem Satz von Cook und Levin,
 der beweist, dass \textsl{SAT} NP-vollst"andig ist.
 
 \begin{satz}[Cook-Levin]
@@ -1047,7 +1047,7 @@ Als n"achstes dr"ucken wir in einer Formel $\varphi_i$ aus,
 dass die Turingmaschine mit dem
 Wort $w$ initialisiert worden ist. Dazu muss in irgendeiner
 Zelle der ersten Zeile das Zeichen $q_0$ stehen, und rechts
-anschliessen die Zeichen des Wortes $w=a_1a_2\dots a_{|w|}$.
+anschliessend die Zeichen des Wortes $w=a_1a_2\dots a_{|w|}$.
 Steht $q_0$ in der
 Zelle $j$, wird die Formel
 \[
@@ -1464,7 +1464,7 @@ Wir m"ussen sie ersetzen durch eine
 Formel in konjunktiver Normalform mit drei Variablen pro Klausel.
 Dazu kann man den folgenden Trick verwenden.
 Die Formel $(\varphi\vee\psi)$ wird wahr, wenn eine der Unterformeln
-$\varphi$ oder $\psi$ war ist. Sie wird nicht wahr sein, wenn 
+$\varphi$ oder $\psi$ wahr ist. Sie wird nicht wahr sein, wenn
 beide Unterformeln nicht wahr sind. Sei $z$ eine neue Variable,
 wir m"ochten mit ihr ausdr"ucken, dass $\psi$ wahr ist. Wir
 verlangen $\bar z \vee \psi$, wenn $\psi$ nicht wahr ist, darf auch $z$
@@ -1584,7 +1584,7 @@ werden wird dadurch ausgedr"uckt, dass der Pfad beim Durchlaufen
 der ``Perlenkette'' von Variable $x_i$ einen ``Abstecher'' zu $c_j$
 machen kann. Jedem Paar von Vertizes in der ``Perlenkette'' ordnen
 wir daher eine Klausel zu. Falls $x_i$ in der Klausel $c_j$
-vorkommte, f"ugen wir zwischen den beiden der Klausel $c_j$
+vorkam, f"ugen wir zwischen den beiden der Klausel $c_j$
 zugeordneten Vertizes zus"atzliche Kanten nach $c_j$ und wieder
 zur"uck hinzu.
 \[
@@ -1755,7 +1755,7 @@ von $z_i$ ein.
 
 Die Formel ist erf"ullbar, wenn es eine Belegung mit Wahrheitswerten
 gibt, die jede Klausel wahr macht. Dabei k"onnen auch mehrere Literale
-in einer Klausel war werden, die Summe der Spalte einer wahren Klausel kann
+in einer Klausel wahr werden, die Summe der Spalte einer wahren Klausel kann
 also Werte zwischen 1 und 3 annehmen. Da die Summe $t$ exakt erreicht
 werden muss, f"uhren wir f"ur jede Klausel zus"atzliche Zahlen $g_j$ und
 $h_j$ hinzu, die in der Spalte der Klausel $c_j$ eine $1$ haben und sonst
@@ -1890,7 +1890,7 @@ Also ist
 $\text{\textsl{SUBSET-SUM}}\le_P\text{\textsl{BIP}}$.
 \end{proof}
 
-Im folgenden wollen die von Karp als NP-vollst"andig erkannten Probleme
+Im Folgenden wollen die von Karp als NP-vollst"andig erkannten Probleme
 ohne Beweis im Sinne einer Referenz zusammenstellen. Hat man ein
 Problem als NP-vollst"andig nachzuweisen, kann man von jedem dieser
 Probleme aus eine Reduktion versuchen.
@@ -2154,7 +2154,7 @@ Gesucht ist jetzt also eine Reduktion
 \]
 Aus Abbildung~\ref{gatterformel} k"onnen wir sehen, was dazu alles
 "ubersetzt werden k"onnen muss. Leitungen, Verzweigungen, und die Grundgatter
-m"ussen alle in geeignete Zahlemuster auf einem Minesweeper-Spielfeld
+m"ussen alle in geeignete Zahlenmuster auf einem Minesweeper-Spielfeld
 "ubersetzt werden, so dass sich genau dann konsistente Bomben
 finden lassen, wenn der Ausgang der Schaltung wahr werden kann.
 
