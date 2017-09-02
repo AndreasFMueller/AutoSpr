@@ -27,6 +27,28 @@ R&\rightarrow \varepsilon
 \\
  &\rightarrow \texttt{b}\; R \;\texttt{c}
 \end{align*}
+
+Alternativ kann man auch einen Stackautomaten konstruieren, welcher die Sprache
+$L_2$ akzeptiert:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm{
+*+\txt{}\ar[r]
+	&{q_0}\ar[r]^{\varepsilon,\varepsilon\to \texttt{\$}}
+		&{q_1}\ar@(ur,ul)_{\texttt{a},\varepsilon\to \texttt{a}}
+		      \ar[r]^{\varepsilon,\varepsilon\to\varepsilon}
+			&{q_2}\ar@(r,u)_{\texttt{b},\varepsilon\to \texttt{b}}
+			      \ar[d]^{\varepsilon,\varepsilon\to\varepsilon}
+\\
+*+\txt{}
+	&*++[o][F=]{q_5}
+		&{q_4}\ar@(dr,dl)^{\texttt{d},\texttt{a}\to\varepsilon}
+		      \ar[l]^{\varepsilon,\texttt{\$}\to\varepsilon}
+			&{q_3}\ar@(r,d)^{\texttt{c},\texttt{b}\to\varepsilon}
+			      \ar[l]^{\varepsilon,\varepsilon\to\varepsilon}
+}
+\]
+
 Die Sprache $L_1$ dagegen ist nicht kontextfrei, wie wir mit dem Pumping-Lemma
 für kontextfreie Sprachen beweisen können.
 Dazu nehmen wir an, dass $L_1$ kontextfrei ist, dann gibt es die Zahl $N$,
