@@ -1,4 +1,4 @@
-F"ur arithmetische Ausdr"ucke mit den Grundoperationen
+Für arithmetische Ausdrücke mit den Grundoperationen
 {\tt +} und {\tt -} stehen die folgenden zwei Grammatiken
 zur Auswahl. Einerseits eine leicht abgewandelte Variante
 der in der Vorlesung besprochenen Grammatik:
@@ -15,10 +15,10 @@ Andererseits die folgende Grammatik:
                   &\rightarrow \varepsilon\\
  \text{Term}&\rightarrow \text{Zahl}
 \end{align*}
-Die beiden Grammatiken verwenden nat"urlich die gleichen Regeln
-f"ur das nichtterminale Symbol ``Zahl''.
+Die beiden Grammatiken verwenden natürlich die gleichen Regeln
+für das nichtterminale Symbol ``Zahl''.
 \begin{teilaufgaben}
-\item Erstellen Sie f"ur jede Grammatik den parse tree f"ur den Ausdruck
+\item Erstellen Sie für jede Grammatik den parse tree für den Ausdruck
 \[
 47-1291+1848
 \]
@@ -63,14 +63,14 @@ Bei Verwendung der zweiten Grammatik bekommt man jedoch
 \]
 
 \item
-Um mit einem Parse Tree einen Ausdruck auszuwerten, muss man f"ur
-jede Regel festlegen, wie sie in die Wertberechnung "ubersetzt werden
+Um mit einem Parse Tree einen Ausdruck auszuwerten, muss man für
+jede Regel festlegen, wie sie in die Wertberechnung übersetzt werden
 muss.
 
-F"ur die erste Grammatik muss man festlegen, wie ein Ausdruck auszuwerten
+Für die erste Grammatik muss man festlegen, wie ein Ausdruck auszuwerten
 ist. Dazu muss man zuerst den Ausdruck auf der rechten Seite der 
 Regel auswerten, und dann die arithmetische Operation mit der Zahl
-entsprechend dem Operationszeichen durchf"uhren.
+entsprechend dem Operationszeichen durchführen.
 Es wird also zuerst die Summe $1291+1848= 3139$
 gebildet, die anschliessend von $47$ subtrahiert, was
 $
@@ -81,11 +81,11 @@ $
 ergibt.
 Der erste Parse Tree ergibt also das falsche Resultat.
 
-Das richtige Resultat erh"alt man jedoch mit dem Parse
+Das richtige Resultat erhält man jedoch mit dem Parse
 Tree nach der zweiten Grammatik.
 Die Auswertung einer Regel erfolgt hier anders: zum Wert der Termsequenz
 wird der Wert des Terms hinzuaddiert, mit dem Vorzeichen, das in der
-Regel gew"ahlt worden ist.
+Regel gewählt worden ist.
 Von unten nach oben ausgewertet bedeutet das wieder, dass zuerst 
 die Termsequenz in der dritten Zeile zu 1848 evaluiert wird.
 Die Termsequenz in der zweiten Zeile kann dann als $-1291 + 1848$

@@ -1,5 +1,5 @@
-In Aufgabe~\ref{70000032} wird ein Spielfeld f"ur ein Heyawake-R"atsel vorgeben.
-Eine maschinenlesbare Version des Spielfeldes k"onnte wie 
+In Aufgabe~\ref{70000032} wird ein Spielfeld für ein Heyawake-Rätsel vorgeben.
+Eine maschinenlesbare Version des Spielfeldes könnte wie 
 folgt aussehen:
 \begin{center}
 \small
@@ -10,53 +10,53 @@ die die Felder beschreiben und Zeilen, die die horizontalen Linien
 beschreiben.
 Punkte (\texttt{.}) beschreiben leere Felder.
 Jeder zweite Platz in einer Zeile, die Felder beschreibt,
-enth"alt entweder \texttt{|} oder ein Leerzeichen, so werden die
-vertikalen W"ande beschrieben.
-Horizontale W"ande werden durch \texttt{-} codiert.
-K"onnen Sie eine (kontextfreie) Grammatik f"ur solche Feldbeschreibungen
+enthält entweder \texttt{|} oder ein Leerzeichen, so werden die
+vertikalen Wände beschrieben.
+Horizontale Wände werden durch \texttt{-} codiert.
+Können Sie eine (kontextfreie) Grammatik für solche Feldbeschreibungen
 angeben?
 
 \begin{loesung}
 Nein, diese Sprache ist nicht kontextfrei, wie man mit dem 
-Pumping Lemma f"ur kontextfreie Sprachen beweisen kann.
-Dazu nehmen wir zun"achst an, dass die Sprache der Feldbeschreibungen
+Pumping Lemma für kontextfreie Sprachen beweisen kann.
+Dazu nehmen wir zunächst an, dass die Sprache der Feldbeschreibungen
 kontextfrei sei. Dann gibt es nach dem Pumping Lemma eine Zahl $N$,
-die Pumping Length, so dass alle W"orter der Sprache mit mindestens
-L"ange $N$ ``aufpumpbar'' sind.
+die Pumping Length, so dass alle Wörter der Sprache mit mindestens
+Länge $N$ ``aufpumpbar'' sind.
 
-Wir beschreiben jetzt ein v"ollig leeres $N\times N$-Feld. Es besteht
+Wir beschreiben jetzt ein völlig leeres $N\times N$-Feld. Es besteht
 abwechseln aus Zeilen aus lauter Punkten und Leerzeichen, und Zeilen
-aus lauter Leerzeichen. Alle Zeilen haben die gleiche L"ange $2N-1$.
+aus lauter Leerzeichen. Alle Zeilen haben die gleiche Länge $2N-1$.
 Dies ist das Wort $w$.
 
-Das Pumping Lemma besagt, dass man das Wort  $w$ in f"unf Teile
+Das Pumping Lemma besagt, dass man das Wort  $w$ in fünf Teile
 $w=xyzuv$ zerlegt werden kann, wobei $|yzv|\le N$ sein muss.
-Ausserdem m"ussen die aufgepumpten W"orter $w_k=xy^kzu^kv$ alle wieder
+Ausserdem müssen die aufgepumpten Wörter $w_k=xy^kzu^kv$ alle wieder
 korrekte Feldbeschreibungen sein.
-Die Teile $y$ und $u$ sind in h"ochstens vier von den $2N-1$ Zeilen.
+Die Teile $y$ und $u$ sind in höchstens vier von den $2N-1$ Zeilen.
 Ausserdem enthalten sie so wenige Zeichen, durch entfernen von
-$y$ und $u$ nicht wieder vollst"andige Zeilen der L"ange $2N-1$ entstehen
-k"onnen.
-Beim Abpumpen wird also die L"ange von maximal vier Zeilen ver"andert,
-w"anrend die "ubrigen $2N-5$ Zeilen unver"andert bleiben\footnote{Wenn man
-es ganz genau nimmt, dann m"usste man hier voraussetzen, dass $N \ge 3$ ist,
-da man sonst nicht sicher sein kann, dass eine unver"anderte Zeile
-"ubrig bleibt. Diese Voraussetzung darf man aber immer machen, denn
+$y$ und $u$ nicht wieder vollständige Zeilen der Länge $2N-1$ entstehen
+können.
+Beim Abpumpen wird also die Länge von maximal vier Zeilen verändert,
+wänrend die übrigen $2N-5$ Zeilen unverändert bleiben\footnote{Wenn man
+es ganz genau nimmt, dann müsste man hier voraussetzen, dass $N \ge 3$ ist,
+da man sonst nicht sicher sein kann, dass eine unveränderte Zeile
+übrig bleibt. Diese Voraussetzung darf man aber immer machen, denn
 wenn $N$ Pumping Length ist, dann ist auch $N+1$ Pumping Length.
 Die Pumping Length sagt ja nur, wie lange ein Wort {\em mindestens} sein
 muss, damit es sicher aufpumpbar ist. Und wenn $N$ lang genug ist, dann ist
-$N+1$ sicher auch lang genug, und jede gr"ossere L"ange erst recht.
+$N+1$ sicher auch lang genug, und jede grössere Länge erst recht.
 Man darf also immer annehmen, dass die Pumping Length $N$ ``gross genug'' ist.}.
 Durch das Abpumpen ist das Wort $w_0$ nicht mehr in der Sprache.
-Dieser Widerspruch zeigt, dass die Sprache der Heyawake-R"atsel nicht
+Dieser Widerspruch zeigt, dass die Sprache der Heyawake-Rätsel nicht
 kontextfrei ist.
 \end{loesung}
 
 \begin{diskussion}
-Der Schl"ussel zu dieser Aufgabe ist bereits in der Aussage enthalten,
-alle Zeilen m"ussten gleich lang sein.
-Wenn es eine Grammatik f"ur diese Sprache g"abe, dann g"abe es auch
-eine Grammatik f"ur die Sprache
+Der Schlüssel zu dieser Aufgabe ist bereits in der Aussage enthalten,
+alle Zeilen müssten gleich lang sein.
+Wenn es eine Grammatik für diese Sprache gäbe, dann gäbe es auch
+eine Grammatik für die Sprache
 \[
 L=\{ (\texttt{x}^n\texttt{\\n})^m\,|\, n,m>0\}
 =
@@ -70,10 +70,10 @@ L=\{ (\texttt{x}^n\texttt{\\n})^m\,|\, n,m>0\}
 \,|\,n>0
 \},
 \]
-welche man erh"alt, indem man in den Heyawake jedes Zeichen ausser 
+welche man erhält, indem man in den Heyawake jedes Zeichen ausser 
 \texttt{\textbackslash n} durch \texttt{x}
 ersetzt wurde, und \texttt{\textbackslash n} durch \texttt{n}.
-Diese Sprache kann man f"ur $m>3$ ganz analog zu der in der Vorlesung
+Diese Sprache kann man für $m>3$ ganz analog zu der in der Vorlesung
 diskutierten Sprache $\{
 \texttt{a}^n
 \texttt{b}^n
@@ -86,7 +86,7 @@ Erkenntnis, dass dies Sprache nicht kontextfrei ist ({\bf C}) 1 Punkt,
 Pumping Lemma Annahme ({\bf A}) 1 Punkt,
 Pumping Length ({\bf N}) 1 Punkt,
 Beispielwort ({\bf W}) 1 Punkt,
-Unterteilung in f"unf Teile ({\bf U}) 1 Punkt,
+Unterteilung in fünf Teile ({\bf U}) 1 Punkt,
 Wort nach Pumpen nicht mehr in der Sprache ({\bf P}).
 \end{bewertung}
 

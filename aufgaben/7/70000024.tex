@@ -1,66 +1,66 @@
-Das R"atselspiel {\it Fillomino} wird auf einem $n\times m$ Spielfeld 
+Das Rätselspiel {\it Fillomino} wird auf einem $n\times m$ Spielfeld 
 gespielt. In einzelnen Zellen des Spielfeldes sind Zahlen eingetragen.
-Der Spieler muss die leeren Felder mit Zahlen f"ullen, so dass
-zusammenh"angende Gebiete soviele Felder enthalten
-wie die Zahl angibt. Ein zusammenh"angendes Gebiet besteht aus Feldern,
-die sich entlang einer Kante ber"uhren und alle die gleiche Zahl enthalten.
-Die Abbildung zeigt ein Fillomino-R"atsel (links) mit L"osung (rechts).
+Der Spieler muss die leeren Felder mit Zahlen füllen, so dass
+zusammenhängende Gebiete soviele Felder enthalten
+wie die Zahl angibt. Ein zusammenhängendes Gebiet besteht aus Feldern,
+die sich entlang einer Kante berühren und alle die gleiche Zahl enthalten.
+Die Abbildung zeigt ein Fillomino-Rätsel (links) mit Lösung (rechts).
 \begin{center}
 \includeagraphics[width=0.4\hsize]{fill1.png}
 \qquad
 \includeagraphics[width=0.4\hsize]{fill8.png}
 \end{center}
 Zeigen Sie, dass eine nichtdeterministische Maschine in polynomieller
-Zeit entscheiden kann, ob ein Fillomino eine L"osung hat.
+Zeit entscheiden kann, ob ein Fillomino eine Lösung hat.
 
 \begin{loesung}
-Es gen"ugt zu zeigen, dass es einen polynomiellen Verifizierer gibt.
+Es genügt zu zeigen, dass es einen polynomiellen Verifizierer gibt.
 
-Ein polynomieller Verifizierer braucht ein L"osungszertifikat als 
-zus"atzlichen Input. Im vorliegenden Fall verlangen wir das vollst"andig
-ausgef"ullte Fillomino-Feld als Zertifikat.
+Ein polynomieller Verifizierer braucht ein Lösungszertifikat als 
+zusätzlichen Input. Im vorliegenden Fall verlangen wir das vollständig
+ausgefüllte Fillomino-Feld als Zertifikat.
 
-Mit dem vollst"andig ausgef"ullten Feld kann der Verifizierer wie folgt
-vorgehen, um die Korrektheit der L"osung zu "uberpr"ufen.
+Mit dem vollständig ausgefüllten Feld kann der Verifizierer wie folgt
+vorgehen, um die Korrektheit der Lösung zu überprüfen.
 \begin{enumerate}
-\item "Uberpr"ufe, ob jede Zelle mit einer Zahl gef"ullt ist.
-\item F"ur jede Zelle des Spielfeldes pr"ufe wie folgt, ab die Zahl der
-Zellen des zuammenh"angenden Gebietes der Zelle die richtige Anzahl
-Zellen enth"alt
+\item "Uberprüfe, ob jede Zelle mit einer Zahl gefüllt ist.
+\item Für jede Zelle des Spielfeldes prüfe wie folgt, ab die Zahl der
+Zellen des zuammenhängenden Gebietes der Zelle die richtige Anzahl
+Zellen enthält
 \begin{enumerate}
 \item Markiere die Startzelle
 \item \label{70000024:loop} Gehe durch das Spielfeld und markiere alle Zellen, die zu bereits
 markierten Zellen benachbart sind, und die die gleiche Zahl enthalten wie
 die Startzelle.
-\item Wiederhole \ref{70000024:loop} bis sich nichts mehr "andert
-\item Z"ahle die markierten Zellen, brich mit $q_{\text{reject}}$ ab,
+\item Wiederhole \ref{70000024:loop} bis sich nichts mehr ändert
+\item Zähle die markierten Zellen, brich mit $q_{\text{reject}}$ ab,
 wenn die Zahl der markierten Zellen nicht mit der Zahl in der Startzelle
-"ubereinstimmt.
+übereinstimmt.
 \end{enumerate}
 \end{enumerate}
-Es muss jetzt nur noch gezeigt werden, dass der Verifizierer tats"achlich
+Es muss jetzt nur noch gezeigt werden, dass der Verifizierer tatsächlich
 in polynomieller Zeit fertig wird. Die einzelnen Schritte des Verifzierers
 brauchen Zeit wie folgt
 \begin{enumerate}
-\item Zellen pr"ufen: $O(mn)$
-\item In diesem Schritt werden $mn$ mal die folgenden Schritte ausgef"uhrt:
+\item Zellen prüfen: $O(mn)$
+\item In diesem Schritt werden $mn$ mal die folgenden Schritte ausgeführt:
 \begin{enumerate}
 \item Startzelle markieren: $O(1)$
 \item Nachbarzellen markieren: $O(mn)$
 \item Abbruch falls keine "Anderung: $O(1)$
-\item Markierte Zellen z"ahlen: $O(mn)$
+\item Markierte Zellen zählen: $O(mn)$
 \end{enumerate}
 \end{enumerate}
-Insgesamt ist also die Verifikation in maximal $mnO(mn)=O(m^2n^2)$ m"oglich,
-insbesondere ist die Arbeit polynomiell in der Gr"osse des Spielfeldes.
+Insgesamt ist also die Verifikation in maximal $mnO(mn)=O(m^2n^2)$ möglich,
+insbesondere ist die Arbeit polynomiell in der Grösse des Spielfeldes.
 Damit ist gezeigt, dass es einen polynomiellen Verifizierer gibt,
 also kann eine nichtdeterministische Maschine das Problem in polynomieller
-Zeit l"osen.
+Zeit lösen.
 \end{loesung}
 
 \begin{diskussion}
 Takayuki Yato hat 2003 in seiner Masterarbeit in Tokyo nachgewiesen,
-dass Fillomino NP-vollst"andig ist:
+dass Fillomino NP-vollständig ist:
 \url{http://www-imai.is.s.u-tokyo.ac.jp/~yato/data2/MasterThesis.pdf}.
 \end{diskussion}
 
@@ -69,6 +69,6 @@ Beobachtung, dass es reicht, einen polynomiellen Verifizerer ({\bf V})
 zu finden 1 Punkt,
 Definition des Zertifikats ({\bf Z}) 1 Punkt,
 Definition des Verifikationsalgorithmus ({\bf A}) 2 Punkte,
-Absch"atzung der Laufzeitkomplexit"at ({\bf L}) 2 Punkte.
+Abschätzung der Laufzeitkomplexität ({\bf L}) 2 Punkte.
 \end{bewertung}
 

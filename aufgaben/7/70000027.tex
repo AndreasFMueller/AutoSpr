@@ -3,7 +3,7 @@ gespielt.
 In einzelnen der Gitterquadrate stehen Zahlen zwischen 0 und 4.
 Der Spieler muss benachbarte Punkte des Gitters so verbinden, dass ein
 geschlossener Pfad entsteht. 
-Der Pfad darf aber dem Rand eines Gitterquadrates, welches eine Zahl enth"alt,
+Der Pfad darf aber dem Rand eines Gitterquadrates, welches eine Zahl enthält,
 nur an so vielen Seiten folgen, wie die Zahl angibt.
 \begin{center}
 \includeagraphics[width=0.3\hsize]{example.png}
@@ -13,34 +13,34 @@ nur an so vielen Seiten folgen, wie die Zahl angibt.
 \includeagraphics[width=0.3\hsize]{answer.png}
 \end{center}
 Kann eine nichtdeterministische Turing-Maschine in polynomieller Zeit
-entscheiden, ob ein {\em Slither Link}-R"atsel eine L"osung hat?
+entscheiden, ob ein {\em Slither Link}-Rätsel eine Lösung hat?
 
 \begin{loesung}
-Es ist f"ur eine nicht deterministische Maschine m"oglich, die
-L"osbarkeit eines {\em Slither Link}-R"atsels zu entscheiden, wenn man
+Es ist für eine nicht deterministische Maschine möglich, die
+Lösbarkeit eines {\em Slither Link}-Rätsels zu entscheiden, wenn man
 einen polynomiellen Verifizierer finden kann.
 
-Als L"osungszertifikat $c$ f"ur so einen Verifizierer verwendet man die
+Als Lösungszertifikat $c$ für so einen Verifizierer verwendet man die
 Kanten, die den gesuchten geschlossenen Pfad ergeben. Darauf ist folgender
 Verifikationsalgorithmus anzuwenden:
 \begin{compactenum}
 \item Kontrolliere, ob jedes Gitterquadrat mit einer Zahl die richtige
 Anzahl von Kanten im Pfad hat.
-\item Kontrolliere, ob jede Ecke, die von den Kanten in $c$ ber"uhrt werden,
+\item Kontrolliere, ob jede Ecke, die von den Kanten in $c$ berührt werden,
 genau von zwei Kanten getroffen wird. Damit ist sichergestellt, dass 
-der $c$ keine Enden hat, es ist aber immer noch m"oglich, dass $c$
+der $c$ keine Enden hat, es ist aber immer noch möglich, dass $c$
 aus mehreren geschlossenen Pfad-Teilen besteht.
-\item Schritt 2 ist Voraussetzung daf"ur, dass man beginnend bei einer
-Kante jeweils zur n"achsten Kante gehen kann.
-W"ahle jetzt eine Kante und folge der den Nachbarkannten, markiere
+\item Schritt 2 ist Voraussetzung dafür, dass man beginnend bei einer
+Kante jeweils zur nächsten Kante gehen kann.
+Wähle jetzt eine Kante und folge der den Nachbarkannten, markiere
 dabei jede gefundene Kante.
 Kontrolliere, dass alle Kanten in $c$ markiert sind. Dies bedeutet,
-dass $c$ nur einen einzigen geschlossenen Pfad enth"alt.
+dass $c$ nur einen einzigen geschlossenen Pfad enthält.
 \end{compactenum}
-Der Rechenaufwand f"ur die einzelnen Schritt ist:
+Der Rechenaufwand für die einzelnen Schritt ist:
 \begin{center}
 \begin{tabular}{c|l|>{$}c<{$}}
-1.&Richtige Anzahl f"ur Gitterquadrate mit Zahl&O(nm)\\
+1.&Richtige Anzahl für Gitterquadrate mit Zahl&O(nm)\\
 2.&Keine Enden und Verzweigungen&O(nm)\\
 3.&Nur eine Pfadkomponenten&O(mn)\\
 \hline
@@ -48,13 +48,13 @@ Der Rechenaufwand f"ur die einzelnen Schritt ist:
 \hline
 \end{tabular}
 \end{center}
-Insbesondere ist die Verifikation in polynomieller Zeit m"oglich. 
+Insbesondere ist die Verifikation in polynomieller Zeit möglich. 
 Das Problem, {\em Slither Link} zu entscheiden, ist also in NP.
 \end{loesung}
 
 \begin{diskussion}
 Takayuki Yato hat nachgewiesen, dass {\em Slither Link}
-NP-vollst"andig ist:
+NP-vollständig ist:
 \url{http://www-imai.is.s.u-tokyo.ac.jp/~yato/data2/SIGAL74-3.pdf}
 \end{diskussion}
 
@@ -62,6 +62,6 @@ NP-vollst"andig ist:
 Verifizierer (\textbf{V}) 1 Punkt,
 Zertifikat (\textbf{Z}) 1 Punkt,
 Verfikationsalgorithmus (\textbf{A}) 2 Punkte,
-Aufwandsch"atzung ($O(?)$) (\textbf{O}) 1 Punkt,
+Aufwandschätzung ($O(?)$) (\textbf{O}) 1 Punkt,
 Schlussfolgerung (\textbf{NP}) 1 Punkt.
 \end{bewertung}

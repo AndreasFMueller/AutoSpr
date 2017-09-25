@@ -1,46 +1,46 @@
 Man findet im Internet Websites, die anbieten, Word-Dokumente in PDF
 umzuwandeln.
-Ein Jungunternehmer m"ochte einen "ahnlichen Dienst anbieten, um XML Files
+Ein Jungunternehmer möchte einen ähnlichen Dienst anbieten, um XML Files
 mit Hilfe von XSLT Stylesheets in PDF Files umzuwandeln.
 Die Kunden sollen einen Satz von XML-Files und XSLT Stylesheets zum
-Beispiel als ZIP-File hochladen k"onnen, und als Antwort ein fertig
+Beispiel als ZIP-File hochladen können, und als Antwort ein fertig
 formattiertes PDF erhalten.
-Im Apache-Projekt FOP findet er geeignete freie Software daf"ur.
-Sie sind in diesem Projekt als Sicherheitsverantwortliche(r) daf"ur zust"andig,
-dass alle XML-/XSLT-File-Kombinationen zur"uckgewiesen werden, die dazu f"uhren
-k"onnten, dass der Server beliebig lange mit diesem Auftrag besch"aftigt ist.
+Im Apache-Projekt FOP findet er geeignete freie Software dafür.
+Sie sind in diesem Projekt als Sicherheitsverantwortliche(r) dafür zuständig,
+dass alle XML-/XSLT-File-Kombinationen zurückgewiesen werden, die dazu führen
+könnten, dass der Server beliebig lange mit diesem Auftrag beschäftigt ist.
 Wie stehen Ihre Aussichten, dies zu realisieren?
 
 \begin{loesung}
-Die Sprache XSLT ist Turing-vollst"andig, man kann in ihr also alles
+Die Sprache XSLT ist Turing-vollständig, man kann in ihr also alles
 programmieren, was mit einer Turing-Maschine gemacht werden kann.
 Die gestellte Aufgabe besteht also darin, herauszufinden, ob ein
 gegebenes Programm (XML-Files und XSLT Stylesheets) je anhalten wird.
 Dies ist das Halteproblem, welches nicht entscheidbar ist.
-Es gibt also keine M"oglichkeit, einem Auftrag anzusehen, ob er dazu
-f"uhren wird, dass der PDF-Renderer nicht terminieren wird.
+Es gibt also keine Möglichkeit, einem Auftrag anzusehen, ob er dazu
+führen wird, dass der PDF-Renderer nicht terminieren wird.
 \end{loesung}
 
 \begin{diskussion}
-Die Aussage, dass XSLT Turing-vollst"andig ist, ist ein wesentlicher Schritt.
-Ohne diesen Schritt w"are es denkbar, dass, wegen des begrenzten Sprachumfanges
+Die Aussage, dass XSLT Turing-vollständig ist, ist ein wesentlicher Schritt.
+Ohne diesen Schritt wäre es denkbar, dass, wegen des begrenzten Sprachumfanges
 der Sprache XSLT, alle Programme terminieren, so wie dies bei der Sprache LOOP
 festgestellt wurde.
-Erst wenn eine Sprache Turing-vollst"andig ist, kann man mit dem Halte-Theorem
-argumentieren, welches ja ausschliesslich f"ur Turing-Maschinen gilt.
+Erst wenn eine Sprache Turing-vollständig ist, kann man mit dem Halte-Theorem
+argumentieren, welches ja ausschliesslich für Turing-Maschinen gilt.
 
-Man k"onnte versucht sein, den Satz von Rice anwenden zu wollen.
+Man könnte versucht sein, den Satz von Rice anwenden zu wollen.
 Dieser ist jedoch nur auf Turing-erkennbare Sprachen anwendbar.
 Es muss eine Eigenschaft formuliert werden, die eine solche Sprache hat. 
-Der Satz von Rice w"urde uns schliessen lassen, dass es nicht m"oglich ist
+Der Satz von Rice würde uns schliessen lassen, dass es nicht möglich ist
 zu entscheiden, ob eine Sprache die Eigenschaft hat.
-Zu jeder XML/XSLT-Kombination m"usste eine Sprache geh"oren, doch
+Zu jeder XML/XSLT-Kombination müsste eine Sprache gehören, doch
 in der Problemstellung kommt eine solche Sprache gar nicht vor.
 Die XML/XSLT-Programme haben ja keinen Input, der akzeptiert oder
-verworfen werden k"onnte, und so eine Sprache definieren k"onnte.
+verworfen werden könnte, und so eine Sprache definieren könnte.
 \end{diskussion}
 
 \begin{bewertung}
-XSLT ist Turing-vollst"andig ({\bf V}) 2 Punkte,
+XSLT ist Turing-vollständig ({\bf V}) 2 Punkte,
 Anwendung des Halte-Theorems ({\bf H}) 4 Punkte.
 \end{bewertung}

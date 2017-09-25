@@ -1,17 +1,17 @@
 LDAP-Filter werden verwendet, um aus einem LDAP-Verzeichnis eine Menge
-von Knoten auf Grund von Werten einzelner Attribute auszuw"ahlen.
+von Knoten auf Grund von Werten einzelner Attribute auszuwählen.
 Elementare LDAP-Suchfilter haben die Form
 \begin{verbatim}
 attribut=wert
 \end{verbatim}
 sie selektieren genau die Knoten, deren Attribut {\tt attribut}
 den Wert {\tt wert} hat.
-F"ur die Zwecke dieser Aufgabe sind Attribute und Werte nichtleere
+Für die Zwecke dieser Aufgabe sind Attribute und Werte nichtleere
 Strings aus Buchstaben und Ziffern. 
 Daraus lassen sich
-mit Hilfe von Klammern und logischen Verkn"upfungen
+mit Hilfe von Klammern und logischen Verknüpfungen
 beliebige LDAP-Filter aufbauen.
-Die logischen Verkn"upfungen verwenden eine Pr"afix-Notation: 
+Die logischen Verknüpfungen verwenden eine Präfix-Notation: 
 \begin{center}
 \begin{tabular}{rl}
 UND:&\tt (\&(attr1=wert1)(attr2=wert2))\\
@@ -19,11 +19,11 @@ ODER:&\tt (|(attr1=wert1)(attr2=wert2))\\
 NICHT:&\tt (!(attr=wert))
 \end{tabular}
 \end{center}
-Bei der UND- und der ODER-Verkn"upfung d"urfen beliebig viele 
-Filter miteinander verkn"upft werden.
+Bei der UND- und der ODER-Verknüpfung dürfen beliebig viele 
+Filter miteinander verknüpft werden.
 \begin{teilaufgaben}
 \item
-Gibt es einen regul"aren Ausdruck, der LDAP-Filter akzeptiert?
+Gibt es einen regulären Ausdruck, der LDAP-Filter akzeptiert?
 \item
 Bilden die syntaktisch korrekten LDAP-Filter eine kontextfreie Sprache?
 \end{teilaufgaben}
@@ -31,12 +31,12 @@ Bilden die syntaktisch korrekten LDAP-Filter eine kontextfreie Sprache?
 \begin{loesung}
 \begin{teilaufgaben}
 \item
-Dazu m"usste die Sprache der LDAP-Filter regul"ar sein.
-Da LDAP-Filter beliebig tief geschachtelte Klammern verwenden d"urfen,
+Dazu müsste die Sprache der LDAP-Filter regulär sein.
+Da LDAP-Filter beliebig tief geschachtelte Klammern verwenden dürfen,
 kann man mit dem Pumping-Lemma wie in Aufgabe \ref{40000013} zeigen,
-dass die Sprache nicht regul"ar ist.
+dass die Sprache nicht regulär ist.
 \item
-Die Sprache der LDAP-Filter ist kontextfrei, denn man kann daf"ur
+Die Sprache der LDAP-Filter ist kontextfrei, denn man kann dafür
 eine Grammatik aufstellen.
 \begin{align*}
 \text{filter}

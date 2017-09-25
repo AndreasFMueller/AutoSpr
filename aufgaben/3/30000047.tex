@@ -5,9 +5,9 @@ Die Sprache
 L=\{w\in\Sigma^*\;|\;\text{es gibt zwei verschiedene Buchstaben
 $a,b\in\Sigma$ mit $|w|_a=|w|_b > 1$}\}
 \]
-besteht aus W"ortern, die mindestens zwei Buchstaben mehr als einmal
+besteht aus Wörtern, die mindestens zwei Buchstaben mehr als einmal
 und in gleicher Anzahl enthalten.
-Die W"orter
+Die Wörter
 \[
 \texttt{essen},\qquad
 \texttt{rapperswil},\qquad
@@ -19,13 +19,13 @@ sind in $L$, nicht aber
 \texttt{pfaeffikon},\qquad
 \texttt{montag}.
 \]
-Ist die Sprache $L$ regul"ar?
+Ist die Sprache $L$ regulär?
 
 \begin{loesung}
-Nein, wie man mit dem Pumping-Lemma f"ur regul"are Sprachen bewesein kann.
-Wir nehmen dazu an, dass $L$ regul"ar sei, das Pumping Lemma f"ur regul"are
+Nein, wie man mit dem Pumping-Lemma für reguläre Sprachen bewesein kann.
+Wir nehmen dazu an, dass $L$ regulär sei, das Pumping Lemma für reguläre
 Sprachen besagt dann, dass es eine Zahl $N$, die Pumping Length, gibt,
-so dass W"orter gr"osserer L"ange die Pumpeigenschaft haben.
+so dass Wörter grösserer Länge die Pumpeigenschaft haben.
 
 Wir konstruieren daher ein Wort in $L$, welches diese Eigenschaft hat:
 \[
@@ -39,18 +39,18 @@ Ein aufgepumptes Wort hat die Form
 \[
 w_k=xy^kz=\texttt{a}^{N+|y|(k-1)}\texttt{b}^N,
 \]
-d.~h.~f"ur $k>1$ ist die Zahl der einzigen beiden vorkommenden Buchstaben
+d.~h.~für $k>1$ ist die Zahl der einzigen beiden vorkommenden Buchstaben
 \texttt{a} und \texttt{b} nicht mehr gleich, also $w_k\not\in L$,
 im Widerspruch zur Behauptung des Pumping-Lemmas.
-Dieser Widerspruch zeigt, dass $L$ nicht regul"ar sein kann.
+Dieser Widerspruch zeigt, dass $L$ nicht regulär sein kann.
 \end{loesung}
 
 \begin{bewertung}
-Pumping-Lemma, Annahme Sprache ist regul"ar ({\bf R}) 1 Punkt,
+Pumping-Lemma, Annahme Sprache ist regulär ({\bf R}) 1 Punkt,
 Pumping-Length ({\bf N}) 1 Punkt,
 Konstruktion eines Wortes in $L$ unter Verwendung von $N$ ({\bf W}) 1 Punkt,
 Unterteilung des Wortes ({\bf U}) 1 Punkt,
 Nachweis, dass Pumpeigenschaft verletzt sein muss ({\bf P}) 1 Punkt,
-Schlussfolgerung, dass $L$ nicht regul"ar sein kann ({\bf S}) 1 Punkt.
+Schlussfolgerung, dass $L$ nicht regulär sein kann ({\bf S}) 1 Punkt.
 \end{bewertung}
 

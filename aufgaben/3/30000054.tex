@@ -1,21 +1,21 @@
-F"ur die Input-Validierung in einer Anwendung wurde beschlossen, regul"are
-Ausdr"ucke zu verwenden.
-Gegen Sie f"ur jede im folgenden beschriebene Art von Eingabefeldern einen
-regul"aren Ausdruck an, der genau auf die akzeptable Eingaben passt.
-Sie d"urfen annehmen, dass Whitespace am Anfang und Ende eines Eingabefeldes
+Für die Input-Validierung in einer Anwendung wurde beschlossen, reguläre
+Ausdrücke zu verwenden.
+Gegen Sie für jede im folgenden beschriebene Art von Eingabefeldern einen
+regulären Ausdruck an, der genau auf die akzeptable Eingaben passt.
+Sie dürfen annehmen, dass Whitespace am Anfang und Ende eines Eingabefeldes
 bereits entfernt worden ist.
 \begin{teilaufgaben}
 \item
-Eingabefeld f"ur eine Pr"ufungsnote: eine Zahl $n$ mit $1\le n\le 6$
+Eingabefeld für eine Prüfungsnote: eine Zahl $n$ mit $1\le n\le 6$
 und maximal zwei Nachkommastellen.
-Zahlen mit Dezimalpunkt aber ohne Nachkommateil m"ussen akzeptiert sein.
+Zahlen mit Dezimalpunkt aber ohne Nachkommateil müssen akzeptiert sein.
 \item
-Eingabefeld f"ur ein Datum im europ"aischen Format: Tageszahl mit Punkt,
-Monatszahl mit Punkt Jahreszahl. Zwischen den Komponenten d"urfen Leerzeichen
+Eingabefeld für ein Datum im europäischen Format: Tageszahl mit Punkt,
+Monatszahl mit Punkt Jahreszahl. Zwischen den Komponenten dürfen Leerzeichen
 vorhanden sein.
-Sowohl die Tageszahl wie auch die Monatszahl d"urfen f"uhrende Nullen haben.
-Es sollen nur tats"achlich existierende Monatszahlen
-und Tageszahlen eingegeben werden k"onnen, es wird aber nicht verlangt,
+Sowohl die Tageszahl wie auch die Monatszahl dürfen führende Nullen haben.
+Es sollen nur tatsächlich existierende Monatszahlen
+und Tageszahlen eingegeben werden können, es wird aber nicht verlangt,
 dass nicht existierende Kombinationen wie der 31.~Februar ausgeschlossen
 sind.
 \end{teilaufgaben}
@@ -26,8 +26,8 @@ sind.
 \[
 \texttt{[1-5](|.(|[0-9](|[0-9])))|6(|.(|0(|0)))}
 \]
-Mit erweiterer Syntax f"ur regul"are Ausdr"ucke kann des etwas kompakter
-ausdr"ucken:
+Mit erweiterer Syntax für reguläre Ausdrücke kann des etwas kompakter
+ausdrücken:
 \[
 \texttt{[1-5](.[0-9]\{0,2\})?|6(.[0]\{0,2\})?}
 \]

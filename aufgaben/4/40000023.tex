@@ -1,4 +1,4 @@
-Student Heiri Muster m"ochte einen Parser f"ur Additionsprobleme
+Student Heiri Muster möchte einen Parser für Additionsprobleme
 von $n$-Tupeln schreiben, wobei $n$ varieren kann. Solche Probleme
 sind Zeichenketten der Form
 $$
@@ -6,9 +6,9 @@ $$
 $$
 wobei die Anzahl der Zahlen in beiden Klammern identisch sein muss.
 \begin{teilaufgaben}
-\item Geben Sie eine kontextfreie Grammatik f"ur Ausdr"ucke
+\item Geben Sie eine kontextfreie Grammatik für Ausdrücke
 dieser Form an.
-\item Beschreiben Sie einen Stack-Automaten, der solche Ausdr"ucke
+\item Beschreiben Sie einen Stack-Automaten, der solche Ausdrücke
 akzeptiert.
 \end{teilaufgaben}
 
@@ -37,27 +37,27 @@ S&\rightarrow
 \\
 \text{Zahl}&\rightarrow \dots
 \end{align*}
-Damit ist gezeigt, dass die Sprache kontextfrei ist. Nat"urlich
-ist der Parse-Tree zu dieser Grammatik kaum n"utzlich, die
+Damit ist gezeigt, dass die Sprache kontextfrei ist. Natürlich
+ist der Parse-Tree zu dieser Grammatik kaum nützlich, die
 Additionsprobleme zu berechnen, weil er die erste
 Komponente des ersten Terms mit der letzten des zweiten
-Terms in Beziehung setzt, w"ahrend die Addition die beiden
-ersten Elemente addieren m"usste.
+Terms in Beziehung setzt, während die Addition die beiden
+ersten Elemente addieren müsste.
 \item
-W"are die Bedingung nicht gegeben, dass die Klammern
-gleich viele Zahlen enthalten m"ussen, w"are die
-Sprache sogar regul"ar, es w"are also gar kein Stack-Automat
-erforderlich, um die W"orter der Sprache zu erkennen.
+Wäre die Bedingung nicht gegeben, dass die Klammern
+gleich viele Zahlen enthalten müssen, wäre die
+Sprache sogar regulär, es wäre also gar kein Stack-Automat
+erforderlich, um die Wörter der Sprache zu erkennen.
 
-Daraus kann man schliessen, dass man den Stack genau daf"ur
-verwenden muss, die Zahlen auf in jedem Ausdruck zu z"ahlen.
+Daraus kann man schliessen, dass man den Stack genau dafür
+verwenden muss, die Zahlen auf in jedem Ausdruck zu zählen.
 Man erreicht dies, indem man beim Lesen der ersten Klammer
 mit jedem Komma und der schliessenden Klammer, ein Zeichen auf den Stack legt,
 welches man beim Lesen der zweiten Klammer mit jedem Komma und
 der schliessenden Klammer entfernt. Ist der Stack nach diesen
 Operationen leer, wird das Wort akzeptiert.
 
-Zur Vereinfachung des Zustandsdiagramms verwenden wir f"ur
+Zur Vereinfachung des Zustandsdiagramms verwenden wir für
 Zahlen den folgenden Automaten:
 \[
 \entrymodifiers={++[o][F]}

@@ -1,16 +1,16 @@
-Das Management eines Warenhauses m"ochte Lagerkosten sparen, und
+Das Management eines Warenhauses möchte Lagerkosten sparen, und
 kam daher auf folgende neue Lagerstrategie: es soll nur noch eine
 so kleine Teilmenge von Artikeln an Lager gehalten werden, dass
-jeder Kunde mindestens einen Artikel sofort mitnehmen kann, w"ahrend
-man in Kauf nimmt, dass einige Artikel nachgeliefert werden m"ussen.
+jeder Kunde mindestens einen Artikel sofort mitnehmen kann, während
+man in Kauf nimmt, dass einige Artikel nachgeliefert werden müssen.
 Zur Vorbereitung hat man Bestellungen von vielen Kunden gesammelt.
 Jetzt sind diejenigen Artikel zu bestimmen, die auch in Zukunft
 noch an Lager gehalten werden sollen. Zeigen Sie, dass das Problem
 zu entscheiden, ob man mit $k$ Artikeln am Lager bereits alle
-Bestellungen abdecken kann, ein NP-vollst"andiges Problem ist.
+Bestellungen abdecken kann, ein NP-vollständiges Problem ist.
 
 \begin{loesung}
-Man kann das Problem wie folgt auf das Mengen"uberdeckungsproblem
+Man kann das Problem wie folgt auf das Mengenüberdeckungsproblem
 abbilden.
 Wir denken uns die Produkte nummeriert mit natuerlichen Zahlen,
 und die Menge der Kunden nennen wir $K$.
@@ -23,7 +23,7 @@ der Kundenmengen $S_i, i\in I,$ bereits alle Kunden abdecken, also
 \[
 \bigcup_{i\in I}S_i=K.
 \]
-Umgekehrt kann man nat"urlich auch aus einer Familie von Mengen
+Umgekehrt kann man natürlich auch aus einer Familie von Mengen
 $S_i$ die Bestellungen eines Kunden wieder rekonstruieren. Ein
 Kunde $k$ bestellt
 \[
@@ -32,6 +32,6 @@ Kunde $k$ bestellt
 Die Frage, ob es $k$ Artikel gibt, mit denen man bereits alle
 Kunden befriedigen kann ist als gleichbedeutend mit der Frage
 nach einer $k$-"Uberdeckung mit Mengen aus $\{S_i\}$. Die
-Existenz einer $k$-"Uberdeckung ist aber ein bekanntes NP-vollst"andiges
+Existenz einer $k$-"Uberdeckung ist aber ein bekanntes NP-vollständiges
 Problem.
 \end{loesung}

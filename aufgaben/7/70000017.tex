@@ -1,20 +1,20 @@
-Ein verr"uckter Elektriker hat in einem Labyrinth Lampen installiert.
+Ein verrückter Elektriker hat in einem Labyrinth Lampen installiert.
 Am Eingang des Labyrinthes befindet sich eine Schalttafel mit einer
 Anzahl Schalter. Jeder Schalter ist ein Umschalter, er ist mit
 zwei Stromkreisen verbunden. Jeder Stromkreis ist mit Lampen in
-den einzelnen R"aumen des Labyrinthes verbunden, nicht unbedingt in
+den einzelnen Räumen des Labyrinthes verbunden, nicht unbedingt in
 allen.
 Wenn der
 Schalter umgelegt wird, gehen die Lampen des einen
-Stromkreises aus, daf"ur gehen die Lampen des anderen Stromkreises an.
+Stromkreises aus, dafür gehen die Lampen des anderen Stromkreises an.
 In jedem Raum gibt es mindestens eine Lampe.
 
 Zeigen Sie: Das Problem, eine Schalterstellung zu finden, so
-dass in allen R"aumen eines solchen Labyrinthes Licht brennt,
-ist NP-vollst"andig.
+dass in allen Räumen eines solchen Labyrinthes Licht brennt,
+ist NP-vollständig.
 
 \begin{loesung}
-Wir zeigen, dass dieses Problem "aquivalent ist mit SAT. Jedem Schalter
+Wir zeigen, dass dieses Problem äquivalent ist mit SAT. Jedem Schalter
 entspricht eine logische Variable $x_i$. Die zwei Stromkreise entsprechen
 den beiden Werten der Variable $x_i$. Die Lampen des ersten Kreises leuchten,
 wenn $x_i$ wahr ist, die Lampen des zweiten Kreises leuchten, wenn
@@ -27,12 +27,12 @@ $x_i$ kommt in der Formel vor, wenn der erste Stromkreis von Schalter $i$
 mit einer Lampe in diesem Raum verbunden ist, $\overline x_i$ kommt vor,
 wenn der zweite Stromkreis dieses Schalters mit einer Lampe verbunden ist.
 Die Formel wird wahr, wenn mindestens eine Lampe leuchtet. In jedem Raum
-des Labyrinthes hat es also Licht, wenn die Und-Verkn"upfung all dieser
-Ausdr"ucke wahr ist.
+des Labyrinthes hat es also Licht, wenn die Und-Verknüpfung all dieser
+Ausdrücke wahr ist.
 
-Da sich jede logische Formel in konjunktive Normalform bringen l"asst,
+Da sich jede logische Formel in konjunktive Normalform bringen lässt,
 die sich wieder als Beleuchtungsproblem in einem Labyrinth interpretieren
-l"asst, ist das Erf"ullbarkeitsproblem f"ur logische Formeln (also SAT)
-"aquivalent zum Ausleuchtungsproblem f"ur ein Labyrinth, somit ist
-das gestellte Problem NP-vollst"andig.
+lässt, ist das Erfüllbarkeitsproblem für logische Formeln (also SAT)
+äquivalent zum Ausleuchtungsproblem für ein Labyrinth, somit ist
+das gestellte Problem NP-vollständig.
 \end{loesung}

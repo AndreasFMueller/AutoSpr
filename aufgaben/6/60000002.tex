@@ -1,7 +1,7 @@
-Zeigen Sie, dass eine regul"are Sprache $L$ Turing-entscheidbar ist.
+Zeigen Sie, dass eine reguläre Sprache $L$ Turing-entscheidbar ist.
 
 \begin{loesung}
-Da $L$ regul"ar ist, gibt es einen DEA $A$, der $L$ akzeptiert.
+Da $L$ regulär ist, gibt es einen DEA $A$, der $L$ akzeptiert.
 Aus diesem DEA konstruieren wir jetzt eine Turing-Maschine.
 Wir ersetzen dazu jeden "Ubergang
 \[
@@ -19,8 +19,8 @@ p\ar[r]^{a\to a,R}
         &q
 }
 \]
-Ausserdem f"ugen wir zwei neue Akzeptierzust"andge $q_{\text{accept}}$ und
-$q_{\text{reject}}$ hinzu, zusammen mit "Uberg"angen
+Ausserdem fügen wir zwei neue Akzeptierzuständge $q_{\text{accept}}$ und
+$q_{\text{reject}}$ hinzu, zusammen mit "Ubergängen
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -31,7 +31,7 @@ $q_{\text{reject}}$ hinzu, zusammen mit "Uberg"angen
 }
 \]
 Diese Turingmaschine verarbeitet den Input auf dem Band mit dem
-DEA, und erkennt am Ende des Wortes genau diejenigen W"orter, die
-vom DEA akzpetiert werden. Also ist $L(M)=L(A)$. Die TM h"alt genau
+DEA, und erkennt am Ende des Wortes genau diejenigen Wörter, die
+vom DEA akzpetiert werden. Also ist $L(M)=L(A)$. Die TM hält genau
 nach $|w|+1$ Schritten an, also ist $M$ ein Entscheider.
 \end{loesung}

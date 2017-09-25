@@ -5,14 +5,14 @@ muss aber nicht zutreffen. Die Twitter-Mitglieder bilden also
 einen sehr grossen gerichteten Graphen.
 
 Mitteilungen einzelner Mitglieder heissen {\it Tweets}, sie werden
-allen Followern angezeigt. Die Follower k"onnen die Tweets {\it retweeten},
-so dass ihre eigenen Follower diese Tweets auch sehen k"onnen.
+allen Followern angezeigt. Die Follower können die Tweets {\it retweeten},
+so dass ihre eigenen Follower diese Tweets auch sehen können.
 Ein Tweet kann also potentiell eine sehr grosse Menge von Twitterern
 erreichen.
 
 Gibt es einen effizienten Algorithmus, mit dem man entscheiden kann,
 ob es $k$ Twitterer gibt, die zusammen potentiell alle Twitter-Mitglieder
-erreichen k"onnten?
+erreichen könnten?
 
 \begin{loesung}
 Sei $S_i$ die Menge der Twitterer, die Twitterer $i$ erreichen kann,
@@ -30,23 +30,23 @@ ebenfalls alle Twitterer umfasst:
 \]
 Dies ist eine Instanz des Problems $k$-{\it SET-COVER} (Elemente sind
 die Twitterer $i$, Teilmengen sind die von $i$ aus erreichbaren
-Twitterer $S_i$). Dieses Problem ist bekanntermassen NP-vollst"andig,
+Twitterer $S_i$). Dieses Problem ist bekanntermassen NP-vollständig,
 nach aktuellem Wissenstand gibt es daher keinen effizienten Algorithmus, um
 die Frage zu entscheiden.
 
-Man k"onnte versuchen, andere Problem aus dem Katalog von Karp f"ur
+Man könnte versuchen, andere Problem aus dem Katalog von Karp für
 die Reduktion zu verwenden. Dadurch wird die Sache aber vor allem
-schwieriger. Zum Beispiel k"onnte man versuchen, {\it VERTEX-COVER} zu
-verwenden: die Konten sind die Twitterer und die Kanten dr"ucken
+schwieriger. Zum Beispiel könnte man versuchen, {\it VERTEX-COVER} zu
+verwenden: die Konten sind die Twitterer und die Kanten drücken
 die Beziehung aus, dass ein Tweet einen Twitterer erreichen kann.
-Die Kanten dr"ucken jedoch nicht mehr aus, dass der Tweet nur zu
+Die Kanten drücken jedoch nicht mehr aus, dass der Tweet nur zu
 den Followern fliesst, nicht umgekehrt.
 Daher ist {\it VERTEX-COVER} nicht direkt nutzbar.
 
 Auch {\it HAMPATH} ist nicht geeignet.
 Zwar ist in {\it HAMPATH} die Rede davon, dass alle Knoten erreicht
-werden k"onnen, aber Tweets m"ussen sich ja nicht auf einem einzigen
-Rundgang durch den Twitterer Graphen verbreiten lassen, sie k"onnen
+werden können, aber Tweets müssen sich ja nicht auf einem einzigen
+Rundgang durch den Twitterer Graphen verbreiten lassen, sie können
 sich auch ``teilen''. Ebensowenig ist {\it FEEDBACK-NODE-SET}
 geeignet, denn da ist von Zyklen die Rede, zu denen es im Twitterproblem
 keine Entsprechung gibt.

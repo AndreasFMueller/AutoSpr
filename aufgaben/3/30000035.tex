@@ -1,14 +1,14 @@
-Ist die Sprache der W"orter, die mehr Konsonanten als Vokale enthalten,
-regul"ar?
+Ist die Sprache der Wörter, die mehr Konsonanten als Vokale enthalten,
+regulär?
 
 \begin{loesung}
-Nein. W"are das so, dann m"usste es sogar so sein, wenn es nur einen
-einzigen Konsonanten $k$ und einen Vokal $v$ g"abe.
-Dann m"usste also die Sprache $L=\{ w\in\Sigma^*\,|\, |w|_k > |v|_k\}$
-regul"ar sein. Wir zeigen mit dem Pumping-Lemma, dass dies nicht m"oglich
+Nein. Wäre das so, dann müsste es sogar so sein, wenn es nur einen
+einzigen Konsonanten $k$ und einen Vokal $v$ gäbe.
+Dann müsste also die Sprache $L=\{ w\in\Sigma^*\,|\, |w|_k > |v|_k\}$
+regulär sein. Wir zeigen mit dem Pumping-Lemma, dass dies nicht möglich
 ist.
 
-Sei $N$ die Pumping Length der als regul"ar angenommenen Sprache $L$.
+Sei $N$ die Pumping Length der als regulär angenommenen Sprache $L$.
 Dann bilden wir das Wort $w=v^{N}k^{N+1}$. Es ist offenbar $w\in L$.
 Nach dem Pumping Lemma gibt es also eine Zerlegung $w=xyz$ mit
 $|xy|\le N$ und $|y|>0$ so, dass auch $xy^nz\in L$ ist.
@@ -23,18 +23,18 @@ a+bn+c=a+b+c + b(n-1)=N+b(n-1).
 \]
 Ausserdem ist $b\ge 1$.
 Durch Aufpumpen mit $n> 2$ entsteht also ein Wort, welches
-$N+b(n-1)> N+1$ erf"ullt, d.~h.~ein Wort mit mehr Vokalen als
-Konsonanten, $xy^nz\not\in L$. Nach dem Pumping-Lemma m"usste das
+$N+b(n-1)> N+1$ erfüllt, d.~h.~ein Wort mit mehr Vokalen als
+Konsonanten, $xy^nz\not\in L$. Nach dem Pumping-Lemma müsste das
 aufgepumpte Wort aber immer noch in $L$ sein. Dieser Widerspruch
-zeigt, dass $L$ nicht regul"ar sein kann.
+zeigt, dass $L$ nicht regulär sein kann.
 
-W"ahlt man das Wort $k^Nv^{N-1}$, kann man argumentieren, dass
+Wählt man das Wort $k^Nv^{N-1}$, kann man argumentieren, dass
 beim Abpumpen von $y$, welches nur aus Konsonanten besteht, die
 Zahl der Konsonanten kleiner wird, so dass die Bedingung, dass ein
-Wort mehr Konsonanten als Vokale haben muss, nicht mehr erf"ullt ist.
+Wort mehr Konsonanten als Vokale haben muss, nicht mehr erfüllt ist.
 
-Der Nachweis l"asst sich aber auch mit dem Satz von Myhill-Nerode
-f"uhren. Dazu sind die Mengen $L(w)$ zu berechnen, man findet:
+Der Nachweis lässt sich aber auch mit dem Satz von Myhill-Nerode
+führen. Dazu sind die Mengen $L(w)$ zu berechnen, man findet:
 \begin{center}
 \begin{tabular}{|c|l|}
 \hline
@@ -50,18 +50,18 @@ $|w|_v=x$&Mindestens $x+1$ Konsonanten mehr als Vokale\\
 \hline
 \end{tabular}
 \end{center}
-Da alle Mengen $L(w)$ verschieden sind, w"urde ein DEA f"ur die Sprache
-unendlich viele verschiedene Zust"ande brauchen, was f"ur einen
-DEA nicht zul"assig ist.
+Da alle Mengen $L(w)$ verschieden sind, würde ein DEA für die Sprache
+unendlich viele verschiedene Zustände brauchen, was für einen
+DEA nicht zulässig ist.
 \end{loesung}
 
 \begin{bewertung}
 Pumping Lemma ({\bf P}) 1 Punkt,
 Pumping Length ({\bf N}) 1 Punkt,
-Konstruktion eines zweckm"assigen Wortes ({\bf W}) 1 Punkt,
+Konstruktion eines zweckmässigen Wortes ({\bf W}) 1 Punkt,
 Zerlegung in $xyz$ ({\bf Z}) 1 Punkt,
-Nachweis, dass Aufpumpen oder Abpumpen f"ur dieses Wort aus der Sprache
-herausf"uhrt
+Nachweis, dass Aufpumpen oder Abpumpen für dieses Wort aus der Sprache
+herausführt
 ({\bf A}) 1 Punkt,
 Schlussfolgerung ({\bf R}) 1 Punkt.
 \end{bewertung}

@@ -9,35 +9,35 @@ w\in \Sigma^*\,|\, \text{$w$ ist wachsend}
 \}
 \]
 \begin{teilaufgaben}
-\item Ist $L$ regul"ar?
+\item Ist $L$ regulär?
 \item Ist $L$ kontextfrei?
 \end{teilaufgaben}
 
 \begin{loesung}
 \begin{teilaufgaben}
 \item
-$L$ ist nicht regul"ar, wie man mit dem Pumping-Lemma beweisen kann.
-Dazu nimmt man an, $L$ sei regul"ar. Das Pumping-Lemma garantiert, dass
-es eine Zahl $N$ gibt, die Pumping-Length, so dass W"orter mit gr"osserer
-L"ange aufgepumpt werden können. Das Wort $0^N1^N$ ist wachsend, denn
+$L$ ist nicht regulär, wie man mit dem Pumping-Lemma beweisen kann.
+Dazu nimmt man an, $L$ sei regulär. Das Pumping-Lemma garantiert, dass
+es eine Zahl $N$ gibt, die Pumping-Length, so dass Wörter mit grösserer
+Länge aufgepumpt werden können. Das Wort $0^N1^N$ ist wachsend, denn
 auf die Folge von $N$ Nullen folgen $N\ge N$ Einsen. Nach dem Pumping-Lemma
 kann $w=xyz$ geschrieben werden, mit $|xy|\le N$ und $|y|>0$. Insbesondere bestehen
 $x$ und $y$ ausschliesslich aus Nullen. Das aufgepumpte Wort
 $xy^kz$ besteht also aus $N+|y|(k-1)$ Nullen, gefolgt von $N$ Einsen.
-Da $N+|y|(k-1) > N$ f"ur $k>1$, ist das aufgepumpte Wort nicht nicht
+Da $N+|y|(k-1) > N$ für $k>1$, ist das aufgepumpte Wort nicht nicht
 mehr wachsend, im Widerspruch zur Behauptung des Pumping-Lemmas. Der
 Widersprucht zeigt, dass die Voraussetzung nicht zutreffen kann, $L$
-ist also nicht regul"ar.
+ist also nicht regulär.
 \item
-Wachsende W"orter bestehen aus einzelnen W"ortern der Form
+Wachsende Wörter bestehen aus einzelnen Wörtern der Form
 $w={\tt 0}^k{\tt 1}^{k+s}$.  Das Wort $w$ kann man erzeugen,
 indem man zuerst das leere Wort in {\tt 0} und {\tt 1}
-``einschachtelt'', und dann noch eine Anzahl von Einsen anh"angt.
+``einschachtelt'', und dann noch eine Anzahl von Einsen anhängt.
 Damit haben wir aber in informeller Form alle Produktionsregeln
-f"ur W"orter der Sprache $L$ zusammengefasst.
+für Wörter der Sprache $L$ zusammengefasst.
 
-Das Symbol $W$ stehe f"ur W"orter wie $w$, dann kann man beliebige W"orter der
-Sprache zusammensetzen, in dem man solchen W"orter weitere anh"angt:
+Das Symbol $W$ stehe für Wörter wie $w$, dann kann man beliebige Wörter der
+Sprache zusammensetzen, in dem man solchen Wörter weitere anhängt:
 \begin{align*}
 S_0&\to \varepsilon\\
    &\to S\\

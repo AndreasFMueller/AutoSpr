@@ -1,6 +1,6 @@
 Konstruieren Sie einen nichtdeterministischen endlichen Automaten
-mit drei Zust"anden
-"uber dem Alphabet $\{{\tt 0},{\tt 1}\}$, welcher die Sprache
+mit drei Zuständen
+über dem Alphabet $\{{\tt 0},{\tt 1}\}$, welcher die Sprache
 \[
 L=\{w\in\Sigma^*\;|\; \text{$w$ endet mit {\tt 00}}\}.
 \]
@@ -20,13 +20,13 @@ Ein besonders einfacher NEA ist
 }
 \]
 Dabei haben die beiden explizit gezeigten Nullen eine spezielle
-Bedeutung: es sind ``Endnullen'', im Gegensatz zu gew"ohnlichen
-Nullen. Der Nichtdeterminismus besteht darin, dass man f"ur die
-Entscheidung, welcher "Ubergang bei der n"achsten Null zu w"ahlen
+Bedeutung: es sind ``Endnullen'', im Gegensatz zu gewöhnlichen
+Nullen. Der Nichtdeterminismus besteht darin, dass man für die
+Entscheidung, welcher "Ubergang bei der nächsten Null zu wählen
 ist, die Hilfe eines Orakels braucht, welches weiss, ob die
-n"achste Null bereits eine Endnull ist.
+nächste Null bereits eine Endnull ist.
 
-Die Umwandlung mit Hilfe des Standardalgorithmus f"uhrt auf folgenden
+Die Umwandlung mit Hilfe des Standardalgorithmus führt auf folgenden
 Zwischenautomaten
 \[
 \entrymodifiers={++[o][F]}
@@ -47,7 +47,7 @@ Zwischenautomaten
                         &*+\txt{}
 }
 \]
-Offenbar werden nur die Zust"ande $1$, $12$  und $123$ ben"otigt,
+Offenbar werden nur die Zustände $1$, $12$  und $123$ benötigt,
 die anderen sind vom Startzustand aus nicht erreichbar. Der DEA
 ist daher
 \[

@@ -1,23 +1,23 @@
 1905 beschlossen die Kantone, dass alle Autos in der Schweiz mit einem
-Kennzeichen versehen werden m"ussen, und teilten jedem Kanton einen
+Kennzeichen versehen werden müssen, und teilten jedem Kanton einen
 Nummernblock zu. Nach dem Motto ``Mehr wird niemand brauchen'', welches
-ja auch schon in der Informatik spektakul"ar gescheitert ist, erhielt
-der Kanton Z"urich nur gerade 1000 Nummern, der
+ja auch schon in der Informatik spektakulär gescheitert ist, erhielt
+der Kanton Zürich nur gerade 1000 Nummern, der
 Kanton Appenzell Innerrhoden sogar nur 100.
-Daher wurde 1933 das heute noch g"ultige System der Autokennzeichen
-eingef"uhrt. Die Kennzeichen bestehen aus dem Kantonsk"urzel
+Daher wurde 1933 das heute noch gültige System der Autokennzeichen
+eingeführt. Die Kennzeichen bestehen aus dem Kantonskürzel
 oder den Buchstaben ``A'' (Administration), ``P'' (Post) oder
-``M'' f"ur Milit"arfahrzeuge gefolgt von einer maximal sechsstelligen Zahl
-(keine f"uhrende Nullen).
-In Sonderf"allen kann ein weiterer Buchstabe angeh"angt sein, welcher
-Sondernutzungen anzeigt: ``U'' f"ur ``Garagennummern'',
-``V'' f"ur Mietfahrzeuge und ``Z'' f"ur Zollschilder (befristet).
-Formulieren Sie einen regul"aren Ausdruck f"ur schweizerische Autokennzeichen,
+``M'' für Militärfahrzeuge gefolgt von einer maximal sechsstelligen Zahl
+(keine führende Nullen).
+In Sonderfällen kann ein weiterer Buchstabe angehängt sein, welcher
+Sondernutzungen anzeigt: ``U'' für ``Garagennummern'',
+``V'' für Mietfahrzeuge und ``Z'' für Zollschilder (befristet).
+Formulieren Sie einen regulären Ausdruck für schweizerische Autokennzeichen,
 der alle eben beschriebenen Kriterien abbildet.
 
 \begin{loesung}
-Wir brauchen zun"achst einen regul"aren Ausdruck f"ur die Kantonsk"urzel
-und die anderen drei Pr"afixe:
+Wir brauchen zunächst einen regulären Ausdruck für die Kantonskürzel
+und die anderen drei Präfixe:
 \[
 {\tt AG}|
 {\tt AR}|
@@ -50,7 +50,7 @@ und die anderen drei Pr"afixe:
 {\tt M}
 \]
 Diesem folgt eine maximal sechsstellige Zahl, die aber nicht mit einer
-f"uhrenden Null beginnen darf. Wir verwenden die Notationen
+führenden Null beginnen darf. Wir verwenden die Notationen
 \begin{align*}
 \text{\tt [1-9]}&=\text{Ziffern von {\tt 1} bis {\tt 9}}
 &&=
@@ -80,16 +80,16 @@ f"uhrenden Null beginnen darf. Wir verwenden die Notationen
 r{\text{\tt \{0,5\}}}&=\text{Ziffern 0 bis 5 Kopien von r}
 &&=(|r|rr|rrr|rrrr|rrrrr)
 \end{align*}
-Damit kann man eine maximal sechsstellige Zahl ohne f"uhrende Nullen als
+Damit kann man eine maximal sechsstellige Zahl ohne führende Nullen als
 \[
 \text{\tt [1-9][0-9]\{0,5\}}
 \]
 schreiben.
-Dann wird noch maximal einer der Zusatzbuchstaben angeh"angt:
+Dann wird noch maximal einer der Zusatzbuchstaben angehängt:
 \[
 (\varepsilon|{\tt U}|{\tt V}|{\tt Z})
 \]
-Alles zusammen begkommen wir den regul"aren Ausdruck
+Alles zusammen begkommen wir den regulären Ausdruck
 \[
 \small
 (
@@ -125,18 +125,18 @@ Alles zusammen begkommen wir den regul"aren Ausdruck
 \text{\tt [1-9][0-9]\{0,5\}}
 (\varepsilon|{\tt U}|{\tt V}|{\tt Z})
 \]
-Man k"onnte einwenden, dass es nach diesem regul"aren Ausdruck auch
-Milit"arfahrzeuge gibt, die man mieten kann, doch in der Aufgabenstellung
+Man könnte einwenden, dass es nach diesem regulären Ausdruck auch
+Militärfahrzeuge gibt, die man mieten kann, doch in der Aufgabenstellung
 wird dies nicht verboten.
 \end{loesung}
 
 \begin{bewertung}
-Bewertet wird, ob der regul"are Ausdruck alle genannten Kriterien 
-erf"ullt, als da sind:
-zweistellige Kantonsk"urzel ({\bf K}) 1 Punkt,
-alternative K"urzel A/P/M ({\bf A}) 1 Punkt,
+Bewertet wird, ob der reguläre Ausdruck alle genannten Kriterien 
+erfüllt, als da sind:
+zweistellige Kantonskürzel ({\bf K}) 1 Punkt,
+alternative Kürzel A/P/M ({\bf A}) 1 Punkt,
 Zahl ein- bis sechsstellig ({\bf L}) 1 Punkt,
-keine f"uhrende Nullen ({\bf N}) 1 Punkt,
+keine führende Nullen ({\bf N}) 1 Punkt,
 Sondernutzung nur U/V/Z ({\bf S}) 1 Punkt,
 Sondernutzugn optional ({\bf O}) 1 Punkt.
 \end{bewertung}

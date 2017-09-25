@@ -1,66 +1,66 @@
-CalcuDoku ist ein japanisches Logikr"atsel, in dem in einem $4\times 4$-Feld
-die Ziffern 1 bis 4 eingetragen werden m"ussen, so dass in jeder
+CalcuDoku ist ein japanisches Logikrätsel, in dem in einem $4\times 4$-Feld
+die Ziffern 1 bis 4 eingetragen werden müssen, so dass in jeder
 Zeile und Spalte jede Ziffer genau einmal vorkommt.
 Ausserdem sind Gruppen von Zahlen mit punktierten Linien, einem arithmetischen
 Operationszeichen und einem Resultat markiert.
-F"uhrt man die arithmetische Operation mit den Ziffern der Gruppe durch,
+Führt man die arithmetische Operation mit den Ziffern der Gruppe durch,
 muss sich das angegeben Result ergeben.  Zum Beispiel muss die Summe
 der ersten drei Ziffern in der ersten Zeile des folgenden CalcuDoku
-$6$ ergeben. Die rechte Abbildung zeigt das vollst"andig gel"oste CalcuDoku.
+$6$ ergeben. Die rechte Abbildung zeigt das vollständig gelöste CalcuDoku.
 \begin{center}
 \begin{tabular}{cc}
 \includeagraphics[width=0.4\hsize]{calcudoku-problem.png}&%
 \includeagraphics[width=0.4\hsize]{calcudoku-solved.png}
 \end{tabular}
 \end{center}
-Es k"onnen CalcuDokus der Gr"osse $n\times n$ aufgestellt werden, in 
-deren Felder die Zahlen von $1$ bis $n$ eingetragen werden m"ussen.
+Es können CalcuDokus der Grösse $n\times n$ aufgestellt werden, in 
+deren Felder die Zahlen von $1$ bis $n$ eingetragen werden müssen.
 \begin{teilaufgaben}
-\item Ist entscheidbar, ob ein CalcuDoku "uberhaupt eine L"osung hat?
+\item Ist entscheidbar, ob ein CalcuDoku überhaupt eine Lösung hat?
 \item Zeigen Sie, dass CalcuDoku auf einer nicht deterministischen
-Turingmaschine in polynomieller Zeit gel"ost werden kann.
+Turingmaschine in polynomieller Zeit gelöst werden kann.
 \end{teilaufgaben}
 
 \begin{loesung}
 \begin{teilaufgaben}
 \item
-Der folgende Algorithmus entscheidet, ob ein CalcuDoku eine L"osung
+Der folgende Algorithmus entscheidet, ob ein CalcuDoku eine Lösung
 hat:
 \begin{compactenum}
 \item[1.] Konstruiere eine Liste der $n^{n^2}$ Belegungen des CalcuDoku-Feldes
 mit den Zahlen $1$ bis $n$.
-\item[2.] W"ahle die erste Belegung aus der Liste
-\item[3.] Pr"ufe, ob in jeder der $n$ Zeilen und $n$ Spalten jede der
+\item[2.] Wähle die erste Belegung aus der Liste
+\item[3.] Prüfe, ob in jeder der $n$ Zeilen und $n$ Spalten jede der
 $n$ Zahlen genau einmal vorkommt. Falls nicht, gehe zu 6.
-\item[4.] Pr"ufe, ob in jeder der punktiert eingezeichneten Gruppen
-(davon gibt es h"ochstens $\frac{n^2}2$, weil eine Gruppe mindestens
+\item[4.] Prüfe, ob in jeder der punktiert eingezeichneten Gruppen
+(davon gibt es höchstens $\frac{n^2}2$, weil eine Gruppe mindestens
 zwei Mitglieder haben muss), die Rechenoperationen das verlangte Resultat
 geben. Falls nicht, gehe zu 6.
 \item[5.]
-Eine L"osung wurde gefunden: terminiere im Zustand $q_{\text{accept}}$.
+Eine Lösung wurde gefunden: terminiere im Zustand $q_{\text{accept}}$.
 \item[6.]
-W"ahle die n"achste Belegung aus der Liste und fahre weiter bei 3.
+Wähle die nächste Belegung aus der Liste und fahre weiter bei 3.
 \end{compactenum}
-Damit ist gezeigt, dass entscheidbar ist, ob CalcuDoku eine L"osung
+Damit ist gezeigt, dass entscheidbar ist, ob CalcuDoku eine Lösung
 hat.
 \item
-Wir m"ussen einen polynomiellen Verifizerer finden. Als L"osungszertifikat
+Wir müssen einen polynomiellen Verifizerer finden. Als Lösungszertifikat
 $c$ verlangen wir die Belegung des CalcuDoku-Feldes mit den Zahlen
 $1$ bis $n$.
 Die Schritte 3 und 4 im obigen Algorithmus verfizieren, ob eine solche
-Belegung eine L"osung des CalcuDokus ist. Es ist also nur noch zu verfizieren,
-dass die Berechnung in polynomieller Zeit durchf"uhrbar ist.
+Belegung eine Lösung des CalcuDokus ist. Es ist also nur noch zu verfizieren,
+dass die Berechnung in polynomieller Zeit durchführbar ist.
 
 In Schritt 3 muss jede der $n$ Zeilen muss jede der $n$ Zahlen mit den
 $n-1$ anderen Zahlen verglichen werden. Dies braucht Zeit $O(n^2(n-1))=O(n^3)$.
-In Schritt 4 muss in jeder der h"ochstens $\frac{n^2}2$ Gruppen die 
-Rechenoperation mit den h"ochstens $n^2$ Operanden durchgef"uhrt und das
-Resultat "uberpr"uft werden. Dies braucht Zeit $O(\frac{n^2}2\cdot n^2)=O(n^4)$.
-In jedem Fall sind also die Pr"ufungen in Schritt 3 und 4 in Zeit $O(n^4)$,
-mithin in polynomieller Zeit durchf"uhrbar. Wir haben also einen polynomiellen
+In Schritt 4 muss in jeder der höchstens $\frac{n^2}2$ Gruppen die 
+Rechenoperation mit den höchstens $n^2$ Operanden durchgeführt und das
+Resultat überprüft werden. Dies braucht Zeit $O(\frac{n^2}2\cdot n^2)=O(n^4)$.
+In jedem Fall sind also die Prüfungen in Schritt 3 und 4 in Zeit $O(n^4)$,
+mithin in polynomieller Zeit durchführbar. Wir haben also einen polynomiellen
 Verifizierer gefunden.
 Auf einer nicht deterministischen Turing-Maschine ist CalcuDoku also
-in polynomieller Zeit l"osbar.
+in polynomieller Zeit lösbar.
 \qedhere
 \end{teilaufgaben}
 \end{loesung}

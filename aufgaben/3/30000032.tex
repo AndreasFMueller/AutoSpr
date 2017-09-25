@@ -1,34 +1,34 @@
 Das UCP (Universal Computer Protocol) ist ein low level Protokoll,
 mit dem beliebige Netzwerkteilnehmer SMS Meldungen ins GSM Netz einspeisen
-k"onnen.
+können.
 EMI/UCP Protokoll-Pakete beginnen mit \verb+^B01/+  und enden mit \verb+^C+,
 dazwischen findet man eine feste Anzahl von Feldern, die durch
-Schr"agstrich getrennt werden. Typischerweise enthalten diese
-Felder Hex-Zeichen (wir ignorieren f"ur die Zwecke dieser Aufgabe
+Schrägstrich getrennt werden. Typischerweise enthalten diese
+Felder Hex-Zeichen (wir ignorieren für die Zwecke dieser Aufgabe
 eventuelle Ausnahmen, genauso wie einige weitere Features von UCP).
-Das letzte Feld enth"alt als Pr"ufsumme die
+Das letzte Feld enthält als Prüfsumme die
 Summe aller Bytes des Pakets. Ist die Sprache $L$ der UCP-Pakete 
-regul"ar?
+regulär?
 
 \begin{loesung}
 Nein, wie man mit dem Pumping-Lemma zeigen kann.
-Angenommen, $L$ w"are regul"ar. Dann gibt es eine Zahl $N$ so,
-dass jedes UCP-Paket mit L"ange mindestens $N$ aufgepumpt werden
-kann. Wir w"ahlen daher das Wort 
+Angenommen, $L$ wäre regulär. Dann gibt es eine Zahl $N$ so,
+dass jedes UCP-Paket mit Länge mindestens $N$ aufgepumpt werden
+kann. Wir wählen daher das Wort 
 \begin{center}
 \^\ B01/$\text{\tt 1}^N$\text{/////}$c+N$\^\ C
 \end{center}
-Darin bedeutet $\text{1}^N$ eine Folge von $N$ Einsen, und die Pr"ufsumme
+Darin bedeutet $\text{1}^N$ eine Folge von $N$ Einsen, und die Prüfsumme
 ist $c+N\cdot{\tt 1}$, wobei $c$ der Teil von den von {\tt 1}
 verschiedenen Zeichen des Paketes ist, und $N\cdot\text{\tt 1}$
-den von den Einsen herr"uhrenden Teil meint.
+den von den Einsen herrührenden Teil meint.
 
 Will man dieses Wort aufpumpen, muss man den Teil mit den Einsen
-vergr"ossern, denn nur so bleibt die Zahl der Felder gleich. Dabei
-"andert sich aber notwendigerweise auch die Pr"ufsumme. F"ugt
-man $n$ Einsen hinzu, w"achst die Pr"ufsumme auf 
+vergrössern, denn nur so bleibt die Zahl der Felder gleich. Dabei
+ändert sich aber notwendigerweise auch die Prüfsumme. Fügt
+man $n$ Einsen hinzu, wächst die Prüfsumme auf 
 $c+(N+n)\cdot{\tt 1}$. Das aufgepumpte Wort hat also keine korrekte
-Pr"ufsumme mehr, es liegt nicht mehr in $L$. Dieser Widerspruch
-zeigt, dass die Annahme, $L$ sei eine regul"are Sprache, nicht zu
+Prüfsumme mehr, es liegt nicht mehr in $L$. Dieser Widerspruch
+zeigt, dass die Annahme, $L$ sei eine reguläre Sprache, nicht zu
 halten ist.
 \end{loesung}

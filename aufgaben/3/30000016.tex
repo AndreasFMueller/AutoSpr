@@ -8,19 +8,19 @@ L=\{
 w\in \Sigma^*\,|\, \text{$w$ ist wachsend}
 \}
 \]
-Ist $L$ regul"ar?
+Ist $L$ regulär?
 
 \begin{loesung}
-$L$ ist nicht regul"ar, wie man mit dem Pumping-Lemma beweisen kann.
-Dazu nimmt man an, $L$ sei regul"ar. Das Pumping-Lemma garantiert, dass
-es eine Zahl $N$ gibt, die Pumping-Length, so dass W"orter mit gr"osserer
-L"ange aufgepumpt werden können. Das Wort $0^N1^N$ ist wachsend, denn
+$L$ ist nicht regulär, wie man mit dem Pumping-Lemma beweisen kann.
+Dazu nimmt man an, $L$ sei regulär. Das Pumping-Lemma garantiert, dass
+es eine Zahl $N$ gibt, die Pumping-Length, so dass Wörter mit grösserer
+Länge aufgepumpt werden können. Das Wort $0^N1^N$ ist wachsend, denn
 auf die Folge von $N$ Nullen folgen $N\ge N$ Einsen. Nach dem Pumping-Lemma
 kann $w=xyz$ geschrieben werden, mit $|xy|\le N$ und $|y|>0$. Insbesondere bestehen
 $x$ und $y$ ausschliesslich aus Nullen. Das aufgepumpte Wort
 $xy^kz$ besteht also aus $N+|y|(k-1)$ Nullen, gefolgt von $N$ Einsen.
-Da $N+|y|(k-1) > N$ f"ur $k>1$, ist das aufgepumpte Wort nicht nicht
+Da $N+|y|(k-1) > N$ für $k>1$, ist das aufgepumpte Wort nicht nicht
 mehr wachsend, im Widerspruch zur Behauptung des Pumping-Lemmas. Der
 Widersprucht zeigt, dass die Voraussetzung nicht zutreffen kann, $L$
-ist also nicht regul"ar.
+ist also nicht regulär.
 \end{loesung}

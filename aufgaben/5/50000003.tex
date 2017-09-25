@@ -1,21 +1,21 @@
 Betrachten Sie folgende Variante einer Turing-Maschine. In dieser
-Variante ist die Bewegung des Kopfes nach links nicht m"oglich,
+Variante ist die Bewegung des Kopfes nach links nicht möglich,
 der Kopf kann nur nach rechts bewegt werden oder stehenbleiben. Die
 "Ubergangsfunktion ist also von der Form
 $$\delta:Q\times \Gamma\to Q\times\Gamma\times \{S,R\}$$
-($S$ f"ur Stillstand). Welche Art von Sprachen kann mit diesem
+($S$ für Stillstand). Welche Art von Sprachen kann mit diesem
 Typ Maschine erkannt werden?
 
 \begin{loesung}
 Wenn sich die Maschine entschliesst, stehen zu bleiben (``Bewegung'' $S$),
-"andert sie
+ändert sie
 nur ihren Zustand und den Inhalt des Feldes, auf dem der Schreib-/Lesekopf
 gerade steht. Indem man die Zustandsmenge erweitert, kann man solche
-"Uberg"ange, durch Zustands"uberg"ange betrachten, und all solchen "Uberg"ange
-bis zur n"achsten Rechtsbewegung in einen einzigen "Ubergang zusammenfassen.
-Damit bleibt nur noch einen Zustands"anderung mit jedem Input-Zeichen
-"ubrig, d.~h.~die Maschine liest den Bandinhalt von links nach rechts und
-"andert den Zustand bei jedem Zeichen. Damit verh"alt sie sich genau
+"Ubergänge, durch Zustandsübergänge betrachten, und all solchen "Ubergänge
+bis zur nächsten Rechtsbewegung in einen einzigen "Ubergang zusammenfassen.
+Damit bleibt nur noch einen Zustandsänderung mit jedem Input-Zeichen
+übrig, d.~h.~die Maschine liest den Bandinhalt von links nach rechts und
+ändert den Zustand bei jedem Zeichen. Damit verhält sie sich genau
 wie ein endlicher Automat, die mit dieser Maschine erkennbaren Sprachen
-sind also die regul"aren Sprachen.
+sind also die regulären Sprachen.
 \end{loesung}

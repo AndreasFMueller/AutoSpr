@@ -17,15 +17,15 @@ Beispiel:
                           ]
 \end{verbatim}
 Zeilen werden durch Strichpunkt getrennt, Element in einer Zeile durch Komma.
-K"onnen Sie eine Grammatik formulieren, welche genau korrekte
+Können Sie eine Grammatik formulieren, welche genau korrekte
 Matrix-Definitionen produziert?
 
 \begin{loesung}
 Nein, die Sprache der korrekten Matrix-Definitionen ist nicht
 kontextfrei, wie man mit dem Pumping-Lemma zeigen kann.
 
-W"are das m"oglich, k"onnte man auch eine Grammatik aufstellen, die
-alle Ziffern und Whitespace wegl"asst, und die daher genau die Strings der Form 
+Wäre das möglich, könnte man auch eine Grammatik aufstellen, die
+alle Ziffern und Whitespace weglässt, und die daher genau die Strings der Form 
 \begin{equation}
 \text{\tt [}
 \text{\tt ,}^n
@@ -37,14 +37,14 @@ alle Ziffern und Whitespace wegl"asst, und die daher genau die Strings der Form
 \text{\tt ]}
 \label{40000032:expr}
 \end{equation}
-produziert, wobei auch mehr als drei Zeilen m"oglich
+produziert, wobei auch mehr als drei Zeilen möglich
 sein sollen. Aber auch dieses Sprache ist nicht kontextfrei. 
 
-W"are diese Sprache kontextfrei, m"usste es nach dem Pumping Lemma
-f"ur kontextfreie Sprachen eine Zahl $N$ geben, so dass W"orter $w$
-mit $|w|\ge N$ aufgepumpt werden k"onnen. 
+Wäre diese Sprache kontextfrei, müsste es nach dem Pumping Lemma
+für kontextfreie Sprachen eine Zahl $N$ geben, so dass Wörter $w$
+mit $|w|\ge N$ aufgepumpt werden können. 
 
-Wir w"ahlen das Wort
+Wir wählen das Wort
 \[
 w=
 \text{\tt [}
@@ -58,19 +58,19 @@ w=
 \]
 Es ist sicher lang genug.
 
-Gem"ass dem Pumping Lemma gibt es eine Unterteilung $w=uvxyz$ derart,
-dass $|vxy|\le N$, $|vy|>0$ und $uv^kxy^kz$ ist f"ur jedes $k$
+Gemäss dem Pumping Lemma gibt es eine Unterteilung $w=uvxyz$ derart,
+dass $|vxy|\le N$, $|vy|>0$ und $uv^kxy^kz$ ist für jedes $k$
 ein Ausdruck der Form
 (\ref{40000032:expr}).
-Wegen der Bedingung $|vxy|\le N$ kann sich $vxy$ "uber h"ochstens zwei
-der Gruppen von Kommas erstrecken, alle Zeilen m"ussen
+Wegen der Bedingung $|vxy|\le N$ kann sich $vxy$ über höchstens zwei
+der Gruppen von Kommas erstrecken, alle Zeilen müssen
 also immer $2N$ Kommas enthalten.
-Das Wort $uxz$ (der Fall $k=0$) enth"alt zwei oder drei Zeilen.
-W"aren es drei Zeilen, m"ussten beide $2N$ lang sein, d.~h.~es
-w"are gar nichts entfernt worden, im Widerspruch zur Bedingung
+Das Wort $uxz$ (der Fall $k=0$) enthält zwei oder drei Zeilen.
+Wären es drei Zeilen, müssten beide $2N$ lang sein, d.~h.~es
+wäre gar nichts entfernt worden, im Widerspruch zur Bedingung
 $|vy|>0$.
-Zwei Zeilen sind aber auch nicht m"oglich, denn dazu
-h"atten $2N$ Kommas entfernt werden m"ussen, im Widerspruch
+Zwei Zeilen sind aber auch nicht möglich, denn dazu
+hätten $2N$ Kommas entfernt werden müssen, im Widerspruch
 zu $2N\le |yv|<|yzv|\le N$.
 
 Somit kann $uxz$ nicht ein Wort der Form
@@ -81,11 +81,11 @@ sein kann.
 \end{loesung}
 
 \begin{bewertung}
-Pumping Lemma f"ur kontextfreie Sprachen ({\bf PL}) 1 Punkt,
+Pumping Lemma für kontextfreie Sprachen ({\bf PL}) 1 Punkt,
 Wahl eines geeigneten Wortes ({\bf W}) 1 Punkt,
 Unterteilung entsprechend der Vorgaben des Pumping Lemmas ({\bf U}) 1 Punkt,
-durch Pumpen werden h"ochstens zwei Zeilen modifiziert ({\bf Z}) 1 Punkt,
-eines der gepumpten W"orter ist keine korrekte Matrix-Definition ({\bf K})
+durch Pumpen werden höchstens zwei Zeilen modifiziert ({\bf Z}) 1 Punkt,
+eines der gepumpten Wörter ist keine korrekte Matrix-Definition ({\bf K})
 1 Punkt,
 Schlussfolgerung ({\bf F}) 1 Punkt.
 \end{bewertung}

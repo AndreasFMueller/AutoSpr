@@ -7,7 +7,7 @@ Die Turingmaschine muss herausfinden, ob die Zeichen am Anfang und
 am Ende des Wortes jeweils gleich sind. Sie muss also folgenden
 Algorithmus implementieren:
 \begin{compactenum}
-\item Merke das Zeichen unter dem Schreib-/Lesekopf, l"osche es und
+\item Merke das Zeichen unter dem Schreib-/Lesekopf, lösche es und
 bewege den Kopf nach rechts.
 \item Falls das Zeichen unter dem Schreib-/Lesekopf ein $\blank$ ist:
 $q_{\text{accept}}$
@@ -15,16 +15,16 @@ $q_{\text{accept}}$
 nach links.
 \item Falls das Zeichen unter dem Schreib-/Lesekopf verschieden ist
 vom gespeicherten Zeichen: $q_{\text{reject}}$.
-\item L"osche das Zeichen unter dem Schreib-/Lesekopf und bewege
+\item Lösche das Zeichen unter dem Schreib-/Lesekopf und bewege
 den Kopf nach links.
 \item Fahre nach links bis zum ersten $\blank$, bewege den Kopf nach
 rechts.
 \item Weiter bei 1.
 \end{compactenum}
 Die Anweisung ``merke das Zeichen unter dem Schreib-/Lesekopf'' muss
-durch separate Zust"ande f"ur jedes m"ogliche Zeichen des Alphabetes
+durch separate Zustände für jedes mögliche Zeichen des Alphabetes
 implementiert werden. Das folgende Zustandsdiagramm implementiert dies
-f"ur das Alphabet $\Sigma=\{{\tt 0},{\tt 1}\}$:
+für das Alphabet $\Sigma=\{{\tt 0},{\tt 1}\}$:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -59,7 +59,7 @@ f"ur das Alphabet $\Sigma=\{{\tt 0},{\tt 1}\}$:
 					    \ar `d[llll]+/d1.3cm/ `[llllu]^{\blank\to\blank,\text{R}} [llllu]
 }
 \]
-Darin steht abk"urzend ${\tt x}\to{\tt x},\text{R}$ f"ur ``ein beliebiges
+Darin steht abkürzend ${\tt x}\to{\tt x},\text{R}$ für ``ein beliebiges
 Alphabetzeichen unter dem Schreib-/Lesekopf wird belassen und der Kopf
 nach rechts bewegt''.
 \end{loesung}

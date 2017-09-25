@@ -1,28 +1,28 @@
-Die SlemBunk Malware f"ur Android geh"ort zu einem ausgefeilten
+Die SlemBunk Malware für Android gehört zu einem ausgefeilten
 System, mit dem Internet Banking unterwandert werden kann.
-Die App enth"alt keine ``verd"achtige'' Funktionalit"at als direkt
+Die App enthält keine ``verdächtige'' Funktionalität als direkt
 einsehbaren Code. 
-Vielmehr ist der Code, der die endg"ultige Malware herunterl"adt,
+Vielmehr ist der Code, der die endgültige Malware herunterlädt,
 unscheinbar verpackt, und wird von der App erst zur Laufzeit
-ausgepackt und in den Speicher geladen, wo er dann auch ausgef"uhrt
+ausgepackt und in den Speicher geladen, wo er dann auch ausgeführt
 werden kann.
-Wegen dieses komplizierten Verfahrens sch"opft der App-Scanner von
+Wegen dieses komplizierten Verfahrens schöpft der App-Scanner von
 Android keinen Verdacht.
-Gibt es eine M"oglichkeit, den Scanner so zu erweitern, dass er 
+Gibt es eine Möglichkeit, den Scanner so zu erweitern, dass er 
 von jeder App erkennen kann, ob sie je einen Internet-Download
-ausf"uhren wird?
+ausführen wird?
 
 \begin{loesung}
-Nein, den damit liesse sich das Halteproblem l"osen.
-Ein Programm $P_1$ kann man immer in ein gr"osseres Programm $P_2$
-einbetten, welches einen Internet-Download ausf"uhrt, sobald $P_1$
-anh"alt.
+Nein, den damit liesse sich das Halteproblem lösen.
+Ein Programm $P_1$ kann man immer in ein grösseres Programm $P_2$
+einbetten, welches einen Internet-Download ausführt, sobald $P_1$
+anhält.
 Wendet man den Scanner auf $P_2$ an,
 kann man herausfinden, ob $P_2$
-je einen Internet-Download ausf"uhren wird, und damit auch, ob
+je einen Internet-Download ausführen wird, und damit auch, ob
 $P_1$ je anhalten wird.
-Damit ist das Halteproblem gel"ost.
-Da das Halteproblem nicht l"osbar ist, kann es auch keinen solchen
+Damit ist das Halteproblem gelöst.
+Da das Halteproblem nicht lösbar ist, kann es auch keinen solchen
 Scanner geben.
 \end{loesung}
 

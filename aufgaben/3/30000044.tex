@@ -1,6 +1,6 @@
-Das Programm {\em ImageMagick} erm"oglicht Bildverarbeitung mit
-Kommandozeilenbefehlen. Viele Optionen dieses Programms m"ussen die
-Geometrie eines Bildes oder Bildausschnittes spezifizieren k"onnen.
+Das Programm {\em ImageMagick} ermöglicht Bildverarbeitung mit
+Kommandozeilenbefehlen. Viele Optionen dieses Programms müssen die
+Geometrie eines Bildes oder Bildausschnittes spezifizieren können.
 Dazu wurde eine Notation entwickelt, die in der Dokumentation etwa
 wie folgt zusammengefassst ist:
 \begin{center}
@@ -27,51 +27,51 @@ preserved.\\
 \hline
 \end{tabular}
 \end{center}
-Ausserdem kann einer solchen Gr"ossenspezifikation auch noch ein Offset
-angeh"angt werden, der immer von der Form
+Ausserdem kann einer solchen Grössenspezifikation auch noch ein Offset
+angehängt werden, der immer von der Form
 \texttt{+18-48}
 sein muss. Die erste Zahl gibt den Versatz in $x$-Richtung an, die zweite
 den Versatz in $y$-Richtung. In beiden Richtungen sind beide Vorzeichen 
-\texttt{+} und \texttt{-} m"oglich.
+\texttt{+} und \texttt{-} möglich.
 
-Finden Sie einen regul"aren Ausdruck, der genau alle m"oglichen
+Finden Sie einen regulären Ausdruck, der genau alle möglichen
 Geometrie-Spezifikationen akzeptiert.
 
 \begin{loesung}
-Ein solcher regul"arer Ausdruck kann zum Beispiel in einem Programm dazu
+Ein solcher regulärer Ausdruck kann zum Beispiel in einem Programm dazu
 verwendet werden, um mit Hilfe eines Pattern-Matchings die verschiedenen
-F"alle zu unterscheiden, die Parameter herauszulesen, und die entsprechend
+Fälle zu unterscheiden, die Parameter herauszulesen, und die entsprechend
 Aktion einzuleiten.
-Dazu ist notwendig, dass der regul"are Ausdruck so aufgebaut wird, dass
-er die m"oglichen F"alle zu unterscheiden erlaubt.
-Die folgende L"osung strebt genau dies an.
+Dazu ist notwendig, dass der reguläre Ausdruck so aufgebaut wird, dass
+er die möglichen Fälle zu unterscheiden erlaubt.
+Die folgende Lösung strebt genau dies an.
 
 Es gibt offenbar vier Arten von Geometriespezifikationen: Skalierungen 
 (erste zwei Zeilen),
-partielle Spezifikationen (Zeilen 3 und 4), vollst"andige Spezifikationen
-und Fl"achenspezifikationen (letzte Zeile).
-F"ur jede kann man einen regul"aren Ausdruck angeben:
+partielle Spezifikationen (Zeilen 3 und 4), vollständige Spezifikationen
+und Flächenspezifikationen (letzte Zeile).
+Für jede kann man einen regulären Ausdruck angeben:
 \begin{align*}
 \text{Skalierung:}\qquad&r_1 = \texttt{\color{red}[0-9]+\%|[0-9]+\%?x[0-9]+\%|[0-9]\%+x[0-9]+\%?}
 \\
 \text{partiell:}\qquad&r_2 = \texttt{\color{green}[0-9]+|x[0-9]+}
 \\
-\text{vollst"andig:}\qquad&r_3 = \texttt{\color{blue}[0-9]+x[0-9]+[!><\^{}]?}
+\text{vollständig:}\qquad&r_3 = \texttt{\color{blue}[0-9]+x[0-9]+[!><\^{}]?}
 \\
-\text{Fl"ache:}\qquad&r_4 = \texttt{\color{yellow}[0-9]+@}
+\text{Fläche:}\qquad&r_4 = \texttt{\color{yellow}[0-9]+@}
 \end{align*}
-Man beachte, dass in der Liste der angeh"angten Sonderzeichen bei den
-vollst"andigen Geometriespezifikation das \texttt{\^{}} ganz am Ende
+Man beachte, dass in der Liste der angehängten Sonderzeichen bei den
+vollständigen Geometriespezifikation das \texttt{\^{}} ganz am Ende
 steht, weil ein \texttt{\^{}} am Anfang einer Zeichenklasse die
 Negation bedeutet.
 
 
-Jedem dieser Ausdr"ucke kann ausserdem eine Offset-Spezifikation angeh"angt
-werden, die auf den regul"aren Ausdruck
+Jedem dieser Ausdrücke kann ausserdem eine Offset-Spezifikation angehängt
+werden, die auf den regulären Ausdruck
 \begin{center}
 \texttt{[-+][0-9]+[-+][0-9]+}
 \end{center}
-passen muss. Zusammen ergibt das den regul"aren Ausdruck
+passen muss. Zusammen ergibt das den regulären Ausdruck
 \[
 \texttt{(}
 {\color{red} r_1}
@@ -91,12 +91,12 @@ oder ausgeschrieben
 \texttt{({\color{yellow}[0-9]+@})?}%
 \texttt{)([-+][0-9]+[-+][0-9]+)?}
 \end{center}
-(der regul"are Ausdruck ist aus Platzgr"unden auf zwei Zeilen aufgeteilt,
-beide Teile sind als ein regul"arer Ausdruck ohne Zeilenumbruch zu lesen).
+(der reguläre Ausdruck ist aus Platzgründen auf zwei Zeilen aufgeteilt,
+beide Teile sind als ein regulärer Ausdruck ohne Zeilenumbruch zu lesen).
 
-Man kann einen regul"aren Ausdruck auch noch viel direkter bekommen, ohne
-die F"alle in der Tabelle auf Gemeinsamkeiten zu untersuchen.
-Man schreibt einfach f"ur jeden Ausdruck in der Tabelle einen regul"aren
+Man kann einen regulären Ausdruck auch noch viel direkter bekommen, ohne
+die Fälle in der Tabelle auf Gemeinsamkeiten zu untersuchen.
+Man schreibt einfach für jeden Ausdruck in der Tabelle einen regulären
 Ausdruck hin, und verkettet diese alle, also
 \begin{center}
 \texttt{([0-9]+\%)|}
@@ -120,27 +120,27 @@ Ausdruck hin, und verkettet diese alle, also
 \\
 \texttt{([0-9]+@)}
 \end{center}
-(eine Zeile f"ur jede Spezifikation in der Tabelle).
-Daran h"angt man dann wieder wie oben die Offset\-spezifikation an.
+(eine Zeile für jede Spezifikation in der Tabelle).
+Daran hängt man dann wieder wie oben die Offset\-spezifikation an.
 \end{loesung}
 
 \begin{diskussion}
-Die urspr"ungliche Formulierung konnte so missverstanden werden, dass auch
-der Ausdruck \texttt{.*} eine korrekte Antwort gewesen w"are.
+Die ursprüngliche Formulierung konnte so missverstanden werden, dass auch
+der Ausdruck \texttt{.*} eine korrekte Antwort gewesen wäre.
 Es ist aus dem Zusammenhang der Aufgabe klar, dass dies nicht gemeint war.
 \end{diskussion}
 
 \begin{diskussion}
-Der Ausdruck $r_2$ k"onnte auch als \texttt{x?[0-9]+} geschrieben werden,
+Der Ausdruck $r_2$ könnte auch als \texttt{x?[0-9]+} geschrieben werden,
 doch ist die angegebene Form besser.
-Typische Pattern-Matcher k"onnen nach dem Match auch einzelne markierte
+Typische Pattern-Matcher können nach dem Match auch einzelne markierte
 Teile einer Zeichenkette angeben.
 In der Standard-Regex-Library kann man zum Beispiel mit Klammern solche
 Teile markieren.
 Schreibt man $r_2$ dann in der Form \texttt{([0-9]+)|x([0-9]+)}
 dann welche kann man am Resultat des Matchings ablesen, welcher der
 Teile vorliegt, und kann mit nur einem Match zwischen einer Breitenangabe
-und einer H"ohenangabe unterscheiden. Das folgende Programm illustriert dies:
+und einer Höhenangabe unterscheiden. Das folgende Programm illustriert dies:
 {\small
 \verbatimainput{part.c.expanded}
 }
@@ -148,9 +148,9 @@ und einer H"ohenangabe unterscheiden. Das folgende Programm illustriert dies:
 
 \begin{bewertung}
 Skalierung wiedergegeben ({\bf S}) 1 Punkt,
-Partielle Gr"ossenangabe ({\bf P}) 1 Punkt,
-vollst"andige Gr"ossenangabe ({\bf V}) 1 Punkt,
-Fl"acheangabe ({\bf F}) 1 Punkt,
+Partielle Grössenangabe ({\bf P}) 1 Punkt,
+vollständige Grössenangabe ({\bf V}) 1 Punkt,
+Flächeangabe ({\bf F}) 1 Punkt,
 Offset ({\bf O}) 1 Punkt,
 Komposition ({\bf K}) 1 Punkt.
 \end{bewertung}

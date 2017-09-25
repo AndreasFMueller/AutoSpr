@@ -1,6 +1,6 @@
 Student Xaver Tecco soll im Rahmen einer Big-Data-Studienarbeit die 
 Kunden einer grossen Shop-Website untersuchen und klassifizieren.
-Es steht eine grosse Zahl von bin"aren Eigenschaften zur Verf"ugung,
+Es steht eine grosse Zahl von binären Eigenschaften zur Verfügung,
 zum Beispiel ob Kunden ein bestimmtes Produkt gekauft haben, oder
 ob ein Kunde nur im Dezember einkauft.
 Herr Tecco soll herausfinden, ob es eine Teilmenge von Kriterien derart
@@ -10,7 +10,7 @@ funktionierenden Algorithmus.
 Muss er sich Sorgen machen?
 
 \begin{loesung}
-Dieses Problem ist "aquivalent mit dem bekanntermassen NP-vollst"andigen
+Dieses Problem ist äquivalent mit dem bekanntermassen NP-vollständigen
 Problem \textsl{EXACT-COVER}:
 \begin{align*}
 \text{Eigenschaft}&\leftrightarrow \text{Menge $S_j$}\\
@@ -18,11 +18,11 @@ Problem \textsl{EXACT-COVER}:
 \text{genau eine der Eigenschaften}&\leftrightarrow S_{j_i}\cap S_{j_k}=\emptyset\quad\forall i\ne k\\
 \text{alle Kunden erfasst}&\leftrightarrow \bigcup_{j=1}^nS_j=\bigcup_{i=1}^m S_{j_i}
 \end{align*}
-Da nach heutigem Wissen NP-vollst"andige Problem nicht mit einem polynomiellen
-Algorithmus gel"ost werden k"onnen, ist nicht mit einer schnellen L"osung
+Da nach heutigem Wissen NP-vollständige Problem nicht mit einem polynomiellen
+Algorithmus gelöst werden können, ist nicht mit einer schnellen Lösung
 des Problems zu rechnen.
 
-Es sind auch andere Vergleiche m"oglich.
+Es sind auch andere Vergleiche möglich.
 Zu jeder Eigenschaft $i$ gibt es eine Menge $M_i$ von Kunden, die diese
 Eigenschaft haben.
 Diese Menge kann man im $n$-adischen System codieren.
@@ -36,18 +36,18 @@ bestehend aus lauter $1$ ist, d.~h.~jeder Kunde wird abgedeckt, aber
 nur genau einmal.
 Dies ist das Problem \textsl{SUBSET-SUM}.
 Damit hat man aber nur gezeigt, dass das gestellte Problem leichter ist
-als \textsl{SUBSET-SUM}, man m"usste die umgekehrte Richtung haben.
+als \textsl{SUBSET-SUM}, man müsste die umgekehrte Richtung haben.
 Dies reicht also nicht als Nachweis, dass das gestellte Problem
-NP-vollst"andig ist.
+NP-vollständig ist.
 
-Das Problem klingt auch sehr "ahnlich wie \textsl{HITTING-SET}.
-Man k"onnte mit $S$ die Menge aller Eigenschaften bezeichnen,
+Das Problem klingt auch sehr ähnlich wie \textsl{HITTING-SET}.
+Man könnte mit $S$ die Menge aller Eigenschaften bezeichnen,
 und mit $S_i$ die Menge der Eigenschaften, die Kunden $i$ hat.
 Das Problem \textsl{HITTING-SET} versucht dann eine Menge $H\subset S$
 von Eigenschaften zu finden, so dass jeder Kunde genau eine der
 Eigenschaften in $H$ hat.
-Dies ist nat"urlich die Technik, mit der \textsl{HITTING-SET}
-als NP-vollst"andig bewiesen wird.
+Dies ist natürlich die Technik, mit der \textsl{HITTING-SET}
+als NP-vollständig bewiesen wird.
 \end{loesung}
 
 \begin{diskussion}
@@ -57,10 +57,10 @@ Der Name \textsl{Xaver Tecco} ist eine Anagramm von \textsl{EXACT-COVER}.
 \begin{bewertung}
 Reduktionsprinzip ({\bf R}) 1 Punkt,
 Vergleichsproblem \textsl{EXACT-COVER} ({\bf V}) 1 Punkt,
-Mapping f"ur Eigenschaften ({\bf E}) 1 Punkt,
-f"ur genau eine Eigenschaft ({\bf G}) 1 Punkt,
-f"ur alle Kunden erfasst ({\bf A}) 1 Punkt,
-Schlussfolgerung NP-vollst"andig ({\bf N}) 1 Punkt.
+Mapping für Eigenschaften ({\bf E}) 1 Punkt,
+für genau eine Eigenschaft ({\bf G}) 1 Punkt,
+für alle Kunden erfasst ({\bf A}) 1 Punkt,
+Schlussfolgerung NP-vollständig ({\bf N}) 1 Punkt.
 \end{bewertung}
 
 

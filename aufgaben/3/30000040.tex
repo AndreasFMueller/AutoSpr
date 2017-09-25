@@ -1,12 +1,12 @@
 In der Astronomie werden Punkte am Himmel mit Hilfe der Winkel
-der geographischen L"ange und Breite angegeben, die im astronomischen
+der geographischen Länge und Breite angegeben, die im astronomischen
 Zusammenhang auch
 Rektaszension und Deklination genannt werden.
-Allerdings sind viele verschiedene Formate f"ur die
-Winkelangabe gebr"auchlich, manchmal werden sogar im gleichen Sternkatalog
+Allerdings sind viele verschiedene Formate für die
+Winkelangabe gebräuchlich, manchmal werden sogar im gleichen Sternkatalog
 verschiedene Format verwendet.
-Die Astronomen haben eine gute Intuition f"ur einen Winkel in Minuten,
-da der Vollmonddurchmesser ziemlich genau 30 Winkelminuten betr"agt.
+Die Astronomen haben eine gute Intuition für einen Winkel in Minuten,
+da der Vollmonddurchmesser ziemlich genau 30 Winkelminuten beträgt.
 "Ubliche Formate sind
 \begin{center}
 \begin{tabular}{ll}
@@ -18,9 +18,9 @@ Grad, Minuten, dezimale Sekunden&\texttt{65 25 55.56}\\
 \hline
 \end{tabular}
 \end{center}
-Nat"urlich kann der Nachkommateil auch fehlen, und es ist auch m"oglich, dass
+Natürlich kann der Nachkommateil auch fehlen, und es ist auch möglich, dass
 ein Winkel negativ ist.
-Stellen Sie einen regul"aren Ausdruck auf, der genau diese Formate
+Stellen Sie einen regulären Ausdruck auf, der genau diese Formate
 akzeptiert. 
 
 \begin{loesung}
@@ -38,8 +38,8 @@ Zusammengesetzt, und mit einem optionalen Vorzeichen versehen:
 \tt (|-|$\backslash$+)[0-9]+( *[0-9]+)\{0,2\}($\backslash$.[0-9]*)?
 \end{center}
 
-F"ur die Praxis w"are aber eine andere Form n"utzlicher, n"amlich ein
-regul"rare Ausdruck, der nicht nur die G"ultigkeit des Formates
+Für die Praxis wäre aber eine andere Form nützlicher, nämlich ein
+regul"rare Ausdruck, der nicht nur die Gültigkeit des Formates
 erkennt, sondern auch die einzelnen Teile identifiziert, damit man
 diese Teilstrings gleich zur Berechnung des Winkelwertes heranziehen
 kann. Dieser Ausdruck beginnt immer mit einer Gruppe von Ziffern
@@ -63,9 +63,9 @@ als Sekunden gibt es ja nicht.
 \end{loesung}
 
 \begin{bewertung}
-Regul"arer Ausdruck akzeptiert die drei Beispiele ({\bf B}) je 1 Punkt,
-regul"arer Ausdruck azkeptiert Vorzeichen +, - ({\bf V}) 1 Punkt,
-regul"arer Ausdruck akzeptiert Zahl von Nachkommateil ({\bf N}) 1 Punkt,
-regul"arer Ausdruck akzeptiert keine anderen Zahlen ({\bf X}) 1 Punkt.
+Regulärer Ausdruck akzeptiert die drei Beispiele ({\bf B}) je 1 Punkt,
+regulärer Ausdruck azkeptiert Vorzeichen +, - ({\bf V}) 1 Punkt,
+regulärer Ausdruck akzeptiert Zahl von Nachkommateil ({\bf N}) 1 Punkt,
+regulärer Ausdruck akzeptiert keine anderen Zahlen ({\bf X}) 1 Punkt.
 \end{bewertung}
 

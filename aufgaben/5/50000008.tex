@@ -1,13 +1,13 @@
 In Aufgabe~\ref{40000024} wurden Tupeladditionen untersucht.
 Nehmen Sie jetzt an,
 dass die $n$-Tupel nur einstellige Zahlen, also Ziffern, enthalten
-d"urfen. Beschreiben Sie eine Turing-Maschine, die Tupel-Additionen
-"uberpr"uft, also genau solche Tupel-Additionsausdr"ucke akzeptiert,
+dürfen. Beschreiben Sie eine Turing-Maschine, die Tupel-Additionen
+überprüft, also genau solche Tupel-Additionsausdrücke akzeptiert,
 die korrekt sind.
 
 \begin{loesung}
-Wir beschreiben eine Turing-Maschine mit zwei B"andern, die das
-Problem l"ost. Als Alphabet verwenden wir die Zeichen '{\tt (}',
+Wir beschreiben eine Turing-Maschine mit zwei Bändern, die das
+Problem löst. Als Alphabet verwenden wir die Zeichen '{\tt (}',
 '{\tt ,}', '{\tt )}', '{\tt +}', '{\tt =}', die Ziffern '{\tt 0}' bis '{\tt 9}'
 und ein Zeichen '{\tt x}' welches immer dann verwendet wird, wenn eine
 Addition eine Resultat $\ge 10$ ergibt.
@@ -15,16 +15,16 @@ Addition eine Resultat $\ge 10$ ergibt.
 Zu Beginn steht das Additionsproblem auf dem einen Band der Turing Maschine.
 Die Maschine liest jetzt auf dem ersten Band von links nach rechts,
 und kopiert alle Ziffern auf das zweite Band, bis sie auf das '{\tt +}'
-trifft. Dann f"ahrt sie auf dem zweiten Band zur"uck zum Anfang.
+trifft. Dann fährt sie auf dem zweiten Band zurück zum Anfang.
 Anschliessend liest sie auf dem ersten Band weiter. Jedesmal, wenn unter
 dem Lesekopf des ersten Bandes eine Ziffer auftaucht, wird die Summe mit der
 Ziffer unter dem Lesekopf des zweiten Bandes gebildet, und damit die Zelle
-des zeiten Bandes "uberschrieben. Danach bewegen sich beide K"opfe nach
+des zeiten Bandes überschrieben. Danach bewegen sich beide Köpfe nach
 rechts. Dies wird wiederholt bis der Lesekopf des ersten Bandes auf das
 '{\tt =}' trifft, in diesem Moment wird das Lesekopf des zweiten Bandes
-wieder zum Anfang zur"uck gefahren. Jetzt werden die Ziffern des ersten
+wieder zum Anfang zurück gefahren. Jetzt werden die Ziffern des ersten
 Bandes mit den Ziffern des zweiten Bandes verglichen. Akzeptiert wird
 der Input, wenn alle die Ziffernfolgen immer gleich viele Element haben
 und der Vergleich der Ziffernfolgen im letzten Teil keinen Unterschied ergibt.
-In allen anderen F"allen wird der Input verworfen.
+In allen anderen Fällen wird der Input verworfen.
 \end{loesung}

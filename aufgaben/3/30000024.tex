@@ -1,17 +1,17 @@
-F"ur eine Anwendung, die als Antwort auf "aussere Reize (Events)
+Für eine Anwendung, die als Antwort auf äussere Reize (Events)
 nach programmierbaren Zeitintervallen (Delays) gewisse Aktionen (Actions)
-ausl"ost, wurde folgende einfache Programmiersprache entworfen. Ein
-Programm ist eine Liste von ``Befehlsw"ortern'', die Events, Delays und Actions
+auslöst, wurde folgende einfache Programmiersprache entworfen. Ein
+Programm ist eine Liste von ``Befehlswörtern'', die Events, Delays und Actions
 codieren. Letztere werden
 jeweils durch die Buchstaben {\tt E}, {\tt D} und {\tt A} codiert.
-Parameter werden daran angeh"angt. Events oder Actions haben als Parameter
+Parameter werden daran angehängt. Events oder Actions haben als Parameter
 einen Kleinbuchstaben gefolgt von einer Ziffernfolge. Delays haben als
-Parameter eine Ziffernfolge ohne f"uhrende Nullen und maximal f"unf
-Zeichen. Die einzelnen Befehlsw"orter d"urfen zur besseren Lesbarkeit mit Zeilenumbr"uchen
+Parameter eine Ziffernfolge ohne führende Nullen und maximal fünf
+Zeichen. Die einzelnen Befehlswörter dürfen zur besseren Lesbarkeit mit Zeilenumbrüchen
 (Newline, Zeichen \verb+\n+) getrennt werden. Auf jeden Event muss mindestens
 ein Delay folgen, auf jedes Delay eine Action. Auf ein Event darf keine Action folgen.
 \begin{teilaufgaben}
-\item Ist diese Sprache regul"ar?
+\item Ist diese Sprache regulär?
 \item Falls ja: Beschreiben Sie einen endlichen Automaten, der die
 Sprache akzeptiert.
 \end{teilaufgaben}
@@ -19,9 +19,9 @@ Sprache akzeptiert.
 \begin{loesung}
 \begin{teilaufgaben}
 \item
-Die Sprache ist regul"ar, denn man kann einen regul"aren Ausdruck
-angeben, der genau die W"orter dieser Sprache akzeptiert. Um diesen
-regul"aren Ausdruck aufzubauen kann man zun"achst Ausdr"ucke f"ur
+Die Sprache ist regulär, denn man kann einen regulären Ausdruck
+angeben, der genau die Wörter dieser Sprache akzeptiert. Um diesen
+regulären Ausdruck aufzubauen kann man zunächst Ausdrücke für
 die einzelnen Events, Delays und  Actions konstruieren:
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -45,8 +45,8 @@ Solche Events kann es jetzt beliebig viele geben, also
         Delay Action Action{\tt *}
         {\tt (} Delay Action Action{\tt *} {\tt )*}{\tt )*}
 \end{center}
-Setzt man jetzt die Ausdr"ucke aus der Tabelle in, erh"alt man
-den endg"ultigen regul"aren Ausdruck (ist alles als ein einziger
+Setzt man jetzt die Ausdrücke aus der Tabelle in, erhält man
+den endgültigen regulären Ausdruck (ist alles als ein einziger
 Ausdruck zu lesen):
 \begin{center}
 {\tt (}
@@ -64,9 +64,9 @@ Ausdruck zu lesen):
 \end{center}
 \item
 Einen endlichen Automat kann dadurch erhalten, dass man obigen
-regul"aren Ausdruck vom Standardalgorithmus in einen endlichen
-Automaten umwandeln l"asst. Man kann den endlichen Automaten
-aber auch explizit angeben. Zun"achst kann man einzelne
+regulären Ausdruck vom Standardalgorithmus in einen endlichen
+Automaten umwandeln lässt. Man kann den endlichen Automaten
+aber auch explizit angeben. Zunächst kann man einzelne
 Teilautomaten $E$, $D$ und $A$ konstruieren, die jeweils
 ein Event-Wort, eine Delay-Wort oder ein Action-Wort akzeptieren:
 \[
@@ -90,9 +90,9 @@ ein Event-Wort, eine Delay-Wort oder ein Action-Wort akzeptieren:
                                 &*++[o][F=]{z_{33}} \ar@(ur,dr)^{\tt [0-9]}
 }
 \]
-Diese Teilautomaten k"onnen wir jetzt zu einem neuen Automaten
+Diese Teilautomaten können wir jetzt zu einem neuen Automaten
 zusammensetzen, der "Ubersichtlichkeit halber schreiben wir jeweils
-nur $E$, $D$ und $E$ f"ur die Teilautomaten.
+nur $E$, $D$ und $E$ für die Teilautomaten.
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @-1mm {
@@ -115,8 +115,8 @@ nur $E$, $D$ und $E$ f"ur die Teilautomaten.
                                 \ar[ll]^{\tt \backslash n}
 }
 \]
-Dabei verbinden die Pfeile jeweils die Akzeptierzust"ande der Teilautomaten
-mit den Startzus"anden.
+Dabei verbinden die Pfeile jeweils die Akzeptierzustände der Teilautomaten
+mit den Startzusänden.
 \qedhere
 \end{teilaufgaben}
 \end{loesung}

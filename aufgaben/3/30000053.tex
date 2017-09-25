@@ -2,37 +2,37 @@ Sei $\Sigma$ ein Alphabet und $L$ die Sprache
 \[
 L=\{ w\in\Sigma^* \;|\; |w|_a \ne |w|_b\;\forall a,b\in\Sigma, a\ne b\}
 \]
-bestehend aus W"ortern, die keine zwei verschiedenen Buchstaben in gleicher
+bestehend aus Wörtern, die keine zwei verschiedenen Buchstaben in gleicher
 Anzahl enthalten.
-Gibt es einen regul"aren Ausdruck daf"ur?
+Gibt es einen regulären Ausdruck dafür?
 
 \begin{loesung}
-Es gibt keinen regul"aren Ausdruck daf"ur, weil die Sprache $L$ nicht regul"ar
+Es gibt keinen regulären Ausdruck dafür, weil die Sprache $L$ nicht regulär
 ist, wie man mit dem Pumping Lemma einsehen kann:
 \begin{enumerate}
-\item Angenommen, $L$ ist regul"ar.
+\item Angenommen, $L$ ist regulär.
 \item Dann gibt es die Pumping Length $N$.
 \item Wir konstruieren das Wort $w=\texttt{a}^N\texttt{b}^{N+c}$, wobei
-wir die Zahl $c>0$ sp"ater bestimmen werden.
-Wegen $N\ne N+c$ ist $w$ tats"achlich ein Wort in $L$.
+wir die Zahl $c>0$ später bestimmen werden.
+Wegen $N\ne N+c$ ist $w$ tatsächlich ein Wort in $L$.
 \item Nach dem Pumping-Lemma gibt es eine Unterteilung $w=xyz$, wobei
 $x$ und $y$ ausschliesslich aus \texttt{a} bestehen.
-Wir w"ahlen $c=|y|$.
+Wir wählen $c=|y|$.
 \item Pumpt man jetzt das Wort $w$ mit $k=2$ auf, bildet man also
 $w_2=xy^2z$, dann wird der \texttt{a}-Teil um $|y|=c$ Zeichen \texttt{a}
-verl"angert, er bekommt also neu die L"ange $N+c$, und ist damit gleich
+verlängert, er bekommt also neu die Länge $N+c$, und ist damit gleich
 lang wie der \texttt{b}-Teil.
 Das aufgepumpte Wort $w_2$ ist daher nicht mehr in der Sprache $L$.
 \item Das Pumping Lemma verlangt, dass jedes aufgepumpte Wort in $L$
 sein muss.
-Dieser Widerspruch zeigt, dass die Annahme, $L$ sei regul"ar, nicht
+Dieser Widerspruch zeigt, dass die Annahme, $L$ sei regulär, nicht
 zutreffen kann.
 \qedhere
 \end{enumerate}
 \end{loesung}
 
 \begin{diskussion}
-W"orter der Form $a^Nb^{N+1}$ oder $a^Nb^{2N}$ sind nicht geeignet, da
+Wörter der Form $a^Nb^{N+1}$ oder $a^Nb^{2N}$ sind nicht geeignet, da
 beim Pumpen nicht immer $|w|_a=|w|_b$ erreicht werden kann.
 Statt des Wortes $a^Nb^{N+c}$ kann man auch ein Wort der Form $a^Nb^{cN}$
 versuchen.
@@ -43,13 +43,13 @@ N+(k-1)|y|=cN
 \qquad\Leftrightarrow\qquad
 ({\color{red}k}-1)|y|=({\color{red}c}-1)N
 \]
-Die {\color{red}roten} Variablen sind noch zu w"ahlen.
-Die Gleichung wird erf"ullt, wenn man $c-1=|y|$ und $k-1=N$ w"ahlt, also
+Die {\color{red}roten} Variablen sind noch zu wählen.
+Die Gleichung wird erfüllt, wenn man $c-1=|y|$ und $k-1=N$ wählt, also
 \[
 c=|y|+1\qquad\text{und}\qquad k=N+1.
 \]
 
-Die folgende Idee ist sehr am"usant, funktioniert aber leider nicht ganz.
+Die folgende Idee ist sehr amüsant, funktioniert aber leider nicht ganz.
 Man verwendet das Wort
 \[
 w=\texttt{a}^{N+1}\texttt{b}^N\texttt{c}^{N-1}\texttt{d}^{N-2}\dots
@@ -59,8 +59,8 @@ mit jeder beliebigen Anzahl $\le N$ vor.
 Pumpt man jetzt ab, wird die Anzahl der \texttt{a} verringert, ihre
 Anzahl ist jetzt also auch $\le N$, gleich wie die Anzahl eines der
 anderen Buchstaben.
-Leider funktioniert dieser Beweis nur, wenn im Alphabet gen"ugend viele
-verschiedene Buchstaben zur Verf"ugung stehen, also $|\Sigma| > N$.
+Leider funktioniert dieser Beweis nur, wenn im Alphabet genügend viele
+verschiedene Buchstaben zur Verfügung stehen, also $|\Sigma| > N$.
 \end{diskussion}
 
 \begin{bewertung}

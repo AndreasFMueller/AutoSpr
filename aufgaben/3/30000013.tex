@@ -1,19 +1,19 @@
 Ein CSV-File (Comma Separated Values) besteht aus Zeilen, die aus
 mit Komma getrennten Feldern bestehen. Jedes Feld ist begrenzt mit
-Anf"uhrungszeichen.
-Die Felder selbst k"onnen auch Kommas und Anf"uhrungszeichen enthalten,
-aber um die Anf"uhrungszeichen in einem Feld vom feldbegrenzenden
-Anf"uhrungszeichen zu unterscheiden, m"ussen zwei Anf"uhrungszeichen
-eingegeben werden. Enth"alt ein Feld weder Komma noch Anf"uhrungszeichen,
-k"onnen die feldbegrenzenden Anf"uhrungszeichen weggelassen werden.
+Anführungszeichen.
+Die Felder selbst können auch Kommas und Anführungszeichen enthalten,
+aber um die Anführungszeichen in einem Feld vom feldbegrenzenden
+Anführungszeichen zu unterscheiden, müssen zwei Anführungszeichen
+eingegeben werden. Enthält ein Feld weder Komma noch Anführungszeichen,
+können die feldbegrenzenden Anführungszeichen weggelassen werden.
 Hier ein Beispiel eines syntaktisch korrekten CSV-Files:
 \verbatimainput{beispiel.csv}
 
 Die syntaktisch korrekten Zeilen von CSV-Files bilden eine Sprache.
-Ist diese Sprache regul"ar?
+Ist diese Sprache regulär?
 
 \begin{loesung}
-Ja, sie ist regul"ar, denn man kann einen endlichen Automaten daf"ur
+Ja, sie ist regulär, denn man kann einen endlichen Automaten dafür
 angeben.
 Das folgende Zustandsdiagramm beschreibt einen VNEA, der korrekte
 CSV-Zeilen akzeptiert.
@@ -34,46 +34,46 @@ CSV-Zeilen akzeptiert.
 }
 \]
 Wenn sich der Automat im Zustand $z_0$ befindet, erwartet er als
-n"achstes ein Feld. Dieses kann leer sein, was durch in Komma ({\tt ,})
+nächstes ein Feld. Dieses kann leer sein, was durch in Komma ({\tt ,})
 angezeigt wird. Es kann mit einem Feldbegrenzer {\tt\char34} beginnen,
 was den Automaten in den Zustand $z_1$ bringt. In diesem Zustand
-sind alle Zeichen akzeptabel, aber ein Anf"uhrungszeichen kann zwei
+sind alle Zeichen akzeptabel, aber ein Anführungszeichen kann zwei
 verschiedene Bedeutungen haben. Es kann gefolgt sein von noch einem
-Anf"uhrungszeichen, in diesem Fall ist es ein eingebetetes Anf"uhrungszeichen.
+Anführungszeichen, in diesem Fall ist es ein eingebetetes Anführungszeichen.
 Es kann aber auch gefolgt sein von einem Komma, in diesem Fall war
 es ein Feldbegrenzer. Zu dieser Unterscheidung dient der Zustand $z_3$.
 
 Ein Feld kann im Zustand $z_0$ auch mit einem beliebigen Zeichen
-beginnen, das verschieden von Komma und Anf"uhrungszeichen ist.
-Dazu dient der Zustand $z_2$. In diesem Zustand sind Anf"uhrungszeichen
-nicht erlaubt, und ein Komma beendet das Feld, f"uhrt den Automaten
+beginnen, das verschieden von Komma und Anführungszeichen ist.
+Dazu dient der Zustand $z_2$. In diesem Zustand sind Anführungszeichen
+nicht erlaubt, und ein Komma beendet das Feld, führt den Automaten
 also wieder in den Zustand $z_0$.
 
-Die Zust"ande $z_2$ und $z_3$ sind Akzeptierzust"ande, weil eine Zeile
-nur dann noch nicht zu ende sein darf, wenn ein ge"offnetes Anf"uhrungszeichen
+Die Zustände $z_2$ und $z_3$ sind Akzeptierzustände, weil eine Zeile
+nur dann noch nicht zu ende sein darf, wenn ein geöffnetes Anführungszeichen
 noch nicht geschlossen worden ist. Dies ist genau im Zustand $z_1$ der
-Fall, alle Zust"ande ausser $z_1$ k"onnen daher akzeptieren.
+Fall, alle Zustände ausser $z_1$ können daher akzeptieren.
 
-Nat"urlich ist es auch m"oglich, die Regularit"at dadurch nachzuweisen,
-dass man einen regul"aren Ausdruck f"ur die Zeilen angibt. Wir bauen
-den regul"aren Ausdruck Schrittweise auf. Wenn $r_f$ ein regul"arer Ausdruck
+Natürlich ist es auch möglich, die Regularität dadurch nachzuweisen,
+dass man einen regulären Ausdruck für die Zeilen angibt. Wir bauen
+den regulären Ausdruck Schrittweise auf. Wenn $r_f$ ein regulärer Ausdruck
 ist, auf den einzelne Felder einer CSV-Zeile passen, dann ist
 \[
 r_z=r_f\text{\tt (,}r_f\text{\tt )*}
 \]
-ein regul"arer Ausdruck, auf den ganze CSV-Zeilen passen. Ein Feld kann
+ein regulärer Ausdruck, auf den ganze CSV-Zeilen passen. Ein Feld kann
 Feldbegrenzer haben, oder eben nicht, es ist also $r_f=r_b|r_u$, wobei
 auf $r_b$ begrenzte Felder passen, und auf $r_u$ nur unbegrenzte.
-Ungebegrenzte Felder d"urfen keine Kommata oder Anf"uhrungszeichen
+Ungebegrenzte Felder dürfen keine Kommata oder Anführungszeichen
 enthalten, also $r_u=\text{\tt [\char94,\char34]*}$. Begrenzte Felder
-d"urfen Kommata enthalten. Wenn sie Anf"uhrungszeichen enthalten,
+dürfen Kommata enthalten. Wenn sie Anführungszeichen enthalten,
 dann jeweils in Zweiergruppen:
 \[
 r_b=\text{\tt
 \char34([\char94\char34]|(\char34\char34))*\char34
 }
 \]
-Damit kann man jetzt den regul"aren Ausdruck zusammensetzen:
+Damit kann man jetzt den regulären Ausdruck zusammensetzen:
 \begin{align*}
 r_u&=\text{\tt
 [\char94,\char34]*

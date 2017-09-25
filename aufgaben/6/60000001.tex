@@ -9,27 +9,27 @@ entscheidet.
 Die Maschine verwendet als Bandalphabet $\{a,b,c,\blank,x\}$,
 und arbeitet nach folgendem Algorithmus:
 \begin{enumerate}
-\item Falls das n"achste Zeichen ein $\blank$ ist:
+\item Falls das nächste Zeichen ein $\blank$ ist:
 $q_{\text{accept}}$
-\item Falls das n"achste Zeichen ein $b$, $c$ oder $x$ ist:
+\item Falls das nächste Zeichen ein $b$, $c$ oder $x$ ist:
 $q_{\text{reject}}$.
-\item Falls das n"achste zu lesende Zeichen ein $a$ ist, ersetze
+\item Falls das nächste zu lesende Zeichen ein $a$ ist, ersetze
 es durch $\blank$ und fahre nach rechts.
-\item Nach rechts fahrend, "uberspringe alle $a$ und $x$.
-\item Falls das n"achste Zeichen kein $b$ ist:
+\item Nach rechts fahrend, überspringe alle $a$ und $x$.
+\item Falls das nächste Zeichen kein $b$ ist:
 $q_{\text{reject}}$.
-\item Falls das n"achste Zeichen ein $b$ ist, ersetze es durch $x$,
+\item Falls das nächste Zeichen ein $b$ ist, ersetze es durch $x$,
 bewege den Kopf nach rechts.
-\item Nach rechts fahrend, "uberspringe alle $b$
-\item Falls das n"achste Zeichen kein $c$ ist:
+\item Nach rechts fahrend, überspringe alle $b$
+\item Falls das nächste Zeichen kein $c$ ist:
 $q_{\text{reject}}$.
-\item Nach rechts fahrend, "uberspringe alle $c$.
-\item Falls das n"achste Zeichen kein $\blank$ ist: $q_{\text{reject}}$
-\item Falls das n"achste Zeichen ein $\blank$ ist, fahre nach
+\item Nach rechts fahrend, überspringe alle $c$.
+\item Falls das nächste Zeichen kein $\blank$ ist: $q_{\text{reject}}$
+\item Falls das nächste Zeichen ein $\blank$ ist, fahre nach
 links.
 \item Falls das Zeichen kein $c$ ist: $q_{\text{reject}}$
 \item Ersetze $c$ durch $\blank$, fahre nach links.
-\item Nach links fahrend, "uberspringe alle Zeichen bis zum n"achsten
+\item Nach links fahrend, überspringe alle Zeichen bis zum nächsten
 $\blank$.
 \item Bewege den Kopf nach rechts, und fahre weiter bei 1.
 \end{enumerate}
@@ -77,6 +77,6 @@ Das Zustandsdiagramm dieser TM ist
                                 &q_5    \ar[llluu]^{\blank\to\blank,R}
                                         \ar@(ur,dr)^{.\to.,L}
 }\]
-Der "Ubergang bei $q_5$ ist zu lesen als: f"ur alle Zeichen ausser dem
+Der "Ubergang bei $q_5$ ist zu lesen als: für alle Zeichen ausser dem
 $\blank$, bewege den Kopf nach links.
 \end{loesung}

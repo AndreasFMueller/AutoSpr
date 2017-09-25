@@ -1,35 +1,35 @@
-An einer Veranstaltung werden verschiedene m"ogliche Aktivit"aten angeboten,
-allerdings steht nicht gen"ugend Zeit zur Verf"ugung, so dass jeder
-Teilnehmer nur an einer Aktivit"at teilnehmen kann.
+An einer Veranstaltung werden verschiedene mögliche Aktivitäten angeboten,
+allerdings steht nicht genügend Zeit zur Verfügung, so dass jeder
+Teilnehmer nur an einer Aktivität teilnehmen kann.
 Der Veranstalter bittet die Teilnehmer in der Anmeldung, auf einem
-Formular alle Aktivit"aten anzukreuzen, f"ur die sie sich interessieren.
-Aus Kostengr"unden will der Veranstalter dann aber nur $k$ Angebote
+Formular alle Aktivitäten anzukreuzen, für die sie sich interessieren.
+Aus Kostengründen will der Veranstalter dann aber nur $k$ Angebote
 auch realisieren, die dann auch genutzt werden sollen.
-Diese sollten zudem so sein, dass kein Teilnehmer sich f"ur mehr als
+Diese sollten zudem so sein, dass kein Teilnehmer sich für mehr als
 eines der realisierten Angebote angemeldet hat.
-Ausserdem ist ihm egal, dass m"oglicherweise einige Teilnehmer nichts tun
+Ausserdem ist ihm egal, dass möglicherweise einige Teilnehmer nichts tun
 werden.
 
-Das Veranstaltungs-Sekretariat soll jetzt die Aktivit"aten ermitteln, 
+Das Veranstaltungs-Sekretariat soll jetzt die Aktivitäten ermitteln, 
 die realisiert werden sollen.
 Dies stellt sich als schwierig heraus, warum?
 
 \begin{loesung}
-Dies ist das NP-vollst"andige Problem \textsl{SET-PACKING}, wie man 
+Dies ist das NP-vollständige Problem \textsl{SET-PACKING}, wie man 
 mittels der Reduktion
 \begin{align*}
-\textsl{SET-PACKING}&\phantom{\mathstrut\mapsto\mathstrut}\textrm{Aktivit"aten an einer Veranstaltung}
+\textsl{SET-PACKING}&\phantom{\mathstrut\mapsto\mathstrut}\textrm{Aktivitäten an einer Veranstaltung}
 \\[5pt]
-i&\mapsto \textrm{Aktivit"at}
+i&\mapsto \textrm{Aktivität}
 \\
-S_i&\mapsto \textrm{Teilnehmer, die sich f"ur $i$ angemeldet haben}
+S_i&\mapsto \textrm{Teilnehmer, die sich für $i$ angemeldet haben}
 \\
-k&\mapsto \textrm{Anzahl realisierte Aktivit"aten}
+k&\mapsto \textrm{Anzahl realisierte Aktivitäten}
 \\
-J&\mapsto \textrm{tats"achlich realisierte Aktivit"aten}
+J&\mapsto \textrm{tatsächlich realisierte Aktivitäten}
 \\
 S_i\cap S_j=\emptyset\forall i\ne j
-&\mapsto \textrm{Teilnehmer sind f"ur h"ochstens eine realisierte Aktivit"at angemeldet}
+&\mapsto \textrm{Teilnehmer sind für höchstens eine realisierte Aktivität angemeldet}
 \end{align*}
 erkennen kann.
 \end{loesung}

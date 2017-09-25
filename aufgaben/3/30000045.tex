@@ -5,42 +5,42 @@ L=\{ w\in\Sigma^*
 \,
 |\,
 \text{
-f"ur alle $a,b\in\Sigma$ gilt
+für alle $a,b\in\Sigma$ gilt
 $|w|_a < |w|_b$, wenn $b$ im Alphabet auf $a$ folgt%
 }
 \}
 \]
-besteht aus W"ortern, in denen Buchstaben h"aufiger sind, die sp"ater im
+besteht aus Wörtern, in denen Buchstaben häufiger sind, die später im
 Alphabet stehen (man beachte, dass $a$ und $b$ hier Variablen sind,
 nicht die Buchstaben \texttt{a} und \texttt{b}).
-Die W"orter
+Die Wörter
 \[
 \texttt{abbccc},\;
 \texttt{cbabcc},\;
 \texttt{sos},\;
 \texttt{auauu}
 \]
-geh"oren zu dieser Sprache, weil die alphabetisch sp"ateren Buchstaben
-in den W"ortern immer h"aufiger sind als die alphabetisch
-fr"uheren Buchstaben. Hingegen sind die W"orter 
+gehören zu dieser Sprache, weil die alphabetisch späteren Buchstaben
+in den Wörtern immer häufiger sind als die alphabetisch
+früheren Buchstaben. Hingegen sind die Wörter 
 \[
 \texttt{aua},\;
 \texttt{politik},\;
 \texttt{mimikri},\;
 \texttt{ente}
 \]
-nicht in $L$ (\texttt{e} ist alphabetisch vor \texttt{n}, aber h"aufiger
+nicht in $L$ (\texttt{e} ist alphabetisch vor \texttt{n}, aber häufiger
 in \texttt{ente}).
 
-Ist die Sprache $L$ regul"ar?
+Ist die Sprache $L$ regulär?
 
 \begin{loesung}
-Nein, $L$ ist nicht regl"ar, wie man mit dem Pumping-Lemma beweisen kann.
-Wir nehmen dazu an, dass $L$ regul"ar sei, das Pumping Lemma f"ur
-regul"are Sprachen besagt dann, dass es die Pumping Length $N$ f"ur die
+Nein, $L$ ist nicht reglär, wie man mit dem Pumping-Lemma beweisen kann.
+Wir nehmen dazu an, dass $L$ regulär sei, das Pumping Lemma für
+reguläre Sprachen besagt dann, dass es die Pumping Length $N$ für die
 Sprachen $L$ gibt.
 Wir konstruieren jetzt ein Wort, welches die Bedingungen der Sprache
-erf"ullt:
+erfüllt:
 \[
 w=\texttt{a}^{N+1}\texttt{b}^{N+2}
 \]
@@ -52,23 +52,23 @@ Ein aufgepumptes Wort hat daher die Form
 \[
 w_k=xy^kz = \texttt{a}^{N+1+(k-1)|v|}\texttt{b}^{N+2}.
 \]
-Es gilt f"ur $k > 1$:
+Es gilt für $k > 1$:
 \[
 N+1+(k-1)|y|\ge N+1+(k-1)=N+k\ge N+2,
 \]
-das Wort $w_k=xy^kz$ erf"ullt nicht mehr die Spezifikation der Sprache,
+das Wort $w_k=xy^kz$ erfüllt nicht mehr die Spezifikation der Sprache,
 da diese $N+1+(k-1)|y| < N+2$ verlangt.
-Diese Widerspruch zeigt, dass $L$ nicht regul"ar sein kann.
+Diese Widerspruch zeigt, dass $L$ nicht regulär sein kann.
 \end{loesung}
 
 \begin{diskussion}
-Dieser Beweis mit dem Pumping-Lemma kann nat"urlich mit jedem beliebigen
-anderen Wort der Form $\texttt{a}^N\texttt{b}^{m}$ durchgef"uhrt werden,
+Dieser Beweis mit dem Pumping-Lemma kann natürlich mit jedem beliebigen
+anderen Wort der Form $\texttt{a}^N\texttt{b}^{m}$ durchgeführt werden,
 solange $m > N$ ist. Zum Beispiel ist $m=2N$ genauso gut.
 
-Der Beweis ist aber nicht mehr m"oglich mit dem Wort
+Der Beweis ist aber nicht mehr möglich mit dem Wort
 $w=\texttt{a}^{N-1}\texttt{b}^N$.
-Die meisten Unterteilungen f"uhren zwar immer noch zu einem
+Die meisten Unterteilungen führen zwar immer noch zu einem
 Widerspruch, aber bei der Untertteilung
 \[
 x = a^{N-2}, \quad y=ab, \quad z= b^{N-1}
@@ -79,12 +79,12 @@ die Zahl der $b$.
 \end{diskussion}
 
 \begin{bewertung}
-Annahme regul"ar ({\bf A}) 1 Punkt,
+Annahme regulär ({\bf A}) 1 Punkt,
 Pumping length ({\bf N}) 1 Punkt,
 Konstruktion eines Wortes in der Sprache, welches $N$ verwendet ({\bf W})
 1 Punkt,
-Unterteilung (allgemein, keine willk"urliche/spezielle Wahl) ({\bf U}) 1 Punkt,
+Unterteilung (allgemein, keine willkürliche/spezielle Wahl) ({\bf U}) 1 Punkt,
 Verletzung der Spracheigenschaft beim Pumpen ({\bf P}) 1 Punkt,
-Schluss\-folgerung (nicht regul"ar) ({\bf S}) 1 Punkt.
+Schluss\-folgerung (nicht regulär) ({\bf S}) 1 Punkt.
 \end{bewertung}
  

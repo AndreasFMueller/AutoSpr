@@ -1,7 +1,7 @@
-Beschreiben Sie eine Turing-Maschine "uber dem Alphabet
+Beschreiben Sie eine Turing-Maschine über dem Alphabet
 $\Sigma=\{\text{\tt 0},\text{\tt 1}\}$, die als Input ein Wort
 aus lauter {\tt 0} auf dem Band erwartet, also $w=\text{\tt 0}^n$,
-und auf dem Band ein Wort aus $2^n$ Einsen, also $\text{\tt 1}^{2^n}$ hinterl"asst. Sie
+und auf dem Band ein Wort aus $2^n$ Einsen, also $\text{\tt 1}^{2^n}$ hinterlässt. Sie
 produziert also zum Beispiel folgendes:
 \begin{align*}
 \text{\tt 0}&\rightarrow\text{\tt 11}\\
@@ -10,30 +10,30 @@ produziert also zum Beispiel folgendes:
 \text{\tt 0000}&\rightarrow\text{\tt 1111111111111111}\\
 &\dots
 \end{align*}
-Sie d"urfen annehmen, dass der Schreib-/Lesekopf zu Beginn auf dem
-ersten Zeichen des Input-Wortes steht. Sie d"urfen auf eine
+Sie dürfen annehmen, dass der Schreib-/Lesekopf zu Beginn auf dem
+ersten Zeichen des Input-Wortes steht. Sie dürfen auf eine
 Validierung des Input verzichten. Funktioniert Ihre Maschine auch,
 wenn auf dem Band der leere String steht?
 
 \begin{loesung}
-Wir verwenden als Bandalphabet zus"atzlich zum Blank $\sqcup$ noch
+Wir verwenden als Bandalphabet zusätzlich zum Blank $\sqcup$ noch
 das Zeichen {\tt x}. Der Algorithmus geht wie folgt vor.
 \begin{enumerate}
-\item Zun"achst
+\item Zunächst
 wird eine {\tt 1} unmittelbar hinter dem Input-Wort geschrieben.
-Das Ende des Input-Wortes wird gefunden, indem man nach rechts f"ahrt,
+Das Ende des Input-Wortes wird gefunden, indem man nach rechts fährt,
 bis ein leeres Feld unter dem Schreib-Lese-Kopf steht.
-\item \label{mainloop}F"ur jede {\tt 0}, die man zu Beginn des beschriebenen
+\item \label{mainloop}Für jede {\tt 0}, die man zu Beginn des beschriebenen
 Teils des Bandes findet, verdoppelt man die Anzahl {\tt 1}, die
-bereits auf dem Band sind. Man f"ahrt also zun"achst nach links,
+bereits auf dem Band sind. Man fährt also zunächst nach links,
 bis man ein leeres Feld findet, dann wieder ein Feld nach rechts.
 Wenn man dort ein {\tt 0} findet, gibt es noch etwas zu tun. Man
-ersetzt die {\tt 0} durch $\sqcup$ und f"ahrt nach rechts bis
+ersetzt die {\tt 0} durch $\sqcup$ und fährt nach rechts bis
 zur ersten {\tt 1}. Das Verdoppeln der Einsen geschieht jetzt in
 folgenden Schritten:
 \begin{enumerate}
 \item Fahre nach rechts bis zum ersten $\sqcup$
-\item \label{doubleloop}Nach links fahrend "uberspringe alle {\tt x} bis zu einer {\tt 1},
+\item \label{doubleloop}Nach links fahrend überspringe alle {\tt x} bis zu einer {\tt 1},
 falls statt einer {\tt 1} eine {\tt 0} gefunden wurde, sind bereits alle
 {\tt 1} verdoppelt worden, weiter bei \ref{xto1}.
 \item Ersetze die {\tt 1} durch ein
@@ -44,7 +44,7 @@ Weiter bei \ref{mainloop}
 \end{enumerate}
 \end{enumerate}
 Falls auf dem Band der leere String steht, wird im ersten Schritt eine
-{\tt 1} geschrieben. Dann sucht das Programm nach der n"achsten {\tt 0},
+{\tt 1} geschrieben. Dann sucht das Programm nach der nächsten {\tt 0},
 wird aber keine solche finden, und damit auch keine Verdoppelung der
 Einsen vornehmen. Als Resultat steht also ein Folgen von $1=2^0$ Einsen
 auf dem Band, die Maschine funktioniert auch in diesem Fall.

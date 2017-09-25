@@ -3,24 +3,24 @@ Zeigen Sie, dass die Summe der Grade aller Vertices eines Graphen
 eine gerade Zahl ist.
 
 \begin{loesung}
-Entfernt man aus dem Graphen Kante f"ur Kante, dann wird die
-Summe der Grade in jedem Schritt um zwei kleiner. Sie "andert
+Entfernt man aus dem Graphen Kante für Kante, dann wird die
+Summe der Grade in jedem Schritt um zwei kleiner. Sie ändert
 dabei also ihren Rest bei Teilung durch zwei nicht. Wenn alle
 Kanten entfernt sind, sind auch alle Grade 0, die Summe der
-Grade ist also gerade. Daher muss die urspr"ungliche Summe der
+Grade ist also gerade. Daher muss die ursprüngliche Summe der
 Grade auch gerade gewesen sein.
 
-Wir k"onnen diesen konstruktiven Beweis auch induktiv formulieren.
+Wir können diesen konstruktiven Beweis auch induktiv formulieren.
 Dazu zeigen wir, dass die Summe der Grade aller Vertizes eines Graphen
-mit $n$ Kanten $2n$ ist. F"ur einen Graphen ohne Kanten ist dies
+mit $n$ Kanten $2n$ ist. Für einen Graphen ohne Kanten ist dies
 sicher richtig, dies ist die Induktionsverankerung. Nehmen wir
-jetzt an, dass die Behauptung f"ur einen Graphen mit $n$ Kanten
-richtig ist. Sei jetzt $G$ ein Graph mit $n+1$ Kanten. Wir k"onnen
+jetzt an, dass die Behauptung für einen Graphen mit $n$ Kanten
+richtig ist. Sei jetzt $G$ ein Graph mit $n+1$ Kanten. Wir können
 eine Kante entfernen und erhalten einen Graphen $G_1$ mit $n$
-Kanten, f"ur den nat"urlich die Induktionsannahme gilt. Die Summe
-der Grade ist also $2n$. F"ugen wir jetzt die Kante wieder hinzu,
+Kanten, für den natürlich die Induktionsannahme gilt. Die Summe
+der Grade ist also $2n$. Fügen wir jetzt die Kante wieder hinzu,
 wird der Grad von Anfangs- und Endpunkt der Kante um genau $1$
 zunehmen, die Summe der Grade von $G$ ist also $2n+2=2(n+1)$,
-was die Behauptung f"ur $n+1$ beweist.
+was die Behauptung für $n+1$ beweist.
 \end{loesung}
 

@@ -1,27 +1,27 @@
 In einem Entwicklungsland sollen die aus dem Ausland erhaltenen
-Unterst"utzungsmittel dazu verwendet werden, endlich alle Ortschafen
+Unterstützungsmittel dazu verwendet werden, endlich alle Ortschafen
 mit mindestens 100 Einwohnern ans Stromnetz anzuschliessen.
 Der Bau von Leitungen zwischen einzelnen Ortschaften ist je nach
-Gel"ande unterschiedlich teuer, zum Teil auch schlicht unm"oglich.
+Gelände unterschiedlich teuer, zum Teil auch schlicht unmöglich.
 Es wird entschieden, dass man in einer ersten Phase auf Redundanz des
 neu zu erstellenden Netzes verzichten will.
-Der Minister m"ochte endlich wissen,
-ob das vorhandene Geld f"ur das Projekt ausreicht, und ist sehr ungehalten
-dar"uber, dass die Verwaltung so lange braucht, diese Frage zu beantworten.
-Kann man dies erkl"aren?
+Der Minister möchte endlich wissen,
+ob das vorhandene Geld für das Projekt ausreicht, und ist sehr ungehalten
+darüber, dass die Verwaltung so lange braucht, diese Frage zu beantworten.
+Kann man dies erklären?
 
 \begin{loesung}
-Dieses \textsl{STROMNETZ} genannte Problem ist "aquivalent zu
+Dieses \textsl{STROMNETZ} genannte Problem ist äquivalent zu
 \textsl{STEINER-TREE} wie folgt.
 Die Ortschaften des Landes entsprechen der Menge $V$ aller Vertizes des
 Graphen. Die untereinander zu verbindenden Ortschaften bilden eine Teilmenge
 $R\subset V$.
 Eine Kante im Graphen $G$ entspricht zwei verbindbaren Ortschaften,
-jeder solchen Kante sind die Kosten f"ur den Bau einer Verbindungsleitung
+jeder solchen Kante sind die Kosten für den Bau einer Verbindungsleitung
 zugeordnet.
-Es ist nun eine Menge von Verbindungsleitungen zu w"ahlen, die einen Baum
+Es ist nun eine Menge von Verbindungsleitungen zu wählen, die einen Baum
 (keine Redundanz) bilden und so, dass die Summe der Gewichte das 
-Budget nicht "ubersteigt.
+Budget nicht übersteigt.
 \begin{align*}
 \textsl{STEINER-TREE}&\leftrightarrow\textsl{STROMNETZ}\\
 \text{Knoten}&\leftrightarrow\text{Ortschaften}\\
@@ -29,10 +29,10 @@ Budget nicht "ubersteigt.
 \text{Gewicht $w$ einer Kante}&\leftrightarrow \text{Baukosten einer Verbindungsleitung}\\
 \text{maximales Gewicht $k$}&\leftrightarrow\text{Budget}
 \end{align*}
-Da das Problem \textsl{STEINER-TREE} bekanntermassen NP-vollst"andig ist
-und daher keinen effizienten L"osungsalgorithmus besitzt, ist nicht
-"uberraschend, dass das "aquivalente Problem \textsl{STROMNETZ} von
-der Verwaltung nicht effizient gel"ost werden konnte.
+Da das Problem \textsl{STEINER-TREE} bekanntermassen NP-vollständig ist
+und daher keinen effizienten Lösungsalgorithmus besitzt, ist nicht
+überraschend, dass das äquivalente Problem \textsl{STROMNETZ} von
+der Verwaltung nicht effizient gelöst werden konnte.
 \end{loesung}
 
 \begin{diskussion}
@@ -42,24 +42,24 @@ ist nicht die Tour de Suisse.
 
 \textsl{MAX-CUT} ist ebenfalls nicht geeignet. \textsl{MAX-CUT} sucht die maximalen
 Investitionen, die man in den Sand setzen kann, indem man eine Menge von Verbindungen
-durchschneidet. Das ist so ziemlich das Gegenteil von dem, was man tats"achlich machen
+durchschneidet. Das ist so ziemlich das Gegenteil von dem, was man tatsächlich machen
 will.
 
-Die Tatsache, dass man ein gewisses Budget $k$ ausgeben kann, k"onnte einen dazu
+Die Tatsache, dass man ein gewisses Budget $k$ ausgeben kann, könnte einen dazu
 verleiten, eine Reduktion auf \textsl{SUBSET-SUM} zu versuchen. Aber in
 \textsl{SUBSET-SUM} kann man nicht abbilden, dass die gebauten Leitungen ein
-zusammenh"angendes Netz bilden m"ussen. \textsl{SUBSET-SUM} w"are die richige
+zusammenhängendes Netz bilden müssen. \textsl{SUBSET-SUM} wäre die richige
 Wahl, wenn es darum ginge herauszufinden, ob man genau das gesamte Budget ausgeben
-kann, unabh"angig davon, ob damit die Ortschaften tats"achlich mit Strom versorgt
+kann, unabhängig davon, ob damit die Ortschaften tatsächlich mit Strom versorgt
 werden.
 \end{diskussion}
 
 \begin{bewertung}
-L"osungsprinzip Reduktion ({\bf R}) 1 Punkt,
+Lösungsprinzip Reduktion ({\bf R}) 1 Punkt,
 Auswahl eines geeigneten Vergleichsproblems ({\bf V}) 1 Punkt,
-Reduktionsabbildung f"ur Ortschaften ({\bf O}) 1 Punkt,
-Leitungsl"ange ({\bf L}) 1 Punkt,
+Reduktionsabbildung für Ortschaften ({\bf O}) 1 Punkt,
+Leitungslänge ({\bf L}) 1 Punkt,
 Budget {\bf B}) 1 Punkt,
-Schlussfolgerung NP-vollst"andig ({\bf S}) 1 Punkt.
+Schlussfolgerung NP-vollständig ({\bf S}) 1 Punkt.
 \end{bewertung}
 

@@ -1,13 +1,13 @@
 Das Spiel Hashiwokakero wird auf einem $n\times n$-Gitter gespielt,
 auf dem einige Gitterpunkte als Inseln markiert und mit einer Zahl
-versehen sind. Die Zahl gibt an, wieviele Br"ucken auf der
+versehen sind. Die Zahl gibt an, wieviele Brücken auf der
 betreffenden Insel enden.
-Br"ucken verlaufen immer parallel zu den Koordinatenachsen, und
-k"onnen keine Inseln "uberspringen.
-Zwei Inseln k"onnen mit maximal zwei
-Br"ucken verbunden sein. Der Spieler soll Br"ucken so bauen,
-dass die Zahl der Br"ucken auf jeder Insel mit der Vorgabe
-"ubereinstimmt. Im Bild links die Aufgabe, rechts die L"osung.
+Brücken verlaufen immer parallel zu den Koordinatenachsen, und
+können keine Inseln überspringen.
+Zwei Inseln können mit maximal zwei
+Brücken verbunden sein. Der Spieler soll Brücken so bauen,
+dass die Zahl der Brücken auf jeder Insel mit der Vorgabe
+übereinstimmt. Im Bild links die Aufgabe, rechts die Lösung.
 \begin{center}
 \begin{tabular}{cc}
 \includeagraphics[width=0.4\hsize]{HashiwokakeroBeispiel.pdf}&
@@ -15,8 +15,8 @@ dass die Zahl der Br"ucken auf jeder Insel mit der Vorgabe
 \end{tabular}
 \end{center}
 Zeigen Sie, dass eine nichtdeterministische Maschine in
-polynomieller Zeit entscheiden kann, ob ein Hashiwokakero-R"atsel
-eine L"osung hat.
+polynomieller Zeit entscheiden kann, ob ein Hashiwokakero-Rätsel
+eine Lösung hat.
 
 \begin{loesung}
 Zunächst muss man sicherstellen, dass HASHIWOKAKERO entscheidbar ist.
@@ -25,32 +25,32 @@ weniger als $O(n^4)$ gibt.
 Dies ist immer in endlicher Zeit möglich, also ist das Problem
 entscheidbar.
 
-Nun muss man zeigen, dass HASHIWOKAKERO in NP ist. Dazu gen"ugt es, einen
-polynomiellen Verifizierer zu finden. Als Zertifikat f"ur den
-Verifizierer verlangen wir die Anzahl der Br"ucken zwischen jedem 
-Paar von Inseln des R"atsels.
-Der Verifizierer muss folgende Dinge "uberpr"ufen:
+Nun muss man zeigen, dass HASHIWOKAKERO in NP ist. Dazu genügt es, einen
+polynomiellen Verifizierer zu finden. Als Zertifikat für den
+Verifizierer verlangen wir die Anzahl der Brücken zwischen jedem 
+Paar von Inseln des Rätsels.
+Der Verifizierer muss folgende Dinge überprüfen:
 \begin{center}
 \begin{tabular}{l|c}
-Pr"ufung&Laufzeit\\
+Prüfung&Laufzeit\\
 \hline
-Br"ucken sind horizontal oder vertikal&$O(n^4)$\\
-Br"ucken enden in Inseln&$O(n^4)$\\
-Br"ucken kreuzen sich nicht&$O(n^8)$\\
-Br"ucken, die in einer Insel enden, haben die ``richtige'' Summe&$O(n^6)$\\
+Brücken sind horizontal oder vertikal&$O(n^4)$\\
+Brücken enden in Inseln&$O(n^4)$\\
+Brücken kreuzen sich nicht&$O(n^8)$\\
+Brücken, die in einer Insel enden, haben die ``richtige'' Summe&$O(n^6)$\\
 \hline
 Maximale Laufzeit& $O(n^8)$
 \end{tabular}
 \end{center}
-Dabei haben wir die ganz grobe Absch"atzung verwendet, dass es h"ochstens
-so viele Br"ucken geben kann wie Punktpaare, also $O(n^2)\cdot O(n^2)=O(n^4)$.
+Dabei haben wir die ganz grobe Abschätzung verwendet, dass es höchstens
+so viele Brücken geben kann wie Punktpaare, also $O(n^2)\cdot O(n^2)=O(n^4)$.
 Bei der Kontrolle der ``richtigen'' Summe muss der Verifizierer zum
-Beispiel f"ur jede Insel und jede Br"ucke die gleiche Arbeit leisten und
-"uberpr"ufen, ob die
-Br"ucke in der Insel endet, die Br"ucken z"ahlen und mit dem Inselwert
-vergleichen.  Die Komplixit"at dieses Teils ist also $O(n^6)$, wie in
+Beispiel für jede Insel und jede Brücke die gleiche Arbeit leisten und
+überprüfen, ob die
+Brücke in der Insel endet, die Brücken zählen und mit dem Inselwert
+vergleichen.  Die Komplixität dieses Teils ist also $O(n^6)$, wie in
 obiger Tabelle angegeben.
-Die Verifikation ist also in polynomieller Zeit durchf"uhrbar.
+Die Verifikation ist also in polynomieller Zeit durchführbar.
 \end{loesung}
 
 \begin{bewertung}
@@ -59,26 +59,26 @@ Beobachtung, dass es reicht, einen polynomiellen Verifizerer ({\bf V})
 zu finden 1 Punkt,
 Definition des Zertifikats ({\bf Z}) 1 Punkt,
 Definition des Verifikationsalgorithmus ({\bf A}) 2 Punkte,
-Absch"atzung der Laufzeitkomplexit"at ({\bf L}) 1 Punkte.
+Abschätzung der Laufzeitkomplexität ({\bf L}) 1 Punkte.
 \end{bewertung}
 
 \begin{diskussion}
-Daniel Andersson hat nachgewiesen, dass das Br"uckenspiel
-NP-vollst"andig ist: {\it Hashiwokakero is NP-complete},
+Daniel Andersson hat nachgewiesen, dass das Brückenspiel
+NP-vollständig ist: {\it Hashiwokakero is NP-complete},
 Daniel Anderrsson, Journal of Information Processing Letters {\bf 109} (19),
 2009, pp. 1145-1146.
-F"ur den Beweis muss eine Reduktion von einem bekanntermassen
-NP-vollst"andigen Problem konstruiert werden.
+Für den Beweis muss eine Reduktion von einem bekanntermassen
+NP-vollständigen Problem konstruiert werden.
 Im vorliegenden Fall wird folgendes Problem verwendet:
 In einem Gitter $\mathbb Z$ ist eine Menge von Punkten $P\subset \mathbb Z^2$
-ausgew"ahlt worden.
+ausgewählt worden.
 Daraus entsteht ein Graph, indem alle Strecken zwischen Punkten von $P$
-hinzugef"ugt werden, die L"ange $1$ haben,
+hinzugefügt werden, die Länge $1$ haben,
 der sogenannte Einheits-Distanz-Graph.
 Das Problem zu entscheiden,
-ob dieser Graph einen hamiltonschen Zyklus besitzt ist NP-vollst"andig.
+ob dieser Graph einen hamiltonschen Zyklus besitzt ist NP-vollständig.
 Der Beweis von Anderson konstruiert zu jedem Einheits-Distanz-Graphen
-ein Hashiwokakero-Spiel, welches genau dann l"osbar ist, wenn der
+ein Hashiwokakero-Spiel, welches genau dann lösbar ist, wenn der
 Graph einen hamiltonschen Zyklus hat.
 \end{diskussion}
 

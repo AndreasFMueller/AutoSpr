@@ -1,12 +1,12 @@
 In einer Programmiersprache wird unterschieden zwischen Deklaration
 und Definition einer Funktion.
-Definitionen und Deklarationen k"onnen beliebig gemischt werden,
+Definitionen und Deklarationen können beliebig gemischt werden,
 solange Deklarationen immer vor Definitionen kommen.
 Eine Deklaration besteht aus dem Funktionsnamen $f$ und einer Argumentliste,
-wir schreiben symbolisch $a^n$  f"ur die aus $n$ Argumenten bestehende
+wir schreiben symbolisch $a^n$  für die aus $n$ Argumenten bestehende
 Argumentliste.
-Definitionen enthalten zus"atzlich einen Block mit ausf"uhrbarem Code.
-Die Programmiersprache l"asst also Konstruktionen der Form
+Definitionen enthalten zusätzlich einen Block mit ausführbarem Code.
+Die Programmiersprache lässt also Konstruktionen der Form
 \[
 \underbrace{f_1a^n}_{\text{Deklaration von $f_1$}}
 \underbrace{f_2a^m}_{\text{Deklaration von $f_2$}}
@@ -16,18 +16,18 @@ Die Programmiersprache l"asst also Konstruktionen der Form
 zu.
 Kann man durch Wahl einer geeigneten Grammatik erzwingen, dass die
 Anzahl der Argumente der Argumentliste in Deklaration und Definition
-jeweils "ubereinstimmt?
+jeweils übereinstimmt?
 
 \begin{loesung}
-Dies w"urde bedeuten, dass die Sprache kontextfrei ist.
+Dies würde bedeuten, dass die Sprache kontextfrei ist.
 Diese Sprache ist aber nicht kontextfrei, wie man mit dem Pumping Lemma
-f"ur kontextfreie Sprachen beweisen kann.
+für kontextfreie Sprachen beweisen kann.
 \begin{enumerate}
 \item
 Wir nehmen an, die Sprache sei kontextfrei.
 \item
 Nach dem Pumping-Lemma gibt es dann die Pumping Length $N$ so,
-dass W"orter mit L"ange $\ge N$ aufgepumpt werden k"onnen.
+dass Wörter mit Länge $\ge N$ aufgepumpt werden können.
 \item
 Wir konstruieren das Wort
 \[
@@ -36,12 +36,12 @@ w=f_1a^N f_2a^N f_1a^Nb_1f_2a^Nb_2
 welches ganz offensichtlich in der Sprache drin ist.
 \item
 Nach dem Pumping-Lemma gibt es dann eine Unterteilung des Wortes $w$ in
-f"unf Teile $w=xyzuv$ derart, dass $|yzu|\le N$.
-Dies bedeutet, dass $y$ und $u$ Zeichen $a$ aus h"ochstens zwei verschiedenen
-$a$-Bl"ocken enthalten k"onnen.
+fünf Teile $w=xyzuv$ derart, dass $|yzu|\le N$.
+Dies bedeutet, dass $y$ und $u$ Zeichen $a$ aus höchstens zwei verschiedenen
+$a$-Blöcken enthalten können.
 \item
 Beim Aufpumpen wird also notwendigerweise die Anzahl der $a$ einer
-Deklaration und einer nicht dazu passenden Definition ver"andert,
+Deklaration und einer nicht dazu passenden Definition verändert,
 so dass nach dem Aufpumpen die Definition nicht mehr zur Deklaration 
 passt.
 Das aufgepumpte Wort ist also nicht mehr in der Sprache.

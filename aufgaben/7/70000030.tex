@@ -1,61 +1,61 @@
 Das Spiel {\em Hitori} wird auf einem $n\times n$-Feld gespielt, in jeder
 Zelle des Spielfeldes ist eine Zahl zwischen 1 und $n$ eingetragen.
-Der Spieler muss nun Zellen schw"arzen, so dass zwei Regeln
+Der Spieler muss nun Zellen schwärzen, so dass zwei Regeln
 eingehalten werden:
 \begin{enumerate}
-\item In einer Zeile darf keine (nicht geschw"arzte) Zahl mehr als
+\item In einer Zeile darf keine (nicht geschwärzte) Zahl mehr als
 einmal vorkommen.
-\item Benachbarte Zellen d"urfen nicht geschw"arzt werden.
+\item Benachbarte Zellen dürfen nicht geschwärzt werden.
 \end{enumerate}
-Die folgende Abbildung zeigt ein {\em Hitori} (links) mit L"osung (rechts).
+Die folgende Abbildung zeigt ein {\em Hitori} (links) mit Lösung (rechts).
 \begin{center}
 \includeagraphics[width=0.3\hsize]{Hitori.png}
 \qquad
 \includeagraphics[width=0.3\hsize]{Hitoricompleted.png}
 \end{center}
 Kann eine nichtdeterministische Turing-Maschine in polynomieller Zeit
-entscheiden, ob ein {\em Hitori} eine L"osung hat?
+entscheiden, ob ein {\em Hitori} eine Lösung hat?
 
 \begin{loesung}
 Das Problem ist sicher entscheidbar, man kann alle $2^{n^2}$
-m"oglichen Schw"arzungen des Spielfeldes daraufhin testen, ob sie die
-Regeln 1.~und 2.~erf"ullen.
+möglichen Schwärzungen des Spielfeldes daraufhin testen, ob sie die
+Regeln 1.~und 2.~erfüllen.
 
-Es ist f"ur eine nicht deterministische Maschine genau dann m"oglich,
-die L"osbarkeit eines {\em Hitori} zu entscheiden, wenn man einen
+Es ist für eine nicht deterministische Maschine genau dann möglich,
+die Lösbarkeit eines {\em Hitori} zu entscheiden, wenn man einen
 polynomiellen Verifizierer finden kann.
 
-Als L"osungszertifikat f"ur einen solchen Verifizierer verwendet man die
-Zellen, die geschw"arzt werden m"ussen.
+Als Lösungszertifikat für einen solchen Verifizierer verwendet man die
+Zellen, die geschwärzt werden müssen.
 Darauf ist der folgende Verifikationsalgorithmus anzuwenden:
 \begin{compactenum}
-\item F"ur jede geschw"arzte Zelle kontrolliere, ob die maximal
-vier Nachbarzellen nicht geschw"arzt sind.
-\item F"ur jede nicht geschw"arzte Zelle kontrolliere, ob die anderen
+\item Für jede geschwärzte Zelle kontrolliere, ob die maximal
+vier Nachbarzellen nicht geschwärzt sind.
+\item Für jede nicht geschwärzte Zelle kontrolliere, ob die anderen
 Zellen in der gleichen Zeile eine andere Zahl enthalten.
-\item F"ur jede nicht geschw"arzte Zelle kontrolliere, ob die anderen
+\item Für jede nicht geschwärzte Zelle kontrolliere, ob die anderen
 Zellen in der gleichen Spalte eine andere Zahl enthalten.
 \end{compactenum}
-Der Rechenaufwand f"ur die einzelnen Schritte ist:
+Der Rechenaufwand für die einzelnen Schritte ist:
 \begin{center}
 \begin{tabular}{c|l|>{$}c<{$}}
-1.&Nachbarzellen nicht geschw"arzt&O(n^2)\\
+1.&Nachbarzellen nicht geschwärzt&O(n^2)\\
 2.&Keine gleichen Werte in einer Zeile&O(n^3)\\
 3.&Keine gleichen Werte in einer Spalte&O(n^3)\\
 \hline
-  &L"osung f"ur Hitori&O(n^3)
+  &Lösung für Hitori&O(n^3)
 \end{tabular}
 \end{center}
 Daraus kann man ablesen, dass die Verifikation in polynomieller Zeit 
-m"oglich ist. Das Problem zu entscheiden, ob ein {\em Hitori} eine 
-L"osung hat, ist also in NP.
+möglich ist. Das Problem zu entscheiden, ob ein {\em Hitori} eine 
+Lösung hat, ist also in NP.
 \end{loesung}
 
 \begin{bewertung}
 Zertifikat ({\bf Z}) 1 Punkt,
 Drei wesentliche Schritte des Entscheidungsalgorithmus ({\bf E}) je 1 Punkt,
 maximal 3 Punkte,
-Absch"atzung der Laufzeitkomplexit"at f"ur alle Schritte ({\bf L}) 1 Punkt,
+Abschätzung der Laufzeitkomplexität für alle Schritte ({\bf L}) 1 Punkt,
 Schlussfolgerung, dass das Problem in NP ist ({\bf NP}) 1 Punkt.
 \end{bewertung}
 

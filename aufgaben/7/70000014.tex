@@ -1,39 +1,39 @@
-Im Zahlenr"atsel Kakuro m"ussen die weissen Felder eines Spielplanes
-so mit Zahlen zwischen 1 und 9 gef"ullt werden, dass die Summe der
-vertikal bzw.~horizontal zusammenh"angenden weissen Felder den Wert im
-schwarzen Feld dar"uber oder links daneben ergeben, wie im folgenden
+Im Zahlenrätsel Kakuro müssen die weissen Felder eines Spielplanes
+so mit Zahlen zwischen 1 und 9 gefüllt werden, dass die Summe der
+vertikal bzw.~horizontal zusammenhängenden weissen Felder den Wert im
+schwarzen Feld darüber oder links daneben ergeben, wie im folgenden
 Beispiel. 
 \begin{center}
 \includeagraphics[width=0.4\hsize]{kakuro.pdf}
 \end{center}
 \begin{teilaufgaben}
 \item 
-Ist entscheidbar, ob ein Kakuro-R"atsel "uberhaupt eine L"osung
+Ist entscheidbar, ob ein Kakuro-Rätsel überhaupt eine Lösung
 hat?
 \item
 Zeigen Sie, dass Kakuro mit einer nicht deterministischen Turingmaschine
-in polynomieller Zeit gel"ost werden kann.
+in polynomieller Zeit gelöst werden kann.
 \end{teilaufgaben}
 
 \begin{loesung}
 \begin{teilaufgaben}
 \item
-Um zu entscheiden, ob ein Kakuro-R"atsel "uberhaupt gel"ost werden
-kann, muss man alle $9^n$ m"oglichen Belegungen der $n$ weissen
+Um zu entscheiden, ob ein Kakuro-Rätsel überhaupt gelöst werden
+kann, muss man alle $9^n$ möglichen Belegungen der $n$ weissen
 Felder mit Zahlen zwischen 1 und 9 durchtesten. Dazu ist zwar
 exponentielle Zeit $O(9^n)$ erforderlich ist, das tut der Entscheidbarkeit
 jedoch keinen Abbruch.
 Ein effizienterer Algorithmus verwendet Backtracking.
 \item
 Um zu zeigen, dass Kakuro in NP ist, muss man einen polynomiellen
-Verifizierer angeben. Der Verifizierer braucht ein L"osungszertifikat,
-in diesem Fall bietet sich an, daf"ur die in den weissen Feldern eingetragenen
+Verifizierer angeben. Der Verifizierer braucht ein Lösungszertifikat,
+in diesem Fall bietet sich an, dafür die in den weissen Feldern eingetragenen
 Zahlen zu verlangen. Die Verifikation muss jetzt in jeder Zeile und
-Spalte die Inhalte der zusammenh"angenden weissen Felder addieren und 
+Spalte die Inhalte der zusammenhängenden weissen Felder addieren und 
 mit der Vorgabe in den schwarzen Feldern vergleichen. Ist $n$ die Anzahl
-der Felder, gibt es weniger als $n$ Summen, die "uberpr"uft werden m"ussen,
+der Felder, gibt es weniger als $n$ Summen, die überprüft werden müssen,
 und jede dieser Summen umfasst weniger als $n$ Summanden. Die Verifikation
-ist also in Zeit $O(n^2)$ m"oglich, mithin in polynomieller Zeit.
+ist also in Zeit $O(n^2)$ möglich, mithin in polynomieller Zeit.
 Also ist Kakuro in NP.
 \qedhere
 \end{teilaufgaben}

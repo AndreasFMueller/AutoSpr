@@ -1,4 +1,4 @@
-Finden Sie eine Grammatik in Chomsky-Normalform f"ur die Sprache
+Finden Sie eine Grammatik in Chomsky-Normalform für die Sprache
 \[
 L=\{
 \texttt{a}^n\texttt{b}^m\texttt{a}^n
@@ -8,14 +8,14 @@ n\ge 0, m\ge 1
 \]
 
 \begin{loesung}
-Zun"achst stellen wir eine Grammatik auf.
-W"orter in $L$ bestehen aus einem Block von Zeichen $\texttt{b}$,
+Zunächst stellen wir eine Grammatik auf.
+Wörter in $L$ bestehen aus einem Block von Zeichen $\texttt{b}$,
 welcher mit der Grammatik
 \begin{align*}
 R&\rightarrow \texttt{b} \\
  &\rightarrow R\texttt{b}
 \end{align*}
-Dieser Block kann aber noch zus"atzlich mit beliebig vielen 
+Dieser Block kann aber noch zusätzlich mit beliebig vielen 
 \texttt{a} eingeklammert werden, was durch die Grammatik
 \begin{align*}
 S&\rightarrow R \\
@@ -23,9 +23,9 @@ S&\rightarrow R \\
 R&\rightarrow \texttt{b} \\
  &\rightarrow R\texttt{b}
 \end{align*}
-ausgedr"uckt werden kann.
+ausgedrückt werden kann.
 
-Diese Grammatik hat nicht Chomsky-Normalform: sie enth"alt zum Beispiel die
+Diese Grammatik hat nicht Chomsky-Normalform: sie enthält zum Beispiel die
 Unit-Rule $S\rightarrow R$.
 Wir wenden den Standardalgorithmus an:
 \begin{enumerate}
@@ -36,7 +36,7 @@ S  &\rightarrow R  \;|\; \texttt{a} S \texttt{a}\\
 R  &\rightarrow \texttt{b} \;|\; R\texttt{b}
 \end{align*}
 \item $\varepsilon$-Regeln: es gibt keine $\varepsilon$-Regeln, damit
-entf"allt dieser Schritt.
+entfällt dieser Schritt.
 \item Unit-Rules: Wir beginnen mit der Regel $S_0\rightarrow S$:
 \begin{align*}
 S_0&\rightarrow \color{red} R  \;|\; \texttt{a} S \texttt{a}\\
@@ -56,7 +56,7 @@ S  &\rightarrow \texttt{a} S \texttt{a} \;|\; \color{red} \texttt{b} \;|\; R\tex
 R  &\rightarrow \texttt{b} \;|\; R\texttt{b}
 \end{align*}
 Damit sind alle Unit-Rules entfernt.
-\item Verkettungsregeln: Zun"achst f"ugen wir zwei Regeln f"ur die
+\item Verkettungsregeln: Zunächst fügen wir zwei Regeln für die
 Terminalsymbole \texttt{a} und \texttt{b} hinzu:
 \begin{align*}
 S_0&\rightarrow {\color{red}A}S{\color{red}A} \;|\; \texttt{b} \;|\; R{\color{red}B} \\
@@ -67,7 +67,7 @@ R  &\rightarrow \texttt{b} \;|\; R{\color{red}B} \\
 \end{align*}
 Damit entsprechen jetzt nur noch die Regeln $S\rightarrow ASA$ und
 $S_0\rightarrow ASA$ nicht der Chomsky-Normalform.
-Wir k"onnen das aber durch eine neue Variable $U$ erreichen:
+Wir können das aber durch eine neue Variable $U$ erreichen:
 \begin{align*}
 S_0&\rightarrow {\color{red}U}A \;|\; \texttt{b} \;|\; RB \\
 S  &\rightarrow {\color{red}U}A \;|\; \texttt{b} \;|\; RB \\

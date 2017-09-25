@@ -3,14 +3,14 @@ Palindrome erkenne.
 
 \begin{loesung}
 Palindrome kann man mit einem Stackautomaten erkennen, indem man 
-die erste H"alfte des Wortes auf den Stack schreibt, und dann mit
-der zweiten H"alfte vergleicht. Allerdings ist zwischen ungeraden
-und geraden W"ortern zu unterscheiden. Ausserdem ist nat"urlich
+die erste Hälfte des Wortes auf den Stack schreibt, und dann mit
+der zweiten Hälfte vergleicht. Allerdings ist zwischen ungeraden
+und geraden Wörtern zu unterscheiden. Ausserdem ist natürlich
 nicht bekannt, wie lange ein Wort sein wird, der Wechsel zur zweiten
 Phase, wo der Stack wieder abgebaut wird, erfolgt also nicht deterministisch.
 
 Der folgende Stackautomat implementiert diese Idee. Zur Vereinfachung der
-Notation verwenden wir folgende Abgek"urzten Schreibweisen:
+Notation verwenden wir folgende Abgekürzten Schreibweisen:
 \begin{align*}
 .,&\varepsilon\to.&&\text{bedeutet}&&\text{Lege ein Zeichen vom Input auf den Stack}
 \\

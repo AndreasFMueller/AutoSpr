@@ -1,6 +1,6 @@
 Graphviz ist ein Werkzeug zur Visualisierung von Graphen. Auf der
 Graphviz-Website findet man folgende (vereinfachte) Darstellung der Grammatik
-f"ur die Sprache DOT, in der Graphen f"ur Graphviz beschrieben werden:
+für die Sprache DOT, in der Graphen für Graphviz beschrieben werden:
 \begin{equation}
 \begin{aligned}
 \textsl{graph}     &: \texttt{graph}\, \texttt{`\{'}\, \textsl{stmt\_list}\, \texttt{`\}'} \\
@@ -15,25 +15,25 @@ f"ur die Sprache DOT, in der Graphen f"ur Graphviz beschrieben werden:
 \label{40000037:ebnf}
 \end{equation}
 Die eckigen Klammern bedeuten, dass die eingeklammerten Elemente optional sind.
-Die nicht weiter aufgel"oste Variable \textsl{ID} steht f"ur eine beliebige,
+Die nicht weiter aufgelöste Variable \textsl{ID} steht für eine beliebige,
 mit einem Buchstaben beginnende Zeichenkette aus Buchstaben oder Ziffern.
 
 \begin{teilaufgaben}
 \item
 (\ref{40000037:ebnf}) sieht zwar etwas aus wie eine Grammatik,
-entspricht aber wegen der eckigen Klammern nicht der "ublichen Notation.
-Bringen Sie (\ref{40000037:ebnf}) in die "ubliche Form, wobei sie
+entspricht aber wegen der eckigen Klammern nicht der üblichen Notation.
+Bringen Sie (\ref{40000037:ebnf}) in die übliche Form, wobei sie
 die Zeichenkette \texttt{graph} sowie die Variable
-\textsl{ID} nicht weiter aufzul"osen brauchen (Sie k"onnen Sie wie Terminalsymbole
+\textsl{ID} nicht weiter aufzulösen brauchen (Sie können Sie wie Terminalsymbole
 behandeln).
 \item Markieren Sie alle Regeln, die nicht der Chomsky-Normalform 
-entsprechen (Begr"undung!).
-\item F"uhren Sie die Transformation in Chomsky-Normalform durch, mit folgenden
-Vereinfachungen: 1. f"uhren Sie nur zwei Eliminationsschritte von Unit-Rules durch
-(es sind mehr solche Schritte f"ur eine vollst"andige Transformation in CNF n"otig)
+entsprechen (Begründung!).
+\item Führen Sie die Transformation in Chomsky-Normalform durch, mit folgenden
+Vereinfachungen: 1. führen Sie nur zwei Eliminationsschritte von Unit-Rules durch
+(es sind mehr solche Schritte für eine vollständige Transformation in CNF nötig)
 und 2. lassen Sie den letzten Schritt (Transformation von Regeln der Form
 $A\to A_1A_2\dots A_n$) weg.
-\item Ist die Sprache DOT regul"ar?
+\item Ist die Sprache DOT regulär?
 \end{teilaufgaben}
 
 \begin{loesung}
@@ -59,12 +59,12 @@ $A\to A_1A_2\dots A_n$) weg.
 Startvariable auf der linken Seite ({\color{red} rot}).
 \item Unit rules: ({\color{blue} blau})
 \item Mehr als zwei Elemente auf der rechten Seite einer Regel:
-({\color{green}gr"un})
+({\color{green}grün})
 \end{compactenum}
 \item Im ersten Schritt der CNF-Transformation wird sichergestellt, dass
 auf der rechten Seite die Startvariable nicht vorkommt.
-Dies ist bereits erf"ullt, so dass wir auf diesen Schritt verzichten k"onnen.
-Als n"achstes muss die $\varepsilon$-Regel entfernt werden:
+Dies ist bereits erfüllt, so dass wir auf diesen Schritt verzichten können.
+Als nächstes muss die $\varepsilon$-Regel entfernt werden:
 \begin{align*}
 \textsl{graph}     &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \textsl{stmt\_list}\; \texttt{`\}'} \\
                    &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \texttt{`\}'} \\
@@ -79,8 +79,8 @@ Als n"achstes muss die $\varepsilon$-Regel entfernt werden:
 \textsl{node\_stmt}&\rightarrow \textsl{node\_id} \\
 \textsl{node\_id}  &\rightarrow \textsl{ID}
 \end{align*}
-Jetzt m"ussen Unit-Rules eliminiert werden. Man beachte, dass in der Aufgabenstellung
-nur zwei Unit-Rule Transformationen verlangt waren, wir f"uhren der Vollst"andigkeit
+Jetzt müssen Unit-Rules eliminiert werden. Man beachte, dass in der Aufgabenstellung
+nur zwei Unit-Rule Transformationen verlangt waren, wir führen der Vollständigkeit
 halber alle Schritte durch.
 Wir beginnen mit $\textsl{stmt\_list}\to\textsl{stmt}$:
 \begin{align*}
@@ -98,7 +98,7 @@ Wir beginnen mit $\textsl{stmt\_list}\to\textsl{stmt}$:
 \textsl{node\_stmt}&\rightarrow \textsl{node\_id} \\
 \textsl{node\_id}  &\rightarrow \textsl{ID}
 \end{align*}
-Damit sind zwei neue Unit-Rules entstanden, wir behandeln als n"achstes
+Damit sind zwei neue Unit-Rules entstanden, wir behandeln als nächstes
 $\textsl{stmt\_list}\to\textsl{node\_stmt}$:
 \begin{align*}
 \textsl{graph}     &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \textsl{stmt\_list}\; \texttt{`\}'} \\
@@ -215,7 +215,7 @@ Damit sind alle Unit Rules entfernt.
 
 Im letzten Schritt, werden die Regeln umgeformt, die mehr als zwei Elemente auf
 der rechten Seite haben. Dieser Schritt ist in der Aufgabenstellung nicht verlangt,
-wir f"uhren ihn der Vollst"andigkeit halber durch. Zun"achst f"ur die erste Regel:
+wir führen ihn der Vollständigkeit halber durch. Zunächst für die erste Regel:
 \begin{align*}
 \textsl{graph}     &\rightarrow \texttt{graph}\; {\color{red}A_1} \\
                    &\rightarrow \texttt{graph}\; \texttt{`\{'}\; \texttt{`\}'} \\
@@ -235,7 +235,7 @@ wir f"uhren ihn der Vollst"andigkeit halber durch. Zun"achst f"ur die erste Rege
 \textsl{node\_stmt}&\rightarrow \textsl{ID} \\
 \textsl{node\_id}  &\rightarrow \textsl{ID}
 \end{align*}
-Nun f"ur die zweite Regel:
+Nun für die zweite Regel:
 \begin{align*}
 \textsl{graph}     &\rightarrow \texttt{graph}\; A_1 \\
                    &\rightarrow \texttt{graph}\; \color{red}B_1 \\
@@ -258,7 +258,7 @@ A_4                &\rightarrow \texttt{`\}'}\\
 \textsl{node\_stmt}&\rightarrow \textsl{ID} \\
 \textsl{node\_id}  &\rightarrow \textsl{ID}
 \end{align*}
-Dann f"ur die Regel
+Dann für die Regel
 $\textsl{stmt\_list}\rightarrow \textsl{stmt}\; \texttt{`;'}\; \textsl{stmt\_list}$:
 \begin{align*}
 \textsl{graph}     &\rightarrow \texttt{graph}\; A_1 \\
@@ -284,7 +284,7 @@ B_3                &\rightarrow \texttt{`\}'}\\
 \textsl{node\_stmt}&\rightarrow \textsl{ID} \\
 \textsl{node\_id}  &\rightarrow \textsl{ID}
 \end{align*}
-Und schliesslich f"ur die Regel 
+Und schliesslich für die Regel 
 $\textsl{edgeRHS}   \rightarrow \textsl{edgeop}\; \textsl{node\_id}\; \textsl{edgeRHS}$:
 \begin{align*}
 \textsl{graph}     &\rightarrow \texttt{graph}\; A_1 \\
@@ -311,14 +311,14 @@ C_2                &\rightarrow \texttt{`;'} \\
 \textsl{node\_stmt}&\rightarrow \textsl{ID} \\
 \textsl{node\_id}  &\rightarrow \textsl{ID}
 \end{align*}
-Damit ist die Grammatik vollst"andig in Chomsky-Normalform umgewandelt.
+Damit ist die Grammatik vollständig in Chomsky-Normalform umgewandelt.
 \item Nur \textsl{stmt\_list} und \textsl{edgeRHS} werden auf rekursive
-Art verwendet. In beiden F"allen geht es nur darum, eine Folge von
-Statements darzustellen, was mit einem regul"aren Ausdruck auch m"oglich ist.
-Daher ist die Sprache regul"ar.
+Art verwendet. In beiden Fällen geht es nur darum, eine Folge von
+Statements darzustellen, was mit einem regulären Ausdruck auch möglich ist.
+Daher ist die Sprache regulär.
 
-Man kann auch direkt einen regul"aren Ausdruck angeben. Damit dieser "ubersichtlich
-bleibt, schreiben wir \textsl{ID} f"ur den regul"anre Ausdruck, der die verschiedenen
+Man kann auch direkt einen regulären Ausdruck angeben. Damit dieser übersichtlich
+bleibt, schreiben wir \textsl{ID} für den regulänre Ausdruck, der die verschiedenen
 IDs beschreibt:
 \[
 \texttt{graph\{%
@@ -335,6 +335,6 @@ IDs beschreibt:
 \item Nicht CNF-Regeln (\textbf{C}) 1 Punkt,
 \item Elimination der $\varepsilon$-Regel (\textbf{E}) 1 Punkt,
 Elimination zweier Unit-Rules (\textbf{U}) 2 Punkt,
-\item Sprache ist regul"ar (\textbf{R}) 1 Punkt.
+\item Sprache ist regulär (\textbf{R}) 1 Punkt.
 \end{teilaufgaben}
 \end{bewertung}

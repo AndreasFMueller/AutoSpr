@@ -1,19 +1,19 @@
-Der neue CEO einer grossen Fluggesellschaft m"ochte das Personal in allen
-Flugh"afen pers"onlich besuchen, die die Fluggesellschaft anfliegt.
-Er bittet seine Sekret"arin, einen optimalen Besuchsplan zusammenzustellen,
+Der neue CEO einer grossen Fluggesellschaft möchte das Personal in allen
+Flughäfen persönlich besuchen, die die Fluggesellschaft anfliegt.
+Er bittet seine Sekretärin, einen optimalen Besuchsplan zusammenzustellen,
 bei der er jede Destination nur genau einmal besuchen muss.
-Als der Plan eine Woche sp"ater immer noch nicht fertig ist, wird er
+Als der Plan eine Woche später immer noch nicht fertig ist, wird er
 ungeduldig.
 Warum dauert es so lange, einen Besuchsplan zusammenzustellen?
 
 \begin{loesung}
-Die Fl"uge, die die Destinationen der Fluggesellschaft miteinander
+Die Flüge, die die Destinationen der Fluggesellschaft miteinander
 verbinden, bilden einen gerichteten Graphen.
-Der CEO verlangt die L"osung des Problems HAMPATH, welches einen
+Der CEO verlangt die Lösung des Problems HAMPATH, welches einen
 hamiltonschen Pfad sucht, also einen Pfad, der jede Ecke des Graphen
 genau einmal besucht.
-Dieses Problem ist NP-vollst"andig, es gibt also keine effizienten
-Algorithmen f"ur grosse solche Probleme.
+Dieses Problem ist NP-vollständig, es gibt also keine effizienten
+Algorithmen für grosse solche Probleme.
 Eine Reduktion $\text{HAMPATH}\le_P\text{BESUCH}$ ist:
 \begin{align*}
 \text{Knoten}    & \to \text{Destination}\\
@@ -23,23 +23,23 @@ Eine Reduktion $\text{HAMPATH}\le_P\text{BESUCH}$ ist:
 \end{loesung}
 
 \begin{diskussion}
-Man k"onnte auch das Travelling-Salesman-Problem (TSP) als Vergleichsproblem
+Man könnte auch das Travelling-Salesman-Problem (TSP) als Vergleichsproblem
 heranziehen.
-Dies geht leider nicht ganz, weil das "ubliche TSP von einem ungerichteten
+Dies geht leider nicht ganz, weil das übliche TSP von einem ungerichteten
 Graphen ausgeht.
 Es gibt allerdings auch das {\em asymmetrische TSP}, welches von einem 
-gerichteten Graphen mit richtungsabh"angigen Kantengewichten ausgeht.
+gerichteten Graphen mit richtungsabhängigen Kantengewichten ausgeht.
 Das asymmetrische TSP unterscheidet sich von HAMPATH durch die
-zus"atzlichen Kantengewichte, die f"ur die L"osung eine m"oglichst
+zusätzlichen Kantengewichte, die für die Lösung eine möglichst
 kleine Summe ergeben.
-Eine solche L"osung muss also zus"atzlich ein Mapping f"ur die
+Eine solche Lösung muss also zusätzlich ein Mapping für die
 Kantengewichte spezifizieren.
 \end{diskussion}
 
 \begin{bewertung}
 Reduktionsmethode ({\bf R}) 1 Punkt,
 HAMPATH als Vergleichsproblem ({\bf H}) 3 Punkte,
-Reduktionsabbildung f"ur Knoten ({\bf D}, 1 Punkt) und Kanten
+Reduktionsabbildung für Knoten ({\bf D}, 1 Punkt) und Kanten
 ({\bf F}, 1 Punkt).
 \end{bewertung}
 

@@ -1,6 +1,6 @@
 Mitglieder sogenannter Netzgruppen (netgroups) in Unix sind Tripel
-bestehend aus aus Hostname, Username und Domain. Es wird die "ubliche
-mathematische Notation f"ur Tripel verwendet, zum Beispiel sind
+bestehend aus aus Hostname, Username und Domain. Es wird die übliche
+mathematische Notation für Tripel verwendet, zum Beispiel sind
 \begin{center}
 \begin{tabular}{l}
 {\tt ( asterix, hans, )}\\
@@ -9,31 +9,31 @@ mathematische Notation f"ur Tripel verwendet, zum Beispiel sind
 \end{tabular}
 \end{center}
 solche Tripel, sie werden auch Netgrouptriples genannt.
-Die Namen k"onnen Buchstaben, Ziffern, Punkt und Unterstrich
-enthalten, die Komponenten k"onnen auch leer sein.
+Die Namen können Buchstaben, Ziffern, Punkt und Unterstrich
+enthalten, die Komponenten können auch leer sein.
 \begin{teilaufgaben}
 \item
-Ist die Sprache $L_1$ der Netgrouptriples regul"ar?
+Ist die Sprache $L_1$ der Netgrouptriples regulär?
 \item
-Wenn zus"atzlich verlangt wird, dass mindestens eine der drei
+Wenn zusätzlich verlangt wird, dass mindestens eine der drei
 Komponenten nicht leer ist--wir nennen diese neue Sprache $L_2$-- ist $L_2$
-dann auch regul"ar?
+dann auch regulär?
 \end{teilaufgaben}
 
 \begin{loesung}
 \begin{teilaufgaben}
 \item
-Es gibt einen regul"aren Ausdruck, der die W"orter der Sprache $L_1$
+Es gibt einen regulären Ausdruck, der die Wörter der Sprache $L_1$
 akzeptiert:
 \verbatimainput{aufg1a.lsg}
-also ist die Sprache $L_1$ regul"ar.
+also ist die Sprache $L_1$ regulär.
 \item
-Die Sprache $L_\emptyset$ der leeren Netgrouptriples ist regul"ar, denn sie ist die
-Sprache der W"orter, die auf den regul"aren Ausdruck
+Die Sprache $L_\emptyset$ der leeren Netgrouptriples ist regulär, denn sie ist die
+Sprache der Wörter, die auf den regulären Ausdruck
 \verbatimainput{aufg1b.lsg}
 passen, $L_\emptyset = L(\text{\tt ( *, *, *)})$. Dann ist
-aber auch $L_2=L_1\setminus L_\emptyset$ als Differenz regul"arer
-Sprachen regul"ar.
+aber auch $L_2=L_1\setminus L_\emptyset$ als Differenz regulärer
+Sprachen regulär.
 \qedhere
 \end{teilaufgaben}
 \end{loesung}

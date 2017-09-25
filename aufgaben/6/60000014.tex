@@ -1,25 +1,25 @@
-Ein Sudoku-Tester ist ein Programm, welches bei einem vollst"andig
-ausgef"ullten Sudoku-Spielplan entscheidet, ob es richtig ausgef"ullt
-worden ist, d.~h.~ob alle Regeln eingehalten worden sind. K"onnen Sie
+Ein Sudoku-Tester ist ein Programm, welches bei einem vollständig
+ausgefüllten Sudoku-Spielplan entscheidet, ob es richtig ausgefüllt
+worden ist, d.~h.~ob alle Regeln eingehalten worden sind. Können Sie
 einen Algorithmus angegeben, mit dem man Sudoku-Tester auf Korrektheit
-pr"ufen kann? Dabei ist das mathematische Sudoku-Problem nicht auf
-Spielpl"ane mit $9\times 9$ Feldern beschr"ankt,
-sondern kann f"ur beliebig grosse
-$n^2\times n^2$-Spielpl"ane ($n\times n$ Unterquadrate von je $n\times n$
+prüfen kann? Dabei ist das mathematische Sudoku-Problem nicht auf
+Spielpläne mit $9\times 9$ Feldern beschränkt,
+sondern kann für beliebig grosse
+$n^2\times n^2$-Spielpläne ($n\times n$ Unterquadrate von je $n\times n$
 Feldern) gestellt werden.
 
 \begin{loesung}
 Nein.  Die Eigenschaft \textsl{SUDOKU} sei die Eigenschaft einer
 Sprache $L$, dass jedes Wort $w\in L$ ein korrektes Sudoku-Feld
 beschreibt. Dabei verwenden wir folgende einfache
-Codierung f"ur ein Sudoku-Feld: wir schreiben die Ziffern in
+Codierung für ein Sudoku-Feld: wir schreiben die Ziffern in
 einem Sudoko-Feld zeilenweise in ein einziges Wort.
 Die Aufgabe fragt danach, ob \textsl{SUDOKU} entscheidbar sei.
 
 Wir wollen zeigen, dass die
 Eigenschaft $\textsl{SUDOKU}$ nicht trivial ist.
-Das einzige Wort der Sprache $L_1=\{w\}$  steht f"ur das korrekt
-ausgf"ullte Sudoku
+Das einzige Wort der Sprache $L_1=\{w\}$  steht für das korrekt
+ausgfüllte Sudoku
 \[
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 \hline
@@ -55,11 +55,11 @@ L_2=\{1^92^93^94^95^96^97^98^99^9\}
 die Eigenschaft \textsl{SUDOKU} nicht. Nach dem Satz
 von Rice ist also \textsl{SUDOKU} nicht entscheidbar.
 
-Genau genommen haben wir sogar eine st"arkere Aussage bewiesen.
+Genau genommen haben wir sogar eine stärkere Aussage bewiesen.
 Die untersuchte Eigenschaft besagte, dass ein Sudoku-Tester-Programm nicht
-alle korrekt ausgef"ullten Sudokus erkennt, es darf auch einige
-korrekt ausgef"ullte Sudokus ``"ubersehen''. Unser Resultat sagt dann,
-dass wir nicht einmal solche ``l"uckenhaften'' Sudoko-Tester von solchen
-unterscheiden k"onnen, die auch ein inkorrekt ausgef"ulltes Sudoku
+alle korrekt ausgefüllten Sudokus erkennt, es darf auch einige
+korrekt ausgefüllte Sudokus ``übersehen''. Unser Resultat sagt dann,
+dass wir nicht einmal solche ``lückenhaften'' Sudoko-Tester von solchen
+unterscheiden können, die auch ein inkorrekt ausgefülltes Sudoku
 akzeptieren.
 \end{loesung}

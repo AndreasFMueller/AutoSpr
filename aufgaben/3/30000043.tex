@@ -7,20 +7,20 @@ L=\{
 \,|\, 0\le s\le t
 \}
 \]
-"uber dem Alphabet $\Sigma=\{\texttt{a},\texttt{b}\}$ regul"ar?
+über dem Alphabet $\Sigma=\{\texttt{a},\texttt{b}\}$ regulär?
 
 \begin{loesung}
-Nehmen wir an, $L$ w"are regul"ar, und $N$ sei die Pumping length. 
+Nehmen wir an, $L$ wäre regulär, und $N$ sei die Pumping length. 
 Wir bilden das Wort $w=\texttt{a}^N\texttt{b}^N$. $w$ ist sicher in $L$,
 wie man mit der Wahl $s=t=N$ sofort einsieht. 
 Nach dem Pumping Lemma gibt es eine Zerlegung $w=xyz$ mit $|xy|\le N$
 und $|y|\ge 1$,
-insbesondere muss $y$ vollst"andig aus Buchstaben \texttt{a} bestehen.
-Nach $k$-fachem Aufpumpen erh"alt man
+insbesondere muss $y$ vollständig aus Buchstaben \texttt{a} bestehen.
+Nach $k$-fachem Aufpumpen erhält man
 \[
 w_k=\texttt{a}^{N+(k-1)|y|}\texttt{b}^N.
 \]
-Dies kann aber nicht mehr ein Wort in $L$ sein, denn die W"orter in $L$
+Dies kann aber nicht mehr ein Wort in $L$ sein, denn die Wörter in $L$
 haben immer gleich viele Buchstaben \texttt{a} und \texttt{b}:
 \[
 |w|_{\texttt{a}}
@@ -31,17 +31,17 @@ haben immer gleich viele Buchstaben \texttt{a} und \texttt{b}:
 =N+(k-1)|y|\ne
 |w_k|_{\texttt{b}}=N.
 \]
-Dieser Widerspruch zeigt, dass die Annahme, $L$ sei regul"ar, nicht zu
-halten ist. Also kann $L$ nicht regul"ar sein.
+Dieser Widerspruch zeigt, dass die Annahme, $L$ sei regulär, nicht zu
+halten ist. Also kann $L$ nicht regulär sein.
 \end{loesung}
 
 \begin{bewertung}
-Anwendung des Pumping Lemma f"ur regul"are Sprachen ({\bf PL}) 1 Punkt,
+Anwendung des Pumping Lemma für reguläre Sprachen ({\bf PL}) 1 Punkt,
 Pumping Length ({\bf N}) 1 Punkt,
 Wahl eines geeigneten Wortes ({\bf W}) 1 Punkt,
 Aufteilung des Wortes in $uvw$ ({\bf A}) 1 Punkt,
-Erkenntnis, dass das Wort beim Aufpumpen aus der Sprache f"allt ({\bf L})
+Erkenntnis, dass das Wort beim Aufpumpen aus der Sprache fällt ({\bf L})
 1 Punkt,
-Schlussfolgerung, Sprache ist nicht regul"ar ({\bf S}) 1 Punkt.
+Schlussfolgerung, Sprache ist nicht regulär ({\bf S}) 1 Punkt.
 \end{bewertung}
 

@@ -9,13 +9,13 @@ Der PDA funktioniert nach dem gleichen Prinzip wie der in der Vorlesung
 besprochene PDA, der die Sprache $\{{\tt 0}^n{\tt 1}^n|n\ge 0\}$
 akzeptiert.
 
-Wenn $i>j$ ist, dann ist es am Ende des Wortes noch m"oglich, mindestens
+Wenn $i>j$ ist, dann ist es am Ende des Wortes noch möglich, mindestens
 ein weiteres {\tt a} vom Sack zu lesen, bevor das Stackende-Zeichen
 gefunden wird.
 
 Wenn $i<j$ ist, dann kann nach dem erreichen des Stackende-Zeichens
 noch ein {\tt b} vom Input gelesen werden, und weitere {\tt b}
-k"onnen gelesen werden, ohne dass der Stack modifiziert wird.
+können gelesen werden, ohne dass der Stack modifiziert wird.
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @+5mm{
@@ -45,15 +45,15 @@ k"onnen gelesen werden, ohne dass der Stack modifiziert wird.
 }
 \]
 
-Alternativ k"onnte man den Stackautomaten dadurch finden, dass man
+Alternativ könnte man den Stackautomaten dadurch finden, dass man
 zuerst eine Grammatik konstruiert, und die dann mit Hilfe des Algorithmus
 aus der Vorlesung in einen Stackautomaten umwandelt. Die Grammatik
-muss W"orter mit einem "Uberschuss an {\tt a} oder {\tt b}
-produzieren, wir schreiben die Variable $A$ f"ur W"orter mit einem
-"Uberschuss an {\tt a} und $B$ f"ur W"orter mit einem "Uberschuss an
-{\tt b}. W"orter mit einem "Uberschuss an {\tt a} entstehen, in dem man
-solche W"orter immer im {\tt a} links wachsen l"asst oder wenn man
-ein {\tt b} rechts anf"ugt auch ein {\tt links} hinzuf"ugt. Die Grammatik
+muss Wörter mit einem "Uberschuss an {\tt a} oder {\tt b}
+produzieren, wir schreiben die Variable $A$ für Wörter mit einem
+"Uberschuss an {\tt a} und $B$ für Wörter mit einem "Uberschuss an
+{\tt b}. Wörter mit einem "Uberschuss an {\tt a} entstehen, in dem man
+solche Wörter immer im {\tt a} links wachsen lässt oder wenn man
+ein {\tt b} rechts anfügt auch ein {\tt links} hinzufügt. Die Grammatik
 wird damit
 \begin{align*}
 S&\to A|B\\
@@ -64,8 +64,8 @@ B&\to B{\tt b}\\
  &\to {\tt a}B{\tt b}\\
  &\to {\tt b}\\
 \end{align*}
-Die Konstruktion aus der Vorlesung liefert jetzt zun"achst das
-Ger"ust des Automaten
+Die Konstruktion aus der Vorlesung liefert jetzt zunächst das
+Gerüst des Automaten
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -76,9 +76,9 @@ Ger"ust des Automaten
                                 &*++[o][F=]{}
 }
 \]
-dem Zustand $R$ f"ugt man jetzt entsprechend der Regeln folgende
-"Uberg"ange hinzu.
-F"ur die Regeln mit $A$:
+dem Zustand $R$ fügt man jetzt entsprechend der Regeln folgende
+"Ubergänge hinzu.
+Für die Regeln mit $A$:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -94,7 +94,7 @@ F"ur die Regeln mit $A$:
                         &{}     \ar@/^10pt/[ll]^{\varepsilon,\varepsilon\to{\tt a}}
 }
 \]
-Und f"ur die Regeln mit $B$:
+Und für die Regeln mit $B$:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -110,8 +110,8 @@ Und f"ur die Regeln mit $B$:
                         &{}     \ar@/^10pt/[ll]^{\varepsilon,\varepsilon\to{\tt a}}
 }
 \]
-Zus"atzlich braucht es noch die Regeln, die zur Verarbeitung
-der Eingabezeichen n"otig sind:
+Zusätzlich braucht es noch die Regeln, die zur Verarbeitung
+der Eingabezeichen nötig sind:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{

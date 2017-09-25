@@ -11,9 +11,9 @@ Wir betrachten die Sprache $L$ als Durchschnitt zweier Sprachen
 L_1&=\{w|\;\text{$|w|_a$ ist ungerade}\}\\
 L_2&=\{w|\;\text{$w$ endet mit $ab$}\}
 \end{align*}
-und konstruieren f"ur die $L_i$ je einen Automaten $A_i$.
+und konstruieren für die $L_i$ je einen Automaten $A_i$.
 
-F"ur $L_1$ verwenden wir den Automaten $A_1$:
+Für $L_1$ verwenden wir den Automaten $A_1$:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @-1mm {
@@ -23,7 +23,7 @@ F"ur $L_1$ verwenden wir den Automaten $A_1$:
 }
 \]
 
-F"ur $L_2$ funktioniert der Automat $A_2$:
+Für $L_2$ funktioniert der Automat $A_2$:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @-1mm {
@@ -33,18 +33,18 @@ F"ur $L_2$ funktioniert der Automat $A_2$:
 &*++[o][F=]{y_2} \ar@/^/[l]^{a} \ar `u^l[ll]+/u0.8cm/ `^d[ll]_{b} [ll]
 }
 \]
-Die Zust"ande haben dabei eine einfache Bedeutung:
+Die Zustände haben dabei eine einfache Bedeutung:
 \begin{itemize}
 \item[$y_0$:] ``Noch nichts gelesen, oder eine Folge von mehr als einem $b$
 gelesen. Um zu akzeptieren brauchen wir die Folge $ab$.''
 \item[$y_1$:] ``$a$ gelesen, um zu akzeptieren brauchen wir ein Zeichen $b$.''
-\item[$y_2$:] ``Soeben $ab$ gelesen, Wort w"are akzeptabel, wenn es hier zu
-Ende w"are.''
+\item[$y_2$:] ``Soeben $ab$ gelesen, Wort wäre akzeptabel, wenn es hier zu
+Ende wäre.''
 \end{itemize}
 
-Die Standardkonstruktion f"ur $L_1\cap L_2$ kann jetzt auf die Automaten
+Die Standardkonstruktion für $L_1\cap L_2$ kann jetzt auf die Automaten
 $A_1$ und $A_2$ angewendet werden, sie liefert den gesuchten Automaten.
-Dazu werden als Zust"ande die Paare $(x_i,j_i)$ gebildet, es ergibt sich
+Dazu werden als Zustände die Paare $(x_i,j_i)$ gebildet, es ergibt sich
 das folgende Zustandsdiagram:
 \[
 \entrymodifiers={++[o][F]}
@@ -61,7 +61,7 @@ das folgende Zustandsdiagram:
 \ar `d[ll]+/d0.8cm/ `[ll]^{b} 
 }
 \]
-Die Zust"ande in der ersten Zeile sind nicht akzeptabel, weil sie eine
+Die Zustände in der ersten Zeile sind nicht akzeptabel, weil sie eine
 Gerade Anzahl Zeichen $a$ im Wort anzeigen. Man kann leicht verifizieren,
 dass man nur mit einer Zeichenfolge $ab$ beim Zustand $(x_1,y_2)$
 ankommen kann.

@@ -1,5 +1,5 @@
 Die Sprache $L$ besteht aus den Zahlen, die in Dezimaldarstellung
-(f"uhrende Nullen erlaubt)
+(führende Nullen erlaubt)
 aus zwei gleich langen Teilen bestehen. Die Ziffern im zweiten
 Teil entstehen dabei aus den Ziffern im ersten Teil durch die
 Operation $z\mapsto 9-z$ (Neunerkomplement), ausserdem ist die Reihenfolge
@@ -9,17 +9,17 @@ L=\{ 09, 18, 27, 36,\dots 0099, 1188, 1278,\dots \}.
 \]
 \begin{teilaufgaben}
 \item
-K"onnen Sie eine kontextfreie Grammatik f"ur $L$  angeben?
+Können Sie eine kontextfreie Grammatik für $L$  angeben?
 \item
-K"onnen Sie einen Stackautomaten angeben, der die Sprache $L$ 
+Können Sie einen Stackautomaten angeben, der die Sprache $L$ 
 akzeptiert?
 \end{teilaufgaben}
 
 \begin{loesung}
 \begin{teilaufgaben}
 \item
-Eine m"ogliche kontextfreie
-Grammatik f"ur $L$ ist:
+Eine mögliche kontextfreie
+Grammatik für $L$ ist:
 \begin{align*}
 \text{zahl}
 &\rightarrow \varepsilon\\
@@ -35,7 +35,7 @@ Grammatik f"ur $L$ ist:
 &\rightarrow \text{'{\tt 9}'}\;\text{zahl}\;\text{'{\tt 0}'}\\
 \end{align*}
 \item
-Zu dieser Grammatik geh"ort folgender Stackautomat:
+Zu dieser Grammatik gehört folgender Stackautomat:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -49,7 +49,7 @@ Zu dieser Grammatik geh"ort folgender Stackautomat:
 }
 \]
 Darin bedeutet der "Ubergang
-$z,\varepsilon\to9-z$, dass f"ur jede Ziffer $z$ des Inputs die Ziffer
+$z,\varepsilon\to9-z$, dass für jede Ziffer $z$ des Inputs die Ziffer
 $9-z$ auf den Stack gelegt wird.
 \qedhere
 \end{teilaufgaben}

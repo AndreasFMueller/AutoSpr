@@ -1,20 +1,20 @@
-F"ur zwei nat"urliche Zahlen $n$ und $m$ bezeichnet $n\sqcap m$ die
-gr"ossere der beiden, $n\sqcup m$ die kleinere der beiden Zahlen.
-Mit nat"urlichen Zahlen, den Symbolen $\sqcap$ und $\sqcup$ und Klammern
-k"onnen Ausdr"ucke gebildet werden.
-Wir wollen uns keine Gedanken dar"uber machen m"ussen, ob die Reihenfolge
+Für zwei natürliche Zahlen $n$ und $m$ bezeichnet $n\sqcap m$ die
+grössere der beiden, $n\sqcup m$ die kleinere der beiden Zahlen.
+Mit natürlichen Zahlen, den Symbolen $\sqcap$ und $\sqcup$ und Klammern
+können Ausdrücke gebildet werden.
+Wir wollen uns keine Gedanken darüber machen müssen, ob die Reihenfolge
 der beiden Operatoren einen Einfluss auf das Resultat hat, und
 verlangen daher
 dass der Vorrang zwischen $\sqcap$ und $\sqcup$ mit Hilfe
 von Klammern festgelegt wird. Beschreiben Sie eine
-kontextfreie Grammatik, die genau die unzweideutigen Ausdr"ucke
+kontextfreie Grammatik, die genau die unzweideutigen Ausdrücke
 erzeugt.
 
 \begin{loesung}
 Es muss sichergestellt werden, dass zwischen verschiedenen
-Verkn"upfungsoperatoren immer Klammern verwendet werden. Man kann
-dies erreichen, indem man f"ur Ausdr"ucke mit $\sqcap$ die Variable
-$\text{max}$ schreibt, f"ur $\sqcup$ die Variable $\text{min}$, und
+Verknüpfungsoperatoren immer Klammern verwendet werden. Man kann
+dies erreichen, indem man für Ausdrücke mit $\sqcap$ die Variable
+$\text{max}$ schreibt, für $\sqcup$ die Variable $\text{min}$, und
 folgende Grammatikregeln postuliert:
 \begin{align*}
 \text{min}&\rightarrow \text{number}\\
@@ -43,5 +43,5 @@ Dazu braucht es noch eine Startvariable, von der aus man entweder einen
 Minimum- oder einen Maximum-Ausdruck generieren kann, also
 $$S\rightarrow \text{min}\;|\;\text{max}$$
 Offenbar ist diese Grammatik kontextfrei.
-(Dies ist nicht die einzige m"ogliche L"osung).
+(Dies ist nicht die einzige mögliche Lösung).
 \end{loesung}

@@ -3,7 +3,7 @@ bestehend aus den Kleinbuchstaben und
 \[
 L=\{ w\;|\; \text{$w=uu$ mit $u\in\Sigma^*$}\}
 \]
-die Sprache aus W"ortern, die als die Verdoppelung eines beliebigen
+die Sprache aus Wörtern, die als die Verdoppelung eines beliebigen
 Wortes entstehen, also zum Beispiel
 \[
 \texttt{mama},\quad
@@ -19,15 +19,15 @@ Kann ein Stackautomat diese Sprache erkennen?
 
 \begin{loesung}
 Ein Stackautomat kann kontextfreie Sprachen, diese Sprache ist aber nicht
-kontextfrei, wie man mit dem Pumping-Lemma f"ur kontextfreie
+kontextfrei, wie man mit dem Pumping-Lemma für kontextfreie
 Sprachen zeigen kann.
 \ding{182}~%
 Dazu nehmen wir an, $L$ sei kontextfrei.
 \ding{183}~%
-Dann m"usste es eine Zahl $N$, die Pumping Length, geben, mit der Eigenschaft,
-dass W"orter mit mindestens L"ange $N$ die Pumpeigenschaft haben.
+Dann müsste es eine Zahl $N$, die Pumping Length, geben, mit der Eigenschaft,
+dass Wörter mit mindestens Länge $N$ die Pumpeigenschaft haben.
 \ding{184}~%
-Wir w"ahlen das Wort
+Wir wählen das Wort
 \[
 w=
 \texttt{a}^{2N}
@@ -37,21 +37,21 @@ w=
 \in L.
 \]
 \ding{185}~%
-Dann gibt es eine Zerlegung des Wortes $w$ in f"unf Teile $w=uvxyz$ mit
-$|vxy|\le N$ und $|vy|>0$, so dass $uv^kxy^kz\in L$ f"ur jedes $k\ge 0$.
+Dann gibt es eine Zerlegung des Wortes $w$ in fünf Teile $w=uvxyz$ mit
+$|vxy|\le N$ und $|vy|>0$, so dass $uv^kxy^kz\in L$ für jedes $k\ge 0$.
 
 \ding{186}~%
 Pumpt man ab, d.~h.~setzt man $k=0$, dann werden zwar einige \texttt{a}
-und \texttt{b} entfernt, aber weil wir die \texttt{a}- und \texttt{b}-Bl"ocke
-so lange gew"ahlt haben, besteht das Wort immer noch nur aus
-vier Bl"ocken von \texttt{a} bzw.~\texttt{b}, ein Block kann beim
+und \texttt{b} entfernt, aber weil wir die \texttt{a}- und \texttt{b}-Blöcke
+so lange gewählt haben, besteht das Wort immer noch nur aus
+vier Blöcken von \texttt{a} bzw.~\texttt{b}, ein Block kann beim
 Abpumpen nicht ganz verschwinden (wegen dem Exponenenten $2N$ ist er
 länger als die Teile $v$ und $y$ sein können).
-Wenn das Wort immer noch in $L$ sein soll, dann m"ussen die \texttt{a}-
-bzw.~\texttt{b}-Teile gleich lang sein, beim Abpumpen m"ussen also
+Wenn das Wort immer noch in $L$ sein soll, dann müssen die \texttt{a}-
+bzw.~\texttt{b}-Teile gleich lang sein, beim Abpumpen müssen also
 gleich viele Buchstaben aus jedem Teil entfernt worden sein.
 Die beiden \texttt{a}-Teile sind aber zu weit auseinander, Abpumpen
-kann nur aus einem Buchstaben entfernen, das Gleiche gilt f"ur \texttt{b}.
+kann nur aus einem Buchstaben entfernen, das Gleiche gilt für \texttt{b}.
 \ding{187}~%
 Dieser Widerspruch zeigt, dass die Annahme, $L$ sei kontextfrei, nicht
 zu halten ist.
@@ -63,7 +63,7 @@ Pumping-Length ({\bf N}) 1 Punkt,
 Konstruktion eines Wortes in $L$ unter Verwendung von $N$ ({\bf W}) 1 Punkt,
 Unterteilung des Wortes ({\bf U}) 1 Punkt,
 Nachweis, dass Pumpeigenschaft verletzt sein muss ({\bf P}) 1 Punkt,
-Schlussfolgerung, dass $L$ nicht regul"ar sein kann ({\bf S}) 1 Punkt.
+Schlussfolgerung, dass $L$ nicht regulär sein kann ({\bf S}) 1 Punkt.
 \end{bewertung}
 
 

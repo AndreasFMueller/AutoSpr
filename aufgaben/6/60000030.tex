@@ -5,14 +5,14 @@ Primzahlzwillinge gibt, sie konnte bisher weder bewiesen noch wiederlegt
 werden.
 
 \begin{teilaufgaben}
-\item Formulieren Sie das Entscheidungsproblem ``Geh"ort die Zahl $n$ zu
+\item Formulieren Sie das Entscheidungsproblem ``Gehört die Zahl $n$ zu
 einem Primzahlzwillingspaar?'' als Sprachproblem.
 \item Ist die in a) definierte Sprache entscheidbar?
 \item Jemand hat eine Funktion \texttt{boolean zwillingstest(BigInteger n)}
 geschrieben, die herausfinden kann, ob die Zahl $n$ zu einem
-Primzahlzwillingspaar geh"ort.
-Gibt es eine M"oglichkeit, maschinell zu pr"ufen, ob eine solche Funktion
-in allen F"allen korrekt arbeitet?
+Primzahlzwillingspaar gehört.
+Gibt es eine Möglichkeit, maschinell zu prüfen, ob eine solche Funktion
+in allen Fällen korrekt arbeitet?
 \end{teilaufgaben}
 
 \begin{loesung}
@@ -21,29 +21,29 @@ in allen F"allen korrekt arbeitet?
 \[
 L=\left\{w\in\Sigma^*\,\left|
 \begin{minipage}{4truein}
-$w$ ist die Bin"arcodierung einer Zahl $n$, die eine Primzahl ist
+$w$ ist die Binärcodierung einer Zahl $n$, die eine Primzahl ist
 so, dass $n-2$ oder $n+2$ ebenfalls eine Primzahl ist.
 \end{minipage}
 \right.
 \right\}
 \]
-Enth"alt genau die Bin"ardarstellungen von Zahlen, die zu einem
-Primzahlzwillingspaar geh"oren.
+Enthält genau die Binärdarstellungen von Zahlen, die zu einem
+Primzahlzwillingspaar gehören.
 \item
-Ein Entscheidungsalgorithmus f"ur $L$ geht wie folgt vor:
+Ein Entscheidungsalgorithmus für $L$ geht wie folgt vor:
 \begin{enumerate}
-\item Pr"ufe, ob $n$ ungerade ist. Falls $n$ gerade ist: $q_\text{reject}$
-\item Pr"ufe, ob $n$ eine Primzahl ist (mit irgend einem der bekannten
-Testalgorithmen f"ur Primzahlen). Falls $n$ keine Primzahl ist:
+\item Prüfe, ob $n$ ungerade ist. Falls $n$ gerade ist: $q_\text{reject}$
+\item Prüfe, ob $n$ eine Primzahl ist (mit irgend einem der bekannten
+Testalgorithmen für Primzahlen). Falls $n$ keine Primzahl ist:
 $q_{\text{reject}}$
-\item Pr"ufe ob $n-2$ oder $n+2$ Primzahlen sind. Falls beide keine
+\item Prüfe ob $n-2$ oder $n+2$ Primzahlen sind. Falls beide keine
 Primzahlen sind: $q_{\text{reject}}$, andernfalls $q_{\text{accept}}$
 \end{enumerate}
 \item
 Eine Funktion wie \texttt{zwillingstest} ist eine Turingmaschine, die
 eine Turing erkennbare Sprache $L'=L(\texttt{zwillingstest})$ definiert.
 Die Aufgabe fragt nach einer Entscheidungsprozedur, welche erlauben
-w"urde festzustellen, ob die von \texttt{zwillingstest} erkannte
+würde festzustellen, ob die von \texttt{zwillingstest} erkannte
 Sprache $L'$ die Eigenschaft hat, gleich $L$ zu sein. Diese
 Eigenschaft ist nicht trivial: die Sprache $L$ hat diese Eigenschaft,
 die Sprache $\emptyset$ hat sie nicht. Nach dem Satz von Rice ist
@@ -54,7 +54,7 @@ die Eigenschaft nicht entscheidbar.
 
 \begin{bewertung}
 "Ubersetzung ein Sprachproblem ({\bf "U}) 1 Punkt,
-Drei wesentliche Schritte f"ur den Entscheidungsalgorithmus ({\bf A})
+Drei wesentliche Schritte für den Entscheidungsalgorithmus ({\bf A})
 je 1 Punkt, maximal 3 Punkte,
 Formulierung einer nichttrivialen Eigenschaft ({\bf E}) 1 Punkt,
 Anwendung des Satzes von Rice ({\bf R}) 1 Punkt.

@@ -4,7 +4,7 @@ Die Sprache
 \[
 L_{ab}=\{w\in\Sigma^*\;|\; |w|_a=|w|_b\}
 \]
-besteht aus den W"ortern, die die Buchstaben $a\in \Sigma$ und $b\in\Sigma$
+besteht aus den Wörtern, die die Buchstaben $a\in \Sigma$ und $b\in\Sigma$
 mehr als einmal enthalten, aber beide gleich oft.
 Es ist zum Beispiel
 \begin{align*}
@@ -14,14 +14,14 @@ Es ist zum Beispiel
 \end{align*}
 \begin{teilaufgaben}
 \item
-Konstruieren Sie eine kontextfreie Grammatik f"ur $L_{ab}$.
+Konstruieren Sie eine kontextfreie Grammatik für $L_{ab}$.
 \item
-Bestimmen Sie f"ur jede Regel der Grammatik aus a), ob sie der
+Bestimmen Sie für jede Regel der Grammatik aus a), ob sie der
 Chomsky-Normalform entspricht, und wenn nicht, warum nicht.
 \item
 Bringen Sie die Grammatik von a) in Chomsky-Normalform.
 %\item
-%K"onnen Sie daraus eine Aussage dar"uber ableiten, ob die Sprache 
+%Können Sie daraus eine Aussage darüber ableiten, ob die Sprache 
 %\[
 %L=\{w\in\Sigma^*\;|\;\text{es gibt zwei verschiedene Buchstaben
 %$a,b\in\Sigma$ mit $|w|_a=|w|_b > 1$}\}
@@ -32,10 +32,10 @@ Bringen Sie die Grammatik von a) in Chomsky-Normalform.
 \begin{loesung}
 \begin{teilaufgaben}
 \item
-Die Sprache $L_{ab}$ ist kontextfrei, weil sich daf"ur eine kontextfreie
-Grammatik angeben l"asst.
-Die Grammatik f"ugt die Buchstaben $a$ und $b$ jeweils paarweise
-hinzu, w"ahrend sie andere Buchstaben einzeln hinzuf"ugt:
+Die Sprache $L_{ab}$ ist kontextfrei, weil sich dafür eine kontextfreie
+Grammatik angeben lässt.
+Die Grammatik fügt die Buchstaben $a$ und $b$ jeweils paarweise
+hinzu, während sie andere Buchstaben einzeln hinzufügt:
 \begin{align}
 S&\rightarrow aSb\;|\; bSa \label{40000044:1}\\
  &\rightarrow SU \;|\; US  \label{40000044:2}\\
@@ -48,8 +48,8 @@ und (\ref{40000044:2}).
 In (\ref{40000044:1}) kommen auf der rechten Seite mehr als zwei Symbole vor.
 \item
 Die Grammatik ist noch nicht in Chomsky-Normalform.
-Zun"achst kommt die Startvariable auch rechts vor, was wir durch eine
-zus"atzliche Startvariable erreichen k"onnen:
+Zunächst kommt die Startvariable auch rechts vor, was wir durch eine
+zusätzliche Startvariable erreichen können:
 \begin{align*}
 S_0&\rightarrow S\\
 S  &\rightarrow aSb\;|\; bSa\\
@@ -57,7 +57,7 @@ S  &\rightarrow aSb\;|\; bSa\\
    &\rightarrow \varepsilon\\
 U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}
 \end{align*}
-Jetzt ist aber eine unzul"assige $\varepsilon$-Regel vorhanden, die entfernt
+Jetzt ist aber eine unzulässige $\varepsilon$-Regel vorhanden, die entfernt
 werden muss:
 \begin{align*}
 S_0&\rightarrow S\;|\;\varepsilon\\
@@ -65,7 +65,7 @@ S  &\rightarrow aSb\;|\; bSa\;|\;ab\;|\;ba\\
    &\rightarrow SU \;|\; US\;|\;U\;\\
 U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}
 \end{align*}
-Jetzt hat man aber zwei Unit-Rules, die entfernt werden m"ussen.
+Jetzt hat man aber zwei Unit-Rules, die entfernt werden müssen.
 Zuerst $S\rightarrow U$:
 \begin{align*}
 S_0&\rightarrow S\;|\;\varepsilon\\
@@ -86,8 +86,8 @@ S  &\rightarrow aSb\;|\; bSa\;|\;ab\;|\;ba\\
 U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}
 \end{align*}
 Jetzt sind nur noch die Regeln, die $a$ oder $b$ auf der rechten
-Seite enthalten nicht gem"ass der Chomsky-Normalform.
-Dazu brauchen wir zus"atzliche Variablen:
+Seite enthalten nicht gemäss der Chomsky-Normalform.
+Dazu brauchen wir zusätzliche Variablen:
 \begin{align*}
 S_0&\rightarrow AC\;|\; DA \\
    &\rightarrow AB\;|\;BA\\
@@ -110,24 +110,24 @@ Damit ist die Grammatik in Chomsky-Normalform.
 %\[
 %L=\bigcup_{a,b\in\Sigma\atop a\ne b}L_{ab},
 %\]
-%und da Vereinigung eine regul"are Operation ist, und kontextfreie Sprachen
+%und da Vereinigung eine reguläre Operation ist, und kontextfreie Sprachen
 %unter Vereinigung abgeschlossen sind, muss auch $L$ kontextfrei sein.
 \qedhere
 \end{teilaufgaben}
 \end{loesung}
 
 \begin{diskussion}
-Die Aufgabe ist in der Pr"ufung ohne Teilaufgabe c) gestellt worden.
+Die Aufgabe ist in der Prüfung ohne Teilaufgabe c) gestellt worden.
 \end{diskussion}
 
 \begin{bewertung}
 Buchstaben $a$ und $b$ werden paarweise ({\bf P}) und in beliebiger
-Reihenfolge ({\bf R}) hinzugef"ugt, je 1 Punkt,
+Reihenfolge ({\bf R}) hinzugefügt, je 1 Punkt,
 Leeres Wort wird erzeugt ({\bf E}) 1 Punkt,
-beliebige andere Buchstaben k"onnen vorne oder hinten angef"ugt werden
+beliebige andere Buchstaben können vorne oder hinten angefügt werden
 ({\bf A}) 1 Punkt,
 Paarregel ({\bf CP}) 1 Punkt,
-Vereinigung f"ur Teilaufgabe d) ({\bf U}) 1 Punkt.
+Vereinigung für Teilaufgabe d) ({\bf U}) 1 Punkt.
 \end{bewertung}
 
 

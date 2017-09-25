@@ -1,11 +1,11 @@
-Finden Sie einen regul"aren Ausdruck f"ur die Sprache
+Finden Sie einen regulären Ausdruck für die Sprache
 \[
 L=\{w\in\Sigma^*\,|\, \text{$|w|_{\texttt{0}}$ ist gerade}\}
 \]
-"uber dem Alphabet $\Sigma=\{\texttt{0},\texttt{1}\}$.
+über dem Alphabet $\Sigma=\{\texttt{0},\texttt{1}\}$.
 
 \begin{loesung}
-Wir konstruieren zun"achst einen DEA f"ur die Sprache $L$:
+Wir konstruieren zunächst einen DEA für die Sprache $L$:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -14,7 +14,7 @@ Wir konstruieren zun"achst einen DEA f"ur die Sprache $L$:
                 &{1} \ar@(ur,dr)^{\texttt{1}} \ar@/^/[l]^{\texttt{0}}
 }
 \]
-Diesen Automaten m"ussen wir nun mit separaten Start- und Akzeptierzust"anden
+Diesen Automaten müssen wir nun mit separaten Start- und Akzeptierzuständen
 ausstatten:
 \[
 \entrymodifiers={++[o][F]}
@@ -29,7 +29,7 @@ ausstatten:
 		&*++[o][F=]{A}
 }
 \]
-Jetzt entfernen wir nacheinander die Zwischenzust"ande, beginnend mit dem
+Jetzt entfernen wir nacheinander die Zwischenzustände, beginnend mit dem
 Zustand $1$:
 \[
 \entrymodifiers={++[o][F]}
@@ -56,12 +56,12 @@ gefolgt vom Zustand $0$:
 		&*++[o][F=]{A}
 }
 \]
-Der regul"are Ausdruck besagt, dass ein Wort in $L$ aus Teilen besteht, die
+Der reguläre Ausdruck besagt, dass ein Wort in $L$ aus Teilen besteht, die
 entweder nur aus Einsen bestehen, oder aus Paaren von Nullen, zwischen
-denen beliebige viel Einsen eingeschoben sein k"onnen.
+denen beliebige viel Einsen eingeschoben sein können.
 
-Beginnt man mit dem Enfernen von Zwischenzust"anden beim Zustand $0$, wird 
-der regul"are Ausdruck ganz anders aussehen:
+Beginnt man mit dem Enfernen von Zwischenzuständen beim Zustand $0$, wird 
+der reguläre Ausdruck ganz anders aussehen:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -75,7 +75,7 @@ der regul"are Ausdruck ganz anders aussehen:
 		&*++[o][F=]{A}
 }
 \]
-Jetzt entfernt man den Zustand $1$ und erh"alt
+Jetzt entfernt man den Zustand $1$ und erhält
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -88,8 +88,8 @@ Jetzt entfernt man den Zustand $1$ und erh"alt
 		&*++[o][F=]{A}
 }
 \]
-Auch dieser regul"are Ausdruck besagt, dass man zus"atzliche Nullen immer
+Auch dieser reguläre Ausdruck besagt, dass man zusätzliche Nullen immer
 nur paarweise einschieben kann, und dass dazwischen jeweils Einsen stehen
-k"onnen.
+können.
 \end{loesung}
 

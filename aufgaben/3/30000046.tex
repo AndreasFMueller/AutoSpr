@@ -16,7 +16,7 @@ Nummer&Feldname                          &Datentyp          &Beschreibung\\
 \end{tabular}
 \end{center}
 Eine UUID ist also genau 16 Bytes lang.
-Mit Hilfe verschiedener Werte von clock\_seq k"onnen auf einer Maschine
+Mit Hilfe verschiedener Werte von clock\_seq können auf einer Maschine
 (d.~h.~mit gleicher Node-ID) verschiedene UUIDs mit dem gleichen Zeitstempel
 erzeugt werden.
 Solche UUIDs werden zum Beispiel verwendet im Distributed Computing
@@ -25,24 +25,24 @@ in der Java Klasse \texttt{java.util.UUDI},
 in der Qt-Klasse \texttt{QUuid} oder
 im ITU Standard X.667.
 
-F"ur die praktische Anwendung wurde im RFC4122 eine String-Darstellung
+Für die praktische Anwendung wurde im RFC4122 eine String-Darstellung
 von UUIDs definiert.
-Sie wird dadurch erzeugt, dass alle Zahlen wenn n"otig mit f"uhrenden
+Sie wird dadurch erzeugt, dass alle Zahlen wenn nötig mit führenden
 Nullen als Hexadezimalzahlen codiert und verkettet werden.
 Zur besseren Lesbarkeit wird nach den Feldern 1, 2, 3 und 5 jeweils 
-ein einzelner Bindestrich `\texttt{-}' eingef"ugt.
+ein einzelner Bindestrich `\texttt{-}' eingefügt.
 Gross- und Kleinschreibung spielt keine Rolle.
 
 \begin{teilaufgaben}
 \item
-Geben Sie einen regul"aren Ausdruck, der genau die korrekten UUIDs akzeptiert.
+Geben Sie einen regulären Ausdruck, der genau die korrekten UUIDs akzeptiert.
 \item
 Microsofts Component Object Model verwendet
 UUIDs zur Identifikation von Objekten, sie heissen GUID.
 Allerdings sind die Werte des Feldes clock\_seq\_high\_and\_reserved
 jetzt nicht mehr beliebig, die ersten drei Bits dieses Feldes sind immer
 \texttt{100}.
-Geben Sie einen regul"aren Ausdruck, der genau die korrekten GUID
+Geben Sie einen regulären Ausdruck, der genau die korrekten GUID
 akzeptiert.
 \end{teilaufgaben}
 
@@ -51,9 +51,9 @@ akzeptiert.
 \item
 Hex-Zahlen sind Zeichenketten aus einer geraden Anzahl von
 Ziffern \texttt{[0-9]} und den Buchstaben \text{[a-fA-F]}.
-Die Anzahl Ziffern ist jeweils ein Viertel der Bitl"ange des Feldes.
-Wir k"onnen die L"ange $n$ mit Konstrukt \texttt{\{$n$\}} angeben,
-und erhalten somit den regul"aren Ausdruck:
+Die Anzahl Ziffern ist jeweils ein Viertel der Bitlänge des Feldes.
+Wir können die Länge $n$ mit Konstrukt \texttt{\{$n$\}} angeben,
+und erhalten somit den regulären Ausdruck:
 \begin{center}
 \texttt{[0-9a-fA-F]\{8\}-%
 [0-9a-fA-F]\{4\}-%
@@ -63,8 +63,8 @@ und erhalten somit den regul"aren Ausdruck:
 \end{center}
 \item
 Das erste Zeichen des zweitletzten Feldes kann jetzt nur noch
-\texttt{8} (bin"ar \texttt{1000}) oder \texttt{9} (bin"ar \texttt{1001})
-sein, der regul"are Ausdruck muss daher wie folgt abge"andert
+\texttt{8} (binär \texttt{1000}) oder \texttt{9} (binär \texttt{1001})
+sein, der reguläre Ausdruck muss daher wie folgt abgeändert
 werden:
 \begin{center}
 \texttt{[0-9a-fA-F]\{8\}-%
@@ -80,9 +80,9 @@ werden:
 \begin{bewertung}
 nur Hex-Ziffern ({\bf H}) 1 Punkt,
 Gross- und Kleinschreibung ({\bf K}) 1 Punkt,
-L"angen der Hex-Bl"ocke festgelegt ({\bf L}) 1 Punkt,
+Längen der Hex-Blöcke festgelegt ({\bf L}) 1 Punkt,
 Bindestriche als Trennzeichen ({\bf B}) 1 Punkt,
 Hex-Codierung von \texttt{1000} und \texttt{1001} ({\bf 8}) 1 Punkt,
-Einschr"ankung in Teilaufgabe b) ({\bf E}) 1 Punkt.
+Einschränkung in Teilaufgabe b) ({\bf E}) 1 Punkt.
 \end{bewertung}
 

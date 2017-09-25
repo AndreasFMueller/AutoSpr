@@ -1,6 +1,6 @@
 Sei $\Sigma=\{\text{\tt 0},\text{\tt 1}\}$, und sei $L$ eine Sprache
-mit dem Alphabet $\Sigma$. Zu jeder nat"urlichen Zahl $n\in\mathbb N$
-kann man z"ahlen, wieviele W"orter mit L"ange $\le n$ die Sprache
+mit dem Alphabet $\Sigma$. Zu jeder natürlichen Zahl $n\in\mathbb N$
+kann man zählen, wieviele Wörter mit Länge $\le n$ die Sprache
 hat:
 \[
 l(n)=|\{w\in L|\;|w|\le n\}|.
@@ -9,47 +9,47 @@ Man sagt, die Sprache $L$ habe polynomielles Wachstum, wenn
 \[
 l(n)=O(n^k)
 \]
-f"ur ein geeignetes $k$. Ist entscheidbar, ob eine Sprache polynomielles
+für ein geeignetes $k$. Ist entscheidbar, ob eine Sprache polynomielles
 Wachstum hat?
 
 \begin{loesung}
 Wir zeigen mit dem Satz von Rice, dass die Eigenschaft, polynomielles
-Wachstum zu haben, entscheidbar ist. Dazu m"ussen wir zwei Sprachen
+Wachstum zu haben, entscheidbar ist. Dazu müssen wir zwei Sprachen
 angeben, eine Sprache, die die Eigenschaft hat, und eine, die die
 Eigenschaft nicht hat.
 
-Die Sprache $L_0=\emptyset$ enth"alt gar keine W"orter, f"ur sie
+Die Sprache $L_0=\emptyset$ enthält gar keine Wörter, für sie
 gilt also $l(n)=0$, diese Sprache hat also sicher polynomielles
 Wachstum, es ist sogar $l(n)=O(1)$.
 
 Die Sprache $L_1=\{\text{\tt 1}\}^*$ ist sicher auch eine Sprache mit
-dem Alphabet $\Sigma$, also $L_1\subset \Sigma^*$. Die W"orter
-von $L_1$ sind die nat"urlichen Zahlen in un"arer Darstellung,
-es gibt also immer genau $n+1$ W"orter der L"ange $\le n$, also
+dem Alphabet $\Sigma$, also $L_1\subset \Sigma^*$. Die Wörter
+von $L_1$ sind die natürlichen Zahlen in unärer Darstellung,
+es gibt also immer genau $n+1$ Wörter der Länge $\le n$, also
 $l(n)=n+1=O(n)$. Auch die Sprache $L_1$ hat also polynomielles Wachstum.
 
-Man kann sogar f"ur jeden beliebigen Exponenten $k\ge 1$ eine Sprache $L_k$
+Man kann sogar für jeden beliebigen Exponenten $k\ge 1$ eine Sprache $L_k$
 mit Wachstum $O(n^k)$ angeben. Dazu sei $w$ ein Wort in $\Sigma^*$,
 wir bezeichnen mit $v(w)$ den Zahlenwert, den $w$ im Zweiersystem
-darstellt. Dann nehmen wir nur jene W"orter in die Sprache,
-deren Wert kleiner als die L"ange hoch $k$ ist:
+darstellt. Dann nehmen wir nur jene Wörter in die Sprache,
+deren Wert kleiner als die Länge hoch $k$ ist:
 \[
 L_k=\{ w\in\Sigma^*| v(w) < |w|^{k-1}\}
 \]
-Offenbar gibt es von jeder L"ange $n$ genau $n^{k-1}$ W"orter.
+Offenbar gibt es von jeder Länge $n$ genau $n^{k-1}$ Wörter.
 Somit ist
 \[
 l(n)=\sum_{i=0}^ni^{k-1}\le n\cdot n^{k-1}=n^k\quad\Rightarrow\quad l(n)=O(n^k).
 \]
 Auch ist bekannt, dass die Summe der $(k-1)$-ten Potenzen ein
 Polynom vom Grad $k$ ist, was wiederum zeigt, dass $l(n)=O(n^k)$.
-Setzt man "ubrigens $k=1$ ergibt
+Setzt man übrigens $k=1$ ergibt
 sich wieder das bereits im letzten Abschnitt betrachtete
 $L_1$.
 
 Die Sprache $L_\infty=\Sigma^*$ besteht aus allen {\tt 0}-{\tt 1}-Folgen.
-Es gibt jeweils $2^n$ W"orter der L"ange $n$, oder $2^{n+1}-1$ W"orter
-der L"ange $n$, also $l(n)=2^{n+1}-1$. $2^n$ w"achst aber schneller
+Es gibt jeweils $2^n$ Wörter der Länge $n$, oder $2^{n+1}-1$ Wörter
+der Länge $n$, also $l(n)=2^{n+1}-1$. $2^n$ wächst aber schneller
 als jede Potenz von $n$, somit hat die Sprache $L_2$ kein polynomielles
 Wachstum.
 

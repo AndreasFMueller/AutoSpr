@@ -1,56 +1,56 @@
 Sei $n>0$ eine natürliche Zahl und sei $L_n$ die Sprache bestehend
-aus W"ortern "uber dem Alphabet
+aus Wörtern über dem Alphabet
 $\Sigma=\{{\tt 0},{\tt 1 }\}$ deren Anzahl {\tt 0} und {\tt 1}
 den gleichen Rest bei Teilung durch $n$ haben. In Formeln:
 \[
 L_n=\{ w\in\Sigma^*| \; |w|_0\equiv |w|_1\mod n\}.
 \]
-Zur Sprache $L_3$ geh"ort also beispielsweise dazu:
+Zur Sprache $L_3$ gehört also beispielsweise dazu:
 \[
 \text{\tt 1010000},\;
 \text{\tt 00101110},\;
 \text{\tt 010101},\;
 \text{\tt 101010},\;
 \]
-es geh"ort aber nicht dazu:
+es gehört aber nicht dazu:
 \[
 \text{\tt 1110},\;
 \text{\tt 0001},\;
 \text{\tt 1110001},\;
 \text{\tt 10101},\;
 \]
-Zeigen Sie, dass jede der Sprachen $L_n$ regul"ar ist.
+Zeigen Sie, dass jede der Sprachen $L_n$ regulär ist.
 
 \begin{hinweis}
-Zeichnen Sie einen DEA f"ur $L_8$ und "uberlegen sie
-sich dann, wie ein DEA f"ur $L_n$ mit beliebigem $n$ aussehen m"usste.
+Zeichnen Sie einen DEA für $L_8$ und überlegen sie
+sich dann, wie ein DEA für $L_n$ mit beliebigem $n$ aussehen müsste.
 \end{hinweis}
 
 \begin{loesung}
 Wir wissen bereits, dass es endliche Automaten gibt, die den Rest
-einer Zahl bei Teilung durch $n$ bestimmen k"onnen. Als Zust"ande
+einer Zahl bei Teilung durch $n$ bestimmen können. Als Zustände
 wird der Rest verwendet. Da es nur $n$ verschiedene Reste gibt,
-kann ein endlicher Automat alle m"oglichen Reste darstellen.
+kann ein endlicher Automat alle möglichen Reste darstellen.
 Daher ist plausibel, dass auch die Gleichheit zweier Reste
 mit Hilfe eines endlichen Automaten erkannt werden kann.
 
-Wir zeigen, dass es einen endlichen Automaten gibt, der die W"orter
+Wir zeigen, dass es einen endlichen Automaten gibt, der die Wörter
 von $L_n$ akzeptiert. Wenn $r_0(w)\equiv |w|_{\tt 0}\mod n$
 der Rest der Anzahl {\tt 0} bei
 Teilung durch $n$ und $r_1(w)\equiv |w|_{\tt 1}\mod n$ der Rest der Anzahl
 {\tt 1} bei Teilung
-durch $n$ ist, dann interessieren uns nur die W"orter, f"ur die die
+durch $n$ ist, dann interessieren uns nur die Wörter, für die die
 beiden Zahlen gleich sind, also
 \[
 L_n=\{w\in\Sigma^*\;|\;r_0(w)-r_1(w)=0\}
 \]
 Die Differenz kann aber mit folgendem endlichen Automaten bestimmt
-werden. Als Zust"ande dienen die m"oglichen Differenzen
+werden. Als Zustände dienen die möglichen Differenzen
 $\{0,1,2,\dots,n-1\}$.
 Startzustand ist $0$.
-Jede {\tt 0} in $w$ erh"oht den Zustand um
+Jede {\tt 0} in $w$ erhöht den Zustand um
 eins, jede {\tt 1} erniedrigt den Zustand um $1$. Akzeptierzustand
-ist $0$. Das Zustandsdiagramm f"ur den Fall $n=8$ ist
+ist $0$. Das Zustandsdiagramm für den Fall $n=8$ ist
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @-1mm {
@@ -77,9 +77,9 @@ ist $0$. Das Zustandsdiagramm f"ur den Fall $n=8$ ist
                         &*+\txt{}
 }
 \]
-Somit ist klar, dass $L_n$ regul"ar ist.
+Somit ist klar, dass $L_n$ regulär ist.
 
-Alternativ k"onnte man auch zwei Automaten bilden, deren Zust"ande
+Alternativ könnte man auch zwei Automaten bilden, deren Zustände
 die Reste von $|w|_0$ und $|w|_1$ bei Teilung durch $n$ sind:
 \[
 \xymatrix @-1mm {
@@ -115,7 +115,7 @@ die Reste von $|w|_0$ und $|w|_1$ bei Teilung durch $n$ sind:
 }
 \]
 Bildet man jetzt den kartesischen Produkt-Automaten, sind genau
-die Zust"ande auf den Diagonalen diejenigen, die W"orter akzeptieren,
+die Zustände auf den Diagonalen diejenigen, die Wörter akzeptieren,
 die module $n$ die gleiche Zahl von {\tt 0} und {\tt 1} haben:
 \[
 \xymatrix @-1mm {
@@ -172,28 +172,28 @@ die module $n$ die gleiche Zahl von {\tt 0} und {\tt 1} haben:
                                                 &
 }
 \]
-Darin f"uhren die Pfeile, die das Diagramm am rechten oder unteren Rand
-verlassen wieder zu den Zust"anden in der gleichen Zeile bzw.~Spalte
-am linken bzw.~oberen Rand. Nat"urlich ist dieser Automat nicht minimal,
-denn alle Zust"ande auf der Diagonalen oder Zust"ande auf einer Geraden
-parallel zur Diagonalen sind "aquivalent.
+Darin führen die Pfeile, die das Diagramm am rechten oder unteren Rand
+verlassen wieder zu den Zuständen in der gleichen Zeile bzw.~Spalte
+am linken bzw.~oberen Rand. Natürlich ist dieser Automat nicht minimal,
+denn alle Zustände auf der Diagonalen oder Zustände auf einer Geraden
+parallel zur Diagonalen sind äquivalent.
 
-Man kann den Nachweis aber auch f"uhren, ohne einen Automaten zu zeichnen.
-Dazu "uberlegt man sich, dass die Sprachen
+Man kann den Nachweis aber auch führen, ohne einen Automaten zu zeichnen.
+Dazu überlegt man sich, dass die Sprachen
 \[
 L_{ik}=\{w\in\Sigma^*|\; |w|_i\cong k\mod n\}= L( i^k(i^n)^* )
 \]
-regul"ar sind, weil sie sich durch den angegeben regul"aren Ausdruck
+regulär sind, weil sie sich durch den angegeben regulären Ausdruck
 beschreiben lassen. Die Sprache
 $L_{{\tt 0}k}\cap L_{{\tt 1}k}$
 besteht
-aus den W"ortern, in denen die Anzahl der {\tt 0} und {\tt 1} den
-Rest $k$ bei Teilung durch $n$ haben. Als Durchschnitt regul"arer
-Sprachen ist sie nat"urlich auch wieder regul"ar. In der Sprache $L_n$
-sind jetzt aber alle solchen W"orter mit Resten $k=0,\dots,n-1$, also
+aus den Wörtern, in denen die Anzahl der {\tt 0} und {\tt 1} den
+Rest $k$ bei Teilung durch $n$ haben. Als Durchschnitt regulärer
+Sprachen ist sie natürlich auch wieder regulär. In der Sprache $L_n$
+sind jetzt aber alle solchen Wörter mit Resten $k=0,\dots,n-1$, also
 \[
 L_n=\bigcup_{k=0}^{n-1}
 L_{{\tt 0}k}\cap L_{{\tt 1}k},
 \]
-was als Vereinigung regul"arer Sprachen nat"urlich auch wieder regul"ar ist.
+was als Vereinigung regulärer Sprachen natürlich auch wieder regulär ist.
 \end{loesung}

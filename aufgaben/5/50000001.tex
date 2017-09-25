@@ -1,5 +1,5 @@
-Beschreiben Sie eine Turing-Maschine, welche eine bin"ar auf dem
-Band angegebene Zahl um $1$ erh"oht.
+Beschreiben Sie eine Turing-Maschine, welche eine binär auf dem
+Band angegebene Zahl um $1$ erhöht.
 
 \begin{loesung}
 Nachdem das Wort auf das Band geschrieben und der Kopf auf den
@@ -9,8 +9,8 @@ zu arbeiten.
 Falls am Ende des Programms der Schreib-Lesekopf wieder auf dem
 Anfang des Wortes stehen soll (was zum Beispiel dann sinnvoll ist,
 wenn man den Schreib-/Lesekopf auch dazu verwenden will das
-Resultat wieder auszulesen),  m"ussen folgende
-Schritte durchgef"uhrt werden:
+Resultat wieder auszulesen),  müssen folgende
+Schritte durchgeführt werden:
 \begin{enumerate}
 \item Solange unter dem Schreib-/Lesekopf ein Zeichen aus $\Sigma$
 zu lesen ist, bewege den Kopf nach rechts.
@@ -20,20 +20,20 @@ schreibe eine {\tt 1} auf das Band, und merke Dir den "Ubertrag {\tt 0}.
 Falls das Zeichen {\tt 1} ist, schreibe eine {\tt 0} auf das Band und
 merke Dir den "Ubertrag {\tt 1}.
 Bewege den Kopf nach links.
-\item Falls das Band einen Blank enth"alt, und der "Ubertrag {\tt 1}
+\item Falls das Band einen Blank enthält, und der "Ubertrag {\tt 1}
 ist, schreibe eine {\tt 1} auf das Band und halte in $q_{\text{accept}}$.
 Falls der "Ubertrag aber {\tt 0} ist, halte im Zustand $q_{\text{accept}}$.
-\item Falls das Band eine {\tt 0} enth"alt und der "Ubertrag {\tt 0} ist,
+\item Falls das Band eine {\tt 0} enthält und der "Ubertrag {\tt 0} ist,
 schreibe eine {\tt 0} auf das Band, bewege den Kopf nach Links und fahre
 weiter bei 4.
-\item Falls das Band eine {\tt 0} enth"alt und der "Ubertrag {\tt 1}
+\item Falls das Band eine {\tt 0} enthält und der "Ubertrag {\tt 1}
 ist oder umgekehrt, schreibe einen {\tt 1} auf das Band, merke Dir
 "Ubertrag {\tt 0} und bewege den Kopf nach links. Weiter bei 4.
-\item Falls das Band eine {\tt 1} enth"alt und der "Ubertrag ebenfalls
+\item Falls das Band eine {\tt 1} enthält und der "Ubertrag ebenfalls
 {\tt 1} ist, schreibe eine {\tt 0} auf das Band, merke Dir "Ubertrag {\tt 1},
 bewege den Kopf nach links und fahre weiter bei 4.
 \end{enumerate}
-Etwas schneller geht es, wenn man keine Voraussetzung "uber die
+Etwas schneller geht es, wenn man keine Voraussetzung über die
 Endposition von Schreib-/Lesekopf macht:
 \begin{enumerate}
 \item Fahre nach rechts bis zu einem Blank, bewege den Kopf nach links.

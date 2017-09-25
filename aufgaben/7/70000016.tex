@@ -2,38 +2,38 @@ Auf einem weit entfernten, aber technologisch sehr fortgeschrittenen
 Planeten wird der den Planeten regierende "Altestenrat
 nicht durch Volkswahl bestimmt, sondern durch einen Algorithmus.
 In der Vergangenheit gab es eine grosse Zahl rivalisierender
-St"amme, die sich auch zu gr"osseren ``Nationen'' verb"undet haben
-und wiederholt blutige Kriege gegeneinander gef"uhrt haben.
-Um diesem Unheil ein Ende zu setzen, kamen die St"amme "uberein,
+Stämme, die sich auch zu grösseren ``Nationen'' verbündet haben
+und wiederholt blutige Kriege gegeneinander geführt haben.
+Um diesem Unheil ein Ende zu setzen, kamen die Stämme überein,
 den "Altestenrat zu bilden, in dem wenn auch nicht jeder Stamm direkt,
 so doch mindestens das ``Blut'' jedes Stammes vertreten sein musste.
-Damit trug man der Tatsache Rechnung, dass Mobilt"at und planetenweiter
+Damit trug man der Tatsache Rechnung, dass Mobiltät und planetenweiter
 Handel mittlerweile zu einer weitgehenden Durchmischung in der
-Bev"olkerung gef"uhrt hatte. Ausgepr"agtes Traditionsbewusstsein hatten
-jedoch sichergestellt, dass von jedem B"urger bekannt war, aus welchen
-St"ammen er ``Blut'' in sich trug. Warum ist trotzdem eine weit entwickelte
-Technologie n"otig, um herauszufinden, ob sich ein "Altestenrat
-mit $k$ Mitgliedern "uberhaupt bilden l"asst?
+Bevölkerung geführt hatte. Ausgeprägtes Traditionsbewusstsein hatten
+jedoch sichergestellt, dass von jedem Bürger bekannt war, aus welchen
+Stämmen er ``Blut'' in sich trug. Warum ist trotzdem eine weit entwickelte
+Technologie nötig, um herauszufinden, ob sich ein "Altestenrat
+mit $k$ Mitgliedern überhaupt bilden lässt?
 
 \begin{loesung}
 Das Problem, einen "Altestenrat mit $k$  Mitgliedern zu bilden, ist
-"aquivalent zum Set-Covering Problem. Zu jedem B"urger $i$
-ist die Menge $S_i$ aller St"amme bekannt, von denen er ``Blut''
-in sich tr"agt. Die Vereinigung aller $S_i$ ist die Menge $U$ aller
-St"amme. Gefragt wird jetzt nach $k$ B"urgern $i_1,\dots,i_k$ so,
-dass die $S_{i_1},\dots S_{i_k}$ bereits alle St"amme abdecken, also
+äquivalent zum Set-Covering Problem. Zu jedem Bürger $i$
+ist die Menge $S_i$ aller Stämme bekannt, von denen er ``Blut''
+in sich trägt. Die Vereinigung aller $S_i$ ist die Menge $U$ aller
+Stämme. Gefragt wird jetzt nach $k$ Bürgern $i_1,\dots,i_k$ so,
+dass die $S_{i_1},\dots S_{i_k}$ bereits alle Stämme abdecken, also
 \[
 \bigcup_i S_i=U.
 \]
 Die "Ubersetzung von Set-Covering auf des "Altestenratsproblem ist also
 \begin{align*}
-U&\leftrightarrow\text{Menge aller St"amme}\\
-i&\leftrightarrow\text{B"urger}\\
-S_i&\leftrightarrow\text{Menge der St"amme, die durch $i$ vertreten werden k"onnen}\\
+U&\leftrightarrow\text{Menge aller Stämme}\\
+i&\leftrightarrow\text{Bürger}\\
+S_i&\leftrightarrow\text{Menge der Stämme, die durch $i$ vertreten werden können}\\
 \text{Unterfamilie}&\leftrightarrow\text{"Altestenrat}
 \end{align*}
-Da Set-Covering ein NP-vollst"andiges Problem ist, ist es mit unserer
-Technologie nach allem, was wir wissen, nicht effizient l"osbar. Der
+Da Set-Covering ein NP-vollständiges Problem ist, ist es mit unserer
+Technologie nach allem, was wir wissen, nicht effizient lösbar. Der
 Planet braucht daher eine speziell fortgeschrittene Technologie, um es
-zuverl"assig l"osen zu k"onnen.
+zuverlässig lösen zu können.
 \end{loesung}

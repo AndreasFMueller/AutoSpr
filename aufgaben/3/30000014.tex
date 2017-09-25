@@ -1,42 +1,42 @@
 EAN-Code und ISBN-Nummer verwenden zum Schutz vor "Ubertragungsfehlern
-eine Pr"ufziffer. Zur Berechnung der Pr"ufziffer werden alle
+eine Prüfziffer. Zur Berechnung der Prüfziffer werden alle
 Stellen abwechselnd mit 3 oder 1 multipliziert, diese Produkte werden
-addiert. Der Zehner-Rest der Summe ist dann die Pr"ufziffer.
-Beispiel: der Code {\tt 1291} bekommt die Pr"ufziffer
+addiert. Der Zehner-Rest der Summe ist dann die Prüfziffer.
+Beispiel: der Code {\tt 1291} bekommt die Prüfziffer
 \[
 1\cdot 3+2\cdot1+9\cdot3+1\cdot 1=35\equiv 5\mod10.
 \]
-Der mit Pr"ufziffer gesicherte Code {\tt 1291} ist also {\tt 12915}.
-Gibt es einen regul"aren Ausdruck, auf den nur die Codes mit korrekter
-Pr"ufziffer passen?
+Der mit Prüfziffer gesicherte Code {\tt 1291} ist also {\tt 12915}.
+Gibt es einen regulären Ausdruck, auf den nur die Codes mit korrekter
+Prüfziffer passen?
 
 \begin{loesung}
-Ja. Die Sprache der Codes mit korrekter Pr"ufziffer ist regul"ar,
-denn es gibt einen endlichen Automaten daf"ur, den wir unten konstruieren
-werden. Folglich gibt es auch einen regul"aren Ausdruck daf"ur.
+Ja. Die Sprache der Codes mit korrekter Prüfziffer ist regulär,
+denn es gibt einen endlichen Automaten dafür, den wir unten konstruieren
+werden. Folglich gibt es auch einen regulären Ausdruck dafür.
 
-Auf den ersten Blick ist vielleicht etwas "uberraschend, dass
-ein endlicher Automat die Pr"ufziffer ausrechnen k"onnen soll,
+Auf den ersten Blick ist vielleicht etwas überraschend, dass
+ein endlicher Automat die Prüfziffer ausrechnen können soll,
 schliesslich hat man ja gelernt, dass ein endlicher Automat
-nicht rechnen k"onne und sich das Zwischenresultat nicht merken
-k"onnen. Allerdings gibt es nicht viel, was man sich merken
+nicht rechnen könne und sich das Zwischenresultat nicht merken
+können. Allerdings gibt es nicht viel, was man sich merken
 muss. Von der Summe muss man sich nur an die letzte Ziffer
 erinnern, da ja nur der Zehnerrest interessiert. Ausderdem
-muss man sicht daran erinnern, ob die n"achste Ziffer mit
-3 oder mit 1 multipliziert werden muss. An eine solch beschr"ankte
+muss man sicht daran erinnern, ob die nächste Ziffer mit
+3 oder mit 1 multipliziert werden muss. An eine solch beschränkte
 Informationsmenge kann sich eine DEA sehr wohl erinnern, das sind
-seine endlich vielen Zust"ande, die er hat. Auch muss er nicht
-wirklich rechnen k"onnen, es reicht, wenn er Reste berechnen
-kann, und dass das m"oglich ist, wurde in der Vorlesung gezeigt.
+seine endlich vielen Zustände, die er hat. Auch muss er nicht
+wirklich rechnen können, es reicht, wenn er Reste berechnen
+kann, und dass das möglich ist, wurde in der Vorlesung gezeigt.
 Auch muss man sich nicht an bereits analysierte Ziffern erinnern,
-man braucht nur die bis zu diesem Zeitpunkt berechnete Pr"ufziffer.
+man braucht nur die bis zu diesem Zeitpunkt berechnete Prüfziffer.
 
-Nehmen wir, wir h"atten ein Automaten, der Pr"ufziffern
+Nehmen wir, wir hätten ein Automaten, der Prüfziffern
 berechnen kann. Dieser Automat befindet sich nach dem Lesen eines
-Wortes in einem Zustand $z$, und zu jedem Zustand geh"ort eine
-einzige korrekte Pr"ufziffer $p(z)$. Wenn wir daraus einen
-Automaten bauen wollen, der Codes mit korrekter Pr"ufziffer
-akzeptiert, dann m"ussen wir den bestehenden Automaten f"ur
+Wortes in einem Zustand $z$, und zu jedem Zustand gehört eine
+einzige korrekte Prüfziffer $p(z)$. Wenn wir daraus einen
+Automaten bauen wollen, der Codes mit korrekter Prüfziffer
+akzeptiert, dann müssen wir den bestehenden Automaten für
 jeden Zustand um das Fragment
 \[
 \entrymodifiers={++[o][F]}
@@ -47,14 +47,14 @@ jeden Zustand um das Fragment
 \]
 erweitern.
 Diese bedeutet, dass das Wort akzeptiert wird, wenn in diesem
-Zustand die zugeh"orige Pr"ufziffer $p(z)$ folgt. So entsteht
+Zustand die zugehörige Prüfziffer $p(z)$ folgt. So entsteht
 ein NEA.
 
-Wir m"ussen jetzt also einen Automaten konstruieren, der die
-Pr"ufziffer berechnen kann.
-Ohne die Faktoren $3$ in der Pr"ufzifferformel
-w"are dies einfach. Wir nehmen als Zust"ande die Pr"ufziffer,
-die folgen m"usste, wenn der Code an dieser Stelle fertig w"are.
+Wir müssen jetzt also einen Automaten konstruieren, der die
+Prüfziffer berechnen kann.
+Ohne die Faktoren $3$ in der Prüfzifferformel
+wäre dies einfach. Wir nehmen als Zustände die Prüfziffer,
+die folgen müsste, wenn der Code an dieser Stelle fertig wäre.
 Der Automat hat dann die Tabellendarstellung
 \begin{center}
 \begin{tabular}{|c|cccccccccc|}
@@ -74,7 +74,7 @@ Der Automat hat dann die Tabellendarstellung
 \hline
 \end{tabular}
 \end{center}
-W"urde stattdessen immer der Faktor $3$ ber"ucksichtigt, w"are
+Würde stattdessen immer der Faktor $3$ berücksichtigt, wäre
 die "Ubergangsfunktion
 \begin{center}
 \begin{tabular}{|c|cccccccccc|}
@@ -94,16 +94,16 @@ die "Ubergangsfunktion
 \hline
 \end{tabular}
 \end{center}
-Nun m"ussen aber beide "Uberg"ange gemischt verwendet werden.
-Bei den Ziffern mit gerader Nummer m"ussen wir die erste Tabelle
+Nun müssen aber beide "Ubergänge gemischt verwendet werden.
+Bei den Ziffern mit gerader Nummer müssen wir die erste Tabelle
 verwenden, bei der Ziffer mit ungerader Nummer die zweite Tabelle.
-Wir m"ussen also unterscheiden k"onnen, ob wir gerade an einer Ziffer
+Wir müssen also unterscheiden können, ob wir gerade an einer Ziffer
 mit gerader oder ungerader Nummer arbeiten. Wir tun dies, indem wir
 die Zustande verdoppeln. Zu jedem Zustand $i$ gibt es jetzt noch
-einen Zustand $i'$. Das Zeichen {\tt 0} f"uhrt dann den Zustand $i$
+einen Zustand $i'$. Das Zeichen {\tt 0} führt dann den Zustand $i$
 nicht mehr in den Zustand $i$, sondern $i'$. Und das Zeichen {\tt 1}
-f"uhrt $i'$ nicht in $(i+3)'$, sondern in $i+3$ "uber. Der vollst"andige
-Automat zur Berechnung der Pr"ufziffer ist also
+führt $i'$ nicht in $(i+3)'$, sondern in $i+3$ über. Der vollständige
+Automat zur Berechnung der Prüfziffer ist also
 \begin{center}
 \begin{tabular}{|>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
 \hline
@@ -132,9 +132,9 @@ Automat zur Berechnung der Pr"ufziffer ist also
 \hline
 \end{tabular}
 \end{center}
-Es gibt also einen DEA, der die Pr"ufziffer berechnet. Damit k"onnen wir
-wie zu Beginn festgestellt auch einen NEA zur "Uberpr"ufung der Pr"ufziffer
-bauen, indem wir die "Uberg"ange
+Es gibt also einen DEA, der die Prüfziffer berechnet. Damit können wir
+wie zu Beginn festgestellt auch einen NEA zur "Uberprüfung der Prüfziffer
+bauen, indem wir die "Ubergänge
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -145,14 +145,14 @@ bauen, indem wir die "Uberg"ange
                                 &*++[o][F=]{a}
 }
 \]
-hinzuf"ugen.
+hinzufügen.
 
-Vielfach wurde argumentiert, diese Sprache k"onne nie und nimmer
-regul"ar sein, denn bei Pr"ufziffer w"urde ja beim Aufpumpen
-kaputt gehen. Das muss nicht sein, aus Teilst"uck $y$ darf
-einfach keinen Einfluss auf die Pr"ufziffer haben. Solche
-Teilst"ucke h"atten f"ur sich allein genommen die Pr"ufziffer 0.
-Dazu geh"oren zum Beispiel
+Vielfach wurde argumentiert, diese Sprache könne nie und nimmer
+regulär sein, denn bei Prüfziffer würde ja beim Aufpumpen
+kaputt gehen. Das muss nicht sein, aus Teilstück $y$ darf
+einfach keinen Einfluss auf die Prüfziffer haben. Solche
+Teilstücke hätten für sich allein genommen die Prüfziffer 0.
+Dazu gehören zum Beispiel
 {\tt 00},
 {\tt 13},
 {\tt 26},
@@ -166,35 +166,35 @@ und
 {\tt 97}, wenn sie an einer geraden Stelle beginnen, oder
 die gleichen Zeichenfolgen in umgekehrter Reihenfolge, wenn sie
 an einer ungeraden Stelle beginnen.
-Dazu gibt es noch viele Bl"ocke mit 4 Zeichen, zum Beispiel
+Dazu gibt es noch viele Blöcke mit 4 Zeichen, zum Beispiel
 {\tt 1114} oder {\tt 1230}. Es gibt also eine grosse Auswahl von
-m"oglichen Strings, die man aufpumpen kann, und wenn ein Wort
+möglichen Strings, die man aufpumpen kann, und wenn ein Wort
 lang genug ist (Pumping-Length), wird man sicher eines finden.
 
-Dass dem so ist kann man sich auch so "uberlegen. Es gibt 10
-verschiedene m"ogliche Pr"ufziffern. Nach jeder Ziffer des Codes m"usste,
-wenn der Code dort zu Ende w"are, eine dieser 10 m"oglichen Pr"ufziffern
-folgen. Da es nur 10 m"ogliche Pr"ufziffern gibt, muss sie sich
+Dass dem so ist kann man sich auch so überlegen. Es gibt 10
+verschiedene mögliche Prüfziffern. Nach jeder Ziffer des Codes müsste,
+wenn der Code dort zu Ende wäre, eine dieser 10 möglichen Prüfziffern
+folgen. Da es nur 10 mögliche Prüfziffern gibt, muss sie sich
 wiederholen.
-Das Wortst"uck zwischen der ersten Wiederholung f"uhrt hat f"ur sich
-genommen Pr"ufziffer 0 haben. Damit ist es aber nat"urlich noch
-nicht aufpumpbar, es muss auch noch gerade L"ange haben. Wenn man
-aber ein Wort von mindestens 22 Zeichen L"ange hat, dann gibt es
-darin nach genau diesem Argument ein Teilst"uck gerader L"ange,
-welches f"ur sich genommen die Pr"ufziffer 0 hat, also ein Teilst"uck,
-welches aufgepumpt werden kann. Dieses Argument ist nat"urlich
-sehr "ahnlich wie der urspr"ungliche Beweis des Pumping Lemmas.
+Das Wortstück zwischen der ersten Wiederholung führt hat für sich
+genommen Prüfziffer 0 haben. Damit ist es aber natürlich noch
+nicht aufpumpbar, es muss auch noch gerade Länge haben. Wenn man
+aber ein Wort von mindestens 22 Zeichen Länge hat, dann gibt es
+darin nach genau diesem Argument ein Teilstück gerader Länge,
+welches für sich genommen die Prüfziffer 0 hat, also ein Teilstück,
+welches aufgepumpt werden kann. Dieses Argument ist natürlich
+sehr ähnlich wie der ursprüngliche Beweis des Pumping Lemmas.
 
 Als Beispiel betrachten wir das Wort
 \[
 w=\text{\tt 10101010101010101010}
 \]
-Die Pr"ufziffern von Teilw"ortern sind in folgender Tabelle
+Die Prüfziffern von Teilwörtern sind in folgender Tabelle
 zusammengstellt:
 \begin{center}
 \begin{tabular}{|l|r|}
 \hline
-Teilwort&Pr"ufziffer\\
+Teilwort&Prüfziffer\\
 \hline
 $\varepsilon$             &0\\
 {\tt 1}                   &1\\
@@ -220,11 +220,11 @@ $\varepsilon$             &0\\
 \hline
 \end{tabular}
 \end{center}
-Daraus kann man ablesen, dass die ersten 20 Zeichen ein Teilst"uck
+Daraus kann man ablesen, dass die ersten 20 Zeichen ein Teilstück
 bilden, welches aufgepumpt werden kann. Jedes Wort, welches mit
-$w$ beginnt und im "ubrigen eine korrekte Pr"ufziffer hat, kann
+$w$ beginnt und im übrigen eine korrekte Prüfziffer hat, kann
 aufgeumpt werden, indem diese 20 Zeichen aufgepumpt werden.
-Ein Beispiel eines solchen Wortes w"are
+Ein Beispiel eines solchen Wortes wäre
 \[
 \text{\tt 1010101010101010101012915}.
 \qedhere

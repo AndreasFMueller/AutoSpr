@@ -39,7 +39,7 @@ Zeigen Sie, dass das Wort {\tt freude} zwei verschiedene
 parse trees hat.
 
 \begin{loesung}
-Die Sprache enth"alt die W"orter
+Die Sprache enthält die Wörter
 \[
 \varepsilon,
 \text{\it KV},
@@ -49,7 +49,7 @@ Die Sprache enth"alt die W"orter
 \text{\it KVKV},
 \text{\it KKVV},\dots
 \]
-also alle W"orter, die gleich viele Konsonanten wie Vokale enthalten.
+also alle Wörter, die gleich viele Konsonanten wie Vokale enthalten.
 Wir brauchen also nur einen Pushdown-Automaten, der feststellen kann,
 ob die gleiche Anzahl Vokale wie Konsonanten gelesen worden sind. Dazu
 verwenden wir als Stackalphabet $\Gamma = \{{\tt \$}, {\tt +}\}$,
@@ -83,7 +83,7 @@ Konsonanten gelesen wurden:
         &*++[o][F=]{E}
 }
 \]
-Die m"oglichen Parse Trees sind:
+Die möglichen Parse Trees sind:
 \[
 \xymatrix{
         &
@@ -134,7 +134,7 @@ K\ar[dd]
                                         &{\tt e}
 }
 \]
-Darin haben wir zur Abk"urzung die Produktionsregeln
+Darin haben wir zur Abkürzung die Produktionsregeln
 $S\to KV$ und $S\to VK$ verwendet, welche sich durch
 zusammensetzen von $S\to KSV$ bzw.~$S\to VSK$ mit $S\to\varepsilon$
 ergeben.

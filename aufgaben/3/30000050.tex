@@ -2,22 +2,22 @@ Ist die Sprache
 \[
 L=\{w\in\{\texttt{1}\}^*\;|\;\text{$|w|$ ist prim}\}
 \]
-regul"ar?
+regulär?
 
 \begin{loesung}
-Nein, wie wir mit dem Pumping Lemma zeigen k"onnen.
-Dazu nehmen wir an, die Sprache $L$ sei regul"ar.
-Nach dem Pumping Lemma gibt es daher die Pumping Length $N$, W"orter
-mit L"ange mindestens $N$ haben die Pump-Eigenschaft.
+Nein, wie wir mit dem Pumping Lemma zeigen können.
+Dazu nehmen wir an, die Sprache $L$ sei regulär.
+Nach dem Pumping Lemma gibt es daher die Pumping Length $N$, Wörter
+mit Länge mindestens $N$ haben die Pump-Eigenschaft.
 Sei also 
 \[
 w=\texttt{1}^p\qquad\text{mit einer Primzahl $p\ge N$},
 \]
 so eine Primzahl $p$ gibt es, weil es unendlich viele Primzahlen gibt.
 Nach dem Pumping Lemma gibt es jetzt eine Unterteilung $w=xyz$, wobei
-$|y|>0$, mit der Eigenschaft, dass auch alle aufgepumpten W"orter
-$xy^kz$ in $L$ sind, d.~h.~prime L"ange haben.
-Wenn man aber genau mit $k=p+1$ pumpt, erh"alt man als L"ange
+$|y|>0$, mit der Eigenschaft, dass auch alle aufgepumpten Wörter
+$xy^kz$ in $L$ sind, d.~h.~prime Länge haben.
+Wenn man aber genau mit $k=p+1$ pumpt, erhält man als Länge
 \[
 |xy^kz|
 =
@@ -29,9 +29,9 @@ p|y| + \underbrace{|x|+|y|+|z|}_{\textstyle=p}
 =
 p(|y|+1)
 \]
-Die L"ange von $xy^{(p+1)}z$ ist daher durch $p$ und $|y|+1$ teilbar, kann also
+Die Länge von $xy^{(p+1)}z$ ist daher durch $p$ und $|y|+1$ teilbar, kann also
 keine Primzahl sein, $xy^{(p+1)}z\not\in L$.
-Dieser Widerspruch zeigt, dass die Annahme, $L$ sei regul"ar, nicht
+Dieser Widerspruch zeigt, dass die Annahme, $L$ sei regulär, nicht
 aufrecht erhalten werden kann.
 \end{loesung}
 

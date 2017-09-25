@@ -1,4 +1,4 @@
-Verwandeln Sie die folgenden regul"aren Ausdr"ucke in NEAs "uber
+Verwandeln Sie die folgenden regulären Ausdrücke in NEAs über
 dem Alphabet $\Sigma =\{{\tt a},{\tt b}\}$:
 \begin{teilaufgaben}
 \item ${\tt a}({\tt abb})^*| {\tt b}$
@@ -6,14 +6,14 @@ dem Alphabet $\Sigma =\{{\tt a},{\tt b}\}$:
 \end{teilaufgaben}
 
 \begin{hinweis}
-Das Zeichen {\tt +} bei regul"aren Ausdr"ucken bedeutet
+Das Zeichen {\tt +} bei regulären Ausdrücken bedeutet
 ``mindestens einmal''.
 \end{hinweis}
 
 \begin{loesung}
-Wir wenden die Standardkonstruktionen f"ur die Umwandlung eines regul"aren
-Ausdrucks in einen NEA an. Die regul"aren Ausdr"ucke werden dabei
-``von innen nach aussen'' "ubersetzt.
+Wir wenden die Standardkonstruktionen für die Umwandlung eines regulären
+Ausdrucks in einen NEA an. Die regulären Ausdrücke werden dabei
+``von innen nach aussen'' übersetzt.
 \begin{teilaufgaben}
 \item
 Der Teilausdruck {\tt abb} ist eine Verkettung von drei NEAs, die
@@ -30,8 +30,8 @@ genau ein ein Zeichen langes Wort akzeptieren:
                                                 &*++[o][F=]{}
 }
 \]
-F"ur die $*$-Operation braucht man einen zus"atzlichen Akzeptierzustand und
-``R"uckw"arts''-Pfeile:
+Für die $*$-Operation braucht man einen zusätzlichen Akzeptierzustand und
+``Rückwärts''-Pfeile:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -61,7 +61,7 @@ Dem $({\tt abb})^*$ muss jetzt noch ein {\tt a} vorangehen:
                                                         &{}\ar@/^10pt/[llllll]^{\varepsilon}
 }
 \]
-Zum Schluss m"ussen wir eine Alternative zwischen diesem Ausdruck und dem
+Zum Schluss müssen wir eine Alternative zwischen diesem Ausdruck und dem
 Ausdruck {\tt b} bilden:
 \[
 \entrymodifiers={++[o][F]}
@@ -94,12 +94,12 @@ Ausdruck {\tt b} bilden:
 }
 \]
 \item
-Es stellt sich die Frage, wie man $r^+$ implementieren will. Man k"onnte
+Es stellt sich die Frage, wie man $r^+$ implementieren will. Man könnte
 $r^+$ als genau wie $r^*$ implementieren, die Konstruktion aber so
 modifizieren, dass aber das leere Wort
-doch nicht akzeptiert wird.  Dazu w"urde man den neuen Start-/Akzeptierzustand,
+doch nicht akzeptiert wird.  Dazu würde man den neuen Start-/Akzeptierzustand,
 der in der Konstruktion von $r^*$ vorkommt, nur als Startzustand, nicht
-aber als Akzeptierzustand hinzuf"ugen. Dann sehe der Automat wie folgt
+aber als Akzeptierzustand hinzufügen. Dann sehe der Automat wie folgt
 aus:
 \[
 \entrymodifiers={++[o][F]}
@@ -124,9 +124,9 @@ aus:
                                                 &*++[o][F=]{}\ar@/^10pt/[llll]^{\varepsilon}
 }
 \]
-Man k"onnte aber auch $r^+=rr^*$ implementieren, also als Verkettung
+Man könnte aber auch $r^+=rr^*$ implementieren, also als Verkettung
 eines Automaten, der $r$ akzeptiert mit einer $*$-Konstruktion von $r$.
-Dann s"ahe der Automat wie folgt aus:
+Dann sähe der Automat wie folgt aus:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{

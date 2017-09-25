@@ -4,7 +4,7 @@ L=\{
 \texttt{0}^m\texttt{1}^n|m\ne n
 \}
 \]
-"uber dem Alphabet $\Sigma=\{\texttt{0},\texttt{1}\}$ nicht regul"ar ist.
+über dem Alphabet $\Sigma=\{\texttt{0},\texttt{1}\}$ nicht regulär ist.
 
 \begin{loesung}
 Der einfachste Beweis verwendet die Mengenoperationen:
@@ -12,7 +12,7 @@ Die Sprache
 \[
 L'=\{\texttt{0}^n\texttt{1}^m\,|\,n,m\ge 0\}
 \]
-ist regul"ar, denn sie wird von dem Automaten
+ist regulär, denn sie wird von dem Automaten
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -23,52 +23,52 @@ ist regul"ar, denn sie wird von dem Automaten
 }
 \]
 akzeptiert.
-W"are $L$ regul"ar, m"usste auch $L'\setminus L$ regul"ar sein.
+Wäre $L$ regulär, müsste auch $L'\setminus L$ regulär sein.
 Doch $L'\setminus L$ ist die Sprache
 \[
 L'\setminus L
 =
 \{\texttt{0}^n\texttt{1}^n\,|\,n\ge 0\},
 \]
-von der in der Vorlesung gezeigt wurde, dass sie nicht regul"ar
-ist. Dieser Widerspruch zeigt, dass auch $L$ nicht regul"ar sein kann.
+von der in der Vorlesung gezeigt wurde, dass sie nicht regulär
+ist. Dieser Widerspruch zeigt, dass auch $L$ nicht regulär sein kann.
 
 Man kann die Behauptung aber auch direkt mit dem Pumping-Lemma beweisen.
 \ding{182}
-Wir nehmen also an, die Sprache sei regul"ar.
+Wir nehmen also an, die Sprache sei regulär.
 \ding{183}
 Sei $N$ die Pumping Length.
-Jedes gen"ugend lange Wort $x$ der Sprache kann dann geschrieben werden als $uvw$,
-wobei $|uv|\le N$, und alle W"orter $uv^nw\in L$, f"ur alle $n\ge 1$.
+Jedes genügend lange Wort $x$ der Sprache kann dann geschrieben werden als $uvw$,
+wobei $|uv|\le N$, und alle Wörter $uv^nw\in L$, für alle $n\ge 1$.
 Dem Teilwort $v$ entspricht eine Schleife im endlichen Automaten, der
 $L$ akzeptiert.
 
 \ding{184}
-Wir w"ahlen jetzt ein Wort $x=\texttt{0}^N\texttt{1}^{N+b}$.
-Es hat L"ange $2N+b$ und ist f"ur $b>0$ in $L$, es erf"ullt also die
+Wir wählen jetzt ein Wort $x=\texttt{0}^N\texttt{1}^{N+b}$.
+Es hat Länge $2N+b$ und ist für $b>0$ in $L$, es erfüllt also die
 Voraussetzungen des Pumping Lemma.
 \ding{185}
 Also kann es als $x=uvw$ geschrieben werden, wobei dem Teilwort $v$ eine
 Schleife im Graphen des Automaten entspricht.
-Das Wort $v$ enth"alt nur Nullen, da $|uv|\le N$ sein muss.
-Vergr"ossert man $b$, ist der erste Teil des Wortes davon unber"uhrt,
+Das Wort $v$ enthält nur Nullen, da $|uv|\le N$ sein muss.
+Vergrössert man $b$, ist der erste Teil des Wortes davon unberührt,
 es gilt also immer noch die gleiche Aufteilung in $u$ und $v$,
-$w$ wird um einige Einsen l"anger.
+$w$ wird um einige Einsen länger.
 
 \ding{186}
 Wir versuchen jetzt das Wort genau einmal aufzupumpen, also $uv^ky$ mit
-$k=2$ zu bilden m"ochten erreichen, dass dieses Wort nicht mehr in $L$
+$k=2$ zu bilden möchten erreichen, dass dieses Wort nicht mehr in $L$
 ist.
 Da durch das Aufpumpten genau so viele \texttt{0} hinzukommen wie das
 Teilwort $v$ lang ist, das Wort $uv^2w$ beginnt also mit $N+|v|$ Nullen.
-Damit $uv^2w$ nicht mehr in der Sprache ist, m"ussen gleich viele Nullen
+Damit $uv^2w$ nicht mehr in der Sprache ist, müssen gleich viele Nullen
 wie Einsen vorhanden sein, es muss also $N+|v|=N+b$ gelten.
 \begin{center}
 \includeagraphics[]{pl-1.pdf}
 \end{center}
-Wenn man also $b=|v|$ w"ahlt, ist das einmal aufgepumpte Wort nicht
+Wenn man also $b=|v|$ wählt, ist das einmal aufgepumpte Wort nicht
 mehr in $L$, im Widerspruch zur Behauptung des Pumping Lemma.
 
 \ding{187}
-Somit kann $L$ nicht regul"ar sein.
+Somit kann $L$ nicht regulär sein.
 \end{loesung}

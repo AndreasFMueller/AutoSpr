@@ -1,10 +1,10 @@
-Finden Sie einen regul"aren Ausdruck f"ur die Sprache $L$ "uber dem
-Alphabet $\Sigma=\{{\tt 0},{\tt 1}\}$ bestehend aus den W"ortern,
+Finden Sie einen regulären Ausdruck für die Sprache $L$ über dem
+Alphabet $\Sigma=\{{\tt 0},{\tt 1}\}$ bestehend aus den Wörtern,
 die eine ungerade Anzahl {\tt 1} enthalten.
 
 \begin{loesung}
-Diese Sprache ist regul"ar, man kann sofort einen endlichen Automaten
-daf"ur angeben:
+Diese Sprache ist regulär, man kann sofort einen endlichen Automaten
+dafür angeben:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @-1mm {
@@ -16,10 +16,10 @@ daf"ur angeben:
 }
 \]
 Auf diesen entlichen Automaten kann man jetzt den Standardalgorithmus
-anwenden, mit dem man einen "aquivalenten regul"aren Ausdruck
+anwenden, mit dem man einen äquivalenten regulären Ausdruck
 gewinnen kann.
 
-Im ersten Schritt muss man neue Start- und Akzeptierzust"ande 
+Im ersten Schritt muss man neue Start- und Akzeptierzustände 
 konstruieren:
 \[
 \entrymodifiers={++[o][F]}
@@ -34,8 +34,8 @@ konstruieren:
 				&*++[o][F=]{A}
 }
 \]
-Im zweiten Schritt m"ussen die Zwischenzust"ande entfernt werden,
-bis nur noch $S$ und $A$ "ubrig bleiben. Wir beginnen mit $q_0$:
+Im zweiten Schritt müssen die Zwischenzustände entfernt werden,
+bis nur noch $S$ und $A$ übrig bleiben. Wir beginnen mit $q_0$:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @-1mm {
@@ -58,26 +58,26 @@ Jetzt kann auch noch $q_1$ entfernt werden:
 				&*++[o][F=]{A}
 }
 \]
-Der gesuchte regul"are Ausdruck ist also
+Der gesuchte reguläre Ausdruck ist also
 \[
 r={\tt 0}^*{\tt 1} ({\tt 0}|{\tt 1}{\tt 0}^*{\tt 1})^*
 \]
-Eine andere Reihenfolge der Elimination der Zwischenzust"ande f"uhrt zu
-einem gleichwerten regul"aren Ausdruck.
+Eine andere Reihenfolge der Elimination der Zwischenzustände führt zu
+einem gleichwerten regulären Ausdruck.
 
-Der regul"are Ausdruck besagt etwas salop ausgedr"uckt, dass zus"atzliche
-{\tt 1} immer zu zweien hinzugef"ugt werden m"ussen, und dass dabei
-zwischen den {\tt 1} und danach beliebige viele {\tt 0} stehen k"onnen.
-Da {\tt 1} immer zu zweien hinzugef"ugt werden, bleibt die Gesamtzahl
+Der reguläre Ausdruck besagt etwas salop ausgedrückt, dass zusätzliche
+{\tt 1} immer zu zweien hinzugefügt werden müssen, und dass dabei
+zwischen den {\tt 1} und danach beliebige viele {\tt 0} stehen können.
+Da {\tt 1} immer zu zweien hinzugefügt werden, bleibt die Gesamtzahl
 der {\tt 1} unerade.
 \end{loesung}
 
 \begin{bewertung}
-Methode "uber VNEA ({\bf V}) 1 Punkt,
-DEA f"ur die Sprache ({\bf D}) 1 Punkt,
+Methode über VNEA ({\bf V}) 1 Punkt,
+DEA für die Sprache ({\bf D}) 1 Punkt,
 Erweiterung um neuen Start-/Akzeptierzustand ({\bf S}) 1 Punkt,
-Entfernung der Zwischenzust"ande in zwei Schritten ({\bf E}) 2 Punkte,
-Regul"arer Ausdruck ({\bf R}) 1 Punkt.
-Richtige regul"are Ausdr"ucke wurden mit einem Punkt gewertet, selbst wenn
-keine Begr"undung f"ur die Korrektheit des Ausdrucks angegeben war.
+Entfernung der Zwischenzustände in zwei Schritten ({\bf E}) 2 Punkte,
+Regulärer Ausdruck ({\bf R}) 1 Punkt.
+Richtige reguläre Ausdrücke wurden mit einem Punkt gewertet, selbst wenn
+keine Begründung für die Korrektheit des Ausdrucks angegeben war.
 \end{bewertung}

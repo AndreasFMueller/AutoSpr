@@ -4,7 +4,7 @@ geschoben. Dies geschieht auch implizit bei Verwendung einer
 Operationstaste, also einer der Tasten \keys{{$+$}}, \keys{{$-$}},
 \keys{{$\times$}}, \keys{{$\div$}}, die ausserdem die obersten
 beiden Elemente auf dem Stack durch das Resultat der Rechenoperation 
-ersetzt. Die Tastenfolgen, die dazu f"uhren, dass alle Zahlen auf dem 
+ersetzt. Die Tastenfolgen, die dazu führen, dass alle Zahlen auf dem 
 Stack verarbeitet sind, bilden eine Sprache.
 
 \begin{teilaufgaben}
@@ -16,10 +16,10 @@ in Chomsky-Normalform.
 \end{teilaufgaben}
 
 \begin{hinweis}
-Nehmen Sie zur Vereinfachung an, dass der Taschenrechner nur f"ur ganze
-Zahlen gebaut ist. K"urzen Sie ganze Zahlen in der Grammatik durch
-die Variable \textsl{zahl} ab, und verzichten sie darauf, die Aufl"osung
-dieser Variable in der Grammatik durchzuf"uhren.
+Nehmen Sie zur Vereinfachung an, dass der Taschenrechner nur für ganze
+Zahlen gebaut ist. Kürzen Sie ganze Zahlen in der Grammatik durch
+die Variable \textsl{zahl} ab, und verzichten sie darauf, die Auflösung
+dieser Variable in der Grammatik durchzuführen.
 \end{hinweis}
 
 \begin{loesung}
@@ -46,7 +46,7 @@ S&\rightarrow S \; S \; \textsl{operationstaste}
 \keys{{$\div$}}
 \\
 \end{align*}
-Darin steht die Variable $S$ f"ur eine Folge von Tastendr"ucken, die
+Darin steht die Variable $S$ für eine Folge von Tastendrücken, die
 alle Zahlen auf dem Stack verarbeitet.
 \item
 Die Grammatik hat nicht Chomsky-Normalform, aber sie ist leicht in
@@ -72,7 +72,7 @@ S&\rightarrow S \; S \; \textsl{operationstaste}
 \;|\;
 \keys{{$\div$}}
 \end{align*}
-erf"ullt. Diese Grammatik hat aber eine Unit-Rule $S_0\to S$, die als n"achstes
+erfüllt. Diese Grammatik hat aber eine Unit-Rule $S_0\to S$, die als nächstes
 eliminiert werden muss:
 \begin{align*}
 \color{red}S_0&\color{red}\rightarrow S \; S \; \textsl{operationstaste}
@@ -131,7 +131,7 @@ S&\rightarrow S \; S \; \textsl{operationstaste}
 \\
 \color{red}E&\color{red}\rightarrow\keys{ENTER}
 \end{align*}
-Die Folgen von mehr als zwei Variablen auf der rechten Seite k"onnen jetzt
+Die Folgen von mehr als zwei Variablen auf der rechten Seite können jetzt
 ebenfalls eliminiert werden:
 \begin{align*}
 S_0&\rightarrow {\color{red}A_1} \; \textsl{operationstaste}
@@ -179,15 +179,15 @@ Damit hat die Grammatik Chomsky-Normalform.
 \begin{bewertung}
 \begin{teilaufgaben}
 \item
-Sprachen, die mit einem Stackautomaten verarbeitet werden k"onnen, sind
+Sprachen, die mit einem Stackautomaten verarbeitet werden können, sind
 kontextfrei ({\bf A}) 1 Punkt,
 \item
-Grammatik erlaubt beliebige Berechnungen zu verkn"upfen wie in der
+Grammatik erlaubt beliebige Berechnungen zu verknüpfen wie in der
 Regel $S\to S\;S\;\textsl{operationstaste}$ ({\bf R}) 1 Punkt,
-Regeln f"ur Verkn"upfung von Zahlen mit Ausdr"ucken ({\bf ZS/SZ}) 1 Punkt,
-Regel f"ur Verkn"upfung zweier Zahlen ({\bf 2}) 1 Punkt,
+Regeln für Verknüpfung von Zahlen mit Ausdrücken ({\bf ZS/SZ}) 1 Punkt,
+Regel für Verknüpfung zweier Zahlen ({\bf 2}) 1 Punkt,
 \item
-Unit Rule entfernt ({\bf U}) 1 Punkt, Aufl"osung von Folgen mit mehr
+Unit Rule entfernt ({\bf U}) 1 Punkt, Auflösung von Folgen mit mehr
 als 2 Variablen ({\bf F}) 1 Punkt.
 \end{teilaufgaben}
 \end{bewertung}

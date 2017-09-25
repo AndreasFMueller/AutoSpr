@@ -1,51 +1,51 @@
-Ein etwas primitives Daten"ubermittlungsprotokoll verwendet
-das Zeichen \texttt{/} als Delimiter, dazwischen k"onnen Messages beliebiger
-L"ange stehen, die aber das Zeichen \texttt{/} nicht verwenden d"urfen.
+Ein etwas primitives Datenübermittlungsprotokoll verwendet
+das Zeichen \texttt{/} als Delimiter, dazwischen können Messages beliebiger
+Länge stehen, die aber das Zeichen \texttt{/} nicht verwenden dürfen.
 Die Erfahrung hat gezeigt, dass es sehr selten vorkommt, dass einzelne
-Zeichen nicht "ubertragen werden, es fehlen immer gleich mindestens drei
-Zeichen. Daher kam jemand auf die Idee die "Ubertragung dadurch zu "uberpr"ufen,
-dass man jeder Message einen String von \texttt{x}-Zeichen anh"angt, der
+Zeichen nicht übertragen werden, es fehlen immer gleich mindestens drei
+Zeichen. Daher kam jemand auf die Idee die "Ubertragung dadurch zu überprüfen,
+dass man jeder Message einen String von \texttt{x}-Zeichen anhängt, der
 ein Drittel so lange ist wie die Message:
 \begin{align*}
 &\texttt{/}\underbrace{\texttt{wasjetzt}}_8\texttt{/}\underbrace{\texttt{xx}}_2\texttt{/}
 &\texttt{/}\underbrace{\texttt{noch eine etwas laengere message}}_{32}\texttt{/}\underbrace{\texttt{xxxxxxxxxx}}_{10}\texttt{/}
 \end{align*}
-Bei der Bestimmung der L"ange der Folge von \texttt{x}-Zeichen wird ganzzahlige
+Bei der Bestimmung der Länge der Folge von \texttt{x}-Zeichen wird ganzzahlige
 Division verwendet, also $\lfloor 8 / 3\rfloor = 2$ und $\lfloor 32 / 3 \rfloor = 10$.
-Ihre Aufgabe ist, einen regul"aren Ausdruck zu formulieren, der korrekte
+Ihre Aufgabe ist, einen regulären Ausdruck zu formulieren, der korrekte
 Messages von fehlerhaften unterscheidet.
 
 \begin{loesung}
-So einen regul"aren Ausdruck kann es nicht geben, denn die Sprache 
+So einen regulären Ausdruck kann es nicht geben, denn die Sprache 
 \[
 \{ \texttt{/}w\texttt{/}s\texttt{/}\, |\, w\in \Sigma^*, s\in\{\texttt{x}\}^*,
 |s| = \lfloor |w|/3\rfloor
 \}
 \]
-ist nicht regul"ar, wie wir mit dem Pumping-Lemma beweisen k"onnen.
+ist nicht regulär, wie wir mit dem Pumping-Lemma beweisen können.
 
-Nehmen wir an, die Sprache $L$ sei regul"ar. Nach dem Pumping-Lemma gibt
+Nehmen wir an, die Sprache $L$ sei regulär. Nach dem Pumping-Lemma gibt
 es dann die Pumping Length $N$. Wir konstruieren jetzt ein Wort in $L$:
 \[
 w=
 \texttt{/a}^{3N}\texttt{/x}^N\texttt{/}
 \]
-Das Pumping-Lemma sagt ausserdem, dass $w$ zerlegt werden k"onnen muss in
+Das Pumping-Lemma sagt ausserdem, dass $w$ zerlegt werden können muss in
 drei Teile $w=xyz$ so, dass $|xy|\le N$, $|y|>0$ und alle aufgepumpten
-W"orter $xy^kz$ sollten wieder in $L$ liegen. Dies ist nur m"oglich,
-wenn $x$ und $y$ vollst"andig im Teile $\texttt{a}^{3N}$ enthalten ist.
-Beim Aufpumpen wird $xy^kz$ also zus"atzlick $k|y|$ Zeichen \texttt{a}
-enthalten, bei dreimaligem Aufpumpen "andert sich also die Zahl der 
-\texttt{a}s dermassen, dass auch die Zahl der \texttt{x} vergr"ossert
-werden m"usste, um wieder ein Wort in der Sprache zu bekommen. Die Zahl
-der \texttt{x} "andert aber beim Pumpen nie, also sind nicht mehr alle
-aufgepumpten W"orter in $L$. Dieser Widerspruch zeigt, dass $L$ nicht
-regul"ar sein kann.
+Wörter $xy^kz$ sollten wieder in $L$ liegen. Dies ist nur möglich,
+wenn $x$ und $y$ vollständig im Teile $\texttt{a}^{3N}$ enthalten ist.
+Beim Aufpumpen wird $xy^kz$ also zusätzlick $k|y|$ Zeichen \texttt{a}
+enthalten, bei dreimaligem Aufpumpen ändert sich also die Zahl der 
+\texttt{a}s dermassen, dass auch die Zahl der \texttt{x} vergrössert
+werden müsste, um wieder ein Wort in der Sprache zu bekommen. Die Zahl
+der \texttt{x} ändert aber beim Pumpen nie, also sind nicht mehr alle
+aufgepumpten Wörter in $L$. Dieser Widerspruch zeigt, dass $L$ nicht
+regulär sein kann.
 \end{loesung}
 
 \begin{bewertung}
 Pumping Lemma (\textbf{L}) 1 Punkt, Pumping Length (\textbf{N}) 1 Punkt,
 geeignetes Wort (\textbf{W}) 1 Punkt, Zerlegung (\textbf{Z}) 1 Punkt,
 Widerspruch beim Pumpen (\textbf{P}) 1 Punkt,
-Schlussfolgerung nicht regul"ar (\textbf{R}) 1 Punkt.
+Schlussfolgerung nicht regulär (\textbf{R}) 1 Punkt.
 \end{bewertung}

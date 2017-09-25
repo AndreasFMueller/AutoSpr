@@ -18,13 +18,13 @@ für Ihre Konstruktion verwenden.
 \end{hinweis}
 
 \begin{loesung}
-Zu einem Sudoku-R"atsel konstruieren wir einen Graphen wie folgt:
-Jedes Feld des Sudoku-R"atsel wird zu einem Vertex des Graphen.
-Der Graph erh"alt eine Kante f"ur jedes Paar von Feldern, die nicht
-das gleiche Zeichen enthalten d"urfen, also wenn die beiden Felder in der
+Zu einem Sudoku-Rätsel konstruieren wir einen Graphen wie folgt:
+Jedes Feld des Sudoku-Rätsel wird zu einem Vertex des Graphen.
+Der Graph erhält eine Kante für jedes Paar von Feldern, die nicht
+das gleiche Zeichen enthalten dürfen, also wenn die beiden Felder in der
 gleichen Zeile, der gleichen Spalte oder dem gleichen Unterfeld liegen.
 
-F"ur ein $2^2\times 2^2$-Sudoku wie das in Abbildung~\ref{70000028:sudoku}
+Für ein $2^2\times 2^2$-Sudoku wie das in Abbildung~\ref{70000028:sudoku}
 ergibt sich so der Graph:
 \begin{equation}
 \entrymodifiers={++[o][F]}
@@ -86,14 +86,14 @@ ergibt sich so der Graph:
 \label{70000028:graph}
 \end{equation}
 
-Ausserdem m"ussen wir die Vorgaben abbilden. Dazu konstruieren wir noch
-zus"atzliche Vertices, die wir mit den Zeichen aus $\Sigma$ anschreiben.
+Ausserdem müssen wir die Vorgaben abbilden. Dazu konstruieren wir noch
+zusätzliche Vertices, die wir mit den Zeichen aus $\Sigma$ anschreiben.
 Wir nennen diese Vertizes die {\em Zeichenvertices}.
 Die Vorgabefelder werden mit all den Zeichenvertices verbunden, die verschieden
 sind vom Vorgabezeichen.
-F"ur das $2^2\times 2^2$-Sudoku aus Abbildung \ref{70000028:sudoku}
-m"ussen wir zum Graphen (\ref{70000028:graph}) noch die folgenden Kanten
-hinzuf"ugen:
+Für das $2^2\times 2^2$-Sudoku aus Abbildung \ref{70000028:sudoku}
+müssen wir zum Graphen (\ref{70000028:graph}) noch die folgenden Kanten
+hinzufügen:
 \begin{equation}
 \entrymodifiers={++[o][F]}
 \xymatrix {
@@ -192,25 +192,25 @@ Diese Verbindungen sind der Übersichtlichkeit halber nicht eingezeichnet.
 
 Die Vereinigung der Kanten in (\ref{70000028:graph}) und
 (\ref{70000028:vorgaben}) liefert den Graphen, der dem gegebenen
-Sudoku-R"atsel zugeordnet wird.
-F"ur die Zahl der Farben setzen wir $k=|\Sigma|$, im Beispiel des
+Sudoku-Rätsel zugeordnet wird.
+Für die Zahl der Farben setzen wir $k=|\Sigma|$, im Beispiel des
 $2^2\times 2^2$-Sudokus aus Abbildung~\ref{70000028:sudoku} ist $k=4$.
 
-Ist das Sudoku-R"atsel l"osbar, kann man man eine beliebige
+Ist das Sudoku-Rätsel lösbar, kann man man eine beliebige
 Zuordnung von Farben zu den einzelnen Zeichen von $\Sigma$ verwenden,
-um die Vertizes des Graphen einzuf"arben. 
+um die Vertizes des Graphen einzufärben. 
 
-Ist umgekehrt der konstruierte Graph mit $k$ Farben einf"arbbar, dann kann man
+Ist umgekehrt der konstruierte Graph mit $k$ Farben einfärbbar, dann kann man
 die Farben der Zeichen-Vertizes verwenden, um allen anderen Vertizes
 ebenfalls ein Zeichen zuzuordnen. Diese Zeichenbelegung ist automatisch
-eine L"osung. Die Kanten innerhalb des Sudoku-Feldes sorgen daf"ur, dass
+eine Lösung. Die Kanten innerhalb des Sudoku-Feldes sorgen dafür, dass
 die Sudoku-Regeln eingehalten werden, die Kanten zu den Zeichen-Vertizes
-sorgen daf"ur, dass die Vorgaben erf"ullt sind.
+sorgen dafür, dass die Vorgaben erfüllt sind.
 
 Wir haben damit gezeigt, dass der konstruierte Graph genau dann mit
-$k$ Farben einf"arbbar ist, wenn das Sudoku-R"atsel l"osbar ist. 
-Ausserdem ist der Aufwand f"ur die Konstruktion des Graphen von der
-Gr"ossenordnung des urspr"unglichen Sudoku, also $O(n)$. Die konstruierte
+$k$ Farben einfärbbar ist, wenn das Sudoku-Rätsel lösbar ist. 
+Ausserdem ist der Aufwand für die Konstruktion des Graphen von der
+Grössenordnung des ursprünglichen Sudoku, also $O(n)$. Die konstruierte
 Reduktion ist also sogar eine polynomielle Reduktion.
 \end{loesung}
 

@@ -9,64 +9,64 @@ bzw.~$M_2$):
 \end{teilaufgaben}
 
 \begin{loesung}
-Wir m"ussen eine Turing Maschine angeben, die die entsprechende
+Wir müssen eine Turing Maschine angeben, die die entsprechende
 Sprache erkennen kann.
-Dazu k"onnen im Prinzip die gleichen Ideen verwendet werden, wie sie
-zur L"osung von Aufgabe~\ref{60000005} verwendet wurden.
+Dazu können im Prinzip die gleichen Ideen verwendet werden, wie sie
+zur Lösung von Aufgabe~\ref{60000005} verwendet wurden.
 Allerdings ist jetzt nicht mehr sichergestellt, dass der Aufruf
-der Funktionen \texttt{l1} oder \texttt{l2} je zur"uckkehrt.
+der Funktionen \texttt{l1} oder \texttt{l2} je zurückkehrt.
 Statt die Funktionen nacheinander aufzurufen, kann man aber in allen
-Algorithmen alle Aufrufe parallel ausf"uhren, und die Threads abbrechen,
-sobald gen"ugend Resultate f"ur eine positive Antwort gefunden worden
+Algorithmen alle Aufrufe parallel ausführen, und die Threads abbrechen,
+sobald genügend Resultate für eine positive Antwort gefunden worden
 sind. Im schlimmsten Fall wird kein Thread je fertig, dann ist das
 Inputwort aber auch nicht akzeptabel.
 
-Im Detail kann man dies f"ur Turing-Maschinen auch wie folgt
+Im Detail kann man dies für Turing-Maschinen auch wie folgt
 beschreiben.
 \begin{teilaufgaben}
 \item
-Wir k"onnen nicht einfach beide Turing Maschinen nach einander
-auf dem Input laufen lassen, da die erste ja nicht terminieren k"onnte und
-somit verunm"oglichen k"onnte, dass die zweite das Wort akzeptieren kann.
-Wir konstruieren daher eine Turing-Maschine mit zwei B"andern, welche
+Wir können nicht einfach beide Turing Maschinen nach einander
+auf dem Input laufen lassen, da die erste ja nicht terminieren könnte und
+somit verunmöglichen könnte, dass die zweite das Wort akzeptieren kann.
+Wir konstruieren daher eine Turing-Maschine mit zwei Bändern, welche
 beide mit dem Input-Wort initialisiert werden.
 In jedem Schritt der Maschine wird auf Band 1 ein Schritt von $M_1$
-ausgef"uhrt, und auf Band 2 ein Schritt von $M_2$.
+ausgeführt, und auf Band 2 ein Schritt von $M_2$.
 Die Maschine akzeptiert, wenn eine der Teilmaschinen
 akzeptiert.
 
 In einer modernen Turingmaschine, auch bekannt unter der Bezeichnung
-Computer k"onnte man die Parallelit"at auch durch zwei parallele
-Prozesse realisieren, dann w"urde das Betriebssystem die Umschaltung
-zwischen den beiden Prozessen "ubernehmen.
+Computer könnte man die Parallelität auch durch zwei parallele
+Prozesse realisieren, dann würde das Betriebssystem die Umschaltung
+zwischen den beiden Prozessen übernehmen.
 
-In Java k"onnte man das realisieren, indem man zwei Threads startet,
-in jedem Thread wird eine der Turingmaschinen ausgef"uhrt.
+In Java könnte man das realisieren, indem man zwei Threads startet,
+in jedem Thread wird eine der Turingmaschinen ausgeführt.
 Sobald einer der Threads terminiert, kann der andere ``abgeschossen'' werden,
 das Resultat steht ja dann fest.
 \item
 Um zu verhindern, dass die Turing Maschine auf einem Wort der
-Sprachen nicht h"alt, lassen wir $M_1$ und $M_2$ jeweils nur f"ur eine
-beschr"ankte Anzahl Schritte $l$ laufen.
-F"ur jede Berechnungsl"ange $l$ und jede Aufteilung des Wortes in zwei
-Teilw"orter $w=w_1w_2$ lassen wir auf zwei Tapes parallel die
-Maschinen $M_1$ und $M_2$ auf dem Input $w_1$ bzw.~$w_2$ w"ahrend
+Sprachen nicht hält, lassen wir $M_1$ und $M_2$ jeweils nur für eine
+beschränkte Anzahl Schritte $l$ laufen.
+Für jede Berechnungslänge $l$ und jede Aufteilung des Wortes in zwei
+Teilwörter $w=w_1w_2$ lassen wir auf zwei Tapes parallel die
+Maschinen $M_1$ und $M_2$ auf dem Input $w_1$ bzw.~$w_2$ während
 maximal $l$ Schritten laufen.
 Akzeptieren beide, akzeptieren wir das Wort.
-Falls nicht, probieren wir die n"achste der $|w|+1$ Aufteilungen,
-oder, falls alle Aufteilungen bereits probiert wurden, die n"achste
-Berechnungsl"ange $l+1$.
+Falls nicht, probieren wir die nächste der $|w|+1$ Aufteilungen,
+oder, falls alle Aufteilungen bereits probiert wurden, die nächste
+Berechnungslänge $l+1$.
 \item
-F"ur jede Berechnungsl"ange $l$ und
-jede Aufteilung eines Wortes $w$ in Teilst"ucke $x_1,\dots,x_n$
+Für jede Berechnungslänge $l$ und
+jede Aufteilung eines Wortes $w$ in Teilstücke $x_1,\dots,x_n$
 lassen
-wir auf jedem Teilst"uck die Turingmaschine w"ahrend $l$ Schritten
+wir auf jedem Teilstück die Turingmaschine während $l$ Schritten
 laufen, die
-$L_1$ erkennt. Akzeptiert sie auf allen Teilst"ucken, akzeptieren wir
+$L_1$ erkennt. Akzeptiert sie auf allen Teilstücken, akzeptieren wir
 das Wort.
-Falls nicht, versuchen wir die n"achste Aufteilung, oder falls
-bereits alle Aufteilungen durchprobiert worden sind, die n"achste
-Berechnungsl"ange $l$.
+Falls nicht, versuchen wir die nächste Aufteilung, oder falls
+bereits alle Aufteilungen durchprobiert worden sind, die nächste
+Berechnungslänge $l$.
 \item Wir verwenden eine Turing-Maschine analog zu der in Teilaufgaben a)
 konstruierten, akzeptieren aber erst, wenn beide Teilmaschinen
 $M_1$ und $M_2$ akzeptiert haben.

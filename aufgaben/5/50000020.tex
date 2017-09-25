@@ -1,10 +1,10 @@
 Sei $\Sigma=\{\texttt{a},\texttt{b},\texttt{A},\texttt{B},\blank\}$
-das Alphabet, die W"orter der Sprache $L$ "uber $\Sigma$ bestehen
+das Alphabet, die Wörter der Sprache $L$ über $\Sigma$ bestehen
 jeweils aus zwei gleich langen Teilen getrennt von einem Blank.
 Die einzelnen Teile enthalten keine Blanks,
 sie enthalten die gleichen Buchstaben, einzige die
 Gross-/Kleinschreibung hat gewechselt.
-Es geh"oren also zu $L$ zum Beispiel
+Es gehören also zu $L$ zum Beispiel
 \[
 \texttt{aaa- AAA},\quad
 \texttt{aBbA-AbBa},\quad
@@ -20,11 +20,11 @@ aber nicht
 Finden Sie das Zustandsdiagramm einer Turing-Maschine, die $L$ erkennt.
 
 \begin{loesung}
-Wir verwenden eine zus"atzliches Alphabet-Zeichen \texttt{x}, mit welchem
-wir diejenigen Zeichen "uberschreiben, die wir schon gepr"uft haben.
+Wir verwenden eine zusätzliches Alphabet-Zeichen \texttt{x}, mit welchem
+wir diejenigen Zeichen überschreiben, die wir schon geprüft haben.
 
 Wir beginnen beim ersten Zeichen, welches wir uns merken, und fahren
-dann bis zum n"achsten Blank und eventuell danach folgende \texttt{x}
+dann bis zum nächsten Blank und eventuell danach folgende \texttt{x}
 bis wir einen Buchstaben finden.
 Dieser muss in der anderen Schreibung sein wie der, mit dem wir
 gestartet sind.
@@ -48,9 +48,9 @@ Wenn der erste Buchstabe ein \texttt{a} ist, dann suchen wir ein passends
 					&{q_5}
 }
 \]
-Dabei sind "Uberg"ange $\texttt{.}\to\texttt{.}$ als ``f"ur alle anderen
+Dabei sind "Ubergänge $\texttt{.}\to\texttt{.}$ als ``für alle anderen
 Zeichen'' zu verstehen.
-F"ur die Buchstaben \texttt{b}, \texttt{A} und \texttt{B} m"ussen wir dasselbe
+Für die Buchstaben \texttt{b}, \texttt{A} und \texttt{B} müssen wir dasselbe
 machen, der hintere Teil sogar identisch. Wir bekommen
 \[
 \entrymodifiers={++[o][F]}
@@ -103,9 +103,9 @@ machen, der hintere Teil sogar identisch. Wir bekommen
 			\ar@(ur,ul)_{.\to.,L}
 }
 \]
-Darin haben wir am Ende noch die Pr"ufung angeh"angt, dass im zweiten Teil
+Darin haben wir am Ende noch die Prüfung angehängt, dass im zweiten Teil
 keine weiteren Buchstaben vorkommen.
-Damit haben wir eine Turing-Maschine f"ur das gestellte Problem gefunden.
+Damit haben wir eine Turing-Maschine für das gestellte Problem gefunden.
 \end{loesung}
 
 \begin{bewertung}

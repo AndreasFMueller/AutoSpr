@@ -1,13 +1,13 @@
-Konstruieren Sie ein bin"ares Additionsprogramm f"ur eine geeignet
+Konstruieren Sie ein binäres Additionsprogramm für eine geeignet
 ausgebaute Turing-Maschine, welches Laufzeit
 $O(n)$ hat, wobei $n$ die Anzahl Stellen der Summanden ist.
 Warum ist Ihre Maschine so viel schneller als die in der Vorlesung
 im Video gezeigte Maschine?
 
 \begin{loesung}
-Wir verwenden eine Maschine mit drei B"andern. Zun"achst schreiben
+Wir verwenden eine Maschine mit drei Bändern. Zunächst schreiben
 wir den zweiten Summanden auf das zweite Band, was in $O(n)$
-Schritten durchgef"uhrt werden kann.
+Schritten durchgeführt werden kann.
 Dann beginnt die
 eigentlich Addition, wir lesen den ersten Summanden vom ersten Band,
 beginnend beim niederwertigsten Bit, und den zweiten Summanden
@@ -15,8 +15,8 @@ vom zweiten Band, ebenfalls beginnend beim niederwertigsten Bit.
 Die Summe wird jeweils auf Band 3 geschrieben. Nach $O(n)$
 solchen Operationen steht das Resultat auf Band 3.
 
-Nach einem in der Vorlesung bewiesenen Satz ben"otigt
-die Simulation dieser Maschine mit drei B"andern auf einer Standardmaschine
+Nach einem in der Vorlesung bewiesenen Satz benötigt
+die Simulation dieser Maschine mit drei Bändern auf einer Standardmaschine
 die Laufzeit $O(n^2)$, was sich mit der Laufzeit der Maschine
 aus der Vorlesung deckt.
 \end{loesung}

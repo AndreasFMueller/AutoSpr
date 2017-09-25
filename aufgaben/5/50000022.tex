@@ -29,45 +29,45 @@ $\{\texttt{0},\texttt{1}\}$ und mit dem folgenden Zustandsdiagramm
 \]
 \begin{teilaufgaben}
 \item
-Welche W"orter werden von dieser Maschine verworfen?
+Welche Wörter werden von dieser Maschine verworfen?
 \item
-Finden sie die zwei k"urzesten W"orter, die von dieser Maschine
+Finden sie die zwei kürzesten Wörter, die von dieser Maschine
 akzeptiert werden.
 \item
-Gibt es W"orter, auf denen die Maschine nicht anh"alt?
+Gibt es Wörter, auf denen die Maschine nicht anhält?
 \item
-Ist die von dieser Maschine akzeptierte Sprache regul"ar?
+Ist die von dieser Maschine akzeptierte Sprache regulär?
 \end{teilaufgaben}
 
 \begin{loesung}
 \begin{teilaufgaben}
 \item
-Das leere Wort f"uhrt die Maschine unmittelbar in den Zustand
+Das leere Wort führt die Maschine unmittelbar in den Zustand
 $q_{\text{reject}}$.
 \item
-Der k"urzeste Weg zum Zustand $q_{\text{accept}}$ f"uhrt auf
-direktem Weg von $q_0$ "uber $q_1$ oder $q_2$ nach $q_{\text{accept}}$.
-Er wird genommen, wenn auf dem Band die W"orter \texttt{01} bzw.~\texttt{10}
+Der kürzeste Weg zum Zustand $q_{\text{accept}}$ führt auf
+direktem Weg von $q_0$ über $q_1$ oder $q_2$ nach $q_{\text{accept}}$.
+Er wird genommen, wenn auf dem Band die Wörter \texttt{01} bzw.~\texttt{10}
 stehen.
 Insbesondere folgt auch, dass ein Wort nur akzeptiert werden kann, wenn es
-verschiedene Zeichen enth"alt.
+verschiedene Zeichen enthält.
 \item
-Die Maschine kann nur dann nicht anhalten, wenn sie den Weg "uber den
-Zustand $q_3$ zur"uck zum Zustand $q_0$ nimmt.
+Die Maschine kann nur dann nicht anhalten, wenn sie den Weg über den
+Zustand $q_3$ zurück zum Zustand $q_0$ nimmt.
 Dazu darf sie von $q_1$ aus niemals ein Zeichen \texttt{1} treffen
 oder von $q_2$ aus niemals ein Zeichen \texttt{0}, in beiden
-F"allen besteht das Wort also nur aus einer Art Zeichen.
+Fällen besteht das Wort also nur aus einer Art Zeichen.
 Im Zustand $q_3$ werden diese Zeichen durch das entgegengesetzte Zeichen
-ersetzt, so dass bei der Ankunft im Zustand $q_0$ ein urspr"unglich aus
+ersetzt, so dass bei der Ankunft im Zustand $q_0$ ein ursprünglich aus
 Einsen bestehendes Wort durch ein gleichlanges Wort aus Nullen ersetzt 
 worden ist und umgekehrt.
-Auf W"orter aus nur einer Art von Zeichen terminiert die Maschine also nicht.
+Auf Wörter aus nur einer Art von Zeichen terminiert die Maschine also nicht.
 \item
-Die Sprache akzeptiert genau die W"orter, die verschiedene Zeichen enthalten.
-Nicht akzeptiert werden die W"orter die auf den regul"aren Ausdruck
+Die Sprache akzeptiert genau die Wörter, die verschiedene Zeichen enthalten.
+Nicht akzeptiert werden die Wörter die auf den regulären Ausdruck
 \texttt{0*|1*} passen.
-Da das Komplement einer regul"aren Sprache wieder regul"ar ist, ist
-die akzeptierte Sprache ebenfalss regul"ar.
+Da das Komplement einer regulären Sprache wieder regulär ist, ist
+die akzeptierte Sprache ebenfalss regulär.
 \qedhere
 \end{teilaufgaben}
 \end{loesung}
@@ -75,11 +75,11 @@ die akzeptierte Sprache ebenfalss regul"ar.
 
 \begin{bewertung}
 Leeres Wort ({\bf E}) 1 Punkt,
-K"urzeste W"orter ({\bf K}) 1 Punkt,
-Begr"undung f"ur W"orter, auf denen die Maschine nicht anh"alt ({\bf B})
+Kürzeste Wörter ({\bf K}) 1 Punkt,
+Begründung für Wörter, auf denen die Maschine nicht anhält ({\bf B})
 1 Punkt,
-Beschreibung der W"orter, auf denen die Sprache nicht h"alt ({\bf H}) 1 Punkt,
+Beschreibung der Wörter, auf denen die Sprache nicht hält ({\bf H}) 1 Punkt,
 Sprache der Maschine ({\bf S}) 1 Punkt,
-Regularit"at ({\bf R}) 1 Punkt.
+Regularität ({\bf R}) 1 Punkt.
 \end{bewertung}
 

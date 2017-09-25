@@ -1,30 +1,30 @@
-Zeigen Sie, dass aus $P=NP$ folgen w"urde, dass es einen Algorithmus
+Zeigen Sie, dass aus $P=NP$ folgen würde, dass es einen Algorithmus
 gibt, der in einem beliebigen ungerichteten Graphen eine Clique
-maximaler Gr"osse in polynomieller Zeit finden kann.
+maximaler Grösse in polynomieller Zeit finden kann.
 
 \begin{hinweis}
 Das in der Vorlesung besprochene Cliquenproblem besteht
 darin, eine $k$-Clique zu finden, hier muss dagegen eine Clique maximaler
-Gr"osse gefunden werden, es braucht hier also noch einen weiteren
+Grösse gefunden werden, es braucht hier also noch einen weiteren
 Schritt.
 \end{hinweis}
 
 \begin{loesung}
-Es ist bekannt, dass das Finden einer $k$-Clique ein NP-vollst"andiges
-Problem ist. Falls $P=NP$ g"abe es einen polynomiellen Algorithmus, um
+Es ist bekannt, dass das Finden einer $k$-Clique ein NP-vollständiges
+Problem ist. Falls $P=NP$ gäbe es einen polynomiellen Algorithmus, um
 eine $k$-Clique zu finden.
 
 In der Aufgaben wird jedoch verlangt, eine Clique maximaler
-Gr"osse zu finden. Wir verwenden den eben gefunden polynomiellen Algorithmus,
-um einen polynomiellen Algorithmus f"ur das Problem eine maximale Clique
+Grösse zu finden. Wir verwenden den eben gefunden polynomiellen Algorithmus,
+um einen polynomiellen Algorithmus für das Problem eine maximale Clique
 zu finden.
 Sei $m$ die Anzahl der Knoten des Graphen $G$.
 \begin{enumerate}
-\item F"ur alle $k$ beginnend bei $m$ bis hinunter zu $0$ f"uhre Schritt 2 aus:
+\item Für alle $k$ beginnend bei $m$ bis hinunter zu $0$ führe Schritt 2 aus:
 \item Verwende $M$ um eine $k$-Clique in $G$ zu finden. Falls eine
-gefunden wird, gib sie als Resultat zur"uck.
+gefunden wird, gib sie als Resultat zurück.
 \end{enumerate}
-Dieser Algorithmus f"uhrt im schlimmsten Fall $m$ mal den Algorithmus zum
+Dieser Algorithmus führt im schlimmsten Fall $m$ mal den Algorithmus zum
 Finden einer $k$-Clique aus, welcher polynomielle Laufzeit hat, der neue
 Algorithmus hat also ebenfalls polynomielle Laufzeit.
 \end{loesung}

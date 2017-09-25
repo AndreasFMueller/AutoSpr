@@ -42,7 +42,7 @@ Gegeben ist die Turingmaschine mit dem Zustandsdiagramm
 					\texttt{x}\to\texttt{x},R}}
 }
 \]
-"uber dem Alphabet
+über dem Alphabet
 $\Sigma = \{\texttt{0},\texttt{1}\}$
 und dem Bandalphabet
 $\Gamma = \{\texttt{0},\texttt{1},\texttt{x},\blank\}$.
@@ -50,12 +50,12 @@ $\Gamma = \{\texttt{0},\texttt{1},\texttt{x},\blank\}$.
 \begin{teilaufgaben}
 \item Wird das Wort \texttt{101} akzeptiert?
 \item Wird das Wort \texttt{0110} akzeptiert?
-\item Falls das Inputwort auf dem Band ein $\blank$ enth"alt, kann der Teil
+\item Falls das Inputwort auf dem Band ein $\blank$ enthält, kann der Teil
 des Inputwortes 
 rechts vom $\blank$ einen Einfluss darauf haben, ob das Wort akzeptiert
 wird?
 \item
-Es wird behauptet, dass die Maschine alle W"orter
+Es wird behauptet, dass die Maschine alle Wörter
 $w$ mit $|w|_{\texttt{0}}=|w|_{\texttt{1}}$
 akzeptiert.
 Ist dies korrekt?
@@ -109,22 +109,22 @@ q_{\text{accept}} &  \blank&   x&   x&   x&   x&  \blank&\r\blank\\
 \end{center}
 Das Wort \texttt{0110} wird also akzeptiert.
 \item
-Zun"achst ist festzuhalten, dass $\Sigma$ das Zeichen $\blank$ nicht enth"alt,
+Zunächst ist festzuhalten, dass $\Sigma$ das Zeichen $\blank$ nicht enthält,
 dass diese hypothetische Situation also normalerweise nicht auftritt.
 Leerzeichen zeigen also immer an, dass man auf einen Teil des Bandes
 gestossen ist, der nicht vom Input-Wort initialisiert worden ist.
 Es geht also um die hypothetische Situation, dass man im Input $\blank$-Zeichen
-zul"asst, und man m"ochte wissen, ob wie die Maschine damit umgeht.
+zulässt, und man möchte wissen, ob wie die Maschine damit umgeht.
 
-Das erste $\blank$-Zeichen rechts vom Wortanfang kann nur durch die "Uberg"ange 
+Das erste $\blank$-Zeichen rechts vom Wortanfang kann nur durch die "Ubergänge 
 von $q_1$ nach $q_{\text{reject}}$
 und
 von $q_2$ nach $q_{\text{reject}}$
-"uberschritten werden.
-Da die Maschine dann aber anh"alt, wird der nachfolgende Teil des Bandes nie
+überschritten werden.
+Da die Maschine dann aber anhält, wird der nachfolgende Teil des Bandes nie
 gelesen, und kann daher auch den Ausgang nicht beeinflussen.
 \item
-Die Turingmaschine "uberschreibt \texttt{0} und \texttt{1} paarweise mit
+Die Turingmaschine überschreibt \texttt{0} und \texttt{1} paarweise mit
 \texttt{x} und akzeptiert, wenn am Schluss nur \texttt{x} dastehen.
 Die akzeptierte Sprache ist daher
 \[
@@ -137,8 +137,8 @@ L=\{ w\in\Sigma^* \;|\; |w|_{\texttt{0}}=|w|_{\texttt{1}}\}.
 Teilaufgabe a) ({\bf A}) 1 Punkt,
 Teilaufgabe b) ({\bf B}) 1 Punkt,
 Teilaufgabe c): korrekte Antwort ($\textbf{C}_a$) 1 Punkt,
-Begr"undung ($\textbf{C}_b$) 1 Punkt,
+Begründung ($\textbf{C}_b$) 1 Punkt,
 Teilaufgabe d): korrekte Antwort ($\textbf{D}_a$) 1 Punkt,
-Begr"undung ($\textbf{D}_b$) 1 Punkt.
+Begründung ($\textbf{D}_b$) 1 Punkt.
 \end{bewertung}
 

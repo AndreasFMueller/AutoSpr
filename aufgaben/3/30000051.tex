@@ -1,35 +1,35 @@
 Sei $\Sigma=\{0,1\}$ und 
 \[
-L=\{ w\in\Sigma^*\;|\; \text{$w$ ist die Bin"ardarstellung einer Primzahl}\}
+L=\{ w\in\Sigma^*\;|\; \text{$w$ ist die Binärdarstellung einer Primzahl}\}
 \]
-Ist $L$ regul"ar?
+Ist $L$ regulär?
 
 \begin{loesung}
-Wir l"osen die Aufgabe f"ur beliebige Basis $b$ des Zahlensystems, nicht
-nur wie in der Aufgabe gefordert f"ur $b=2$.
+Wir lösen die Aufgabe für beliebige Basis $b$ des Zahlensystems, nicht
+nur wie in der Aufgabe gefordert für $b=2$.
 
 Im Folgenden sollen Eigenschaften der Darstellung von Primzahlen
 zur Basis $b$ untersucht werden.
-Jede nat"urliche Zahl kann als Zeichenkette aus Zeichen aus der
+Jede natürliche Zahl kann als Zeichenkette aus Zeichen aus der
 Menge $\Sigma=\{\texttt{0},\texttt{1},\texttt{2},\dots, b-1\}$ der $b$-adischen
 Ziffern geschrieben werden.
 Die Aufgabe stellt daher die Frage, ob die Menge
 \[
 L=\{ w\in\Sigma^*\,|\,\text{$w$ ist $b$-adische Darstellung einer Primzahl}\}
 \]
-eine regul"are Sprache ist.
+eine reguläre Sprache ist.
 Die Antwort ist:
 
 \newtheorem{satz}{Satz}
 
 \begin{satz}
 \label{30000051:satz}
-Die $b$-adischen Darstellungen der Primzahlen bilden keine regul"are Sprache.
+Die $b$-adischen Darstellungen der Primzahlen bilden keine reguläre Sprache.
 \end{satz}
 
 Der Satz~\ref{30000051:satz} verbindet $b$-adische Darstellungen einer Zahl,
 also Zeichenketten, mit Werten. 
-Wir definieren f"ur diesen "Ubergang die Funktion
+Wir definieren für diesen "Ubergang die Funktion
 \[
 v_b\colon \Sigma^*\to \mathbb N:w\mapsto v_b(w),
 \]
@@ -37,11 +37,11 @@ wobei $v_b(w)$ der Zahlenwert der als $b$-adische Zahl aufgefassten
 Zeichenkette sei.
 
 \begin{proof}[Beweis]
-F"ur den Beweis des Satzes verwenden wir das Pumping Lemma.
-Wir nehmen also an, dass $L$ regul"ar ist.
-W"orter mindestens so lange wie die pumping length $N$ angibt haben
+Für den Beweis des Satzes verwenden wir das Pumping Lemma.
+Wir nehmen also an, dass $L$ regulär ist.
+Wörter mindestens so lange wie die pumping length $N$ angibt haben
 die Pump\-eigenschaft.
-Wir w"ahlen daher eine Zeichenkette $w$ ausreichender L"angen, $|w|\ge N$,
+Wir wählen daher eine Zeichenkette $w$ ausreichender Längen, $|w|\ge N$,
 die die $b$-adische Darstellung einer Primzahl ist, wir bezeichnen
 die Primzahl mit $p=v_b(w)$.
 
@@ -50,9 +50,9 @@ drei Teile $x,y,z\in\Sigma^*$ mit $w=xyz$.
 Von den vom Pumping Lemma garantierten Eigenschaften brauchen wir nur
 $|y|>0$.
 Wir setzen $w_k=xy^kz$, insbesondere ist $w=w_1$.
-Das Pumping Lemma behauptet, dass alle W"orter $w_k$ wieder $b$-adische 
+Das Pumping Lemma behauptet, dass alle Wörter $w_k$ wieder $b$-adische 
 Darstellungen von Primzahlen sind.
-Es gen"ugt also ein $k$ zu finden, so dass $v_b(w_k)$ nicht prim ist.
+Es genügt also ein $k$ zu finden, so dass $v_b(w_k)$ nicht prim ist.
 
 Den Zeichenketten $x$, $y$ und $z$ entsprechen die drei Zahlen
 \begin{align*}
@@ -63,12 +63,12 @@ e&= v_b(y) b^{|z|} \quad\text{und}
 f&= v_b(z),
 \end{align*}
 die zusammen die Summe $p$ haben, $d+e+f=p$.
-Dies l"asst sich auch graphisch verdeutlichen:
+Dies lässt sich auch graphisch verdeutlichen:
 \begin{center}
 \includeagraphics[]{pl-1.pdf}
 \end{center}
 
-Die Pumpoperation kann jetzt algebraisch ausgedr"uckt werden.
+Die Pumpoperation kann jetzt algebraisch ausgedrückt werden.
 Sie verschiebt Zeichen um $|y|$ Stellen, was in der Basis $b$ der
 Multiplikation mit $s=b^{|y|}$ entspricht.
 Wegen $|y|>0$ ist $s>1$.
@@ -84,10 +84,10 @@ wie man auch aus der graphischen Darstellung
 \includeagraphics[]{pl-2.pdf}
 \end{center}
 ablesen kann.
-Wir m"ochten dies f"ur den Fall $k=p$ berechnen, allerdings
+Wir möchten dies für den Fall $k=p$ berechnen, allerdings
 nur modulo $p$.
-Die Summenformel f"ur die geometrische Reihe liefert
-f"ur den Klammerausdruck in (\ref{30000051:pump})
+Die Summenformel für die geometrische Reihe liefert
+für den Klammerausdruck in (\ref{30000051:pump})
 \begin{equation}
 s^{k-1}+s^{k-2}+\dots+s+1 = \frac{1-s^k}{1-s}.
 \label{30000051:summenformel}
@@ -103,7 +103,7 @@ a^p&\equiv a\mod p
 \text{oder}\qquad
 a^{p-1}&\equiv 1\mod p
 \end{align*}
-ist f"ur jedes $a\ne 0$, also auch f"ur $a=s$.
+ist für jedes $a\ne 0$, also auch für $a=s$.
 Setzt man dies in (\ref{30000051:summenformel}) und (\ref{30000051:pump}) ein,
 folgt
 \begin{align*}
@@ -120,7 +120,7 @@ d+e+f = p\equiv 0 \mod p
 Also ist $v_b(w_p)$ durch $p$ teilbar, und damit stellt $w_p$ keine
 Primzahl dar.
 
-Dieser Widerspruch zeigt, dass die Annahme, $L$ sei regul"ar, nicht
+Dieser Widerspruch zeigt, dass die Annahme, $L$ sei regulär, nicht
 zutreffend ist.
 Damit ist der Satz bewiesen.
 \renewcommand{\qedsymbol}{$\square$}

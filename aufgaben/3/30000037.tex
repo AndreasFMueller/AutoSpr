@@ -1,7 +1,7 @@
-Betrachten Sie "uber dem Alphabet $\Sigma = \{{\tt 0},{\tt 1},\blank\}$ die
-Sprache $L$, deren W"orter aus zwei durch genau ein Leerzeichen getrennten
-Bin"arzahlen bestehen, wobei die zweite gr"osser sein muss als die erste.
-Zur Sprache geh"oren also zum Beispiel
+Betrachten Sie über dem Alphabet $\Sigma = \{{\tt 0},{\tt 1},\blank\}$ die
+Sprache $L$, deren Wörter aus zwei durch genau ein Leerzeichen getrennten
+Binärzahlen bestehen, wobei die zweite grösser sein muss als die erste.
+Zur Sprache gehören also zum Beispiel
 \[
 {\tt 10000}\blank{\tt 10001},\quad
 {\tt 0}\blank{\tt 10001}
@@ -12,23 +12,23 @@ aber nicht
 {\tt 10000}\blank\blank\blank{\tt 10001},\quad
 {\tt 10001}\blank{\tt 0}.
 \]
-Ist $L$ regul"ar?
+Ist $L$ regulär?
 
 \begin{loesung}
 Nein, wie man mit dem Pumping Lemma nachweisen kann.
-W"are $L$ regul"ar, m"usste es eine Pumping Length $N$ geben, so dass
-W"orter mit mindestens L"ange $N$ aufgepumpt werden k"onnen. Wir w"ahlen
+Wäre $L$ regulär, müsste es eine Pumping Length $N$ geben, so dass
+Wörter mit mindestens Länge $N$ aufgepumpt werden können. Wir wählen
 das Wort
 \begin{align*}
 w&= {\tt 1}^N\blank{\tt 10}^N
 &
 w&=\underbrace{\tt 1111\dots 1}_{\text{$N$ Einsen}}\blank{\tt 1}\underbrace{\tt 0000\dots 0}_{\text{$N$ Nullen}}
 \end{align*}
-es erf"ullt die Bedingung $w\in L$. Da $|w| = 2N+2>N$ muss es eine
+es erfüllt die Bedingung $w\in L$. Da $|w| = 2N+2>N$ muss es eine
 Unterteilung $w=xyz$ geben so, dass $|xy|\le N$ ist, also $x$ und $y$
-m"ussen vollst"andig aus Einsen bestehen. Es ist also $y={\tt 1}^n$
+müssen vollständig aus Einsen bestehen. Es ist also $y={\tt 1}^n$
 mit $n > 0$.
-Pumpt man diese Wort auf, erh"oht sich nur die Zahl der Einsen im Teil
+Pumpt man diese Wort auf, erhöht sich nur die Zahl der Einsen im Teil
 vor dem Leerzeichen:
 \begin{align*}
 xy^2z&={\tt 1}^{N+n}\blank{\tt 10}^N
@@ -40,7 +40,7 @@ Die Zahl links vom Blank ist $2^{N+n}-1$, die Zahl rechts ist $2^N$,
 aber $2^{N+n}-1 > 2^N$, das aufgepumpte Wort kann also nicht mehr
 in $L$ sein.
 
-Dieser Widerspruch zeigt, dass $L$ nicht regul"ar sein kann.
+Dieser Widerspruch zeigt, dass $L$ nicht regulär sein kann.
 \end{loesung}
 
 \begin{bewertung}

@@ -1,4 +1,4 @@
-Sei $p$ eine fest nat"urliche Zahl. Sind die folgenden Sprachen regul"ar?
+Sei $p$ eine fest natürliche Zahl. Sind die folgenden Sprachen regulär?
 \begin{teilaufgaben}
 \item $L_1=\{ \texttt{a}^n\,|\, \text{$n$ ist durch $p$ teilbar}\}$
 \item $L_2=\{ \texttt{a}^n\,|\, \text{$n$ ist nicht durch $p$ teilbar}\}$
@@ -19,22 +19,22 @@ Teilbarkeit durch $p$ kann man mit dem folgenden Automaten feststellen:
 					&*++[o][F]{p-1} \ar@/^20pt/[llll]^{\texttt{a}}
 }
 \]
-daher ist $L_1$ regul"ar.
+daher ist $L_1$ regulär.
 \item
 Die Sprache $L_2$ ist das Komplement der Sprache $L_1$ in 
 $\{\texttt{a}\}^*$:
 \[
 L_2=\{\texttt{a}\}^*\setminus L_1.
 \]
-Da sowohl $\{\texttt{a}\}^*$ als auch $L_1$ regul"ar sind, ist auch $L_2$
-regul"ar.
+Da sowohl $\{\texttt{a}\}^*$ als auch $L_1$ regulär sind, ist auch $L_2$
+regulär.
 \item
-Schreiben wir $L_1(\texttt{a})=L_1$ und $L_2(\texttt{b})$ f"ur die Sprache
-bestehenden aus W"orter der Form $\texttt{b}^n$, f"ur die $n$ durch $p$ teilbar
-ist, und analog f"ur $L_2(\texttt{a})$ und $L_2(\texttt{b})$.
-Nach a) und b) sind diese Sprachen alle regul"ar.
-Und nat"urlich sind auch die Verkettungen $L_i(\texttt{a})L_j(\texttt{b})$
-regul"ar.
+Schreiben wir $L_1(\texttt{a})=L_1$ und $L_2(\texttt{b})$ für die Sprache
+bestehenden aus Wörter der Form $\texttt{b}^n$, für die $n$ durch $p$ teilbar
+ist, und analog für $L_2(\texttt{a})$ und $L_2(\texttt{b})$.
+Nach a) und b) sind diese Sprachen alle regulär.
+Und natürlich sind auch die Verkettungen $L_i(\texttt{a})L_j(\texttt{b})$
+regulär.
 Die Sprache $L$ ist daher als Vereinigung
 \[
 L=
@@ -44,7 +44,7 @@ L_2(\texttt{a})L_1(\texttt{b})
 \cup
 L_2(\texttt{a})L_2(\texttt{b})
 \]
-ebenfalls regul"ar.
+ebenfalls regulär.
 \qedhere
 \end{teilaufgaben}
 \end{loesung}

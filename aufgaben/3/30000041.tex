@@ -2,26 +2,26 @@ Ist die Sprache
 \[
 L=\{\texttt{a}^n\texttt{b}^m\;|\; \text{$n$ und $m$ sind teilerfremd}\}
 \]
-regul"ar?
+regulär?
 
 \begin{loesung}
-Die Sprache ist nicht regul"ar, wie man mit dem Pumping-Lemma zeigen
-kann. Nehmen wir an, $L$ sei regul"ar und habe Pumping Length $N$.
-Dann w"ahlen wir ein Wort $\texttt{a}^N\texttt{b}^n$, wobei
+Die Sprache ist nicht regulär, wie man mit dem Pumping-Lemma zeigen
+kann. Nehmen wir an, $L$ sei regulär und habe Pumping Length $N$.
+Dann wählen wir ein Wort $\texttt{a}^N\texttt{b}^n$, wobei
 $n$ eine beliebige zu $N$ teilerfremde Zahl sein muss.
 Nach dem Pumping-Lemma kann man das Wort aufpumpen, was mit einem
-aus lauter Zeichen $\texttt{a}$ bestehenden Wort der L"ange $l$
-geschieht, $l\le N$. Die aufgepumpten W"orter haben die Form
+aus lauter Zeichen $\texttt{a}$ bestehenden Wort der Länge $l$
+geschieht, $l\le N$. Die aufgepumpten Wörter haben die Form
 \[
 \texttt{a}^{N+kl}\texttt{b}^n.
 \]
-Diese W"orter sind nur dann alle in $L$, wenn $N+kl$ und $n$ f"ur alle k
+Diese Wörter sind nur dann alle in $L$, wenn $N+kl$ und $n$ für alle k
 teilerfremd sind.
 
-Wir k"onnen $n$ beliebig w"ahlen, insbesondere k"onnen wir f"ur $n$ eine
-beliebige Primazahl $p$ w"ahlen, die $N$ nicht teilt. Ausserdem k"onnen
-wir $p$ so w"ahlen, dass sie auch $l$ nicht teilt, einfach indem
-wir sie noch weiter vergr"ossern. Wir m"ochten wissen, ob $N+kl$ ein
+Wir können $n$ beliebig wählen, insbesondere können wir für $n$ eine
+beliebige Primazahl $p$ wählen, die $N$ nicht teilt. Ausserdem können
+wir $p$ so wählen, dass sie auch $l$ nicht teilt, einfach indem
+wir sie noch weiter vergrössern. Wir möchten wissen, ob $N+kl$ ein
 Vielfaches von $p$ sein kann. Dies ist gleichbedeutend mit der Gleichung
 \[
 N+kl=0\quad \text{in $\mathbb F_p$}
@@ -29,7 +29,7 @@ N+kl=0\quad \text{in $\mathbb F_p$}
 Da aber sowohl $N$ wie auch $l$ in $\mathbb F_p$ invertierbar sind,
 muss es ein $k\in\mathbb F_p$ geben, mit $k=N/l$. Also gibt es eine 
 Zahl $k\le p$ so, dass $N+kl$ durch $p$ teilbar ist, womit ein Widerspruch
-zu der Annahme erreicht wurde, dass $L$ regul"ar sei. Also ist $L$
-nicht regul"ar.
+zu der Annahme erreicht wurde, dass $L$ regulär sei. Also ist $L$
+nicht regulär.
 \end{loesung}
 

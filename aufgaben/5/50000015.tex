@@ -1,5 +1,5 @@
-Die Sprache $L$ "uber dem Alphabet $\Sigma = \{{\tt 0},\;{\tt 1}\}$
-besteht aus denjenigen W"ortern, in denen jede Folge von {\tt 0}
+Die Sprache $L$ über dem Alphabet $\Sigma = \{{\tt 0},\;{\tt 1}\}$
+besteht aus denjenigen Wörtern, in denen jede Folge von {\tt 0}
 von einer mindestens so langen Folge von {\tt 1} gefolgt wird.
 Beschreiben Sie eine Standard-Turing-Maschinen, welche $L$
 entscheidet.
@@ -9,16 +9,16 @@ Eine solche Turing-Maschine muss wiederholt Sequenzen der
 Form ${\tt 0}^n{\tt 1}^m$ analysieren und kontrollieren, ob $m \ge n$ ist,
 bis sie auf ein Zeichen \blank\ trifft, welches das Ende des
 Wortes anzeigt. Da wir das Ende solcher Sequenzen markieren 
-k"onnen m"ussen, verwenden wir ein zus"atzliches Bandzeichen
+können müssen, verwenden wir ein zusätzliches Bandzeichen
 {\tt x}, das Bandalphabet ist also $\Gamma
 =\{{\tt 0},\,{\tt 1},\,{\tt x}\}$.
 
 Die Idee des folgenden Algorithmus ist, in jeder Sequenz jeweils
 die {\tt 1} und {\tt 0} paarweise zu markieren, bis klar ist,
-ob die Sequenz die Bedingung $m\ge n$ erf"ullt, und dann zur
-n"achsten Sequenz weiter zu gehen.
+ob die Sequenz die Bedingung $m\ge n$ erfüllt, und dann zur
+nächsten Sequenz weiter zu gehen.
 
-Zun"achst "uberlegen wir uns einen Algorithmus, der W"orter der Form
+Zunächst überlegen wir uns einen Algorithmus, der Wörter der Form
 ${\tt 0}^n{\tt 1}^{n+m}$ akzeptiert:
 \begin{enumerate}
 \item Falls das Zeichen under dem Schreibe-Lesekopf ein \blank\ ist:
@@ -26,13 +26,13 @@ $q_\text{accept}$.
 \item
 \label{50000015:phase1:2}
 Falls das Zeichen in {\tt 0} ist ersetze es durch einen \blank\ und
-"uberspringe alle folgenden {\tt 0} und {\tt x}.
+überspringe alle folgenden {\tt 0} und {\tt x}.
 Andernfalls fahre weiter bei \ref{50000015:phase1:1}.
 \item
-Falls das n"achste Zeichen ein \blank\ ist: $q_\text{reject}$.
+Falls das nächste Zeichen ein \blank\ ist: $q_\text{reject}$.
 \item
-Falls das n"achste Zeichen ein {\tt 1}, "uberschreibe es durch ein {\tt x}
-und fahre zur"uck bis ein \blank\ gefunden wird, positioniere den Kopf
+Falls das nächste Zeichen ein {\tt 1}, überschreibe es durch ein {\tt x}
+und fahre zurück bis ein \blank\ gefunden wird, positioniere den Kopf
 rechts davon, fahre weiter bei \ref{50000015:phase1:2}.
 \item
 \label{50000015:phase1:1}
@@ -42,7 +42,7 @@ Dieser Algorithmus ersetzt jede {\tt 0} durch einen \blank\ und sucht eine
 passende {\tt 1}, die durch {\tt x} ersetzt werden.
 Die {\tt x} und {\tt 1} bleiben auf dem Band stehen, am Ende des Algorithmus
 steht der Schreib-Lesekopf auf dem ersten Zeichen nach einer Sequenz,
-als auf dem Beginn der n"achsten Sequenz oder auf einem \blank.
+als auf dem Beginn der nächsten Sequenz oder auf einem \blank.
 Der Bandinhalt hat sich also zum Beispiel so gewandelt:
 \[
 \text {\tt 0000111111100011111}
@@ -57,7 +57,7 @@ wird dann zu
 \text {\tt \blank\blank\blank\blank xxxx111\blank\blank\blank xxx11}
 \]
 und der Kopf steht auf dem Blank nach dem letzten Wort.
-Der n"achste Lauf des Algorithmus wird in Schritt 1 das Wort akzeptieren.
+Der nächste Lauf des Algorithmus wird in Schritt 1 das Wort akzeptieren.
 
 Der Zusammengesetzte Algorithmus sieht jetzt so aus:
 \begin{enumerate}
@@ -66,13 +66,13 @@ $q_\text{accept}$.
 \item
 \label{50000015:phase2:2}
 Falls das Zeichen in {\tt 0} ist ersetze es durch einen \blank\ und
-"uberspringe alle folgenden {\tt 0} und {\tt x}.
+überspringe alle folgenden {\tt 0} und {\tt x}.
 Andernfalls fahre weiter bei \ref{50000015:phase2:1}.
 \item
-Falls das n"achste Zeichen ein \blank\ ist: $q_\text{reject}$.
+Falls das nächste Zeichen ein \blank\ ist: $q_\text{reject}$.
 \item
-Falls das n"achste Zeichen ein {\tt 1}, "uberschreibe es durch ein {\tt x}
-und fahre zur"uck bis ein \blank\ gefunden wird, positioniere den Kopf
+Falls das nächste Zeichen ein {\tt 1}, überschreibe es durch ein {\tt x}
+und fahre zurück bis ein \blank\ gefunden wird, positioniere den Kopf
 rechts davon, fahre weiter bei \ref{50000015:phase2:2}.
 \item
 \label{50000015:phase2:1}
@@ -84,8 +84,8 @@ rechts davon, fahre weiter bei \ref{50000015:phase2:2}.
 
 \begin{diskussion}
 Man kann eine geeignete Turing-Maschine auch wie folgt bekommen.
-Zun"achst stellt man fest, dass W"orter der genannten Art eine
-kontextfreie Sprache bilden. Eine m"ogliche Grammatik daf"ur ist
+Zunächst stellt man fest, dass Wörter der genannten Art eine
+kontextfreie Sprache bilden. Eine mögliche Grammatik dafür ist
 \begin{align*}
 S&\to \varepsilon \\
  &\to S W\\
@@ -93,8 +93,8 @@ W&\to \varepsilon \\
  &\to \text{\tt 0}W\text{\tt 1} \\
  &\to W\text{\tt 1}
 \end{align*}
-Es gibt also einen Stackautomaten f"ur diese Sprache. Ein besonders eleganter
-Stackautomat w"are
+Es gibt also einen Stackautomaten für diese Sprache. Ein besonders eleganter
+Stackautomat wäre
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @+10mm{
@@ -113,26 +113,26 @@ Stackautomat w"are
 \]
 Sobald im Input eine {\tt 0} auftaucht, wechselt er in den Zustand $q_1$ und
 beginnt die {\tt 0}en auf den Stack zu schreiben. Wenn dann aber {\tt 1}en 
-auftreten, wird der Stack wieder abgebaut. Nur wenn der Stack v"ollig
+auftreten, wird der Stack wieder abgebaut. Nur wenn der Stack völlig
 gelehrt werden kann, und eventuell noch weitere {\tt 1}en folgen,
 wird das Wort akzeptiert. Man erkennt auch, dass der Stackautomat
-f"ur akzeptable W"orter sogar determinisitisch ist.
+für akzeptable Wörter sogar determinisitisch ist.
 
-Zu jedem Stackautomaten gibt es eine Turingmaschine mit zwei B"andern,
-die den Stackautomaten implementiert, das zweite Band wird f"ur die 
+Zu jedem Stackautomaten gibt es eine Turingmaschine mit zwei Bändern,
+die den Stackautomaten implementiert, das zweite Band wird für die 
 Implementation des Stacks verwendet. 
-Jede Turing-Maschine mit zwei B"andern kann aber in eine Turing-Maschine
+Jede Turing-Maschine mit zwei Bändern kann aber in eine Turing-Maschine
 mit nur einem Band umgewandelt werden.
 \end{diskussion}
 
 \begin{bewertung}
 Verwendung eines Hilfszeichens zur Unterteilung in Sequenzen
-und zum Z"ahlen ({\bf H}) 1 Punkt,
+und zum Zählen ({\bf H}) 1 Punkt,
 Analyse jeder einzelnen Sequenz ({\bf S}) 1 Punkt,
-Paarweises abz"ahlen der {\tt 0} und {\tt 1} ({\bf P}) 1 Punkt,
-Abbruchbedingung f"ur $q_{\text{accept}}$ ({\bf A}) 1 Punkt,
-Abbruchbedingung f"ur $q_{\text{reject}}$ ({\bf R}) 1 Punkt,
-Weiterfahr-Bedingungung f"ur n"achste Sequenz ({\bf W}) 1 Punkt.
+Paarweises abzählen der {\tt 0} und {\tt 1} ({\bf P}) 1 Punkt,
+Abbruchbedingung für $q_{\text{accept}}$ ({\bf A}) 1 Punkt,
+Abbruchbedingung für $q_{\text{reject}}$ ({\bf R}) 1 Punkt,
+Weiterfahr-Bedingungung für nächste Sequenz ({\bf W}) 1 Punkt.
 \end{bewertung}
 
 

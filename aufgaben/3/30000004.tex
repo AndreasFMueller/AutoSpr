@@ -1,5 +1,5 @@
 Betrachten Sie den folgenden, in Tabellenform gegebenen
-Automaten "uber dem Alphabet $\Sigma=\{0,1\}$:
+Automaten über dem Alphabet $\Sigma=\{0,1\}$:
 \begin{center}
 \begin{tabular}{|c|cc|}
 \hline
@@ -15,7 +15,7 @@ $e$&$e$&$e$\\
 \end{tabular}
 \end{center}
 Zeichnen Sie das Zustandsdiagramm des Automaten. Konstruieren Sie den
-zugeh"origen minimalen Automaten.
+zugehörigen minimalen Automaten.
 
 \begin{loesung}
 Das folgende Zustandsdiagramm beschreibt den DEA:
@@ -38,8 +38,8 @@ Das folgende Zustandsdiagramm beschreibt den DEA:
                 &*++[o][F=]{z_0} \ar@(dr,dl)^{\tt 0} \ar@/_/[u]_{\tt 1}
 }
 \]
-F"ur die Bestimmung der "aquivalenten Zust"ande bauen wir die Tabellen
-der nicht "aquivalenten Zust"ande auf. Im ersten Schritt werden die
+Für die Bestimmung der äquivalenten Zustände bauen wir die Tabellen
+der nicht äquivalenten Zustände auf. Im ersten Schritt werden die
 Paare aus einem AKzeptierzustand und einem Nicht-Akzeptierzustand markiert:
 \begin{center}
 \begin{tabular}{|c|cccccc|}
@@ -55,12 +55,12 @@ $e$&&$\times$&&&&$\equiv$\\
 \hline
 \end{tabular}
 \end{center}
-In den folgenden Schritten pr"uft man jedes noch nicht markierte Paar
-von Zust"anden, ob sie sich durch Anwendung der "Ubergangsfunktion
-in ein Paar "uberf"uhren lassen, welches bereits markiert ist. Ist dies
+In den folgenden Schritten prüft man jedes noch nicht markierte Paar
+von Zuständen, ob sie sich durch Anwendung der "Ubergangsfunktion
+in ein Paar überführen lassen, welches bereits markiert ist. Ist dies
 der Fall, wird das entsprechende Feld ebenfalls markiert. In den folgenden
 Tabellen sind die jeweils bereits bekannten Markierungen mit dem Zeichen
-$\otimes$ ausgef"uhrt.
+$\otimes$ ausgeführt.
 \begin{center}
 \begin{tabular}{|c|cccccc|}
 \hline
@@ -75,7 +75,7 @@ $e$&&$\otimes$&$\times$&$\times$&$\times$&$\equiv$\\
 \hline
 \end{tabular}
 \end{center}
-In der zweiten Iteration k"onnen noch sechs Paare markiert werden:
+In der zweiten Iteration können noch sechs Paare markiert werden:
 \begin{center}
 \begin{tabular}{|c|cccccc|}
 \hline
@@ -91,7 +91,7 @@ $e$&$\times$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\equiv$\\
 \end{tabular}
 \end{center}
 Aber in der letzten Iteration bleiben die Felder $(z_2,z_3)$ und
-$(z_3,z_2)$ unmarkiert, die beiden Zust"ande sind also "aquivalent:
+$(z_3,z_2)$ unmarkiert, die beiden Zustände sind also äquivalent:
 \begin{center}
 \begin{tabular}{|c|cccccc|}
 \hline
@@ -106,8 +106,8 @@ $e$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\equiv$\\
 \hline
 \end{tabular}
 \end{center}
-Durch Zusammenlegen im Zustandsdiagramm erh"alt man jetzt als
-kleinsm"oglichen Automaten:
+Durch Zusammenlegen im Zustandsdiagramm erhält man jetzt als
+kleinsmöglichen Automaten:
 \[
 \UseTips
 \entrymodifiers={++[o][F]}

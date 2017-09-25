@@ -1,10 +1,10 @@
-Finden Sie einen regul"aren Ausdruck, der genau die durch
-drei teilbaren Bin"arzahlen akzeptiert.
+Finden Sie einen regulären Ausdruck, der genau die durch
+drei teilbaren Binärzahlen akzeptiert.
 
 \begin{loesung}
 Wir haben in der Vorlesung einen Automaten beschrieben, der genau die
-durch drei teilbaren Bin"arzahlen akzeptiert. Dieser Automat hatte die
-Dreier-Reste als Zust"ande:
+durch drei teilbaren Binärzahlen akzeptiert. Dieser Automat hatte die
+Dreier-Reste als Zustände:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -14,8 +14,8 @@ Dreier-Reste als Zust"ande:
                         &{2}\ar@(dr,ur)_{\tt 1}  \ar@/^/[l]^{\tt 0}
 }
 \]
-Um daraus einen regul"aren Ausdruck zu gewinnen, m"ussen wir
-den Automaten zun"achst mit zus"atzlichen Zust"anden versehen:
+Um daraus einen regulären Ausdruck zu gewinnen, müssen wir
+den Automaten zunächst mit zusätzlichen Zuständen versehen:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -33,7 +33,7 @@ den Automaten zun"achst mit zus"atzlichen Zust"anden versehen:
 }
 \]
 Jetzt kann der Automat schrittweise reduziert werden, bis nur noch
-zwei Zust"ande dastehen.
+zwei Zustände dastehen.
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -84,7 +84,7 @@ zwei Zust"ande dastehen.
                         &*++[o][F=]{a}
 }
 \]
-Woraus man den regul"aren Ausdruck
+Woraus man den regulären Ausdruck
 $$({\tt 0}|{\tt 1}({\tt 01}^*{\tt 0})^*{\tt 1})^*$$
 abliest.
 \end{loesung}

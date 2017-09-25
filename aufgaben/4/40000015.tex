@@ -6,9 +6,9 @@ Zeichnen Sie das Zustandsdiagramm eines Stackautomaten, welcher $L$
 erkennt.
 
 \begin{loesung}
-Wir verwenden als Stackalphabet zus"atzlich die zwei Zeichen {\tt \$}
-und {\tt x}. F"ur jedes gelesene Input-Zeichen legen wir ein {\tt x}
-auf den Stack. Nach der zentralen {\tt 0} entfernen wir f"ur jedes
+Wir verwenden als Stackalphabet zusätzlich die zwei Zeichen {\tt \$}
+und {\tt x}. Für jedes gelesene Input-Zeichen legen wir ein {\tt x}
+auf den Stack. Nach der zentralen {\tt 0} entfernen wir für jedes
 gelesene Zeichen wieder ein {\tt x}. Akzeptiert werden kann ein Wort,
 wenn danach der Stack leer ist:
 \[
@@ -27,13 +27,13 @@ wenn danach der Stack leer ist:
                    \ar@(dr,d)^{{\tt 1},{\tt x}\to\varepsilon}
 }
 \]
-Die alternative L"osung verwendet wieder eine Grammatik, zum Beispiel
+Die alternative Lösung verwendet wieder eine Grammatik, zum Beispiel
 \begin{align*}
 S&\rightarrow XSX\\
 &\rightarrow {\tt 0}\\
 X&\rightarrow {\tt 0}\,|\,{\tt 1}
 \end{align*}
-Daraus kann man wieder nach bekanntem Muster den ``Bl"umchenautomaten''
+Daraus kann man wieder nach bekanntem Muster den ``Blümchenautomaten''
 konstruieren:
 \[
 \entrymodifiers={++[o][F]}
@@ -60,8 +60,8 @@ konstruieren:
 					&{} \ar@/_/[ul]_{\varepsilon,\varepsilon\to X}
 }
 \]
-In den Regeln oberhalb des Zustandes $R$ steht das $x$ f"ur ein Terminalsymbol.
-Jeder Pfeil steht also eigentlich f"ur zwei Regeln, n"amlich eine mit
+In den Regeln oberhalb des Zustandes $R$ steht das $x$ für ein Terminalsymbol.
+Jeder Pfeil steht also eigentlich für zwei Regeln, nämlich eine mit
 $x={\tt 0}$ und eine mit $x={\tt 1}$.
 \end{loesung}
 

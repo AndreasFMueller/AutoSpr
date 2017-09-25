@@ -3,7 +3,7 @@ So sind zum Beispiel
 \[
 x+y, xy+yz+zx, xyz+yzt+ztx
 \]
-alle homogen, w"ahrend
+alle homogen, während
 \[
 x+xy+xyz, abc+d
 \]
@@ -13,7 +13,7 @@ erzeugt?
 \begin{hinweis}
 Das Polynom $x^2+2y^2$ ist ebenfalls homogen, es kann aber auch als $xx+2yy$
 geschrieben werden. 
-Ignorieren Sie zur Vereinfachung die M"oglichkeit von Exponenten,
+Ignorieren Sie zur Vereinfachung die Möglichkeit von Exponenten,
 und nehmen sie an, dass im Input Potenzen wie $x^n$ bereits als
 $n$ Faktoren $x\cdots x$ ausgeschrieben wurden.
 Ignorieren Sie ausserdem Koeffizienten vor den Monomen.
@@ -21,18 +21,18 @@ Ignorieren Sie ausserdem Koeffizienten vor den Monomen.
 
 \begin{loesung}
 Polynome (mit den Vereinfachungen im Hinweis) bilden eine Sprache
-"uber dem Alphabet bestehend aus
+über dem Alphabet bestehend aus
 den Variablensymbolen und $\{\texttt{+},\texttt{-}\}$.
 Homogene Polynome sind
-dann gleich lange W"orter aus Variablensymbolen, die durch
+dann gleich lange Wörter aus Variablensymbolen, die durch
 $\texttt{+}$ oder $\texttt{-}$ verbunden werden. Wir bezeichnen die
 Sprache der homogenen Polynome mit $L$.
 
 Diese Sprache $L$ ist nicht kontextfrei, wie man mit dem Pumping Lemma
-f"ur kontextfreie Sprachen zeigen kann.
+für kontextfreie Sprachen zeigen kann.
 
 Wir nehmen an, $L$ sei kontextfrei. Nach dem Pumping Lemma
-gibt es eine Zahl $N$, so dass W"orter, die l"anger als $N$ sind,
+gibt es eine Zahl $N$, so dass Wörter, die länger als $N$ sind,
 ``aufpumpbar'' sind. Wir konstruieren das Wort
 \[
 w=\texttt{x}^N\texttt{+y}^N\texttt{+z}^N
@@ -41,37 +41,37 @@ welches sicher in $L$ ist.
 
 Nach dem Pumping Lemma hat dieses Wort eine Aufteilung
 $w=uvxyz$ mit $|vxy|\le N$, das Teilwort $vxy$ kann sich also 
-h"ochstens "uber zwei der Monome in $w$ erstrecken.
-Beim Aufpumpen der Teile $v$ und $y$ gem"ass der Formel
+höchstens über zwei der Monome in $w$ erstrecken.
+Beim Aufpumpen der Teile $v$ und $y$ gemäss der Formel
 $w_k=uv^kxy^kz$ wird sich also die Zahl der Variablen in diesen
-beiden Monomen "andern, nicht aber die Zahl der Variablen im 
-verbleibenden Monom. Insbesondere sind die aufgepumpten W"orter $w_k$
+beiden Monomen ändern, nicht aber die Zahl der Variablen im 
+verbleibenden Monom. Insbesondere sind die aufgepumpten Wörter $w_k$
 nicht mehr in $L$, im Widerspruch zur Aussage des Pumping Lemma.
 Dieser Widerspruch zeigt, dass $L$ nicht kontextfrei sein kann.
 \end{loesung}
 
 \begin{diskussion}
 Es gibt in diesem Beweis noch einen etwas subtilen Schritt, der einer
-besonderen Diskussion w"urdig ist. Es ist n"amlich eine Aufteilung
+besonderen Diskussion würdig ist. Es ist nämlich eine Aufteilung
 $w={\color{blue}u}{\color{red}v}{\color{green}x}yz$ denkbar,
-die m"oglicherweise doch aufpumpbar ist:
+die möglicherweise doch aufpumpbar ist:
 \begin{center}
 \includeagraphics[width=315pt]{p-1.pdf}
 \end{center}
-In dieser Aufteilung besteht $\color{red}v$ aus je einem Teilst"uck
+In dieser Aufteilung besteht $\color{red}v$ aus je einem Teilstück
 aus dem zweiten Monom und einem aus dem dritten Monom. Beim
-Aufpumpen "andert sich also nicht nur die Anzahl der
+Aufpumpen ändert sich also nicht nur die Anzahl der
 Variablen, sondern auch die Anzahl der Monome:
 \begin{center}
 \includeagraphics[width=405pt]{p-2.pdf}
 \end{center}
 Dies funktioniert
 aber nur, wenn das neu entstehende Monom wieder die richtige
-L"ange hat, n"amlich $N$. Das neu entstehende Monom besteht
+Länge hat, nämlich $N$. Das neu entstehende Monom besteht
 aus dem Teil von $\color{red}v$ rechts vom Zeichen \texttt{+},
 gefolgt vom Teil von $\color{red}v$ links vom Zeichen \texttt{+}.
-Die L"ange des Monoms ist also $|v|-1$. Aber $|v|\le |vxy|\le N$,
-d.~h.~ist das Monom echt k"urzer als $N$. Das aufgepumpte Polynom ist
+Die Länge des Monoms ist also $|v|-1$. Aber $|v|\le |vxy|\le N$,
+d.~h.~ist das Monom echt kürzer als $N$. Das aufgepumpte Polynom ist
 also nicht mehr homogen.
 \end{diskussion}
 
@@ -80,7 +80,7 @@ Verwendung des Pumping Lemma ({\bf PL}) 1 Punkt,
 Pumping Length ({\bf N}) 1 Punkt,
 Konstruktion eines geeigneten Wortes ({\bf W}) 1 Punkt,
 Aufteilung des Wortes ({\bf A}) 1 Punkt,
-Wort f"allt beim Aufpumpen aus der Sprache heraus ({\bf L}) 1 Punkt,
+Wort fällt beim Aufpumpen aus der Sprache heraus ({\bf L}) 1 Punkt,
 Schlussfolgerung, Sprache nicht kontextfrei ({\bf S}) 1 Punkt.
 \end{bewertung}
 

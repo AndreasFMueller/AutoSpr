@@ -14,16 +14,16 @@ Turing-entscheidbar heisst, dass es zwei Funktionen
 boolean l1(String w);
 boolean l2(String w);
 \end{verbatim}
-gibt, welche genau dann \texttt{true} zur"uckgeben, wenn
+gibt, welche genau dann \texttt{true} zurückgeben, wenn
 \texttt{w} in $L_1$ bzw.~$L_2$ ist. Die Aufgabe
-besteht dann darin, f"ur jede Sprache $L$ in den Teilaufgaben eine neue
+besteht dann darin, für jede Sprache $L$ in den Teilaufgaben eine neue
 Funktion
 \begin{verbatim}
 boolean l(String w) {
   ....
 }
 \end{verbatim}
-zu programmieren, welche genau dann \texttt{true} zur"uckgibt, wenn
+zu programmieren, welche genau dann \texttt{true} zurückgibt, wenn
 \texttt{w} in $L$ ist.
 \end{hinweis}
 
@@ -34,57 +34,57 @@ lassen wir zuerst $M_1$ auf dem Input $w$ laufen, und falls
 diese das Wort verwirft, $M_2$. Akzeptiert eine der Maschinen
 das Wort, wird es akzeptiert, andernfalls wird es verworfen.
 
-Mit den Notationen des Hinweises k"onnte man dieses Problem mit folgendem
-Code l"osen:
+Mit den Notationen des Hinweises könnte man dieses Problem mit folgendem
+Code lösen:
 \verbatimainput{a.java}
 \item
-F"ur jede der $|w|+1$ Unterteilungen des Wortes $w$ in zwei
-Teilw"orter $xy=w$ lassen wir $M_1$ auf $x$ und $M_2$ auf
-$y$ laufen. Akzeptieren die Maschinen f"ur eine der
+Für jede der $|w|+1$ Unterteilungen des Wortes $w$ in zwei
+Teilwörter $xy=w$ lassen wir $M_1$ auf $x$ und $M_2$ auf
+$y$ laufen. Akzeptieren die Maschinen für eine der
 Unterteilungen das Wort, akzeptieren wir, wir verwerfen, wenn
-f"ur keine Unterteilung beide Maschinen akzeptieren.
+für keine Unterteilung beide Maschinen akzeptieren.
 
-Mit den Notationen des Hinweises k"onnte man dieses Problem mit folgendem
-Code l"osen:
+Mit den Notationen des Hinweises könnte man dieses Problem mit folgendem
+Code lösen:
 \verbatimainput{b.java}
 \item
 Wenn $w\in L_1^*$, dann kann man $w$ schreiben als
-$w=x_1\dots x_n$, wobei $x_i\in L_1$ f"ur alle $i$ und
+$w=x_1\dots x_n$, wobei $x_i\in L_1$ für alle $i$ und
 $x_i\ne \varepsilon$.
-Es gibt endlich viele Unterteilungen von $w$ in maximal $n$ Teilw"orter
-mit einer L"ange von mindestens einem Zeichen.
-F"ur alle solchen Unterteilungen testen wir jede Komponente $x_i$ mit der
+Es gibt endlich viele Unterteilungen von $w$ in maximal $n$ Teilwörter
+mit einer Länge von mindestens einem Zeichen.
+Für alle solchen Unterteilungen testen wir jede Komponente $x_i$ mit der
 Turingmaschine $M_1$.
 Falls $M_1$ alle Komponenten einer Unterteilung
 akzeptiert, akzeptieren wir das Wort, wenn dies in keinem Fall
 vorkommt, verwerfen wir das Wort.
 
-Man kann dieses Problem sehr elegant mit Rekursion l"osen.
+Man kann dieses Problem sehr elegant mit Rekursion lösen.
 Die Funktion untersucht alle Unterteilungen des Wortes in
 zwei Teile $x_1$ und $x_2$, indem sie zuerst den Entscheider
-f"ur $L_1$ mit Input $x_1$ aufruft, und dann sich selbst
+für $L_1$ mit Input $x_1$ aufruft, und dann sich selbst
 mit Input $x_2$ aufruft. Diese Rekursion ist endlich.
 
-Mit den Notationen des Hinweises k"onnte man dieses Problem mit folgendem
-Code l"osen:
+Mit den Notationen des Hinweises könnte man dieses Problem mit folgendem
+Code lösen:
 \verbatimainput{c.java}
 \item
-F"ur die Sprache $\Sigma^*\setminus L_1$ verwenden wir die
-Turing Maschine $\bar M_1$, in welcher gegen"uber $M_1$
-die Zust"ande $q_{\text{accept}}$ und $q_{\text{reject}}$
+Für die Sprache $\Sigma^*\setminus L_1$ verwenden wir die
+Turing Maschine $\bar M_1$, in welcher gegenüber $M_1$
+die Zustände $q_{\text{accept}}$ und $q_{\text{reject}}$
 ihre Rollen vertauschen. $\bar M_1$ ist ein Entscheider,
-der genau die W"orter von $\Sigma^*\setminus L_1$ akzeptiert.
+der genau die Wörter von $\Sigma^*\setminus L_1$ akzeptiert.
 
-Mit den Notationen des Hinweises k"onnte man dieses Problem mit folgendem
-Code l"osen:
+Mit den Notationen des Hinweises könnte man dieses Problem mit folgendem
+Code lösen:
 \verbatimainput{d.java}
 \item
 Wir lassen $M_1$ auf $w$ laufen und anschliessen $M_2$ auf $w$.
 Wenn beide Maschinen akzeptieren, akzeptieren wir das Wort, andernfalls
 verwerfen wir.
 
-Mit den Notationen des Hinweises k"onnte man dieses Problem mit folgendem
-Code l"osen:
+Mit den Notationen des Hinweises könnte man dieses Problem mit folgendem
+Code lösen:
 \verbatimainput{e.java}
 \end{teilaufgaben}
 \end{loesung}

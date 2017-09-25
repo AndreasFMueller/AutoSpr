@@ -1,5 +1,5 @@
 In einem
-$n$-Sudoku m"ussen die Zahlen $1$ bis $n^2$ auf die Felder eines
+$n$-Sudoku müssen die Zahlen $1$ bis $n^2$ auf die Felder eines
 Spielfeld verteilt werden, welches sich aus $n\times n$ quadratisch
 angeordneten Quadraten von je $n\times n$ Feldern besteht.
 In keiner Zeile und Spalte und in keinem $n\times n$ Teilfeld
@@ -7,15 +7,15 @@ darf eine Zahl mehr als einmal vorkommen. Die bekannten Sudokus
 sind 3-Sudokus.
 
 Zeigen sie: wenn $\text{P}=\text{NP}$, dann gibt es einen Algorithmus,
-der auch grosse Sudokus in polynomieller Zeit l"osen kann.
+der auch grosse Sudokus in polynomieller Zeit lösen kann.
 
 \begin{loesung}
-Wir m"ussen zun"achst zeigen, dass Sudoko ein NP-Problem ist.
+Wir müssen zunächst zeigen, dass Sudoko ein NP-Problem ist.
 
-Als Zertifikat verlangen wir das vollst"andig ausgef"ullte Sudoku-Feld.
+Als Zertifikat verlangen wir das vollständig ausgefüllte Sudoku-Feld.
 
-Das Sudoku-Feld hat $n^4$ Felder. F"ur jedes Feld m"ussen die
-folgenden Tests durchgef"uhrt werden. Zun"achst muss getestet
+Das Sudoku-Feld hat $n^4$ Felder. Für jedes Feld müssen die
+folgenden Tests durchgeführt werden. Zunächst muss getestet
 werden, ob die Zahl in dem Feld zwisch $1$ und $n^2$ liegt.
 Dann muss die Zahl mit den $n^2$ Feldern der Zeile, der Spalte
 und des gleichen Teilfeldes verglichen werden. Insgesamt sind
@@ -25,5 +25,5 @@ Operationen. Damit ist gezeigt, dass das Sudoku-Problem einen polynomiellen
 Verifizierer hat, also in NP ist.
 
 Wenn $\text{P}=\text{NP}$ ist, dann muss es auch einen polynomiellen
-Algorithmus geben, der Sudokus l"ost.
+Algorithmus geben, der Sudokus löst.
 \end{loesung}

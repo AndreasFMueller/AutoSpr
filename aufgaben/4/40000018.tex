@@ -15,16 +15,16 @@ Brainfuck&C-"Aquivalent\\
 \hline
 \end{tabular}
 \end{center}
-Die eckigen Klammern m"ussen korrekt geschachtelt sein, ansonsten gibt es
-keine Einschr"ankungen.
+Die eckigen Klammern müssen korrekt geschachtelt sein, ansonsten gibt es
+keine Einschränkungen.
 
 Beschreiben sie einen Stackautomaten, der korrekte Brainfuck-Programme
 erkennt.
 
 \begin{loesung}
-Der Stackautomat muss ausschliesslich pr"ufen, dass jede "offnene
+Der Stackautomat muss ausschliesslich prüfen, dass jede öffnene
 eckigen Klammer auch wieder geschlossen wird. Das Stackalphabet verwendet
-zus"atzlich zu den Zeichen von Brainfuck das Zeichen {\tt\$}, welches
+zusätzlich zu den Zeichen von Brainfuck das Zeichen {\tt\$}, welches
 dabei hilft, zu erkennen, ob der Stack leer ist. Dann erkennt der
 folgende Automat die die korrekten Brainfuck Programme:
 \[
@@ -40,7 +40,7 @@ folgende Automat die die korrekten Brainfuck Programme:
                         &*++[o][F=]{q_3}
 }
 \]
-Im "Ubergang $.,\varepsilon\to\varepsilon$ steht der Punkt f"ur die
+Im "Ubergang $.,\varepsilon\to\varepsilon$ steht der Punkt für die
 Zeichen
 `{\tt >}',
 `{\tt <}',

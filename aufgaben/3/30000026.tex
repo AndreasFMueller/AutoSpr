@@ -1,18 +1,18 @@
 Sei $\Sigma$ ein Alphabet und $a\in\Sigma$. Ist die Sprache
 \[
-L=\{w\in\Sigma^*|\text{$w$ enth"alt an der drittletzten Stelle das Zeichen $a$}\}
+L=\{w\in\Sigma^*|\text{$w$ enthält an der drittletzten Stelle das Zeichen $a$}\}
 \]
-regul"ar? Falls ja, konstruieren Sie einen nichtdeterministischen
+regulär? Falls ja, konstruieren Sie einen nichtdeterministischen
 endlichen Automaten, der die Sprache erkennt.
 
 \begin{loesung}
-Die W"orter von $L$ sind genau diejenigen, die auf den
-regul"are Ausdruck
+Die Wörter von $L$ sind genau diejenigen, die auf den
+reguläre Ausdruck
 $$r=\text{\tt .*a..}$$
 passen. Daher ist
-$L=L(r)$, somit ist $L$ eine regul"are Sprache.
+$L=L(r)$, somit ist $L$ eine reguläre Sprache.
 
-Einen endlichen Automaten dazu kann man wie folgt konstruieren. Zun"achst braucht
+Einen endlichen Automaten dazu kann man wie folgt konstruieren. Zunächst braucht
 man einen Automaten, der beliebige Folgen von Zeichen akzeptiert. Das schafft
 der nichtdeterministische Automat
 \[
@@ -23,7 +23,7 @@ der nichtdeterministische Automat
 &*++[o][F=]{x_1}
 }
 \]
-Nun muss das Wort aber mit einer Folge ganz bestimmter L"ange enden,
+Nun muss das Wort aber mit einer Folge ganz bestimmter Länge enden,
 also mit einem Wort, welches vom Automaten
 \[
 \entrymodifiers={++[o][F]}
@@ -35,7 +35,7 @@ also mit einem Wort, welches vom Automaten
 &*++[o][F=]{x_4}
 }
 \]
-Einen nichtdeterminisitischen Automaten kann durch Zusammenh"angen
+Einen nichtdeterminisitischen Automaten kann durch Zusammenhängen
 dieser beiden Automaten erreichen:
 \[
 \entrymodifiers={++[o][F]}
@@ -48,7 +48,7 @@ dieser beiden Automaten erreichen:
 &*++[o][F=]{x_4}
 }
 \]
-Noch etwas sparsamer, aber "aquivalent ist der Automat
+Noch etwas sparsamer, aber äquivalent ist der Automat
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @-1mm {
@@ -59,7 +59,7 @@ Noch etwas sparsamer, aber "aquivalent ist der Automat
 &*++[o][F=]{x_4}
 }
 \]
-in dem man den $\varepsilon$-"Ubergang einspart, aber daf"ur im
+in dem man den $\varepsilon$-"Ubergang einspart, aber dafür im
 Zustand nichtdeterministisch einen "Ubergang zu $x_0$ oder $x_2$
-w"ahlen muss, wenn das Zeichen $a$ gelesen wird.
+wählen muss, wenn das Zeichen $a$ gelesen wird.
 \end{loesung}

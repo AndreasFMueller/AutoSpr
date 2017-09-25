@@ -6,20 +6,20 @@ $\Sigma_2=\{{\tt 0},{\tt 1}\}$.
 \begin{teilaufgaben}
 \item
 $L=\{w\in \Sigma_1^*|\text{
-$w$ beginnt mit $a$ und enth"alt h"ochstens ein $b$
+$w$ beginnt mit $a$ und enthält höchstens ein $b$
 }\}$
 \item
 $L=\{w\in \Sigma_1^*|\text{
-$w$ enth"alt eine gerade Zahl {\tt a}s und mindestens
+$w$ enthält eine gerade Zahl {\tt a}s und mindestens
 zwei {\tt b}s
 }\}$
 \item
 $L=\{w\in \Sigma_1^*|\text{
-$w$ hat gerade L"ange und eine ungerade Anzahl {\tt b}s
+$w$ hat gerade Länge und eine ungerade Anzahl {\tt b}s
 }\}$
 \item
 $L=\{w\in \Sigma_1^*|\text{
-$w$ enth"alt nicht genau zwei {\tt a}s
+$w$ enthält nicht genau zwei {\tt a}s
 }\}$
 \item
 $L=\{w\in \Sigma_2^*|\text{
@@ -37,7 +37,7 @@ $L=\emptyset\subset \Sigma_2^*$
 % a)
 %
 \item
-Die Zust"ande haben folgende Bedeutung:
+Die Zustände haben folgende Bedeutung:
 \begin{center}
 \begin{tabular}{c|l}
 Zustand&Bedeutung\\
@@ -65,8 +65,8 @@ $z_3$&beginnt mit {\tt b} oder mehr als ein {\tt b}
 }
 \]
 
-Selbstverst"andlich kann man diese Aufgabe auch mit Hilfe des Satzes~3.4
-aus der Vorlesung l"osen. Dazu m"ussen die Mengen $L(w)$ bestimmt
+Selbstverständlich kann man diese Aufgabe auch mit Hilfe des Satzes~3.4
+aus der Vorlesung lösen. Dazu müssen die Mengen $L(w)$ bestimmt
 werden:
 \begin{center}
 \begin{tabular}{|c|l|c|}
@@ -74,9 +74,9 @@ werden:
 $w$&$L(w)$&$z_{?}$\\
 \hline
 $\varepsilon$&$L$&$z_0$\\
-\tt a&$\{w\in\Sigma_1^*\,|\,\text{$w$ enth"alt h"ochstens 1 {\tt b}}\}$&$z_1$\\
+\tt a&$\{w\in\Sigma_1^*\,|\,\text{$w$ enthält höchstens 1 {\tt b}}\}$&$z_1$\\
 \tt b&$\emptyset$&$z_3$\\
-\tt aa&$\{w\in\Sigma_1^*\,|\,\text{$w$ enth"alt h"ochstens 1 {\tt b}}\}$&$z_1$\\
+\tt aa&$\{w\in\Sigma_1^*\,|\,\text{$w$ enthält höchstens 1 {\tt b}}\}$&$z_1$\\
 \tt ab&$\{w\in\Sigma_1^*\,|\,|w|_{\tt b} = 0\}$&$z_2$\\
 \tt ba&$\emptyset$&$z_3$\\
 \tt bb&$\emptyset$&$z_3$\\
@@ -85,15 +85,15 @@ $\vdots$&$\vdots$&\\
 \end{tabular}
 \end{center}
 Offenbar gibt es vier verschiedene Mengen, also kommt der DEA von $L$
-mit 4 Zust"anden aus. $L({\tt a})$ und $L({\tt ab})$ enth"alten das
-leere Wort, sind als Akzeptierzust"ande. Die "Uberg"ange k"onnen ebenfalls
+mit 4 Zuständen aus. $L({\tt a})$ und $L({\tt ab})$ enthälten das
+leere Wort, sind als Akzeptierzustände. Die "Ubergänge können ebenfalls
 aus der Tabelle abgelesen werden, es ergibt sich der gleiche Automat.
 
 %
 % b)
 %
-\item Die Zeilen z"ahlen die Anzahl {\tt b}, die bereits gelesen
-wurden, die Spalten f"uhren Buch "uber den Zweierrest der Anzahl
+\item Die Zeilen zählen die Anzahl {\tt b}, die bereits gelesen
+wurden, die Spalten führen Buch über den Zweierrest der Anzahl
 {\tt a}.
 \[
 \entrymodifiers={++[o][F]}
@@ -111,7 +111,7 @@ wurden, die Spalten f"uhren Buch "uber den Zweierrest der Anzahl
                 &{z_5}\ar@/^/[l]^{\tt a} \ar@(dr,dl)^{\tt b}
 }
 \]
-L"osung mit Myhill-Nerorde: Startzustand ist $L$, weitere Mengen
+Lösung mit Myhill-Nerorde: Startzustand ist $L$, weitere Mengen
 der Form $L(w)$ sind
 \begin{center}
 \begin{tabular}{c|ll|c}
@@ -130,13 +130,13 @@ $\varepsilon$&$L$&$=L_0$&nein\\
 \hline
 \end{tabular}
 \end{center}
-Die Zust"ande $L_i$ entsprechen den $z_i$ im Zustandsdiagramm.
+Die Zustände $L_i$ entsprechen den $z_i$ im Zustandsdiagramm.
 
 %
 % c)
 %
 \item Die Zeilen codieren den Zweierrest der Anzahl {\tt b}s,
-die Spalten den Zweierrest der L"ange von $w$.
+die Spalten den Zweierrest der Länge von $w$.
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @-1mm {
@@ -149,7 +149,7 @@ die Spalten den Zweierrest der L"ange von $w$.
                 &{z_3} \ar@/^/[l]^{\tt a}\ar@/^/[ul]
 }
 \]
-L"osung mit Myhill-Nerode: Als Zust"ande findet man die folgenden
+Lösung mit Myhill-Nerode: Als Zustände findet man die folgenden
 Mengen:
 \begin{center}
 \begin{tabular}{c|ll|c}
@@ -171,7 +171,7 @@ $\varepsilon$&$L$&$=L_0$&nein\\
 Die Zustande $L_i$ entsprechen wieder den $z_i$ von vorhin.
 
 \item
-In den Zust"anden $z_i,i <3$ hat das Worte genau $i$ {\tt a}s,
+In den Zuständen $z_i,i <3$ hat das Worte genau $i$ {\tt a}s,
 im Zustand $z_3$ hat das Wort 3 oder mehr {\tt a}s.
 \[
 \entrymodifiers={++[o][F]}
@@ -183,7 +183,7 @@ im Zustand $z_3$ hat das Wort 3 oder mehr {\tt a}s.
                                 &*++[o][F=]{z_3} \ar@(dr,dl)^{{\tt a},{\tt b}}
 }
 \]
-L"osung mit Myhill-Nerode:
+Lösung mit Myhill-Nerode:
 \begin{center}
 \begin{tabular}{c|ll|c}
 $w$&$L(w)$&$z_i$&$\varepsilon\in L(w)$\\
@@ -207,12 +207,12 @@ $\varepsilon$&$L$&$=L_0$&ja\\
 \end{tabular}
 \end{center}
 
-\item Bedeutung der Zust"ande:
+\item Bedeutung der Zustände:
 \begin{center}
 \begin{tabular}{c|l}
 Zustand&Beschreibung\\
 \hline
-$z_0$&gerades Zeichen, Bedingung an ungeraden Stellen immer erf"ullt\\
+$z_0$&gerades Zeichen, Bedingung an ungeraden Stellen immer erfüllt\\
 $z_1$&ungerades Zeichen war eine {\tt 1}\\
 $z_2$&{\tt 0} an gerader Stelle\\
 \end{tabular}
@@ -229,7 +229,7 @@ $z_2$&{\tt 0} an gerader Stelle\\
                 &*+\txt{}
 }
 \]
-L"osung mit Myhill-Nerode: Die Zust"ande sind
+Lösung mit Myhill-Nerode: Die Zustände sind
 \begin{center}
 \begin{tabular}{c|ll|c}
 $w$&$L(w)$&$z_i$&$\varepsilon\in L(w)$\\
@@ -269,8 +269,8 @@ $6$ Zeichen lang ist.
         &{z_6}\ar@(dr,ur)_{{\tt 0},{\tt 1}}
 }
 \]
-\item Kein Wort darf akzeptiert werden, d.~h.~die Menge der Akzeptierzust"ande
-ist leer. Der einfachste Automat, der dies erf"ullt, hat genau einen
+\item Kein Wort darf akzeptiert werden, d.~h.~die Menge der Akzeptierzustände
+ist leer. Der einfachste Automat, der dies erfüllt, hat genau einen
 Zustand und eine triviale "Ubergangsfunktion:
 \[
 \entrymodifiers={++[o][F]}
@@ -279,12 +279,12 @@ Zustand und eine triviale "Ubergangsfunktion:
         &{z_0}\ar@(dr,ur)_{{\tt 0},{\tt 1}}
 }
 \]
-L"osung mit Myhill-Nerode: Startzustand ist die Menge $L=\emptyset$
+Lösung mit Myhill-Nerode: Startzustand ist die Menge $L=\emptyset$
 Da $\varepsilon\not\in\emptyset$ ist dieser Zustand kein Startzustand.
-Ausserdem sind die $L(w)$ f"ur jedes $w\in\Sigma_2^*$ weitere Zust"ande.
+Ausserdem sind die $L(w)$ für jedes $w\in\Sigma_2^*$ weitere Zustände.
 Nach Definition ist $L(w)=\{w_e\in\Sigma_2^*\,|\,ww_e\in \emptyset\}=\emptyset$,
 es gibt also nur einen einzigen Zustand, damit ist der Automat bereits
-vollst"andig definiert.
+vollständig definiert.
 \qedhere
 \end{teilaufgaben}
 \end{loesung}

@@ -1,17 +1,17 @@
 Stellen Sie eine kontextfreie Gramatik auf, die die Sprache der ``wachsenden''
-W"orter  (siehe Aufgabe~\ref{30000016}) erzeugt.
+Wörter  (siehe Aufgabe~\ref{30000016}) erzeugt.
 % Geben Sie auch eine Grammatik in Chomsky-Normal-Form an.
 
 \begin{loesung}
-Wachsende W"orter bestehen aus einzelnen W"ortern der Form
+Wachsende Wörter bestehen aus einzelnen Wörtern der Form
 $w={\tt 0}^k{\tt 1}^{k+s}$.  Das Wort $w$ kann man erzeugen,
 indem man zuerst das leere Wort in {\tt 0} und {\tt 1}
-``einschachtelt'', und dann noch eine Anzahl von Einsen anh"angt.
+``einschachtelt'', und dann noch eine Anzahl von Einsen anhängt.
 Damit haben wir aber in informeller Form alle Produktionsregeln
-f"ur W"orter der Sprache $L$ zusammengefasst.
+für Wörter der Sprache $L$ zusammengefasst.
 
-Das Symbol $W$ stehe f"ur W"orter wie $w$, dann kann man beliebige W"orter der
-Sprache zusammensetzen, in dem man solchen W"orter weitere anh"angt:
+Das Symbol $W$ stehe für Wörter wie $w$, dann kann man beliebige Wörter der
+Sprache zusammensetzen, in dem man solchen Wörter weitere anhängt:
 \begin{align*}
 S_0&\to \varepsilon\\
    &\to S\\
@@ -25,12 +25,12 @@ A&\to W\\
 W&\to {\tt01}\\
  &\to {\tt 0}W{\tt 1}\\
 \end{align*}
-Diese Grammatik hat "ubrigens nicht Chomsky-Normalform, es gibt Unit rules,
-Regeln mit drei Symbolen auf der rechten Seite. Wir eliminieren zun"achst
+Diese Grammatik hat übrigens nicht Chomsky-Normalform, es gibt Unit rules,
+Regeln mit drei Symbolen auf der rechten Seite. Wir eliminieren zunächst
 die Unit rules.
 
 Dies war nicht verlangt, aber man kann Chomsky-Normalform mit dem
-"ublichen Algorithmus erreichen: Elimination von $S_0\to S$:
+üblichen Algorithmus erreichen: Elimination von $S_0\to S$:
 \begin{align*}
 S_0&\to \varepsilon\;|\;A\;|\;SA\\
 S  &\to A\;|\;SA\\
@@ -72,7 +72,7 @@ S  &\to SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}W{\tt 1}\\
 A  &\to A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}W{\tt 1}\\
 W  &\to {\tt 01}\;|\; {\tt 0}W{\tt 1}
 \end{align*}
-Aufl"osung der Regeln mit rechter Seite ${\tt 0}W{\tt 1}$:
+Auflösung der Regeln mit rechter Seite ${\tt 0}W{\tt 1}$:
 \begin{align*}
 S_0&\to \varepsilon\;|\;SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}B\\
 B  &\to W{\tt 1}\\

@@ -1,10 +1,10 @@
-In dieser Aufgabe geht es um die Frage, ob man bin"are Ganzzahlen mit
+In dieser Aufgabe geht es um die Frage, ob man binäre Ganzzahlen mit
 Hilfe eines endlichen Automaten auf Gleichheit testen kann.
 Sei $\Sigma=\{\texttt{0},\texttt{1},\texttt{=}\}$. Ist die Sprache
 \[
 L=\{ w\texttt{=}w|w\in \{\texttt{0},\texttt{1}\}^*\}
 \]
-regul"ar?
+regulär?
 
 \begin{hinweis}
 Bitte beachten Sie die beiden unterschiedlichen Bedeutungen von $=$
@@ -18,20 +18,20 @@ klein.
 \end{hinweis}
 
 \begin{loesung}
-Die Sprache ist nicht regul"ar, wie man mit Hilfe des Pumping
+Die Sprache ist nicht regulär, wie man mit Hilfe des Pumping
 Lemmas beweisen kann.
 \ding{182}
-Dazu nehmen wir an, die Sprache sei regul"ar.
+Dazu nehmen wir an, die Sprache sei regulär.
 \ding{183}
 Das Pumping Lemma garantiert, dass es eine Zahl $N$ gibt, so dass
-sich W"orter l"anger als diese Zahl in einer speziellen Art
+sich Wörter länger als diese Zahl in einer speziellen Art
 zerlegen und ``aufpumpen'' lassen.
 \ding{184}
-Wir w"ahlen das Wort
+Wir wählen das Wort
 \[
 w=\texttt{10}^N\texttt{=10}^N,
 \]
-welches offenbar zur Sprache geh"ort und auch l"anger ist als $N$.
+welches offenbar zur Sprache gehört und auch länger ist als $N$.
 \ding{185}
 Das Pumping Lemma garantiert, dass $w=xyz$  geschrieben werden kann
 mit $|xy|\le N$ und $|y|>0$:
@@ -47,13 +47,13 @@ Aus der Konstruktion sieht man, dass $y$ eine der beiden Formen
 haben muss (die zweite nur falls $|x|=0$).
 \ding{186}
 Welche Form auch immer $y$ hat, nach dem Aufpumpen wird
-auf der linken Seite des Gleichheitszeichens eine Bin"arzahl mit
-einer f"uhrenden \texttt{1} und mit mehr Stellen stehen, die Gleichheit
-ist also nicht mehr erf"ullt, das aufgepumpte Wort ist nicht in der
+auf der linken Seite des Gleichheitszeichens eine Binärzahl mit
+einer führenden \texttt{1} und mit mehr Stellen stehen, die Gleichheit
+ist also nicht mehr erfüllt, das aufgepumpte Wort ist nicht in der
 Sprache, $xy^lz\not\in L$.
 \ding{187}
 Dieser Widerspruch zur Aussage des Pumping
-Lemmas zeigt, dass die Annahme, $L$ sei regul"ar, falsch gewesen
+Lemmas zeigt, dass die Annahme, $L$ sei regulär, falsch gewesen
 sein muss.
 \end{loesung}
 

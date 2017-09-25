@@ -1,9 +1,9 @@
-Formulieren Sie eine Grammatik f"ur die folgenden Sprachen "uber
+Formulieren Sie eine Grammatik für die folgenden Sprachen über
 den Terminalsymbolen $\Sigma=\{{\tt 0},{\tt 1}\}$:
 \begin{teilaufgaben}
 \item $L=\Sigma^*$
-\item W"orter, die mit dem gleichen Symbol enden, mit dem sie beginnen.
-\item $L$ enth"alt alle W"orter gerader L"ange.
+\item Wörter, die mit dem gleichen Symbol enden, mit dem sie beginnen.
+\item $L$ enthält alle Wörter gerader Länge.
 \item $L=\{0^n1^m|n>m\}$
 \end{teilaufgaben}
 
@@ -11,18 +11,18 @@ den Terminalsymbolen $\Sigma=\{{\tt 0},{\tt 1}\}$:
 \begin{teilaufgaben}
 \item
 Jedes Wort kann man erhalten, indem man dem leeren Wort $\varepsilon$
-wiederholt {\tt 0} oder {\tt 1} anh"angt.
+wiederholt {\tt 0} oder {\tt 1} anhängt.
 \begin{align*}
 W&\rightarrow W{\tt 0}\\
  &\rightarrow W{\tt 1}\\
  &\rightarrow\varepsilon
 \end{align*}
-\item Sei $E$ eine Variable, die f"ur W"orter mit gleichem Anfangs-
-und Endzeichen steht. Dazu geh"oren $\varepsilon$, {\tt 0} und {\tt 1}.
-L"angere
-W"orter kann man aus beliebigen W"ortern $W$ in $\Sigma^*$ erzeugen,
-indem man das gleiche Symbol voranstellt und anh"angt. F"ur beliebige
-W"orter kann
+\item Sei $E$ eine Variable, die für Wörter mit gleichem Anfangs-
+und Endzeichen steht. Dazu gehören $\varepsilon$, {\tt 0} und {\tt 1}.
+Längere
+Wörter kann man aus beliebigen Wörtern $W$ in $\Sigma^*$ erzeugen,
+indem man das gleiche Symbol voranstellt und anhängt. Für beliebige
+Wörter kann
 man die Produktionsregeln aus a) verwenden.
 \begin{align*}
 E&\rightarrow \varepsilon\\
@@ -34,10 +34,10 @@ W&\rightarrow W{\tt 0}\\
  &\rightarrow W{\tt 1}\\
  &\rightarrow\varepsilon
 \end{align*}
-\item Die Variable $G$ steht f"ur W"orter gerader L"ange. Ein Wort
-gerader L"ange kann man bilden, indem man einem Wort gerader L"ange
-ein Zeichenpaar anh"angt. Sei $P$ eine Variable, die f"ur ein Zeichenpaar
-steht. Die Variable $Z$ soll f"ur ein einzelnes Zeichen stehen, die
+\item Die Variable $G$ steht für Wörter gerader Länge. Ein Wort
+gerader Länge kann man bilden, indem man einem Wort gerader Länge
+ein Zeichenpaar anhängt. Sei $P$ eine Variable, die für ein Zeichenpaar
+steht. Die Variable $Z$ soll für ein einzelnes Zeichen stehen, die
 Produktionsregeln der Grammatik sind damit:
 \begin{align*}
 G&\rightarrow GP\\
@@ -47,11 +47,11 @@ Z&\rightarrow {\tt 0}\\
  &\rightarrow {\tt 1}
 \end{align*}
 \item
-Das k"urzeste Wort der gesuchten Art ist {\tt 0}. Sei $S$ eine
-Variable, die f"ur W"orter der Sprache steht. W"orter in $L$
-kann man aus bereits produzierten W"ortern in $L$ produzieren,
+Das kürzeste Wort der gesuchten Art ist {\tt 0}. Sei $S$ eine
+Variable, die für Wörter der Sprache steht. Wörter in $L$
+kann man aus bereits produzierten Wörtern in $L$ produzieren,
 indem man  eine {\tt 0} voranstellt, und optional eine {\tt 1}
-anh"angt. Dies f"uhrt auf die Produktionsregeln
+anhängt. Dies führt auf die Produktionsregeln
 \begin{align*}
 S&\rightarrow {\tt 0}S\\
  &\rightarrow {\tt 0}S{\tt 1}\\

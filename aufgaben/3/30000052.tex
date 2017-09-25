@@ -1,30 +1,30 @@
-F"ur die Input-Validierung in einer Anwendung wurde beschlossen,
-regul"are Ausdr"ucke zu verwenden.
-Geben Sie f"ur jede im folgenden beschriebene Art von Eingabefeldern
-einen regul"aren Ausdruck an, der genau auf die akzeptablen Eingaben passt.
-Sie d"urfen annehmen, dass Whitespace am Anfang und Ende des Eingabefeldes
+Für die Input-Validierung in einer Anwendung wurde beschlossen,
+reguläre Ausdrücke zu verwenden.
+Geben Sie für jede im folgenden beschriebene Art von Eingabefeldern
+einen regulären Ausdruck an, der genau auf die akzeptablen Eingaben passt.
+Sie dürfen annehmen, dass Whitespace am Anfang und Ende des Eingabefeldes
 bereits entfernt worden ist.
 \begin{teilaufgaben}
-\item Eingabefeld f"ur Postleitzahl: eine vier- oder f"unfstellige Dezimalzahl
-ohne f"uhrende Nullen.
-\item Eingabefeld f"ur nat"urliche Zahlen in dezimal, oktal oder hexadezimal.
+\item Eingabefeld für Postleitzahl: eine vier- oder fünfstellige Dezimalzahl
+ohne führende Nullen.
+\item Eingabefeld für natürliche Zahlen in dezimal, oktal oder hexadezimal.
 Hexadezimalzahlen verwenden die Ziffern \texttt{0}--\texttt{9} und die
-Buchstaben \texttt{a}--\texttt{f} und m"ussen mit \texttt{0x} eingeleitet
+Buchstaben \texttt{a}--\texttt{f} und müssen mit \texttt{0x} eingeleitet
 sein.
 Oktalzahlen verwenden nur die Ziffern \texttt{0}--\texttt{7} und sind
-durch eine f"uhrende \texttt{0} gekennzeichnet.
+durch eine führende \texttt{0} gekennzeichnet.
 Dezimalzahlen verwenden \texttt{0}--\texttt{9} und beginnen nicht mit einer
 \texttt{0}.
-\item Eingabefeld f"ur eine Kreditkartennummer bestehende aus 4 Gruppen
+\item Eingabefeld für eine Kreditkartennummer bestehende aus 4 Gruppen
 von jeweils vier Dezimalziffern, optional getrennt durch ein Leerzeichen.
 \end{teilaufgaben}
 
 \begin{loesung}
 \begin{teilaufgaben}
 \item 
-Vierstellige Zahl ohne f"uhrende Null:
+Vierstellige Zahl ohne führende Null:
 $r_1 = \texttt{[1-9][0-9][0-9][0-9]}$.
-Dieser Zahl darf man jetzt noch optional eine weitere Ziffer anh"angen:
+Dieser Zahl darf man jetzt noch optional eine weitere Ziffer anhängen:
 \[
 r=r_1\texttt{(|[0-9])}
 =
@@ -37,13 +37,13 @@ Man beachte, dass die Null nur als Hexadezimalzahl oder als Oktalzahl
 geschrieben werden kann, eine Dezimalzahl \texttt{0} im Sinne der Spezifikation
 dieser Aufgabe gibt es nicht.
 Dies ist aber kein Verlust, denn die Zeichenkette \texttt{0} ist spezifiziert
-und ihr kann der korrekte Wert $0$ zugeordnet werden, unabh"angig davon, ob
+und ihr kann der korrekte Wert $0$ zugeordnet werden, unabhängig davon, ob
 der Benutzer die Eingabe als Oktalzahl oder als Dezimalzahl verstanden hat.
 \begin{center}
 \begin{tabular}{ll}
-Ausdruck f"ur Dezimalzahlen:&\texttt{[1-9][0-9]*}\\
-Ausdruck f"ur Oktalzahlen:&\texttt{0[0-7]*}\\
-Ausdruck f"ur Hexadezimalzahlen:&\texttt{0x[0-9a-f]+}\\
+Ausdruck für Dezimalzahlen:&\texttt{[1-9][0-9]*}\\
+Ausdruck für Oktalzahlen:&\texttt{0[0-7]*}\\
+Ausdruck für Hexadezimalzahlen:&\texttt{0x[0-9a-f]+}\\
 Zusammen:&\texttt{[1-9][0-9]*|0[0-9]*|0x[0-9a-f]+}
 \end{tabular}
 \end{center}
@@ -52,7 +52,7 @@ Eine Vierergruppe ist $r_1 = \texttt{[0-9][0-9][0-9][0-9]}$,
 eine Vierergruppe mit optionalem voranstehendem Leerzeichen ist
 $r_2 = \texttt{(|\blank)}r_1$.
 Eine Kreditkartennummer setzt sich aus einem $r_1$ und genau drei
-$r_2$ zusammen, der gesuchte regul"are Ausdruck ist also
+$r_2$ zusammen, der gesuchte reguläre Ausdruck ist also
 \[
 r = r_1r_2r_2r_2 = 
 \texttt{[0-9][0-9][0-9][0-9]%
@@ -64,20 +64,20 @@ oder etwas einfacher mit erweiterter Regex-Syntax:
 \[
 \texttt{[0-9]\{4\}(\blank?[0-9]\{4\})\{3\}}
 \]
-Eine noch k"urzere L"osung w"are
+Eine noch kürzere Lösung wäre
 \begin{equation}
 \texttt{([0-9]\{4\}\blank?)\{4\}}
 \label{30000052}
 \end{equation}
-Dieser Ausdruck l"asst zwar zu, dass am Ende des Eingabestrings ein
-Leerzeichen akzeptiert wird, doch gem"ass Voraussetzung gibt es solche
+Dieser Ausdruck lässt zwar zu, dass am Ende des Eingabestrings ein
+Leerzeichen akzeptiert wird, doch gemäss Voraussetzung gibt es solche
 Leerzeichen im Input nicht.
-Der regul"are Ausdruck~\eqref{30000052} ist also immer noch eine korrekte 
-L"osung f"ur das Validierungs-Problem.
+Der reguläre Ausdruck~\eqref{30000052} ist also immer noch eine korrekte 
+Lösung für das Validierungs-Problem.
 \end{teilaufgaben}
 \end{loesung}
 
 \begin{bewertung}
-F"ur jede Teilaufgabe 2 Punkte.
+Für jede Teilaufgabe 2 Punkte.
 \end{bewertung}
 

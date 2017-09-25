@@ -1,26 +1,26 @@
-Ersetzt man in einem XML-Dokument alle "offnenden Elemente durch {\tt <},
+Ersetzt man in einem XML-Dokument alle öffnenden Elemente durch {\tt <},
 alle schliessenden Elemente durch {\tt >} und alle leeren Elemente
-durch {\tt /}, und l"asst alles andere weg, bleibt ein Wort "uber
-dem Alphabet $\Sigma =\{{\tt <},{\tt >},{\tt /}\}$ "ubrig.
-Bilden die so konstruierten W"orter eine regul"are Sprache?
+durch {\tt /}, und lässt alles andere weg, bleibt ein Wort über
+dem Alphabet $\Sigma =\{{\tt <},{\tt >},{\tt /}\}$ übrig.
+Bilden die so konstruierten Wörter eine reguläre Sprache?
 
 \begin{loesung}
-Nein, wie wir mit dem Pumping Lemma zeigen k"onnen.
+Nein, wie wir mit dem Pumping Lemma zeigen können.
 
-Sei $L$ die Sprache der W"orter, die durch den genannten Prozess
-entstehen k"onnen. In so einem Wort muss die Anzahl `{\tt <}' und die
+Sei $L$ die Sprache der Wörter, die durch den genannten Prozess
+entstehen können. In so einem Wort muss die Anzahl `{\tt <}' und die
 Anzahl `{\tt >}' gleich gross sein. Wir zeigen, dass dies im Widerspruch
-steht zu der Annahme, $L$ sei regul"ar.
+steht zu der Annahme, $L$ sei regulär.
 
-Wir nehmen also an, $L$ sei regul"ar. Nach dem Pumping Lemma gibt
-es also eine Zahl $N$, die pumping length, so dass sich W"orter mit
-L"ange mindestens $N$ innerhalb der ersten $N$ Zeichen aufpumpen lassen.
-Wir w"ahlen als Wort $w=\text{\tt <}^N\text{\tt >}^N$. Dieses Wort
+Wir nehmen also an, $L$ sei regulär. Nach dem Pumping Lemma gibt
+es also eine Zahl $N$, die pumping length, so dass sich Wörter mit
+Länge mindestens $N$ innerhalb der ersten $N$ Zeichen aufpumpen lassen.
+Wir wählen als Wort $w=\text{\tt <}^N\text{\tt >}^N$. Dieses Wort
 kann sicher aus einem XML-File erzeugt werden. Nach dem Pumping
 Lemma kann man $w=xyz$ schreiben, mit $|y|>0$ und $|xy|\le N$, so dass
-alle W"orter $xy^kz\in L$ sind. Wegen $|xy|\le N$ besteht aber
-$y$ aus lauter `{\tt <}'. Das Wort $xy^kz$ ent"alt also mehr
+alle Wörter $xy^kz\in L$ sind. Wegen $|xy|\le N$ besteht aber
+$y$ aus lauter `{\tt <}'. Das Wort $xy^kz$ entält also mehr
 `{\tt <}' als `{\tt >}' und kann damit nicht in $L$ sein. Dieser
-Widerspruch zeigt, dass die Annahme, $L$ sei regul"ar, falsch gewesen
-sein muss. $L$ ist also nicht regul"ar.
+Widerspruch zeigt, dass die Annahme, $L$ sei regulär, falsch gewesen
+sein muss. $L$ ist also nicht regulär.
 \end{loesung}

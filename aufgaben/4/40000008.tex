@@ -1,5 +1,5 @@
-In der Vorlesung wurde die folgende Grammatik $G$ f"ur arithmetische
-Ausdr"ucke vorgestellt
+In der Vorlesung wurde die folgende Grammatik $G$ für arithmetische
+Ausdrücke vorgestellt
 \begin{align*}
 E&\to E{\tt +}T\;|\; T\\
 T&\to T{\tt \times}F\;|\;F\\
@@ -9,7 +9,7 @@ Verwandeln Sie diese Grammatik in einen Stackautomaten, der die gleiche
 Sprache akzeptiert.
 
 \begin{loesung}
-Das Ger"ust des Automaten ist
+Das Gerüst des Automaten ist
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -20,8 +20,8 @@ Das Ger"ust des Automaten ist
                                 &*++[o][F=]{}
 }
 \]
-Dem Zustand f"ugen wir jetzt Schrittweise die den Regeln
-entsprechenden "Uberg"ange hinzu. Zuerst $E\to E{\tt +}T\;|\; T$:
+Dem Zustand fügen wir jetzt Schrittweise die den Regeln
+entsprechenden "Ubergänge hinzu. Zuerst $E\to E{\tt +}T\;|\; T$:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -63,5 +63,5 @@ R       \ar@(u,ur)^{{\tt a},{\tt a}\to\varepsilon}
         \ar@(l,dl)_{{\tt \times},{\tt \times}\to\varepsilon}
 }
 \]
-Damit ist der Automat vollst"andig konstruiert.
+Damit ist der Automat vollständig konstruiert.
 \end{loesung}

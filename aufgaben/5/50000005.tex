@@ -8,46 +8,46 @@ w\in\Sigma^*
 |w|_{\tt 2}
 \}
 \]
-Beschreiben Sie einen Turing-Maschinen-Algorithmus, mit dem man W"orter der
+Beschreiben Sie einen Turing-Maschinen-Algorithmus, mit dem man Wörter der
 Sprache $L$ erkennen kann.
 
 \begin{loesung}
-Der Algorithmus k"onnte so vorgehen:
+Der Algorithmus könnte so vorgehen:
 \begin{enumerate}
 \item Gehe von links nach rechts durch das Band bis Du eine
-{\tt 0} findest, ersetze diese durch {\tt x} und gehe zur"uck
+{\tt 0} findest, ersetze diese durch {\tt x} und gehe zurück
 zum Anfang. Falls keine {\tt 0} gefunden wurde, fahre weiter bei
 \ref{einer}
 \item
 Gehe von links nach rechts durch das Band bis Du eine
 {\tt 1} findest, ersetze diese durch {\tt y}. Falls keine {\tt 1}
-gefunden, verwerfe das Wort. Fahre zur"uck zum Anfang des Bandes.
+gefunden, verwerfe das Wort. Fahre zurück zum Anfang des Bandes.
 \item Fahre von links nach rechts durch das Band bis du eine
 {\tt 2} findest, ersetze diese durch {\tt z}. Falls es keine {\tt 2}
 gibt, verwerfe das Wort. Sonst fahre weiter bei 1.
 \item\label{einer}
 Gehe von links nach rechts durch das Band bis Du eine
 {\tt 1} findest, ersetze diese durch {\tt y}. Falls keine {\tt 1}
-gefunden, akzeptiere das Wort. Fahre zur"uck zum Anfang des Bandes.
+gefunden, akzeptiere das Wort. Fahre zurück zum Anfang des Bandes.
 \item Fahre von links nach rechts durch das Band bis du eine
 {\tt 2} findest, ersetze diese durch {\tt z}. Falls es keine {\tt 2}
 gibt, verwerfe das Wort. Sonst fahre weiter bei \ref{einer}.
 \end{enumerate}
 Schritte 1--3 stellen sicher, dass es zu jeder {\tt 0} auch mindestens
-eine {\tt 1} und ein {\tt 2} gibt. Dies w"urde aber auch W"orter wie
+eine {\tt 1} und ein {\tt 2} gibt. Dies würde aber auch Wörter wie
 {\tt 112} akzeptabel machen, daher kontrollieren die Schritte 4 und 5,
 ob zu jeder verbleibenden {\tt 1} auch mindestens eine {\tt 2}
 vorhanden ist.
 
-Ein alternativer Algorithmus verwendet drei Hilfsb"ander.  Die {\tt 0}
+Ein alternativer Algorithmus verwendet drei Hilfsbänder.  Die {\tt 0}
 werden auf Hilfsband $0$ kopiert, die {\tt 1} auf Hilfsband $1$ und
 die {\tt 2} auf Hilfsband 2. Sobald das Wort gelesen ist, werden
-die K"opfe auf den Hilfsb"andern jeweils gemeinsam um eine Stelle nach
-links gefahren, bis einer der K"opfe in der Anfangsposition ist.
+die Köpfe auf den Hilfsbändern jeweils gemeinsam um eine Stelle nach
+links gefahren, bis einer der Köpfe in der Anfangsposition ist.
 Falls der Kopf von Hilfsband $0$ nicht in der Anfangsposition ist,
-wird das Wort verworfen. Dann werden die K"opfe der Hilfsb"ander $1$
+wird das Wort verworfen. Dann werden die Köpfe der Hilfsbänder $1$
 und $2$ gemeinsam nach links gefahren, bis einer der beiden auf dem
 Wortanfang steht. Steht der Kopf von Hilfsband $1$ nicht in der
-Anfangsposition, wird das Wort verworfen. In allen anderen F"allen
+Anfangsposition, wird das Wort verworfen. In allen anderen Fällen
 wird das Wort akzeptiert.
 \end{loesung}

@@ -1,13 +1,13 @@
-Die Goldbach-Vermutung besagt, jede gerade Zahl $> 2$ k"onne als Summe von
+Die Goldbach-Vermutung besagt, jede gerade Zahl $> 2$ könne als Summe von
 zwei Primzahlen geschrieben werden. Sie ist immer noch offen.
 \begin{teilaufgaben}
 \item Formulieren Sie das Entscheidungsproblem ``Kann die gerade Zahl $n$
 als Summe von zwei Primzahlen geschrieben werden?'' als Sprachproblem.
 \item Ist die in a) definierte Sprache entscheidbar?
 \item Jemand hat eine Funktion \texttt{boolean gb(BigInteger n)} geschrieben,
-welche herausfinden kann, ob die nat"urlich Zahl $n$ gerade ist und sich
-als Summe von zwei Primzahlen schreiben l"asst. Gibt es eine M"oglichkeit,
-maschinell zu "uberpr"ufen, ob eine solche Funktion in allen F"allen
+welche herausfinden kann, ob die natürlich Zahl $n$ gerade ist und sich
+als Summe von zwei Primzahlen schreiben lässt. Gibt es eine Möglichkeit,
+maschinell zu überprüfen, ob eine solche Funktion in allen Fällen
 korrekt arbeitet?
 \end{teilaufgaben}
 
@@ -16,24 +16,24 @@ korrekt arbeitet?
 \item Sei $\Sigma=\{\texttt{0},\texttt{1}\}$. Die Sprache
 \[
 L=\left\{ w\in\Sigma^*\,\left|\, \begin{minipage}{4truein}
-$w$ ist die Bin"arcodierung einer einer geraden Zahl $n$, die
+$w$ ist die Binärcodierung einer einer geraden Zahl $n$, die
 als Summe von zwei Primzahlen geschrieben werden kann.
 \end{minipage}
 \right.\right\}
 \]
-enth"alt genau die Bin"ardarstellungen derjenigen geraden Zahlen,
+enthält genau die Binärdarstellungen derjenigen geraden Zahlen,
 die sich als Summe von zwei Primzahlen schreiben lassen.
-\item Ein Entscheidungsalgorithmus f"ur $L$ geht wie folgt vor:
+\item Ein Entscheidungsalgorithmus für $L$ geht wie folgt vor:
 \begin{compactenum}
-\item F"ur jede Zahl $p_1<n$ "uberpr"ufe, ob $p_1$ und $n-p_1$ Primzahlen
+\item Für jede Zahl $p_1<n$ überprüfe, ob $p_1$ und $n-p_1$ Primzahlen
 sind.
 \item Falls ja: $q_{\text{accept}}$, andernfalls $q_{\text{reject}}$.
 \end{compactenum}
-Da dieser Algorithmus immer anh"alt, ist er ein Entscheider.
+Da dieser Algorithmus immer anhält, ist er ein Entscheider.
 \item Dieses Problem ist nicht entscheidbar.
 Es geht darum, zu entscheiden, ob eine Turing-erkennbare Sprache
 die Eigenschaft
-``enth"alt genau die geraden Zahlen, die sich als Summe von zwei Primzahlen
+``enthält genau die geraden Zahlen, die sich als Summe von zwei Primzahlen
 schreiben lassen''
 hat.
 Diese Eigenschaft ist nicht trivial, denn die leere Menge $\emptyset$ hat

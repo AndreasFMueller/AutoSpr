@@ -1,7 +1,7 @@
 Zeigen Sie, dass die folgenden Sprachen nicht kontextfrei sind:
 \begin{teilaufgaben}
 \item $L=\{\texttt{0}^n\texttt{1}^n\texttt{0}^n\texttt{1}^n\;|\;n\ge 0\}$
-\item $L=\{w{\texttt{\#}}w\;|\;w\in\{{\tt 0},{\tt 1}\}^*\}$ "uber dem Alphabet
+\item $L=\{w{\texttt{\#}}w\;|\;w\in\{{\tt 0},{\tt 1}\}^*\}$ über dem Alphabet
 $\Sigma=\{\texttt{0},\texttt{1},\texttt{\#}\}$
 \end{teilaufgaben}
 
@@ -11,42 +11,42 @@ $\Sigma=\{\texttt{0},\texttt{1},\texttt{\#}\}$
 Bilde das Wort $w=\texttt{0}^N\texttt{1}^N\texttt{0}^N\texttt{1}^N$.
 Das Pumping Lemma
 behauptet, dass es eine Unterteilung des Wortes $w=uvxyz$ gibt, wir
-m"ussen zeigen, dass jede m"oglich Unterteilung, die allen vom
-Pumping Lemma garantierten Rahmenbedingungen gen"ugt, bei Aufpumpen
-auf ein nicht zu $L$ geh"orendes Wort f"uhrt.
+müssen zeigen, dass jede möglich Unterteilung, die allen vom
+Pumping Lemma garantierten Rahmenbedingungen genügt, bei Aufpumpen
+auf ein nicht zu $L$ gehörendes Wort führt.
 Im vorliegenden Fall
-gibt es zwei wesentlich verschieden F"alle.
+gibt es zwei wesentlich verschieden Fälle.
 
 Im ersten Fall sind die
-Teilw"orter $v$ und $y$ jeweils vollst"andig in einem der aus Nullen
-oder Einsen bestehenden Bl"ocke enthalten. Durch Aufpumpen nimmt die
+Teilwörter $v$ und $y$ jeweils vollständig in einem der aus Nullen
+oder Einsen bestehenden Blöcke enthalten. Durch Aufpumpen nimmt die
 Anzahl der gleichartigen Stellen in diesem Block zu, der andere Block
-mit gleichen Ziffern wird jedoch nicht ver"andert.
+mit gleichen Ziffern wird jedoch nicht verändert.
 Die Eigenschaft, dass die Nuller- und
-Einer-Bl"ocke jeweils gleich viele Stellen enthalten m"ussen, wir
-beim Aufpumpen zerst"ort.
+Einer-Blöcke jeweils gleich viele Stellen enthalten müssen, wir
+beim Aufpumpen zerstört.
 
-Im zweiten Fall enth"alt einer der Teile $v$ oder $y$ eine
+Im zweiten Fall enthält einer der Teile $v$ oder $y$ eine
 Grenze zwischen Nullen und Einsen, also einen Wechsel von
 \texttt{0} auf \texttt{1} oder umgekehrt.
 Ein Wort in $L$ kann
 genau zwei Wechsel von \texttt{0} auf \texttt{1} und genau einen
 von \texttt{1} auf \texttt{0} enthalten.
 Durch Aufpumpen des Teils,
-der einen Wechsel enth"alt, wird die Anzahl der Wechsel erh"oht,
-so dass das aufgepumpte Wort nicht mehr zu $L$ geh"ort.
+der einen Wechsel enthält, wird die Anzahl der Wechsel erhöht,
+so dass das aufgepumpte Wort nicht mehr zu $L$ gehört.
 
-Das Pumping Lemma behauptet aber, dass auch die aufgepumpten W"orter
-zur Sprache geh"oren muss. Dieser Widerspruch zeigt, dass $L$
+Das Pumping Lemma behauptet aber, dass auch die aufgepumpten Wörter
+zur Sprache gehören muss. Dieser Widerspruch zeigt, dass $L$
 nicht kontextfrei sein kann.
 \item Sei $N$ die Pumping length. Wie in a) verwenden wir als
 Wort $\texttt{0}^N\texttt{1}^N\texttt{\#}\texttt{0}^N\texttt{1}^N$.
 Bei der Unterteilung
-gem"ass den Restriktionen des Pumping Lemma gibt es genau einen zus"atzlichen
-m"oglichen Fall, n"amlich den, dass $v$ oder $y$ das Zeichen {\tt\#}
-enth"alt.
+gemäss den Restriktionen des Pumping Lemma gibt es genau einen zusätzlichen
+möglichen Fall, nämlich den, dass $v$ oder $y$ das Zeichen {\tt\#}
+enthält.
 In diesem Fall wird durch Aufpumpen die Zahl der {\tt\#}
-erh"oht, ein Wort in $L$ darf jedoch nur ein einziges {\tt\#}-Zeichen
+erhöht, ein Wort in $L$ darf jedoch nur ein einziges {\tt\#}-Zeichen
 enthalten.
 Diese Widerspruch zeigt, dass $L$ nicht kontextfrei sein kann.
 \qedhere

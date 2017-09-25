@@ -1,11 +1,11 @@
-Die Sprache $L$ besteht aus den W"ortern $w$ "uber dem Alphabet
+Die Sprache $L$ besteht aus den Wörtern $w$ über dem Alphabet
 $\Sigma=\{\text{\tt a},\text{\tt b}\}$ mit einer der folgenden Eigenschaften:
 \begin{enumerate}
-\item Wenn $w$ mehr als ein {\tt a} enth"alt, dann endet es mit zwei {\tt b}.
+\item Wenn $w$ mehr als ein {\tt a} enthält, dann endet es mit zwei {\tt b}.
 \item $w$ endet auf {\text b} und es folgen nie zwei gleiche
 Buchstaben aufeinander.
 \end{enumerate}
-Zu dieser Sprache geh"oren beispielsweise
+Zu dieser Sprache gehören beispielsweise
 \[
 \text{\tt b},
 \text{\tt ab},
@@ -16,7 +16,7 @@ Zu dieser Sprache geh"oren beispielsweise
 \text{\tt ababababab},
 \text{\tt abababababb},
 \]
-nicht dazu geh"oren
+nicht dazu gehören
 \[
 \text{\tt a},
 \text{\tt aa},
@@ -27,15 +27,15 @@ nicht dazu geh"oren
 \text{\tt babb},
 \text{\tt bbbbbbbabb}.
 \]
-Ist diese Sprache regul"ar?
+Ist diese Sprache regulär?
 
 \begin{loesung}
-Die Sprache ist regul"ar, denn man kann einen regul"aren Ausdruck
-angeben, der $L$ akzeptiert. Der regul"are Ausdruck kann schrittweise
+Die Sprache ist regulär, denn man kann einen regulären Ausdruck
+angeben, der $L$ akzeptiert. Der reguläre Ausdruck kann schrittweise
 aufgebaut werden.
 
-Die Bedingung, dass das Wort mehr als ein {\tt a} enth"alt bedeutet,
-dass es vom regul"aren Ausdruck {\tt .*a.*a.*} akzeptiert wird. Wenn
+Die Bedingung, dass das Wort mehr als ein {\tt a} enthält bedeutet,
+dass es vom regulären Ausdruck {\tt .*a.*a.*} akzeptiert wird. Wenn
 ein solches Wort mit zwei {\tt b} enden soll, dann muss es von
 \[
 r_0=\text{\tt .*a.*a.*bb}
@@ -43,10 +43,10 @@ r_0=\text{\tt .*a.*a.*bb}
 akzeptiert werden.
 Umgekehrt hat ein Wort $w\in L(r_0)$, welches also von $r_0$ akzeptiert
 wird, mindestens zwei {\tt a} drin und endet auf {\tt bb}.
-Ausserdem erf"ullen nat"urlich noch alle W"orter
+Ausserdem erfüllen natürlich noch alle Wörter
 die Bedingung~1., die genau ein {\tt a} enthalten. Diese werden
-vom regul"aren Ausdruck {\tt b*ab*} akzeptiert. Insgesamt wird also die
-Menge aller W"orter, die die Bedingung~1. erf"ullen, vom regul"aren
+vom regulären Ausdruck {\tt b*ab*} akzeptiert. Insgesamt wird also die
+Menge aller Wörter, die die Bedingung~1. erfüllen, vom regulären
 Ausdruck
 \[
 r_1=\text{\tt .*a.*a.*bb|b*ab*}
@@ -54,17 +54,17 @@ r_1=\text{\tt .*a.*a.*bb|b*ab*}
 akzeptiert.
 
 Die Bedingung, dass ein Wort mit {\tt b} endet bedeutet, dass das Wort
-nicht leer sein kann. Wenn es mehr als ein Zeichen enth"alt, muss es
-aus Bl"ocken der Form {\tt ab} bestehen, denen m"oglicherweise ein
-einzelnes {\tt b} vorausgeht. W"orter, die Bedingung~1 erf"ullen werden
-also vom regul"aren Ausdruck
+nicht leer sein kann. Wenn es mehr als ein Zeichen enthält, muss es
+aus Blöcken der Form {\tt ab} bestehen, denen möglicherweise ein
+einzelnes {\tt b} vorausgeht. Wörter, die Bedingung~1 erfüllen werden
+also vom regulären Ausdruck
 \[
 r_2=\text{\tt b?(ab)*}
 \]
 akzeptiert.
 
-Die Sprache ist regul"ar, weil die Vereinigung zweier regul"arer Sprachen
-wieder regul"ar ist, es ist n"amlich $L=L(r_1)\cup L(r_2)$. Der regul"are
+Die Sprache ist regulär, weil die Vereinigung zweier regulärer Sprachen
+wieder regulär ist, es ist nämlich $L=L(r_1)\cup L(r_2)$. Der reguläre
 Ausdruck $r$, der $L=L(r)$ akzeptiert, ist
 \[
 r=r_1|r_2 =

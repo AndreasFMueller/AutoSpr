@@ -1,9 +1,9 @@
-Konstruieren Sie f"ur jede der folgenden Sprachen "uber dem Alphabet
-$\Sigma=\{{\tt 0},{\tt 1}\}$ einen NEA. Reduzieren Sie diesen f"ur die
+Konstruieren Sie für jede der folgenden Sprachen über dem Alphabet
+$\Sigma=\{{\tt 0},{\tt 1}\}$ einen NEA. Reduzieren Sie diesen für die
 Teilaufgaben a)-g) auf einen minimalen DEA.
 \begin{teilaufgaben}
-\item $L_1=\{w\in\Sigma^*\,|\,\text{$w$ enth"alt mindestens zwei {\tt 1} nacheinander}\}$
-\item $L_2=\{w\in\Sigma^*\,|\,\text{$w$ ist eine durch drei teilbare Bin"arzahl}\}$
+\item $L_1=\{w\in\Sigma^*\,|\,\text{$w$ enthält mindestens zwei {\tt 1} nacheinander}\}$
+\item $L_2=\{w\in\Sigma^*\,|\,\text{$w$ ist eine durch drei teilbare Binärzahl}\}$
 \item $L_3=L_1\cap L_2$
 \item $L_4=L_1\setminus L_2$
 \item $L_5=L_1\cup L_2$
@@ -13,7 +13,7 @@ Teilaufgaben a)-g) auf einen minimalen DEA.
 
 \begin{loesung}
 \begin{teilaufgaben}
-\item Ein einfacher NEA f"ur $L_1$ ist
+\item Ein einfacher NEA für $L_1$ ist
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -23,7 +23,7 @@ Teilaufgaben a)-g) auf einen minimalen DEA.
                         &*++[o][F=]{q_2}\ar@(ur,dr)^{{\tt 0},{\tt 1}}
 }
 \]
-Diesen NEA k"onnen wir jetzt mit dem Standardalgorithmus in einen
+Diesen NEA können wir jetzt mit dem Standardalgorithmus in einen
 DEA umwandeln:
 \[
 \entrymodifiers={++[o][F]}
@@ -43,7 +43,7 @@ q_{000}\ar@(ul,dl)_{{\tt 0},{\tt 1}}
                 &q_{011} \ar@/^/[uul]^{\tt 0} \ar[ur]_{\tt 1}
 }
 \]
-Eliminieren wir daraus die nicht erreichbaren Zust"ande, bleibt der
+Eliminieren wir daraus die nicht erreichbaren Zustände, bleibt der
 DEA
 \[
 \entrymodifiers={++[o][F]}
@@ -74,9 +74,9 @@ Oder etwas kompakter:
 }
 \]
 Es ist jedoch noch nicht klar, ob dieser DEA minimal ist. Daher wenden
-wir den Algorithmus f"ur den Minimalautomaten an, um m"oglicherweise
-"aquivalente Zust"ande zu finden. Nach der Markierung von Paaren aus
-Akzeptierzust"anden und anderen Zust"anden als nicht "aquivalent hat man:
+wir den Algorithmus für den Minimalautomaten an, um möglicherweise
+äquivalente Zustände zu finden. Nach der Markierung von Paaren aus
+Akzeptierzuständen und anderen Zuständen als nicht äquivalent hat man:
 \begin{center}
 \begin{tabular}{|c|cccc|}
 \hline
@@ -89,7 +89,7 @@ $q_5$&$\times$&$\times$&        &$\equiv$\\
 \hline
 \end{tabular}
 \end{center}
-Im n"achsten Schritt bekommt man:
+Im nächsten Schritt bekommt man:
 \begin{center}
 \begin{tabular}{|c|cccc|}
 \hline
@@ -102,8 +102,8 @@ $q_5$&$\otimes$&$\otimes$&         &$\equiv$\\
 \hline
 \end{tabular}
 \end{center}
-Da das Paar $(q_5,q_7)$  nicht als nicht-"aquivalent
-markiert werden kann, m"ussen die beiden Zust"ande "aquivalent sein,
+Da das Paar $(q_5,q_7)$  nicht als nicht-äquivalent
+markiert werden kann, müssen die beiden Zustände äquivalent sein,
 so dass der minimale Automat $A_1$
 \[
 \entrymodifiers={++[o][F]}
@@ -116,7 +116,7 @@ so dass der minimale Automat $A_1$
 \]
 ist.
 \item
-Der Automat $A_2$ f"ur die durch drei teilbaren Bin"arzahlen wurde in der
+Der Automat $A_2$ für die durch drei teilbaren Binärzahlen wurde in der
 Vorlesung entwickelt:
 \[
 \entrymodifiers={++[o][F]}
@@ -127,10 +127,10 @@ Vorlesung entwickelt:
                         &{2} \ar@/^/[l]^{\tt 0} \ar@(ur,dr)^{\tt 1}
 }
 \]
-F"ur die folgenden Teilaufgaben ist jeweils der Produktautomat
-zu konstruieren. Wir tun dies jeweils so, dass der Automat f"ur
-$L_1$ horizontal, derjenige f"ur $L_2$ vertikal dargestellt wird.
-Daher hier nochmals der Automat f"ur $L_2$ vertikal dargestellt
+Für die folgenden Teilaufgaben ist jeweils der Produktautomat
+zu konstruieren. Wir tun dies jeweils so, dass der Automat für
+$L_1$ horizontal, derjenige für $L_2$ vertikal dargestellt wird.
+Daher hier nochmals der Automat für $L_2$ vertikal dargestellt
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -144,7 +144,7 @@ Daher hier nochmals der Automat f"ur $L_2$ vertikal dargestellt
         &{2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
 }
 \]
-Der Produktautomat ohne Akzeptierzust"ande ist dann:
+Der Produktautomat ohne Akzeptierzustände ist dann:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -193,7 +193,7 @@ Die Sprache $L_1\cap L_2$ wird von folgendem Produktautomaten akzeptiert:
 }
 \]
 Es ist aber wieder nicht klar, ob dieser Automat minimal ist. Daher
-wenden wir erneut den Algorithmus f"ur den Minimalautomaten an. Im
+wenden wir erneut den Algorithmus für den Minimalautomaten an. Im
 ersten Durchgang erhalten wir
 \begin{center}
 \begin{tabular}{|c|ccccccccc|}
@@ -248,13 +248,13 @@ $q_7/2$  &$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&
 \hline
 \end{tabular}
 \end{center}
-Das letzte verbleiben Paar $(q_1/0,q_3/0)$ kann im n"achsten Durchgang ebenfalls als
-nicht "aquivalent erkannt werden, womit gezeigt ist, dass der Automat
+Das letzte verbleiben Paar $(q_1/0,q_3/0)$ kann im nächsten Durchgang ebenfalls als
+nicht äquivalent erkannt werden, womit gezeigt ist, dass der Automat
 minimal ist.
 \item
 Die Mengendifferenz $L_1\setminus L_2$ wird akzeptiert von dem Automaten,
-der als Akzeptierzust"ande die Paare von Akzeptierzust"anden hat, welche
-aus Akzeptierzust"anden von $A_1$ und Nicht-Akzeptierzust"anden von $A_2$
+der als Akzeptierzustände die Paare von Akzeptierzuständen hat, welche
+aus Akzeptierzuständen von $A_1$ und Nicht-Akzeptierzuständen von $A_2$
 bestehen:
 \[
 \entrymodifiers={++[o][F]}
@@ -278,8 +278,8 @@ bestehen:
 \\
 }
 \]
-Auch hier muss wieder mit Hilfe des Algorithmus f"ur den Minimalautomaten
-sichergestellt werden, dass tats"achlich ein minimaler Automat vorliegt:
+Auch hier muss wieder mit Hilfe des Algorithmus für den Minimalautomaten
+sichergestellt werden, dass tatsächlich ein minimaler Automat vorliegt:
 \begin{center}
 \begin{tabular}{|c|ccccccccc|}
 \hline
@@ -333,11 +333,11 @@ $q_7/2$  &$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&
 \hline
 \end{tabular}
 \end{center}
-Somit sind alle Zust"ande nicht "aquivalent, der Automat ist also minimal.
+Somit sind alle Zustände nicht äquivalent, der Automat ist also minimal.
 \item
 Die Vereinigung $L_1\cup L_2$ wird akzeptiert von dem Automaten,
-der als Akzeptierzust"ande die Paare von Akzeptierzust"anden hat, welche
-aus Akzeptierzust"anden von $A_1$ oder von $A_2$ bestehen:
+der als Akzeptierzustände die Paare von Akzeptierzuständen hat, welche
+aus Akzeptierzuständen von $A_1$ oder von $A_2$ bestehen:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -360,8 +360,8 @@ aus Akzeptierzust"anden von $A_1$ oder von $A_2$ bestehen:
 \\
 }
 \]
-Auch hier muss wieder mit Hilfe des Algorithmus f"ur den Minimalautomaten
-sichergestellt werden, dass tats"achlich ein minimaler Automat vorliegt:
+Auch hier muss wieder mit Hilfe des Algorithmus für den Minimalautomaten
+sichergestellt werden, dass tatsächlich ein minimaler Automat vorliegt:
 \begin{center}
 \begin{tabular}{|c|ccccccccc|}
 \hline
@@ -397,10 +397,10 @@ $q_7/2$  &$\times $&$\times $&$       $&$\otimes$&$\otimes$&$       $&$\otimes$&
 \hline
 \end{tabular}
 \end{center}
-Die verbleibenden Felder lassen sich nicht mehr als nicht "aquivalent
-erkennen, also m"uss sie "aquivalent sein. Man kann also die Zust"ande
-$q_7/0$, $q_7/1$ und $q_7/2$ zusammenlegen, und erh"alt so einen DEA
-mit nur noch 7 Zust"anden:
+Die verbleibenden Felder lassen sich nicht mehr als nicht äquivalent
+erkennen, also müss sie äquivalent sein. Man kann also die Zustände
+$q_7/0$, $q_7/1$ und $q_7/2$ zusammenlegen, und erhält so einen DEA
+mit nur noch 7 Zuständen:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -419,8 +419,8 @@ mit nur noch 7 Zust"anden:
 }
 \]
 \item $L_6$ ist die Verkettung der zwei Sprachen $L_1$ und $L_2$.
-Den zug"origen NEA konstruiert man, indem man die beiden Teilautomaten
-mit einem $\varepsilon$-"Ubergang aneinanderh"angt:
+Den zugörigen NEA konstruiert man, indem man die beiden Teilautomaten
+mit einem $\varepsilon$-"Ubergang aneinanderhängt:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -435,7 +435,7 @@ mit einem $\varepsilon$-"Ubergang aneinanderh"angt:
 }
 \]
 \item
-Die Stern-Konstruktion liefert den folgenden Automaten f"ur $L_7$
+Die Stern-Konstruktion liefert den folgenden Automaten für $L_7$
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{

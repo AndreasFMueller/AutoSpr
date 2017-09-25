@@ -1,16 +1,16 @@
-F"ur jede positive nat"urliche Zahl $0<p\in\mathbb N$ und jedes Zeichen
+Für jede positive natürliche Zahl $0<p\in\mathbb N$ und jedes Zeichen
 $z\in \Sigma=\{\text{\tt 0},\text{\tt 1}\}$
-sei $L_{p,z}$ die Sprache "uber dem Alphabet
-$\Sigma$, deren W"orter das Zeichen $z$ eine Anzahl mal
-enthalten, die ein Vielfaches von $p$ ist. Zum Beispiel enth"alt
-$L_{3,\text{\tt 1}}$ die W"orter
+sei $L_{p,z}$ die Sprache über dem Alphabet
+$\Sigma$, deren Wörter das Zeichen $z$ eine Anzahl mal
+enthalten, die ein Vielfaches von $p$ ist. Zum Beispiel enthält
+$L_{3,\text{\tt 1}}$ die Wörter
 \[
 \text{\tt 00},
 \text{\tt 01011},
 \text{\tt 11000001},
 \text{\tt 110101101},
 \]
-nicht aber die W"orter
+nicht aber die Wörter
 \[
 \text{\tt 101},
 \text{\tt 000},
@@ -32,8 +32,8 @@ $L_{2,\text{\tt 0}}\cap L_{3,\text{\tt 1}}$ akzeptiert.
 \item
 Bestimmen Sie
 $L_{p,\text{\tt 0}} \cap L_{p,\text{\tt 0}}$
-f"ur zwei verschiedene Primzahlen $p$ und $q$.
-\item Welche W"orter enth"alt
+für zwei verschiedene Primzahlen $p$ und $q$.
+\item Welche Wörter enthält
 \[
 L_{\infty.\text{\tt 0}}
 =
@@ -49,8 +49,8 @@ L_{11,\text{\tt 0}}\cap\dots
 
 \begin{loesung}
 \begin{teilaufgaben}
-\item Als Zust"ande eines Automaten f"ur $L_{p,z}$ verwenden wir den Rest
-von $|w|_z$ modulo $p$, also f"ur $L_{2,\text{\tt 0}}$:
+\item Als Zustände eines Automaten für $L_{p,z}$ verwenden wir den Rest
+von $|w|_z$ modulo $p$, also für $L_{2,\text{\tt 0}}$:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @+1mm {
@@ -59,7 +59,7 @@ von $|w|_z$ modulo $p$, also f"ur $L_{2,\text{\tt 0}}$:
                 &{1}\ar@/^/[l]^{\tt 0} \ar@(ur,ul)^{\tt 1}
 }
 \]
-und f"ur $L_{3,\text{\tt 1}}$:
+und für $L_{3,\text{\tt 1}}$:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @+1mm {
@@ -70,8 +70,8 @@ und f"ur $L_{3,\text{\tt 1}}$:
 }
 \]
 \item Man kann einen Automaten zusammenbauen aus den beiden
-Automaten f"ur $L_{2,\text{\tt 0}}$ und $L_{3,\text{\tt 1}}$.
-Die Zust"ande sind Paare von Zust"ande der beiden Teilautomaten:
+Automaten für $L_{2,\text{\tt 0}}$ und $L_{3,\text{\tt 1}}$.
+Die Zustände sind Paare von Zustände der beiden Teilautomaten:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @+1mm {
@@ -89,7 +89,7 @@ Die Zust"ande sind Paare von Zust"ande der beiden Teilautomaten:
 }
 \]
 \item
-Ein Wort in $L_{p,\text{\tt 0}} \cap L_{p,\text{\tt 0}}$ enth"alt
+Ein Wort in $L_{p,\text{\tt 0}} \cap L_{p,\text{\tt 0}}$ enthält
 eine Anzahl Nullen, die sowohl durch $p$ als auch durch $q$ teilbar
 ist, also ein Vielfaches von $pq$ ist. Es ist also
 \[
@@ -97,9 +97,9 @@ L_{p,\text{\tt 0}} \cap L_{p,\text{\tt 0}}
 =
 L_{pq,\text{\tt 0}}
 \]
-Man kann dieses Resultat auch f"ur das Beispiel $p=2$, $q=3$ aus
+Man kann dieses Resultat auch für das Beispiel $p=2$, $q=3$ aus
 den oben gezeigten Automaten ableiten, und bekommt folgenden Automaten
-f"ur die Schnittsprache:
+für die Schnittsprache:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @+1mm {
@@ -118,12 +118,12 @@ f"ur die Schnittsprache:
 \]
 Indem man den Pfeilen folgt kann man verifizieren, dass man den
 Akzeptierzustand jeweils erst wieder erreicht, wenn man alle
-anderen Zust"ande besucht hat, also ein Vielfaches von $6$ Nullen
+anderen Zustände besucht hat, also ein Vielfaches von $6$ Nullen
 gelesen hat.
 \item Ein Wort $w$ in $L_{\infty,\text{\tt 0}}$ muss eine Anzahl Nullen
-enthalten, die durch alle Primzahlen teilbar ist. Dies ist nur m"oglich,
-wenn $w$ gar keine Nullen enth"alt. $L_{\infty,\text{\tt 0}}$ besteht
-also aus den W"ortern, die ausschliesslich Einsen enthalten:
+enthalten, die durch alle Primzahlen teilbar ist. Dies ist nur möglich,
+wenn $w$ gar keine Nullen enthält. $L_{\infty,\text{\tt 0}}$ besteht
+also aus den Wörtern, die ausschliesslich Einsen enthalten:
 \[
 L_{\infty,\text{\tt 0}}=\{\text{\tt 1}\}^*.
 \qedhere
