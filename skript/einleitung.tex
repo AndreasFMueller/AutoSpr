@@ -6,162 +6,162 @@
 \lhead{Einleitung}
 \rhead{}
 \chapter*{Worum geht es?\label{chapter-intro}}
-Urspr"unglich wurden Computer dazu entwickelt, aufwendige
+Ursprünglich wurden Computer dazu entwickelt, aufwendige
 Berechnungen zu automatisieren. Inzwischen wird nur noch ein
-ganz kleiner Teil der weltweit installierten Rechenleistung f"ur
+ganz kleiner Teil der weltweit installierten Rechenleistung für
 diese Art von Problemen genutzt. 
 Die heutige Informatik befasst sich vorwiegend mit der maschinellen
 Verarbeitung von Zeichenfolgen. 
 
-W"ahrend fr"uher noch die Frage nach der effizientesten L"osung von
+Während früher noch die Frage nach der effizientesten Lösung von
 Berechnungsaufgaben mit dem Computer, also die Numerik, im Vordergrund stand,  
-ist heute die L"osung komplizierterer und oft nicht numerischer Probleme 
-gefragt. Zum Beispiel ist der k"urzeste Weg zu finden, den ein Spediteur
+ist heute die Lösung komplizierterer und oft nicht numerischer Probleme 
+gefragt. Zum Beispiel ist der kürzeste Weg zu finden, den ein Spediteur
 zur Auslieferung aller ihm anvertrauten Sendungen verwenden kann, eine
 Aufgabe, in der die Numerik offensichtlich eine untergeordnete Rolle spielt.
 
-Trotzdem bleiben eine Reihe von Fragen, die grunds"atzlich mathematischer
+Trotzdem bleiben eine Reihe von Fragen, die grundsätzlich mathematischer
 Art sind:
 \begin{enumerate}
-\item Gibt es Probleme, die mit dem Computer grunds"atzlich nicht
-l"osbar sind?
-\item K"onnen wir dar"uber eine Aussage machen, wie schnell ein Computer
-ein bestimmtes Problem l"osen kann? Gibt es eine maximale Geschwindigkeit,
-die nicht zu "ubertreffen ist?
+\item Gibt es Probleme, die mit dem Computer grundsätzlich nicht
+lösbar sind?
+\item Können wir darüber eine Aussage machen, wie schnell ein Computer
+ein bestimmtes Problem lösen kann? Gibt es eine maximale Geschwindigkeit,
+die nicht zu übertreffen ist?
 \item Welchen Einfluss hat die Architektur eines Rechners auf die Klasse
-von Problemen, die damit l"osbar sind?
-\item Gibt es Probleme, die sich besonders schnell l"osen lassen?
+von Problemen, die damit lösbar sind?
+\item Gibt es Probleme, die sich besonders schnell lösen lassen?
 \end{enumerate}
 Die im vorliegenden Skript behandelte mathematische Theorie befasst sich
 genau mit den logischen Grundlagen dieses Prozesses.
-Sie definiert, welche Mengen von Zeichenfolgen "uberhaupt untersucht
+Sie definiert, welche Mengen von Zeichenfolgen überhaupt untersucht
 werden sollen, und nennt sie {\em Sprachen}.
 Sie studiert, welche abstrakten Typen von
 Rechnern welche Arten von Zeichenfolgen erkennen oder hervorbringen
-k"onnen. 
+können. 
 
 Es geht weniger darum, Methoden oder Algorithmen zur Verarbeitung
 von Zeichenfolgen zu behandeln.
-Vielmehr sollen mathematische S"atze aufgestellt werden, welche
+Vielmehr sollen mathematische Sätze aufgestellt werden, welche
 Arten von Sprachen mit welcher Art von Rechnermodell bearbeitet
-werden k"onnen.
+werden können.
 Zum Beispiel werden wir Resultaten wie die folgenden finden:
 \begin{enumerate}
 \item Ein Zustandsautomat kann die korrekte Schachtelung von
 Klammern nicht erkennen.
-\item Mit regul"aren Ausdr"ucken kann man korrekte arithmetische
-Ausdr"ucke nicht erkennen.
-\item Um korrekte arithmetische Ausdr"ucke zu erkennen, braucht man als
+\item Mit regulären Ausdrücken kann man korrekte arithmetische
+Ausdrücke nicht erkennen.
+\item Um korrekte arithmetische Ausdrücke zu erkennen, braucht man als
 Speicher mindestens einen Stack.
 \item Es gibt kein Programm, das ein beliebiges anderes Programm
 analysieren kann und mit Sicherheit herausfinden kann, ob es je anhalten
 wird.
 \item Es gibt wahrscheinlich keinen Algorithmus mit polynomialer Laufzeit,
 der entscheidet, ob es einen fehlerfreien Stundenplan gibt (d.\,h.~alle 
-Studenten k"onnen alle Veranstaltungen besuchen, f"ur die sie sich
-angemeldet haben, es gibt keine "Uberschneidungen).
-\item Fast alle reellen Zahlen k"onnen gar nicht berechnet werden.
+Studenten können alle Veranstaltungen besuchen, für die sie sich
+angemeldet haben, es gibt keine Überschneidungen).
+\item Fast alle reellen Zahlen können gar nicht berechnet werden.
 \end{enumerate}
 Die zu erwartenden Resultate sind also nicht von der Art von Kochrezepten:
 ``Um $X$ zu erhalten, mache man erst $Y$, dann $Z$ und zum Schluss $V$''.
 Die Fragestellungen drehen sich alle um die fundamentale Frage:
 \begin{quote}
-Welche grunds"atzlichen M"oglichkeiten und Einschr"ankungen haben
+Welche grundsätzlichen Möglichkeiten und Einschränkungen haben
 Computer?
 \end{quote}
-Die Aussagen sind also absolute Wahrheiten, die unabh"angig vom Stand
+Die Aussagen sind also absolute Wahrheiten, die unabhängig vom Stand
 der Com\-pu\-ter-Technik oder der Programmier-Kunst gelten.
-Solche Aussagen sind nur dann glaub\-w"urdig, wenn man sich von deren
-Richtigkeit mit Hilfe eines mathematischen Beweises jederzeit "uberzeugen
+Solche Aussagen sind nur dann glaub\-würdig, wenn man sich von deren
+Richtigkeit mit Hilfe eines mathematischen Beweises jederzeit überzeugen
 kann. In dieser Vorlesung geht es also vor allem auch um Beweise, 
 warum eine Sprache eine Eigenschaft hat, oder ob eine Eigenschaft
-unter bestimmten Voraussetzungen "uberhaupt vorhanden sein kann.
+unter bestimmten Voraussetzungen überhaupt vorhanden sein kann.
 Daher werden im ersten Kapitel kurz einige Beweistechniken rekapituliert.
 
-Problem 5 in obiger Aufz"ahlung k"ummert sich nicht darum, ob eine
-Aufgabe l"osbar ist, sondern darum, wie effizient sie l"osbar ist.
+Problem 5 in obiger Aufzählung kümmert sich nicht darum, ob eine
+Aufgabe lösbar ist, sondern darum, wie effizient sie lösbar ist.
 Dabei geht es nicht darum, wer den schnellsten Algorithmus findet,
-sondern um die grunds"atzliche Frage, ob es einen Algorithmus mit
-einer gewissen Laufzeitkomplexit"at "uberhaupt geben kann.
+sondern um die grundsätzliche Frage, ob es einen Algorithmus mit
+einer gewissen Laufzeitkomplexität überhaupt geben kann.
 Wiederum geht es um eine absolute mathematische Aussage, welche
 einen Beweis erfordert. 
 
 In dieser Vorlesung wird nichts berechnet.
 In anderen
 Mathematikvorlesungen werden zum Beispiel Techniken zur Berechnung
-von L"osungen von
-Gleichungen, zur Fl"achenberechnung oder zur Modellierung eines 
+von Lösungen von
+Gleichungen, zur Flächenberechnung oder zur Modellierung eines 
 physikalischen Prozesses behandelt werden.
-Dazu wird ein Kalk"ul mit einer eigenen Formelsprache entwickelt,
-mit dem diese Berechnungen durchgef"uhrt werden k"onnen.
+Dazu wird ein Kalkül mit einer eigenen Formelsprache entwickelt,
+mit dem diese Berechnungen durchgeführt werden können.
 In dieser Vorlesung werden kaum Formeln vorkommen. 
 Und wenn Formeln vorkommen, dann werden es logische Formeln sein,
 nicht algebraische.
 
-Nachdem jetzt gekl"art ist, was in dieser Vorlesung nicht behandelt
+Nachdem jetzt geklärt ist, was in dieser Vorlesung nicht behandelt
 wird, hier einige Hinweise, was in den kommenden Kapiteln untersucht
 wird:
 \begin{description}
 \item[Kapitel \ref{chapter-regular}:] Deterministische endliche Automaten (DEA). Von einem
 DEA akzeptierte Sprache. Rekonstruktion des DEA aus der Sprache.
-Regul"are Sprachen und DEAs. Regul"are Ausdr"ucke. Nicht deterministische
-endliche Automaten (NEA). Wie beweist man, dass eine Sprache nicht regul"ar
+Reguläre Sprachen und DEAs. Reguläre Ausdrücke. Nicht deterministische
+endliche Automaten (NEA). Wie beweist man, dass eine Sprache nicht regulär
 ist?
 
 In diesem Kapitel geht es nicht darum, ein Virtuose in der
-Anwendung regul"arer Ausdr"ucke zu werden. Viel wichtiger ist, Klarheit dar"uber
-zu bekommen, in welchen F"allen regul"are Ausdr"ucke anwendbar sind,
+Anwendung regulärer Ausdrücke zu werden. Viel wichtiger ist, Klarheit darüber
+zu bekommen, in welchen Fällen reguläre Ausdrücke anwendbar sind,
 und wo ihre Grenzen sind.
 
 \item[Kapitel \ref{chapter-cfl}:] Stack-Automaten und von einem Stack-Automaten
 erzeugte Sprache. Kontextfreie Grammatiken und davon erzeugte Sprachen. 
-Normalform einer Grammatik. Komplexit"at des Parse-Problems.
+Normalform einer Grammatik. Komplexität des Parse-Problems.
 Wiederum geht es nicht darum, besonders gewandt im Umgang mit Grammatiken
 zu werden.
 
 Kontextfreie Grammatiken werden zur Beschreibung von Programmiersprachen verwendet.
 Trotzdem ist das Ziel dieses Abschnittes nicht Gewandtheit in der Spezifikation
-von Programmiersprachen, sondern das Verst"andnis, welche Eigenschaften eine
+von Programmiersprachen, sondern das Verständnis, welche Eigenschaften eine
 Sprache haben muss, damit sie mit Hilfe einer Grammatik beschrieben werden kann.
 In einem Beispiel wird auch gezeigt, wie man aus einer Grammatik mit geeigneten
-Software-Werkzeugen direkt einen Parser f"ur die von der Grammatik beschriebene
+Software-Werkzeugen direkt einen Parser für die von der Grammatik beschriebene
 Sprache generieren kann. Wieder ist nicht die Beherrschung solcher Tools das
 Ziel, dies wird in der Vorlesung Compilerbau geschehen.
 
 \item[Kapitel \ref{chapter-turing}:] Turing Maschinen und davon erkannte Sprachen. 
-Rekursiv aufz"ahlbare Sprachen und Aufz"ahler.
+Rekursiv aufzählbare Sprachen und Aufzähler.
 
 Eine Turing Maschinen ist ein stark vereinfachtes Modell eines Computers.
 Alle modernen Computer sind im Prinzip nur besonders raffinierte Turing Maschinen.
-Turing Maschinen sind aber einfach genug, um sich mit ihrer Hilfe dar"uber Gedanken
+Turing Maschinen sind aber einfach genug, um sich mit ihrer Hilfe darüber Gedanken
 zu machen, ob und mit welcher Geschwindigkeit ein Problem mit einem
-Computer gel"ost werden kann. In diesem Zusammenhang m"ussen wir uns
-dar"uber Gedanken machen, was es heissen soll, dass ein Problem mit
-einem Computer l"osbar sein soll. Dabei werden wir zeigen, dass es Probleme
-gibt, die nicht mit dem Computer gel"ost werden k"onnen. Allerdings wird
+Computer gelöst werden kann. In diesem Zusammenhang müssen wir uns
+darüber Gedanken machen, was es heissen soll, dass ein Problem mit
+einem Computer lösbar sein soll. Dabei werden wir zeigen, dass es Probleme
+gibt, die nicht mit dem Computer gelöst werden können. Allerdings wird
 es uns schwerfallen, solche Probleme explizit zu beschreiben. 
 Gelingen wird uns dies erst im Kapitel 6.
 
-\item[Kapitel \ref{chapter-entscheidbarkeit}:] Entscheidbare Sprachen. Unl"osbare Probleme.
+\item[Kapitel \ref{chapter-entscheidbarkeit}:] Entscheidbare Sprachen. Unlösbare Probleme.
 
 Ziel dieses Kapitels ist zu lernen, wie man ein beliebiges Problem als
 Sprache formulieren kann, und damit die bisher gelernte Theorie darauf
-anwenden kann. Damit wird es m"oglich, konkrete und f"ur die Praxis eines
+anwenden kann. Damit wird es möglich, konkrete und für die Praxis eines
 Informatikers wichtige Probleme zu beschreiben, die
-nicht mit Computern gel"ost werden k"onnen.
-Es ist zum Beispiel unm"oglich, Programme maschinell daraufhin
-zu pr"ufen, ob sie je anhalten werden.
+nicht mit Computern gelöst werden können.
+Es ist zum Beispiel unmöglich, Programme maschinell daraufhin
+zu prüfen, ob sie je anhalten werden.
 Ausserdem lernen wir eine Technik kennen, mit der wir Probleme 
-nach ``Schwierigkeitsgrad'' miteinander vergleichen k"onnen. 
+nach ``Schwierigkeitsgrad'' miteinander vergleichen können. 
 
-\item[Kapitel \ref{chapter-komplexitaet}:] Komplexit"atstheorie. In diesem Kapitel sollen 
+\item[Kapitel \ref{chapter-komplexitaet}:] Komplexitätstheorie. In diesem Kapitel sollen 
 die prinzipiellen Grenzen der Geschwindigkeit ermittelt werden,
-mit der ein Problem mit dem Computer gel"ost werden kann. Es wird sich
+mit der ein Problem mit dem Computer gelöst werden kann. Es wird sich
 herausstellen, dass es zwar viele Probleme gibt, die mit aktuellen Computern in
-vern"unftiger Zeit l"osbar sind, dass aber auch eine Klasse von Aufgaben
-existiert, f"ur die es nach aktuellem Wissen keinen Algorithmus geben kann,
-der die Aufgabe bei etwas gr"osseren Problemen l"osen kann. Diese Probleme sind
-zwar im Prinzip l"osbar, aber alle Rechenleistung der Welt kann die Probleme nicht l"osen.
+vernünftiger Zeit lösbar sind, dass aber auch eine Klasse von Aufgaben
+existiert, für die es nach aktuellem Wissen keinen Algorithmus geben kann,
+der die Aufgabe bei etwas grösseren Problemen lösen kann. Diese Probleme sind
+zwar im Prinzip lösbar, aber alle Rechenleistung der Welt kann die Probleme nicht lösen.
 
 \item[Kapitel \ref{chapter-vollstaendigkeit}:]
 Turing-Maschinen haben eine universelle Eigenschaft: eine Turing-Maschine

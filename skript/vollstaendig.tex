@@ -9,7 +9,7 @@
 \section{Turing-vollständige Programmiersprachen}
 \rhead{Turing-vollständige Programmiersprachen}
 Die Turing-Maschine liefert einen wohldefinierten Begriff der
-Berechenbarkeit, der auch robust gegenüber milden "Anderungen
+Berechenbarkeit, der auch robust gegenüber milden Änderungen
 der Definition einer Turing-Maschine ist.
 Der Aufbau aus einem endlichen Automaten mit zusätzlichem
 Speicher und der einfache Kalkül mit Konfigurationen hat
@@ -96,7 +96,7 @@ kann nach Ende der Berechnung vom Band gelesen werden.
 Man könnte dies als Mangel dieses Modells ansehen, in der Tat ist aber
 keine Erweiterung nötig, um Interaktion abzubilden.
 Interaktionen mit einem Benutzer bestehen immer aus einem Strom von
-Ereignissen, die dem Benutzer zufliessen ("Anderungen des Bildschirminhaltes,
+Ereignissen, die dem Benutzer zufliessen (Änderungen des Bildschirminhaltes,
 Signaltöne) oder die der Benutzer veranlasst (Bewegungen des Maus-Zeigers,
 Maus-Klicks, Tastatureingaben). Alle diese Ereignisse kann man sich codiert
 auf ein Band geschrieben denken, welches die Turing-Maschine bei Bedarf
@@ -158,7 +158,7 @@ möglich wären, nicht formulieren. Besonderes interessant sind daher
 die Sprachen, bei denen ein solcher Verlust nicht eintritt.
 
 \begin{definition}
-\index{Turing-vollst\ändig}
+\index{Turing-vollständig}
 Eine Programmiersprache heisst Turing-vollständig, wenn sich jede
 berechenbare Abbildung in dieser Sprache formulieren lässt.
 Zu jeder berechenbaren Abbildung $f\colon\Sigma^*\to \Sigma^*$ gibt
@@ -220,7 +220,7 @@ zu diesem Zweck definierten XML-Format namens Turing Machine Markup
 Language (TMML) enthält. TMML definiert XML-Elemente, die das Alphabet
 (\verb+<symbols>+),
 die Zustandsmenge $Q$ (\verb+<state>...</state>+)
-und die "Ubergangsfunktion $\delta$ in \verb+<mapping>+-Elementen
+und die Übergangsfunktion $\delta$ in \verb+<mapping>+-Elementen
 der Form
 \begin{verbatim}
 <mapping>
@@ -483,7 +483,7 @@ konstruieren, zum Beispiel ein
 Konstrukt {\tt IF }\dots{\tt\ THEN }\dots{\tt\ ELSE }\dots{\tt\ END}, welches
 einen ganzen Anweisungsblock enthalten kann.
 
-\subsection{"Aquivalenz von WHILE und GOTO}
+\subsection{Äquivalenz von WHILE und GOTO}
 Die Verwendung eines Sprungbefehles wie GOTO ist in der modernen
 Softwareentwicklung verpönt. Sie führe leichter zu Spaghetti-Code,
 der kaum mehr wartbar ist. Gewisse Sprachen verbannen daher
@@ -638,8 +638,8 @@ Exponent ist, brauchen wir nur Operationen, die den Exponenten
 h'=h/k\qquad\text{bzw.}\qquad h'=h\cdot k
 \]
 
-\subsubsection{"Ubergangsfunktion}
-Die "Ubergangsfunktion
+\subsubsection{Übergangsfunktion}
+Die Übergangsfunktion
 \[
 \delta\colon Q\times \Gamma\to Q\times \Gamma\times\{1, 2\}
 \]
@@ -671,7 +671,7 @@ beschreibt also ein Programm, welches die Turing-Maschine implementiert
 \STATE {\tt GOTO\ }1
 \end{algorithmic}
 Damit ist gezeigt, dass eine gegebene Turingmaschine in ein
-GOTO-Programm übersetzt werden kann. "Ubersetzt man die universelle
+GOTO-Programm übersetzt werden kann. Übersetzt man die universelle
 Turing-Maschine, erhält man ein GOTO-Programm, welches jede beliebige
 Turing-Maschine simulieren kann. Somit ist GOTO und damit auch WHILE
 Turing-vollständig.
@@ -704,11 +704,11 @@ Als einzige Kontrollstruktur steht WHILE zur Verfügung. Damit
 die Sprache von einem minimalisitischen Compiler kompiliert
 werden kann, wird jede Anweisung durch ein einziges Zeichen
 dargestellt. Die Befehle sind in der folgenden Tabelle
-zusammen mit ihrem C-"Aquivalent zusammengstellt:
+zusammen mit ihrem C-Äquivalent zusammengstellt:
 \begin{center}
 \begin{tabular}{|c|l|}
 \hline
-Brainfuck&C-"Aquivalent\\
+Brainfuck&C-Äquivalent\\
 \hline
 {\tt >}&\verb/++ptr;/\\
 {\tt <}&\verb/--ptr;/\\

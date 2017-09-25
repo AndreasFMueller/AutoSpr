@@ -121,9 +121,9 @@ zusätzlichen Eigenschaften
 \index{Bandalphabet}
 \item $\Gamma$ ist das Bandalphabet, es gilt $\blank\in\Gamma$ und
 $\Sigma\subset\Gamma$.
-\index{Uebergangsfunktion@\"Ubergangsfunktion}
+\index{Uebergangsfunktion@Übergangsfunktion}
 \item $\delta\colon Q\times \Gamma\to Q\times\Gamma\times\{\text{L},\text{R}\}$
-ist die "Ubergangsfunktion
+ist die Übergangsfunktion
 \index{Startzustand}
 \item $q_0\in Q$ ist der Startzustand
 \index{Akzeptierzustand}
@@ -132,7 +132,7 @@ ist die "Ubergangsfunktion
 \item $q_{\text{reject}}\in Q$ ist der Ablehnungszustand
 \end{compactenum}
 \end{definition}
-Die "Ubergangsfunktion liefert also zu jedem Zustand und zum
+Die Übergangsfunktion liefert also zu jedem Zustand und zum
 Inhalt des Feldes unter dem Schreib-/Lesekopf einen neuen
 Zustand, einen neuen Bandinhalt und die Information, ob
 der Kopf nach links (L) oder rechts (R) bewegt werden muss.
@@ -151,7 +151,7 @@ Man beschreibt diese Konfiguration der Maschine mit der Zeichenkette
 $q_0w$, die Maschine ist im Zustand $q_0$ und der Schreib-/Lesekopf
 steht über dem ersten Zeichen von $w$.
 
-Mit Hilfe der "Ubergangsfunktion wird dann der nächste Zustand,
+Mit Hilfe der Übergangsfunktion wird dann der nächste Zustand,
 der neue Inhalt des Feldes unter dem Schreib-/Lesekopf und die
 Kopfbewegung ermittelt. Auch diesen neuen Zustand kann man wieder
 als Konfiguration hinschreiben. Der Schreib-/Lesekopf steht
@@ -165,8 +165,8 @@ oder $(q_2,b_k,L)$. Die Konfiguration ändert sich dabei wie
 folgt:
 \begin{align*}
 &\text{Ausgangskonfiguration:}&a_1\dots a_{k-1}&\;q_1\;a_k\dots a_n\\
-&\text{"Ubergang mit } \delta(q_1,a_k)=(q_2,b_k,L)&a_1\dots a_{k-2}&\;q_2\;a_{k-1}b_k\dots a_n\\
-&\text{"Ubergang mit } \delta(q_1,a_k)=(q_2,b_k,R)&a_1\dots a_{k-1}b_k&\;q_2\;a_{k+1}\dots a_n
+&\text{Übergang mit } \delta(q_1,a_k)=(q_2,b_k,L)&a_1\dots a_{k-2}&\;q_2\;a_{k-1}b_k\dots a_n\\
+&\text{Übergang mit } \delta(q_1,a_k)=(q_2,b_k,R)&a_1\dots a_{k-1}b_k&\;q_2\;a_{k+1}\dots a_n
 \end{align*}
 
 Die Maschine arbeitet so immer weiter, bis einer der Zustände $q_{\text{accept}}$
@@ -255,11 +255,11 @@ Diese Sprache $L$ ist also nicht Turing-entscheidbar.
 \subsection{Zustandsdiagramm}
 \index{Graph!gerichteter!beschrifteter!einer Turing-Maschine}
 Auch eine Turingmaschine kann man als gerichteten beschrifteten Graphen
-darstellen. "Ubergänge zwischen zwei Zuständen sind immer begleitet von
-einer "Anderung des Inhaltes des Feldes unter dem Schreib-/Lesekopf
+darstellen. Übergänge zwischen zwei Zuständen sind immer begleitet von
+einer Änderung des Inhaltes des Feldes unter dem Schreib-/Lesekopf
 und von einer Kopfbewegung. Beide müssen mit der Beschriftung
 der Pfeile codiert werden. In Anlehnung an die bei den Stackautomaten
-verwendete Notation schreiben wir für den "Ubergang
+verwendete Notation schreiben wir für den Übergang
 $\delta(q_1,a)=(q_2,b,\text{R})$
 die Notation
 \[
@@ -269,7 +269,7 @@ die Notation
 	&{q_2}
 }
 \]
-und für den "Ubergang
+und für den Übergang
 $\delta(q_1,a)=(q_2,b,\text{L})$
 \[
 \entrymodifiers={++[o][F]}
@@ -593,10 +593,10 @@ des Bandes von $M'$ verteilt, die mit den einzelnen Komponenten
 von $e(x)$ gefüllt werden.
 
 In den folgenden Darstellungen verwenden wir der grösseren
-"Ubersichtlichkeit halber $\Gamma=\{\texttt{0},\texttt{1},2,3\}$, wobei eines der
+Übersichtlichkeit halber $\Gamma=\{\texttt{0},\texttt{1},2,3\}$, wobei eines der
 Zeichen die Rolle von $\blank$ übernimmt. Ausserdem ist $l=2$.
 
-Jetzt müssen auch die "Ubergänge in $M$
+Jetzt müssen auch die Übergänge in $M$
 durch entsprechend erweiterte Konstruktionen in $M'$ ersetzt werden.
 In einem Zyklus müssen zunächst die nächsten $l$ Zeichen vom Band
 von $M'$ gelesen werden. Welches Zeichen dieser Bitfolge entspricht,
@@ -648,7 +648,7 @@ q_0
 Die Zustände $q_i$ codieren jetzt zusätzlich, welches
 Zeichen $i\in\Gamma$ sich unter dem Schreib-/Lesekopf befindet.
 
-Ein "Ubergang
+Ein Übergang
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix@C+1pc{
@@ -656,7 +656,7 @@ q\ar[r]^{a\to b,\text{R}}
 	&p
 }
 \]
-muss jetzt übersetzt werden in einen "Ubergang von $q_\text{accept}$ in einen
+muss jetzt übersetzt werden in einen Übergang von $q_\text{accept}$ in einen
 Zwischenzustand, von dem aus das Codewort von $b$ geschrieben.
 wird. Wird $b$ als $b_1\dots b_l$ codiert, wird daraus also
 \[
@@ -667,7 +667,7 @@ q_a\ar[r]^{.\to b_1,\text{R}}
 		&p
 }
 \]
-Falls dem "Ubergang jedoch eine Kopfbewegung nach links folgt, wie in
+Falls dem Übergang jedoch eine Kopfbewegung nach links folgt, wie in
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix@C+1pc{
@@ -732,7 +732,7 @@ Eine Sprache ist genau dann Turing-erkennbar, wenn sie
 von einem Aufzähler aufgezählt wird.\end{satz}
 
 \begin{proof}[Beweis]
-Da die "Aquivalenz der beiden Modelle zu zeigen ist, sind zwei Implikationen
+Da die Äquivalenz der beiden Modelle zu zeigen ist, sind zwei Implikationen
 zu beweisen. Einerseits muss gezeigt werden, dass die von einem
 Aufzähler aufgezählte Sprache auch von einer Turingmaschine
 erkannt werden kann, andererseits muss zu einer Turingmaschine, die
@@ -782,7 +782,7 @@ werden, sogar unendlich oft.
 Sowohl bei endlichen Automaten wie auch bei Stackautomaten war
 Nichtdeterminismus ein Konzept, welches die Formulierung eines
 Automaten wesentlich vereinfachen konnte, ohne die Möglichkeiten
-zu verändern. Die einzige "Anderung in der Definition ist die
+zu verändern. Die einzige Änderung in der Definition ist die
 Definition von $\delta$, welche nicht mehr Werte in
 $Q\times \Gamma\times\{\text{L},\text{R}\}$ annimmt, sondern
 in der Potenzmenge:
@@ -1227,7 +1227,7 @@ also
 DEAs mit $|Q|$ Zuständen.
 \item Obwohl in der Definition der nichtdeterministischen endlichen
 Automaten auch die Potenzmenge vorkommt, wird dadurch die Menge
-noch nicht über\-abzählbar. Der Funktionswert der "Ubergangsfunktion
+noch nicht über\-abzählbar. Der Funktionswert der Übergangsfunktion
 $\delta$ ist ja immer eine Teilmenge einer endlichen Menge, die Potenzmenge
 einer endlichen Menge ist aber auch endlich. Es ändert sich am Argument
 nur, dass in die Tabelle eines Automaten mit $|Q|$ Zuständen und
@@ -1247,7 +1247,7 @@ Menge aller kontextfreien Grammatiken abzählbar.
 erzeugt. Die Abbildung $G\mapsto L(G)$ macht aus einer Aufzählung
 der kontextfreien Grammatiken eine Aufzählung der kontextfreien Sprachen.
 \item Stackautomaten sind nichtdeterministische endliche Automaten mit
-zusätzlicher Beschriftung der "Ubergangspfeile. Trotzdem bleibt die
+zusätzlicher Beschriftung der Übergangspfeile. Trotzdem bleibt die
 Anzahl der Stackautomaten mit $k$ Zuständen endlich, also ist die
 Menge der Stackautomaten abzählbar unendlich.
 \item Turingmaschinen sind im wesentlichen deterministische endliche Automaten

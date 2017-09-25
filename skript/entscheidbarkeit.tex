@@ -1,35 +1,35 @@
-%mm
-% 
+%
+%  entscheidbarkeit.tex
 %
 \chapter{Entscheidbarkeit\label{chapter-entscheidbarkeit}}
 \lhead{Entscheidbarkeit}
 \rhead{}
-Die Menge aller Turing-entscheidbaren Sprachen ist abz"ahlbar,
-da die Turingmaschinen abz"ahlbar sind.
-Die Menge $\Sigma^*$ aller W"orter "uber dem Alphabet $\Sigma$ ist abz"ahlbar.
-Andererseits ist die Menge aller Sprachen "uber einem Alphabet $\Sigma$
-als Potenzmenge einer abz"ahlbaren Menge "uberabz"ahlbar.
+Die Menge aller Turing-entscheidbaren Sprachen ist abzählbar,
+da die Turingmaschinen abzählbar sind.
+Die Menge $\Sigma^*$ aller Wörter über dem Alphabet $\Sigma$ ist abzählbar.
+Andererseits ist die Menge aller Sprachen über einem Alphabet $\Sigma$
+als Potenzmenge einer abzählbaren Menge überabzählbar.
 Es muss also auch Sprachen geben, die nicht entscheidbar sind.
 Es ist also
 ein durchaus interessantes Unterfangen, nicht entscheidbare Sprachen
 zu finden.
 
 In diesem Kapitel zeigen wir, wie Probleme als Sprachprobleme
-formuliert werden k"onnen und untersucht werden kann, ob sie entscheidbar sind,
-also ob es ein Computerprogramm geben kann, mit dem sie gel"ost werden
-k"onnen.
+formuliert werden können und untersucht werden kann, ob sie entscheidbar sind,
+also ob es ein Computerprogramm geben kann, mit dem sie gelöst werden
+können.
 
 \section{Entscheidbare Sprachen}
 \rhead{Entscheidbare Sprachen}
 \index{Sprache!entscheidbare}%
-Wenn ein Problem von einem Computer gel"ost werden soll, dann
-muss der Computer die Problembeschreibung und eine m"ogliche L"osung
-lesen k"onnen, und entscheiden k"onnen, ob die beiden zusammen passen.
-Er muss also korrekte Problem- und L"osungs-Beschreibungen von
-inkorrekten unterscheiden k"onnen.
+Wenn ein Problem von einem Computer gelöst werden soll, dann
+muss der Computer die Problembeschreibung und eine mögliche Lösung
+lesen können, und entscheiden können, ob die beiden zusammen passen.
+Er muss also korrekte Problem- und Lösungs-Beschreibungen von
+inkorrekten unterscheiden können.
 Die Menge der korrekten
 Beschreibungen bilden eine Sprache, das Problem ist also darauf
-zur"uckgef"uhrt, eine Sprache zu entscheiden.
+zurückgeführt, eine Sprache zu entscheiden.
 
 \subsection{Entscheidbare Sprachen}
 Eine Sprache heisst entscheidbar, wenn es einen Entscheider gibt, der
@@ -45,7 +45,7 @@ Dann kann man folgenden Algorithmus $M_A$ mit Input $w$ bauen:
 \item Andernfalls: $q_{\text{reject}}$
 \end{compactenum}
 Dieser Algorithmus ist sicher ein Entscheider, er terminiert immer.
-Ob er ein Wort $w$ akzeptiert, h"angt davon ab, ob $A$ das Wort akzeptiert:
+Ob er ein Wort $w$ akzeptiert, hängt davon ab, ob $A$ das Wort akzeptiert:
 \begin{align*}
   A&\text{ akzeptiert $w$}&
    &\Leftrightarrow&
@@ -55,17 +55,17 @@ M_A&\text{ erkennt $w$}
    &\Leftrightarrow&
 M_A&\text{ erkennt $w$ nicht}
 \end{align*}
-Das bedeutet aber, dass $L(A)=L(M_A)$, oder $M_A$ ist ein Entscheider f"ur
+Das bedeutet aber, dass $L(A)=L(M_A)$, oder $M_A$ ist ein Entscheider für
 die Sprache $L(A)$.
 \end{beispiel}
 
-Zu jeder regul"aren Sprache mit DEA $A$ gibt es also einen
+Zu jeder regulären Sprache mit DEA $A$ gibt es also einen
 Algorithmus $M_A$, der die gleiche Sprache erkennt: $L(A)=L(M_A)$.
-K"urzer:
+Kürzer:
 
 \begin{satz}
 \label{regulaer-entscheidbar}
-Regul"are Sprachen sind entscheidbar.
+Reguläre Sprachen sind entscheidbar.
 \end{satz}
 
 \begin{beispiel}
@@ -87,7 +87,7 @@ der Grammatik produziert wird, also $L(M_G)=L(G)$.
 
 Zu jeder kontextfreien Sprache mit Grammatik $G$ gibt es also einen 
 Algorithmus $M_G$, der die gleiche Sprache erkennt: $L(G)=L(M_G)$.
-K"urzer:
+Kürzer:
 
 \begin{satz}
 Kontextfreie Sprachen sind entscheidbar.
@@ -100,27 +100,27 @@ Grafik dargestellt.
 \includegraphics{images/lang-2}
 \end{center}
 
-\subsection{Entscheidbare Probleme f"ur regul"are Sprachen}
-Wir wollen jetzt eine Ebene h"oher geben.
+\subsection{Entscheidbare Probleme für reguläre Sprachen}
+Wir wollen jetzt eine Ebene höher geben.
 Unser Fokus sind jetzt nicht
 mehr einzelne Sprachen, sondern eine ganze Menge von Sprachen, und eventuell
 weitere Daten.
 Wir suchen also nicht mehr Algorithmen, die eine Frage
-f"ur eine einzelne Sprache beantworten k"onnen, sondern Algorithmen, die
-die Frage gleich f"ur mehrere Sprachen beantworten.
+für eine einzelne Sprache beantworten können, sondern Algorithmen, die
+die Frage gleich für mehrere Sprachen beantworten.
 
 In Satz~\ref{regulaer-entscheidbar} ging es darum, einen Algorithmus
 zu finden, der entscheidet, ob ein Wort $w$ von {\em einem} ganz bestimmten,
 vorgegebenen endlichen Automaten $A$ akzeptiert wird.
-Jetzt fragen wir, ob es einen Algorithmus gibt, der f"ur {\em jede beliebige}
+Jetzt fragen wir, ob es einen Algorithmus gibt, der für {\em jede beliebige}
 Kombination von DEA und Wort $w$ diese Entscheidung treffen kann.
 Dies ist offenbar ein viel allgemeineres Problem, ob $A$ das Wort
 akzeptiert ist ein Spezialfall.
 Dieses Problem heisst das
-Akzeptanzproblem f"ur endliche Automaten.
+Akzeptanzproblem für endliche Automaten.
 
 \subsubsection{Akzeptanzproblem}
-\index{Akzeptanzproblem!f\"ur regul\"are Sprachen}%
+\index{Akzeptanzproblem!für reguläre Sprachen}%
 Wir betrachten das folgende Problem: Gegeben sei ein endlicher Automat $B$
 und ein Wort $w$,
 kann man entscheiden, ob der Automat das Wort akzeptiert?
@@ -138,7 +138,7 @@ A_{\text{DEA}} =\{
 \label{adea_decidable}
 $A_{\text{DEA}}$ ist entscheidbar.
 \end{satz}
-\index{Akzeptanzproblem!f\"ur DEAs}%
+\index{Akzeptanzproblem!für DEAs}%
 
 \begin{proof}[Beweis]
 Der folgende Algorithmus entscheidet
@@ -152,12 +152,12 @@ $A_{\text{DEA}}$:
 \medskip
 \end{proof}
 
-Das gleiche Problem kann man auch f"ur nicht deterministische Automaten
+Das gleiche Problem kann man auch für nicht deterministische Automaten
 formulieren:
 
 \begin{satz}
-\index{Akzeptanzproblem!f\"ur NEAs}%
-Das Akzeptanzproblem f"ur nicht deterministische endlich Automaten
+\index{Akzeptanzproblem!für NEAs}%
+Das Akzeptanzproblem für nicht deterministische endlich Automaten
 \[
 A_{\text{NEA}} =\{
 \langle B,w\rangle\;|\;\text{$B$ ist ein NEA und $B$ akzeptiert $w$}.
@@ -179,11 +179,11 @@ entscheiden, ob $B'$ das Wort $w$ akzeptiert.
 \medskip
 \end{proof}
 
-\begin{satz} Das Akzeptanzproblem f"ur regul"are Ausdr"ucke
-\index{Akzeptanzproblem!f\"ur regul\"are Ausdr\"ucke}%
+\begin{satz} Das Akzeptanzproblem für reguläre Ausdrücke
+\index{Akzeptanzproblem!für regul\äre Ausdr\ücke}%
 \[
 A_{\text{REX}}=\{
-\langle R,w\rangle\;|\;\text{$R$ ist ein regul"arer Ausdruck und $R$ akzeptiert $w$}
+\langle R,w\rangle\;|\;\text{$R$ ist ein regulärer Ausdruck und $R$ akzeptiert $w$}
 \}
 \]
 \index{AREX@$A_{\text{REX}}$}%
@@ -191,8 +191,8 @@ ist entscheidbar.
 \end{satz}
 
 \subsubsection{Leerheitsproblem}
-\index{Leerheitsproblem!f"ur DEAs}%
-Wir wollen einem endlichen Automaten ansehen k"onnen, ob er "uberhaupt
+\index{Leerheitsproblem!für DEAs}%
+Wir wollen einem endlichen Automaten ansehen können, ob er überhaupt
 irgend ein Wort akzeptieren wird, und untersuchen daher
 \[
 E_{\text{DEA}}
@@ -207,14 +207,14 @@ ist entscheidbar.
 \end{satz}
 
 \begin{proof}[Beweis]
-Man muss herausfinden, ob "uberhaupt je ein Akzeptierzustand erreicht
+Man muss herausfinden, ob überhaupt je ein Akzeptierzustand erreicht
 werden kann.
 Der folgende Algorithmus schafft dies:
 \medskip
 \begin{compactenum}
 \item Markiere den Startzustand
-\item Solange sich noch neue Zust"ande markieren liessen:
- Markiere alle Zust"ande, die sich von den bereits markierten aus
+\item Solange sich noch neue Zustände markieren liessen:
+ Markiere alle Zustände, die sich von den bereits markierten aus
 erreichen lassen.
 \item Falls ein Akzeptierzustand markiert wurde: $q_{\text{reject}}$,
 andernfalls
@@ -224,7 +224,7 @@ $q_{\text{accept}}$
 \end{proof}
 
 \subsubsection{Gleichheitsproblem}
-\index{Gleichheitsproblem!f"ur DEAs}%
+\index{Gleichheitsproblem!für DEAs}%
 Akzeptieren zwei DEAs die gleiche Sprache? Im Kapitel \ref{chapter-regular}
 haben wir einen Algorithmus skizziert, mit dem dies entschieden werden kann.
 
@@ -241,7 +241,7 @@ ist entscheidbar.
 \end{satz}
 
 \begin{proof}[Beweis 1]
-In Anlehnung an Kapitel \ref{chapter-regular} k"onnen wir den folgenden
+In Anlehnung an Kapitel \ref{chapter-regular} können wir den folgenden
 Algorithmus verwenden:
 \medskip
 \begin{compactenum}
@@ -270,22 +270,22 @@ der  zu jedem Paar $(A,B)$
 von endlichen Automaten  einen endlichen Automaten $C$ konstruiert mit
 $L(C)=L(A){\;\Delta\;} L(B)$.
 Dann muss nur noch mit Hilfe eines Entscheiders
-f"ur $E_{\text{DEA}}$ entschieden werden, ob $\langle C\rangle\in
+für $E_{\text{DEA}}$ entschieden werden, ob $\langle C\rangle\in
 E_{\text{DEA}}$.
 \end{proof}
 
-Das Prinzip dieses zweiten Beweises wird uns sp"ater weiter besch"aftigen.
+Das Prinzip dieses zweiten Beweises wird uns später weiter beschäftigen.
 Entscheidend war, dass es einen Algorithmus gibt, mit dem das
 Entscheidungsproblem 
 $\text{\it EQ}_{\text{DEA}}$
 auf das Leerheitsproblem
-$E_{\text{DEA}}$ zur"uckgef"uhrt werden konnte.
-Die Entscheidung erfolgte dann mit dem Entscheider f"ur
+$E_{\text{DEA}}$ zurückgeführt werden konnte.
+Die Entscheidung erfolgte dann mit dem Entscheider für
 $E_{\text{DEA}}$.
 
-\subsection{Entscheibarkeitsproblem f"ur kontextfreie Sprachen}
+\subsection{Entscheibarkeitsproblem für kontextfreie Sprachen}
 \subsubsection{Akzeptanzproblem}
-\index{Akzeptanzproblem!f"ur kontextfreie Grammatiken}%
+\index{Akzeptanzproblem!für kontextfreie Grammatiken}%
 \begin{satz}
 \label{satz:acfg-entscheidbar}
 Die Sprache
@@ -309,7 +309,7 @@ $A_{\text{CFG}}$:
 \medskip
 \begin{compactenum}
 \item Wandle $G$ in Chomsky Normalform um.
-\item Erzeuge alle W"orter, die sich durch Anwendung
+\item Erzeuge alle Wörter, die sich durch Anwendung
 von $|w|-1$ Regeln der Form $A\to BC$ und $|w|$ Regeln
 der Form $A\to a$ ableiten lassen.
 \item Falls $w$ darunter vorkommt: $q_{\text{accept}}$, 
@@ -319,7 +319,7 @@ andernfalls $q_{\text{reject}}$.
 \end{proof}
 
 \subsubsection{Leerheitsproblem}
-\index{Leerheitsproblem!f\"ur kontextfreie Grammatiken}%
+\index{Leerheitsproblem!für kontextfreie Grammatiken}%
 \begin{satz}
 Die Sprache
 \[
@@ -332,10 +332,10 @@ ist entscheidbar.
 \end{satz}
 
 \begin{proof}[Beweis]
-Eine Grammatik erzeugt W"orter, wenn alle Variablen, die im Laufe
+Eine Grammatik erzeugt Wörter, wenn alle Variablen, die im Laufe
 der Ableitung auftreten, am Ende mit Hilfe von Regeln der Form $A\to a$
-in Terminalsymbole umgewandelt werden k"onnen.
-Man k"onnte also einen
+in Terminalsymbole umgewandelt werden können.
+Man könnte also einen
 Markierungsalgorithmus entwickeln, der alle Terminalsymbole markiert,
 und alle Symbole, die mit geeigneten Regeln ebenfalls markierte Symbole
 erzeugen.
@@ -357,7 +357,7 @@ $E_{\text{CFG}}$.
 \end{proof}
 
 \subsubsection{Gleichheit}
-\index{Gleichheitsproblem!f\"ur kontextfreie Grammatiken}%
+\index{Gleichheitsproblem!für kontextfreie Grammatiken}%
 Es ist verlockend zu vermuten, dass das Gleichheitsproblem
 \[
 \text{\it EQ}_{\text{CFG}}=\{
@@ -366,33 +366,33 @@ Es ist verlockend zu vermuten, dass das Gleichheitsproblem
 \]
 \index{EQCFG@$\textit{EQ}_{\text{CFG}}$}%
 mit der gleichen Methode mit Hilfe der symmetrischen Differenz
-wie bei regul"aren Sprachen entschieden werden k"onnte.
+wie bei regulären Sprachen entschieden werden könnte.
 Dem ist
 allerdings nicht so, denn das Komplement einer kontextfreien Sprache
 ist im Allgemeinen nicht kontextfrei, also auch die symmetrische
 Differenz nicht.
 In der Tat ist 
 $\text{\it EQ}_{\text{CFG}}$ nicht entscheidbar, die Methoden zum Beweis
-werden allerdings erst sp"ater bereitgestellt.
+werden allerdings erst später bereitgestellt.
 
-\section{Das Akzeptanzproblem f"ur Turingmaschinen}
-\index{Akzeptanzproblem!f\"ur Turingmaschinen}%
-\rhead{Akzeptanzproblem f"ur Turingmaschinen}
-Das Akzeptanzproblem f"ur Turing-erkennbare Sprachen fragt, ob 
+\section{Das Akzeptanzproblem für Turingmaschinen}
+\index{Akzeptanzproblem!für Turingmaschinen}%
+\rhead{Akzeptanzproblem für Turingmaschinen}
+Das Akzeptanzproblem für Turing-erkennbare Sprachen fragt, ob 
 eine Turingmaschine $M$ ein Inputwort $w$ erkennen wird.
 Das Problem ist entscheidbar, wenn man aus der Beschreibung
 der Maschine $M$ und dem Inputwort mit einem Algorithmus, der
-f"ur alle Turingmaschinen und alle W"orter immer anh"alt, ableiten
+für alle Turingmaschinen und alle Wörter immer anhält, ableiten
 kann, ob $M$ das Wort $w$ akzeptieren wird.
 Man kann also immer
 entscheiden, ob $M$ im Zustand $q_{\text{accept}}$ anhalten wird.
 
-Dabei k"onnen wir nicht einfach $M$ laufen lassen, weil $M$
-ja auch in eine Endlosschleife fallen k"onnte, womit sich die
+Dabei können wir nicht einfach $M$ laufen lassen, weil $M$
+ja auch in eine Endlosschleife fallen könnte, womit sich die
 Frage nicht mehr entscheiden liesse.
 
 Als Sprachproblem formuliert, suchen wir jetzt also einen
-Entscheider f"ur die Sprache
+Entscheider für die Sprache
 \[
 A_{\text{TM}}=\{
 \langle M,w\rangle\;|\; \text{$M$ ist eine TM und $M$ erkennt $w$}
@@ -405,41 +405,41 @@ A_{\text{TM}}=\{
 $A_{\text{TM}}$ ist nicht entscheidbar.
 \end{satz}
 
-Auf den ersten Blick ist dieses Resultat sehr "uberraschend, warum
-soll f"ur Turing-Maschinen alles grunds"atzlich anders sein, als
-f"ur endliche Automaten und Stackautomaten? Der wesentliche Unterschied
+Auf den ersten Blick ist dieses Resultat sehr überraschend, warum
+soll für Turing-Maschinen alles grundsätzlich anders sein, als
+für endliche Automaten und Stackautomaten? Der wesentliche Unterschied
 verbirgt sich in dem Wort ``entscheidbar'' selbst.
 Ein Entscheider ist eine
-TM, welche in diesem Fall Aussagen "uber andere TMs machen muss, also
-zum Beispiel auch "uber sich selbst.
+TM, welche in diesem Fall Aussagen über andere TMs machen muss, also
+zum Beispiel auch über sich selbst.
 Bei DEAs und CFGs war die Sache
-insofern einfacher, als eine TM Aussagen "uber einen DEA oder eine
+insofern einfacher, als eine TM Aussagen über einen DEA oder eine
 CFG gemacht hat.
 
-Ein solcher Selbstbezug kann einen in Teufels K"uche bringen.
+Ein solcher Selbstbezug kann einen in Teufels Küche bringen.
 Nehmen wir an, in einem Dorf lebt ein Barbier, der genau diejenigen
 Leute rasiert, die sich selbst nicht rasieren.
 Soll er sich rasieren?
-Wenn er sich rasiert, geh"ort er zu den Leuten, die sich selbst rasieren,
+Wenn er sich rasiert, gehört er zu den Leuten, die sich selbst rasieren,
 die rasiert er nicht, also darf er sich nicht rasieren.
 Wenn er sich
-aber nicht rasiert, geh"ort er zu den Leuten, die sich nicht selbst
+aber nicht rasiert, gehört er zu den Leuten, die sich nicht selbst
 rasieren, daher muss er sich rasieren.
-Der R"uckbezug ist, was den
-Barbier in die Zwickm"uhle bringt.
+Der Rückbezug ist, was den
+Barbier in die Zwickmühle bringt.
 Und genau so einen ``Barbier''
 konstruiert der Beweis des Satzes~\ref{ATM}.
 
 \begin{proof}[Beweis]
-Wir f"uhren den Beweis mit Hilfe eines Widerspruchs.
+Wir führen den Beweis mit Hilfe eines Widerspruchs.
 Dazu nehmen wir
-an, es g"abe eine Turingmaschine $H$, welche das Akzeptanzproblem entscheidet.
-Sie verh"alt sich wie folgt:
+an, es gäbe eine Turingmaschine $H$, welche das Akzeptanzproblem entscheidet.
+Sie verhält sich wie folgt:
 \[
 H(\langle M,w\rangle)\begin{cases}
-\text{erkennt}&\qquad\text{falls $M$ auf $w$ im Zustand $q_{\text{accept}}$ anh"alt}
+\text{erkennt}&\qquad\text{falls $M$ auf $w$ im Zustand $q_{\text{accept}}$ anhält}
 \\
-\text{verwirft}&\qquad\text{falls $M$ auf $w$ nicht oder im Zustand $q_{\text{reject}}$ anh"alt}
+\text{verwirft}&\qquad\text{falls $M$ auf $w$ nicht oder im Zustand $q_{\text{reject}}$ anhält}
 \end{cases}
 \]
 Daraus konstruieren wir jetzt eine neue TM $D$ mit Input $\langle M\rangle$:
@@ -450,7 +450,7 @@ Daraus konstruieren wir jetzt eine neue TM $D$ mit Input $\langle M\rangle$:
 \item Falls $H$ verwirft: $q_{\text{accept}}$
 \end{compactenum}
 \medskip
-Die Maschine $D$ verh"alt sich wie folgt:
+Die Maschine $D$ verhält sich wie folgt:
 \[
 D(\langle M\rangle)\begin{cases}
 \text{erkennt}&\qquad\Leftrightarrow\qquad \text{$M$ verwirft $\langle M\rangle$}
@@ -475,43 +475,43 @@ $D$ muss also genau das Gegenteil dessen tun, was $D$ tut.
 $D$ ist der Barbier, der sich nicht entscheiden kann, ob er sich selbst
 rasieren will.
 Dieser
-Widerspruch zeigt, dass die Annahme, es g"abe einen Entscheider $H$
+Widerspruch zeigt, dass die Annahme, es gäbe einen Entscheider $H$
 nicht haltbar ist.
 Also ist das Problem nicht entscheidbar.
 \end{proof}
 
-\index{Goedel@G\"odel, Kurt}%
+\index{Goedel@Gödel, Kurt}%
 Die Entdeckung, dass gewisse Probleme nicht entscheidbar sind,
-geht auf Kurt G"odel zur"uck.
-G"odel hat sie jedoch in leicht anderem Zusammenhang gefunden.
+geht auf Kurt Gödel zurück.
+Gödel hat sie jedoch in leicht anderem Zusammenhang gefunden.
 Er untersuchte die Frage, ob ein
 Axiomensystem eine Aussage beweisen kann.
 Dabei zeigte sich,
-dass es Aussagen geben muss, die nicht bewiesen werden k"onnen,
+dass es Aussagen geben muss, die nicht bewiesen werden können,
 obwohl sie wahr sind.
 
-Die Formulierung f"ur Turing-Maschinen geht auf eine Arbeit von
-Alan Turing 1936 zur"uck.
+Die Formulierung für Turing-Maschinen geht auf eine Arbeit von
+Alan Turing 1936 zurück.
 \index{Turing, Alan}%
-Aus der L"osung des Halteproblems kann
+Aus der Lösung des Halteproblems kann
 man eine konkrete solche Aussage ableiten.
 
 Am Input $w$ allein liegt es nicht, dass das Problem nicht
 entschieden werden kann.
-Nicht einmal f"ur den speziellen Input $\varepsilon$ ist es
+Nicht einmal für den speziellen Input $\varepsilon$ ist es
 entscheidbar, auch die Sprache
 \[
 \textit{HALT}\varepsilon_{\text{TM}}
 =\{
 \langle M\rangle \;|\;
-\text{$M$ ist eine TM und h"alt auf Input $\varepsilon$}
+\text{$M$ ist eine TM und hält auf Input $\varepsilon$}
 \}
 \]
 \index{HALTepsilonTM@$\textit{HALT}\varepsilon_{\text{TM}}$}%
 ist nicht entscheidbar.
-Nehmen wir an, es g"abe einen
-Entscheider $H$ f"ur $\textit{HALT}\varepsilon_{\text{TM}}$, dann k"onnen wir daraus
-auch einen Entscheider f"ur $A_{\text{TM}}$ konstruieren.
+Nehmen wir an, es gäbe einen
+Entscheider $H$ für $\textit{HALT}\varepsilon_{\text{TM}}$, dann können wir daraus
+auch einen Entscheider für $A_{\text{TM}}$ konstruieren.
 Dazu gehen wir wie folgt vor.
 Auf dem Input $\langle M,w\rangle$ bauen wir folgende Maschine $M'$:
 \medskip
@@ -522,15 +522,15 @@ Auf dem Input $\langle M,w\rangle$ bauen wir folgende Maschine $M'$:
 \item Falls $M$ verwirft: gehe in eine Endlosschleife.
 \end{compactenum}
 \medskip
-Die Maschine $M'$ h"alt auf leerem Input genau dann, wenn $M$
+Die Maschine $M'$ hält auf leerem Input genau dann, wenn $M$
 das Wort $w$ erkennt.
 Der Entscheider $H$, angewendet auf $M'$
-entscheidet also, ob $w\in L(M)$, l"ost also das Akzeptanzproblem
+entscheidet also, ob $w\in L(M)$, löst also das Akzeptanzproblem
 $A_{\text{TM}}$.
 Da $A_{\text{TM}}$ nicht entscheidbar ist, darf es keinen solchen
 Entscheider geben.
 Dieser Widerspruch zeigt, dass die Annahme, es
-g"abe einen Entscheider f"ur $\textit{HALT}\varepsilon_{\text{TM}}$ gibt,
+gäbe einen Entscheider für $\textit{HALT}\varepsilon_{\text{TM}}$ gibt,
 nicht haltbar ist.
 $\textit{HALT}\varepsilon_{\text{TM}}$ heisst
 auch das {\em spezielle Halteproblem}.
@@ -550,16 +550,16 @@ echte Obermenge der entscheidbaren Sprachen.
 \index{Reduktion}%
 \rhead{Reduktion}
 Im letzten Abschnitt wurde die Entscheidbarkeit der Sprache $L$
-auf das Akzeptanzproblem in dem Sinne zur"uckgef"uhrt, dass
-aus einem Entscheider f"ur $L$ ein Entscheider f"ur das Akzeptanzproblem
+auf das Akzeptanzproblem in dem Sinne zurückgeführt, dass
+aus einem Entscheider für $L$ ein Entscheider für das Akzeptanzproblem
 konstruiert wurde.
 Die Nichtentscheidbarkeit des Akzeptanzproblems
 hat dann gezeigt, dass auch $L$ nicht entscheidbar sein kann.
 
-Dieses Vorgehen funktioniert in sehr vielen F"allen, wir wollen es
+Dieses Vorgehen funktioniert in sehr vielen Fällen, wir wollen es
 daher etwas abstrakter formulieren und damit die Anwendung in weiteren
 Beispielen vereinfachen.
-Gleichzeitig erm"oglicht es uns, die
+Gleichzeitig ermöglicht es uns, die
 Sprachen mindestens teilweise nach ihrer Schwierigkeit, sie zu entscheiden,
 anzuordnen.
 
@@ -572,12 +572,12 @@ anzuordnen.
 \end{center}
 \caption{Reduktionsabbildung $f\colon A\to B$.\label{reduktionsabbildung}}
 \end{figure}
-Wir m"ochten zwei verschiedene Sprachen 
+Wir möchten zwei verschiedene Sprachen 
 $A$ und $B$ 
 vergleichen.
-Dazu bilden wir W"orter von der einen Sprache in
+Dazu bilden wir Wörter von der einen Sprache in
 die andere Sprache ab, wir brauchen also eine Abbildung, die
-$f\colon\Sigma^*\to \Sigma^*$, die $A$ in $B$ "uberf"uhrt,
+$f\colon\Sigma^*\to \Sigma^*$, die $A$ in $B$ überführt,
 d.\,h.
 \[
 w\in A\Leftrightarrow f(w)\in B.
@@ -590,8 +590,8 @@ Wir definieren daher
 \begin{definition}
 \index{berechenbar}%
 Eine Abbildung $f\colon \Sigma^*\to \Sigma^*$ heisst berechenbar wenn es eine
-Turingmaschine gibt, die auf jedem Input $w\in \Sigma^*$ anh"alt
-und ausschliesslich das Wort $f(w)$ auf dem Band zur"uckl"asst.
+Turingmaschine gibt, die auf jedem Input $w\in \Sigma^*$ anhält
+und ausschliesslich das Wort $f(w)$ auf dem Band zurücklässt.
 \end{definition}
 
 \begin{definition}
@@ -605,14 +605,14 @@ berechenbare Abbildung $f\colon \Sigma^*\to \Sigma^*$ gibt, mit
 \[
 w\in A\Leftrightarrow f(w)\in B.
 \]
-Wir schreiben daf"ur auch
+Wir schreiben dafür auch
 \[
 f\colon A\le B.
 \]
 \end{definition}
-Die Schreibweise $A\le B$ soll ausdr"ucken, dass die Sprache $A$ ``leichter''
+Die Schreibweise $A\le B$ soll ausdrücken, dass die Sprache $A$ ``leichter''
 zu entscheiden ist als die Sprache $B$.
-Die nachfolgenden zwei S"atze
+Die nachfolgenden zwei Sätze
 zeigen, dass diese Leseart berechtigt ist.
 
 \begin{satz}
@@ -621,22 +621,22 @@ Ist $B$ entscheidbar, dann auch $A$.
 \end{satz}
 
 \begin{proof}[Beweis]
-Ist $B$ entscheidbar, dann gibt es einen Entscheider f"ur $B$, also
-eine Turingmaschine $M$, die auf jedem Inputwort anh"alt, und
-entscheidet, ob es zu $B$ geh"ort.
-Daraus k"onnen wir jetzt einen Entscheider f"ur $A$ konstruieren.
+Ist $B$ entscheidbar, dann gibt es einen Entscheider für $B$, also
+eine Turingmaschine $M$, die auf jedem Inputwort anhält, und
+entscheidet, ob es zu $B$ gehört.
+Daraus können wir jetzt einen Entscheider für $A$ konstruieren.
 Um zu entscheiden, ob $w\in A$
 ist, verwenden wir den folgenden Algorithmus $M'$ mit Input
 $w$:
 \medskip
 \begin{compactenum}
-\item Berechne $f(w)$, daf"ur gibt es wegen $A\le B$ eine Turingmaschine.
+\item Berechne $f(w)$, dafür gibt es wegen $A\le B$ eine Turingmaschine.
 \item Verwende den Entscheider $M$ um zu entscheiden, ob $f(w)\in B$.
 \item Falls $M$ akzeptiert ist $f(w)\in B\Rightarrow w\in A$
 \item Falls $M$ nicht akzeptiert ist $f(w)\not\in B\Rightarrow w\not\in A$.
 \end{compactenum}
 \medskip
-$M'$ ist offenbar ein Entscheider f"ur $A$, also ist $A$ entscheidbar.
+$M'$ ist offenbar ein Entscheider für $A$, also ist $A$ entscheidbar.
 \end{proof}
 
 Die Kontraposition dieser Aussage ist
@@ -646,7 +646,7 @@ entscheidbar.
 \end{satz}
 Damit haben wir eine Methode, um Sprachen als nicht entscheidbar 
 zu beweisen.
-Wir m"ussen nur eine Abbildung $f\colon \Sigma^*\to \Sigma^*$
+Wir müssen nur eine Abbildung $f\colon \Sigma^*\to \Sigma^*$
 konstruieren, wobei $A$ ein bekanntermassen nicht
 entscheidbares Problem ist, und $f$ berechenbare Abbildung ist,
 die die Reduktion $A\le B$ vermittelt.
@@ -656,7 +656,7 @@ die die Reduktion $A\le B$ vermittelt.
 \begin{satz} Das Halteproblem
 \[
 \text{\it HALT}_{\text{TM}}=\{\langle M,w\rangle\;|\;
-\text{$M$ ist eine TM und $M$ h"alt auf Input $w$}\}
+\text{$M$ ist eine TM und $M$ hält auf Input $w$}\}
 \]
 \index{HALTTM@$\textit{HALT}_{\text{TM}}$}%
 ist nicht entscheidbar.
@@ -671,7 +671,7 @@ A_{\text{TM}}
 $.
 Die Reduktion muss aus einer TM $M$ und einem Inputwort $w$ eine
 neue TM $S$ und ein Inputwort $w$ machen, so dass $S$ auf
-Input $w$ genau dann h"alt, wenn $M$ das Wort $w$ akzeptiert.
+Input $w$ genau dann hält, wenn $M$ das Wort $w$ akzeptiert.
 Die Abbildung $f$ ist also
 \[
 f\colon 
@@ -706,22 +706,22 @@ $A_{\text{TM}}\le\text{\it HALT}_{\text{TM}}$, und da
 $A_{\text{TM}}$ nicht entscheidbar ist, ist auch
 $\text{\it HALT}_{\text{TM}}$ nicht entscheidbar.
 \end{proof}
-Statt des Anhaltens k"onnte man auch viele andere spezielle
-Betriebszust"ande einer Turingmaschine als ``Haltekriterien''
+Statt des Anhaltens könnte man auch viele andere spezielle
+Betriebszustände einer Turingmaschine als ``Haltekriterien''
 heranziehen.
 Dann bedeutet der Satz, dass es keinen allgemeinen
-Algorithmus geben kann, der ein St"uck Code inspizieren kann und
+Algorithmus geben kann, der ein Stück Code inspizieren kann und
 daraus ableiten kann, ob dieser Code auf einem System Schaden
 anrichtet.
-Echte Schadcode-Erkennung gibt es also grunds"atzlich
+Echte Schadcode-Erkennung gibt es also grundsätzlich
 nicht (auch wenn das Marketing-Material gewisser Produkte sich
 da zu ganz erstaunlichen Aussagen versteigt).
 Das beste, was man
-tun kann, ist Mustererkennung (endliche Sprachen sind alle regul"ar).
+tun kann, ist Mustererkennung (endliche Sprachen sind alle regulär).
 
 \begin{satz}
-\index{Leerheitsproblem!f\"ur Turingmaschinen}%
-Das Leerheitsproblem f"ur Turingmaschinen
+\index{Leerheitsproblem!f\ür Turingmaschinen}%
+Das Leerheitsproblem für Turingmaschinen
 \[
 E_{\text{TM}}
 =
@@ -732,8 +732,8 @@ ist nicht entscheidbar.
 \end{satz}
 
 \begin{proof}[Beweis]
-Wir m"ochten eine Reduktion $A_{\text{TM}}\le E_{\text{TM}}$ konstruieren.
-Dazu m"ussen wir aus $\langle M,w\rangle$ eine Maschine $S$ konstruieren,
+Wir möchten eine Reduktion $A_{\text{TM}}\le E_{\text{TM}}$ konstruieren.
+Dazu müssen wir aus $\langle M,w\rangle$ eine Maschine $S$ konstruieren,
 die genau dann kein einziges Wort akzeptiert, wenn $M$ das Wort $w$
 akzeptiert.
 Es ist allerdings einfacher, die Negation zu behandeln,
@@ -748,9 +748,9 @@ $A_{\text{TM}}\le \bar E_{\text{TM}}$, d.\,h.~eine Maschine $S$,
 die genau dann mindestens ein Wort erkennt, wenn $M$ das Wort $w$ 
 erkennt.
 
-Die Maschine $S$ muss auf beliebigen W"ortern $u$ als Input ausgef"uhrt
-werden k"onnen.
-Wir k"onnten folgenden Algorithmus verwenden:
+Die Maschine $S$ muss auf beliebigen Wörtern $u$ als Input ausgeführt
+werden können.
+Wir könnten folgenden Algorithmus verwenden:
 \medskip
 \begin{compactenum}
 \item Falls $u\ne w$: $q_{\text{reject}}$.
@@ -780,15 +780,15 @@ also $A_{\text{TM}}\le \bar E_{\text{TM}}$.
 \end{proof}
 
 \begin{satz}
-Es ist nicht entscheidbar, ob eine Turingmaschine eine regul"are
+Es ist nicht entscheidbar, ob eine Turingmaschine eine reguläre
 Sprache erkennt.
 \end{satz}
 
 \begin{proof}[Beweis]
-Als Sprache formuliert m"ochten wir eine Reduktion 
+Als Sprache formuliert möchten wir eine Reduktion 
 \[
 A_{\text{TM}}\le\text{\it REGULAR}_{\text{TM}}=\{
-\langle M\rangle\;|\;\text{$M$ ist eine TM und $L(M)$ ist regul"ar}
+\langle M\rangle\;|\;\text{$M$ ist eine TM und $L(M)$ ist regulär}
 \}
 \]
 \index{REGULARTM@$\textit{REGULAR}_{\text{TM}}$}%
@@ -800,8 +800,8 @@ A_{\text{TM}}\le\overline{\text{\it REGULAR}}_{\text{TM}}
 \]
 zu konstruieren.
 
-Wir m"ussen also eine TM $S$ konstruieren, die genau
-dann eine nicht regul"are Sprache erkennt, wenn $w$ von $M$ erkannt wird.
+Wir müssen also eine TM $S$ konstruieren, die genau
+dann eine nicht reguläre Sprache erkennt, wenn $w$ von $M$ erkannt wird.
 Der folgende Algorithmus tut dies.
 Auf Input $u$ geht er wie folgt
 vor:
@@ -813,32 +813,32 @@ vor:
 \item Falls $M$ $w$ verwirft: $q_{\text{reject}}$
 \end{compactenum}
 \medskip
-Wegen Schritt~1 kann $S$ h"ochstens die W"orter der Form
+Wegen Schritt~1 kann $S$ höchstens die Wörter der Form
 $\texttt{0}^n\texttt{1}^n$ erkennen, alle anderen werden bereits in
 Schritt $1$ verworfen.
-Ob die W"orter 
-$\texttt{0}^n\texttt{1}^n$ erkannt werden, h"angt davon ab, ob $M$ das Wort
+Ob die Wörter 
+$\texttt{0}^n\texttt{1}^n$ erkannt werden, hängt davon ab, ob $M$ das Wort
 $w$ erkennt:
 \begin{align*}
    M&\text{ erkennt $w$}      &
     &\Leftrightarrow&
 L(S)&=\{\texttt{0}^n\texttt{1}^n\,|\, n\ge 0\}&
     &\Leftrightarrow&
-    &\text{$L(S)$ nicht regul"ar}\\
+    &\text{$L(S)$ nicht regulär}\\
    M&\text{ erkennt $w$ nicht}&
     &\Leftrightarrow&
 L(S)&=\{\quad\}=\emptyset&
     &\Leftrightarrow&
-    &\text{$L(S)$ regul"ar}
+    &\text{$L(S)$ regulär}
 \end{align*}
-$S$ erkennt die nicht regul"are Sprache $\{0^n1^n\;|\;n\in\mathbb N\}$
+$S$ erkennt die nicht reguläre Sprache $\{0^n1^n\;|\;n\in\mathbb N\}$
 genau dann, wenn $M$ das Wort $w$ erkennt.
-Die Reduktion $\langle M,w\rangle\to \langle S\rangle$ "ubersetzt
-``erkennen'' in ``nicht regul"are Sprache erkennen'', also also $A_{\text{TM}}$
+Die Reduktion $\langle M,w\rangle\to \langle S\rangle$ übersetzt
+``erkennen'' in ``nicht reguläre Sprache erkennen'', also also $A_{\text{TM}}$
 in $\overline{\textsl{REGULAR}}_{\text{TM}}$.
 \end{proof}
 
-\index{Gleichheitsproblem!f\"ur Turingmaschinen}%
+\index{Gleichheitsproblem!f\ür Turingmaschinen}%
 \begin{satz}
 Ob zwei Turingmaschinen die gleiche Sprache
 \[
@@ -858,7 +858,7 @@ $
 .
 Dazu sei $M_0$ eine Turingmaschine, die jeden Input verwirft,
 also $L(M_0)=\emptyset$.
-F"ur die Abbildung $f$ verwenden wir
+Für die Abbildung $f$ verwenden wir
 \[
 f
 \colon
@@ -872,18 +872,18 @@ $L(M)=L(M_0)=\emptyset$, also genau dann, wenn
 $\langle M\rangle\in E_{\text{TM}}$.
 \end{proof}
 
-Dieser Satz hat zum Beispiel zur Folge, dass es keine zuverl"assige
+Dieser Satz hat zum Beispiel zur Folge, dass es keine zuverlässige
 maschinelle
-M"oglichkeit gibt, herauszufinden, ob zwei Programme das gleiche tun.
+Möglichkeit gibt, herauszufinden, ob zwei Programme das gleiche tun.
 Damit ist die Entscheidung, ob ein beliebiges Programm ein beliebiges
 Softwarepatent verletzt, nur durch den subjektiven Prozess in Form
-eines Gerichtes m"oglich, kann also grunds"atzlich niemals objektiv sein.
+eines Gerichtes möglich, kann also grundsätzlich niemals objektiv sein.
 
-\section{Nicht entscheidbare Probleme f"ur CFGs}
-\rhead{Nicht entscheidbare Probleme f"ur CFGs}
-Der letzte Abschnitt k"onnte den Eindruck hinterlassen haben,
+\section{Nicht entscheidbare Probleme für CFGs}
+\rhead{Nicht entscheidbare Probleme für CFGs}
+Der letzte Abschnitt könnte den Eindruck hinterlassen haben,
 dass nicht entscheidbare Probleme erst bei Turingmaschinen
-auftreten, und dass alle naheliegenden Probleme bei regul"aren
+auftreten, und dass alle naheliegenden Probleme bei regulären
 und kontextfreien Sprachen entscheidbar sind.
 Dem ist jedoch nicht so.
 Es ist zum Beispiel nicht entscheidbar, ob zwei
@@ -895,61 +895,61 @@ Grammatiken die gleiche Sprache erzeugen.
 ist eine kontextfreie Grammatik und $L(G)=\Sigma^*$}\}
 \]
 \index{ALLCFG@$\textit{ALL}_{\text{CFG}}$}%
-alle W"orter erzeugt, ist nicht entscheidbar.
+alle Wörter erzeugt, ist nicht entscheidbar.
 \end{satz}
 
 \begin{proof}[Beweis]
 Wir konstruieren eine Reduktion 
 $A_{\text{TM}}\le \text{\it ALL}_{\text{CFG}}$.
-Wir m"ussen also aus einem Paar $\langle M,w\rangle$ einen
-Grammatik erzeugen, die genau dann alle W"orter erzeugt, wenn
+Wir müssen also aus einem Paar $\langle M,w\rangle$ einen
+Grammatik erzeugen, die genau dann alle Wörter erzeugt, wenn
 $M$ das Wort $w$ erkennt.
-Dabei m"ussen wir diese Strings in
+Dabei müssen wir diese Strings in
 Zusammenhang bringen mit einer Berechnung der Turingmaschine, die
 auf $w$ im Zustand $q_{\text{accept}}$ endet.
 
-Dazu k"onnen wir
+Dazu können wir
 die Berechnungsgeschichte verwenden.
 Jede Konfiguration der
 Turingmaschine ist ja ein String der Form $C=w_1qw_2$.
 Die gesamte
 Berechnung besteht aus einer Folge $C_i$ von solchen Konfigurationen.
-Wir k"onnen sie protokollieren, indem wir alle $C_i$
-mit Hilfe eines zus"atzlichen Zeichens verketten,
+Wir können sie protokollieren, indem wir alle $C_i$
+mit Hilfe eines zusätzlichen Zeichens verketten,
 welches nicht in $\Gamma$ vorkommt.
 Wir bezeichnen diese Zeichen
 mit {\tt\#}.
 
 Die Grammatik soll jetzt also alle Strings ausser der Berechnungsgeschichte
-erzeugen, die zum Erkennen des Wortes $w$ f"uhren.
+erzeugen, die zum Erkennen des Wortes $w$ führen.
 Diese Grammatik
 erzeugt also genau dann alle Strings, wenn $M$ das Wort $w$ erkennt.
 
 Um alle Strings ausser der erkennden Berechnung zu bekommen,
-"uberlegen wir uns, wie ein String
+überlegen wir uns, wie ein String
 $h={\tt\#}C_1{\tt\#}C_2{\tt\#}\dots{\tt\#}C_n{\tt\#}$
-keine korrekte Berechungsgeschichte sein k"onnte:
+keine korrekte Berechungsgeschichte sein könnte:
 \medskip
 \begin{compactenum}
-\item $C_1$ k"onnte nicht die Startkonfiguration sein, also
+\item $C_1$ könnte nicht die Startkonfiguration sein, also
 $C_1\ne q_0w$.
-\item $C_n$ k"onnte nicht eine akzeptierende Konfiguration 
+\item $C_n$ könnte nicht eine akzeptierende Konfiguration 
 sein, also etwas von der Form $xq_{\text{accept}}y$.
-\item Ein Zwischenschritt k"onnte nicht den Regeln der Turingmaschine
+\item Ein Zwischenschritt könnte nicht den Regeln der Turingmaschine
 $M$ entsprechen.
 \end{compactenum}
 \medskip
 Die gesuchte Grammatik muss all Strings erzeugen, die einen dieser ``Fehler''
 machen.
-Falls es eine erkennende Berechnung f"ur $w$ gibt, wird diese
+Falls es eine erkennende Berechnung für $w$ gibt, wird diese
 die einzige sein, die nicht erzeugt wird.
 
 Statt die Grammatik zu konstruieren, konstruieren wir einen Stackautomaten,
-den wir sp"ater in eine Grammatik umwandeln k"onnen.
+den wir später in eine Grammatik umwandeln können.
 Der Stackautomat
 muss alle Strings akzeptieren, die einen der Defekte 1-3 haben, wir
-k"onnen also damit beginnen, nichtdeterministisch zwischen diesen drei
-F"allen zu unterscheiden:
+können also damit beginnen, nichtdeterministisch zwischen diesen drei
+Fällen zu unterscheiden:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @+3mm{
@@ -965,11 +965,11 @@ q_0	\ar[ur]^{\varepsilon,\varepsilon\to\varepsilon}
 	&q_3
 }
 \]
-Im Zustand $q_1$ m"ussen wir einen Stackautomaten anh"angen, der
-"uberpr"uft, ob im Input der String $q_0w$ steht.
+Im Zustand $q_1$ müssen wir einen Stackautomaten anhängen, der
+überprüft, ob im Input der String $q_0w$ steht.
 Dies kann man 
-bereits mit einem DEA machen, man braucht den Stack daf"ur gar nicht.
-Ist $w=a_1a_2\dots a_k$, dann ist der Automat daf"ur geeignet
+bereits mit einem DEA machen, man braucht den Stack dafür gar nicht.
+Ist $w=a_1a_2\dots a_k$, dann ist der Automat dafür geeignet
 \[
 \xymatrix @+3mm{
 *++[o][F]{q_1}\ar[r]^{q_0,\varepsilon\to\varepsilon}
@@ -981,16 +981,16 @@ Ist $w=a_1a_2\dots a_k$, dann ist der Automat daf"ur geeignet
 }
 \]
 Akzeptieren darf er aber nur, wenn diese Regeln nicht eingehalten
-werden, man muss also noch einen Fehlerzustand hinzuf"ugen, der
+werden, man muss also noch einen Fehlerzustand hinzufügen, der
 alles akzeptiert, was in diesem Automaten nicht funktioniert.
 
-Im Zustand $q_2$ m"ussen wir einen Stackautomaten anh"angen, welcher
+Im Zustand $q_2$ müssen wir einen Stackautomaten anhängen, welcher
 eine akzeptierende Konfiguration erkennt.
-Er muss also zun"achst 
-alle $C_i$ mit $i<n$ "uberspringen und dann nichtdeterministisch
+Er muss also zunächst 
+alle $C_i$ mit $i<n$ überspringen und dann nichtdeterministisch
 die Zeichen von $C_i$ lesen und kontrollieren, ob $q_{\text{accept}}$
 darin vorkommt.
-Ein Automat daf"ur ist 
+Ein Automat dafür ist 
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @+3mm{
@@ -1005,33 +1005,33 @@ q_2\ar@(ur,ul)
 }
 \]
 Darin enhalten die Schleifen beim zweiten und dritten Zustand keine
-"Uberg"ange mit dem Zeichen {\tt\#}.
-Dazu braucht es zus"atzliche
-"Ubergange, damit der Automat alles ausser diesen Strings akzeptiert.
+Übergänge mit dem Zeichen {\tt\#}.
+Dazu braucht es zusätzliche
+Übergange, damit der Automat alles ausser diesen Strings akzeptiert.
 
 Im Zustand $q_3$ muss ein Automat konstruiert werden, der erkennen kann,
-ob die Folge $C_i{\tt\#}C_{i+1}$ einem korrekten "Ubergang zwischen
+ob die Folge $C_i{\tt\#}C_{i+1}$ einem korrekten Übergang zwischen
 zwei Konfigurationen der Turingmaschen $M$ entspricht.
 Dazu schreibt
-der Stackautomat zun"achst alle Zeichen von $C_i$ auf den
+der Stackautomat zunächst alle Zeichen von $C_i$ auf den
 Stack, und vergleicht dann dann den Stackinhalt mit den Zeichen von
 $C_{i+1}$.
-Bis auf die Zeichen um die Kopfposition d"urfen sich
+Bis auf die Zeichen um die Kopfposition dürfen sich
 die Strings nicht unterscheiden.
-Dieser Automat enth"alt also
-einerseits alle "Uberg"ange, welche das Zeichen auf dem Stack
-mit dem n"achsten Inputzeichen vergleichen:
+Dieser Automat enthält also
+einerseits alle Übergänge, welche das Zeichen auf dem Stack
+mit dem nächsten Inputzeichen vergleichen:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
 q\ar@(ur,dr)^{a,a\to\varepsilon}
 }
 \]
-Ausserdem "Uberg"ange, die zu g"ultigen
-Turingmaschinen-Konfigurations"uberg"angen geh"oren.
+Ausserdem Übergänge, die zu gültigen
+Turingmaschinen-Konfigurationsübergängen gehören.
 Ist zum Beispiel
-$px\to yq$ ein solcher "Ubergang, dann m"ussen folgende
-Stackautomaten-"Uberg"ange hinzugef"ugt werden:
+$px\to yq$ ein solcher Übergang, dann müssen folgende
+Stackautomaten-Übergänge hinzugefügt werden:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -1044,14 +1044,14 @@ befinden sich auf dem Stack in umgekehrter Reihenfolge, passen
 also nicht zu $C_{i+1}$.
 Diesen Mangel kann man mit folgendem
 Trick beheben: man schreibt in der Berechnungsgeschichte jede
-zweite Konfiguration r"uckw"arts, also
+zweite Konfiguration rückwärts, also
 \[
 {\tt\#}C_1{\tt\#}C_2^t{\tt\#}C_3{\tt\#}C_4^t{\tt\#}\dots
 \]
-Die Regeln f"ur die korrekten Turingmaschinen-"Ubergang m"ussen
-nat"urlich an diese umgekehrte Ordnung angepasst werden, dabei
+Die Regeln für die korrekten Turingmaschinen-Übergang müssen
+natürlich an diese umgekehrte Ordnung angepasst werden, dabei
 muss beachtet werden, dass mit jedem gelesenen {\tt\#}-Zeichen
-die ``Leserichtung'' "andert.
+die ``Leserichtung'' ändert.
 Und wiederum muss der Automat alles
 akzeptieren, was nicht den Turingmaschinen-Regeln entspricht.
 
@@ -1066,8 +1066,8 @@ konstruiert.
 \end{proof}
 
 \begin{satz}
-\index{Gleichheitsproblem!f\"ur kontextfreie Grammatiken}%
-Das Gleichheitsproblem f"ur kontextfreie Grammatiken
+\index{Gleichheitsproblem!für kontextfreie Grammatiken}%
+Das Gleichheitsproblem für kontextfreie Grammatiken
 \[
 \text{\it EQ}_{\text{CFG}}=\{
 \langle G_1,G_2\rangle\;|\;\text{$G_i$ sind kontextfreie Grammatiken
@@ -1106,13 +1106,13 @@ dies ist sicher berechenbar.
 \rhead{Satz von Rice}
 Eigenschaften von Turing-erkennbaren Sprachen sind im Allgemeinen
 nicht entscheidbar, wie die vorangegangenen Beispiel zeigen.
-Allerdings m"ussen sie gen"u\-gend kompliziert sein.
-Dann l"asst
+Allerdings müssen sie genü\-gend kompliziert sein.
+Dann lässt
 sich aber sogar der Beweis vereinheitlichen.
 Zum Beispiel wurde
 beim Beweis von $\text{\it REGULAR}_{\text{TM}}$ eigentlich
-nur verwendet, dass wir eine regul"are Sprache ($\emptyset$) und
-eine nicht regul"are ($\{0^n1^n\;|\;n\in\mathbb N\}$) kennen.
+nur verwendet, dass wir eine reguläre Sprache ($\emptyset$) und
+eine nicht reguläre ($\{0^n1^n\;|\;n\in\mathbb N\}$) kennen.
 
 \begin{definition}
 \index{Eigenschaft!nicht-triviale}%
@@ -1141,7 +1141,7 @@ ist nicht entscheidbar.
 Wir konstruieren eine Reduktion $A_\text{TM}\le P_{\text{TM}}$.
 Zu einem Paar
 $\langle M,w\rangle$
-m"ussen wir also auf
+müssen wir also auf
 berechenbare Weise eine Turingmaschine $M'$
 \[
 f\colon \langle M,w\rangle\mapsto M'
@@ -1151,10 +1151,10 @@ hat, wenn $M$ das Wort $w$ akzeptiert.
 
 Dazu brauchen wir die beiden Turing-erkennbaren Sprachen $L_1$ und $L_2$,
 wobei $L_1$ die Eigenschaft $P$ hat, $L_2$ aber nicht.
-Wir k"onnen dabei annehmen, dass $L_2=\emptyset$ ist, dass also
+Wir können dabei annehmen, dass $L_2=\emptyset$ ist, dass also
 $\emptyset$ die Eigenschaft $P$ nicht hat.
-W"are dies nicht so, k"onnten
-wir stattdessen $L_1=\emptyset$  w"ahlen, und die Eigenschaft $\neg P$
+Wäre dies nicht so, könnten
+wir stattdessen $L_1=\emptyset$  wählen, und die Eigenschaft $\neg P$
 untersuchen.
 Aussserdem gibt es eine Turingmaschine $M_1$ mit $L(M_1)=L_1$.
 
@@ -1163,16 +1163,16 @@ Die Turingmaschine $M'$ operiert auf dem Input $u$ wie folgt:
 \begin{compactenum}
 \item Lasse $M$ auf Input $w$ laufen
 \item Falls $M$ das Wort $w$ akzeptiert, lasse $M_1$ auf $u$ laufen.
-Falls $M_1$ im Zustand $q_{\text{accept}}$ anh"alt, halte ebenfalls
+Falls $M_1$ im Zustand $q_{\text{accept}}$ anhält, halte ebenfalls
 im Zustand $q_{\text{accept}}$ an.
-\item In allen anderen F"allen: $q_{\text{reject}}$
+\item In allen anderen Fällen: $q_{\text{reject}}$
 \end{compactenum}
 \medskip
 
-Falls $w\in L(M)$ akzeptiert die Turingmaschine $M'$ genau die W"orter
+Falls $w\in L(M)$ akzeptiert die Turingmaschine $M'$ genau die Wörter
 $u\in L_1$.
-Falls $w\not\in L(M)$ akzeptiert $M'$ "uberhaupt keine
-W"orter, in diesem Fall ist also $L(M')=\emptyset$:
+Falls $w\not\in L(M)$ akzeptiert $M'$ überhaupt keine
+Wörter, in diesem Fall ist also $L(M')=\emptyset$:
 \begin{align*}
 w\in L(M)&\qquad \Rightarrow\qquad L(M')=L_1\\
 w\not\in L(M)&\qquad \Rightarrow\qquad L(M')=\emptyset
@@ -1217,12 +1217,12 @@ Eigenschaft
 $P=\text{\textsl{ALL}}$ nicht entscheidbar ist.
 \end{beispiel}
 
-\begin{beispiel}[\bf Primzahlpr"ufer] Es ist entscheidbar, ob eine Zahl $n$
-prim ist oder nicht, man testet einfach jeden m"oglichen Teiler $<n$,
+\begin{beispiel}[\bf Primzahlprüfer] Es ist entscheidbar, ob eine Zahl $n$
+prim ist oder nicht, man testet einfach jeden möglichen Teiler $<n$,
 wenn immer ein Rest bleibt, ist die Zahl prim.
-Dies ist nat"urlich
-kaum der effizienteste Algorithmus, tats"achlich gibt es viele Alternativen,
-die wir in eine Menge zusammenfassen k"onnen:
+Dies ist natürlich
+kaum der effizienteste Algorithmus, tatsächlich gibt es viele Alternativen,
+die wir in eine Menge zusammenfassen können:
 \[
 \text{\textsl{PRIMALITY-TESTER}}=
 \left\{\langle M\rangle\;\left|\;
@@ -1234,16 +1234,16 @@ ein korrekter Primzahltester
 \right.\right\}.
 \]
 \index{PRIMALITY-TESTER@$\textit{PRIMALITY-TESTER}$}%
-\textsl{PRIMALITY-TESTER} enth"alt also genau diejenigen Programme, welche
-als Primzahlpr"ufer korrekt funktionieren.
+\textsl{PRIMALITY-TESTER} enthält also genau diejenigen Programme, welche
+als Primzahlprüfer korrekt funktionieren.
 
-Gibt es ein Programm, welches beliebige Primzahlpr"ufer auf Korrektheit
+Gibt es ein Programm, welches beliebige Primzahlprüfer auf Korrektheit
 testen kann? Wenn ja, dann ist \textsl{PRIMALITY-TESTER} entscheidbar.
 Leider kann es kein solches Programm geben,
 \textsl{PRIMALITY-TESTER} ist nicht entscheidbar, wie man mit dem Satz
 von Rice einsehen kann.
 
-Zun"achst muss man wieder die Eigenschaft formulieren
+Zunächst muss man wieder die Eigenschaft formulieren
 \[
 P: \text{Die akzeptierte Sprache ist die Menge der Primzahlen}
 \]
@@ -1251,7 +1251,7 @@ Weiter muss es zwei Sprachen geben, die eine muss die Eigenschaft
 $P$ haben, die anderen nicht:
 \begin{enumerate}
 \item
-Der oben beschriebene primitive Primzahlpr"ufer, der alle m"oglichen Teiler
+Der oben beschriebene primitive Primzahlprüfer, der alle möglichen Teiler
 durchprobiert, akzeptiert genau die Primzahlen, die akzeptierte Sprache
 hat also die Eigenschaft $P$.
 \item 
@@ -1262,9 +1262,9 @@ Die Eigenschaft $P$ ist also nicht trivial, und nach dem Satz von Rice
 kann sie daher auch nicht entscheidbar sein.
 \end{beispiel}
 
-Die Beispiele illustrieren, dass es im Allgmeinen unm"oglich ist, Programme
-automatisch darauf zu testen, ob sie in allen F"allen korrekt arbeiten
+Die Beispiele illustrieren, dass es im Allgmeinen unmöglich ist, Programme
+automatisch darauf zu testen, ob sie in allen Fällen korrekt arbeiten
 werden.
-Dies ist nur dann m"oglich, wenn die akzeptierte Sprache einfach,
-zum Beispiel regul"ar, ist, oder nur f"ur eine Teilmenge aller m"oglichen
+Dies ist nur dann möglich, wenn die akzeptierte Sprache einfach,
+zum Beispiel regulär, ist, oder nur für eine Teilmenge aller möglichen
 Programmen.

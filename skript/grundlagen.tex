@@ -11,23 +11,23 @@ In diesem Abschnitt stellen wir eine Reihe bereits bekannter Notationen
 zusammen.
 \subsection{Logik}
 \index{Logik}
-\index{Pr\"adikatenlogik}
-\subsubsection{Pr"adikate}
-Wir verwenden die Pr"adikatenlogik.
-\index{Pr\"adikat}
-{\em Pr"adikate} sind formale Aussagen "uber mathematische Objekte, die auch
-variable Teile enthalten k"onnen. Pr"adikate sind also ``Funktionen'' mit
-Wahrheitswerten als R"uckgabewerten.
+\index{Pr\ädikatenlogik}
+\subsubsection{Prädikate}
+Wir verwenden die Prädikatenlogik.
+\index{Pr\ädikat}
+{\em Prädikate} sind formale Aussagen über mathematische Objekte, die auch
+variable Teile enthalten können. Prädikate sind also ``Funktionen'' mit
+Wahrheitswerten als Rückgabewerten.
 \begin{align*}
 P(x,y)&=x < y&&\text{wahr falls $x$ kleiner als $y$}\\
 P(n)&=n \equiv 0\mod 2&&\text{wahr falls $n$ gerade}
 \end{align*}
-Pr"adikate k"onnen durch logische Verkn"upfungen zu neuen Aussagen kombiniert
+Prädikate können durch logische Verknüpfungen zu neuen Aussagen kombiniert
 werden:
 \begin{center}
 \begin{tabular}{|l|c|c|l|}
 \hline
-Name&Verkn"upfung&Zeichen&Bedeutung\\
+Name&Verknüpfung&Zeichen&Bedeutung\\
 \hline
 \index{Konjunktion}
 Konjunktion&UND&$P\wedge Q$&wahr falls sowohl $P$ als auch $Q$ wahr sind\\
@@ -47,15 +47,15 @@ man
 \neg P\vee Q\qquad =\qquad P\Rightarrow Q.
 \]
 
-Hat man mit einer grossen Zahl von Pr"adikaten $P_1,P_2,\dots$ zu tun,
-dann kann man deren Konjunktion oder Disjunktion "ahnlich wie beim Summenzeichen
-mit einem ``grossen'' Verkn"upfungszeichen schreiben:
+Hat man mit einer grossen Zahl von Prädikaten $P_1,P_2,\dots$ zu tun,
+dann kann man deren Konjunktion oder Disjunktion ähnlich wie beim Summenzeichen
+mit einem ``grossen'' Verknüpfungszeichen schreiben:
 \begin{align*}
 \bigwedge_{i=1}^n P_i&=P_1\wedge P_2\wedge P_3\wedge\dots\wedge P_n\\
 \bigvee_{i=1}^n P_i&=P_1\vee P_2\vee P_3\vee\dots\vee P_n
 \end{align*}
-Die Indizes m"ussen nicht eine fortlaufende Folge bilden, sie k"onnen
-auch aus einer beliebigen Indexmenge $I$ stammen, wof"ur man dann
+Die Indizes müssen nicht eine fortlaufende Folge bilden, sie können
+auch aus einer beliebigen Indexmenge $I$ stammen, wofür man dann
 schreibt
 \[
 \bigwedge_{i\in I}P_i
@@ -65,7 +65,7 @@ schreibt
 \bigvee_{i\in I}P_i
 \]
 
-Die beiden Operationen $\wedge$ und $\vee$ sind miteinander vertr"aglich,
+Die beiden Operationen $\wedge$ und $\vee$ sind miteinander verträglich,
 es gelten die {\em Distributiv-Gesetze}
 \begin{align*}
 P\wedge(Q\vee R)&=(P\wedge Q)\vee (P\wedge R)\\
@@ -79,12 +79,12 @@ P\vee(Q\wedge R)&=(P\vee Q)\wedge (P\vee R).
 Durch wiederholte Anwendung der Distributivgesetze kann man 
 eine Formel in eine von zwei Normalformen bringen, je nachdem
 ob man die ``$\wedge$'' oder die ``$\vee$'' nach aussen bringt.
-Sind die ``"ausseren'' Verkn"upfungen die ``$\wedge$'', spricht
+Sind die ``äusseren'' Verknüpfungen die ``$\wedge$'', spricht
 man von {\em konjunktiver Normalform}, eine solche Formel sieht so aus:
 \[
 (x_1\vee x_3)\wedge(x_2\vee \bar x_4\vee x_5)\wedge\dots
 \]
-Die Klammerausdr"ucke heissen {\em Klauseln}.
+Die Klammerausdrücke heissen {\em Klauseln}.
 \index{Klausel}
 
 Bringt man stattdessen die ``$\vee$'' nach aussen, spricht man von
@@ -129,52 +129,52 @@ eines Beweises mit Widerspruch (siehe Abschnitt \ref{widerspruchsbeweis})
 
 \subsubsection{Quantoren}
 \index{Quantor}
-Pr"adikate mit mindestens einer freien Variablen k"onnen mit Hilfe
-von Quantoren zu neuen Pr"akdikaten zusammengebaut werden. 
-Die Aussage $n^2\ge 0$ ist zum Beispiel f"ur alle nat"urlichen
-Zahlen richtig, man schreibt daf"ur
+Prädikate mit mindestens einer freien Variablen können mit Hilfe
+von Quantoren zu neuen Präkdikaten zusammengebaut werden. 
+Die Aussage $n^2\ge 0$ ist zum Beispiel für alle natürlichen
+Zahlen richtig, man schreibt dafür
 \[
 \forall n\in\mathbb N(n^2\ge 0).
 \]
 \index{All-Quantor}
-Das Zeichen $\forall$ wird ``f"ur alle'' gelesen, es heisst
+Das Zeichen $\forall$ wird ``für alle'' gelesen, es heisst
 {\em All-Quantor}.
 \index{Existenz-Quantor}
 Jede positive reelle Zahl $x$ hat eine Wurzel, es gibt also eine
-Zahl $w$ mit der Eigenschaft $x=w^2$. Formal dr"uckt man dies mit
+Zahl $w$ mit der Eigenschaft $x=w^2$. Formal drückt man dies mit
 dem {\em Existenz-Quantor} $\exists$ aus:
 \[
 \exists w\in\mathbb R(x =w^2)
 \]
 Dies liest man ``es gibt eine reelle Zahl $w$, deren Quadrat $x$ ist.
 Will man obigen Satz, dass jede positive relle Zahl eine Wurzel hat,
-formal ausdr"ucken, schreibt man
+formal ausdrücken, schreibt man
 \[
 \forall x>0\exists w\in\mathbb R(x=w^2)
 \]
 
-Zwei Aussagen $P$ und $Q$ sind {\em "aquivalent}, wenn sowohl
+Zwei Aussagen $P$ und $Q$ sind {\em äquivalent}, wenn sowohl
 $P\Rightarrow Q$ als auch $Q\Rightarrow P$, kurz $P\Leftrightarrow Q$.
 
 \subsection{Mengenlehre}
 \index{Mengenlehre}
-Wir gehen von einem intuitiven Mengenverst"andnis aus, und bezeichnen
+Wir gehen von einem intuitiven Mengenverständnis aus, und bezeichnen
 Mengen meistens mit grossen Buchstaben $A$, $B$, $C$ usw.
 Aus einer Menge $A$ kann eine neue Menge gebildet werden, indem
-nur die Elemente ausgew"ahlt werden, die eine bestimmte Eigenschaft
+nur die Elemente ausgewählt werden, die eine bestimmte Eigenschaft
 $E$ haben:
 \[
 \{a\in A\;|\;E(a)\}
 \]
 Die Menge der $Q$ der Quadratzahlen besteht zum Beispiel aus den
-Zahlen $n$, f"ur
+Zahlen $n$, für
 die es eine andere Zahl $w$ gibt (die Wurzel), mit der Eigenschaft
 $n=w^2$.  In Formeln:
 \[
 Q=\{n\; |\; \exists m\in\mathbb N(n=m^2)\}
 \]
 
-Sind $A$ und $B$ zwei Mengen, dann k"onnen wir daraus neue Mengen
+Sind $A$ und $B$ zwei Mengen, dann können wir daraus neue Mengen
 bilden:
 \begin{center}
 \begin{tabular}{|l|c|l|}
@@ -182,18 +182,18 @@ bilden:
 Operation&Zeichen&Bedeutung\\
 \hline
 \index{Durchschnitt}
-Durchschnitt&$A\cap B$&Enth"alt die Elemente, die in $A$ {\bf und} $B$ sind\\
+Durchschnitt&$A\cap B$&Enthält die Elemente, die in $A$ {\bf und} $B$ sind\\
 \index{Vereinigung}
-Vereinigung&$A\cup B$&Enth"alt die Elemente, die in $A$ {\bf oder} $B$ sind\\
+Vereinigung&$A\cup B$&Enthält die Elemente, die in $A$ {\bf oder} $B$ sind\\
 \index{Komplement}
-Komplement&$\bar A$&Enth"alt die Elemente, die {\bf nicht} in $A$ sind\\
+Komplement&$\bar A$&Enthält die Elemente, die {\bf nicht} in $A$ sind\\
 \index{Differenz}
-Differenz&$A\setminus B$&Enth"alt die Elemente aus A, die nicht in $B$ sind\\
+Differenz&$A\setminus B$&Enthält die Elemente aus A, die nicht in $B$ sind\\
 \hline
 \end{tabular}
 \end{center}
 \index{symmetrische Differenz}
-F"ur die Anwendungen wichtig ist ausserdem die {\em symmetrische Differenz}
+Für die Anwendungen wichtig ist ausserdem die {\em symmetrische Differenz}
 zweier Mengen: 
 \[
 A{\;\Delta\;}B = (A\setminus B)\cup (B\setminus A).
@@ -220,9 +220,9 @@ oft verwenden:
 \hline
 Symbol&Beschreibung\\
 \hline
-\index{nat\"urliche Zahlen}
-$\mathbb N$&Menge der nat"urlichen Zahlen $\{0,1,2,\dots\}$\\
-$\mathbb N^*$&Menge der positiven nat"urlichen Zahlen $\{1,2,3,\dots\}$\\
+\index{nat\ürliche Zahlen}
+$\mathbb N$&Menge der natürlichen Zahlen $\{0,1,2,\dots\}$\\
+$\mathbb N^*$&Menge der positiven natürlichen Zahlen $\{1,2,3,\dots\}$\\
 \index{ganze Zahlen}
 $\mathbb Z$&Menge der ganzen Zahlen $\{\dots,-2,-1,0,1,2,\dots\}$\\
 \index{rationale Zahlen}
@@ -242,16 +242,16 @@ Daraus lassen sich weitere Mengen konstruieren:
 \mathbb R_{> 0}&=\mathbb R^+=\{x\in\mathbb R\,|\,x>0\}\\
 [n]&=\{x\in \mathbb N^*\,|\,x\le n\}
 \end{align*}
-\index{Machtigkeit@M\"achtigkeit}
-Enth"alt eine Menge $A$ nur endlich viele Elemente, schreiben wir die Anzahl
-ihrer Elemente $|A|$, sie heisst auch die {\em M"achtigkeit} von $A$.
+\index{Machtigkeit@M\ächtigkeit}
+Enthält eine Menge $A$ nur endlich viele Elemente, schreiben wir die Anzahl
+ihrer Elemente $|A|$, sie heisst auch die {\em Mächtigkeit} von $A$.
 \[
 |\{n\in\mathbb N\,|\,\text{$n$ prim}\wedge n<10\}|=|\{2,3,5,7\}|=4.
 \]
 Die Mengen $[n]$ enthalten genau $n$ Elemente, $|[n]|=n$.
 
-Enth"alt eine Menge $B$ alle Elemente von $A$, sagt man, $A$ sei in $B$
-enthalten, schreibt daf"ur $A\subset B$ und sagt, $A$ sei eine
+Enthält eine Menge $B$ alle Elemente von $A$, sagt man, $A$ sei in $B$
+enthalten, schreibt dafür $A\subset B$ und sagt, $A$ sei eine
 {\em Teilmenge} von $B$. Ist $A\subset B$ und auch
 $B\subset A$, dann enthalten $A$ und $B$ die gleichen Elemente, also
 $A=B$.
@@ -262,21 +262,21 @@ Die Menge aller Teilmengen von $A$ heisst die {\em Potenzmenge} $P(A)$ von $A$:
 P(A)=\{ T\,|\,T\subset A\}
 \]
 Die Potenzmenge einer endlichen Anzahl Elemente $A$ kann man wie folgt bilden.
-Um eine Teilmenge von $A$ zu bilden, muss man f"ur jedes Element
+Um eine Teilmenge von $A$ zu bilden, muss man für jedes Element
 von $A$ entscheiden, ob es in die Teilmenge kommen soll oder nicht.
-Man hat also f"ur jedes der $|A|$ Elemente eine Entscheidung mit zwei
-m"oglichen Ausg"angen zu f"allen, was auf
+Man hat also für jedes der $|A|$ Elemente eine Entscheidung mit zwei
+möglichen Ausgängen zu fällen, was auf
 \[
 \underbrace{2\cdot\dots\cdot 2}_{\text{$|A|$ Faktoren}}=2^{|A|}
 \]
-m"oglich ist, also $|P(A)|=2^{|A|}$.
+möglich ist, also $|P(A)|=2^{|A|}$.
 
 \subsection{Paare und Tupel}
 \index{Paar}
 \index{Tupel@$n$-Tupel}
 \index{kartesisches Produkt}
 Die Beschreibung eines Punktes in der Ebene erfordert die Angabe zweier
-Koordinaten, die man "ublicherweise als Paar $(x,y)$ schreibt. Allgemein
+Koordinaten, die man üblicherweise als Paar $(x,y)$ schreibt. Allgemein
 kann man aus den Elementen $a\in A$ und $b\in B$ zweier Mengen $A$ und $B$
 die Menge der Paare (2-Tupel) bilden, diese Menge heisst das
 {\em kartesische Produkt} der beiden Mengen:
@@ -288,7 +288,7 @@ Analog kann man aus drei Mengen die Menge aller Tripel
 \[
 A\times B\times C=\{(a,b,c)\,|\,a\in A\wedge b\in B\wedge c\in C\}
 \]
-bilden, oder f"ur $n$ Mengen die Menge der $n$-Tupel
+bilden, oder für $n$ Mengen die Menge der $n$-Tupel
 \[
 A_1\times A_2\times\dots\times A_n
 =\{(a_1,a_2,\dots,a_n)\,|a_1\in A_1\wedge a_2\in A_2\wedge\dots\wedge a_n\in A_n\}.
@@ -298,13 +298,13 @@ schreiben wir auch
 \[
 A^n= \underbrace{A\times \dots \times A}_{\text{$n$ Faktoren}}
 \]
-f"ur das kartesische Produkt von $n$ Faktoren $A$.
+für das kartesische Produkt von $n$ Faktoren $A$.
 
 \subsection{Relationen}
 \index{Relation}
-Eine zweistellige {\em Relation} $R$ ist ein Spezialfall eines Pr"adikates.
-Realisieren k"onnte man eine Relation dadurch, dass man die Menge
-aller Paare bildet, f"ur die die Relation erf"ullt ist. Um zu entscheiden,
+Eine zweistellige {\em Relation} $R$ ist ein Spezialfall eines Prädikates.
+Realisieren könnte man eine Relation dadurch, dass man die Menge
+aller Paare bildet, für die die Relation erfüllt ist. Um zu entscheiden,
 ob $xRy$ gilt, muss man also nur noch in der Menge nachschauen,
 ob $(x,y)$ dort drin ist. Man kann also die Relation mit der
 Menge
@@ -315,19 +315,19 @@ identifizieren.
 \index{Graph!einer Relation}
 Diese Menge heisst auch der {\em Graph} der Relation.
 
-Besonders wichtig sind {\em "Aquivalenzrelationen}, die sich durch folgende
+Besonders wichtig sind {\em Äquivalenzrelationen}, die sich durch folgende
 Eigenschaften auszeichnen.
 \begin{compactenum}
-\item $R$ ist {\em reflexiv}, falls f"ur jedes $x$ gilt $xRx$: $\forall x(xRx)$
+\item $R$ ist {\em reflexiv}, falls für jedes $x$ gilt $xRx$: $\forall x(xRx)$
 \item $R$ heisst {\em symmetrisch}, falls mit $xRy$ auch $yRx$ gilt: $\forall x\forall y(xRy\Rightarrow yRx)$
 \item $R$ heisst {\em transitiv}, falls mit $xRy$ und $yRz$ auch $xRz$ gilt.
 \end{compactenum}
-Beispiele von "Aquivalenzrelationen sind:
+Beispiele von Äquivalenzrelationen sind:
 \begin{itemize}
 \item Gleichheit
-\item $xRy$ f"ur $x,y\in\mathbb N$ falls $x$ und $y$ den gleichen
+\item $xRy$ für $x,y\in\mathbb N$ falls $x$ und $y$ den gleichen
 Rest bei Teilung durch eine feste Primzahl $p$ haben.
-\item $xRy$ f"ur Dreiecke $x$ und $y$, falls $x$ und $y$ kongruent sind.
+\item $xRy$ für Dreiecke $x$ und $y$, falls $x$ und $y$ kongruent sind.
 \end{itemize}
 
 \subsection{Funktionen, Abbildungen}
@@ -345,31 +345,31 @@ Element in $b$ kann mehrere Urbilder haben.
 Eine Funktion ist eine spezielle Relation: 
 $a$  und $b$ stehen in der Relation zueinander, wenn $f(a)=b$. 
 \index{Graph!einer Abbildung}
-Die zugeh"orige Menge von Paaren ist
+Die zugehörige Menge von Paaren ist
 \[
 G(f)=\{(a,b)\,|\,b=f(a)\},
 \]
 und heisst der {\em Graph}. Ist $A=\mathbb R$, $B=\mathbb R$ und
 $f\colon\mathbb R\to\mathbb R$, dann ist $G(f)$ die Menge
-der Punkte $(x,y)$ in der Ebene, die $y=f(x)$ erf"ullen, also
-genau der Graph im "ublichen Sinne.
+der Punkte $(x,y)$ in der Ebene, die $y=f(x)$ erfüllen, also
+genau der Graph im üblichen Sinne.
 
 \index{Menge aller Abbildungen}
 Die Menge aller Abbildungen von $A$ nach $B$ schreibt man auch
-$B^A$. Die Notation wird verst"andlich, wenn man f"ur endliche
-Mengen $A$ und $B$ z"ahlt, wieviel
+$B^A$. Die Notation wird verständlich, wenn man für endliche
+Mengen $A$ und $B$ zählt, wieviel
 Abbildungen zwischen $A$ und $B$ es gibt. Um eine Abbildung von
-$A$ nach $B$ zu konstruieren, muss man f"ur jedes der $|A|$ Elemente von $A$
-eines der $|B|$ Elemente von $B$ ausw"ahlen. Man muss also $|A|$ mal
-eine Auswahl mit $|B|$ M"oglichkeiten treffen, man hat also
+$A$ nach $B$ zu konstruieren, muss man für jedes der $|A|$ Elemente von $A$
+eines der $|B|$ Elemente von $B$ auswählen. Man muss also $|A|$ mal
+eine Auswahl mit $|B|$ Möglichkeiten treffen, man hat also
 \[
 \underbrace{|B|\cdot\dots\cdot|B|}_{\text{$|A|$ Faktoren}}=|B|^{|A|}
 \]
 Abbildungen.
 
-Die Elemente der Potenzmenge von $A$ entstehen dadurch, dass man f"ur jedes
-Element von $A$ einen Wert $0$ oder $1$ ausw"ahlen muss, $0$ gibt an,
-dass das Element nicht in die Teilmenge kommt, $1$ gibt an, dass es dazugeh"ort.
+Die Elemente der Potenzmenge von $A$ entstehen dadurch, dass man für jedes
+Element von $A$ einen Wert $0$ oder $1$ auswählen muss, $0$ gibt an,
+dass das Element nicht in die Teilmenge kommt, $1$ gibt an, dass es dazugehört.
 Eine Teilmenge von $A$ entspricht also genau einer Abbildung $A\to\{0,1\}$,
 man kann die Potenzmenge mit der Menge der Abbildungen $A\to\{0,1\}$
 identifizieren:
@@ -377,7 +377,7 @@ identifizieren:
 P(A) = \{0,1\}^{A}.
 \]
 
-Ein $n$-Tupel von Elementen aus $A$ ordnet jedem der Pl"atze
+Ein $n$-Tupel von Elementen aus $A$ ordnet jedem der Plätze
 $1,\dots,n$ genau ein Element aus $A$ zu, ein Tupel ist also eigentlich
 eine Abbildung $[n]=\{1,\dots,n\}\to A$, die Menge der Tupel ist somit
 \[
@@ -392,8 +392,8 @@ Ein Graph besteht aus Ecken (Vertizes) und Kanten,
 die die Ecken verbinden.
 Dabei
 soll es aber anders als zum Beispiel bei einem Verkehrsnetz zwischen zwei
-Ecken immer nur eine Verbindung geben k"onnen. Die Kante ist also durch
-die beiden Endpunkte vollst"andig bestimmt, ausserdem spielt deren
+Ecken immer nur eine Verbindung geben können. Die Kante ist also durch
+die beiden Endpunkte vollständig bestimmt, ausserdem spielt deren
 Reihenfolge keine Rolle. Um eine Kante zu beschreiben, braucht man
 also nur die Menge $\{a,b\}$ der Endpunkte zu kennen.
 Wir fassen das in folgende Definition zusammen.
@@ -448,8 +448,8 @@ Die Menge $E$ besteht also aus den Elementen $e_1,\dots,e_{10}$.
 \caption{Kein Graph, jede Kante eines Graphen hat zwei verschiedene
 Ecken.\label{grundlagen:keingraph}}
 \end{figure}
-Man beachte, dass ein Graph keine Kante haben kann, die zur"uck zum 
-selben Vertex f"uhren kann.
+Man beachte, dass ein Graph keine Kante haben kann, die zurück zum 
+selben Vertex führen kann.
 Das Gebilde in Abbildung~\ref{grundlagen:keingraph}
 ist also kein Graph, weil jede Kante eines Graphen zwei verschiedene
 Ecken hat.
@@ -475,7 +475,7 @@ der keine Ecke zweimal besucht.
 Ein {\em Baum} ist ein Graph ohne Zyklen. Ein Baum kann einen ausgezeichneten
 Punkt, die {\em Wurzel} des Baumes, enthalten. Alle anderen Ecken vom Grad 1
 \index{Blatt}
-heissen Bl"atter des Baumes.
+heissen Blätter des Baumes.
 
 \begin{figure}
 \begin{center}
@@ -483,13 +483,13 @@ heissen Bl"atter des Baumes.
 \end{center}
 \caption{Gerichteter Graph\label{grundlagen:gerichtetergraph}}
 \end{figure}
-M"ochte man die Richtung der Kanten ber"ucksichtigen,
+Möchte man die Richtung der Kanten berücksichtigen,
 hat man mit einem gerichteten
 Graphen zu tun (Abbildung~\ref{grundlagen:gerichtetergraph}).
 Da es jetzt auf die Reihenfolge der Endpunkte an kommt,
 sich insbesondere die Kante von $a$ nach $b$ von der Kante von $b$ nach
-$a$ unterscheidet, k"onnen wir die Kanten nicht mehr durch die ungeordneten
-Mengen beschreiben, sondern m"ussen geordnete Tupel verwenden.
+$a$ unterscheidet, können wir die Kanten nicht mehr durch die ungeordneten
+Mengen beschreiben, sondern müssen geordnete Tupel verwenden.
 
 \begin{definition}
 \index{Graph!gerichteter}
@@ -531,10 +531,10 @@ e_{10}&=(v_5,v_6)
 \end{center}
 \caption{Gerichteter beschrifteter Graph\label{grundlagen:beschrgraph}}
 \end{figure}
-Ein Verkehrsnetz wie auch die sp"ater zu definierenden endlichen
+Ein Verkehrsnetz wie auch die später zu definierenden endlichen
 Automaten ist aber noch komplizierter: auf den Verbindungen zwischen
 den Netzwerken sind auch verschiedene Bahnlinien im Einsatz, so gibt
-es zwischen Rapperswil und Pf"affikon zum Beispiel je eine Kante, die
+es zwischen Rapperswil und Pfäffikon zum Beispiel je eine Kante, die
 mit ``S5'' bzw.~mit ``Voralpenexpress'' angeschrieben ist
 (Abbildung~\ref{grundlagen:beschrgraph}). Dies
 wird von folgender Definition eingefangen:
@@ -571,7 +571,7 @@ E=\{\;
 Man beachte, dass es zwei verschieden beschriftete Kanten gibt
 von $v_5$ nach $v_1$, und dass die Richtung der beiden gleich
 beschrifteten Kanten zwischen $v_0$ und $v_3$ verschieden ist.
-Beides M"oglichkeiten, die in einem Graphen verboten sind.
+Beides Möglichkeiten, die in einem Graphen verboten sind.
 
 \rhead{Beweistechniken}
 \section{Beweistechniken}
@@ -581,7 +581,7 @@ Techniken zur Erinnerung.
 \subsection{Konstruktion}
 \index{Beweis!konstruktiver}
 Ein konstruktiver Beweis gibt einfach eine Konstruktion an, die
-das behauptete Objekt liefert oder f"ur die die behauptete Eigenschaft
+das behauptete Objekt liefert oder für die die behauptete Eigenschaft
 offensichtlich ist.
 Ein solches Vorgehen wird auch oft eine Herleitung genannt.
 
@@ -591,11 +591,11 @@ Falls $a\ne0$ und $b^2-4ac>0$ hat die quadratische Gleichung
 \[
 ax^2+bx+c=0
 \]
-zwei verschiedene L"osungen.
+zwei verschiedene Lösungen.
 \end{satz}
 
 \begin{proof}[Beweis]
-Man kann die quadratische Gleichung mit vollst"andigem Erg"anzen wie
+Man kann die quadratische Gleichung mit vollständigem Ergänzen wie
 folgt umformen:
 {
 \allowdisplaybreaks
@@ -614,26 +614,26 @@ x_{\pm}&=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 \end{align*}
 }
 Die Voraussetzung $a>0$ wird im ersten Schritt dieser Ableitung verwendet.
-Da $b^2-4ac>0$ kann im Schritt (*) tats"achlich die Wurzel gezogen werden,
+Da $b^2-4ac>0$ kann im Schritt (*) tatsächlich die Wurzel gezogen werden,
 und die beiden Wurzeln sind auch verschieden. Man hat also zwei verschiedene
-L"osungen konstruiert, womit die Behauptung bewiesen ist.
+Lösungen konstruiert, womit die Behauptung bewiesen ist.
 \end{proof}
 
 \subsection{Widerspruch\label{widerspruchsbeweis}}
 \index{Beweis!mit Widerspruch}
 \index{Widerspruch}
-In der Mathematik darf es keine Widerspr"uche geben, denn aus einem
-Widerspruch liesse sich jede beliebige Aussage ableiten. W"are zum
+In der Mathematik darf es keine Widersprüche geben, denn aus einem
+Widerspruch liesse sich jede beliebige Aussage ableiten. Wäre zum
 Beispiel $P$ eine Aussage, die sowohl wahr wie auch falsch ist,
-dann h"atte die Menge
+dann hätte die Menge
 \[
 \{x\in\{P\}\,|\, \text{$x$ ist wahr}\}
 \]
 je nachdem ob $P$ nun wahr oder falsch ist $1$ oder $0$ Elemente.
-Da das aber nat"urlich immer die gleiche Menge ist, m"usste man
-folgern $0=1$. Daraus l"asst sich dann ableiten, dass alle nat"urlichen
-Zahlen gleich sind (zum Beispiel mit vollst"andiger Induktion, siehe
-unten), dass alle Mengen gleich viele Elemente haben, n"amlich gar
+Da das aber natürlich immer die gleiche Menge ist, müsste man
+folgern $0=1$. Daraus lässt sich dann ableiten, dass alle natürlichen
+Zahlen gleich sind (zum Beispiel mit vollständiger Induktion, siehe
+unten), dass alle Mengen gleich viele Elemente haben, nämlich gar
 keine, dass es die ganze Mathematik also gar nicht gibt.
 
 Wenn man also eine Aussage $P$ beweisen will, kann man annehmen,
@@ -642,27 +642,27 @@ eine Aussage $Q$ folgt, von der wir bereits wissen, dass sie falsch
 ist, dann bedeutet das, dass die Annahme $\neg P$ nicht haltbar
 war.
 
-Und noch etwas formaler: wenn $\neg P\Rightarrow \neg Q$, dann k"onnen
+Und noch etwas formaler: wenn $\neg P\Rightarrow \neg Q$, dann können
 wir das umformen zu $\neg Q\Rightarrow P$ (nach Kontrapositionsformel
 (\ref{kontraposition})), wir wissen bereits, dass
 $Q$ falsch ist, die linke Seite also wahr ist, also muss auch $P$
 wahr sein.
 
-Das klassische Beispiel f"ur einen Beweis mit Widerspruch ist das 
+Das klassische Beispiel für einen Beweis mit Widerspruch ist das 
 folgende:
 \begin{satz}$\sqrt{2}$ ist irrational: $\sqrt{2}\not\in\mathbb Q$.
 \index{irrational}
 \end{satz}
 \begin{proof}[Beweis]
-Wir nehmen $\sqrt{2}\in\mathbb Q$ und f"uhren dies zu einem
+Wir nehmen $\sqrt{2}\in\mathbb Q$ und führen dies zu einem
 Widerspruch. Wenn $\sqrt{2}\in\mathbb Q$ ist, kann man $\sqrt{2}$
-als gek"urzten Bruch $\frac{p}{q}$ schreiben. Dann gilt aber
+als gekürzten Bruch $\frac{p}{q}$ schreiben. Dann gilt aber
 auch
 \[
 \sqrt{2}^2=2=\frac{p^2}{q^2}\quad\Rightarrow\quad p^2=2q^2.
 \]
-Wenn $p$ den Primfaktor $2$ enth"alt, dann enth"alt $p^2$
-eine gerade Anzahl von Primfaktoren $2$. Ebenso enth"alt
+Wenn $p$ den Primfaktor $2$ enthält, dann enthält $p^2$
+eine gerade Anzahl von Primfaktoren $2$. Ebenso enthält
 $q^2$ eine gerade Anzahl von Primfaktoren $2$, also $2q^2$
 eine ungerade Anzahl von Primfaktoren $2$.
 Im Ausdruck $p^2=2q^2$ steht also links eine Zahl mit einer
@@ -675,37 +675,37 @@ Annahme $\frac{p}q\in\mathbb Q$ nicht zu halten ist.
 \subsection{Induktion}
 \index{Beweis!mit Induktion}
 \index{Induktion}
-M"ochte man eine Aussage mit einem nat"urlichen Parameter $n$ f"ur jeden
-m"oglichen Wert von $n$ beweisen, kann man dazu vollst"andige Induktion
+Möchte man eine Aussage mit einem natürlichen Parameter $n$ für jeden
+möglichen Wert von $n$ beweisen, kann man dazu vollständige Induktion
 verwenden. Dazu geht man wie folgt vor:
 \begin{description}
 \index{Verankerung}
-\item[Verankerung:] Beweise die Aussage f"ur den kleinsten Wert,
-f"ur den sie bewiesen werden soll.
+\item[Verankerung:] Beweise die Aussage für den kleinsten Wert,
+für den sie bewiesen werden soll.
 \index{Induktionsannahme}
-\item[Induktionsannahme:] Nehme an, f"ur einen bestimmten Wert
+\item[Induktionsannahme:] Nehme an, für einen bestimmten Wert
 $n$ sei die Aussage bereits bewiesen (nach der Verankerung ist sie 
-f"ur den kleinsten m"oglichen Wert ja tats"achlich bereits bewiesen).
+für den kleinsten möglichen Wert ja tatsächlich bereits bewiesen).
 \index{Induktionsschritt}
-\item[Induktionsschritt:] Beweise jetzt die Aussage f"ur den Wert $n+1$.
+\item[Induktionsschritt:] Beweise jetzt die Aussage für den Wert $n+1$.
 \end{description}
 
 Als Beispiel soll der folgene Satz dienen:
 
-\begin{satz} F"ur alle nat"urlichen Zahlen $n$ gilt
+\begin{satz} Für alle natürlichen Zahlen $n$ gilt
 \[
 \sum_{k=1}^nk=\frac{n(n+1)}2
 \]
 \end{satz}
 \begin{proof}[Beweis]
 \begin{description}
-\item[Verankerung:] f"ur $n=0$ ist die Summe leer, ergibt also $0$.
+\item[Verankerung:] für $n=0$ ist die Summe leer, ergibt also $0$.
 Auf der rechten Seite steht $0(0+1)/2=0$, die Formel trifft also zu.
 \item[Induktionsannahme:]Wir nehmen also an, dass
 \[
 \sum_{k=1}^nk=\frac{n(n+1)}2
 \]
-\item[Induktionsschritt:] Wir m"ussen die Behauptung f"ur $n+1$ zeigen. Dazu
+\item[Induktionsschritt:] Wir müssen die Behauptung für $n+1$ zeigen. Dazu
 berechnen wir
 \begin{align}
 \sum_{k=1}^{n+1}k&=\biggl(\sum_{k=1}^nk\biggr) + (n+1)\notag\\
@@ -714,8 +714,8 @@ berechnen wir
 &=\frac{(n+1)(n+2)}2=\frac{(n+1)((n+1)+1)}2\notag
 \end{align}
 In Schritt (\ref{verwendung_annahme}) haben wir die Induktionsannahme
-verwendet. In der letzten Zeile auf der rechten Seite steht tats"achlich
+verwendet. In der letzten Zeile auf der rechten Seite steht tatsächlich
 die Formel des Satzes, in der $n$ durch $n+1$ ersetzt worden ist.
-Damit ist die Formel f"ur $n+1$ bewiesen.
+Damit ist die Formel für $n+1$ bewiesen.
 \end{description}
 \end{proof}

@@ -4,70 +4,70 @@
 \lhead{Kontextfreie Sprachen}
 \rhead{Kontextfreie Grammatiken}
 \chapter{Stackautomaten und kontextfreie Sprachen\label{chapter-cfl}}
-Die regul"aren Sprachen bilden zwar eine interessante Klasse
+Die regulären Sprachen bilden zwar eine interessante Klasse
 von Sprachen mit mathematisch sehr attraktiven Eigenschaften,
-doch sind viele praktisch wichtige Sprachen nicht regul"ar.
-Bereits korrekt geschachtelte Klammern k"onnen nicht mit einem
+doch sind viele praktisch wichtige Sprachen nicht regulär.
+Bereits korrekt geschachtelte Klammern können nicht mit einem
 DEA erkannt werden.
 
 Ursache ist, dass sich ein DEA nicht
-daran ``erinnern'' kann, wieviele Klammern schon ge"offnet
-worden sind. Um das f"ur beliebig viele Klammern tun zu k"onnen,
-br"auchte er unendlich viele Zust"ande (Satz von Myhill-Nerode),
-das ist in einem DEA nicht m"oglich. Dazu ist als Erweiterung
-eine Art von Speicher n"otig. In diesem Kapitel betrachten
+daran ``erinnern'' kann, wieviele Klammern schon geöffnet
+worden sind. Um das für beliebig viele Klammern tun zu können,
+bräuchte er unendlich viele Zustände (Satz von Myhill-Nerode),
+das ist in einem DEA nicht möglich. Dazu ist als Erweiterung
+eine Art von Speicher nötig. In diesem Kapitel betrachten
 wir Automaten, die mit einem Stack ausgestattet worden sind.
 
 \index{Stack}
 \index{Stackautomat}
-Auch regul"are Ausdr"ucke sind nicht dazu geeigneet, die Schachtelung
-von Klammern auszudr"ucken. Daher brauchen wir auch f"ur die
-regul"aren Ausdr"ucke eine Alternative, dies werden die kontextfreien
+Auch reguläre Ausdrücke sind nicht dazu geeigneet, die Schachtelung
+von Klammern auszudrücken. Daher brauchen wir auch für die
+regulären Ausdrücke eine Alternative, dies werden die kontextfreien
 Grammatiken sein. Es wird sich zeigen, dass die von Stackautomaten
 akzeptierten Sprachen auch mit einer kontextfreien Grammatik erzeugt
-werden k"onnen, wir haben also eine "ahnliche Situation wie
-bei DEAs und regul"aren Ausdr"ucken. So entsteht die neue
+werden können, wir haben also eine ähnliche Situation wie
+bei DEAs und regulären Ausdrücken. So entsteht die neue
 Kategorie der kontextfreien Sprachen.
 \index{Sprache!kontextfreie}
-Nat"urlich werden auch kontextfreie Sprachen nicht alles
+Natürlich werden auch kontextfreie Sprachen nicht alles
 abdecken, so dass wir wieder ein Kriterium brauchen, mit dem
 man entscheiden kann, ob eine Sprache kontextfrei ist. Wir
-werden auch f"ur kontextfreie Sprachen
+werden auch für kontextfreie Sprachen
 ein Pumping Lemma finden.
 
 \section{Kontextfreie Sprachen}
 \rhead{Kontextfreie Sprachen}
 \subsection{Kontextfreie Grammatiken}
-Regul"are Sprachen werden dadurch definiert, dass die Zeichen
+Reguläre Sprachen werden dadurch definiert, dass die Zeichen
 eines Wortes von links nach rechts gelesen werden, und nach jedem
 Zeichen entschieden werden kann, ob das Wort akzeptabel ist.
 Der Fokus liegt also auf der Analyse des Strings, und genau dies
-macht das "Uberpr"ufen der korrekten Schachtelung von Klammern
+macht das Überprüfen der korrekten Schachtelung von Klammern
 schwierig. 
 
-\index{Ausdr\"ucke!arithmetische}
-F"ur Klammern ist man sich jedoch meistens eine andere Vorgehensweise
-gewohnt. Wenn man arithmetische Ausdr"ucke aufbaut, sagt man zum
+\index{Ausdr\ücke!arithmetische}
+Für Klammern ist man sich jedoch meistens eine andere Vorgehensweise
+gewohnt. Wenn man arithmetische Ausdrücke aufbaut, sagt man zum
 Beispiel: ``Wenn man die Summe $a+b$ mit $c$ multiplizeren will,
 dann {\bf muss man $a+b$ in Klammern setzen}''.
 Klammern werden also immer paarweise gesetzt, und man baut den
 Ausdruck sozusagen von innen nach aussen auf.
 
-Wir m"ochten diese Idee ein St"uck weit formalisieren. Das Ziel ist,
-W"orter aus den Zeichen {\tt (} und {\tt )} aufzubauen, die korrekte
-Klammerausdr"ucke sind. Dazu k"onnen wir bereits bekannte korrekte
-Klammerausdr"ucke aneinanderh"angen, oder wir k"onnen einen bereits
+Wir möchten diese Idee ein Stück weit formalisieren. Das Ziel ist,
+Wörter aus den Zeichen {\tt (} und {\tt )} aufzubauen, die korrekte
+Klammerausdrücke sind. Dazu können wir bereits bekannte korrekte
+Klammerausdrücke aneinanderhängen, oder wir können einen bereits
 bekannten korrekten Ausdruck ``einklammern''. Schreiben wir $A$
-f"ur einen Klammerausdruck, bedeutet das, dass wir $A$ gem"ass
-folgender Regeln umformen k"onnen:
+für einen Klammerausdruck, bedeutet das, dass wir $A$ gemäss
+folgender Regeln umformen können:
 \begin{align*}
 A&\to AA\\
 A&\to {\tt (}A{\tt )}
 \end{align*}
 Dabei ist auf der rechten Seite der ersten Regel gemeint, dass wir zwei beliebige
-Ausdr"ucke nehmen k"onnen, sie m"ussen nicht identisch sein. Allerdings
-fehlt in diesen Regeln noch ein Anfang, bis jetzt k"onnen wir "uberhaupt
-keine W"orter produzieren. Dazu nehmen wir noch eine Regel $A\to\varepsilon$
+Ausdrücke nehmen können, sie müssen nicht identisch sein. Allerdings
+fehlt in diesen Regeln noch ein Anfang, bis jetzt können wir überhaupt
+keine Wörter produzieren. Dazu nehmen wir noch eine Regel $A\to\varepsilon$
 hinzu, die besagt, dass das leere Wort auch ein akzeptabler
 Klammerausdruck ist. Die Regeln
 \begin{align}
@@ -75,15 +75,15 @@ A&\to\varepsilon       \label{regeln-beispiel-1}\\
 A&\to AA               \label{regeln-beispiel-2}\\
 A&\to {\tt (}A{\tt )}  \label{regeln-beispiel-3}
 \end{align}
-erzeugen in diesem Sinne alle korrekt geschachtelten Klammerausdr"ucke.
+erzeugen in diesem Sinne alle korrekt geschachtelten Klammerausdrücke.
 
-Der Buchstabe $A$ steht offenbar nicht immer f"ur das gleiche, 
-er ist Platzhalter f"ur einen korrekten Klammerausdruck. Wir nennen
+Der Buchstabe $A$ steht offenbar nicht immer für das gleiche, 
+er ist Platzhalter für einen korrekten Klammerausdruck. Wir nennen
 $A$ eine Variable.
-Dagegen stehen die Zeichen {\tt (} und {\tt )} nur f"ur sich selbst, sie
-k"onnen nicht weiter ersetzt werden, sie heissen Terminalsymbole.
+Dagegen stehen die Zeichen {\tt (} und {\tt )} nur für sich selbst, sie
+können nicht weiter ersetzt werden, sie heissen Terminalsymbole.
 
-Damit sind wir bereit f"ur die formale Definition einer kontextfreien
+Damit sind wir bereit für die formale Definition einer kontextfreien
 Grammatik.
 \begin{definition}
 \index{Grammatik!kontextfreie}
@@ -105,18 +105,18 @@ Variablen (in diesem Fall $A$ und $B$) und Terminalsymbolen (in diesem Fall
 \end{compactenum}
 \end{definition}
 Im Beispiel ist $V=\{A\}$, $\Sigma=\{{\tt (},{\tt )}\}$, $S=A$ und
-$R$ enth"alt genau drei Regeln (\ref{regeln-beispiel-1}) bis
+$R$ enthält genau drei Regeln (\ref{regeln-beispiel-1}) bis
 (\ref{regeln-beispiel-3}).
 
-Zur Abk"urzung erlauben wir, Regeln mit der gleichen Variablen
+Zur Abkürzung erlauben wir, Regeln mit der gleichen Variablen
 auf der linken Seite des Pfeils mit einem Vertikalstrich als
-Verkn"upfungszeichen auf der rechten Seite zu schreiben, zu lesen
+Verknüpfungszeichen auf der rechten Seite zu schreiben, zu lesen
 als ``oder'':
 \[
 A \to \varepsilon\;|\; AA\;|\; {\tt (}A{\tt )}.
 \]
 
-Der Name ``kontextfrei'' r"uhrt daher, dass es bei der Anwendung
+Der Name ``kontextfrei'' rührt daher, dass es bei der Anwendung
 der Regeln nicht auf den Kontext ankommt, in dem eine Variable
 auf der linken Seite des Pfeils~$\rightarrow$ vorkommt. Regeln der
 Form 
@@ -125,9 +125,9 @@ Form
 \]
 sogenannte kontextsensitive Regeln,
 \index{kontextsensitiv}
-w"urden dagegen ausdr"ucken, dass die Umwandlung der Variablen $A$
+würden dagegen ausdrücken, dass die Umwandlung der Variablen $A$
 unterschiedlich zu erfolgen hat, wenn ihr verschiedene Zeichen
-vorangehen. In diesem Fall k"ame es auf den Kontext an. Solche
+vorangehen. In diesem Fall käme es auf den Kontext an. Solche
 Regeln sollen jedoch nicht zugelassen sein.
 
 \subsection{Kontextfreie Sprachen}
@@ -142,7 +142,7 @@ formalisieren.
 \index{Ableitung}
 Falls $A\to w$ eine Regel einer Grammatik $G$ ist, sagt man
 dass die Regel aus $uAv$ den String $uwv$ erzeugt,
-geschrieben $uAv\Rightarrow uwv$. Man sagt, $v$ l"asst sich aus
+geschrieben $uAv\Rightarrow uwv$. Man sagt, $v$ lässt sich aus
 $u$ ableiten, wenn es eine Folge $u_1,\dots,u_n$ gibt mit
 \[
 u\Rightarrow u_1\Rightarrow u_2\Rightarrow\dots\Rightarrow u_n\Rightarrow v,
@@ -155,7 +155,7 @@ Als Beispiel sei das Wort \texttt{(()())} aus der Grammatik
 (\ref{regeln-beispiel-1})
 bis
 (\ref{regeln-beispiel-2})
-f"ur die Klammerausdr"ucke abgeleitet:
+für die Klammerausdrücke abgeleitet:
 \begin{align*}
 A
 &\xrightarrow{\text{(\ref{regeln-beispiel-3})}} \texttt{(} A \texttt{)}
@@ -170,8 +170,8 @@ Die Reihenfolge der Regelanwendung ist nicht eindeutig.
 
 \begin{definition}
 \index{Sprache!von einer CFG erzeugte}
-Die Menge aller W"orter, die von einer kontextfreien Grammatik 
-$G$ erzeugt werden k"onnen wir mit
+Die Menge aller Wörter, die von einer kontextfreien Grammatik 
+$G$ erzeugt werden können wir mit
 \[
 L(G)=\{w\in\Sigma^*\;|\; S\overset{*}{\Rightarrow} w\}
 \]
@@ -179,8 +179,8 @@ bezeichnen.
 \end{definition}
 
 \subsection{Beispiele}
-\subsubsection{Nat"urliche Zahlen}
-Nat"urliche Zahlen sind W"orter "uber dem Alphabet $\Sigma=\{
+\subsubsection{Natürliche Zahlen}
+Natürliche Zahlen sind Wörter über dem Alphabet $\Sigma=\{
 {\tt 0},
 {\tt 1},
 {\tt 2},
@@ -199,12 +199,12 @@ Z&\to {\tt 0}\;|\;\dots \;|\;{\tt 9}
 erzeugt werden.
 
 Diese Grammatik hat aber den Mangel, dass sie auch Zahlen
-mit f"uhrenden Nullen erlaubt.
-Diese k"onnten dadurch entfernt
-werden, dass wir eine weitere Variable f"ur zul"assige
-Anfangsziffern einf"uhren.
+mit führenden Nullen erlaubt.
+Diese könnten dadurch entfernt
+werden, dass wir eine weitere Variable für zulässige
+Anfangsziffern einführen.
 Die Bezeichnung der Variablen mit einzelnen Buchstaben wird jetzt
-bereits etwas un"ubersichtlich, wir schreiben die Grammatik daher neu
+bereits etwas unübersichtlich, wir schreiben die Grammatik daher neu
 so:
 \begin{align*}
 \textsl{zahl}           &\to\textsl{nichtnullziffer}\; \textsl{ziffernfolge} \\
@@ -218,17 +218,17 @@ Damit ist auch gleich der Fall einer einzelnen Null abgehandelt, denn eine
 solche ist ja eine \textsl{ziffer}, und eine \textsl{zahl} kann auch eine
 einzelne Ziffer sein.
 
-\subsubsection{Einfache arithmetische Ausdr"ucke}
-\index{Ausdr\"ucke!arithmetische}
+\subsubsection{Einfache arithmetische Ausdrücke}
+\index{Ausdr\ücke!arithmetische}
 \index{expression-term-factor Grammatik}
-Auch arithemtische Ausdr"ucke k"onnen mit einer
-Grammatik erzeugt werden. Da die Zahl der Variablen schnell gr"osser
-wird, werden wir im Folgenden auch l"anger Variablennamen zulassen.
+Auch arithemtische Ausdrücke können mit einer
+Grammatik erzeugt werden. Da die Zahl der Variablen schnell grösser
+wird, werden wir im Folgenden auch länger Variablennamen zulassen.
 Als Alphabet verwenden wir
 $\Sigma=\{{\tt 0},\dots,{\tt 9},{\tt +},{\tt *},{\tt (}, {\tt )}\}$.
-Die Startvariable dr"uckt aus, was erzeugt werden soll, in diesem Fall
+Die Startvariable drückt aus, was erzeugt werden soll, in diesem Fall
 ein Ausdruck, also nennen wir sie \textsl{expression}.  Folgende Grammatik
-erzeugt die arithmetischen Ausdr"ucke:
+erzeugt die arithmetischen Ausdrücke:
 \begin{align*}
 \textsl{expression} &\to \textsl{expression}\;{\tt +}\;\textsl{term}\\
                     &\to \textsl{term}\\
@@ -241,9 +241,9 @@ N                   &\to Z\\
 Z                   &\to {\tt 0}\;|\;\dots \;|\;{\tt 9}
 \end{align*}
 
-\subsubsection{Eine nicht regul"are Sprache}
+\subsubsection{Eine nicht reguläre Sprache}
 Die Sprache $\{{\tt 0}^n{\tt 1}^n\;|\;n\in\mathbb N\}$ wurde bereits
-fr"uher als nicht regul"ar erkannt. Sie wird aber von der 
+früher als nicht regulär erkannt. Sie wird aber von der 
 Grammatik $G=(\{S\}, \{{\tt 0},{\tt 1}\}, R, S)$ erzeugt
 mit den Regeln
 \begin{align*}
@@ -251,22 +251,22 @@ S&\rightarrow \varepsilon\\
 &\rightarrow {\tt 0}S{\tt 1}
 \end{align*}
 
-\subsection{Regul"are Operationen\label{sect:cfg-regulaer}}
-In diesem Abschnitt beweisen wir, dass regul"are Sprachen auch
+\subsection{Reguläre Operationen\label{sect:cfg-regulaer}}
+In diesem Abschnitt beweisen wir, dass reguläre Sprachen auch
 kontextfrei sind. Dazu ist zu zeigen, dass
-zu jedem regul"aren Ausdruck eine kontextfreie Grammatik existiert,
+zu jedem regulären Ausdruck eine kontextfreie Grammatik existiert,
 die die Sprache erzeugt.
 
 \begin{satz}[Vereinigung]
 \label{satz:cfg-union}
 \index{Vereinigung}
-Seien $L_1$ und $L_2$ kontextfreie Sprachen "uber $\Sigma$,
+Seien $L_1$ und $L_2$ kontextfreie Sprachen über $\Sigma$,
 dann ist auch $L_1\cup L_2$ kontextfrei.
 \end{satz}
 
 \begin{proof}[Beweis]
 Weil $L_i$ kontextfrei sind,  gibt es Grammatiken $G_1$ und $G_2$,
-die $L_1$ bzw.~$L_2$ erzeugen. Wir d"urfen sogar annehmen, dass
+die $L_1$ bzw.~$L_2$ erzeugen. Wir dürfen sogar annehmen, dass
 beide Grammatiken keine
 gemeinsamen Variablen haben, dass also $V_1$ und $V_2$ 
 disjunkt sind. Wir konstruieren jetzt eine neue Grammatik
@@ -281,9 +281,9 @@ Insgesamt ist also
 \[
 R=R_1\cup R_2\cup \{S\to S_1, S\to S_2\}.
 \]
-Die W"orter von $L_1$ werden erzeugt, wenn man $S\to S_1$ als
-erste Regel anwendet, die W"orter von $L_2$ jedoch, wenn 
-man $S\to S_2$ verwendet. Die Regeln k"onnen nicht ``gemischt''
+Die Wörter von $L_1$ werden erzeugt, wenn man $S\to S_1$ als
+erste Regel anwendet, die Wörter von $L_2$ jedoch, wenn 
+man $S\to S_2$ verwendet. Die Regeln können nicht ``gemischt''
 angewendet werden, weil $V_1\cap V_2=\emptyset$.
 \end{proof}
 
@@ -324,51 +324,51 @@ R_0=R\cup \{ S_0\to S_0S, S_0\to\varepsilon \}
 die Sprache $L^*$.
 \end{proof}
 
-\begin{satz} Sei $L$ eine regul"are Sprache, dann gibt es eine
+\begin{satz} Sei $L$ eine reguläre Sprache, dann gibt es eine
 kontextfreie Grammatik $G$ mit $L(G)=L$.
 \end{satz}
 
 \begin{proof}[Beweis]
-Da regul"are Sprachen mit regul"aren Operationen aus einfacheren
-Sprachen aufgebaut werden k"onnen, ist nur zu zeigen, dass die
-Konstruktionen, die mit regul"aren Operationen m"oglich sind,
-auch durch Produktionsregeln einer Grammatik ausgedr"uckt werden
-k"onnen. 
+Da reguläre Sprachen mit regulären Operationen aus einfacheren
+Sprachen aufgebaut werden können, ist nur zu zeigen, dass die
+Konstruktionen, die mit regulären Operationen möglich sind,
+auch durch Produktionsregeln einer Grammatik ausgedrückt werden
+können. 
 \begin{enumerate}
-\item Leere Sprache: Die leere Sprache ist regul"ar. Sie wird auch 
+\item Leere Sprache: Die leere Sprache ist regulär. Sie wird auch 
 von der Grammatik mit $R=\emptyset$ erzeugt, also ist sie auch
 kontextfrei.
 \item Ein einzelnes Zeichen: $L=\{{\tt a}\}$. Die Sprache $L$ wird von
 der Grammatik $G=(\{S\}, \{{\tt a}\}, \{S\to{\tt a}\}, S)$
 erzeugt.
-\item Alle Sprachen, die sich aus den eben genannten durch regul"are
+\item Alle Sprachen, die sich aus den eben genannten durch reguläre
 Operationen konstruieren lassen, sind ebenfalls kontextfrei. Da
-dies f"ur alle regul"aren Sprachen zutrifft folgt, dass alle
-regul"aren Sprachen kontextfrei sind.
+dies für alle regulären Sprachen zutrifft folgt, dass alle
+regulären Sprachen kontextfrei sind.
 \end{enumerate}
 \end{proof}
 
 Der Satz zeigt, dass die kontextfreien Sprachen eine echte
-Obermenge der regul"aren Sprachen sind:
+Obermenge der regulären Sprachen sind:
 \begin{center}
 %\includegraphics[width=0.5\hsize]{images/lang-1}
 \includegraphics{images/lang-1}
 \end{center}
-Wir werden sp"ater zeigen, dass kontextfreie Sprachen auch durch
-die Existenz eines Stackautomaten charakterisiert werden k"onnen,
+Wir werden später zeigen, dass kontextfreie Sprachen auch durch
+die Existenz eines Stackautomaten charakterisiert werden können,
 der diese Sprachen akzeptiert. Dann wird sich zeigen, dass 
-die regul"aren Sprachen diejenigen kontextfreien Sprachen sind,
-f"ur deren Analyse der Stack gar nicht ben"otigt wird.
+die regulären Sprachen diejenigen kontextfreien Sprachen sind,
+für deren Analyse der Stack gar nicht benötigt wird.
 
 \subsection{Parse Tree}
 \index{parse tree}
 \index{Ableitungsbaum}
 Der Ableitungsbaum eines Wortes einer kontextfreien Sprache
 ist eine Darstellung der verwendeten Produktionsregeln in Baum-Struktur.
-\index{Ausdr\"ucke!arithmetische}
-Die Grammatik f"ur arithmetische Ausdr"ucke produziert zum Beispiel
+\index{Ausdr\ücke!arithmetische}
+Die Grammatik für arithmetische Ausdrücke produziert zum Beispiel
 den Ausdruck {\tt 7 * (3 + 5)}.
-Die dabei verwendeten Regeln k"onnen in Baumform wie in
+Die dabei verwendeten Regeln können in Baumform wie in
 Abbildung \ref{etf-parse-tree} dargestellt werden.
 
 \begin{figure}
@@ -449,23 +449,23 @@ Expression-Term-Factor-Grammatik.
 
 Offenbar spielt es keine Rolle, ob erst die Regelanwendungen
 im linken Teil des Baumes geschehen, oder die Regelanwendungen im
-rechten Teil. Zwei Ableitungen k"onnen daher als gleich angesehen
-werden, wenn sich die Ableitungsb"aume nicht unterscheiden.
+rechten Teil. Zwei Ableitungen können daher als gleich angesehen
+werden, wenn sich die Ableitungsbäume nicht unterscheiden.
 
 \begin{definition}
-\index{Aquivalenz@\"Aquivalenz!von Ableitungen}
+\index{Aquivalenz@Äquivalenz!von Ableitungen}
 Zwei Ableitungen eines Wortes $w$ einer kontextfreien Sprache $L(G)$
-heissen "aquivalent, wenn sie den gleichen Ableitungsbaum haben.
-Hat eine Sprache W"orter mit verschiedenen Ableitungen, heisst
+heissen äquivalent, wenn sie den gleichen Ableitungsbaum haben.
+Hat eine Sprache Wörter mit verschiedenen Ableitungen, heisst
 sie mehrdeutig (engl.~ambiguous).
 \end{definition}
 
 Von besonderem praktischem Interesse sind Grammatiken, in denen
 Ableitungen immer eindeutig sind. Die
 \index{expression-term-factor Grammatik}
-{\tt expression}-{\tt term}-{\tt factor}-Grammatik f"ur einfache
-arithmetische Ausdr"ucke erf"ullt diese Bedingung. 
-Ein Beispiel f"ur eine zweideutige Grammatik ist
+{\tt expression}-{\tt term}-{\tt factor}-Grammatik für einfache
+arithmetische Ausdrücke erfüllt diese Bedingung. 
+Ein Beispiel für eine zweideutige Grammatik ist
 \[
 G=(\{S\}, \{\texttt{0},\texttt{1}\}, \{S\to \texttt{0}S\texttt{1}|\texttt{1}S\texttt{0}|SS|\varepsilon\}, S).
 \]
@@ -506,9 +506,9 @@ oder
 
 
 \subsection{Chomsky Normalform}
-Bei den regul"aren Sprachen war der Algorithmus zur Reduktion
+Bei den regulären Sprachen war der Algorithmus zur Reduktion
 auf den minimalen Automaten die Voraussetzung, Automaten vergleichen
-zu k"onnen. Eine "ahnliche Normalform w"unscht man sich auch f"ur
+zu können. Eine ähnliche Normalform wünscht man sich auch für
 Grammatiken, und definiert daher:
 \begin{definition}
 \label{definition:cnf}
@@ -520,25 +520,25 @@ A&\to BC\qquad\text{oder}\\
 A&\to a
 \end{align*}
 ist, wobei $A\in V$, $a\in\Sigma$ und $B, C\in V\setminus\{S\}$.
-Zus"atzlich ist die Regel $S\to\varepsilon$ erlaubt. 
+Zusätzlich ist die Regel $S\to\varepsilon$ erlaubt. 
 \end{definition}
 
-Bei einer Grammatik in Chomsky Normalform kann man sofort absch"atzen,
+Bei einer Grammatik in Chomsky Normalform kann man sofort abschätzen,
 wieviele Regelanwendungen notwendig sind, um ein gegebenes Wort
 zu erzeugen. Wendet man eine der Regeln $A\to BC$ an, wird das
-Wort verl"angert. Dies kann nicht mehr r"uckg"angig gemacht
-werden, weil dazu eine Regel notwendig w"are, die eine Variable
+Wort verlängert. Dies kann nicht mehr rückgängig gemacht
+werden, weil dazu eine Regel notwendig wäre, die eine Variable
 in das leere Wort umwandelt. Die Regel $S\to\varepsilon$ ist aber
 die einzige erlaubte derartige Regel, aber sie kann nie angewendet
-werden weil $B$ und $C$ nicht $S$ sein k"onnen. Es werden also
-h"ochstens $|w|-1$ Anwendungen von Regeln $A\to BC$ ben"otig, und dann
+werden weil $B$ und $C$ nicht $S$ sein können. Es werden also
+höchstens $|w|-1$ Anwendungen von Regeln $A\to BC$ benötig, und dann
 nochmals $|w|$ Anwendungen von Regeln $A\to a$, welche die Variablen
 in Terminalsymbole umwandeln. 
 
-Eine Grammatik kann aus folgenden Gr"unden nicht der Chomsky Normalform
+Eine Grammatik kann aus folgenden Gründen nicht der Chomsky Normalform
 entsprechen:
 \begin{enumerate}
-\item Die Startvariable $S$ k"onnte auf der rechten Seite einer
+\item Die Startvariable $S$ könnte auf der rechten Seite einer
 Regel vorkommen.
 \item Eine $\varepsilon$-Regel $A\to\varepsilon$ mit einer Variablen
 $A$, die nicht die Startvariable ist.
@@ -547,10 +547,10 @@ $A$, die nicht die Startvariable ist.
 \item Regeln der Form $A\to B$, sogenannte unit rules oder Einheits-Regeln.
 \item Regeln der Form $A\to u_1u_2\dots u_n$, mit $n>2$, wobei
 die $u_i$ sowohl andere Variablen wie auch Terminalsymbole sein 
-k"onnen.
+können.
 \end{enumerate}
-Es ist m"oglich, alle diese Defekte zu ``reparieren'', und jede
-Grammatik in Chomsky Normalform zu "uberf"uhren, wie der folgende Satz
+Es ist möglich, alle diese Defekte zu ``reparieren'', und jede
+Grammatik in Chomsky Normalform zu überführen, wie der folgende Satz
 zeigt.
 
 \begin{satz}
@@ -562,20 +562,20 @@ in Chomsky Normalform.
 \begin{proof}[Beweis]
 Eine kontextfreie Sprache $L$ wird von einer kontextfreien Grammatik
 $G$ akzeptiert. Es ist zu zeigen, dass diese Grammatik in
-"aquivalente Chomsky Normalform gebracht werden kann.
+äquivalente Chomsky Normalform gebracht werden kann.
 Weiter oben haben wir eine Liste
-m"oglicher Defekte zusammengestellt, die eine Grammatik davon abhalten,
+möglicher Defekte zusammengestellt, die eine Grammatik davon abhalten,
 Chomsky Normalform zu haben. Um Chomsky Normalform zu erreichen,
-m"ussen also genau diese Defekte behoben werden.
+müssen also genau diese Defekte behoben werden.
 Dazu sind folgende Schritte notwendig
 \begin{enumerate}
 \item Damit die Startvariable nicht mehr auf der rechten Seite auftreten
-kann, wird eine neue Startvariable $S_0$ hinzugef"ugt, sowie eine
+kann, wird eine neue Startvariable $S_0$ hinzugefügt, sowie eine
 neue Regel
-$S_0\to S$, wobei $S$ die urspr"ungliche Startvariable war.
+$S_0\to S$, wobei $S$ die ursprüngliche Startvariable war.
 \item Entfernung aller $\varepsilon$-Regeln. Solche Regeln erlauben,
-eine Variable ``wegzulassen''. F"ur jede Regel, die auf der rechten
-Seite eine solche Variable enth"alt, f"ugen wir eine zus"atzliche
+eine Variable ``wegzulassen''. Für jede Regel, die auf der rechten
+Seite eine solche Variable enthält, fügen wir eine zusätzliche
 Regel hinzu, bei der die $\varepsilon$-Regel auf der rechten Seite
 angwendet worden ist, d.\,h.~die Variable auf der rechten Seite weggelassen
 wurde.  Aus
@@ -596,14 +596,14 @@ B&\to AC\\
 \end{aligned}
 \right.
 \]
-Die $\varepsilon$-Regeln werden damit unn"otig, mit der einzig
-m"oglichen Ausnahme einer Regel $S_0\to\varepsilon$, die nicht
+Die $\varepsilon$-Regeln werden damit unnötig, mit der einzig
+möglichen Ausnahme einer Regel $S_0\to\varepsilon$, die nicht
 eliminiert werden kann, weil $S_0$ nicht auf der rechten Seite
 vorkommt.
 \item Entfernung von sogenannten ``unit rules'' oder Einheits-Regeln:
 Regeln mit einer einzelnen Variablen auf der rechten Seite, also
-der Form $A\to B$ k"onnen dadurch eliminert werden, dass man
-sie in jeder Regel anwendet, die $B$ auf der linken Seite enth"alt.
+der Form $A\to B$ können dadurch eliminert werden, dass man
+sie in jeder Regel anwendet, die $B$ auf der linken Seite enthält.
 \[
 \left.
 \begin{aligned}
@@ -619,8 +619,8 @@ B&\to CD
 \end{aligned}
 \right.
 \]
-Wieder muss man die urspr"ungliche Regel $B\to CD$ nat"urlich
-behalten, denn $B$ k"onnte ja auch auf andere Art erhalten worden
+Wieder muss man die ursprüngliche Regel $B\to CD$ natürlich
+behalten, denn $B$ könnte ja auch auf andere Art erhalten worden
 sein als mit der Regel $A\to B$.
 \item Verkettungen: Eine Regel der Form $A\to u_1\dots u_n$ kann mit
 Hilfe neuer Variablen $A_1,\dots,A_{n-2}$ in folgende Regeln abgebildet
@@ -633,8 +633,8 @@ A_2&\to u_3A_3\\
 A_{n-2}&\to u_{n-1}u_n
 \end{align*}
 Falls $u_i$ ein Terminalsymbol ist, ersetzen wir $u_i$ in obigen
-Regeln durch eine neue Variable $U_i$ und f"ugen die Regel
-$U_i\to u_i$ hinzu. Damit erhalten alle hinzugef"ugten Regeln
+Regeln durch eine neue Variable $U_i$ und fügen die Regel
+$U_i\to u_i$ hinzu. Damit erhalten alle hinzugefügten Regeln
 Chomsky Normalform.
 \end{enumerate}
 Die so konstruierte Grammatik hat Chomsky Normalform und erzeugt die
@@ -642,7 +642,7 @@ gleiche Sprache.
 \end{proof}
 
 \subsubsection{Beispiel}
-Man bringe die Grammatik "uber dem Alphabet $\Sigma=\{{\tt a},{\tt b}\}$
+Man bringe die Grammatik über dem Alphabet $\Sigma=\{{\tt a},{\tt b}\}$
 mit den Regeln
 \begin{align*}
 S&\to ASA\;|\; {\tt a}B\\
@@ -653,7 +653,7 @@ in Chomsky Normalform.
 
 \begin{enumerate}
 % 1. Schritt: neue Startvariable
-\item Neue Startvariable hinzuf"ugen:
+\item Neue Startvariable hinzufügen:
 \begin{align*}
 S_0&\to S\\
 S&\to ASA\;|\; {\tt a}B\\
@@ -661,7 +661,7 @@ A&\to B\;|\; S\\
 B&\to{\tt b}\;|\; \varepsilon
 \end{align*}
 % 2. Schritt: epsilon-Uebergaenge
-\item $\varepsilon$-"Uberg"ange entfernen: Die einzige $\varepsilon$-Regel
+\item $\varepsilon$-Übergänge entfernen: Die einzige $\varepsilon$-Regel
 ist $B\to\varepsilon$, d.\,h.~zu jeder Regel mit $B$ auf der rechten
 Seite gibt es auch eine Regel, in welcher auf der rechten Seite das $B$
 weggelassen wurde:
@@ -681,7 +681,7 @@ B&\to{\tt b}
 \end{align*}
 % 3. Schrit: Unit rules
 \item Einheits-Regeln (unit rules) sind $A\to B$, $A\to S$ und $S_0\to S$,
-die alle angewendet werden m"ussen.
+die alle angewendet werden müssen.
 Zuerst $A\to B$:
 \begin{align*}
 S_0&\to S\\
@@ -692,8 +692,8 @@ A&\to{\tt b}
 \end{align*}
 Im Folgenden fassen wir die von $A$ ausgehenden Regeln wieder auf
 einer Zeile zusammen.
-Als n"achstes wenden wir $A\to S$ an, aus $A$ lassen sich die gleichen
-W"orter produzieren wie aus $S$, aber zus"atzlich noch das $\texttt{b}$:
+Als nächstes wenden wir $A\to S$ an, aus $A$ lassen sich die gleichen
+Wörter produzieren wie aus $S$, aber zusätzlich noch das $\texttt{b}$:
 \begin{align*}
 S_0&\to S\\
 S&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\\
@@ -707,7 +707,7 @@ S&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\\
 A&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\;|\;{\tt b}\\
 B&\to{\tt b}
 \end{align*}
-%Wobei wir die von $A$ ausgehenden Regeln zusammenfassen k"onnen:
+%Wobei wir die von $A$ ausgehenden Regeln zusammenfassen können:
 %\begin{align*}
 %S_0&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\\
 %S&\to ASA \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\\
@@ -715,8 +715,8 @@ B&\to{\tt b}
 %B&\to{\tt b}
 %\end{align*}
 % 4. Schritt
-\item L"angere Verkettungen gibt es nur bei $S\to ASA$, wir f"uhren
-also eine zus"atzliche Variable $A_1$ und ersetzen $S\to ASA$ durch
+\item Längere Verkettungen gibt es nur bei $S\to ASA$, wir führen
+also eine zusätzliche Variable $A_1$ und ersetzen $S\to ASA$ durch
 die Regeln $S\to AA_1$ und $A_1\to SA$:
 \begin{align*}
 S_0&\to AA_1 \;|\; AS \;|\; SA \;|\; {\tt a}B\;|\;{\tt a}\\
@@ -727,7 +727,7 @@ B&\to{\tt b}
 \end{align*}
 Bleiben nur noch die Regeln $S_0\to{\tt a}B$, $S\to{\tt a}B$ und
 $A\to{\tt a}B$.
-Dazu wird eine weitere Variable $U$ hinzugef"ugt, die zusammen mit
+Dazu wird eine weitere Variable $U$ hinzugefügt, die zusammen mit
 der Regel $U\to{\tt a}$ das Terminalsymbol {\tt a} in den genannten
 Regeln ersetzen kann:
 \begin{align*}
@@ -743,13 +743,13 @@ Damit ist die Grammatik in Chomsky Normalform gefunden.
 
 \begin{satz}
 Ist $L$ eine kontextfreie Sprache, dann gibt es eine Grammatik,
-mit der jedes Wort $w$ mit einem Ableitungsbaum der Tiefe h"ochstens
+mit der jedes Wort $w$ mit einem Ableitungsbaum der Tiefe höchstens
 $2|w|-1$ abgeleitet werden kann.
 \end{satz}
 
 \begin{proof}[Beweis]
-Es gibt eine Grammatik in Chomsky Normalform, mit der die W"orter
-der Sprache $L$ erzeugt werden k"onnen.
+Es gibt eine Grammatik in Chomsky Normalform, mit der die Wörter
+der Sprache $L$ erzeugt werden können.
 Da in Chomsky Normalform nur Regeln der Form $A\to BC$ und $A\to a$
 enthalten kann, braucht es genau $|w|-1$ Anwendungen von Regeln der Form
 $A\to BC$, um aus der Startvariable einen String aus $|w|$ Zeichen
@@ -760,11 +760,11 @@ genau $2|w|-1$ Regelanwendungen produziert werden.
 
 
 \subsection{Ein deterministischer Parse-Algorithmus}
-Ob ein Wort zu einer regul"aren Sprache geh"ort, kann in linearer
+Ob ein Wort zu einer regulären Sprache gehört, kann in linearer
 Zeit entschieden werden. Dazu erzeugt man einen DEA, der die Sprache
 akzeptiert, und testet ein Wort damit.
 
-F"ur kontextfreie Sprachen gibt es ebenfalls einen deterministischen
+Für kontextfreie Sprachen gibt es ebenfalls einen deterministischen
 Algorithmus, den Cocke-Younger-Kasami Algorithmus. Dazu verwendet
 man die Grammatik in Chomsky-Normalform. Der Algorithmus arbeitet
 rekursiv um die Frage zu beantworten, ob ein Wort $w$ aus einer
@@ -774,27 +774,27 @@ werden kann.
 Um das leere Wort zu erzeugen, muss die Regel $S\to\varepsilon$
 angewendet werden, falls sie vorhanden ist.
 
-Ein Wort $w$ mit L"ange $|w|=1$ kann genau dann aus der Variablen 
+Ein Wort $w$ mit Länge $|w|=1$ kann genau dann aus der Variablen 
 $A$ abgeleitet werden, wenn es eine Regel $A\to a$ gibt. 
-Es kann h"ochstens $|\Sigma|$ solche Regeln geben.
+Es kann höchstens $|\Sigma|$ solche Regeln geben.
 
-Um ein Wort der L"ange $|w|>1$ zu erzeugen, muss mindestens eine
+Um ein Wort der Länge $|w|>1$ zu erzeugen, muss mindestens eine
 Regel der Form
 $A\to BC$ verwendet werden. Sie teilt das Wort in in zwei Teile
-$w_1$ und $w_2$ mit je geringerer L"ange: $w=w_1w_2$ und 
+$w_1$ und $w_2$ mit je geringerer Länge: $w=w_1w_2$ und 
 $|w_i|<|w|$. Es gibt $|w|-1$ solche Zerlegungen. Um also zu testen,
 ob die Grammatik das Wort $w$ aus der Variablen $A$ ableitet,
-muss man also rekursiv alle m"oglichen
+muss man also rekursiv alle möglichen
 Zerlegungen des Wortes daraufhin testen, ob sie von den Variablen
 $B$ bzw.~$C$ erzeugt werden, ob also $B\overset{*}\Rightarrow w_1$
-und $C\overset{*}\Rightarrow w_2$ gilt, und dies f"ur jede
+und $C\overset{*}\Rightarrow w_2$ gilt, und dies für jede
 Regel $A\to BC\in R$. Es gibt weniger als $|R|$ solche Regeln.
 
 Zur Implementation dieses rekursiven Algorithmus braucht man
 also eine Funktion {\tt ableitbar}, die die Frage beantwortet,
 ob ein Wort aus einer bestimmten Variable ableitbar ist. Sie
-ruft sich f"ur jede Aufteilung des Wortes in zwei Teile
-$w_1$ und $w_2$ und f"ur jede Regel $A\to BC$ selbst auf, um
+ruft sich für jede Aufteilung des Wortes in zwei Teile
+$w_1$ und $w_2$ und für jede Regel $A\to BC$ selbst auf, um
 herauszufinden, ob $w_1$ aus $B$ und $w_2$ aus $C$ ableitbar ist.
 
 Der Pseudocode Algorithm~\ref{cyk-algorithm-code} implementiert
@@ -808,8 +808,8 @@ diesen Algorithmus.
 \STATE \hskip1em{\tt if ((}$|w| = 1${\tt )} und {\tt (}Regel $V\to w$ vorhanden{\tt ) \{}
 \STATE \hskip2em{\tt return true; }
 \STATE \hskip1em{\tt \}}
-\STATE \hskip1emF"ur jede Unterteilung $w=w_1w_2$ mit $|w_1| > 0$ und $|w_2| > 0$ {\tt \{}
-\STATE \hskip2emF"ur jede Regel $V\to AB$ {\tt \{}
+\STATE \hskip1emFür jede Unterteilung $w=w_1w_2$ mit $|w_1| > 0$ und $|w_2| > 0$ {\tt \{}
+\STATE \hskip2emFür jede Regel $V\to AB$ {\tt \{}
 \STATE \hskip3em{\tt if ((ableitbar(}$A,w_1${\tt ) \&\& (ableitbar(}$B,w_2${\tt )) \{ }
 \STATE \hskip4em{\tt return true;}
 \STATE \hskip3em{\tt \}}
@@ -827,40 +827,40 @@ diesen Algorithmus.
 \index{Algorithmus!CYK|see{Cocke-Younger-Kasami}}
 \index{Cocke-Younger-Kasami}
 \label{cyk-algorithm}
-Es gibt einen deterministischen Algorithmus mit Komplexit"at
+Es gibt einen deterministischen Algorithmus mit Komplexität
 $O(|w|^3)$, welcher entscheidet, ob $w\in L(G)$.
 \end{satz}
 
-Das Argument weiter oben erkl"art, dass es einen determinisitischen
-Algorithmus gibt. Es erkl"art aber nicht, warum die Komplexit"at
-nur $O(|w|^3)$ ist. "Ahnlich wie man bei einer rekursiven Berechnung
-der Fibonacci-Zahlen die Komplexit"at von $O(2^n)$ auf $O(n)$ reduzieren
+Das Argument weiter oben erklärt, dass es einen determinisitischen
+Algorithmus gibt. Es erklärt aber nicht, warum die Komplexität
+nur $O(|w|^3)$ ist. Ähnlich wie man bei einer rekursiven Berechnung
+der Fibonacci-Zahlen die Komplexität von $O(2^n)$ auf $O(n)$ reduzieren
 kann, indem man bereits berechnet Fibonacci-Zahlen speichert, kann
-man auch beim obigen rekursiven Algorithmus die Komplexit"at wesentlich
-reduzieren, indem man bereits gepr"ufte Ableitungen zwischenspeichert.
-Wir verzichten jedoch auf eine detaillierte Durchf"uhrung dieses
+man auch beim obigen rekursiven Algorithmus die Komplexität wesentlich
+reduzieren, indem man bereits geprüfte Ableitungen zwischenspeichert.
+Wir verzichten jedoch auf eine detaillierte Durchführung dieses
 Beweises.
 
 \section{Stackautomaten}
 \index{Stackautomat}
 \rhead{Stackautomaten}
 Kontextfreie Grammatiken erzeugen Sprachen, die von einem DEA nicht
-akzeptiert werden k"onnen. Es ist also eine erweiterte Maschine
-n"otig, wenn sie solche Sprachen erkennen soll. Die Erweiterung muss
+akzeptiert werden können. Es ist also eine erweiterte Maschine
+nötig, wenn sie solche Sprachen erkennen soll. Die Erweiterung muss
 den DEA mit einem Speicher ausstatten, der zum Beispiel erlaubt, 
 in der Sprache $\{0^n1^n\,\;|\; n\in\mathbb N\}$ die Anzahl der
-$0$ zu speichern, damit sp"ater die Anzahl der $1$
+$0$ zu speichern, damit später die Anzahl der $1$
 damit verglichen werden kann.
 
-Die einfachste Art von Speicher f"ur diesen Zweck ist ein Stack:
-man legt die $0$ auf den Stack, und entfernt f"ur jede $1$ eine 
+Die einfachste Art von Speicher für diesen Zweck ist ein Stack:
+man legt die $0$ auf den Stack, und entfernt für jede $1$ eine 
 $0$. Wenn der Stack am Schluss leer ist, es ``aufgeht'', ist das
 Wort akzeptabel.
 
 \subsection{Formale Definition}
 \begin{definition}
 Ist $\Sigma$ eine endliche Menge, die das leere Wort $\varepsilon$
-nicht enth"alt, dann setzen wir 
+nicht enthält, dann setzen wir 
 \[
 \Sigma_\varepsilon = \Sigma\cup \{\varepsilon\}.
 \]
@@ -871,30 +871,30 @@ nicht enth"alt, dann setzen wir
 \index{Pushdown-Automat|see{Stackautomat}}
 Ein Stackautomat ist ein $6$-Tupel $(Q,\Sigma,\Gamma,\delta,q_0,F)$
 mit endlichen Mengen $Q$, $\Sigma$, $\Gamma$ und $F$ und folgenden
-Bezeichungen und Einschr"ankungen
+Bezeichungen und Einschränkungen
 \begin{enumerate}
 \index{Zustand}
-\item Die Elemente von $Q$ heissen Zust"ande.
+\item Die Elemente von $Q$ heissen Zustände.
 \index{Eingabe-Alphabet}
 \item $\Sigma$ ist das Eingabe-Alphabet
 \index{Stack-Alphabet}
 \item $\Gamma$ ist das Stack-Alphabet
 \item $\delta\colon Q\times \Sigma_\varepsilon\times\Gamma_\varepsilon
-\to P(Q\times\Gamma_\varepsilon)$ heisst "Ubergangsfunktion
+\to P(Q\times\Gamma_\varepsilon)$ heisst Übergangsfunktion
 \index{Startzustand}
 \item $q_0\in Q$ heisst Startzustand
 \index{Akzeptierzustand}
-\item $F\subset Q$ heisst Menge der Akzeptierzust"ande.
+\item $F\subset Q$ heisst Menge der Akzeptierzustände.
 \end{enumerate}
 \end{definition}
-Die Elemente $Q$, $q_0$ und $F$ scheinen f"ur sich genommen
+Die Elemente $Q$, $q_0$ und $F$ scheinen für sich genommen
 einen endlichen Automaten zu definieren, jedoch einen, der je nach
-dem Wert, der als drittes Argument der "Ubergangsfunktion
-"ubergeben wird, sich etwas anders verh"alt. Die Idee ist, dass
+dem Wert, der als drittes Argument der Übergangsfunktion
+übergeben wird, sich etwas anders verhält. Die Idee ist, dass
 dieses dritte Argument von einem Stack gelesen werden soll, der in
-der Definition nicht explizit ausgedr"uckt sein muss, da er
-sich f"ur alle Stackautomaten gleich verh"alt: Man kann Zeichen
-aus $\Gamma$ dort hinschreiben, oder von dort lesen\footnote{Man k"onnte
+der Definition nicht explizit ausgedrückt sein muss, da er
+sich für alle Stackautomaten gleich verhält: Man kann Zeichen
+aus $\Gamma$ dort hinschreiben, oder von dort lesen\footnote{Man könnte
 die Definition eines Stackautomaten auch als C++-Template mit
 sechs Template-Argumenten betrachten. Um den Stack zu
 implementieren, muss man nur wissen, was man darauf ablegen will,
@@ -909,12 +909,12 @@ Automaten gelegt haben, definieren wir Stackautomaten nur
 % XXX Idee: Zu den Stack-Operationen Bilder hinzufuegen
 \index{Graph!gerichteter!beschrifteter!eines Stackautomaten}
 Auch zu einem Stackautomaten gibt es einen gerichteten beschrifteten
-Graphen. Die "Ubergangsfunktion legt jetzt zu jedem Zustand 
-fest, was f"ur ein Zeichen verarbeitet wird, was f"ur ein
+Graphen. Die Übergangsfunktion legt jetzt zu jedem Zustand 
+fest, was für ein Zeichen verarbeitet wird, was für ein
 neuer Zustand erreicht wird, und wie sich der Stackinhalt
-ver"andert.
-Dazu wird diese zus"atzliche Information der Beschriftung der Pfeile
-hinzugef"ugt.
+verändert.
+Dazu wird diese zusätzliche Information der Beschriftung der Pfeile
+hinzugefügt.
 \[
 \xymatrix{
 *++[o][F]{p}\ar[r]^{a,b\to c}
@@ -922,9 +922,9 @@ hinzugef"ugt.
 }
 \]
 bedeutet, dass der Automat bei der Verarbeitung eines Zeichens $a$
-vom Zustand $p$ in den Zustand $q$ "ubergeht, wenn gleichzeitig
+vom Zustand $p$ in den Zustand $q$ übergeht, wenn gleichzeitig
 ein Zeichen $b$ zuoberst auf dem Stack durch das Zeichen $c$
-ersetzt werden kann. F"ur "Uberg"ange mit dem leeren Wort gilt:
+ersetzt werden kann. Für Übergänge mit dem leeren Wort gilt:
 \[
 \xymatrix{
 *++[o][F]{p}\ar[r]^{a,\varepsilon\to c}
@@ -937,11 +937,11 @@ ersetzt werden kann. F"ur "Uberg"ange mit dem leeren Wort gilt:
 \\
 *++[o][F]{p}\ar[r]^{a,\varepsilon\to\varepsilon}
 	&*++[o][F]{q}
-		&\text{Stack bleibt unver"andert}
+		&\text{Stack bleibt unverändert}
 }
 \]
-In allen F"allen darf $a$ auch das leere Wort sein, was Operationen
-ergibt, die den Stack ver"andern, ohne dass dazu Input verarbeitet werden
+In allen Fällen darf $a$ auch das leere Wort sein, was Operationen
+ergibt, die den Stack verändern, ohne dass dazu Input verarbeitet werden
 muss.
 
 % XXX weitere Illustrationen der Stack-Operationen hinzufuegen:
@@ -949,16 +949,16 @@ muss.
 % p --- eps,eps->eps ---> q
 
 \subsection{Beispiele\label{stackbeispiele}}
-\subsubsection{Stackautomaten k"onnen ``z"ahlen''}
-Um die W"orter der nicht regul"are Sprache $L=\{0^n1^n\;|\;n\in \mathbb N\}$
-zu erkennen, braucht man einen Z"ahler, mit dem man die Zahl der $0$
+\subsubsection{Stackautomaten können ``zählen''}
+Um die Wörter der nicht reguläre Sprache $L=\{0^n1^n\;|\;n\in \mathbb N\}$
+zu erkennen, braucht man einen Zähler, mit dem man die Zahl der $0$
 mit der Zahl der $1$ vergleichen kann. In einem endlichen Automaten
-gab es daf"ur keinen Platz, aber der Stack eines Stackautomaten kann
-diese Aufgabe "ubernehmen.
+gab es dafür keinen Platz, aber der Stack eines Stackautomaten kann
+diese Aufgabe übernehmen.
 
 Um zu erkennen, dass der Stack wieder leer ist, braucht man ein Zeichen,
 welches den Anfang des Stacks markiert. Das Stack-Alphabet muss also 
-etwas gr"osser sein, wir f"ugen das Zeichen {\tt \$} hinzu, also
+etwas grösser sein, wir fügen das Zeichen {\tt \$} hinzu, also
 $\Gamma=\{{\tt 0},{\tt 1},{\tt \$}\}$.
 Die Idee des konstruierten Stackautomaten ist den Stack als Ablage der
 verarbeiteten {\tt 0} zu verwenden, und anschliessend beim verarbeiten
@@ -979,18 +979,18 @@ ein Wort in $L$.
 		   \ar@(ur,dr)^{{\tt 1},{\tt 0}\to\varepsilon}
 }
 \]
-Damit ist gezeigt, dass die nicht regul"are Sprache $L$ von einem Stackautomaten
+Damit ist gezeigt, dass die nicht reguläre Sprache $L$ von einem Stackautomaten
 akzeptiert wird.
 
 \subsubsection{Die Sprache $L=\{a^ib^jc^k\;|\;i,j,k\in\mathbb N, i=j\vee i=k\}$}
 Auch in dieser Sprache muss man die $a$ auf den Stack legen, um sie
-zu z"ahlen. Dann muss man sich nicht deterministisch entscheiden,
+zu zählen. Dann muss man sich nicht deterministisch entscheiden,
 ob man auf gleich viele $b$ oder auf gleich viele $c$ testen will,
 beides kann man nicht haben, da nach einem Test der Stack wieder leer
 ist. Als Alphabet verwenden wir daher wieder $\Gamma=\{a,b,c,{\tt\$}\}$.
-Der Automat muss also zun"achst das Zeichen {\tt\$} auf den Stack legen.
-Dann beginnt er entweder, die $b$ zu z"ahlen, und die $c$ zu ignorieren,
-oder die $b$ zu ignorieren und dann die $c$ zu z"ahlen.
+Der Automat muss also zunächst das Zeichen {\tt\$} auf den Stack legen.
+Dann beginnt er entweder, die $b$ zu zählen, und die $c$ zu ignorieren,
+oder die $b$ zu ignorieren und dann die $c$ zu zählen.
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -1016,18 +1016,18 @@ oder die $b$ zu ignorieren und dann die $c$ zu z"ahlen.
 }
 \]
 
-\subsection{"Aquivalenz von Stackautomaten und CFG\label{sect:aequivalenz-cfg}}
-So wie regul"are Ausdr"ucke und endliche Automaten zur Beschreibung
-von regul"aren Sprachen "aquivalent sind, so sind auch kontexfreie Grammatiken
-mit Stackautomaten "aquivalent:
+\subsection{Äquivalenz von Stackautomaten und CFG\label{sect:aequivalenz-cfg}}
+So wie reguläre Ausdrücke und endliche Automaten zur Beschreibung
+von regulären Sprachen äquivalent sind, so sind auch kontexfreie Grammatiken
+mit Stackautomaten äquivalent:
 
 \begin{satz}
 Eine Sprache ist genau dann kontextfrei, wenn sie von einem
 Stackautomaten akzeptiert wird.
 \end{satz}
 
-Es ist einerseits zu zeigen, dass sich f"ur jede Grammatik ein Stackautomat
-finden l"asst, der die von der Grammatik erzeugte Sprache akzeptiert.
+Es ist einerseits zu zeigen, dass sich für jede Grammatik ein Stackautomat
+finden lässt, der die von der Grammatik erzeugte Sprache akzeptiert.
 Andererseits muss auch zu einem beliebigen Stackautomaten eine 
 Grammatik gefunden werden, welche die gleiche Sprache erzeugt, die
 auch der Stackautomat akzeptiert.
@@ -1038,7 +1038,7 @@ dann gibt es einen Stackautomaten, der $L$ akzeptiert.
 \end{hilfssatz}
 
 \begin{proof}[Beweis]
-Die Grammatik erzeugt die W"orter dadurch, dass sie auf die Startvariable
+Die Grammatik erzeugt die Wörter dadurch, dass sie auf die Startvariable
 immer wieder Regeln aus $R$ anwendet. Diesen Prozess kann man auf dem
 Stack nachbilden. Zu Beginn legt man die Startvariable auf den Stack.
 Die Anwendung von Regeln besteht darin, eine Variable vom Stack zu nehmen,
@@ -1047,7 +1047,7 @@ auf den Stack zu legen.
 
 Als Stackalphabet verwenden wir $\Gamma = V\cup \Sigma \cup \{{\tt \$}\}$.
 Zu Beginn wird das Symbol {\tt\$} auf den Stack gelegt, am Schluss wird 
-es wieder entfernt, es sind also insgesamt vier Zust"ande erforderlich:
+es wieder entfernt, es sind also insgesamt vier Zustände erforderlich:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -1058,20 +1058,20 @@ es wieder entfernt, es sind also insgesamt vier Zust"ande erforderlich:
 				&*++[o][F=]{A}
 }
 \]
-Jetzt m"ussen im Zustand $R$ noch "Uberg"ange hinzugef"ugt werden, mit denen
+Jetzt müssen im Zustand $R$ noch Übergänge hinzugefügt werden, mit denen
 die Regeln abgebildet werden.
-Dazu d"urfen wir annehmen, dass die Grammatik bereits in Chomsky Normalform
-ist. Wir m"ussen also nur noch f"ur Regeln der Form $A\to BC$ und $A\to a$
-in "Uberg"ange abbilden. Die Regel $A\to a$ ersetzt die Variable $A$
-durch das Terminalsymbol $a$, das erreicht man mit dem "Ubergang
+Dazu dürfen wir annehmen, dass die Grammatik bereits in Chomsky Normalform
+ist. Wir müssen also nur noch für Regeln der Form $A\to BC$ und $A\to a$
+in Übergänge abbilden. Die Regel $A\to a$ ersetzt die Variable $A$
+durch das Terminalsymbol $a$, das erreicht man mit dem Übergang
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
 {R}\ar@(ur,dr)^{\varepsilon,A\to a}
 }
 \]
-F"ur die Regel $A\to BC$ brauchen wir einen zus"atzlichen Zustand mit
-den beiden "Uberg"angen
+Für die Regel $A\to BC$ brauchen wir einen zusätzlichen Zustand mit
+den beiden Übergängen
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -1081,7 +1081,7 @@ R\ar@/^/[r]^{\varepsilon,A\to C}
 \]
 Sobald auf dem Stack ein Terminalsymbol liegt, kann dieses mit
 den Regeln der Grammatik nicht mehr verarbeitet werden, muss 
-aber auf das n"achste Zeichen des Eingabewortes passen. Die Regel
+aber auf das nächste Zeichen des Eingabewortes passen. Die Regel
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -1092,14 +1092,14 @@ entfernt ein solches Terminalssymbol, wenn das gleiche Symbol
 als Input anliegt.
 
 Der so konstruierte Automat akzeptiert genau die
-W"orter, die von der Grammatik erzeugt werden.
+Wörter, die von der Grammatik erzeugt werden.
 \end{proof}
 
-Wir k"onnten diesen Beweis mit folgender Notation noch etwas
-pr"agnanter formulieren. Die Regeln $A\to BC$ werden dadurch abgebildet,
-dass ein zus"atzlicher Zustand hinzugef"ugt wird, um in zwei Schritten
+Wir könnten diesen Beweis mit folgender Notation noch etwas
+prägnanter formulieren. Die Regeln $A\to BC$ werden dadurch abgebildet,
+dass ein zusätzlicher Zustand hinzugefügt wird, um in zwei Schritten
 die Variable $A$ vom Stack zu entfernen und stattdessen die zwei Variablen
-$BC$ dort abzulegen. Man m"ochte also eigentlich die Operatione
+$BC$ dort abzulegen. Man möchte also eigentlich die Operatione
 $\varepsilon,A\to BC$ implementieren. Daher soll das Symbol
 \[
 \entrymodifiers={++[o][F]}
@@ -1109,8 +1109,8 @@ $\varepsilon,A\to BC$ implementieren. Daher soll das Symbol
 {q}
 }
 \]
-implizit zwei neue Zust"ande $q_1$ und $q_2$ und die zugh"origen
-"Uberg"ange wie im folgenden Zustandsdiagramm definieren:
+implizit zwei neue Zustände $q_1$ und $q_2$ und die zughörigen
+Übergänge wie im folgenden Zustandsdiagramm definieren:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -1121,19 +1121,19 @@ implizit zwei neue Zust"ande $q_1$ und $q_2$ und die zugh"origen
 	&{q_2}\ar[l]^{\varepsilon,\varepsilon\to x}
 }
 \]
-Analog f"ur beliebige W"orter auf der rechten Seite der Regel,
-f"ur ein Wort $w$ der L"ange $|w|$ m"ussen $|w|-1$ neue
-Zust"ande hinzugef"ugt werden.
+Analog für beliebige Wörter auf der rechten Seite der Regel,
+für ein Wort $w$ der Länge $|w|$ müssen $|w|-1$ neue
+Zustände hinzugefügt werden.
 
 \begin{beispiel}[\bf Beispiel]
-F"ur die Grammatik mit den Regeln $S\to {\tt 0}S{\tt 1}\;|\;\varepsilon$
+Für die Grammatik mit den Regeln $S\to {\tt 0}S{\tt 1}\;|\;\varepsilon$
 finde man einen Stackautomaten.
 
-Wir haben zwar nur die "Ubersetzung f"ur Regeln einer Grammatik in
-Chomsky Normalform diskutiert, das Prinzip ist jedoch "ubertragbar.
-Wir stellen die "Uberg"ange zusammen, die im Zustand $R$ anzuf"ugen
-sind. F"ur die Verarbeitung der Terminalsymbole brauchen wir
-f"ur jedes Terminalsymbol einen "Ubergang, der gleichzeitig
+Wir haben zwar nur die Übersetzung für Regeln einer Grammatik in
+Chomsky Normalform diskutiert, das Prinzip ist jedoch übertragbar.
+Wir stellen die Übergänge zusammen, die im Zustand $R$ anzufügen
+sind. Für die Verarbeitung der Terminalsymbole brauchen wir
+für jedes Terminalsymbol einen Übergang, der gleichzeitig
 ein Symbol vom Input wie vom Stack entfernt:
 \begin{equation}
 \entrymodifiers={++[o][F]}
@@ -1143,7 +1143,7 @@ ein Symbol vom Input wie vom Stack entfernt:
 }
 \label{beispiel-tregel}
 \end{equation}
-Die Regel $S\to\varepsilon$ wird "ubergef"uhrt in einen "Ubergang
+Die Regel $S\to\varepsilon$ wird übergeführt in einen Übergang
 \begin{equation}
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -1151,7 +1151,7 @@ Die Regel $S\to\varepsilon$ wird "ubergef"uhrt in einen "Ubergang
 }
 \label{beispiel-epsilon}
 \end{equation}
-Die Regel $S\to {\tt 0}S{\tt 1}$ muss "ubergef"uhrt werden
+Die Regel $S\to {\tt 0}S{\tt 1}$ muss übergeführt werden
 in die drei Schritte
 \begin{equation}
 \entrymodifiers={++[o][F]}
@@ -1177,12 +1177,12 @@ S
 {\tt 0011}
 \]
 Die Tabellen~\ref{beispiel-tabelle} zeigt den Inhalt des 
-Input und des Stacks nach jedem "Ubergang des Stackautomaten.
+Input und des Stacks nach jedem Übergang des Stackautomaten.
 \begin{table}
 \begin{center}
 \begin{tabular}{|c|l|c|l|}
 \hline
-"Ubergang&Input&Zustand&Stack\\
+Übergang&Input&Zustand&Stack\\
 \hline
                          &{\tt 0011}&$q_0$&\\
                          &{\tt 0011}&$S$  &${\tt \$}$\\
@@ -1214,19 +1214,19 @@ gleiche Sprache produziert: $L(P)=L(G)$.
 \end{hilfssatz}
 
 \begin{proof}[Beweis]
-Wir m"ussen eine Grammatik konstruieren, die die gleiche Sprache
-erzeugt. Der Stackautomat sollte m"oglichst nahe an dem in
+Wir müssen eine Grammatik konstruieren, die die gleiche Sprache
+erzeugt. Der Stackautomat sollte möglichst nahe an dem in
 Hilfssatz \ref{hilfssatz_cfg_to_pushdown} konstruierten liegen, damit es
-m"oglichst einfach wird, sich von der "Aquivalenz zu "uberzeugen.
-Wir f"uhren daher an $P$ zun"achst drei einfache Modifikationen
+möglichst einfach wird, sich von der Äquivalenz zu überzeugen.
+Wir führen daher an $P$ zunächst drei einfache Modifikationen
 durch: 
 \begin{enumerate}
 \item $P$ hat nur einen einzigen Akzeptierzustand
 $q_a$.
-Dies erreicht man dadurch, dass man alle Akzeptierzust"ande "uber
-einen $\varepsilon$-"Ubergang mit
-$q_a$ verbindet, und bisherigen Akzeptierzust"ande
-werden dann zu gew"ohnlichen Zust"anden degradiert:
+Dies erreicht man dadurch, dass man alle Akzeptierzustände über
+einen $\varepsilon$-Übergang mit
+$q_a$ verbindet, und bisherigen Akzeptierzustände
+werden dann zu gewöhnlichen Zuständen degradiert:
 \[
 \xymatrix{
 *++[o][F=]{q}
@@ -1235,12 +1235,12 @@ werden dann zu gew"ohnlichen Zust"anden degradiert:
 			&*++[o][F=]{q_a}
 }		
 \]
-Der modifizierte Automat akzeptiert die gleichen W"orter wie $P$.
-\item Vor dem Akzeptieren wird der Stack geleert. Dazu wird ein zus"atzliches
-Zeichen ben"otigt, welches das Ende des Stacks signalisiert. Es wird zu
-Beginn auf den Stack geschrieben, und als letzter "Ubergang wieder
+Der modifizierte Automat akzeptiert die gleichen Wörter wie $P$.
+\item Vor dem Akzeptieren wird der Stack geleert. Dazu wird ein zusätzliches
+Zeichen benötigt, welches das Ende des Stacks signalisiert. Es wird zu
+Beginn auf den Stack geschrieben, und als letzter Übergang wieder
 vom Stack genommen. Der Startzustand $q_0$ wird also ersetzt durch einen neuen
-Startzustand $q_0'$, mit dem einzigen "Ubergang 
+Startzustand $q_0'$, mit dem einzigen Übergang 
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -1250,7 +1250,7 @@ Startzustand $q_0'$, mit dem einzigen "Ubergang
 }
 \]
 und der Akzeptierzustand  durch einen neuen Akzeptierzustand $q_a'$ und
-den "Ubergang
+den Übergang
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -1258,10 +1258,10 @@ den "Ubergang
 	&*++[o][F=]{q_a'}
 }
 \]
-\item Jeder "Ubergang legt ein Zeichen auf den Stack, oder entfernt
-eines, aber er macht nicht beides gleichzeitig. Dazu muss jeder "Ubergang,
+\item Jeder Übergang legt ein Zeichen auf den Stack, oder entfernt
+eines, aber er macht nicht beides gleichzeitig. Dazu muss jeder Übergang,
 der gleichzeitig ein Zeichen vom Stack nimmt und ein neues dort ablegt,
-mit Hilfe eines neuen Zustandes in zwei "Uberg"ange aufgeteilt werden:
+mit Hilfe eines neuen Zustandes in zwei Übergänge aufgeteilt werden:
 \[
 \xymatrix{
 *++[o][F]{p}\ar[dd]^{a,b\to c}
@@ -1276,8 +1276,8 @@ mit Hilfe eines neuen Zustandes in zwei "Uberg"ange aufgeteilt werden:
 		&*++[o][F]{q}
 }
 \]
-Ausserdem m"ussen "Uberg"ange, die gar nicht auf dem Stack operieren,
-durch "Uberg"ange ersetzt werden, die ein beliebiges Stacksymbol
+Ausserdem müssen Übergänge, die gar nicht auf dem Stack operieren,
+durch Übergänge ersetzt werden, die ein beliebiges Stacksymbol
 schreiben und gleich wieder entfernen:
 \[
 \xymatrix{
@@ -1294,33 +1294,33 @@ schreiben und gleich wieder entfernen:
 }
 \]
 \end{enumerate}
-Damit k"onnen wir jetzt zur Konstruktion der Grammatik schreiten.
+Damit können wir jetzt zur Konstruktion der Grammatik schreiten.
 Die Idee dabei ist, Variablen $A_{pq}$ zu verwenden, die alle 
-W"orter erzeugen, die Zustands"uberg"angen entsprechen,
+Wörter erzeugen, die Zustandsübergängen entsprechen,
 die den Automaten vom Zustand $p$ in den Zustand $q$ bringen,
-und den Stack im gleichen Zustand zur"ucklassen, den sie vorgefunden
+und den Stack im gleichen Zustand zurücklassen, den sie vorgefunden
 haben.
-Wir setzen $A_{pq}$ mit der Menge der W"orter gleich, die
-auf diese Weise erzeugt werden k"onnen.
+Wir setzen $A_{pq}$ mit der Menge der Wörter gleich, die
+auf diese Weise erzeugt werden können.
 
-Dazu m"ussen wir verstehen, wie die W"orter entstehen, die von $P$
-akzeptiert werden. W"ahrend der Berechnung, die zum Akzeptieren des
-Wortes $w$ f"uhrt, wird zun"achst
+Dazu müssen wir verstehen, wie die Wörter entstehen, die von $P$
+akzeptiert werden. Während der Berechnung, die zum Akzeptieren des
+Wortes $w$ führt, wird zunächst
 irgendein Zeichen $x$ auf den Stack gelegt, und am Ende muss ein
 Zeichen entfernt werden, welches $x$ oder auch etwas Anderes sein kann.
 
-Falls das am Ende entfernte Zeichen $x$ ist, k"onnen wir dies durch
+Falls das am Ende entfernte Zeichen $x$ ist, können wir dies durch
 die Regel $A_{pq}\to aA_{rs}b$ symbolisieren, wobei $a$ das Zeichen
 ist, welches zusammen mit dem Ablegen von $x$ vom Input verarbeitet wird,
 und $b$ das Zeichen, das mit dem Entfernen von $x$ verarbeitet wird.
-Der Stack ist zwischen den Zust"anden $r$ und $s$ unver"andert, wir
-k"onnen ihn schematisch wie in Abbildung~\ref{stacknichtleer} darstellen.
+Der Stack ist zwischen den Zuständen $r$ und $s$ unverändert, wir
+können ihn schematisch wie in Abbildung~\ref{stacknichtleer} darstellen.
 \begin{figure}
 \begin{center}
 %\includegraphics[width=0.85\hsize]{images/stack-2.pdf}
 \includegraphics{images/stack-2.pdf}
 \end{center}
-\caption{"Uberg"ange, die den Stack in keinem Zwischenzustand leeren\label{stacknichtleer}}
+\caption{Übergänge, die den Stack in keinem Zwischenzustand leeren\label{stacknichtleer}}
 \end{figure}
 
 Falls das am Schluss vom Stack entfernte Zeichen nicht das Gleiche ist,
@@ -1328,7 +1328,7 @@ dann muss das $x$ irgendwann im Laufe der Berechnung entfernt worden
 sein, und das neue Zeichen $y$ muss auf dem Stack abgelegt worden
 sein. Es gibt also einen Zwischenzustand $r$, in dem der Stack
 wieder im selben Zustand wie zu
-Beginn der Berechnung ist, wir k"onnen dies durch
+Beginn der Berechnung ist, wir können dies durch
 $A_{pq}\to A_{pr}A_{rq}$ symbolisieren.
 Die Abbildung~\ref{stackleer} zeigt diese Situation schematisch.
 \begin{figure}
@@ -1336,20 +1336,20 @@ Die Abbildung~\ref{stackleer} zeigt diese Situation schematisch.
 %\includegraphics[width=0.85\hsize]{images/stack-1.pdf}
 \includegraphics{images/stack-1.pdf}
 \end{center}
-\caption{"Uberg"ange, die zwischenzeitlich den Stack leeren\label{stackleer}}
+\caption{Übergänge, die zwischenzeitlich den Stack leeren\label{stackleer}}
 \end{figure}
 
 Formal konstruieren wir also eine Grammatik mit Variablen
 $V=\{A_{pq}\;|\; p,q\in Q\}$, Startvariable ist $A_{q_0,q_a}$.
 Die Menge der Regeln bauen wir wie folgt auf:
 \begin{itemize}
-\item F"ur $p,q,r,s\in Q$, $t\in\Gamma$ und $a,b\in\Sigma_{\varepsilon}$:
-Falls $\delta(p,a,\varepsilon)$ das Paar $(r,t)$ enth"alt
-und $\delta(s,b,t)$ das Paar $(q,\varepsilon)$, f"uge die Regel
+\item Für $p,q,r,s\in Q$, $t\in\Gamma$ und $a,b\in\Sigma_{\varepsilon}$:
+Falls $\delta(p,a,\varepsilon)$ das Paar $(r,t)$ enthält
+und $\delta(s,b,t)$ das Paar $(q,\varepsilon)$, füge die Regel
 $A_{pq}\to aA_{rs}b$ hinzu.
 
-Diese Regel besagt, dass W"orter zwischen $p$ und $q$ dadurch gebildet
-werden k"onnen, dass zun"achst ein Zeichen $a$ verarbeitet, und
+Diese Regel besagt, dass Wörter zwischen $p$ und $q$ dadurch gebildet
+werden können, dass zunächst ein Zeichen $a$ verarbeitet, und
 ein Zeichen $t$ auf den Stack geschrieben wird, dann wird ein Wort
 in $A_{rs}$ erzeugt, und zum Schluss das Zeichen $t$ unter
 gleichzeitiger Verarbeitung des Zeichens $b$ wieder vom Stack
@@ -1370,7 +1370,7 @@ genommen.
 \]
 
 
-\item F"ur drei Zust"ande $p,q,r\in Q$ f"uge die Regel 
+\item Für drei Zustände $p,q,r\in Q$ füge die Regel 
 $A_{pq}\to A_{pr}A_{rq}$ hinzu.
 \[
 \begin{gathered}
@@ -1386,7 +1386,7 @@ $A_{pq}\to A_{pr}A_{rq}$ hinzu.
 \end{gathered}
 \qquad\rightsquigarrow\qquad A_{pq}\to A_{pr}A_{rq}
 \]
-\item F"ur jeden Zustand $p\in Q$ f"uge die Regel $A_{pp}\to \varepsilon$
+\item Für jeden Zustand $p\in Q$ füge die Regel $A_{pp}\to \varepsilon$
 hinzu:
 \[
 \begin{gathered}
@@ -1407,76 +1407,76 @@ in den Zustand $q$ mit leerem Stack bringen kann.
 
 \begin{hilfssatz}\label{apq_generates_x_implies}
 Falls $A_{pq}$ das Wort $x$ erzeugt, dann kann $x$ $P$ aus dem Zustand
-$p$ mit leerem Stack in den Zustand $q$ mit leerem Stack "uberf"uhren.
+$p$ mit leerem Stack in den Zustand $q$ mit leerem Stack überführen.
 \end{hilfssatz}
 
 \begin{proof}[Beweis von Hilfssatz \ref{apq_generates_x_implies}]
-Man kann vollst"andige Induktion f"ur die L"ange der be\-n"otigten 
+Man kann vollständige Induktion für die Länge der be\-nötigten 
 Ableitung $A_{pq}\overset{*}{\Rightarrow} x$ verwenden.
 
-Falls die Ableitung mit nur einem Schritt m"oglich ist, dann muss
+Falls die Ableitung mit nur einem Schritt möglich ist, dann muss
 dazu eine Regel der Form $A_{pp}\to\varepsilon$ verwendet werden,
 denn dies sind die einzigen Regeln, die auf der rechten Seite
 keine Variablen enthalten. 
 
-Nehmen wir also an, f"ur Ableitungen der L"ange $k$ sei bereits
+Nehmen wir also an, für Ableitungen der Länge $k$ sei bereits
 bekannt, dass sie den Automaten von einem Zustand mit leerem Stack
-in einen anderen Zustand mit leerem Stack "uberf"uhren.
+in einen anderen Zustand mit leerem Stack überführen.
 
 Sei jetzt $A_{pq}\overset{*}{\Rightarrow}x$ eine Ableitung mit $k+1$
 Schritten. Der erste Schritt dieser Ableitung ist entweder eine
 Regel der Form $A_{pq}\to aA_{rs}b$ oder $A_{pq}\to A_{pr}A_{rq}$.
 Im ersten Fall sagt die Regel, dass $x=ayb$, wobei $y$ ein
-Wort ist, welches aus $A_{rs}$ in h"ochstens $k$ Schritten abgeleitet
+Wort ist, welches aus $A_{rs}$ in höchstens $k$ Schritten abgeleitet
 werden kann. Also kann nach Induktionsannahme $y$ den Automaten vom
 Zustand $r$ mit leerem Stack in den Zustand $s$ mit leerem Stack
-"uberf"uhren. Der "Ubergang von $q$ nach $r$ mit Inputzeichen $a$
-legt m"oglicherweise ein Zeichen $t$ auf den Stack, nach Konstruktion
-der Produktionsregeln wird dieses vom "Ubergang mit Inputzeichen $b$
+überführen. Der Übergang von $q$ nach $r$ mit Inputzeichen $a$
+legt möglicherweise ein Zeichen $t$ auf den Stack, nach Konstruktion
+der Produktionsregeln wird dieses vom Übergang mit Inputzeichen $b$
 auch wieder entfernt, so dass der Stack wieder leer ist.
 
 Im zweiten Falls ist nach Induktionsannahme $x=yz$, wobei $y$ den
 Automaten vom Zustand $q$ in den Zustand $r$ je mit leerem Stack
-"uberf"uhrt, und $z$ ihn von $r$ nach $q$ je mit leerem Stack
-f"uhrt.
+überführt, und $z$ ihn von $r$ nach $q$ je mit leerem Stack
+führt.
 
-In beiden F"allen folgt, dass $x$ den Automaten von $p$
-nach $q$ je mit leerem Stack f"uhren kann.
+In beiden Fällen folgt, dass $x$ den Automaten von $p$
+nach $q$ je mit leerem Stack führen kann.
 Damit ist der Induktionsschritt vollzogen, und es folgt, dass
-sich jede Ableitung durch "Uberg"ange im Stackautomaten zwischen
-Zust"anden mit jeweils leerem Stack bilden lassen.
+sich jede Ableitung durch Übergänge im Stackautomaten zwischen
+Zuständen mit jeweils leerem Stack bilden lassen.
 \end{proof}
 
 \begin{hilfssatz}\label{implies_apq_generates_x}
 Falls $x$ $P$ aus dem Zustand $p$ mit leerem Stack in den Zustand
-$q$ mit leerem Stack "uberf"uhren kann, dann ist
+$q$ mit leerem Stack überführen kann, dann ist
 $A_{pq}\overset{*}{\Rightarrow} x$.
 \end{hilfssatz}
 
 \begin{proof}[Beweis von Hilfssatz \ref{implies_apq_generates_x}]
-Auch diesen Teil kann man mit vollst"andiger Induktion beweisen,
-diesmal "uber die L"ange der Berechnung. 
+Auch diesen Teil kann man mit vollständiger Induktion beweisen,
+diesmal über die Länge der Berechnung. 
 
-Die k"urzeste m"ogliche Berechnung hat $0$ Schritte, d.\,h.~sie endet
+Die kürzeste mögliche Berechnung hat $0$ Schritte, d.\,h.~sie endet
 im gleichen Zustand, in dem sie begonnen hat.
-Und tats"achlich enth"alt die Grammatik die Regel $A_{pp}\to\varepsilon$, 
-so dass das leere Wort tats"achlich aus $A_{pp}$ mit leerem
+Und tatsächlich enthält die Grammatik die Regel $A_{pp}\to\varepsilon$, 
+so dass das leere Wort tatsächlich aus $A_{pp}$ mit leerem
 Stack abgeleitet werden kann.
 
 Nehmen wir jetzt an, dass bereits bekannt ist, dass Berechnungen mit
 $k$ Schritten, welche $P$ mit dem Input-Wort $w$ vom Zustand $p$
-in den Zustand $q$ je mit leerem Stack dazu f"uhren, dass
+in den Zustand $q$ je mit leerem Stack dazu führen, dass
 $A_{pq}\overset{*}{\Rightarrow} x$.
 
 Sei jetzt also eine Berechnung mit Inputwort $x$
 mit $k+1$ Schritten gegeben, die $P$ vom Zustand $p$ in den Zustand $q$ 
-je mit leerem Stack f"uhrt. Entweder ist der Stack nur ganz zu
+je mit leerem Stack führt. Entweder ist der Stack nur ganz zu
 Beginn oder ganz am Schluss leer, oder er wird dazwischen einmal
 leer.
 
 Im ersten Fall wird ein Symbol $t$ beim ersten Schritt auf den Stack
-gelegt, und beim letzten Schritt entfernt. Es gibt also zwei Zust"ande
-$r$ und $s$ und "Uberg"ange
+gelegt, und beim letzten Schritt entfernt. Es gibt also zwei Zustände
+$r$ und $s$ und Übergänge
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -1486,14 +1486,14 @@ p\ar[r]^{a,\varepsilon\to t}
 			&q
 }
 \]
-Die Berechnung, die $P$ von $r$ in $s$ "uberf"uhrt, ist k"urzer, und kann
-mit leerem Stack durchgef"uhrt werden.
+Die Berechnung, die $P$ von $r$ in $s$ überführt, ist kürzer, und kann
+mit leerem Stack durchgeführt werden.
 Also ist sie nach Induktionsannahme der Teil $y$ in $x=ayb$ aus ableitbar 
 $A_{rs}$ ableitbar.
 
-Im zweiten Fall zerf"allt die Berechnung, in der $x$ $P$ von $p$ in
-$q$  mit leerem Stack "uberf"uhrt in zwei Teile, die mit Inputw"ortern
-$y$ und $z$ $p$ in $r$ bzw.~$r$ in $q$ je mit leerem Stack "uberf"uhren:
+Im zweiten Fall zerfällt die Berechnung, in der $x$ $P$ von $p$ in
+$q$  mit leerem Stack überführt in zwei Teile, die mit Inputwörtern
+$y$ und $z$ $p$ in $r$ bzw.~$r$ in $q$ je mit leerem Stack überführen:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -1509,16 +1509,16 @@ $A_{pq}\to A_{pr}A_{rq}$ der Grammatik auch
 $A_{pq}\overset{*}{\Rightarrow} x$
 \end{proof}
 
-Damit ist auch der Beweis von Hilfssatz \ref{pda_has_grammar} vollst"andig.
+Damit ist auch der Beweis von Hilfssatz \ref{pda_has_grammar} vollständig.
 \end{proof}
 
 \begin{beispiel}
-Wir m"ochten die Theorie dazu verwenden, f"ur den Stackautomaten aus
-Abschnitt~\ref{stackbeispiele} f"ur die Sprache
+Wir möchten die Theorie dazu verwenden, für den Stackautomaten aus
+Abschnitt~\ref{stackbeispiele} für die Sprache
 $L=\{\texttt{0}^n\texttt{1}^n\;|\; n\ge 0\}$ eine Grammatik zu finden.
-Dazu wandeln wir zun"achst den Stackautomaten in die Standardform um, die
-wir f"ur die Konstruktion der Grammatik brauchen. Dazu m"ussen wir
-im vertikalen "Ubergang einen Zwischenzustand einf"ugen:
+Dazu wandeln wir zunächst den Stackautomaten in die Standardform um, die
+wir für die Konstruktion der Grammatik brauchen. Dazu müssen wir
+im vertikalen Übergang einen Zwischenzustand einfügen:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -1537,8 +1537,8 @@ im vertikalen "Ubergang einen Zwischenzustand einf"ugen:
 		   \ar@(ur,dr)^{{\tt 1},{\tt 0}\to\varepsilon}
 }
 \]
-Die Startvariable der Grammatik ist $A_{q_0q_a}$. Die "Uberg"ange, die
-das Zeichen $\texttt{\$}$ behandeln, f"uhren zu einer Regel
+Die Startvariable der Grammatik ist $A_{q_0q_a}$. Die Übergänge, die
+das Zeichen $\texttt{\$}$ behandeln, führen zu einer Regel
 \begin{equation}
 A_{q_0q_a}\to \varepsilon A_{q_1q_3}\varepsilon = A_{q_1q_3}.
 \label{q0qa}
@@ -1551,13 +1551,13 @@ A_{q_1q_3}\to \texttt{0}\; A_{q_1q_3}\;\texttt{1}
 \label{q1q3}
 \end{equation}
 Man kann aber auch ohne eine $\texttt{0}$ auf dem Stack von
-$q_1$ zu $q_3$ gelangen, das f"uhrt zu der Regel 
+$q_1$ zu $q_3$ gelangen, das führt zu der Regel 
 \begin{equation}
 A_{q_1q_3}\to \varepsilon\; A_{q_2q_2}\;\varepsilon
 \label{q2q2}
 \end{equation}
-Zus"atzlich hat man noch die Regel $A_{q_2q_2}\to\varepsilon$, da 
-$A_{q_2q_2}$ nur in (\ref{q2q2}) gebraucht wird, k"onnen wir sie
+Zusätzlich hat man noch die Regel $A_{q_2q_2}\to\varepsilon$, da 
+$A_{q_2q_2}$ nur in (\ref{q2q2}) gebraucht wird, können wir sie
 bereits anwenden, und erhalten so die Grammatik.
 \begin{align}
 A_{q_0q_a}&\to A_{q_1q_3} \tag{\ref{q0qa}}\\
@@ -1572,16 +1572,16 @@ Grammatik
 S&\to \texttt{0}\; S\; \texttt{1}\tag{\ref{q1q3}}\\
 S&\to\varepsilon,\tag{\ref{q2q2}}
 \end{align}
-genau die Grammatik, die wir fr"uher schon f"ur $L$ gefunden haben.
+genau die Grammatik, die wir früher schon für $L$ gefunden haben.
 \end{beispiel}
 
 \section{Nicht kontextfreie Sprachen}
 \rhead{Nicht kontextfreie Sprachen}
-Mit einem Stack kann man nur "uber eine Art von eingegangenen
-Zeichen Buch f"uhren. M"ochte man mehrere Zeichen verfolgen,
-br"auchte man freien Zugriff auf verschiedene Z"ahler f"ur jedes
-Zeichen. Eine Maschine mit so vielen Stacks wie Zeichen zur Verf"ugung
-stehen, k"onnte also auch die Sprache
+Mit einem Stack kann man nur über eine Art von eingegangenen
+Zeichen Buch führen. Möchte man mehrere Zeichen verfolgen,
+bräuchte man freien Zugriff auf verschiedene Zähler für jedes
+Zeichen. Eine Maschine mit so vielen Stacks wie Zeichen zur Verfügung
+stehen, könnte also auch die Sprache
 \[
 L=\{ {\tt a}^n {\tt b}^n {\tt c}^n\;|\;n\in\mathbb N\}
 \]
@@ -1589,20 +1589,20 @@ erkennen. Ein ``standard'' Stackautomat kann das jedoch nicht,
 in diesem Abschnitt soll gezeigt werden, dass $L$ nicht kontextfrei
 ist. 
 
-\subsection{Pumping Lemma f"ur kontextfreie Sprachen}
-\index{Pumping Lemma!f\"ur kontextfreie Sprachen}
-Bei regul"aren Sprachen erm"oglicht das Pumping-Lemma den einfachen
-Beweis, dass eine Sprache nicht regul"ar ist. Die Grundidee dabei ist,
-dass sich in einem endlichen Automaten fr"uher oder sp"ater ein
+\subsection{Pumping Lemma für kontextfreie Sprachen}
+\index{Pumping Lemma!f\ür kontextfreie Sprachen}
+Bei regulären Sprachen ermöglicht das Pumping-Lemma den einfachen
+Beweis, dass eine Sprache nicht regulär ist. Die Grundidee dabei ist,
+dass sich in einem endlichen Automaten früher oder später ein
 Zustand wiederholen muss, und dass die Schleife zwischen dem ersten
 und dem zweiten Auftreten dieses Zustandes beliebig oft durchlaufen
-werden kann, um immer wieder neue akzeptable W"orter zu liefern.
+werden kann, um immer wieder neue akzeptable Wörter zu liefern.
 
-Die "Aquivalenz von kontextfreien Sprachen mit Sprachen, die von einem
-Stackautomaten akzeptiert werden k"onnen, suggeriert, dass so etwas
-auch f"ur kontextfreie Sprachen m"oglich sein sollte. Stackautomaten
-wurden aber grunds"atzlich als nicht deterministische Automaten
-konstruiert, wo die Argumente, die das Pumping Lemma f"ur regul"are
+Die Äquivalenz von kontextfreien Sprachen mit Sprachen, die von einem
+Stackautomaten akzeptiert werden können, suggeriert, dass so etwas
+auch für kontextfreie Sprachen möglich sein sollte. Stackautomaten
+wurden aber grundsätzlich als nicht deterministische Automaten
+konstruiert, wo die Argumente, die das Pumping Lemma für reguläre
 Sprachen geliefert haben, nicht direkt anwendbar sind. Wir verwenden
 daher nicht einen Stackautomaten, sondern direkt die Grammatik, um
 das Pumping Lemma herzuleiten.
@@ -1611,7 +1611,7 @@ das Pumping Lemma herzuleiten.
 \begin{center}
 \includegraphics[width=0.35\hsize]{images/cfg-1}
 \end{center}
-\caption{Parse Tree f"ur die Erzeugung des Wortes $uvxyz$ aus der
+\caption{Parse Tree für die Erzeugung des Wortes $uvxyz$ aus der
 Startvariablen $S$.\label{cfg-tree-1}}
 \end{figure}
 \begin{figure}
@@ -1621,11 +1621,11 @@ Startvariablen $S$.\label{cfg-tree-1}}
 \includegraphics[width=0.35\hsize]{images/cfg-3}\\
 \end{tabular}
 \end{center}
-\caption{Parse Tree f"ur das aufgepumpte Wort $uv^2xy^2z$ (links) und das
+\caption{Parse Tree für das aufgepumpte Wort $uv^2xy^2z$ (links) und das
 abgepumpte Wort $uxz$ (rechts).\label{cfg-tree-2}}
 \end{figure}
 
-Ist ein Wort $w\in L(G)$ gen"ugend lang, gibt es auch lange Pfade im
+Ist ein Wort $w\in L(G)$ genügend lang, gibt es auch lange Pfade im
 Ableitungsbaum. Bei Verwendung der Chomsky-Normalform ist die 
 Tiefe des Baumes im besten Fall $\log_2 |w|$, im schlimmsten Fall $|w|-1$.
 Ist $|w|>2^{|V|}$, muss mindestens eine
@@ -1634,37 +1634,37 @@ Innerhalb des Baumes werden genau $|w|-1$ Regeln der
 Form $A\to BC$ angewendet.
 Trotzdem reicht es nicht, $|w|-1>|V|$ zu verlangen, weil die
 zweimal verwendete Variable nicht auf dem gleichen Ast des
-Baumes zu sein braucht. F"ur die Durchf"uhrung des Argumentes
+Baumes zu sein braucht. Für die Durchführung des Argumentes
 brauchen wir aber, dass wir die beiden Vorkommnisse der Variablen
-"uber Ableitungsregeln verbinden k"onnen.}.
+über Ableitungsregeln verbinden können.}.
 Sei $A$ die unterste Variable im Ableitungsbaum, die wiederholt
 wird (Abbildung~\ref{cfg-tree-1}).
-Es erzeugt ein Wort $x$. Das n"achsth"ohere Vorkommen von $A$
+Es erzeugt ein Wort $x$. Das nächsthöhere Vorkommen von $A$
 erzeugt dagegen ein Wort, welches aus drei Teilen besteht:
-$vxy$, die L"ange dieses Wortes ist $\le N$. F"ur das ganze Wort fehlen
+$vxy$, die Länge dieses Wortes ist $\le N$. Für das ganze Wort fehlen
 noch die Teile, die von Regeln ``weiter oben'' im Ableitungsbaum
 erzeugt werden, also $w=uvxyz$.
 Da die beiden Vorkommnisse von $A$ veschieden sind, muss mindestens
-eines der Teilw"orter $v$ und $y$ nicht leer sein, also $|vy|>0$
+eines der Teilwörter $v$ und $y$ nicht leer sein, also $|vy|>0$
 Indem man den Teil des Ableitungsbaumes
 zwischen den Vorkommnissen von $A$ repliziert, kann man jetzt die
-W"orter $uv^kxy^kz$ bilden, die alle auch mit der Grammatik $G$ 
-abgeleitet werden k"onnen, also zu $L(G)$ geh"oren (Abbildung~\ref{cfg-tree-2}).
+Wörter $uv^kxy^kz$ bilden, die alle auch mit der Grammatik $G$ 
+abgeleitet werden können, also zu $L(G)$ gehören (Abbildung~\ref{cfg-tree-2}).
 Damit haben wir folgenden Satz bewiesen:
 
-\begin{satz}[Pumping Lemma f"ur kontextfreie Sprachen]
-\index{Pumping Lemma!f\"ur kontextfreie Sprachen}
-\index{pumping length!f\"ur kontextfreie Sprachen}
+\begin{satz}[Pumping Lemma für kontextfreie Sprachen]
+\index{Pumping Lemma!f\ür kontextfreie Sprachen}
+\index{pumping length!f\ür kontextfreie Sprachen}
 Sei $L$ eine kontextfreie Sprache, dann gibt es ein Zahl $N$, die pumping
 length, so dass jedes Wort $w\in L$ mit $|w|\ge N$ zerlegt werden
-kann in f"unf Teile $w=uvxyz$
+kann in fünf Teile $w=uvxyz$
 \begin{compactenum}
 \item
 $|vy|>0$,
 \item
 $|vxy|\le N$ und
 \item
-$uv^kxy^kz\in L$ f"ur alle $k\in\mathbb N$.
+$uv^kxy^kz\in L$ für alle $k\in\mathbb N$.
 \end{compactenum}
 \end{satz}
 
@@ -1684,26 +1684,26 @@ $uv^kxy^kz\in L$ f"ur alle $k\in\mathbb N$.
 %\includegraphics[width=\hsize]{images/pl-8}%
 \includegraphics{images/pl-8}%
 \end{center}
-\caption{Pumping Lemma f"ur kontextfreie Sprachen angewandt auf das 
+\caption{Pumping Lemma für kontextfreie Sprachen angewandt auf das 
 Wort ${\tt a}^N{\tt b}^N{\tt c }^N\in L$, wobei $N$ die pumping length
 von $L$ ist. Da $w$ lang genug ist, gibt es eine Zerlegung 
 $w=uvxyz$ (2.~Zeile).
 Abpumpen (3.~Zeile) und Aufpumpen (4.~Zeile) des
-Wortes f"uhrt zu W"ortern, die nicht mehr in $L$ liegen.\label{pumpingcfgimage}}
+Wortes führt zu Wörtern, die nicht mehr in $L$ liegen.\label{pumpingcfgimage}}
 \end{figure}
 
 Die Sprache $L=\{a^nb^nc^n\;|\;n\in\mathbb N\}$ ist nicht kontextfrei.
-Wir verwenden das Pumping Lemma f"ur kontextfreie Sprachen.  Dazu
-nehmen wir zun"achst an, die Sprache $L$ sei kontextfrei. Dann
+Wir verwenden das Pumping Lemma für kontextfreie Sprachen.  Dazu
+nehmen wir zunächst an, die Sprache $L$ sei kontextfrei. Dann
 besagt das Pumping Lemma, dass es eine Zahl $N$ gibt, so dass
-W"orter mit L"ange mindestens $N$ besondere Eigenschaften haben.
+Wörter mit Länge mindestens $N$ besondere Eigenschaften haben.
 Als solches langes Wort nehmen wir $w=a^Nb^Nc^N$. Nach dem
-Pumping Lemma gibt es eine Zerlegung in f"unf Teile
+Pumping Lemma gibt es eine Zerlegung in fünf Teile
 $w=uvxyz$, wobei der mittlere Teil nicht zu lang ist:
 $|vxy|\le N$ (Abbildung~\ref{pumpingcfgimage}).
-Insbesondere enth"alt $|vxy|$ h"ochstens zwei
+Insbesondere enthält $|vxy|$ höchstens zwei
 Arten von Zeichen, denn es ist zu kurz, die $N$ $b$s in der Mitte
-von $w$ zu "uberspannen. Beim Aufpumpen zu $uv^kxy^kz$ nimmt also
+von $w$ zu überspannen. Beim Aufpumpen zu $uv^kxy^kz$ nimmt also
 die Zahl dieser beiden Zeichen zu, nicht jedoch die Zahl des nicht
 in $vxy$ enthaltenen Zeichens.
 Damit kann $uv^kxy^kz$ nicht mehr in $L$ sein, obwohl das

@@ -1,11 +1,11 @@
-\chapter{Algorithmen-"Ubersicht\label{skript:algorithmen}}
-\lhead{Algorithmen-"Ubersicht}
+\chapter{Algorithmen-Übersicht\label{skript:algorithmen}}
+\lhead{Algorithmen-Übersicht}
 \rhead{}
 In den vergangenen Kapiteln wurde eine grosse Zahl von Algorithmen
-f"ur die verschiedensten Probleme formuliert. Hier werden die wichtigsten
-im Sinne einer "Ubersicht zusammengestellt, mit Verweisen auf die 
+für die verschiedensten Probleme formuliert. Hier werden die wichtigsten
+im Sinne einer Übersicht zusammengestellt, mit Verweisen auf die 
 detaillierte Beschreibung weiter vorne im Text.
-\section{Endliche Automaten und regul"are Sprachen}
+\section{Endliche Automaten und reguläre Sprachen}
 \subsection{Minimalautomat}
 \newtheorem*{Minimalautomat}{Minimalautomat}
 \begin{Minimalautomat}
@@ -43,41 +43,41 @@ Seite~\pageref{regulaer:nea-dea}
 beschrieben.
 
 \subsection{Mengenoperationen}
-Die Menge der regul"are Sprachen ist abgeschlossen bez"uglich der
+Die Menge der reguläre Sprachen ist abgeschlossen bezüglich der
 Mengenoperationen, es muss also Algorithmen geben, die die Mengenoperationen
 auf Automatenebene implementieren.
 
-\newtheorem*{RegVereinigung}{Vereinigung regul"arer Sprachen}
+\newtheorem*{RegVereinigung}{Vereinigung regulärer Sprachen}
 \begin{RegVereinigung}
 Zu zwei deterministischen endlichen Automaten $A$ und $B$ berechne einen
 Automaten $C$ derart, dass $L(C)=L(A)\cup L(B)$.
 \end{RegVereinigung}
 
 Die Vereinigung wird in Satz~\ref{satz_union} beschrieben, sie tritt auch als
-Alternative bei den regul"aren Operationen auf.
+Alternative bei den regulären Operationen auf.
 
-\newtheorem*{RegSchnitt}{Schnittemenge regul"arer Sprachen}
+\newtheorem*{RegSchnitt}{Schnittemenge regulärer Sprachen}
 \begin{RegSchnitt}
 Zu zwei deterministischen endlichen Automaten $A$ und $B$ berechne einen
 Automaten $C$ derart, dass $L(C)=L(A)\cap L(B)$.
 \end{RegSchnitt}
 
 Satz~\ref{satz_intersection} beschreibt eine Konstruktion, mit der
-ein deterministischer endlicher Automat f"ur die Schnittmenge gefunden
+ein deterministischer endlicher Automat für die Schnittmenge gefunden
 werden kann. Sie verwendet die Produktautomaten-Konstruktion von Seite
 \pageref{reg_produktautomat}.
 
-\newtheorem*{RegNegation}{Komplement einer regul"aren Sprache}
+\newtheorem*{RegNegation}{Komplement einer regulären Sprache}
 \begin{RegNegation}
 Zu einem deterministischen endlichen Automaten $A$ berechne den Automaten
 $B$ mit der Eigenschaft $L(B)=\overline{L(A)}$.
 \end{RegNegation}
 
-Der Algorithmus tauscht Akzeptier- und Nichtakzeptierzust"ande aus,
-und funktioniert in dieser Form nur f"ur deterministische endliche
+Der Algorithmus tauscht Akzeptier- und Nichtakzeptierzustände aus,
+und funktioniert in dieser Form nur für deterministische endliche
 Automaten (Satz~\ref{satz_regcomplement}).
 
-\newtheorem*{RegDifferenz}{Differenz zweier regul"arer Sprachen}
+\newtheorem*{RegDifferenz}{Differenz zweier regulärer Sprachen}
 \begin{RegDifferenz}
 Zu zwei gegebenen deterministischen endlichen Automaten $A$ und $B$ 
 berechne einen deterministischen endlichen Automaten $C$ mit
@@ -88,9 +88,9 @@ Die Mengendifferenz ist die Schnittmenge mit dem Komplement:
 $L(A)\setminus L(B)=L(A)\cap\overline{L(B)}$, der Algorithmus wird im Beweis
 von Satz~\ref{satz_regcomplement} dargestellt.
 
-\subsection{Regul"are Operationen}
-Regul"are Operationen k"onnen in Operationen mit nicht deterministischen
-endlichen Automaten "ubersetzt werden.
+\subsection{Reguläre Operationen}
+Reguläre Operationen können in Operationen mit nicht deterministischen
+endlichen Automaten übersetzt werden.
 Die Verkettung wird in Satz~\ref{satz_concat} beschrieben, die *-Operation
 in Satz~\ref{satz_star}.
 
@@ -114,33 +114,33 @@ Stern-Operation der Sprache von $A$ akzeptiert: $L(B)=L(A)^*$.
 
 
 
-\subsection{Regul"are Ausdr"ucke}
-\newtheorem*{RegexDea}{Regul"aren Ausdruck in DEA umwandeln}
-\begin{RegexDea} Berechne aus einem regul"aren Ausdruck $r$ einen 
+\subsection{Reguläre Ausdrücke}
+\newtheorem*{RegexDea}{Regulären Ausdruck in DEA umwandeln}
+\begin{RegexDea} Berechne aus einem regulären Ausdruck $r$ einen 
 deterministischen endlichen Automaten $A$, der die gleiche Sprache
 akzeptiert, also $L(A)=L(r)$.
 \end{RegexDea}
 
-Die Umwandlung eines regul"aren Ausdrucks in einen endlichen Automaten
+Die Umwandlung eines regulären Ausdrucks in einen endlichen Automaten
 wird in Abschnitt~\ref{regulaer:regulaere-ausdruecke} beschrieben.
 
-\newtheorem*{DeaRegex}{DEA in regul"aren Ausdruck umwandeln}
+\newtheorem*{DeaRegex}{DEA in regulären Ausdruck umwandeln}
 \begin{DeaRegex}
 Zu einem deterministischen endlichen Automaten $A$ berechne einen
-regul"aren Ausdruck $r$, der die gleiche Sprache akzeptiert,
+regulären Ausdruck $r$, der die gleiche Sprache akzeptiert,
 also $L(A)=L(r)$.
 \end{DeaRegex}
 
-Die Umwandlung eines endlichen Automaten in einen "aquivalenten
-regul"aren Ausdrucks 
+Die Umwandlung eines endlichen Automaten in einen äquivalenten
+regulären Ausdrucks 
 wird in Abschnitt~\ref{regulaer:dea-re} beschrieben.
 
 \section{Stackautomaten und kontextfreie Grammatiken}
 
 \subsection{Stackautomaten}
-Zum Beweis der "Aquivalenz von Stackautomaten und kontextfreien Grammatiken
+Zum Beweis der Äquivalenz von Stackautomaten und kontextfreien Grammatiken
 wurden im Abschnitt~\ref{sect:aequivalenz-cfg} zwei Algorithmen beschrieben,
-wie man eine kontextfreie Grammatik in einen "aquivalenten Stackautomanten
+wie man eine kontextfreie Grammatik in einen äquivalenten Stackautomanten
 umwandenl kann und umgekehrt.
 
 \newtheorem*{CfgPDA}{Stackautomat einer Grammatik}
@@ -157,7 +157,7 @@ die gleiche Sprache produziert: $L(G)=L(P)$.
 
 \subsection{Chomsky-Normalform}
 Die Chomsky-Normalform wird in Definition~\ref{definition:cnf} definiert.
-Im Beweis von Satz~\ref{satz:cnf} wird die Umwandlung in eine "aquivalente
+Im Beweis von Satz~\ref{satz:cnf} wird die Umwandlung in eine äquivalente
 Grammatik in Chomsky-Normalform dargestellt.
 
 \newtheorem*{CNF}{Chomsky-Normalform einer Grammatik}
@@ -167,7 +167,7 @@ in Chomsky-Normalform, die die gleiche Sprache akzeptiert.
 \end{CNF}
 
 \subsection{Mengenoperationen}
-Nur f"ur die Vereinigung zweier kontextfreier Sprachen haben wir einen
+Nur für die Vereinigung zweier kontextfreier Sprachen haben wir einen
 Algorithmus.
 
 \newtheorem*{CfgUnion}{Grammatik einer Vereinigung}
@@ -178,14 +178,14 @@ Vereinigung der von $G_1$ und $G_2$ produzierten Sprachen prodziert:
 $L(G)=L(G_1)\cup L(G_2)$.
 \end{CfgUnion}
 
-\subsection{Regul"are Operationen}
-Die regul"aren Operationen auf Grammatiken wurden in
+\subsection{Reguläre Operationen}
+Die regulären Operationen auf Grammatiken wurden in
 Abschnitt~\ref{sect:cfg-regulaer} beschrieben.
-Die Alternative ist in Satz~\ref{satz:cfg-union} erkl"art,
+Die Alternative ist in Satz~\ref{satz:cfg-union} erklärt,
 die Verkettung in Satz~\ref{satz:cfg-verkettung} und die *-Operation
 in Satz~\ref{satz:cfg-star}.
 
-\newtheorem*{CfgAlternative}{Grammatik f"ur eine Alterative}
+\newtheorem*{CfgAlternative}{Grammatik für eine Alterative}
 \begin{CfgAlternative}
 Zu zwei kontextfreien Grammatiken $G_1$ und $G_2$ finde eine
 kontextfreie Grammatik $G$, die die
@@ -200,7 +200,7 @@ kontextfreie Grammatik $G$, die die Verkettung der von $G_1$ und $G_2$
 produzierten Sprachen produziert: $L(G)=L(G_1)L(G_2)$.
 \end{CfgConcatenation}
 
-\newtheorem*{CfgStar}{Grammatik f"ur die Sternoperation}
+\newtheorem*{CfgStar}{Grammatik für die Sternoperation}
 \begin{CfgStar}
 Zu einer kontextfreien Grammatik $G$ berechne eine kontextfreie Grammatik
 $G'$, die die *-Operation der von $G$ produziert Sprache produziert:
@@ -209,17 +209,17 @@ $L(G')=L(G)^*$.
 
 \subsection{Parser}
 Stackautomaten sind nicht deterministisch und eignen sich daher nicht
-dazu, ein Wort $w$ daraufhinzu zu pr"ufen, ob es von einer kontextfreien
+dazu, ein Wort $w$ daraufhinzu zu prüfen, ob es von einer kontextfreien
 Grammatik $G$ produziert werden kann: $w\in L(G)$. 
 Es gibt aber einen deterministischen Algorithmus, der in
 Satz~\ref{cyk-algorithm} beschrieben wird.
 Dieser Algorithmus wird auch zur Entscheidung des Problems $A_\textsl{CFG}$
 in Satz~\ref{satz:acfg-entscheidbar}
-ben"otigt.
+benötigt.
 
 \newtheorem*{CYK}{Cocke-Younger-Kasami Algorithmus}
 \begin{CYK}
-Zu einer kontextfreien Grammatik $G$ in Chomsky-Normalform und einem
+Zu einer kontextfreien Grammatik $G$ in Chomsky-Nor\-mal\-form und einem
 Wort $w$ berechne den Ableitungsbaum (Parse-Tree) von $w$.
 \end{CYK}
 
