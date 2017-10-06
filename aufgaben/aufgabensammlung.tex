@@ -2,8 +2,7 @@
 % aufgabensammlung.tex -- Skript zur Vorlesung Automaten und Sprachen
 %                         an der Hochschule Rapperswil
 %
-% (c) 2009 Prof. Dr. Andreas Mueller, HSR
-% $Id: skript.tex,v 1.34 2008/11/02 22:46:16 afm Exp $
+% (c) 2009-2017 Prof. Dr. Andreas Mueller, HSR
 %
 \documentclass[a4paper,12pt]{book}
 \usepackage{german}
@@ -31,12 +30,13 @@
 \usepackage{makeidx}
 \usepackage{paralist}
 \usepackage{color}
-\usepackage{hyperref}
+\usepackage[colorlinks=true]{hyperref}
 \usepackage{environ}
 \usepackage{menukeys}
 \usepackage{pifont}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{etoolbox}
 \makeindex
 \begin{document}
 \pagestyle{fancy}
@@ -77,8 +77,9 @@ Hochschule f"ur Technik, Rapperswil, 2011-2016
 \renewcommand{\qedsymbol}{$\bigcirc$}
 }{\end{proof}}
 \mainmatter
-\allowdisplaybreaks
 \input uebungen.tex
+\allowdisplaybreaks
+\openthemaindex
 \setboolean{loesungen}{true}
 \aufgabetoplevel{./}
 
@@ -114,5 +115,7 @@ Hochschule f"ur Technik, Rapperswil, 2011-2016
 \lhead{Kapitel~\thechapter}
 \rhead{Turing-Vollst"andigkeit}
 \input 8.tex
+\closethemaindex
+\printthemata
 \input aufgabensammlung.ind
 \end{document}

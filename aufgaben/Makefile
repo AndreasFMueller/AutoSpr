@@ -9,13 +9,24 @@ all:	aufgabensammlung.pdf
 TEXFILES = aufgabensammlung.tex uebungen.tex \
 	1.tex 2.tex 3.tex 4.tex 5.tex 6.tex 7.tex 8.tex
 
-aufgabensammlung.pdf:	$(TEXFILES) aufgabensammlung.ind
-	pdflatex aufgabensammlung.tex uebungen.tex
+aufgabensammlung.pdf:	$(TEXFILES) aufgabensammlung.ind thema.tex
+	pdflatex aufgabensammlung.tex
+
+thema.tex:      thema.tix mkthemaidx
+	iconv -f ISO-8859-1 -t UTF-8 thema.tix > thema.tix2
+	./mkthemaidx thema.tix2 thema.tex
+
+thema.tix:      $(TEXFILES)
+	pdflatex aufgabensammlung.tex
+
 
 aufgabensammlung.ind:	$(TEXFILES) images
 	touch aufgabensammlung.ind
 	pdflatex aufgabensammlung.tex
 	makeindex aufgabensammlung.idx
+
+mkthemaidx:     mkthemaidx.cpp
+	g++ -Wall -g -O -o mkthemaidx mkthemaidx.cpp
 
 clean:
 	rm -f *.dvi *.log aufgabensammlung.pdf

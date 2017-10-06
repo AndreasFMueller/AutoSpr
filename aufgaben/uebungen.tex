@@ -1,8 +1,7 @@
 %
 % uebung.tex -- gemeinsame Makros fuer Uebungsblaetter
 %
-% (c) 2006 Prof. Dr. Andreas Mueller, HSR
-% $Id: uebung.tex,v 1.3 2008/01/06 14:05:56 afm Exp $
+% (c) 2006-2017 Prof. Dr. Andreas Mueller, HSR
 %
 \newcounter{uebungsaufgabe}
 \newboolean{loesungen}
@@ -23,16 +22,13 @@
 }{\end{enumerate}}
 % Loesung
 \NewEnviron{loesung}{%
-\begin{proof}[L"osung]%
+\begin{proof}[Lösung]%
 \renewcommand{\qedsymbol}{$\bigcirc$}
 \BODY
 \end{proof}}
-\NewEnviron{bewertung}{\relax}
 \NewEnviron{diskussion}{
-\begin{proof}[Diskussion]
-\renewcommand{\qedsymbol}{}
 \BODY
-\end{proof}
+\bigskip
 }
 \def\keineloesungen{%
 \RenewEnviron{loesung}{\relax}
@@ -43,6 +39,8 @@
 \renewcommand{\qedsymbol}{}
 \begin{proof}[Hinweis]}{\end{proof}}
 % Aufgabe aus der Sammlung wiedergeben
+\newboolean{themastatus}
+\setboolean{themastatus}{false}
 \newcounter{problemcounter}[chapter]
 \def\aufgabepath{./}
 \def\ainput#1{\input\aufgabepath/#1}
@@ -54,14 +52,56 @@
 \def\includeagraphics[#1]#2{\expandafter\includegraphics[#1]{\aufgabepath#2}}
 % \aufgabe
 \newcommand{\aufgabe}[2]{%
-\refstepcounter{problemcounter}%
-\label{#2}%
-\bigskip{\parindent0pt\strut}\hbox{\bf\theproblemcounter. }%
-\marginpar{\raggedright\tiny #2}%
-\expandafter\def\csname aufgabepath\endcsname{\inputpath/#1/#2/}%
-\expandafter\input{\inputpath#1/#2.tex}
-\bigskip
+  \expandafter\def\csname themalist\endcsname{}
+  \setboolean{themastatus}{false}
+  \refstepcounter{problemcounter}%
+  \label{#2}
+  \bigskip{\parindent0pt\strut}\hbox{\bf\theproblemcounter. }%
+  \marginpar{\raggedright\tiny #2}%
+  \expandafter\def\csname currentaufgabe\endcsname{#2}%
+  \expandafter\def\csname aufgabepath\endcsname{\inputpath/#1/#2/}%
+  \expandafter\input{\inputpath#1/#2.tex}
+  %\medskip
+  \ifthenelse{\boolean{themastatus}}{
+    \parindent 0pt
+    {\sc Thema:} {\small \themalist.}}{%
+  }
+  \bigskip
+
 }
 \renewcommand\theproblemcounter{\thechapter.\arabic{problemcounter}}
+% Bewertung
+\NewEnviron{bewertung}{\relax}
 % oft benutzte Macros
 \def\blank{\text{\textvisiblespace}}
+%
+% macros fuer den thema-Index
+%
+\newcommand{\openthemaindex}{%
+  \newwrite\themaindex
+  \immediate\openout\themaindex=thema.tix
+}
+%
+\newcommand{\closethemaindex}{\immediate\closeout\themaindex}
+%
+\def\themalink#1{\hyperref[thema:#1]{#1}}
+\def\thema#1{%
+  \ifthenelse{\boolean{themastatus}}{%
+    \xappto{\themalist}{, \noexpand\themalink{#1}}
+  }{%
+    \xdef\themalist{\noexpand\themalink{#1}}
+    \setboolean{themastatus}{true}
+  }
+  \immediate\write\themaindex%
+  {{\thechapter}{#1}{\arabic{problemcounter}}{\thechapter.\arabic{problemcounter}}{\currentaufgabe}}%
+}
+% Thema-Information anzeigen
+\def\themasection#1#2{ \item[#1]\label{thema:#1} #2 }
+\newcommand{\printthemata}{
+  \IfFileExists{./thema.tex}{
+    \chapter*{Aufgaben nach Themen}
+    \begin{description}
+    \input{thema.tex}
+    \end{description}
+  }{}
+}
