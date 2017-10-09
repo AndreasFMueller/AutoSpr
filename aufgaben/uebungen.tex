@@ -71,7 +71,11 @@
 }
 \renewcommand\theproblemcounter{\thechapter.\arabic{problemcounter}}
 % Bewertung
-\NewEnviron{bewertung}{\relax}
+\NewEnviron{bewertung}{\footnotesize
+\renewcommand{\qedsymbol}{}
+\begin{proof}[Bewertung]
+\BODY
+\end{proof}}
 % oft benutzte Macros
 \def\blank{\text{\textvisiblespace}}
 %
