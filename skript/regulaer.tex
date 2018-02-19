@@ -67,9 +67,9 @@ Symbolisch bezeichnen wir dies durch einen Doppelkreis:
 Damit haben wir alle Elemente zusammen, die einen deterministischen
 endlichen Automaten ausmachen.
 \subsection{Definition\label{regulaer:definition-dea}}
-\index{Automat!endlicher}
-\index{Automat!deterministischer endlicher}
-\index{DEA|see{deterministischer endlicher Automat}}
+\index{Automat!endlicher}%
+\index{Automat!deterministischer endlicher}%
+\index{DEA|see{deterministischer endlicher Automat}}%
 Eine abstrakte Definition muss die Menge der erlaubten Inputs
 festlegen, wir brauchen also ein Alphabet $\Sigma$.
 Die Zustände bilden eine Menge.
@@ -83,11 +83,11 @@ $(Q,\Sigma,\delta, q_0,F)$ mit
 \begin{compactenum}
 \item $Q$ ist eine beliebige endliche Menge von Zuständen
 \item $\Sigma$ ist eine endliche Menge, genannt das Alphabet.
-\index{Übergangsfunktion!eines endlichen Automaten}
+\index{Übergangsfunktion!eines endlichen Automaten}%
 \item $\delta\colon Q\times\Sigma\to Q$ heisst Übergangsfunktion
-\index{Startzustand}
+\index{Startzustand}%
 \item $q_0\in Q$ heisst Startzustand
-\index{Akzeptierzustand}
+\index{Akzeptierzustand}%
 \item $F\subset Q$ heisst die Menge der Akzeptierzustände.
 \end{compactenum}
 \end{definition}
@@ -97,7 +97,7 @@ einen neuen Zustand $\delta(q,a)\in Q$, in den der Automat durch
 die Verarbeitung von $a$ übergeht.
 
 \subsubsection{Gerichteter beschrifteter Graph eines DEA}
-\index{Graph!gerichteter!beschrifteter!eines DEA}
+\index{Graph!gerichteter!beschrifteter!eines DEA}%
 Eine Visualisierung ist häufig übersichtlicher.
 Die Zustände von $Q$ werden durch Kreise dargestellt.
 Die Übergangsfunktion wird durch mit Buchstaben des Alphabets $\Sigma$
@@ -128,7 +128,7 @@ Wichtig: von jedem Zustand aus gibt es genau einen Pfeil, der mit jedem möglich
 Zeichen des Alphabets angeschrieben sind.
 Insbesondere kann man von jedem
 Zustand aus mit jedem beliebigen Zeichen auf genau eine Art fortfahren.
-\index{deterministisch}
+\index{deterministisch}%
 In diesem Sinne ist der Automat {\em deterministisch}.
 
 \subsubsection{Beispiele}
@@ -247,7 +247,7 @@ Dazu ist es nötig, den Automaten um einen Zustand zu erweitern:
 \end{beispiel}
 
 \subsubsection{Tabellenform}
-\index{Tabellenform eines DEA}
+\index{Tabellenform eines DEA}%
 Man kann alle Information eines DEA auch in einer einzigen Tabelle 
 darstellen.
 Die Zeilen werden mit den Zuständen angeschrieben,
@@ -327,7 +327,7 @@ $e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$&$e$\\
 \end{beispiel}
 
 \subsection{Von einem DEA akzeptierte Sprache\label{regulaer:akzeptiertesprache}}
-\index{akzeptierte Sprache eines DEA}
+\index{akzeptierte Sprache eines DEA}%
 Ein DEA definiert auf natürliche Weise eine Sprache: Sie besteht aus
 allen Wörtern, die als Input für den DEA angewendet, diesen vom
 Startzustand in einen Akzeptierzustand überführen.
@@ -341,7 +341,7 @@ L(A)=\{w\in\Sigma^*\;|\; \text{$w$ überführt $A$ in einen Akzeptierzustand}\}
 
 \begin{definition}
 \label{regulaer:definition:regulaere-sprache}
-\index{Sprache!reguläre}
+\index{Sprache!reguläre}%
 Eine Sprache heisst regulär, wenn es einen DEA gibt, der sie
 akzeptiert.
 \end{definition}
@@ -484,7 +484,7 @@ Das ist aber gleichbedeutend damit, dass $w\in L$.
 Damit ist alles bewiesen, und wir haben folgenden Satz.
 
 \begin{satz}[Myhill-Nerode]\label{satz_dea_aus_sprache}
-\index{Myhill-Nerode!Satz von}
+\index{Myhill-Nerode!Satz von}%
 Ist $L$ eine reguläre Sprache, dann wird $L$ von dem 
 endlichen Automaten $A=(Q,\Sigma,\delta,q_0,F)$ akzeptiert mit
 \begin{align*}
@@ -569,7 +569,7 @@ viele verschiedene Mengen $L(w)$ gibt, somit kann $L$ nicht von
 einem endlichen Automaten erkannt werden.
 
 \subsection{Minimaler Automat\label{regulaer:minimalautomat}}
-\index{Automat!minimaler}
+\index{Automat!minimaler}%
 Zwei endliche Automaten können völlig verschieden aussehen,
 und trotzdem die gleiche Sprache akzeptieren.
 Kann man auf einfache
@@ -642,7 +642,7 @@ Wir müssen also herausfinden, welche Zustände man zusammenlegen
 kann.
 Das sind natürlich genau diejenigen, die das gleiche $L(q)$
 haben.
-\index{aquivalent Zustande@äquivalent!Zustände}
+\index{aquivalent Zustande@äquivalent!Zustände}%
 Statt herauszufinden, welche Zustände in diesem Sinne äquivalent
 sind, könnte man auch herauszufinden versuchen, welche nicht äquivalent
 sind.
@@ -668,7 +668,7 @@ Von den zwei Zuständen $z_1$ und $z_2$ aus kann man genau die gleichen
 akzeptierten Wörter bilden, also $L(z_1)=L(z_2)$, man müsste diese
 also zusammenlegen können.
 
-\index{Algorithmus!für den Minimalautomaten}
+\index{Algorithmus!für den Minimalautomaten}%
 \subsubsection{Algorithmus für den Minimalautomaten
 \label{algorithmus:minimalautomat}}
 Um solche Zustände zu finden, erstellen wir jetzt eine Tabelle, in der
@@ -757,7 +757,7 @@ $w=xyz$.\label{regular:pumpinglemma-graph}}
 \end{figure}
 
 \subsection{Pumping Lemma für reguläre Sprachen\label{regulaer:pumpinglemma}}
-\index{Pumping Lemma!für reguläre Sprachen}
+\index{Pumping Lemma!für reguläre Sprachen}%
 Der Satz~\ref{satz_dea_aus_sprache} zeigt, wie man zu einer regulären Sprache
 einen endlichen Automaten finden kann.
 Als Nebeneffekt kann man daraus oft auch ableiten, ob eine Sprache regulär
@@ -792,7 +792,7 @@ Endzustand führt.
 Die Wörter $xy^kz$ werden also alle auch von dem Automaten akzeptiert.
 Damit haben wir folgendes bewiesen:
 \begin{satz}[Pumping Lemma für reguläre Sprachen]
-\index{pumping length!für reguläre Sprachen}
+\index{pumping length!für reguläre Sprachen}%
 Ist $L$ eine reguläre Sprache, dann gibt es eine Zahl $N$, die Pumping Length, so dass
 jedes Wort $w\in L$ mit $|w|\ge N$ in drei Teile
 $w=xyz$ zerlegt werden kann, so dass
@@ -856,7 +856,7 @@ auch zur Sprache gehören sollen, tun sie aber nicht.
 \end{beispiel}
 
 \subsubsection{Beispiel}
-\index{Palindrom}
+\index{Palindrom}%
 Ein Palindrom ist ein Wort, welches ``vorwärts'' und ``rückwärts''
 gleich lautet.
 Zum Beispiel {\tt otto}, {\tt anna}, {\tt reittier} oder der
@@ -915,8 +915,8 @@ wie eine Bedingung wie ``wenn ein
 Wort mit einer {\tt 0} aufhört, dann muss es auch mit einer {\tt 0}
 beginnen'' implementiert werden müsste.
 
-\index{Automat!nicht deterministischer}
-\index{NEA|see{nicht deterministischer endlicher Automat}}
+\index{Automat!nicht deterministischer}%
+\index{NEA|see{nicht deterministischer endlicher Automat}}%
 Nichtdeterminismus erweitert 
 die Definition eines endlichen Automaten, um solche Fälle leichter 
 zugänglich zu machen.
@@ -954,7 +954,7 @@ $(Q,\Sigma,\delta, q_0,F)$ mit
 \item $F\subset Q$ heisst die Menge der Akzeptierzustände.
 \end{compactenum}
 \end{definition}
-\index{$\varepsilon$-Übergänge}
+\index{$\varepsilon$-Übergänge}%
 Übergänge mit $\varepsilon$ als ``Input'' heissen $\varepsilon$-Übergänge.
 Ein NEA kann einen solchen Übergang durchführen ``wann er Lust hat''.
 Wir bezeichnen NEAs mit $\varepsilon$-Übergängen auch als
@@ -972,7 +972,7 @@ Die zweite Bedingung (\ref{deanea2}) bedeutet, dass von jedem Zustand zu
 jedem Zeichen genau ein neuer Zustand möglich ist.
 
 \subsubsection{Gerichteter beschrifteter Graph eines NEA}
-\index{Graph!gerichteter!beschrifteter!eines NEA}
+\index{Graph!gerichteter!beschrifteter!eines NEA}%
 Auch ein NEA kann durch einen gerichteten beschrifteten Graphen
 visualisiert werden.
 Die Vertizes sind die Zustände $V=Q$.
@@ -1070,7 +1070,7 @@ in zwei verschiedene Automaten, die die Teilbarkeit testen:
 \end{beispiel}
 
 \subsection{Erreichbare Zustände\label{regulaer:erreichbarezustaende}}
-\index{erreichbare Zustände}
+\index{erreichbare Zustände}%
 Im Folgenden werden wir berechnen müssen, welche Menge von Zuständen
 durch einen Übergang oder mehrere verkettete Übergänge erreicht werden
 können.
@@ -1189,12 +1189,12 @@ enthalten ist, gibt es eine Kombination von nichtdeterministischen
 Entscheidungen, die zu $q_0$ führen, das Wort {\tt baa} kann also
 akzeptiert werden.
 
-\index{Thompson, Ken}
-\index{Thompson-NEA}
+\index{Thompson, Ken}%
+\index{Thompson-NEA}%
 Diese Implementation eines NEA geht auf Ken Thompson zurück, sie wurde in
 der Regex-Library der achten Edition von Unix von Rob Pike
-\index{Pike, Rob} implementiert, die allerdings nicht sehr weit
-verbreitet war.
+\index{Pike, Rob}%
+implementiert, die allerdings nicht sehr weit verbreitet war.
 Später hat Henry Spencer die Regex-Library neu
 implementiert, allerdings ohne die Thompson-NEA Konstruktion, sondern
 mit Backtracking.
@@ -1560,10 +1560,10 @@ Ein wesentlich schnellerer Algorithmus wurde 2015 von Bonchi und Pous
 gefunden \cite{skript:bonchi-pous}.
 
 \subsection{Mengenoperationen\label{regulaer:mengenoperationen}}
-\index{Mengenoperationen}
-\index{Durchschnitt}
-\index{Vereinigung}
-\index{Differenz}
+\index{Mengenoperationen}%
+\index{Durchschnitt}%
+\index{Vereinigung}%
+\index{Differenz}%
 Sprachen sind Mengen von Wörtern, also sind auch deren Vereinigung,
 Durchschnitt, Differenz usw.~Sprachen.
 Sind die Sprachen regulär,
@@ -1572,7 +1572,7 @@ NEAs erlauben uns sehr elegant zu zeigen, dass Sie diese Operationen
 alle wieder reguläre Sprachen liefern.
 
 \begin{satz}
-\index{Vereinigung}
+\index{Vereinigung}%
 \label{satz_union}
 Sind $L_1$ und $L_2$ reguläre Sprachen, dann
 ist auch $L_1\cup L_2$ regulär.
@@ -1639,7 +1639,7 @@ F&=F_1\cup F_2\\
 \end{proof}
 
 \begin{satz}
-\index{Durchschnitt}
+\index{Durchschnitt}%
 \label{satz_intersection}
 Sind $L_1$ und $L_2$ reguläre Sprachen, dann
 ist auch $L_1\cap L_2$ regulär.
@@ -1672,7 +1672,7 @@ Akzeptierzustände ihrer Automaten sind.
 Akzeptierzustände von $A$ sind also $F=F_1\times F_2$.
 \end{proof}
 
-\index{Produktautomat}
+\index{Produktautomat}%
 Wir nennen diesen mit Hilfe des kartesischen Produktes konstruierten
 Automaten auch den
 {\em kartesischen Produktautomaten}\label{reg_produktautomat}.
@@ -1759,7 +1759,7 @@ Das zugehörige Zustandsdiagramm ist:
 \]
 
 \begin{satz}
-\index{Differenz}
+\index{Differenz}%
 \label{satz_regcomplement}
 Ist $L$ eine reguläre Sprache, dann ist auch $\bar L$ regulär.
 Sind $L_1$ und $L_2$ regulär, dann ist auch $L_1\setminus L_2$
@@ -1798,7 +1798,7 @@ $\Sigma^*$, also nicht das Komplement.
 
 \rhead{Reguläre Ausdrücke}
 \section{Reguläre Ausdrücke\label{regulaer:re}}
-\index{reguläre Ausdrücke}
+\index{reguläre Ausdrücke}%
 Endliche Automaten beschreiben reguläre Sprachen, sind aber für die
 Anwendung eher unhandlich.
 In der Praxis haben sich reguläre Ausdrücke
@@ -1809,7 +1809,7 @@ zu zeigen, dass reguläre Ausdrücke genau gleich ausdrucksstark sind
 wie DEAs.
 
 \subsection{Reguläre Operationen\label{regulaer:regulaere-operationen}}
-\index{reguläre Operationen}
+\index{reguläre Operationen}%
 Wir wissen bereits, dass wir die Mengenoperationen auf reguläre
 Sprachen anwenden dürfen, ohne die Klasse der regulären Sprachen
 zu verlassen.
@@ -1817,7 +1817,7 @@ Es sind jedoch noch zwei weitere Operationen möglich, die ebenfalls
 nicht aus der Klasse herausführen:
 
 \begin{definition}
-\index{Verkettung}
+\index{Verkettung}%
 Seien $L_1$ und $L_2$ Sprachen, dann ist die
 Verkettung von $L_1$ und $L_2$ die Sprache
 \[
@@ -1831,7 +1831,7 @@ L^n&=L^{n-1}L
 \end{definition}
 
 \begin{definition}
-\index{*-Operation@$*$-Operation}
+\index{*-Operation@$*$-Operation}%
 Sei $L$ eine Sprache, dann ist die Stern-Operation
 von $L$ die Sprache
 \[
@@ -1848,7 +1848,7 @@ Die Automaten $A_1$ und $A_2$ müssen wir dabei als ``Black Box'' betrachten,
 wir dürfen daran nichts ändern.
 
 \subsubsection{Automat zu einer Verkettung $L_1L_2$}
-\index{Verkettung}
+\index{Verkettung}%
 Für die Verkettung $L_1L_2$ ist es zum Beispiel
 nicht zulässig, die Akzeptierzustände von
 $A_1$ mit dem Startzustand von $A_2$ zusammenzulegen.
@@ -1917,7 +1917,7 @@ einzelnen Automaten keine neuen akzeptierten Wörter entstehen können.
 Etwas formeller kann man das Resultat im folgenden Satz zusammenfassen.
 
 \begin{satz}
-\index{Verkettung}
+\index{Verkettung}%
 \label{satz_concat}
 Sind $L_1$ und $L_2$ reguläre Sprachen, dann ist auch $L_1L_2$
 regulär.
@@ -1950,7 +1950,7 @@ q_0&=q_{01}\\
 \end{proof}
 
 \subsubsection{Automat zur *-Operation $L^*$}
-\index{*-Operation@$*$-Operation}
+\index{*-Operation@$*$-Operation}%
 Die Stern-Operation verlangt, dass man einen Automaten mehrfach
 durchlaufen können muss.
 Dies könnte man mit einem $\varepsilon$-Übergang
@@ -2008,7 +2008,7 @@ So erhält man den Automaten
 
 Formal kann man das Resultat wie folgt zusammenfassen:
 \begin{satz}
-\index{*-Operation@$*$-Operation}
+\index{*-Operation@$*$-Operation}%
 \label{satz_star}
 Ist $L$ eine reguläre Sprache, dann ist auch $L^*$ regulär.
 \end{satz}
@@ -2069,8 +2069,8 @@ kein ``Kurzschluss'' entstehen, man muss eine Einbahnstrasse aus
 $\varepsilon$-Übergängen verwenden.
 
 \subsubsection{Automat zur Alternative $L_1\cup L_2$}
-\index{Alternative}
-\index{Vereinigung}
+\index{Alternative}%
+\index{Vereinigung}%
 Für die Alternative $L_1\cup L_2$ hatten wir bei der Diskussion
 des Produkt-Automaten schon einen Automaten gefunden, auch
 hierfür lässt sich ein etwas einfacherer Automat im gleichen
@@ -2110,8 +2110,8 @@ Danach werden wir zeigen,
 dass sich jeder DEA in einen regulären Ausdruck umwandeln lässt.
 
 \subsection{Reguläre Ausdrücke\label{regulaer:regulaere-ausdruecke}}
-\index{reguläre Ausdrücke}
-\index{Ausdrücke!reguläre}
+\index{reguläre Ausdrücke}%
+\index{Ausdrücke!reguläre}%
 \begin{table}
 \begin{center}
 \begin{tabular}{|l|l|}
@@ -2127,8 +2127,8 @@ $\emptyset$&steht für die leere Sprache\\
 \hline
 \end{tabular}
 \end{center}
-\index{reguläre Ausdrücke!primitive}
-\index{Ausdrücke!reguläre!primitive}
+\index{reguläre Ausdrücke!primitive}%
+\index{Ausdrücke!reguläre!primitive}%
 \caption{Primitive reguläre Ausdrücke.\label{regtab1}}
 \end{table}
 Reguläre Ausdrücke sind Zeichenketten, die (reguläre) Sprachen
@@ -2150,11 +2150,11 @@ gemäss Tabelle~\ref{regtab2}
 \hline
 &Ausdruck&reguläre Operation\\
 \hline
-\index{Verkettung}
+\index{Verkettung}%
 Verkettung&$r_1r_2$&$L(r_1)L(r_2)$\\
-\index{Alternative}
+\index{Alternative}%
 Alternative&$r_1{\tt |}r_2$&$L(r_1)\cup L(r_2)$\\
-\index{*-Operation@$*$-Operation}
+\index{*-Operation@$*$-Operation}%
 Stern-Operation&$r{\mathstrut^{\tt *}}$&$L(r)^*$\\
 \hline
 \end{tabular}
@@ -2319,7 +2319,7 @@ ein NEA bauen lässt.
 Die Konstruktion hat die Form eines Algorithmus,
 lässt sich also auch mit einem Computer implementieren, sie geht
 auf Ken Thompson zurück.
-\index{Thompson, Ken}
+\index{Thompson, Ken}%
 
 \subsection{Regulärer Ausdruck eines DEA\label{regulaer:dea-re}}
 Zu jedem DEA gibt es einen regulären Ausdruck, der angibt,
@@ -2328,8 +2328,8 @@ In diesem Abschnitt geben
 wir einen Algorithmus an, der einen DEA in einen äquivalenten
 regulären Ausdruck umwandelt.
 
-\index{NEA!verallgemeinerter}
-\index{VNEA}
+\index{NEA!verallgemeinerter}%
+\index{VNEA}%
 Wir verwenden dazu den Begriff eines verallgemeinerten NEA (VNEA),
 dessen Pfeile nicht mehr nur mit Zeichen des Alphabets oder mit
 $\varepsilon$ angeschrieben sei können, sondern mit regulären
@@ -2517,9 +2517,9 @@ akzeptiert wie der ursprüngliche DEA.
 \section{Anhang: Reguläre Ausdrücke in der Praxis\label{regulaer:praxis}}
 \rhead{Regex in der Praxis}
 \subsection{Flex}
-\index{Flex}
-\index{Scanner}
-\index{Scannergenerator}
+\index{Flex}%
+\index{Scanner}%
+\index{Scannergenerator}%
 Flex ist ein Scannergenerator.
 Er verarbeitet eine Spezifikation einer
 Sprache als Menge von regulären Ausdrücken in einen deterministischen 
@@ -2639,8 +2639,8 @@ verstehen, der ein auf den regulären Ausdruck passendes Wort
 akzeptiert.
 
 \subsection{Performance}
-\index{Laufzeit!eines DEA}
-\index{Laufzeit!eines NEA}
+\index{Laufzeit!eines DEA}%
+\index{Laufzeit!eines NEA}%
 Ein DEA hat immer Laufzeit $O(n)$, d.\,h.~ein Regex-Matcher auf der
 Basis eines DEA wird innerhalb einer Zeit proportional zur
 Länge des Inputstrings erkennen, ob ein Inputstring passt.

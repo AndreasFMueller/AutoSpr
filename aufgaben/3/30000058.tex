@@ -1,0 +1,36 @@
+In Google Forms kann man Formulare erstellen. 
+Bei jedem Eingabefeld kann man zur Validierung der Benutzereingabe
+einen regulären Ausdruck angeben.
+Geben Sie in den folgenden Teilaufgaben jeweils einen regulären Ausdruck
+an, der genau die spezifizierten Eingaben akzeptiert.
+\begin{teilaufgaben}
+\item Geburtsjahr: eine vierstellige Zahl zwischen 1900 und 2019.
+\item Telefonnummer: optionale internationale Vorwahl in der Form
+\texttt{+xx}, wobei \text{x} für eine beliebige Ziffer steht,
+gefolgt von mindestens 7 und maximal 10 beliebigen Ziffern,
+zwischen denen beliebig viele Leerzeichen stehen können.
+\item Eine Internet-Email Adresse. Man beachte, dass der Domainname der
+Email-Adresse aus mit Punkten getrennten, nicht leeren Komponenten
+besteht, die nur Buchstaben, Ziffern und Bindestriche enthalten dürfen.
+\end{teilaufgaben}
+
+\thema{reguläre Ausdrücke}
+\thema{regular}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+\texttt{19[0-9][0-9]|20[01][0-9]}
+\item
+\texttt{(+[0-9][0-9])?(\blank*)([0-9]\blank*)\{7,10\}}
+\item
+\texttt{[a-zA-Z0-9\textbackslash.]*@([-a-zA-Z0-9]+\textbackslash.)+[-a-zA-Z0-9]+}
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+In jeder Teilaufgabe ein Punkt für eine Teillösung und ein weiterer Punkt für
+eine vollständige Lösung.
+\end{bewertung}
+

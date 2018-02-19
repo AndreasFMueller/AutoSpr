@@ -1,0 +1,135 @@
+Die Sprache $L$ besteht aus Wörtern über dem Alphabet
+$\Sigma=\{\texttt{0},\texttt{1}\}$ mit folgender Eigenschaft:
+jedes Zeichen \texttt{0} muss unmittelbar von einem Zeichen \texttt{1}
+gefolgt sein.
+
+\thema{Turing-Maschine}
+
+\begin{teilaufgaben}
+%\item
+%Zeichnen Sie das Zustandsdiagramm eines DEA, welcher $L$ akzeptiert.
+\item
+Zeichnen Sie das Zustandsdiagramm einer Turing-Maschine, die $L$ entscheidet.
+\item
+Wörter in $L$ haben immer mindestens soviele Zeichen \texttt{1} wie \texttt{0}.
+Zeichnen Sie das Zustandsdiagramm einer Turing-Maschine, die genau die
+Wörter aus $L$ akzeptiert und ein Wort aus so vielen Zeichen \texttt{1}
+auf dem Band stehen lässt, wie das Inputwort mehr \texttt{1} als \texttt{0}
+hat.
+Es bleibt also das Wort
+$\texttt{1}^{|w|_\texttt{1}-|w|_\texttt{0}}$ auf dem Band stehen
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+8mm {
+*+\txt{}\ar[r]
+	&{q_0} \ar[d]_{\blank\rightarrow\blank,\text{R}}
+		\ar@/_/[r]_{\texttt{0}\rightarrow\texttt{0},\text{R}}
+		\ar@(ur,ul)_{\texttt{1}\to\texttt{1},\text{R}}
+		&{q_1}	\ar@/_/[l]_{\texttt{1}\rightarrow\texttt{1},\text{R}}
+			\ar[d]_{\scriptstyle\texttt{0}\to\texttt{0},\text{R}
+				\atop
+				\scriptstyle\blank\to\blank,\text{R}}
+\\
+*+\txt{}
+	&*++[o][F=]{q_{\text{accept}}}
+		&*++[o][F=]{q_{\text{reject}}}
+}
+\]
+\item
+Wir modifizieren die Turing-Maschine von Teilaufgaben a) wie folgt.
+Immer wenn wir die auf eine \texttt{0} folgende \texttt{1} verarbeiten,
+ersetzen wir sie durch eine \texttt{0}.
+Wenn wir am Ende des Wortes ankommen, stehen dann nur noch so viele 
+\texttt{1} auf dem Band, wie wir am Schluss haben wollen, aber es kann
+dazwischen noch \texttt{0}en haben.
+
+Wir müssen also alle \texttt{1} nach vorne schieben und dann alle \texttt{0}
+löschen.
+Dies kann mit der folgenden Turing-Maschine geschehen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+8mm {
+*+\txt{}\ar[r]
+	&{q_0}	\ar[d]_{\blank\rightarrow\blank,\text{R}}
+		\ar@/_/[r]_{\texttt{0}\rightarrow\texttt{0},\text{R}}
+		\ar@(ur,ul)_{\texttt{1}\to\texttt{1},\text{R}}
+		&{q_1}	\ar@/_/[l]_{\texttt{1}\rightarrow\texttt{\color{red}0},\text{R}}
+			\ar[r]^{\scriptstyle\texttt{0}\to\texttt{0},\text{R}
+				\atop
+				\scriptstyle\blank\to\blank,\text{R}}
+			&*++[o][F=]{q_{\text{reject}}}
+\\
+*+\txt{}
+	&{q_3}	\ar@(dl,ul)^{\scriptstyle \texttt{0}\to\texttt{0},\text{L}
+			\atop
+			\scriptstyle \texttt{1}\to\texttt{1},\text{L}}
+		\ar[d]_{\blank\to\blank,\text{R}}
+		&*+\txt{}
+\\
+*+\txt{}
+	&{q_4} \ar@(dl,ul)^{\texttt{1}\to\texttt{1},\text{R}}
+		\ar[d]_{\blank\to\blank,\text{R}}
+		\ar[r]^{\texttt{0}\to\texttt{0},\text{R}}
+		&{q_5}	\ar[r]^{\texttt{1}\to\texttt{0},\text{L}}
+			\ar@(dl,d)_{\texttt{0}\to\texttt{0},\text{R}}
+			\ar[dr]^{\blank\to\blank,\text{L}}
+			&{q_6}	\ar[r]^{\texttt{0}\to\texttt{1},\text{L}}
+				\ar[uu]_{
+					\scriptstyle\texttt{1}\to\texttt{1},\text{R}
+					\atop
+					\scriptstyle\blank\to\blank,\text{R}
+				}
+				&{q_7}	\ar@/_40pt/[lll]_{\blank\to\blank,\text{R}}
+				\ar@(dr,ur)_{
+					\scriptstyle\texttt{0}\to\texttt{0},\text{L}
+					\atop
+					\scriptstyle\texttt{1}\to\texttt{1},\text{L}
+				}
+\\
+*+\txt{}
+	&*++[o][F=]{q_{\text{accept}}}
+		&*\txt{}
+			&{q_8}	\ar@(dr,ur)_{\texttt{0}\to\blank,\text{L}}
+				\ar[ll]_{\scriptstyle \texttt{1}\to\texttt{1},\text{L}
+					\atop
+					\scriptstyle \blank\to\blank,\text{L}}
+}
+\]
+Im Zustand $q_3$ fährt die Turingmaschine den Schreib-/Lesekopf wieder zurück
+auf den Wortanfang.
+
+Auf der Zeile der Zustände $q_4$ bis $q_7$ werden zunächst jeweils die
+\texttt{1} am Anfang des Wortes überfahren, dann alle \texttt{0} bis zur
+nächsten \texttt{1}, die durch eine \texttt{0} überschrieben wird
+(Übergang von $q_5$ nach $q_6$).
+Die davor stehende Null wird durch eine \texttt{1} ersetzt
+(Übergang von $q_6$ nach $q_7$), die \texttt{1} wird also eine
+Stelle nach links geschoben.
+Dies wird gemacht, bis nach der ersten Null keine \texttt{1} mehr gefunden
+wird, was den Übergang von $q_5$ nach $q_8$ erzwingt.
+
+Im Zustand $q_8$ werden alle \texttt{0} durch \blank{} ersetzt, so dass
+am Schluss nur noch die \texttt{1} auf dem Band stehen bleiben.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item
+Turing-Maschine kann auf \texttt{0} folgende \texttt{1} von anderen
+\texttt{1} unterscheiden ({\bf 1}) 1 Punkt,
+vollständige Turing-Maschine ($\textbf{T}_\text{a}$) 1 Punkt.
+\item
+Funktionierender Lösungsalgorithmus ({\bf L}) 1 Punkt,
+Zusammensammeln der \texttt{1} ({\bf S}) 1 Punkt,
+Löschen der \texttt{0} ({\bf N}) 1 Punkt,
+vollständige Turing-Maschine ($\textbf{T}_\text{b}$) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
+

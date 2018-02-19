@@ -77,7 +77,7 @@ dass die Semantik der Sprache Berechnungen beschreibt,
 wie sie mit einer Turing-Maschine ausgeführt werden können.
 
 \begin{definition}
-\index{Programmiersprache}
+\index{Programmiersprache}%
 Eine Sprache $A$ heisst eine {\em Programmiersprache}, wenn es eine Abbildung
 \[
 c\colon A\to \Sigma^*\colon w\mapsto c(w)
@@ -122,8 +122,8 @@ eines Userinterfaces tut, entsteht aus dem interaktiven Programm eines,
 welches ohne Zutun des Benutzers zur Laufzeit funktionieren kann.
 
 \subsection{Die universelle Turing-Maschine}
-\index{Turing, Alan}
-\index{Turing-Maschine!universelle}
+\index{Turing, Alan}%
+\index{Turing-Maschine!universelle}%
 In seinem Paper von 1936 hat Alan Turing gezeigt, dass man eine
 Turing-Maschine definieren kann,
 der man die Beschreibung
@@ -141,7 +141,7 @@ in der Programmiersprache $A$ zu beschreiben, das Programm mit dem
 Compiler $c$ zu übersetzen, und die Beschreibung mit der universellen
 Turing-Maschine auszuführen.
 
-\index{Church-Turing-Hypothese}
+\index{Church-Turing-Hypothese}%
 Die Church-Turing-Hypothese besagt, dass sich alles, was man berechnen
 kann, auch mit einer Turing-Maschine berechnen lässt. Die universelle
 Turing-Maschine zeigt, dass jede berechenbare Funktion von der
@@ -158,7 +158,7 @@ möglich wären, nicht formulieren. Besonderes interessant sind daher
 die Sprachen, bei denen ein solcher Verlust nicht eintritt.
 
 \begin{definition}
-\index{Turing-vollständig}
+\index{Turing-vollständig}%
 Eine Programmiersprache heisst Turing-vollständig, wenn sich jede
 berechenbare Abbildung in dieser Sprache formulieren lässt.
 Zu jeder berechenbaren Abbildung $f\colon\Sigma^*\to \Sigma^*$ gibt
@@ -172,7 +172,7 @@ ausführen lassen könnte. Dieser Begriff muss noch etwas klarer gefasst
 werden:
 
 \begin{definition}
-\index{Turing-Maschinen-Simulator}
+\index{Turing-Maschinen-Simulator}%
 Ein Turing-Maschinen-Simulator ist eine Turing-Maschine $S$, die als Input
 die Beschreibung $\langle M,w\rangle$ einer Turing-Maschine $M$ und eines
 Input-Wortes für $M$ erhält, und die Berechnung durchführt, die $M$ auf $w$
@@ -197,7 +197,7 @@ in einer dieser Sprachen zu schreiben. In einigen Programmiersprachen
 ist dies jedoch schwieriger als in anderen.
 
 \subsubsection{Javascript}
-\index{Javascript}
+\index{Javascript}%
 Fabrice Bellard hat 2011 einen PC-Emulator in Javascript geschrieben, der
 leistungsfähig genug ist, Linux zu booten. Auf seiner Website
 \url{http://bellard.org/jslinux/} kann man den Emulator im eigenen Browser
@@ -208,7 +208,7 @@ kompilieren kann. Somit gibt es einen Turing-Maschinen-Simulator in
 Javascript, Javascript ist Turing-vollständig.
 
 \subsubsection{XSLT}
-\index{XSLT}
+\index{XSLT}%
 XSLT ist eine XML-basierte Sprache, die Transformationen von XML-Dokumenten
 zu beschreiben erlaubt. XSLT ist jedoch leistungsfähig, eine Turing-Maschine
 zu simulieren. Bob Lyons hat auf seiner Website
@@ -236,8 +236,8 @@ abzulesen ist. Es beweist somit, dass XSLT einen Turing-Maschinen-Simulator
 hat, also Turing-vollständdig ist.
 
 \subsubsection{\LaTeX}
-\index{LaTeX@\LaTeX}
-\index{Knuth, Don}
+\index{LaTeX@\LaTeX}%
+\index{Knuth, Don}%
 Don Knuth, der Autor von \TeX, hat sich lange davor gedrückt, seiner
 Schriftsatz-Sprache auch eine Turing-vollständige Programmiersprache
 zu spendieren. Schliesslich kam er nicht mehr darum herum, und wurde
@@ -306,7 +306,7 @@ Die verschiedenen Sprachen unterschieden sich in den Kontrollstrukturen
 mit denen diese Zuweisungsbefehle miteinander verbunden werden können.
 
 \subsection{LOOP}
-\index{LOOP}
+\index{LOOP}%
 Die Programmiersprache
 LOOP\footnote{Die in diesem Abschnitt beschriebene
 LOOP Sprache darf nicht verwechselt werden mit dem gleichnamigen
@@ -352,7 +352,7 @@ $x_0$ ab:
 \end{algorithmic}
 
 \subsubsection{Beispiel: Produkt zweier Variablen}
-\index{Multiplikation}
+\index{Multiplikation}%
 Die Sprache LOOP ist offenbar relativ primitiv, trotzdem
 ist sie leistungsfähig genug, um die Multiplikation von zwei
 Zahlen, die in den Variablen $x_1$ und $x_2$ übergeben werden,
@@ -447,7 +447,7 @@ kann durch
 nachgebildet werden.
 
 \subsection{GOTO}
-\index{GOTO}
+\index{GOTO}%
 GOTO-Programme bestehen aus einer markierten Folge von Anweisungen
 \begin{center}
 \begin{tabular}{rl}
@@ -677,7 +677,7 @@ Turing-Maschine simulieren kann. Somit ist GOTO und damit auch WHILE
 Turing-vollständig.
 
 \subsection{Esoterische Programmiersprachen}
-\index{Programmiersprache!esoterische}
+\index{Programmiersprache!esoterische}%
 Zur Illustration der Tatsache, dass eine sehr primitive Sprache
 ausreichen kann, um Turing-Vollständigkeit zu erreichen, wurden
 verschiedene esoterische Programmiersprachen erfunden.
@@ -686,7 +686,7 @@ möglichst klar hervorzuheben, die Verwendbarkeit für irgend einen
 praktischen Zweck ist nicht notwendig, und manchmal explizit unerwünscht.
 
 \subsubsection{Brainfuck}
-\index{Brainfuck}
+\index{Brainfuck}%
 Brainfuck
 wurde von Urban Müller 1993 entwickelt mit dem Ziel, dass der
 Compiler für diese Sprache möglichst klein sein sollte. In der
@@ -730,7 +730,7 @@ man WHILE in Brainfuck übersetzen, und hat damit gezeigt, dass
 Brainfuck Turing-vollständig ist.
 
 \subsubsection{Ook}
-\index{Ook}
+\index{Ook}%
 Die Sprache Ook verwendet als syntaktische Element das Wort {\tt Ook} gefolgt
 von `{\tt .}', `{\tt !}' oder `{\tt ?}'. Wer beim Lesen eines Ook-Programmes
 den Eindruck hat, zum Affen gemacht zu werden, liegt nicht ganz falsch:

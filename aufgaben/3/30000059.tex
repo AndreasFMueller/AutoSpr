@@ -1,0 +1,40 @@
+Sei $\Sigma=\{\texttt{1}\}$ und die Sprache $L$ über dem Alphabet $\Sigma$
+bestehe aus Wörtern, deren Länge eine Fakultät ist:
+\[
+L=\{
+a^{k!}\,|\, k\in \mathbb N
+\}.
+\]
+Ist $L$ regulär?
+
+\thema{regulär}
+\thema{Pumping Lemma für reguläre Sprachen}
+
+\begin{loesung}
+Nein, wie man mit dem Pumping-Lemma beweisen kann.
+Dazu nehmen wir an, dass $L$ regulär ist.
+Sei $N$ die Pumping length von $L$ und $k$ die kleinste ganze Zahl
+derart, dass $k!>N$ ist.
+Dann ist das Wort
+\[
+w=\texttt{1}^{k!} \in L.
+\]
+Nach dem Pumping Lemma lässt sich $w$ in drei Teile $w=xyz$ aufteilen
+derart, dass $|y|>0$ und $xy^rz\in L$ für jedes $r$.
+Nun ist aber $|y|\le k!$ und damit $|xy^2z|\le k!\cdot 2 < k!\cdot (k+1) = (k+1)!$, 
+das Wort $xy^2z$ ist also nicht das Wort $\texttt{1}^{k!}$ und ausserdem
+ist es zu kurz,
+um $\texttt{1}^{(k+1)!}$ zu sein, es kann daher nicht in $L$ sein,
+im Widerspruch zur Aussage des Pumping-Lemmas.
+Dieser Widerspruch zeigt, dass $L$ nicht regulär sein kann.
+\end{loesung}
+
+\begin{bewertung}
+Pumping Lemma ({\bf PL}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+Beispielwort ({\bf W}) 1 Punkt,
+Aufteilung ({\bf A}) 1 Punkt,
+Pumpeigenschaft ({\bf P}) 1 Punkt,
+Widerspruch und Schlussfolgerung ({\bf R}) 1 Punkt.
+\end{bewertung}
+
