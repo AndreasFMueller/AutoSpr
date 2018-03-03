@@ -1,9 +1,10 @@
 In dieser Aufgabe geht es um die Frage, ob man binäre Ganzzahlen mit
 Hilfe eines endlichen Automaten auf Gleichheit testen kann.
 Sei $\Sigma=\{\texttt{0},\texttt{1},\texttt{=}\}$. Ist die Sprache
-\[
-L=\{ w\texttt{=}w|w\in \{\texttt{0},\texttt{1}\}^*\}
-\]
+\begin{equation}
+L=\{ w\texttt{=}w\,|\,w\in \{\texttt{0},\texttt{1}\}^*\}
+\label{30000025:ref}
+\end{equation}
 regulär?
 
 \thema{Pumping Lemma für reguläre Sprachen}
@@ -11,13 +12,20 @@ regulär?
 
 \begin{hinweis}
 Bitte beachten Sie die beiden unterschiedlichen Bedeutungen von $=$
-bzw.~\texttt{=}.
+bzw.~\texttt{=} in Formel~\eqref{30000025:def}.
 Das eine ist das mathematische Gleichheitszeichen, das andere ein Symbol
 im Alphabet $\Sigma$.
 Die beiden Zeichen sind zwar in zwei verschiedenen Schriftarten gesetzt,
 die normalerweise Zeichen von Formelsymbolen zu unterscheiden gestatten,
 aber im Falle des Gleichheitszeichens sind die Unterschiede verschwindend
 klein.
+
+Die Gleichung~\eqref{30000025:ref} besagt, dass die Sprache $L$ aus
+Zeichenketten von Nullen, Einsen und Glechheitszeichen besteht, die
+wie folgt strukturiert sind.
+Sie beginnen mit einer Folge von Nullen und Einsen, dann kommt ein
+Gleichheitszeichen.
+Anschliessend wird die Folge von Nullen und Einsen nochmals wiederholt.
 \end{hinweis}
 
 \begin{loesung}
