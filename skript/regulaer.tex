@@ -74,7 +74,7 @@ Eine abstrakte Definition muss die Menge der erlaubten Inputs
 festlegen, wir brauchen also ein Alphabet $\Sigma$.
 Die Zustände bilden eine Menge.
 Ausserdem müssen wir festlegen, in welchem Zustand
-sich der Automat zu Beginn befindet, und wie er auf ein Input-Zeichen
+sich der Automat zu Beginn befindet und wie er auf ein Input-Zeichen
 reagiert.
 Dies wird erreicht durch die folgende Definition
 \begin{definition}
@@ -135,7 +135,7 @@ In diesem Sinne ist der Automat {\em deterministisch}.
 \begin{beispiel}[\bf Drehkreuz]
 Der Drehkreuz-DEA besteht aus den Elementen $Q={V,E}$, $q_0=V$,
 $F=\{V\}$, $\Sigma=\{F,D\}$.
-Die Übergangsfunktion definiert zu jedem Zustand, und jedem möglichen
+Die Übergangsfunktion definiert zu jedem Zustand und jedem möglichen
 Eingabewert, welcher zugehörige Zielwert erreicht wird:
 \begin{center}
 \begin{tabular}{|cc|c|}
@@ -353,7 +353,7 @@ Binärdarstellung akzeptiert.
 Sei also $\Sigma=\{{\tt 0},{\tt 1}\}$,
 $L=\{w\in\Sigma^*\;|\; \text{$w$ stellt eine durch drei teilbare Zahl dar}\}.$
 Dabei soll das leere Wort für als $0$
-interpretiert werden, und damit auch als durch drei teilbar gelten.
+interpretiert werden und damit auch als durch drei teilbar gelten.
 Die Sprache $L$ ist regulär, weil sie
 von folgendem Automaten akzeptiert wird:
 \[
@@ -423,7 +423,7 @@ Wenn eine Sprache regulär ist, dann muss es einen DEA geben, der
 diese Sprache erkennt.
 Doch wie findet man aus der Sprache, also aus der Menge $L$, diesen DEA?
 
-Nehmen wir an, der DEA sei schon bekannt, und versuchen wir
+Nehmen wir an, der DEA sei schon bekannt, und versuchen wir,
 die Zustände zu charakterisieren.
 Befindet sich ein Automat im Zustand $q$, dann kann durch zusätzlichen
 Input $w_e$ ein akzeptables Wort entstehen.
@@ -445,7 +445,7 @@ Q=\{L(w)\;|\;w\in\Sigma^*\}.
 \]
 
 Ein Wort muss offenbar genau dann akzeptiert werden, wenn
-man es ans leere Wort anhängen kann, und damit zu einem Akzeptierzustand
+man es ans leere Wort anhängen kann und damit zu einem Akzeptierzustand
 kommt, also $L=L(\varepsilon)$.
 Dies ist der Anfangszustand des Automaten, also
 \[
@@ -481,7 +481,7 @@ Jetzt müssen wir noch nachweisen, dass ein von $A$ akzeptiertes Wort $w$
 auch in $L$ drin liegt.
 Dass $A$ das Wort $w$ akzeptiert besagt, dass $\varepsilon \in L(w)$.
 Das ist aber gleichbedeutend damit, dass $w\in L$.
-Damit ist alles bewiesen, und wir haben folgenden Satz.
+Damit ist alles bewiesen und wir haben folgenden Satz.
 
 \begin{satz}[Myhill-Nerode]\label{satz_dea_aus_sprache}
 \index{Myhill-Nerode!Satz von}%
@@ -587,7 +587,7 @@ $A$ ermitteln wir zunächst die Sprache $L=L(A)$, für die wir dann
 den Automaten aus Satz \ref{satz_dea_aus_sprache} bilden.
 
 \begin{satz}[Minimalautomat]\label{satz_minimalautomat}
-Sei $A$ ein DEA, und $A'$ der DEA, der nach
+Sei $A$ ein DEA und $A'$ der DEA, der nach
 Satz \ref{satz_dea_aus_sprache} gebildet wurde.
 Dann gibt es eine surjektive Abbildung der Zustände $f\colon Q\to Q'$, so dass
 \begin{compactenum}
@@ -622,7 +622,7 @@ Also ist
 \[
 \delta'(f(q),a)=\delta'(L(w), a)=L(wa)=f(\delta(q,a))
 \]
-\item Sei $q\in F$, und sei $w$ ein Wort, welches den DEA in den Zustand 
+\item Sei $q\in F$ und sei $w$ ein Wort, welches den DEA in den Zustand 
 $q$ führt.
 Dann ist $f(q)=L(w)$, da aber $q$ ein Akzeptierzustand ist,
 ist $\varepsilon\in L(w)$, $f(q)$ ist also ein Akzeptierzustand von
@@ -783,10 +783,10 @@ sagen, dass die erste solche Wiederholung innerhalb der ersten
 $N = |Q|$ Zeichen des Wortes $w$ auftreten muss.
 Sei $x$ das Wort,
 das den Zustand in den ersten wiederholten Zustand $q$ führt.
-Sei $y$ das kürzeste Wort, welches von $q$ wieder zu $q$ führt, und
+Sei $y$ das kürzeste Wort, welches von $q$ wieder zu $q$ führt und
 $z$ der Rest, also $w=xyz$.
 Dann können wir die Schleife $y$
-auch mehrmals wiederholen, und immer ein Wort erhalten welches
+auch mehrmals wiederholen und immer ein Wort erhalten welches
 vom Anfangszustand über den Zustand $q$ (evlt.~mehrmals) zu einem
 Endzustand führt.
 Die Wörter $xy^kz$ werden also alle auch von dem Automaten akzeptiert.
@@ -877,8 +877,7 @@ ist natürlich eine Sprache $L=\{w\in\Sigma^*\;|\;w^t=w\}$.
 
 Wir zeigen jetzt, dass die Menge der Palindrome keine reguläre Sprache ist.
 Dazu verwenden wir das Pumping-Lemma, wir nehmen also an, die Sprache
-sei regulär, und führen dies mit dem Pumping Lemma zu einem
-Widerspruch:
+sei regulär und führen dies mit dem Pumping Lemma zu einem Widerspruch:
 \begin{compactenum}
 \item Das Pumping Lemma verspricht, dass es eine Zahl $N$ gibt, die
 Pumping Length.
@@ -908,7 +907,7 @@ haltbar ist, $L$ ist also nicht regulär.
 \rhead{Nicht deterministische Automaten}
 \section{Nicht deterministische Automaten\label{regulaer:nea}}
 Ein DEA sieht jeweils nur ein Zeichen weit, kann sich nicht an ältere
-Zeichen erinnern, und kann seine früheren Entscheidungen beim Eintreffen
+Zeichen erinnern und kann seine früheren Entscheidungen beim Eintreffen
 neuer Zeichen nicht mehr revidieren.
 Es ist daher nicht unmittelbar klar,
 wie eine Bedingung wie ``wenn ein
@@ -983,7 +982,7 @@ eine mit $a$ beschriftete Kante, wobei $a\in \Sigma\cup\{\varepsilon\}$, $a=\var
 Es ist also durchaus denkbar, dass von einem Zustand $q$ aus für ein
 bestimmtes Eingabezeichen $a$ kein Übergang möglich ist, nämlich
 wenn $\delta(q,a)=\emptyset$.
-Der Automat ``verklemmt'' sich sozusagen in dieser Situation, und ist
+Der Automat ``verklemmt'' sich sozusagen in dieser Situation und ist
 sicher nicht in der Lage, ein Wort, welches
 ihn in diese Situation geführt hat, zu akzeptieren.
 
@@ -993,7 +992,7 @@ ihn in diese Situation geführt hat, zu akzeptieren.
 Im Ganzzahl-Automat führen viele Übergänge zum Zustand $e$, der
 alle fehlerhaften Inputs aufsammelt.
 Wir könnten diesen Zustand einfach
-weglassen, und erhalten folgenden, wesentlich übersichtlicheren NEA:
+weglassen und erhalten folgenden, wesentlich übersichtlicheren NEA:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -1216,7 +1215,7 @@ Ziel dieses Abschnittes ist, dies
 mathematisch streng zu formalisieren.
 
 Ein NEA kann aus zwei Gründen kein DEA sein:
-er kann $\varepsilon$-Übergänge haben, und er kann nicht eindeutige
+er kann $\varepsilon$-Übergänge haben und er kann nicht eindeutige
 oder nicht existierende Übergänge haben, also $|\delta(q,a)|\ne 1$
 für gewisse $q\in Q$ und $a\in\Sigma$.
 Wir transformieren einen 
@@ -1274,7 +1273,7 @@ Diese Menge ist aber die Menge der Zustände, die man durch Anwendung
 von $\delta'$ aus $\{q_0\}$ und den Inputzeichen $a_1,\dots,a_n$ erhalten
 wird.
 Da diese Menge einen Akzeptierzustand enthält, ist sie ein
-Akzeptierzustand von $A'$, und damit $w\in L(A')$.
+Akzeptierzustand von $A'$ und damit $w\in L(A')$.
 
 Sei jetzt umgekehrt $w\in L(A')$.
 Wir schreiben wieder $w=a_1\dots a_n$.
@@ -1432,7 +1431,7 @@ Ursprünglich war der Startzustand $q_{001}$.
 Da aus dem Startzustand
 des NEA mittels $\varepsilon$-Übergang auch der Zustand $q_2$
 erreichbar ist, muss der Anfangszustand des DEA um diesen Zustand
-erweitert werden, und ist jetzt $q_{101}$:
+erweitert werden und ist jetzt $q_{101}$:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -1769,7 +1768,7 @@ regulär.
 \begin{proof}[Beweis]
 Da $L$ regulär ist, gibt es einen DEA, welcher $L=L(A)$ erfüllt.
 Wir ersetzen in diesem DEA die Menge $F$ der Akzeptierzustände
-durch $Q\setminus F$, und erhalten einen neuen DEA $A'$.
+durch $Q\setminus F$ und erhalten einen neuen DEA $A'$.
 Dieser neue DEA akzeptiert genau diejenigen Wörter, die $A$ nicht
 akzeptiert hat, also $L(A')=\overline{L(A)}$.
 Somit ist $\bar L=L(A')$ regulär.
@@ -2016,11 +2015,11 @@ Ist $L$ eine reguläre Sprache, dann ist auch $L^*$ regulär.
 Zum Beweis reicht es nicht, den Satz \ref{satz_concat} zu verwenden
 um zu zeigen, dass $L^n$ regulär ist, und dann aus wiederholter
 Anwendung Satz \ref{satz_union} zu schliessen zu versuchen,
-dass die Vereinigung aller $L^n$ auch sei soll.
+dass die Vereinigung aller $L^n$ auch regulär sei.
 Da dies eine unendliche
 Vereinigung ist, würde nach der Konstruktion im Beweis von Satz
 \ref{satz_union} ein Automat mit unendlich vielen
-Zuständen entstehen, also kein NEA.
+Zuständen entstehen, also keinen NEA.
 
 \begin{proof}[Beweis]
 Aus dem Automaten
@@ -2298,7 +2297,7 @@ darin, den Akzeptierzustand ans Ende des Automaten zu verschieben:
 }
 \]
 Alternativ könnte man auch einfach den NEA für die Verkettung
-nehmen, und keinen neuen Startzustand hinzufügen.
+nehmen und keinen neuen Startzustand hinzufügen.
 Bei der
 *-Konstruktion wurde das ja gemacht, um auch das leere Wort
 akzeptieren zu können, was bei der {\tt +}-Operation nicht
@@ -2335,7 +2334,7 @@ dessen Pfeile nicht mehr nur mit Zeichen des Alphabets oder mit
 $\varepsilon$ angeschrieben sei können, sondern mit regulären
 Ausdrücken.
 Dann wandelt man einen DEA zunächst um in einen
-VNEA, und reduziert ihn dann auf einen VNEA mit nur zwei Zuständen,
+VNEA und reduziert ihn dann auf einen VNEA mit nur zwei Zuständen,
 einem Startzustand und einem Akzeptierzustand:
 \[
 \entrymodifiers={++[o][F]}
@@ -2648,7 +2647,7 @@ Die einfachste Implementation eines NEA hingegen wird alle Möglichkeiten
 von nicht eindeutigen Übergängen durchprobieren müssen, mit
 möglicherweise exponentieller Laufzeit.
 Normalerweise sind in der
-Praxis eingesetzte reguläre Ausdrücke klein, und die untersuchten
+Praxis eingesetzte reguläre Ausdrücke klein und die untersuchten
 Strings sind ebenfalls nicht allzu gross.
 Man kann allerdings auch
 Ausdrücke konstruieren, die den Unterschied zwischen DEA und simplistischer
@@ -2788,14 +2787,14 @@ dem oben vorgeschlagenen DEA.
 
 \begin{sloppypar} % To prevent "java.lang.string" from overflowing
 Nicht alle Implementationen verwenden jedoch diese Theorie.
-Die Regex-Funktionen in der C-Library verwenden dies, und sind entsprechend
+Die Regex-Funktionen in der C-Library verwenden dies und sind entsprechend
 schnell.
 Alle Unix-Tools, die auf dieser Bibliothek basieren, sind
 entsprechend schnell.
 Perl hat seine eigene erweiterte Regex-Library,
-verwendet keinen DEA, und ist langsam.
+verwendet keinen DEA und ist langsam.
 Ebenfalls langsam ist die
-die Implementation der {\tt matches} Methode in {\tt java.lang.String}.
+Implementation der {\tt matches} Methode in {\tt java.lang.String}.
 Man würde hoffen, dass wenigstens das Package {\tt java.util.regex} einen
 besseren Regex-Matcher beinhalten würde.
 Leider wurde da nur am Interface herumgebastelt, nicht an der Substanz.
