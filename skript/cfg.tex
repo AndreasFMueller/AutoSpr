@@ -1359,8 +1359,8 @@ genommen.
 \begin{gathered}
 \entrymodifiers={++[o][F]}
 \xymatrix{
-{p}\ar[d]\ar[r]^{a,\varepsilon\to t}
-	&{r}\ar[d]
+{p}      \ar[r]^{a,\varepsilon\to t} \ar[d]_{A_{pq}}
+	&{r}\ar[d]^{A_{rs}}
 \\
 {q}
 	&{s}\ar[l]^{b,t\to\varepsilon}
@@ -1376,10 +1376,10 @@ $A_{pq}\to A_{pr}A_{rq}$ hinzu.
 \begin{gathered}
 \entrymodifiers={++[o][F]}
 \xymatrix{
-{p}\ar[dr]\ar[dd]
+{p}\ar[dr]^{A_{pr}}\ar[dd]_{A_{pq}}
 \\
 *+\txt{}
-	&{r}\ar[dl]
+	&{r}\ar[dl]^{A_{rq}}
 \\
 {q}
 }
@@ -1393,7 +1393,7 @@ hinzu:
 \entrymodifiers={++[o][F]}
 \xymatrix{
 *+\txt{}
-	&{p}
+	&{p} \ar@(ur,dr)^{A_{pp}}
 }
 \end{gathered}
 \qquad\rightsquigarrow\qquad
