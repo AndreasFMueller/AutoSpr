@@ -1,0 +1,77 @@
+Sei $\Sigma=\{ \texttt{a}, \texttt{b}, \texttt{c}\}$.
+Kann ein Stackautomat die Sprache
+\[
+L=
+\{
+w\in\Sigma^*
+\;|\;
+|w|_{\texttt{a}}
+\cdot
+|w|_{\texttt{b}}
+=
+|w|_{\texttt{c}}
+\}
+\]
+erkennen?
+
+\begin{hinweis}
+Verwenden Sie ein Wort der Form
+$ \texttt{a}^N \texttt{b}^N \texttt{c}^{N^2}$
+\end{hinweis}
+
+\thema{kontextfrei}
+\thema{Pumping Lemma für kontextfreie Sprachen}
+
+\begin{loesung}
+Dies ist nicht möglich, wie man mit dem Pumping Lemma für kontextfreie
+Sprachen zeigen kann.
+Dazu nehmen wir an, dass die Sprache $L$ kontextfrei ist.
+Die Pumping length sei $N$.
+Wir verwenden das Wort
+\[
+w = \texttt{a}^N\texttt{b}^N\texttt{c}^{N^2}.
+\]
+Nach dem Pumping-Lemma gibt es eine Aufteilung des Wortes $w$ in fünf
+Teile $w=uvwxy$ mit $|vwx| \le N$ derart, dass alle gepumptent
+Wörter $uv^kwx^ky$ ebenfalls in $L$ sind.
+Wegen der Bedingung $|vwx|\le N$ kann $vwx$ höchstens zwei verschiedene
+Arten von Zeichen enthalten.
+Somit gibt es zwei mögliche Fälle:
+\begin{enumerate}
+\item
+$vwx$ enthält nur die Zeichen \texttt{a} und \texttt{b}.
+Dann ändert beim Pumpen die Anzahl der \texttt{a} und \texttt{b} ohne
+dass sich die Anzahl der \texttt{c} ändert, das gepumpte Wort wird daher
+nicht mehr in $L$ sein.
+\item
+$vwx$ enthält nur die Zeichen \texttt{b} und \texttt{c}.
+Beim Pumpen ändert die Zahl der \texttt{b} und \texttt{c}, das allein
+steht aber noch nicht im Widerspruch zur Definition von $L$.
+Ändert die Anzahl der \texttt{b} um eins, dann müssen im \texttt{c}-Teil
+genau $N$ neue \texttt{c} hinzukommen, damit die Regel
+$
+|w|_{\texttt{a}}
+\cdot
+|w|_{\texttt{b}}
+=
+|w|_{\texttt{c}}
+$
+immer noch erfüllt ist.
+Dazu müsste der Teil $x$ aber mindestens $N$ Zeichen enthalten, 
+also wäre $|vwx|\ge N+1$, was nicht sein darf.
+\end{enumerate}
+Es ist also nicht möglich, das Wort $w$ aufzupumpen, im Widerspruch
+zur Aussage des Pumping Lemma.
+Dieser Widerspruch zeigt, dass die Anahme, $L$ sei kontextfrei, zu verwerfen
+ist.
+\end{loesung}
+
+\begin{bewertung}
+Pumping-Lemma ({\bf PL}) 1 Punkt,
+Pumping length ({\bf N}) 1 Punkt,
+Beispielwort ({\bf W}) 1 Punkt,
+Zerlegung ({\bf Z}) 1 Punkt,
+Pumpeigenschaft ({\bf P}) 1 Punkt,
+Widerspruch ({\bf X}) 1 Punkt.
+\end{bewertung}
+

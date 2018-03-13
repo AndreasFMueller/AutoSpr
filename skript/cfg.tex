@@ -18,8 +18,8 @@ das ist in einem DEA nicht möglich. Dazu ist als Erweiterung
 eine Art von Speicher nötig. In diesem Kapitel betrachten
 wir Automaten, die mit einem Stack ausgestattet worden sind.
 
-\index{Stack}
-\index{Stackautomat}
+\index{Stack}%
+\index{Stackautomat}%
 Auch reguläre Ausdrücke sind nicht dazu geeigneet, die Schachtelung
 von Klammern auszudrücken. Daher brauchen wir auch für die
 regulären Ausdrücke eine Alternative, dies werden die kontextfreien
@@ -28,7 +28,7 @@ akzeptierten Sprachen auch mit einer kontextfreien Grammatik erzeugt
 werden können, wir haben also eine ähnliche Situation wie
 bei DEAs und regulären Ausdrücken. So entsteht die neue
 Kategorie der kontextfreien Sprachen.
-\index{Sprache!kontextfreie}
+\index{Sprache!kontextfreie}%
 Natürlich werden auch kontextfreie Sprachen nicht alles
 abdecken, so dass wir wieder ein Kriterium brauchen, mit dem
 man entscheiden kann, ob eine Sprache kontextfrei ist. Wir
@@ -45,11 +45,11 @@ Der Fokus liegt also auf der Analyse des Strings, und genau dies
 macht das Überprüfen der korrekten Schachtelung von Klammern
 schwierig. 
 
-\index{Ausdr\ücke!arithmetische}
+\index{Ausdr\ücke!arithmetische}%
 Für Klammern ist man sich jedoch meistens eine andere Vorgehensweise
 gewohnt. Wenn man arithmetische Ausdrücke aufbaut, sagt man zum
 Beispiel: ``Wenn man die Summe $a+b$ mit $c$ multiplizeren will,
-dann {\bf muss man $a+b$ in Klammern setzen}''.
+dann {\em muss man $a+b$ in Klammern setzen}''.
 Klammern werden also immer paarweise gesetzt, und man baut den
 Ausdruck sozusagen von innen nach aussen auf.
 
@@ -86,12 +86,12 @@ können nicht weiter ersetzt werden, sie heissen Terminalsymbole.
 Damit sind wir bereit für die formale Definition einer kontextfreien
 Grammatik.
 \begin{definition}
-\index{Grammatik!kontextfreie}
+\index{Grammatik!kontextfreie}%
 Eine kontextfreie Grammatik ist ein Quadrupel $(V,\Sigma,R,S)$ mit
 \begin{compactenum}
-\index{Variable}
+\index{Variable}%
 \item $V$ ist eine endliche Menge von Variablen.
-\index{Terminalsymbol}
+\index{Terminalsymbol}%
 \item $\Sigma$ ist eine endliche Menge von Zeichen, disjunkt zu $V$,
 auch genannt die Terminalsymbole.
 \item $R$ ist eine Menge von Regeln, eine Regel besteht aus einer
@@ -99,9 +99,9 @@ Variable und einer Kette von Variablen und Terminalsymbolen, geschrieben
 in der Form $A\to BC{\tt x}$, wobei rechts eine beliebige Folge von
 Variablen (in diesem Fall $A$ und $B$) und Terminalsymbolen (in diesem Fall
 \texttt{x}) stehen kann.
-\index{Regel!einer kontextfreien Grammatik}
+\index{Regel!einer kontextfreien Grammatik}%
 \item $S\in V$ ist die Startvariable.
-\index{Startvariable}
+\index{Startvariable}%
 \end{compactenum}
 \end{definition}
 Im Beispiel ist $V=\{A\}$, $\Sigma=\{{\tt (},{\tt )}\}$, $S=A$ und
@@ -124,7 +124,7 @@ Form
 {\tt a}A\to AA, \qquad {\tt bA}\to BB,
 \]
 sogenannte kontextsensitive Regeln,
-\index{kontextsensitiv}
+\index{kontextsensitiv}%
 würden dagegen ausdrücken, dass die Umwandlung der Variablen $A$
 unterschiedlich zu erfolgen hat, wenn ihr verschiedene Zeichen
 vorangehen. In diesem Fall käme es auf den Kontext an. Solche
@@ -138,8 +138,8 @@ eine Kette von Terminalsymbolen da. Dies wollen wir wie folgt
 formalisieren.
 
 \begin{definition}
-\index{Regel!erzeugtes Wort}
-\index{Ableitung}
+\index{Regel!erzeugtes Wort}%
+\index{Ableitung}%
 Falls $A\to w$ eine Regel einer Grammatik $G$ ist, sagt man
 dass die Regel aus $uAv$ den String $uwv$ erzeugt,
 geschrieben $uAv\Rightarrow uwv$. Man sagt, $v$ lässt sich aus
@@ -169,7 +169,7 @@ Die Reihenfolge der Regelanwendung ist nicht eindeutig.
 \end{beispiel}
 
 \begin{definition}
-\index{Sprache!von einer CFG erzeugte}
+\index{Sprache!von einer CFG erzeugte}%
 Die Menge aller Wörter, die von einer kontextfreien Grammatik 
 $G$ erzeugt werden können wir mit
 \[
@@ -219,8 +219,8 @@ solche ist ja eine \textsl{ziffer}, und eine \textsl{zahl} kann auch eine
 einzelne Ziffer sein.
 
 \subsubsection{Einfache arithmetische Ausdrücke}
-\index{Ausdr\ücke!arithmetische}
-\index{expression-term-factor Grammatik}
+\index{Ausdr\ücke!arithmetische}%
+\index{expression-term-factor Grammatik}%
 Auch arithemtische Ausdrücke können mit einer
 Grammatik erzeugt werden. Da die Zahl der Variablen schnell grösser
 wird, werden wir im Folgenden auch länger Variablennamen zulassen.
@@ -259,7 +259,7 @@ die die Sprache erzeugt.
 
 \begin{satz}[Vereinigung]
 \label{satz:cfg-union}
-\index{Vereinigung}
+\index{Vereinigung}%
 Seien $L_1$ und $L_2$ kontextfreie Sprachen über $\Sigma$,
 dann ist auch $L_1\cup L_2$ kontextfrei.
 \end{satz}
@@ -289,7 +289,7 @@ angewendet werden, weil $V_1\cap V_2=\emptyset$.
 
 \begin{satz}[Verkettung]
 \label{satz:cfg-verkettung}
-\index{Verkettung}
+\index{Verkettung}%
 Sind $L_1$ und $L_2$ kontextfreie Sprachen, dann ist auch $L_1L_2$
 kontextfrei.
 \end{satz}
@@ -306,7 +306,7 @@ die Sprache $L_1L_2$.
 \end{proof}
 
 \begin{satz}[$*$-Operation]
-\index{*-Operation@$*$-Operation}
+\index{*-Operation@$*$-Operation}%
 \label{satz:cfg-star}
 Ist $L$ kontextfrei, dann auch $L^*$.
 \end{satz}
@@ -361,11 +361,11 @@ die regulären Sprachen diejenigen kontextfreien Sprachen sind,
 für deren Analyse der Stack gar nicht benötigt wird.
 
 \subsection{Parse Tree}
-\index{parse tree}
-\index{Ableitungsbaum}
+\index{parse tree}%
+\index{Ableitungsbaum}%
 Der Ableitungsbaum eines Wortes einer kontextfreien Sprache
 ist eine Darstellung der verwendeten Produktionsregeln in Baum-Struktur.
-\index{Ausdr\ücke!arithmetische}
+\index{Ausdr\ücke!arithmetische}%
 Die Grammatik für arithmetische Ausdrücke produziert zum Beispiel
 den Ausdruck {\tt 7 * (3 + 5)}.
 Die dabei verwendeten Regeln können in Baumform wie in
@@ -453,7 +453,7 @@ rechten Teil. Zwei Ableitungen können daher als gleich angesehen
 werden, wenn sich die Ableitungsbäume nicht unterscheiden.
 
 \begin{definition}
-\index{Aquivalenz@Äquivalenz!von Ableitungen}
+\index{Aquivalenz@Äquivalenz!von Ableitungen}%
 Zwei Ableitungen eines Wortes $w$ einer kontextfreien Sprache $L(G)$
 heissen äquivalent, wenn sie den gleichen Ableitungsbaum haben.
 Hat eine Sprache Wörter mit verschiedenen Ableitungen, heisst
@@ -462,7 +462,7 @@ sie mehrdeutig (engl.~ambiguous).
 
 Von besonderem praktischem Interesse sind Grammatiken, in denen
 Ableitungen immer eindeutig sind. Die
-\index{expression-term-factor Grammatik}
+\index{expression-term-factor Grammatik}%
 {\tt expression}-{\tt term}-{\tt factor}-Grammatik für einfache
 arithmetische Ausdrücke erfüllt diese Bedingung. 
 Ein Beispiel für eine zweideutige Grammatik ist
@@ -512,7 +512,7 @@ zu können. Eine ähnliche Normalform wünscht man sich auch für
 Grammatiken, und definiert daher:
 \begin{definition}
 \label{definition:cnf}
-\index{Chomsky Normalform}
+\index{Chomsky Normalform}%
 Eine kontextfreie Grammatik  ist in Chomsky Normalform, wenn
 jede Regel von der Form
 \begin{align*}
@@ -542,8 +542,8 @@ entsprechen:
 Regel vorkommen.
 \item Eine $\varepsilon$-Regel $A\to\varepsilon$ mit einer Variablen
 $A$, die nicht die Startvariable ist.
-\index{unit rule}
-\index{Einheits-Regeln}
+\index{unit rule}%
+\index{Einheits-Regeln}%
 \item Regeln der Form $A\to B$, sogenannte unit rules oder Einheits-Regeln.
 \item Regeln der Form $A\to u_1u_2\dots u_n$, mit $n>2$, wobei
 die $u_i$ sowohl andere Variablen wie auch Terminalsymbole sein 
@@ -823,9 +823,9 @@ diesen Algorithmus.
 
 
 \begin{satz}[Cocke-Younger-Kasami]
-\index{Algorithmus!Cocke-Younger-Kasami}
-\index{Algorithmus!CYK|see{Cocke-Younger-Kasami}}
-\index{Cocke-Younger-Kasami}
+\index{Algorithmus!Cocke-Younger-Kasami}%
+\index{Algorithmus!CYK|see{Cocke-Younger-Kasami}}%
+\index{Cocke-Younger-Kasami}%
 \label{cyk-algorithm}
 Es gibt einen deterministischen Algorithmus mit Komplexität
 $O(|w|^3)$, welcher entscheidet, ob $w\in L(G)$.
@@ -842,7 +842,7 @@ Wir verzichten jedoch auf eine detaillierte Durchführung dieses
 Beweises.
 
 \section{Stackautomaten}
-\index{Stackautomat}
+\index{Stackautomat}%
 \rhead{Stackautomaten}
 Kontextfreie Grammatiken erzeugen Sprachen, die von einem DEA nicht
 akzeptiert werden können. Es ist also eine erweiterte Maschine
@@ -867,23 +867,23 @@ nicht enthält, dann setzen wir
 \end{definition}
 
 \begin{definition}
-\index{Stackautomat}
-\index{Pushdown-Automat|see{Stackautomat}}
+\index{Stackautomat}%
+\index{Pushdown-Automat|see{Stackautomat}}%
 Ein Stackautomat ist ein $6$-Tupel $(Q,\Sigma,\Gamma,\delta,q_0,F)$
 mit endlichen Mengen $Q$, $\Sigma$, $\Gamma$ und $F$ und folgenden
 Bezeichungen und Einschränkungen
 \begin{enumerate}
-\index{Zustand}
+\index{Zustand}%
 \item Die Elemente von $Q$ heissen Zustände.
-\index{Eingabe-Alphabet}
+\index{Eingabe-Alphabet}%
 \item $\Sigma$ ist das Eingabe-Alphabet
-\index{Stack-Alphabet}
+\index{Stack-Alphabet}%
 \item $\Gamma$ ist das Stack-Alphabet
 \item $\delta\colon Q\times \Sigma_\varepsilon\times\Gamma_\varepsilon
 \to P(Q\times\Gamma_\varepsilon)$ heisst Übergangsfunktion
-\index{Startzustand}
+\index{Startzustand}%
 \item $q_0\in Q$ heisst Startzustand
-\index{Akzeptierzustand}
+\index{Akzeptierzustand}%
 \item $F\subset Q$ heisst Menge der Akzeptierzustände.
 \end{enumerate}
 \end{definition}
@@ -907,7 +907,7 @@ Automaten gelegt haben, definieren wir Stackautomaten nur
 
 \subsection{Gerichteter beschrifteter Graph}
 % XXX Idee: Zu den Stack-Operationen Bilder hinzufuegen
-\index{Graph!gerichteter!beschrifteter!eines Stackautomaten}
+\index{Graph!gerichteter!beschrifteter!eines Stackautomaten}%
 Auch zu einem Stackautomaten gibt es einen gerichteten beschrifteten
 Graphen. Die Übergangsfunktion legt jetzt zu jedem Zustand 
 fest, was für ein Zeichen verarbeitet wird, was für ein
@@ -1359,8 +1359,8 @@ genommen.
 \begin{gathered}
 \entrymodifiers={++[o][F]}
 \xymatrix{
-{p}\ar[d]\ar[r]^{a,\varepsilon\to t}
-	&{r}\ar[d]
+{p}      \ar[r]^{a,\varepsilon\to t} \ar[d]_{A_{pq}}
+	&{r}\ar[d]^{A_{rs}}
 \\
 {q}
 	&{s}\ar[l]^{b,t\to\varepsilon}
@@ -1376,10 +1376,10 @@ $A_{pq}\to A_{pr}A_{rq}$ hinzu.
 \begin{gathered}
 \entrymodifiers={++[o][F]}
 \xymatrix{
-{p}\ar[dr]\ar[dd]
+{p}\ar[dr]^{A_{pr}}\ar[dd]_{A_{pq}}
 \\
 *+\txt{}
-	&{r}\ar[dl]
+	&{r}\ar[dl]^{A_{rq}}
 \\
 {q}
 }
@@ -1393,7 +1393,7 @@ hinzu:
 \entrymodifiers={++[o][F]}
 \xymatrix{
 *+\txt{}
-	&{p}
+	&{p} \ar@(ur,dr)^{A_{pp}}
 }
 \end{gathered}
 \qquad\rightsquigarrow\qquad
@@ -1488,7 +1488,7 @@ p\ar[r]^{a,\varepsilon\to t}
 \]
 Die Berechnung, die $P$ von $r$ in $s$ überführt, ist kürzer, und kann
 mit leerem Stack durchgeführt werden.
-Also ist sie nach Induktionsannahme der Teil $y$ in $x=ayb$ aus ableitbar 
+Also ist sie nach Induktionsannahme der Teil $y$ in $x=ayb$ aus
 $A_{rs}$ ableitbar.
 
 Im zweiten Fall zerfällt die Berechnung, in der $x$ $P$ von $p$ in
@@ -1590,7 +1590,7 @@ in diesem Abschnitt soll gezeigt werden, dass $L$ nicht kontextfrei
 ist. 
 
 \subsection{Pumping Lemma für kontextfreie Sprachen}
-\index{Pumping Lemma!f\ür kontextfreie Sprachen}
+\index{Pumping Lemma!f\ür kontextfreie Sprachen}%
 Bei regulären Sprachen ermöglicht das Pumping-Lemma den einfachen
 Beweis, dass eine Sprache nicht regulär ist. Die Grundidee dabei ist,
 dass sich in einem endlichen Automaten früher oder später ein
@@ -1653,8 +1653,8 @@ abgeleitet werden können, also zu $L(G)$ gehören (Abbildung~\ref{cfg-tree-2}).
 Damit haben wir folgenden Satz bewiesen:
 
 \begin{satz}[Pumping Lemma für kontextfreie Sprachen]
-\index{Pumping Lemma!f\ür kontextfreie Sprachen}
-\index{pumping length!f\ür kontextfreie Sprachen}
+\index{Pumping Lemma!f\ür kontextfreie Sprachen}%
+\index{pumping length!f\ür kontextfreie Sprachen}%
 Sei $L$ eine kontextfreie Sprache, dann gibt es ein Zahl $N$, die pumping
 length, so dass jedes Wort $w\in L$ mit $|w|\ge N$ zerlegt werden
 kann in fünf Teile $w=uvxyz$

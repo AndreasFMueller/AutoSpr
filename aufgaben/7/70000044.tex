@@ -1,0 +1,43 @@
+Eine Zeitschrift für Alpinisten möchte eine Artikelserie über selten bestiegene
+Berggipfel veröffentlichen.
+Sie hat bereits eine Liste von Gipfeln zusammengestellt
+und bittet jetzt einen Alpinistenverein um eine Liste von
+Alpinisten als mögliche Interviewpartner, die über ihre Erfahrung
+beim Besteigen dieser Gipfel berichten können.
+Um Mehrspurigkeiten aus dem Weg zu gehen, soll
+kein Alpinist auf der Liste mehr als einen der aufgelisteten Gipfel
+bestiegen haben.
+Dem Verein fällt es sehr schwer, eine solche Liste zusammenzustellen,
+woran könnte das liegen?
+
+\thema{NP-vollständig}
+
+\begin{loesung}
+Dies ist das Problem {\em HITTING-SET}.
+Die Liste der Gipfel ist die Menge $I$.
+Die Menge $S_i$ besteht aus allen Vereinsmitgliedern, die den Gipfel
+$i$ bestiegen haben.
+\begin{align*}
+\text{Liste der Gipfel}&\leftrightarrow I
+\\
+\text{Besteiger von Gipfel $i$}&\leftrightarrow S_i
+\\
+\text{Alle in Frage kommenden Mitglieder}&\leftrightarrow S = \bigcup_{i\in I}S_i
+\\
+\text{Ausgewählte Besteiger}&\leftrightarrow H
+\end{align*}
+Gesucht wird eine Menge $H$ von Mitgliedern, so dass $|H\cap S_i|=1$.
+
+Da {\em HITTING-SET}  NP-vollständig ist, müssen wir nach aktuellem
+Wissen davon ausgehen, dass es keinen polynomiellen Algorithnus zur
+Lösung des Problems gibt.
+\end{loesung}
+
+\begin{bewertung}
+Reduktionsmethode ({\bf R}) 1 Punkt,
+Vergleichsproblem ({\bf V}) 1 Punkt,
+eins zu eins Mapping ({\bf M}) 2 Punkte,
+Vergleichsproblem ist NP-vollständig ({\bf N}) 1 Punkt,
+Schlussfolgerung ({\bf S} 1 Punkt.
+\end{bewertung}
+

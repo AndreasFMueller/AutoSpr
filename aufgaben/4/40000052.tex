@@ -1,0 +1,184 @@
+Für die Sprache der korrekt geschachtelten Klammerausdrücke wurde in der
+Vorlesung die Grammatik
+\begin{equation}
+\begin{aligned}
+S\rightarrow
+\texttt{(}S\texttt{)}
+\;|\;
+SS
+\;|\;
+\varepsilon
+\label{40000052:grammar1}
+\end{aligned}
+\end{equation}
+gefunden, die sich jedoch als nicht
+eindeutig herausgestellt hat, das Wort \texttt{()} hat zum Beispiel die
+beiden völlig verschiedenen Parse-Trees
+\[
+\xymatrix{
+	&S \ar[dl] \ar[dr]
+		&
+			&
+				&
+					&
+						&
+							&S\ar[dl] \ar[dr]
+\\
+S\ar[d]
+	&
+		&S\ar[dl] \ar[d] \ar[dr]
+			&
+				&
+					&
+						&S\ar[dl] \ar[d] \ar[dr]
+							&
+								&S\ar[d]
+\\
+\varepsilon
+	&\texttt{(}\ar[d]
+		&S\ar[d]
+			&\texttt{)}\ar[d]
+				&
+					&\texttt{(}\ar[d]
+						&S\ar[d]
+							&\texttt{)}\ar[d]
+								&\varepsilon
+\\
+	&\texttt{(}
+		&
+			&\texttt{)}
+				&
+					&\texttt{(}
+						&
+							&\texttt{)}
+								&
+}
+\]
+
+
+Betrachten Sie die Grammatik
+\begin{equation}
+\begin{aligned}
+S&\rightarrow \texttt{(} S \texttt{)} S
+\\
+&\rightarrow \varepsilon
+\end{aligned}
+\label{40000052:grammar2}
+\end{equation}
+\begin{teilaufgaben}
+\item Finden Sie den Parse Tree von \texttt{()} in der Grammatik
+\eqref{40000052:grammar2}.
+\item Ist die Grammatik \eqref{40000052:grammar2} eindeutig?
+\item Finden Sie die Chomsky-Normalform dieser Grammatik.
+\end{teilaufgaben}
+
+\thema{Grammatik}
+\thema{Parse Tree}
+\thema{eindeutiger Parse Tree}
+\thema{Chomsky Normalform}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item Der Parse Tree ist
+\[
+\xymatrix{
+	&S \ar[dl] \ar[d] \ar[dr] \ar[drr]
+		&
+			&
+\\
+\texttt{(}\ar[d]
+	&S\ar[d]
+		&\texttt{)}\ar[d]
+			&S\ar[d]
+\\
+\texttt{(}
+	&\varepsilon
+		&\texttt{)}
+			&\varepsilon
+}
+\]
+\item Die Grammatik ist eindeutig, weil für jede öffnende Klammer die erste 
+Regel genau einmal angewendet werden muss. 
+Die Grammatik
+\eqref{40000052:grammar1} dagegen lässt immer die Option offen, die
+Regel $S\to SS$ anzuwenden, was zur Zweideutigkeit führt.
+\item Zunächst muss sichergestellt werden, dass die Startvariable auf
+der rechten Seite nicht vorkommt:
+\begin{align*}
+S_0&\rightarrow S
+\\
+S&\rightarrow \texttt{(} S \texttt{)} S \;|\; \varepsilon
+\end{align*}
+Jetzt müssen $\varepsilon$-Regeln entfernt werden:
+\begin{align*}
+S_0&\rightarrow
+S
+\;|\;
+\varepsilon
+\\
+S&\rightarrow
+\texttt{(} S \texttt{)} S \;|\;
+\texttt{(}  \texttt{)} S \;|\;
+\texttt{(} S \texttt{)}  \;|\;
+\texttt{(}  \texttt{)} 
+\end{align*}
+Jetzt müssen Unit-Rules entfernt werden:
+\begin{align*}
+S_0&\rightarrow
+\texttt{(} S \texttt{)} S \;|\;
+\texttt{(}  \texttt{)} S \;|\;
+\texttt{(} S \texttt{)}  \;|\;
+\texttt{(}  \texttt{)} 
+\;|\;
+\varepsilon
+\\
+S&\rightarrow
+\texttt{(} S \texttt{)} S \;|\;
+\texttt{(}  \texttt{)} S \;|\;
+\texttt{(} S \texttt{)}  \;|\;
+\texttt{(}  \texttt{)} 
+\end{align*}
+Jetzt müssen nur noch die verbleibenden Sequenzen aufgeteilt werden:
+\begin{align*}
+S_0&\rightarrow
+AX \;|\;
+AY \;|\;
+AZ  \;|\;
+AB 
+\;|\;
+\varepsilon
+\\
+S&\rightarrow
+AX \;|\;
+AY \;|\;
+AZ  \;|\;
+AB 
+\\
+A&\rightarrow \texttt{(}\\
+B&\rightarrow \texttt{)}\\
+X&\rightarrow SY \\
+Y&\rightarrow BS \\
+Z&\rightarrow SB
+\end{align*}
+Damit ist Chomsky-Normalform erreicht.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item
+Parse Tree ({\bf P}) 1 Punkt.
+\item
+Begründung für Eindeutigkeit ({\bf B})  1 Punkt.
+\item
+Startvariable nur auf der linken Seite ({\bf S}) 1 Punkt,
+Epsilon-Regel ({\bf E}) 1 Punkt,
+Unit-Rules ({\bf U}) 1 Punkt,
+Mehrfach-Regeln und Terminalsymbole ({\bf T}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
+
+
+
+

@@ -36,7 +36,7 @@ Rolle, man hat es nur den guten Eigenschaften des Orakels zu verdanken,
 dass der Input auf den vom Prozess erzeugten String passt.
 
 \subsection{Shift-Reduce}
-\index{shift-reduce Parser}
+\index{shift-reduce Parser}%
 Ein deterministischer Prozess muss stattdessen vom Input kontrolliert werden.
 Das Input-Zeichen oder der aktuelle Stackinhalt müssen bestimmen, was
 als nächstes zu geschehen hat. Wie das erreicht werden könnte, kann man am
@@ -71,7 +71,7 @@ auf die rechte Seite einer Regel passen'', ist für bei einem Stack nicht
 durchführbar. Man kann immer nur das oberste Element einsehen.
 
 \subsection{\texorpdfstring{$LR(0)$}{LR(0)}-Elemente}
-\index{LR(0)-Element@$LR(0)$-Element}
+\index{LR(0)-Element@$LR(0)$-Element}%
 Ein Stackautomat kann sich nur dann an den den Stackinhalt unterhalb des obersten
 Stackelementes erinnern, wenn er diese Information in Zuständen codieren kann.
 Im Beispiel kamen folgende relevanten Stackinhalte vor 
@@ -239,19 +239,19 @@ welches der nächste Zustand ist.
 \item
 Lege diesen Zustand zuoberst auf den Stack.
 \end{enumerate}
-\index{Bison}
-\index{Yacc}
+\index{Bison}%
+\index{Yacc}%
 Die Konstruktion der Parsertabellen ist aufwendig und fehlerträchtig,
 doch stehen dafür Softwarewerkzeuge zur Verfügung, zum Beispiel
 der Parser-Generator Bison.
 
 \subsection{Konflikte}
-\index{Konflikt}
+\index{Konflikt}%
 Diese Art von Parser kann funktionieren, wenn jederzeit klar ist, ob
 geschoben werden kann, oder ob eine Reduktion erfolgen soll.
 Sind mehrere Operationen möglich, spricht man von einem Konflikt.
 \subsubsection{Reduce-Reduce Konflikt}
-\index{Konflikt!reduce-reduce}
+\index{Konflikt!reduce-reduce}%
 In der folgenden Grammatik ist nicht klar, welche der beiden Reduktionsregeln
 angewendet werden soll
 \begin{align*}
@@ -260,7 +260,7 @@ B&\rightarrow \texttt{01}
 \end{align*}
 
 \subsubsection{Shift-Reduce Konflikt}
-\index{Konflikt!shift-reduce}
+\index{Konflikt!shift-reduce}%
 In der folgenden Grammatik ist nach dem Lesen einer $1$ nicht klar
 \begin{align*}
 A&\rightarrow \texttt{1}\tag{1}\\
@@ -291,8 +291,8 @@ werden konnte, liegt offenbar ein Wort vor, welches akzeptiert werden
 muss.
 
 \section{Arithmetische Ausdrücke}
-\index{expression-term-factor Grammatik}
-\index{Ausdr\ücke!arithmetische}
+\index{expression-term-factor Grammatik}%
+\index{Ausdr\ücke!arithmetische}%
 Hier soll an Hand einer Beispiel-Grammatik gezeigt werden, wie ein 
 von Bison erzeugter Parser einen arithmetischen Ausdruck
 erkennt. Wir verwenden die Grammatik:

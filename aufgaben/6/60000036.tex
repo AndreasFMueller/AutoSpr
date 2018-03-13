@@ -1,0 +1,37 @@
+In den letzten Wochen haben die neu entdeckten Angriffe {\em Meltdown} und
+{\em Spectre} im Management von IT-Abteilungen Panik verbreitet.
+An {\em Meltdown} ist interessant, dass man mit diesem Trick den
+Kernel-Adressraum auslesen kann.
+Er funktioniert so: das Programm versucht auf eine Kernel-Adresse
+zuzugreifen, das wird vom Betriebssystem verhindert, aber die Daten werden
+trotzdem in den Prozessorcache geladen.
+Durch Messen der Cache-Zugriffszeit kann das Programm dann
+herausfinden, was gelesen worden ist.
+
+Ein verängstigter Manager verlangt, einen Scanner einzusetzen, mit dem 
+jede Software daraufhin gescannt werden kann, ob sie zur Laufzeit
+den {\em Meltdown}-Angriff verwendet.
+Was geben Sie ihm zur Antwort?
+
+\begin{loesung}
+Einen solchen Scanner kann es nicht geben.
+Normalerweise hält das Betriebssystem einen Prozess an, der versucht
+auf den Kernel-Adressraum zuzugreifen.
+Ein Scanner, der in der Lage ist, einen {\em Meltdown}-Angriff vorherzusehen
+ist also auch in der Lage, das Anhalten eines Programms zu entscheiden,
+löst also das Halteproblem.
+Da das Halteproblem nicht entscheidbar ist, kann es einen solchen
+Scanner nicht geben.
+\end{loesung}
+
+\begin{diskussion}
+Die Tatsache, dass der Manager die Forderung überhaupt stellt,
+berechtigt Zweifel an der fachlichen Kompetenz für seine Funktion.
+\end{diskussion}
+
+\begin{bewertung}
+Reduktion auf das Halteproblem ({\bf R}) 4 Punkt
+Verweis auf Nichtentscheidbarkeit des Halteproblems ({\bf H}) 1 Punkte,
+Schlussfolgerung ({\bf S}) 1 Punkt.
+\end{bewertung}
+

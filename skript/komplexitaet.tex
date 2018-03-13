@@ -36,9 +36,9 @@ Klassen zuordnen kann.
 
 \section{Laufzeitkomplexität}
 \rhead{Laufzeitkomplexität}
-\index{Laufzeitkomplexit\ät}
+\index{Laufzeitkomplexit\ät}%
 \subsection{Inputlänge}
-\index{Inputl\änge}
+\index{Inputl\änge}%
 Wenn die absolute Laufzeit eines Algorithmus nicht als Mass für
 die Komplexität eines Problems dienen kann, dann vielleicht
 wenigstens die Abhängigkeit der Laufzeit von der Grösse des
@@ -47,7 +47,7 @@ Sprachproblem verstehen, haben wir für die Grösse des Problems
 ein Mass: die Länge des Wortes, welches das Problem beschreibt.
 
 Als Beispiel betrachten wir das Problem
-\index{PRIME@\textsl{PRIME}}
+\index{PRIME@\textsl{PRIME}}%
 \[
 \text{\textsl{PRIME}}=\{ n\;|\; \text{$n\in\mathbb N$ und $n$ ist prim}\}.
 \]
@@ -72,7 +72,7 @@ aber wächst die Laufzeit mit $b^l$. Man kann also Algorithmen
 nur vergleichen, wenn man die gleiche Inputcodierung verwendet.
 
 \subsection{Laufzeit}
-\index{Laufzeit}
+\index{Laufzeit}%
 Sei jetzt also eine Turingmaschine $M$ gegeben, die ein Entscheider
 ist. Für jedes Inputwort $w$ wird die Maschine eine gewisse Zeit
 laufen und dann im Zustand $q_{\text{accept}}$ oder $q_{\text{reject}}$
@@ -104,7 +104,7 @@ Es ist $f(n)=O(g(n))$ wenn
 \label{oquotientlimit}
 \end{equation}
 \end{definition}
-\index{Laufzeit!polynomielle}
+\index{Laufzeit!polynomielle}%
 Man beachte, dass für $f(n)=O(g(n))$ die Ungleichung $f(n)\le
 cg(n)$ nicht für alle $n$ gelten muss, insbesondere spielen kleine
 Werte von $n$ keine Rolle, es interessiert uns nur das Verhalten
@@ -134,7 +134,7 @@ gegenüber einer Standardturingmaschine? Wieviel schneller ist eine
 nichtdeterministische Turingmaschine gegenüber einer deterministischen?
 
 \begin{satz}
-\index{Turing-Maschine!mit mehreren B\ändern}
+\index{Turing-Maschine!mit mehreren B\ändern}%
 Eine Turingmaschine mit mehreren Bändern und Laufzeit $t(n)$ kann
 in Laufzeit $O(t(n)^2)$ auf einer Standardturingmaschine
 simuliert werden.
@@ -166,7 +166,7 @@ Turingmaschine alle Wege durchprobiert, spielt die Laufzeit auf
 demjenigen Weg, der am längsten braucht, eine wesentliche Rolle.
 
 \begin{definition}
-\index{Laufzeit!einer nichtdeterministischen Turingmaschine}
+\index{Laufzeit!einer nichtdeterministischen Turingmaschine}%
 Sei $N$ eine nicht deterministische Turingmaschine, die auch ein
 Entscheider ist. Dann ist ihre Laufzeit $t(n)$ die maximale Anzahl
 von Schritten, die jede mögliche Berechnung auf einem Input der
@@ -208,7 +208,7 @@ c^{t(n)}(t(n) + O(t(n)))
 \]
 \end{proof}
 \subsection{Wie langsam ist exponentielle Laufzeit?}
-\index{Laufzeit!exponentielle}
+\index{Laufzeit!exponentielle}%
 Satz \ref{exponentialtime} zeigt, dass zur Simulation eines
 nichtdeterministischen Automaten eine exponentiell längere
 Zeit nötig ist, als die nichtdeterministische Maschine
@@ -280,7 +280,7 @@ ist also für grosse Inputlänge der Unterschied zwischen lösbaren und
 unlösbaren Problemen.
 
 \section{Klassen P und NP}
-\index{Klasse P}
+\index{Klasse P}%
 \rhead{Klassen P und NP}
 \subsection{Klasse P}
 Bei der Simulation einer Turingmaschine mit mehreren Bändern
@@ -299,13 +299,13 @@ Beide Maschinen haben eine Laufzeit, die durch ein Polynom beschränkt
 sind.
 
 \begin{definition}
-\index{Klasse P}
+\index{Klasse P}%
 Die Klasse $P$ besteht aus den Sprachen, die mit einem Entscheider
 mit polynomieller Laufzeit entschieden werden können.
 \end{definition}
 
 \subsection{Beispiele von Sprachen in P}
-\index{Sprachen!kontextfreie}
+\index{Sprachen!kontextfreie}%
 \begin{satz}
 Kontextfreie Sprachen sind in P.
 \end{satz}
@@ -326,7 +326,7 @@ führend Pfad in dem Graphen gibt. Übersetzt in ein Spracheproblem
 liefert es uns den folgenden Satz.
 
 \begin{satz}
-\index{PATH@\textsl{PATH}}
+\index{PATH@\textsl{PATH}}%
 Die Sprache
 \[
 \text{\textsl{PATH}}
@@ -339,14 +339,14 @@ ist in P.
 \end{satz}
 
 \begin{proof}[Beweis]
-\index{Markierungsalgorithmus}
+\index{Markierungsalgorithmus}%
 Ein Markierungsalgorithmus, der beginnend bei $s$ alle erreichbaren
 Vertizes markiert, solange sich noch neue Vertizes markieren lassen,
 hat polynomielle Laufzeit.
 \end{proof}
 
 \begin{satz}
-\index{RELPRIM@\textsl{RELPRIME}}
+\index{RELPRIM@\textsl{RELPRIME}}%
 Die Sprache
 \[
 \text{\textsl{RELPRIME}}
@@ -359,7 +359,7 @@ ist in P.
 \end{satz}
 
 \begin{proof}[Beweis]
-\index{Algorithmus!euklidischer}
+\index{Algorithmus!euklidischer}%
 Teilerfremdheit kann mit dem euklidischen Algorithmus entscheiden werden.
 Dieser funktioniert wie folgt:
 \begin{compactenum}
@@ -387,7 +387,7 @@ kann man die Problemlösung in polynomieller Zeit nachvollziehen.
 Genau diese Idee formalisiert das Konzept des Verifizierers.
 
 \begin{definition}
-\index{Verifizierer}
+\index{Verifizierer}%
 Ein Verifizierer für die Sprache $A$ ist eine Turingmaschine
 $V$ mit
 \[
@@ -473,7 +473,7 @@ Zeit entschieden werden können, eine wesentlich grössere
 Klasse bilden als $P$.
 
 \begin{definition}
-\index{Klasse NP}
+\index{Klasse NP}%
 Die Klasse der von einer nichtdeterministischen Turingmaschine
 in polynomieller Zeit entscheidbaren Sprachen heisst NP.
 \end{definition}
@@ -492,8 +492,8 @@ Ein offenes Problem ist jedoch, ob $\text{P}\ne \text{NP}$.
 Die Bedeutung dieser Frage wird später klar werden.
 
 \subsection{Satisfiability: \textsl{SAT}}
-\index{SAT}
-\index{Satisfiability}
+\index{SAT}%
+\index{Satisfiability}%
 Die Sprache 
 \[
 \text{\textsl{SAT}}=\{\varphi\;|\;\text{$\varphi$ ist eine erfüllbare logische Formel}\}
@@ -546,10 +546,10 @@ vier 3-Cliquen\label{6graph}}
 \end{center}
 \caption{3-Cliquen des Graphen von Abbildung~\ref{6graph}}
 \end{figure}%
-\index{Clique}
-\index{Clique@$k$-Clique}
-\index{Cliquen-Problem}
-\index{CLIQUE@\textsl{CLIQUE}}
+\index{Clique}%
+\index{Clique@$k$-Clique}%
+\index{Cliquen-Problem}%
+\index{CLIQUE@\textsl{CLIQUE}}%
 Eine $k$-Clique in einem Graph $G$ ist eine Menge von $k$
 Ecken des Graphen so, dass in $G$ jede Ecke der Teilmenge mit
 jeder anderen Ecke verbunden ist. Im umgangssprachlichen Gebrauch
@@ -577,7 +577,7 @@ Komplexität dieses Algorithmus ist also $O(n)$, das
 Cliquen-Problem ist in NP.
 
 \subsection{Färbeproblem: \texorpdfstring{$k$}{k}-\textsl{VERTEX-COLORING}}
-\index{F\ärbeproblem}
+\index{F\ärbeproblem}%
 \begin{figure}
 \begin{center}
 \begin{tabular}{ccc}
@@ -590,7 +590,7 @@ Cliquen-Problem ist in NP.
 eingefärbt werden, der Graph rechts braucht vier verschiedene Farben
 \label{vertex-coloring-examples}}
 \end{figure}%
-\index{VERTEX-COLORING@\textsl{VERTEX-COLORING}}
+\index{VERTEX-COLORING@\textsl{VERTEX-COLORING}}%
 Man sagt, die Vertizes eines Graphen $G$ können mit $k$ Farben
 eingefärbt werden, wenn sich für jeden Vertex eine der $k$ Farben
 wählen lässt, so dass nie zwei durch eine Kante verbundene Vertizes
@@ -634,7 +634,7 @@ polynomielles Laufzeitverhalten haben, damit sie nützlich
 bleibt.
 
 \begin{definition}
-\index{Reduktion}
+\index{Reduktion}%
 Eine berechenbare Abbildung $f\colon \Sigma^*\to\Sigma^*$
 mit den Eigenschaften
 \begin{compactenum}
@@ -694,7 +694,7 @@ nach ``Schwierigkeit'' geordnet.\label{pnporder}}
 \end{figure}%
 
 \begin{beispiel}[\bf Stundenplan und das Färbeproblem]
-\index{Stundenplanproblem}
+\index{Stundenplanproblem}%
 Das Studenplanproblem $S$ besteht darin
 einen Stundenplan so zu erstellen, dass die Studenten alle
 Vorlesungen besuchen können, für die sie sich angemeldet haben.
@@ -920,7 +920,7 @@ deren polynomielle Lösung die polynomielle Lösung vieler anderer
 Probleme nach sich ziehen würde. 
 
 \begin{definition}
-\index{NP-vollst\ändig}
+\index{NP-vollst\ändig}%
 Eine Sprache $B$ heisst NP-vollständig, wenn 
 \begin{compactenum}
 \item $B\in\text{NP}$
@@ -946,8 +946,8 @@ in NP sind also auch in P, oder $\text{P}=\text{NP}$.
 
 \section{SAT}
 \rhead{SAT}
-\index{Cook, Steven}
-\index{Levin, Leonid}
+\index{Cook, Steven}%
+\index{Levin, Leonid}%
 Bislang ist noch nicht klar, dass es überhaupt NP-vollständige
 Problem gibt. Dies änderte sich mit dem Satz von Cook und Levin,
 der beweist, dass \textsl{SAT} NP-vollständig ist.
@@ -1305,7 +1305,7 @@ von Problemen zu bekommen, von denen ausgehend eine Reduktion
 konstruiert werden könnte. In diesem Kapitel werden einige
 solche Probleme vollständig untersucht.
 \subsection{3SAT}
-\index{3SAT@\textsl{3SAT}}
+\index{3SAT@\textsl{3SAT}}%
 \begin{satz}
 $\text{\textsl{3SAT}}$ ist NP-vollständig.
 \end{satz}
@@ -1644,7 +1644,7 @@ $\text{\textsl{3SAT}}\le_P\text{\textsl{HAMPATH}}$.
 \end{proof}
 
 \subsection{SUBSET-SUM}
-\index{SUBSET-SUM@\textsl{SUBSET-SUM}}
+\index{SUBSET-SUM@\textsl{SUBSET-SUM}}%
 Das Problem \textsl{SUBSET-SUM} ist auch bekannt als das Rucksack-Problem.
 Gegeben ist eine Menge $S$ von ganzen Zahlen, kann man darin eine
 Teilmenge finden, die als Summe einen bestimmten Wert $t$ hat?
@@ -1834,8 +1834,8 @@ $\text{\textsl{3SAT}}\le_P\text{\textsl{SUBSET-SUM}}$ gezeigt.
 
 \section{Katalog NP-vollständiger Probleme von Karp}
 \rhead{Liste von Karp}
-\index{Karp, Richard}
-\index{Karp's Liste}
+\index{Karp, Richard}%
+\index{Karp's Liste}%
 Schon kurz nach der Veröffentlichung des Beweises des Satzes
 \ref{cooklevin} hat Richard Karp einen Baum von Reduktionen
 veröffentlicht, in dem ausgehend von SAT 21 Probleme verzeichnet
@@ -1863,7 +1863,7 @@ Weiter oben haben wir \textsl{CLIQUE} von \textsl{3SAT} aus
 reduziert. \textsl{VERTEX-COLORING} haben wir im Zusammenhang
 mit dem Stundenplanproblem getroffen.
 
-\index{BIP@\textsl{BIP}}
+\index{BIP@\textsl{BIP}}%
 \textsl{BIP} ist ``binary integer programming'', zu einer ganzzahligen
 Matrix $C$ und einem ganzzahligen Vektor $d$ ist ein binärer
 Vektor $x$ zu finden mit $Cx=d$.
@@ -1975,27 +1975,27 @@ $S_{j_i}\cap S_{j_k}=\emptyset$ und
 \bigcup_{j=1}^n S_j=\bigcup_{i=1}^mS_{j_i}
 \]
 erfüllen.
-\index{CLIQUE-COVER@\textsl{CLIQUE-COVER}}
+\index{CLIQUE-COVER@\textsl{CLIQUE-COVER}}%
 \item[\textsl{CLIQUE-COVER}:] Gegeben ein Graph $G$ und eine positive Zahl
 $k$, gibt es $k$ Cliquen so, dass jede Ecke in genau einer der Cliquen ist?
-\index{3D-MATCHING@\textsl{3D-MATCHING}}
+\index{3D-MATCHING@\textsl{3D-MATCHING}}%
 \item[\textsl{3D-MATCHING}:] Sei $T$ eine endliche Menge und $U$ eine 
 Menge von Tripeln aus $T$: $U\subset T\times T\times T$.
 Gibt es eine
 Teilmenge $W\subset U$ so, dass $|W|=|T|$ und keine zwei Elemente
 von $W$ stimmen in irgendeiner Koordinate überein?
-\index{HITTING-SET@\textsl{HITTING-SET}}
+\index{HITTING-SET@\textsl{HITTING-SET}}%
 \item[\textsl{HITTING-SET}:] Gegeben eine Menge von Teilmengen $S_i\subset S$,
 gibt es eine Menge $H$, die jede Menge in genau einem Punkt trifft, also
 $|H\cap S_i|=1\forall i$?
-\index{STEINER-TREE@\textsl{STEINER-TREE}}
+\index{STEINER-TREE@\textsl{STEINER-TREE}}%
 \item[\textsl{STEINER-TREE}:]
 Gegeben ein Graph $G$, eine Teilmenge $R$ von Vertizes, und eine
 Gewichtsfunktion $w\colon E\to\mathbb Z$ und eine postive Zahl $k$, gibt es
 einen Baum mit Gewicht $\le k$, dessen Knoten in $R$ enthalten sind?
 Das Gewicht des Baumes ist die Summe der Gewichte 
 $w(\{u,v\})$ über alle Kanten $\{u,v\}$ im Baum.
-\index{SEQUENCING@\textsl{SEQUENCING}}
+\index{SEQUENCING@\textsl{SEQUENCING}}%
 \item[\textsl{SEQUENCING}:] Gegeben sei ein Vektor
 $(t_1,\dots,t_p)\in\mathbb Z^p$
 von Laufzeiten von $p$ Jobs, ein Vektor von spätesten Ausführungszeiten 
@@ -2016,7 +2016,7 @@ darin ist $\vartheta$ die Stufenfunktion definiert durch
 0&x<0.
 \end{cases}
 \]
-\index{PARTITION@\textsl{PARTITION}}
+\index{PARTITION@\textsl{PARTITION}}%
 \item[\textsl{PARTITION}:] Gegeben ein Folge von $s$ ganzen Zahlen
 $c_1,c_2,\dots,c_s$, kann man die Indizes $1,2,\dots,s$ in zwei
 Teilmengen $I$ und $\bar I$ teilen, so dass die Summe der zugehörigen
@@ -2024,7 +2024,7 @@ $c_i$ identisch ist:
 \[
 \sum_{i\in I}c_i=\sum_{i\not\in I}c_i
 \]
-\index{MAX-CUT@\textsl{MAX-CUT}}
+\index{MAX-CUT@\textsl{MAX-CUT}}%
 \item[\textsl{MAX-CUT}:] Gegeben ein Graph $G$ mit einer Gewichtsfunktion
 $w\colon E\to\mathbb Z$ und eine ganze Zahl $W$.
 Gibt es eine Teilmenge
@@ -2033,7 +2033,7 @@ seinem Komplement verbinden, mindestens so gross ist wie $W$:
 \[
 \sum_{\{u,v\}\in E\wedge u\in S\wedge v\not\in S} w(\{u,v\})\ge W
 \]
-\index{SET-PACKING@\textsl{SET-PACKING}}
+\index{SET-PACKING@\textsl{SET-PACKING}}%
 \item[\textsl{SET-PACKING}:] Gegeben eine Familie $(S_i)_{i\in I}$ von
 Mengen und eine Zahl $k\in \mathbb N$.
 Gibt es eine $k$-elementige Teilfamilie $(S_i)_{i\in J}$ mit $J\subset I$,
@@ -2049,7 +2049,7 @@ dass die Mengen der Teilfamilie paarweise diskjunkt sind, also
 
 \section{Schaltungen, Minesweeper und \textsl{SAT}}
 \rhead{Minesweeper}
-\index{Minesweeper}
+\index{Minesweeper}%
 \subsection{Schaltungen}
 \begin{figure}
 \begin{center}
@@ -2065,10 +2065,10 @@ dass die Mengen der Teilfamilie paarweise diskjunkt sind, also
 $(\bar x\wedge y)\vee(x\wedge \bar z)$ mit Gattern aus der
 Abbildung~\ref{gatter}\label{gatterformel}}
 \end{figure}%
-\index{Gatter}
-\index{AND}
-\index{OR}
-\index{NOT}
+\index{Gatter}%
+\index{AND}%
+\index{OR}%
+\index{NOT}%
 In der Computertechnik lernt man, dass sich moderne Computer mit
 Hilfe von logischen Grundschaltungen, den Gattern, realisieren lassen.
 Abbildung~\ref{gatter} zeigt die Schaltsymbole der Grundgatter AND, OR
@@ -2078,7 +2078,7 @@ lassen sich beliebig komplexe logische Formeln umsetzen. Zum Beispiel
 zeigt Abbildung~\ref{gatterformel}, wie die Formel
 $(\bar x\wedge y)\vee(x\wedge \bar z)$ umgesetzt werden kann.
 
-\index{CURCUIT}
+\index{CURCUIT}%
 Die Tatsache, dass sich jede Formel in eine äquivalente Schaltung mit Gattern
 übersetzen lässt kann man so formulieren: Es gibt eine Sprache
 \[
@@ -2093,7 +2093,7 @@ Problem ist, einer logischen Schaltung anzusehen, ob ihr Ausgang überhaupt
 je wahr werden kann.
 
 \subsection{Minesweeper}
-\index{Minesweeper}
+\index{Minesweeper}%
 Beim Spiel Mine-Sweeper, wird dem Spieler von einigen der noch nicht
 aufgedeckten Felder die Anzahl benachbarter Fehler angezeigt, unter
 denen sich eine Bombe befindet. Der Spieler soll dann nur diejenigen
