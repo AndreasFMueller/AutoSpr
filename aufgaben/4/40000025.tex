@@ -22,6 +22,8 @@ für das nichtterminale Symbol ``Zahl''.
 \[
 47-1291+1848
 \]
+\item Formulieren Sie Regeln, wie der arithmetische Ausdruck auf der
+Basis des Parse Tree auszuwerten ist.
 \item Welche Grammatik ist vorzuziehen?
 \end{teilaufgaben}
 
@@ -70,11 +72,17 @@ Um mit einem Parse Tree einen Ausdruck auszuwerten, muss man für
 jede Regel festlegen, wie sie in die Wertberechnung übersetzt werden
 muss.
 
-Für die erste Grammatik muss man festlegen, wie ein Ausdruck auszuwerten
-ist. Dazu muss man zuerst den Ausdruck auf der rechten Seite der 
+Um für die erste Grammatik festzulegen, wie ein Ausdruck auszuwerten
+ist, muss man zuerst den Ausdruck auf der rechten Seite der 
 Regel auswerten, und dann die arithmetische Operation mit der Zahl
 entsprechend dem Operationszeichen durchführen.
-Es wird also zuerst die Summe $1291+1848= 3139$
+
+Die Auswertung einer Regel nach der zweiten Grammatik erfolgt anders:
+zum Wert der Termsequenz
+wird der Wert des Terms hinzuaddiert, mit dem Vorzeichen, das in der
+Regel gewählt worden ist.
+\item
+Für die erste Grammatik wird zuerst die Summe $1291+1848= 3139$
 gebildet, die anschliessend von $47$ subtrahiert, was
 $
 47-(1291+1848)
@@ -86,9 +94,6 @@ Der erste Parse Tree ergibt also das falsche Resultat.
 
 Das richtige Resultat erhält man jedoch mit dem Parse
 Tree nach der zweiten Grammatik.
-Die Auswertung einer Regel erfolgt hier anders: zum Wert der Termsequenz
-wird der Wert des Terms hinzuaddiert, mit dem Vorzeichen, das in der
-Regel gewählt worden ist.
 Von unten nach oben ausgewertet bedeutet das wieder, dass zuerst 
 die Termsequenz in der dritten Zeile zu 1848 evaluiert wird.
 Die Termsequenz in der zweiten Zeile kann dann als $-1291 + 1848$
