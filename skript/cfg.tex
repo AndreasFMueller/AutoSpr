@@ -49,7 +49,7 @@ schwierig.
 Für Klammern ist man sich jedoch meistens eine andere Vorgehensweise
 gewohnt. Wenn man arithmetische Ausdrücke aufbaut, sagt man zum
 Beispiel: ``Wenn man die Summe $a+b$ mit $c$ multiplizeren will,
-dann {\bf muss man $a+b$ in Klammern setzen}''.
+dann {\em muss man $a+b$ in Klammern setzen}''.
 Klammern werden also immer paarweise gesetzt, und man baut den
 Ausdruck sozusagen von innen nach aussen auf.
 
@@ -1359,8 +1359,8 @@ genommen.
 \begin{gathered}
 \entrymodifiers={++[o][F]}
 \xymatrix{
-{p}\ar[d]\ar[r]^{a,\varepsilon\to t}
-	&{r}\ar[d]
+{p}      \ar[r]^{a,\varepsilon\to t} \ar[d]_{A_{pq}}
+	&{r}\ar[d]^{A_{rs}}
 \\
 {q}
 	&{s}\ar[l]^{b,t\to\varepsilon}
@@ -1376,10 +1376,10 @@ $A_{pq}\to A_{pr}A_{rq}$ hinzu.
 \begin{gathered}
 \entrymodifiers={++[o][F]}
 \xymatrix{
-{p}\ar[dr]\ar[dd]
+{p}\ar[dr]^{A_{pr}}\ar[dd]_{A_{pq}}
 \\
 *+\txt{}
-	&{r}\ar[dl]
+	&{r}\ar[dl]^{A_{rq}}
 \\
 {q}
 }
@@ -1393,7 +1393,7 @@ hinzu:
 \entrymodifiers={++[o][F]}
 \xymatrix{
 *+\txt{}
-	&{p}
+	&{p} \ar@(ur,dr)^{A_{pp}}
 }
 \end{gathered}
 \qquad\rightsquigarrow\qquad
@@ -1488,7 +1488,7 @@ p\ar[r]^{a,\varepsilon\to t}
 \]
 Die Berechnung, die $P$ von $r$ in $s$ überführt, ist kürzer, und kann
 mit leerem Stack durchgeführt werden.
-Also ist sie nach Induktionsannahme der Teil $y$ in $x=ayb$ aus ableitbar 
+Also ist sie nach Induktionsannahme der Teil $y$ in $x=ayb$ aus
 $A_{rs}$ ableitbar.
 
 Im zweiten Fall zerfällt die Berechnung, in der $x$ $P$ von $p$ in

@@ -549,18 +549,18 @@ Wir müssen also die Mengen $L(w)$ für alle denkbaren Wörter $w\in\Sigma^*$
 ermitteln.
 Dazu erstellen wir die folgende Tabelle:
 \begin{center}
-\begin{tabular}{|c|c|}
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}|}
 \hline
-$w$&$L(w)$\\
+w                       &L(w)\\
 \hline
-$\varepsilon$&$L$\\
-$\texttt{1}$&$\emptyset$\\
-$\texttt{1}^n$&$\emptyset$\\
-$\texttt{0}$&$\texttt{0}^n\texttt{1}^{n+1}\;|\; n\in\mathbb N\}$\\
-$\texttt{0}^2$&$\texttt{0}^n\texttt{1}^{n+2}\;|\; n\in\mathbb N\}$\\
-$\texttt{0}^k$&$\{\texttt{0}^n\texttt{1}^{n+k}\;|\; n\in\mathbb N\}$\\
-$\texttt{0}^k\texttt{1}^l$&$\{\texttt{1}^{k-l}\}$ falls $k\ge l$\\
-$\texttt{0}^k\texttt{1}^l$&$\emptyset $ falls $k<l$\\
+\varepsilon             &L\\
+\texttt{1}              &\emptyset\\
+\texttt{1}^n            &\emptyset\\
+\texttt{0}              &\{\texttt{0}^n\texttt{1}^{n+1}\;|\; n\in\mathbb N\}\\
+\texttt{0}^2            &\{\texttt{0}^n\texttt{1}^{n+2}\;|\; n\in\mathbb N\}\\
+\texttt{0}^k            &\{\texttt{0}^n\texttt{1}^{n+k}\;|\; n\in\mathbb N\}\\
+\texttt{0}^k\texttt{1}^l&\{\texttt{1}^{k-l}\}$ falls $k\ge l\\
+\texttt{0}^k\texttt{1}^l&\text{$\emptyset$ falls $k<l$}\\
 \hline
 \end{tabular}
 \end{center}
