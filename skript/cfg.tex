@@ -506,10 +506,52 @@ oder
 
 
 \subsection{Chomsky Normalform}
+Reduziert man die Grammatik für Klammerausdrücke auf die beiden Regeln
+\begin{equation}
+\begin{aligned}
+A&\to AA
+\\
+ &\to\varepsilon,
+\end{aligned}
+\label{cfg:unendlichegrammatik}
+\end{equation}
+dann kann man damit nur noch das leere Wort erzeugen.
+Zwischenzeitlich kann man aber mit der ersten Regel beliebig lange 
+Folgen von $A$s herstellen, die man dann mit der zweiten Regel ins
+leere Wort verwandeln kann.
+Es gibt insbesondere unendlich viele verschiedene Ableitungen für
+das leere Wort.
+Für die Grammatik~\eqref{cfg:unendlichegrammatik} lassen sich also
+keine Aussagen über die Grösse eines Parsetrees machen.
+Dieses pathologische Verhalten kann auch bei komplexeren Grammatiken
+auftreten, wenn sie Regeln wie in \eqref{cfg:unendlichegrammatik}
+enthalten.
+
+Wie könnte man dies vermeiden? 
+\begin{itemize}
+\item
+$\varepsilon$-Regeln besagen, dass diese Variable optional ist.
+Man braucht man eigentlich nur, wenn das leere Wort erzeugen will.
+Dies kann man aber auch mit der Regel $S\to\varepsilon$ erreichen.
+Andere $\varepsilon$-Regeln müssen daher vermieden werden.
+\item
+Das Problem wird mitverursacht durch die Möglichkeit, Variablen mit 
+$\varepsilon$-Regeln zum Verschwinden zu bringen.
+Da man die Regel $S\to\varepsilon$ nicht vermeiden kann, muss verlangt
+werden, dass die Startvariable $S$ auf der rechten Seite keiner Regel
+vorkommt.
+\item
+Regeln der Form $A\to B$ erlauben die Ableitung zu verlängern, ohne
+dass die Wortlänge zunimmt.
+Solche sogenannten unit rules sind daher ebenfalls zu vermeiden.
+\end{itemize}
+
 Bei den regulären Sprachen war der Algorithmus zur Reduktion
 auf den minimalen Automaten die Voraussetzung, Automaten vergleichen
 zu können. Eine ähnliche Normalform wünscht man sich auch für
-Grammatiken, und definiert daher:
+Grammatiken.
+
+Aus diesen Gründen definiert man die folgende Standardform einer Grammatik
 \begin{definition}
 \label{definition:cnf}
 \index{Chomsky Normalform}%

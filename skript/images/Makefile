@@ -4,7 +4,7 @@
 # (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
 # $Id$
 #
-all:	cfg turing nea lang red comp pl reg mine graph stack sudoku ausfuell
+all:	cfg turing nea lang red comp pl reg mine graph stack sudoku ausfuell palindrom
 
 REGFILES = reg-1.pdf reg-2.pdf reg-3.pdf reg-4.pdf reg-5.pdf reg-6.pdf
 NEAFILES = nea-1.pdf nea-2.pdf nea-3.pdf nea-4.pdf nea-5.pdf nea-6.pdf nea-7.pdf
