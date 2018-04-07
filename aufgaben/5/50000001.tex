@@ -47,12 +47,12 @@ steht, ersetze sie durch {\tt 1} und gehe in den Zustand $q_{\text{accept}}$
 Man kann diese Turing-Maschine auch als Zustandsautomaten darstellen:
 \[
 \entrymodifiers={++[o][F]}
-\xymatrix @-1mm {
+\xymatrix @+5mm {
 *+\txt{}\ar[r]
-        &q_0\ar@(ur,ul)_{{\tt 0}\to{\tt 0},R\atop {\tt 1}\to{\tt 1},R}
+        &q_0\ar@(ur,ul)_{\scriptstyle{\tt 0}\to{\tt 0},R\atop \scriptstyle{\tt 1}\to{\tt 1},R}
             \ar[r]^{\blank\to\blank,L}
-                &q_1\ar[r]^{{{\tt 0}\to{\tt 1},R}
-                    \atop {\blank\to{\tt 1},R}}
+                &q_1\ar[r]^{{\scriptstyle{\tt 0}\to{\tt 1},R}
+                    \atop {\scriptstyle\blank\to{\tt 1},R}}
                     \ar@(ur,ul)_{{\tt 1}\to{\tt 0},L}
                         &*++[o][F=]{q_{\text{accept}}}
 }
