@@ -1,0 +1,43 @@
+Konstruieren Sie eine Turing-Maschine, die eine Binärzahl auf dem Band
+hochzählt ohne je damit aufzuhören.
+
+\begin{loesung}
+In Aufgabe~\ref{50000001} wurde gezeigt, wie man eine Binärzahl auf dem Band
+um eins erhöht.
+Die dort konstruiert Maschine
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{}\ar[r]
+	&q_0\ar@(ur,ul)_{\scriptstyle{\tt 0}\to{\tt 0},R\atop \scriptstyle{\tt 1}\to{\tt 1},R}
+	    \ar[r]^{\blank\to\blank,L}
+		&q_1\ar[r]^{{\scriptstyle{\tt 0}\to{\tt 1},R}
+		    \atop {\scriptstyle\blank\to{\tt 1},R}}
+		    \ar@(ur,ul)_{{\tt 1}\to{\tt 0},L}
+			&*++[o][F=]{q_{\text{accept}}}
+}
+\]
+muss man nun so erweitern, dass sie dies immer wieder tut.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{}\ar[r]
+	&{q_0}	
+	    \ar@(ur,ul)_{\scriptstyle{\tt 0}\to{\tt 0},R\atop \scriptstyle{\tt 1}\to{\tt 1},R}
+	    \ar@/^/[r]^{\blank\to\blank,L}
+		&{q_1}
+		    \ar@(ur,dr)^{{\tt 1}\to{\tt 0},L}
+		    \ar@/^/[l]^{{\scriptstyle{\tt 0}\to{\tt 1},R}
+			\atop {\scriptstyle\blank\to{\tt 1},R}}
+%			&*++[o][F=]{q_{\text{accept}}}
+}
+\qedhere
+\]
+\end{loesung}
+
+\begin{diskussion}
+Eine solche Turing-Maschine hat Google als Doodle am 23.~Juni 2012
+aus Anlass von Alan Turings hundertstem Geburtstag publiziert.
+URL: \url{https://www.google.com/doodles/alan-turings-100th-birthday}
+\end{diskussion}
+
