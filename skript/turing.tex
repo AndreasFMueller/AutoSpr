@@ -264,7 +264,7 @@ $\delta(q_1,a)=(q_2,b,\text{R})$
 die Notation
 \[
 \entrymodifiers={++[o][F]}
-\xymatrix{
+\xymatrix @+5mm{
 {q_1}\ar[r]^{a\to b,\text{R}}
 	&{q_2}
 }
@@ -273,7 +273,7 @@ und für den Übergang
 $\delta(q_1,a)=(q_2,b,\text{L})$
 \[
 \entrymodifiers={++[o][F]}
-\xymatrix{
+\xymatrix @+5mm{
 {q_1}\ar[r]^{a\to b,\text{L}}
 	&{q_2}
 }
@@ -315,7 +315,7 @@ kann. Schritt $4$ wird zum Beispiel implementiert durch das
 Zustandsdiagramm
 \[
 \entrymodifiers={++[o][F]}
-\xymatrix{
+\xymatrix @+5mm{
 {}\ar@(ul,ur)^{\genfrac{}{}{0pt}{1}{\texttt{0}\to \texttt{0},\text{L}}{{\tt x}\to{\tt x},\text{L}}}
 \ar[r]^{\blank\to\blank,\text{R}}
 	&
@@ -324,7 +324,7 @@ Zustandsdiagramm
 Jede zweite Null streichen wird implementiert durch
 \[
 \entrymodifiers={++[o][F]}
-\xymatrix{
+\xymatrix @+5mm{
 *+\txt{}\ar[d]
 \\
 \ar@/^/[r]^{\texttt{0}\to{\tt x},\text{R}}
@@ -341,7 +341,7 @@ Dass akzeptiert werden soll, wenn nach dem Ersetzen einer $\texttt{0}$ durch
 ein {\tt x} keine weiteren $\texttt{0}$ mehr gefunden werden können, kann durch
 \[
 \entrymodifiers={++[o][F]}
-\xymatrix{
+\xymatrix @+10mm{
 \ar[r]^{\texttt{0}\to{\tt x},\text{R}}
 	&{} \ar@(dl,dr)_{{\tt x}\to{\tt x},\text{R}}
 	    \ar[r]^{\blank\to\blank,\text{R}}
