@@ -1,0 +1,32 @@
+Das Heron-Verfahren zur numerischen Berechnung der Quadratwurzel einer Zahl
+$a$ wird im Wikipedia-Artikel
+\url{https://de.wikipedia.org/wiki/Heron-Verfahren}
+beschrieben.
+Er beruht auf der Iteration
+\[
+x_{n+1}= \frac12\biggl(x_n+\frac{a}{x_n}\biggr),\qquad x_0=1.
+\]
+Im Wikipedia-Artikel findet man auch Information darüber, wieviele
+Iterationen notwendig sind, um eine bestimmte Genauigkeit zu erreichen.
+Ist dieser Algorithmus in P?
+
+\begin{loesung}
+Im Wikipedia-Artikel steht, dass für eine Zahl mit Länge $n$ etwa $n$
+Iterationen notwendig sind, um $n$ Signifkante Stellen zu finden.
+Danach mögen zusätzliche Iterationen nötig sein, um die volle Genauigkeit
+zu erhalten, doch deren Anzahl ist geringer.
+Für die Abschätzung des Aufwandes reicht es daher, davon auszugehen, dass
+$O(n)$ Iterationen notwendig sind.
+
+Eine Iteration besteht in einer Division $a/x_n$, einer Addition und
+einer Division durch $2$. 
+Addition und Division durch $2$
+fallen nicht ins Gewicht, da sie in $O(n)$
+implementiert werden können.
+Aufwendiger ist die Division, der aus $O(n)$ Schritten besteht, wobei
+in jedem Schritt eine Multiplikation durchgeführt werden muss, die
+maximal $O(n^2)$ dauert.
+Ein Iterationsschritt lässt sich also sicher in der Zeit $O(n^3)$ durchführen,
+der ganze Algorithmus daher in $O(n^4)$.
+Insbesondere ist die Laufzeit polynomiell.
+\end{loesung}
