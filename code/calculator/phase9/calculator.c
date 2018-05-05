@@ -2,7 +2,6 @@
  * calculator.c
  *
  * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
- * $Id$
  */
 #include <stdio.h>
 #include <stdlib.h>
