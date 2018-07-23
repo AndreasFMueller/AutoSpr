@@ -81,7 +81,7 @@ Wort $w$ an
 Weil der CYK-Algorithmus (Satz \ref{cyk-algorithm}) deterministisch 
 feststellen kann, ob ein Wort von einer Grammatik erzeugt wird, ist
 $M_G$ ein Entscheider.
-$M_G$ erkennt ein Wort genau dann, wenn des von
+$M_G$ erkennt ein Wort genau dann, wenn es von
 der Grammatik produziert wird, also $L(M_G)=L(G)$.
 \end{beispiel}
 
@@ -101,7 +101,7 @@ Grafik dargestellt.
 \end{center}
 
 \subsection{Entscheidbare Probleme für reguläre Sprachen}
-Wir wollen jetzt eine Ebene höher geben.
+Wir wollen jetzt eine Ebene höher gehen.
 Unser Fokus sind jetzt nicht
 mehr einzelne Sprachen, sondern eine ganze Menge von Sprachen, und eventuell
 weitere Daten.
@@ -123,7 +123,7 @@ Akzeptanzproblem für endliche Automaten.
 \index{Akzeptanzproblem!für reguläre Sprachen}%
 Wir betrachten das folgende Problem: Gegeben sei ein endlicher Automat $B$
 und ein Wort $w$,
-kann man entscheiden, ob der Automat das Wort akzeptiert?
+kann man nun entscheiden, ob der Automat das Wort akzeptiert?
 Um dies als Sprachproblem zu formulieren, braucht  man eine Codierung
 $\langle B,w\rangle$ von Automat und Wort.
 Die Sprache, die zu
@@ -530,7 +530,7 @@ $A_{\text{TM}}$.
 Da $A_{\text{TM}}$ nicht entscheidbar ist, darf es keinen solchen
 Entscheider geben.
 Dieser Widerspruch zeigt, dass die Annahme, es
-gäbe einen Entscheider für $\textit{HALT}\varepsilon_{\text{TM}}$ gibt,
+gäbe einen Entscheider für $\textit{HALT}\varepsilon_{\text{TM}}$,
 nicht haltbar ist.
 $\textit{HALT}\varepsilon_{\text{TM}}$ heisst
 auch das {\em spezielle Halteproblem}.
@@ -648,7 +648,7 @@ Damit haben wir eine Methode, um Sprachen als nicht entscheidbar
 zu beweisen.
 Wir müssen nur eine Abbildung $f\colon \Sigma^*\to \Sigma^*$
 konstruieren, wobei $A$ ein bekanntermassen nicht
-entscheidbares Problem ist, und $f$ berechenbare Abbildung ist,
+entscheidbares Problem ist, und $f$ eine berechenbare Abbildung ist,
 die die Reduktion $A\le B$ vermittelt.
 
 \subsection{Weitere nicht entscheidbare Sprachprobleme}
@@ -939,7 +939,7 @@ sein, also etwas von der Form $xq_{\text{accept}}y$.
 $M$ entsprechen.
 \end{compactenum}
 \medskip
-Die gesuchte Grammatik muss all Strings erzeugen, die einen dieser ``Fehler''
+Die gesuchte Grammatik muss alle Strings erzeugen, die einen dieser ``Fehler''
 machen.
 Falls es eine erkennende Berechnung für $w$ gibt, wird diese
 die einzige sein, die nicht erzeugt wird.
@@ -1007,14 +1007,14 @@ q_2\ar@(ur,ul)
 Darin enhalten die Schleifen beim zweiten und dritten Zustand keine
 Übergänge mit dem Zeichen {\tt\#}.
 Dazu braucht es zusätzliche
-Übergange, damit der Automat alles ausser diesen Strings akzeptiert.
+Übergänge, damit der Automat alles ausser diesen Strings akzeptiert.
 
 Im Zustand $q_3$ muss ein Automat konstruiert werden, der erkennen kann,
 ob die Folge $C_i{\tt\#}C_{i+1}$ einem korrekten Übergang zwischen
 zwei Konfigurationen der Turingmaschen $M$ entspricht.
 Dazu schreibt
 der Stackautomat zunächst alle Zeichen von $C_i$ auf den
-Stack, und vergleicht dann dann den Stackinhalt mit den Zeichen von
+Stack, und vergleicht dann den Stackinhalt mit den Zeichen von
 $C_{i+1}$.
 Bis auf die Zeichen um die Kopfposition dürfen sich
 die Strings nicht unterscheiden.
@@ -1048,7 +1048,7 @@ zweite Konfiguration rückwärts, also
 \[
 {\tt\#}C_1{\tt\#}C_2^t{\tt\#}C_3{\tt\#}C_4^t{\tt\#}\dots
 \]
-Die Regeln für die korrekten Turingmaschinen-Übergang müssen
+Die Regeln für die korrekten Turingmaschinen-Übergänge müssen
 natürlich an diese umgekehrte Ordnung angepasst werden, dabei
 muss beachtet werden, dass mit jedem gelesenen {\tt\#}-Zeichen
 die ``Leserichtung'' ändert.
@@ -1105,7 +1105,7 @@ dies ist sicher berechenbar.
 \section{Satz von Rice}
 \rhead{Satz von Rice}
 Eigenschaften von Turing-erkennbaren Sprachen sind im Allgemeinen
-nicht entscheidbar, wie die vorangegangenen Beispiel zeigen.
+nicht entscheidbar, wie die vorangegangenen Beispiele zeigen.
 Allerdings müssen sie genü\-gend kompliziert sein.
 Dann lässt
 sich aber sogar der Beweis vereinheitlichen.
@@ -1156,7 +1156,7 @@ $\emptyset$ die Eigenschaft $P$ nicht hat.
 Wäre dies nicht so, könnten
 wir stattdessen $L_1=\emptyset$  wählen, und die Eigenschaft $\neg P$
 untersuchen.
-Aussserdem gibt es eine Turingmaschine $M_1$ mit $L(M_1)=L_1$.
+Ausserdem gibt es eine Turingmaschine $M_1$ mit $L(M_1)=L_1$.
 
 Die Turingmaschine $M'$ operiert auf dem Input $u$ wie folgt:
 \medskip
@@ -1212,7 +1212,7 @@ $P=\text{\textsl{ALL}}$ nicht.
 \end{enumerate}
 Damit ist klar, dass die Eigenschaft nicht trivial ist.
 
-Jetzt kann der Satz von Rice angewandt werden, er besagt, dass die
+Jetzt kann der Satz von Rice angewendet werden, er besagt, dass die
 Eigenschaft
 $P=\text{\textsl{ALL}}$ nicht entscheidbar ist.
 \end{beispiel}
@@ -1248,7 +1248,7 @@ Zunächst muss man wieder die Eigenschaft formulieren
 P: \text{Die akzeptierte Sprache ist die Menge der Primzahlen}
 \]
 Weiter muss es zwei Sprachen geben, die eine muss die Eigenschaft
-$P$ haben, die anderen nicht:
+$P$ haben, die andere nicht:
 \begin{enumerate}
 \item
 Der oben beschriebene primitive Primzahlprüfer, der alle möglichen Teiler
