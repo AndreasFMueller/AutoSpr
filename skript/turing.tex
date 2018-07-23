@@ -33,7 +33,7 @@ behandeln. Doch man fügt damit wesentlich mehr hinzu. Ein Buch ist
 sicher ein Random-Access Speichermedium. Durch Blättern im Buch
 kann man jede beliebige Seite erreichen. Wenn man aber ein Buch
 aufschlägt, besteht es eigentlich nur aus zwei Stapeln von Blättern.
-Blättern bedeutet nichts anderes, dass man ein Blatt des Buches vom
+Blättern bedeutet nichts anderes, als dass man ein Blatt des Buches vom
 einen Stapel wegnimmt und auf den anderen Stapel legt. Zwei Stacks
 bilden also bereits ein Random-Access Medium.
 
@@ -405,7 +405,7 @@ muss. Dafür braucht es die beiden Zustände $q_3$ und $q_4$:
 \]
 Wenn die Maschine nach dem Abarbeiten aller \texttt{0} und {\tt x} auf einen
 neuen Blank \textvisiblespace\ trifft, ist sie entweder im Zustand
-$q_3$ oder in $q_4$. Im letzten Fall hat sie ein ungerade Anzahl
+$q_3$ oder in $q_4$. Im letzten Fall hat sie eine ungerade Anzahl
 von \texttt{0} gefunden, gemäss Schritt 3 des Algorithmus muss also verworfen
 werden:
 \[
@@ -505,7 +505,7 @@ erkannten werden.
 \begin{proof}[Beweis]
 Sei $L$ eine Sprache, die von der Turingmaschine $M$ mit $n$ Spuren
 erkannten wird. Das Bandalphabet ist $\Gamma$. Wir konstruieren aus
-$M$ eine neue Turingmaschine $M'$, welches nur noch eine Spur hat,
+$M$ eine neue Turingmaschine $M'$, welche nur noch eine Spur hat,
 jedoch als Bandalphabet die Menge $\Gamma^n$. Dadurch wird die ``Wortbreite''
 des Bandes erhöht, es wird nur noch eine, breite Spur verwendet, um die
 gleiche Information unterzubringen.
@@ -543,7 +543,7 @@ Und nach Satz \ref{mehrspurigeturingmaschine} lässt sich eine solche wiederum
 auf einer Standardturingmaschine simulieren.
 \end{proof}
 Die geraden Spuren werden also dazu verwendet, die Position des
-Schreib-/Lese-Kopfes zu speichern, während die ungeraden Spuren
+Schreib-/Lesekopfes zu speichern, während die ungeraden Spuren
 die Daten enthalten:
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c|c|c|c}
@@ -592,8 +592,8 @@ eines Feldes des Bandes von $M$ wird auf $l$ aufeinanderfolgende Felder
 des Bandes von $M'$ verteilt, die mit den einzelnen Komponenten
 von $e(x)$ gefüllt werden.
 
-In den folgenden Darstellungen verwenden wir der grösseren
-Übersichtlichkeit halber $\Gamma=\{\texttt{0},\texttt{1},2,3\}$, wobei eines der
+In den folgenden Darstellungen verwenden wir, der grösseren
+Übersichtlichkeit halber, $\Gamma=\{\texttt{0},\texttt{1},2,3\}$, wobei eines der
 Zeichen die Rolle von $\blank$ übernimmt. Ausserdem ist $l=2$.
 
 Jetzt müssen auch die Übergänge in $M$
@@ -719,7 +719,7 @@ weiterarbeiten.
 \begin{definition}
 \index{Aufzahler@Aufzähler}%
 Eine Turingmaschine mit einem Drucker, die auf einem leeren Band beginnt,
-heisst ein Aufzähler. Die von einem Aufzähler auf dem Drucker ausgegebene
+heisst ein Aufzähler. Die von einem Aufzähler auf dem Drucker ausgegebenen
 Wörter bilden eine Sprache, die vom Aufzähler aufgezählte Sprache.
 \end{definition}
 
@@ -739,7 +739,7 @@ erkannt werden kann, andererseits muss zu einer Turingmaschine, die
 die Sprache erkennt, ein Aufzähler konstruiert werden, der die Sprache
 aufzählt.
 
-Sei als $A$ ein Aufzähler. Wir konstruieren eine Turingmaschine $M$, die
+Sei also $A$ ein Aufzähler. Wir konstruieren eine Turingmaschine $M$, die
 zum Inputwort $w$ folgenden Algorithmus implementiert.
 \begin{compactenum}
 \item Lasse $A$ laufen. Jedesmal, wenn $A$ ein Wort auf den Drucker schreibt,
@@ -762,7 +762,7 @@ Sei also $s_1,s_2,s_3,\dots$ eine Liste aller Wörter von $\Sigma^*$.
 Beim Testen der Wörter mit $M$
 haben wir die Schwierigkeit, dass $M$ auf einem Inputwort
 möglicherweise nicht anhält. Wir müssen also mit einem Trick
-simulieren, dass unsere Algorithmus nicht in einer ``Endlosschleife''
+simulieren, dass unser Algorithmus nicht in einer ``Endlosschleife''
 in $M$ stecken bleibt. Wir lassen $M$ daher nur jeweils für einige
 Schritte laufen.
 Genauer:
@@ -773,8 +773,8 @@ laufen.
 \item Falls $M$ das Wort $s_i$ akzeptiert, schreibe es auf den Drucker.
 \end{compactenum}
 Dieser Algorithmus verhindert, dass $M$ in eine ``Endlosschleife''
-gerät, und druckt alle Wörter aus, von der Turingmaschine erkannt
-werden, sogar unendlich oft.
+gerät, und druckt alle Wörter aus, die von der Turingmaschine erkannt
+werden. Dies sogar unendlich oft.
 \end{proof}
 
 \subsection{Nicht deterministische Turingmaschinen}
@@ -1135,7 +1135,7 @@ reellen Zahlen sind also überabzählbar.
 \end{proof}
 
 \index{Cantor!Georg}%
-Georg Cantor (1845-1918) leistete wichtige Beiträge zur Mengelehre,
+Georg Cantor (1845-1918) leistete wichtige Beiträge zur Mengenlehre,
 unter anderem entdeckte er den Unterschied der Mächtigkeit von
 natürlichen und reellen Zahlen. Daher haben wir in der Geschichte
 den Bus, dessen Sitzplätze mit reellen Zahlen angeschrieben waren,
@@ -1159,7 +1159,7 @@ $A_i$ nicht vorkommt.
 a_i\in B\quad\Leftrightarrow\quad a_i\not\in A_i
 \]
 Die Menge $B$ unterscheidet sich von jeder Menge $A_i$. Falls
-$A_i$ das Elemente $a_i$ enthält, enthält $B$ es nicht und
+$A_i$ das Element $a_i$ enthält, enthält $B$ es nicht und
 umgekehrt. Somit ist $B\ne A_i\forall i$, im Widerspruch zur Annahme
 dass $i\mapsto A_i$ eine Bijektion ist.
 \end{proof}
@@ -1300,7 +1300,7 @@ Die Menge der nicht berechenbaren Zahlen ist überabzählbar.
 Die berechenbaren Zahlen sind abzählbar. Wir können nämlich
 eine Liste aller Turingmaschinen erstellen, zunächst schreiben
 wir die Turingmaschinen mit nur einem Zustand hin, dann all jene
-mit genau zwei Zuständen u.\,s.\,w. Da jede Turingmaschine genau eine
+mit genau zwei Zuständen usw. Da jede Turingmaschine genau eine
 Zahl berechnen kann, ist die Menge der berechnenbaren Zahlen abzählbar,
 die Menge der reellen Zahlen ist also überabzählbar, daher müssen die
 nicht berechenbaren Zahlen auch überabzählbar sein.
