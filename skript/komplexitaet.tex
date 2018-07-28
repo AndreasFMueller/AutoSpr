@@ -153,7 +153,7 @@ durch das Band.
 Wir nehmen an, dass $t(n)\ge n$, denn sonst könnte die
 Turingmaschine nicht einmal ihren Input vollständig lesen.
 Der tatsächlich benutzte Teil des Bandes kann dann nicht länger sein
-als $t(n)$. Zusammen mit den $t(n)$ durchläufen erhalten wir,
+als $t(n)$. Zusammen mit den $t(n)$ durchläufen erhalten wir die Erkenntnis,
 dass die simulierte Turingmaschine die Laufzeit $O(t(n)^2)$ hat.
 \end{proof}
 
@@ -192,7 +192,7 @@ Entscheidungen.
 
 Wir müssen ausrechnen, wie sich die Simulation auf die 
 Gesamtlaufzeit auswirkt. Jeder Berechnungspfad der simulierten
-nichtdeterministischen Turingmaschine hat Laufzeit nicht
+nichtdeterministischen Turingmaschine hat eine Laufzeit nicht
 länger als $t(n)$. Die Erzeugung der nächsten möglichen
 Berechnungsgeschichte auf Band~3 kann in einem Durchgang
 durch Band~3 erfolgen, braucht also Zeit $O(t(n))$.
@@ -234,7 +234,7 @@ je polynomielle Laufzeit zu erreichen.
 
 Aber wie gross ist denn nun exponentielle Laufzeit?
 Nehmen wir an,
-ein wir hätten einen Algorithmus mit Laufzeit $n^k$. Vergrössert
+wir hätten einen Algorithmus mit Laufzeit $n^k$. Vergrössert
 man die Input-Länge um $1$ Zeichen, ändert sich die Laufzeit um
 \[
 \frac{(n+1)^k}{n^k}
@@ -322,7 +322,7 @@ kann in Zeit $O(n^3)$ durchgeführt werden.
 
 Sei $G$ ein gerichteter Graph und $s$ und $t$ zwei Vertizes
 des Graphen. Das Pfad-Problem fragt, ob es einen von $s$ nach $t$
-führend Pfad in dem Graphen gibt. Übersetzt in ein Spracheproblem
+führenden Pfad in dem Graphen gibt. Übersetzt in ein Spracheproblem
 liefert es uns den folgenden Satz.
 
 \begin{satz}
@@ -682,7 +682,7 @@ einen polynomiellen Verifizierer für $A$ konstruieren.
 \end{proof}
 
 Die letzten zwei Sätze zeigen, dass sich Sprachen in $P$ und $NP$
-mit Hilfe der polynomiellen in ``leichte'' und ``schwierige'',
+mit Hilfe der polynomiellen Verifizierer in ``leichte'' und ``schwierige'',
 in ``schnell'' bzw.~``langsam'' zu lösende unterteilen lassen
 (Abbildung \ref{pnporder}).
 \begin{figure}
@@ -1073,7 +1073,7 @@ polynomieller Zeit erzeugt werden.
 
 \subsubsection{Akzeptierzustand}
 In der letzten Zeile der Tabelle muss der Zustand $q_\text{accept}$ stehen,
-wir können dies durch den 
+wir können dies durch den Ausdruck 
 Irgendwo in der Tabelle muss der Akzeptierzustand stehen, also
 \[
 \varphi_{\text{accept}} 
@@ -1477,7 +1477,7 @@ Ist $\varphi$ nicht erfüllbar, dann muss $z$ wahr sein, und
 damit auch $\varphi$, d.\,h.~auch $\varphi\vee\psi$ ist erfüllbar.
 Eine zu lange Disjunktion kann also immer in kürzere Disjunktionen 
 aufgespaltet werden. Rekursive Anwendung liefert jetzt eine Formel
-mit mit maximal drei Literalen pro Klausel.
+mit maximal drei Literalen pro Klausel.
 \end{proof}
 
 \begin{satz}
@@ -1890,7 +1890,7 @@ Also ist
 $\text{\textsl{SUBSET-SUM}}\le_P\text{\textsl{BIP}}$.
 \end{proof}
 
-Im folgenden wollen die von Karp als NP-vollständig erkannten Probleme
+Im folgenden wollen wir die von Karp als NP-vollständig erkannten Probleme
 ohne Beweis im Sinne einer Referenz zusammenstellen. Hat man ein
 Problem als NP-vollständig nachzuweisen, kann man von jedem dieser
 Probleme aus eine Reduktion versuchen.
