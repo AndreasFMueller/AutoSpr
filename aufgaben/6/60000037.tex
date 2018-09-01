@@ -1,0 +1,49 @@
+Der chinesische Präsident Xi Jinping hat sich nicht darüber gefreut, dass
+er auf dem Internet mit Winnie the Pooh verglichen wird.
+Er hat seine
+Zensoren angewiesen, Bilder von Winnie the Pooh zu blockieren, sogar in
+der in China verbreiteten Chat-Anwendung WeChat werden Meldungen, die
+die Zeichenkette {\tt 
+Winnie the Pooh} enthalten, mit einer Fehlermeldung quittiert. 
+Trotzdem gibt es natürlich immer noch zahllose Apps, die Winnie the Pooh
+nicht blockieren und damit die chinesischen Zensoren brüskieren.
+Gibt es eine Möglichkeit, Apps zu blockieren, die zur Laufzeit die
+Zeichenkette \texttt{Winnie the Pooh} erzeugen können?
+
+\thema{Halteproblem}
+\thema{Reduktion}
+
+\begin{loesung}
+Sei $P$ irgend ein Programm, welches wir daraufhin untersuchen
+wollen, ob es den String {\tt Winnie the Pooh} produzieren kann.
+Mit dem Debugger könnten wir feststellen, ob ein Programm den
+genannten String produziert und könnten das Programm anhalten lassen.
+Herauszufinden, ober der String produziert wird, ist also gleichbedeutend
+damit, herauszufinden, ob ein Programm anhält.
+Letzteres ist das Halteproblem, welches nicht entscheidbar ist.
+
+Etwas formaler können wir auch mit Hilfe einer Reduktion vom Halteproblem
+nachweisen, dass Problem nicht entscheidbar ist.
+Sei also $Q$ ein Programm welches keinen Output produziert, so wie das
+in der Theorie zum Halteproblem vorausgesetzt wurde.
+Von $Q$ wollen wir entscheiden, ob es anhält oder nicht.
+Wir konstruieren das folgende neue Programm $Q'$:
+\begin{enumerate}
+\item Lasse $Q$ laufen
+\item Gebe die Zeichenkette {\tt Winnie the Pooh} aus
+\end{enumerate}
+Dieses Programm produziert genau dann den Output {\tt Winnie the Pooh},
+wenn $Q$ anhält.
+Die Abbildung $Q\to Q'$ ist daher eine Reduktion vom Halteproblem auf
+das Winnie-the-Pooh-Problem.
+Da das Halteproblem nicht entscheidbar ist, ist auch das
+Winnie-the-Pooh-Problem nicht entscheidbar.
+\end{loesung}
+
+\begin{bewertung}
+Verbindung zum Halteproblem ({\bf H}) 2 Punkte,
+Konstruktion einer Reduktion ({\bf R}) 2 Punkte,
+Schluffolgerung ``nicht entscheidbar'' ({\bf E}) 2 Punkte.
+\end{bewertung}
+
+

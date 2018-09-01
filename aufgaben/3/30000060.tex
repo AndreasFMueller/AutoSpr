@@ -1,0 +1,154 @@
+Auf der Website 
+\url{https://blog.patricktriest.com/you-should-learn-regex/}
+stellt der Autor folgende Aufgaben:
+\begin{teilaufgaben}
+\item
+Finde einen regulären Ausdruck, mit dem man Jahreszahlen zwischen
+1800 und 2199 in einem
+historischen Dokument finden kann.
+Jahreszahlen sind vierstellig und wenn sie im Inneren eines
+Strings vorkommen, müssen Sie mit Leerzeichen begrenzt sein.
+\item
+Kommentare in der Programmiersprache C werden von \texttt{/*} und
+\texttt{*/} eingerahmt und können nicht geschachtelt werden.
+Zwischen den Kommentarzeichen kann jedes beliebige Zeichen vorkommen.
+Finden Sie einen regulären Ausdruck, der einen C-Kommentar
+erkennt.
+\end{teilaufgaben}
+
+\thema{reguläre Ausdrücke}
+\thema{regulär}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Jahreszahlen zwischen 1800 und 2199 passen auf den regulären Ausdruck
+\[
+r_1 = \texttt{(18|19|20|21)[0-9]\{2\}}
+\]
+Nun müssen wir aber noch sicherstellen, dass Zahlen im inneren eines
+Strings von Blanks eingerahmt sind.
+Wenn links oder rechts von einer Jahreszahl noch etwas steht, dann muss
+unmittelbar links oder rechts von der Jahreszahl ein Blank stehen.
+Der Ausdruck
+\[
+r_2
+=
+\texttt{(.*\blank)?}r_1\texttt{(\blank.*)?}
+\]
+erfasst dies.
+\item
+C-Kommentare dürfen nicht geschachtelt werden, nach einem \texttt{*} darf
+also nur dann ein \texttt{/} folgen, wenn die Zeichenkette dann auch
+fertig ist.
+Diese negative Bedingung ist mit einem ad hoc entworfenen regulären Ausdruck
+nicht so einfach zu beschreiben.
+Wir können aber leicht einen endlichen Automaten angeben, der dies 
+bewerkstelligt.
+Im inneren der Zeichenkette gibt es zwei mögliche Zustände:
+\begin{enumerate}
+\item
+Es ist unmittelbar ein \texttt{*} vorangegangen, entweder wird der
+Kommentar jetzt mit einem \texttt{/} beendet oder es folgt ein von \texttt{/}
+verschiedenes Zeichen.
+Die ist Zustand $q_3$ im nachfolgenden Zustandsdiagramm.
+\item
+Es ist unmittelbar ein von \texttt{*} verschiedenes Zeichen
+vorangegangen (das \texttt{*}, welches den Kommentar eröffnet hat, zählt nicht).
+Dies ist Zustand $q_2$ im nachfolgenden Zustandsdiagramm.
+\end{enumerate}
+Dies führt auf das folgende Zustandsdiagramm:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{} \ar[r]
+	&{S} \ar[r]^{\displaystyle\texttt{/}}
+		&{q_1} 	\ar[r]^{\displaystyle\texttt{\textbackslash*}}
+			&{q_2}	\ar@/_/[d]_{\displaystyle\texttt{\textbackslash*}}
+				\ar@(ur,ul)_{\displaystyle\texttt{[\textasciicircum\textbackslash*]}}
+				&*+\txt{}
+\\
+*+\txt{}
+	&*+\txt{}
+		&*+\txt{}
+			&{q_3} \ar[r]^{\displaystyle\texttt{/}}
+				\ar@/_/[u]_{\displaystyle\texttt{[\textasciicircum\textbackslash*/]}}
+				\ar@(dr,dl)^{\displaystyle\textbackslash*}
+				&*++[o][F=]{E}
+}
+\]
+Diesen VNEA müssen wir jetzt in einen regulären Ausdruck umwandeln, indem
+wir der Reihe nach die Zustände $q_1$, $q_2$ und $q_3$ entfernen.
+Entfernung von $q_1$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{} \ar[r]
+	&{S} \ar[rr]^{\displaystyle\texttt{/\textbackslash*}}
+		&*+\txt{}
+			&{q_2}	\ar@/_/[d]_{\displaystyle\texttt{\textbackslash*}}
+				\ar@(ur,ul)_{\displaystyle\texttt{[\textasciicircum\textbackslash*]}}
+				&*+\txt{}
+\\
+*+\txt{}
+	&*+\txt{}
+		&*+\txt{}
+			&{q_3} \ar[r]^{\displaystyle\texttt{/}}
+				\ar@/_/[u]_{\displaystyle\texttt{[\textasciicircum/]}}
+				\ar@(dr,dl)^{\displaystyle\textbackslash*}
+				&*++[o][F=]{E}
+}
+\]
+Entfernung von $q_2$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{} \ar[r]
+	&{S} \ar[rr]^{\displaystyle\texttt{/\textbackslash*[\textasciicircum\textbackslash*]*\textbackslash*}}
+		&*+\txt{}
+			&{q_3} \ar[r]^{\displaystyle\texttt{/}}
+				\ar@(dr,dl)^{\displaystyle\texttt{[\textasciicircum\textbackslash*][\textasciicircum\textbackslash*]*\textbackslash*|\textbackslash*}}
+				&*++[o][F=]{E}
+}
+\]
+Entfernung von $q_3$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{} \ar[r]
+	&{S} \ar[rrrrr]^{\displaystyle\texttt{/\textbackslash*[\textasciicircum\textbackslash*]*\textbackslash*([\textasciicircum\textbackslash*][\textasciicircum\textbackslash*]*\textbackslash*|\textbackslash*)*/}}
+	&*+\txt{}
+		&*+\txt{}
+		&*+\txt{}
+			&*+\txt{}
+				&*++[o][F=]{E}
+}
+\]
+Die Beschriftung des Übergangs von $S$ nach $A$ ist der gesuchte reguläre
+Ausdruck.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{diskussion}
+Die Lösung für b) von der genannten Website akzeptiert übrigens weit mehr
+Zeichenketten, die keine legalen C-Kommentare sind.
+\end{diskussion}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item
+Richtige Jahrszahlen ({\bf J}) 1 Punkt,
+Korrekte Begrenzung mit Whitespace ({\bf W}) 1 Punkt.
+\item
+Begrenzungszeichen ({\bf B}) 1 Punkt,
+Kommentartext ({\bf K}) 1 Punkt,
+Erkenntnis, dass im inneren keine Kommentarendzeichen vorkommen dürfen
+({\bf E}) 1 Punkt,
+Implementation keine Endzeichen im Inhalt ({\bf I}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
+
+
+
+

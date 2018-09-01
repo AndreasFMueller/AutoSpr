@@ -1,0 +1,234 @@
+Geben Sie eine Grammatik in Chomsky-Normalform für die Sprache Brainfuck.
+
+\begin{hinweis}
+Die Sprache Brainfuck verwendet die folgenden Zeichen:
+\begin{center}
+\begin{tabular}{|c|l|}
+\hline
+Brainfuck&C-Äquivalent\\
+\hline
+{\tt >}&\verb/++ptr;/\\
+{\tt <}&\verb/--ptr;/\\
+{\tt +}&\verb/++*ptr;/\\
+{\tt -}&\verb/--*ptr;/\\
+{\tt .}&\verb/putchar(*ptr);/\\
+{\tt ,}&\verb/*ptr = getchar();/\\
+{\tt [}&\verb/while (*ptr) {/\\
+{\tt ]}&\verb/}/\\
+\hline
+\end{tabular}
+\end{center}
+\end{hinweis}
+
+
+\thema{Grammatik}
+\thema{Chomsky Normalform}
+
+\begin{loesung}
+Die Sprache Brainfuck hat nur ein einziges Konstrukt, bei welchem
+auf die korrekte Schachtelung zu achten ist, nämlich die
+Schleifenkonstruktion mit \texttt{[} und \texttt{]}.
+Alle anderen Zeichen
+\texttt{>},
+\texttt{<},
+\texttt{+},
+\texttt{-},
+\texttt{.}
+und
+\texttt{,}
+können beliebig verwendet werden.
+Daraus können wir folgende Grammatik ableiten:
+\begin{align*}
+P&\rightarrow P C\;|\;\varepsilon
+\\
+C&\rightarrow
+\texttt{.} \;|\;
+\texttt{,} \;|\;
+\texttt{>} \;|\;
+\texttt{<} \;|\;
+\texttt{+} \;|\;
+\texttt{-}
+\\
+&\rightarrow \texttt{[} \; P \; \texttt{]}
+\end{align*}
+Diese Grammatik ist noch nicht in Chomsky-Normalform.
+Wir verwenden den Standard-Algorithmus, um daraus eine Grammatik in CNF
+zu machen.
+
+Im ersten Schritt erzeugen wir eine neue Startvariable:
+\begin{align*}
+S&\rightarrow P\\
+P&\rightarrow P C\;|\;\varepsilon
+\\
+C&\rightarrow
+\texttt{.} \;|\;
+\texttt{,} \;|\;
+\texttt{>} \;|\;
+\texttt{<} \;|\;
+\texttt{+} \;|\;
+\texttt{-}
+\\
+&\rightarrow \texttt{[} \; P \; \texttt{]}
+\\
+&\rightarrow \texttt{[} \; \texttt{]}
+\end{align*}
+Im zweiten Schritt werden $\varepsilon$-Regeln entfernt.
+\begin{align*}
+S&\rightarrow P
+\;|\;\varepsilon
+\\
+P&\rightarrow P C \;|\; C
+\\
+C&\rightarrow
+\texttt{.} \;|\;
+\texttt{,} \;|\;
+\texttt{>} \;|\;
+\texttt{<} \;|\;
+\texttt{+} \;|\;
+\texttt{-}
+\\
+&\rightarrow \texttt{[} \; P \; \texttt{]}
+\\
+&\rightarrow \texttt{[} \; \texttt{]}
+\end{align*}
+
+Im dritten Schritt entfernen wir die Unit-Rules.
+Wir beginnen mit $P\to C$:
+\begin{align*}
+S&\rightarrow P
+\;|\;\varepsilon
+\\
+P&\rightarrow P C
+\\
+P&\rightarrow
+\texttt{.} \;|\;
+\texttt{,} \;|\;
+\texttt{>} \;|\;
+\texttt{<} \;|\;
+\texttt{+} \;|\;
+\texttt{-}
+\\
+&\rightarrow \texttt{[} \; P \; \texttt{]}
+\\
+&\rightarrow \texttt{[} \; \texttt{]}
+\\
+C&\rightarrow
+\texttt{.} \;|\;
+\texttt{,} \;|\;
+\texttt{>} \;|\;
+\texttt{<} \;|\;
+\texttt{+} \;|\;
+\texttt{-}
+\\
+&\rightarrow \texttt{[} \; P \; \texttt{]}
+\\
+&\rightarrow \texttt{[} \; \texttt{]}
+\end{align*}
+Schliesslich entfernen wir $S\to P$:
+\begin{align*}
+S&\rightarrow\varepsilon
+\\
+&\rightarrow P C
+\\
+&\rightarrow
+\texttt{.} \;|\;
+\texttt{,} \;|\;
+\texttt{>} \;|\;
+\texttt{<} \;|\;
+\texttt{+} \;|\;
+\texttt{-}
+\\
+&\rightarrow \texttt{[} \; P \; \texttt{]}
+\\
+&\rightarrow \texttt{[} \; \texttt{]}
+\\
+P&\rightarrow P C
+\\
+&\rightarrow
+\texttt{.} \;|\;
+\texttt{,} \;|\;
+\texttt{>} \;|\;
+\texttt{<} \;|\;
+\texttt{+} \;|\;
+\texttt{-}
+\\
+&\rightarrow \texttt{[} \; P \; \texttt{]}
+\\
+&\rightarrow \texttt{[} \; \texttt{]}
+\\
+C&\rightarrow
+\texttt{.} \;|\;
+\texttt{,} \;|\;
+\texttt{>} \;|\;
+\texttt{<} \;|\;
+\texttt{+} \;|\;
+\texttt{-}
+\\
+&\rightarrow \texttt{[} \; P \; \texttt{]}
+\\
+&\rightarrow \texttt{[} \; \texttt{]}
+\end{align*}
+
+Im vierten und letzten Schritt wandeln wir die Regeln mit rechter Seite
+$\texttt{[}\;P\;\texttt{]}$ in eine akzeptable Form:
+\begin{align*}
+S&\rightarrow\varepsilon
+\\
+&\rightarrow P C
+\\
+&\rightarrow
+\texttt{.} \;|\;
+\texttt{,} \;|\;
+\texttt{>} \;|\;
+\texttt{<} \;|\;
+\texttt{+} \;|\;
+\texttt{-}
+\\
+&\rightarrow AE
+\\
+&\rightarrow WE
+\\
+P&\rightarrow P C
+\\
+&\rightarrow
+\texttt{.} \;|\;
+\texttt{,} \;|\;
+\texttt{>} \;|\;
+\texttt{<} \;|\;
+\texttt{+} \;|\;
+\texttt{-}
+\\
+&\rightarrow AE
+\\
+&\rightarrow WE
+\\
+C&\rightarrow
+\texttt{.} \;|\;
+\texttt{,} \;|\;
+\texttt{>} \;|\;
+\texttt{<} \;|\;
+\texttt{+} \;|\;
+\texttt{-}
+\\
+&\rightarrow AE
+\\
+&\rightarrow WE
+\\
+A&\rightarrow W P
+\\
+W&\rightarrow\texttt{[}
+\\
+E&\rightarrow\texttt{]}
+\end{align*}
+Nun ist die Grammatik in Chomsky-Normalform.
+\end{loesung}
+
+\begin{bewertung}
+Iteration für gewöhnliche Zeichen ({\bf I}) 1 Punkt,
+Schachtelung für While-Schleife ({\bf W}) 1 Punkt,
+neue Startvariable ({\bf S}) 1 Punkt,
+$\varepsilon$-Regeln ({\bf E}) 1 Punkt,
+Unit rules ({\bf U}) 1 Punkt,
+Dreier-Regeln ({\bf D}) 1 Punkt.
+\end{bewertung}
+

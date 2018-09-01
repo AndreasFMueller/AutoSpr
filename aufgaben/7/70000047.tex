@@ -1,0 +1,42 @@
+Ein grosses Softwareentwicklungsprojekt ist wegen der aus dem Ruder gelaufenen
+Kosten gezwungen, zu redimensionieren.
+Zu diesem Zweck stellt der Projektleiter eine Liste von Skills zusammen,
+die er nach der Entlassungswelle in seinem Team noch haben muss und
+kämpft nun seit Tagen damit, ein Auswahl von Mitarbeitern zu finden,
+in der jeder Skill in genau einem Teammitglied vertreten ist.
+Warum fällt ihm das so schwer?
+
+\thema{NP-vollständig}
+
+\begin{loesung}
+Dies ist das Problem HITTING-SET.
+Wir bezeichnen die Skills mit $i\in I$, $S_i$ ist die Menge der
+Team-Mitglieder, die Skill $i$ haben.
+Gesucht ist eine Menge
+\[
+H\subset \bigcup_{i\in I} S_i
+\]
+derart, dass $|H\cap S_i|=1$ für jeden Skill.
+Wir haben also eine 1-1-Reduktion
+\[
+\begin{aligned}
+&\text{Skills}                      &&\leftrightarrow &&I\\
+&\text{Skill}                       &&\leftrightarrow &&i\\
+&\text{Teammitglieder mit Skill $i$}&&\leftrightarrow &&S_i\\
+&\text{neues Team}                  &&\leftrightarrow &&H
+\end{aligned}
+\]
+Da HITTING-SET NP-vollständig ist, muss davon ausgegangen werden, dass
+es keinen Algorithmus mit polynomieller Laufzeit zur Bestimmung der
+Menge $H$ gibt.
+\end{loesung}
+
+\begin{bewertung}
+Reduktionsmethode ({\bf R}) 1 Punkt,
+Vergleichsproblem ({\bf V}) 1 Punkt,
+eins zu eins Mapping ({\bf M}) 2 Punkte,
+Vergleichsproblem ist NP-vollständig ({\bf N}) 1 Punkt,
+Schlussfolgerung ({\bf S} 1 Punkt.
+\end{bewertung}
+
+

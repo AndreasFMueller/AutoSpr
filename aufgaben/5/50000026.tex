@@ -1,0 +1,95 @@
+Das erste Beispiel einer Turing-Maschine,
+die Alan Turing in seinem grundlegenden Paper
+über Berechenbarkeit und das Entscheidungsproblem
+beschreibt, hat das folgende Zustandsdiagramm:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+10mm {
+*+\txt{} \ar[r]
+	&q_0 \ar[rrr]^{\texttt{\blank}\to\texttt{0},R}
+		\ar[dr]_{\texttt{0}\to\texttt{\blank},L}
+		\ar[drr]^{\texttt{1}\to\texttt{\blank},L}
+		&*+\txt{}
+			&*+\txt{}
+				&q_1 \ar[dd]^{\blank\to\blank,R}
+					\ar[dll]_{\texttt{0}\to\texttt{\blank},L}
+					\ar[dl]^{\texttt{1}\to\texttt{\blank},L}
+\\
+*+\txt{}
+	&*+\txt{}
+		&*++[o][F=]{q_{\text{accept}}}
+			&*++[o][F=]{q_{\text{reject}}}
+				&*+\txt{}
+					&*+\txt{}
+\\
+*+\txt{}
+	&q_3 \ar[uu]^{\blank\to\blank,R}
+		\ar[ur]^{\texttt{0}\to\texttt{\blank},L}
+		\ar[urr]_{\texttt{1}\to\texttt{\blank},L}
+		&*+\txt{}
+			&*+\txt{}
+				&q_2 \ar[lll]^{\blank\to\texttt{1},R}
+					\ar[ull]^{\texttt{0}\to\texttt{\blank},L}
+					\ar[ul]_{\texttt{1}\to\texttt{\blank},L}
+}
+\]
+Im Gegensatz zu unserer späteren Konvention befindet sich bei Alan Turing's
+ursprünglicher Definition einer Turing-Maschine
+der Schreib-/Lese-Kopf zu Beginn der Berechnung nicht auf dem ersten
+Zeichen das Inputwortes, sondern irgendwo auf dem Band.
+\begin{teilaufgaben}
+\item
+Was tut diese Maschine, wenn das Band leer ist?
+\item
+Hält die Maschine auf leerem Band an?
+\item
+Wenn das Band nicht leer ist, hält die Maschine dann an?
+Wenn ja, in welchem Zustand?
+\item
+Wenn die Maschine anhält, was steht dann auf dem Band?
+\end{teilaufgaben}
+
+\thema{Turing-Maschine}
+\thema{Zustandsdiagramm}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item 
+Wenn das Band leer ist, spielen nur die Übergänge am Umfang des Rechtecks
+eine Rolle.
+Die Übergängen überschreiben abwechselnd jedes zweite Leerzeichen mit
+\texttt{0} bzw.~\texttt{1}.
+\item
+Wenn das Band leer ist, kommen die Übergängen zu den Akzeptierzuständen
+gar nicht zu Zug, die Maschine hält also nicht an.
+\item
+Solange der Schreib-/Lese-Kopf auf ein leeres Feld zeigt, bleiben
+weiterhin nur die Übergänge am Umfang massgebend.
+Sobald der Schreib-/Lese-Kopf auf ein anderes Zeichen trifft, wird das
+Zeichen gelöscht und die Maschine vollzieht einen Überhang in einen
+Akzeptierzustand.
+Falls das Zeichen ein \texttt{0} ist, erfolgt der Übergang nach
+$q_\text{accept}$, falls das Zeichen ein \texttt{1}, erfolgt der Übergang
+nach $q_{\text{reject}}$.
+\item
+In diesem Fall stehen auf dem Band Folgen von $\texttt{0\blank1\blank}$
+bis zum ersten nicht-\blank-Zeichen.
+Dieses wird überschrieben von \blank{} und danach befindet sich der
+unveränderte Inhalt des Bandes.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item
+({\bf A}) 2 Punkt.
+\item
+({\bf B}) 1 Punkte.
+\item
+({\bf C}) 2 Punkte.
+\item
+({\bf D}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
+
