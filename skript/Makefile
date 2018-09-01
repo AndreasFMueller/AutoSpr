@@ -27,3 +27,6 @@ skript.ind:	$(TEXFILES)
 
 clean:
 	rm -f *.dvi *.log 
+
+checklist.pdf:	checklist.tex
+	pdflatexc checklist.tex
