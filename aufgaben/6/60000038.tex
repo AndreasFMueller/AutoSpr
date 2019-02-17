@@ -1,0 +1,25 @@
+In der Aufgabe \ref{40000056} wird eine kontextfreie Grammatik für eine
+Sprache verlangt.
+Gibt es eine Möglichkeit, die Lösungen dieser Aufgabe maschinell zu
+korrigieren, also ein Programm zu schreiben, welches genau diejenigen
+Grammatiken erkennt, welche die Sprache erzeugen, und alle anderen verwirft?
+
+\thema{Entscheidbarkeit}
+\thema{Reduktion}
+
+\begin{loesung}
+In der Musterlösung von Aufgabe \ref{4000056} wird eine kontextfreie
+Grammatik $G$ angegeben, welche die genannte Sprache erzeugt.
+Gesucht wird also ein Programm, welches herausfindet, ob eine andere
+vorgeschlagene Grammatik $G_1$ die gleiche Sprache erzeugt.
+Dies ist dass Problem $\textit{EQ}_{\text{CFG}}$, von welchem im Satz~6.20
+im Skript gezeigt wurde, dass es nicht entscheidbar ist.
+Die Aufgabe \ref{40000056} ist daher nicht maschinell korrigierbar.
+\end{loesung}
+
+\begin{bewertung}
+Reduktion auf Gleichheit von akzeptierten Sprachen ({\bf R}) 2 Punkte,
+$\textit{EQ}_{\text{CFG}}$ ist nicht entscheidbar ({\bf E}) 2 Punkte,
+Schlussfolgerung ({\bf S}) 2 Punkte.
+\end{bewertung}
+
