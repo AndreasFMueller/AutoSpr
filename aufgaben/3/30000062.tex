@@ -1,0 +1,94 @@
+Datums-Angaben können in verschiedenen Formaten erfolgen.
+Im deutschen Sprachraum ist die Angabe im Format \texttt{DD. MM. YYYY}
+üblich, wobei Tageszahl und Monatszahl auch nur einstellig sein können,
+in Datenbanken dagegen eher das ISO-Datum in der Form \texttt{YYYY-MM-DD},
+in dem Tageszahl und Monatszahl bei Bedarf eine führende Null haben.
+Datumsangaben in offiziellen japanischen Dokumenten beziehen sich dagegen
+auf das Regierungsjahr des aktuellen Tenn\=o.
+Akihito ist seit 7. Januar 1989 Tenn\=o, der 4.~Februar 2019 fällt daher in
+das 31.~Regierungsjahr von Akihito.
+Die zugehörige japanische Jahresangabe ist Heisei 31, das Datum ist
+\begin{CJK}{UTF8}{min}平成31年2月18日.\end{CJK}
+Darin steht 
+\begin{CJK}{UTF8}{min}平成\end{CJK} für {\em Heisei}, den Namen der Ära von
+Tenn\=o Akihito,
+\begin{CJK}{UTF8}{min}年\end{CJK}, gelesen {\em nen}, heisst Jahr,
+\begin{CJK}{UTF8}{min}月\end{CJK}, gelesen {\em gatsu}, heisst Monat
+und
+\begin{CJK}{UTF8}{min}日\end{CJK}, gelesen {\em nichi}, heisst Tag.
+Die Angabe der Ära verwendet immer zwei Zeichen.
+Japanische Datumsangaben können aber auch internationale Jahreszahlen
+verwenden wie in 
+\begin{CJK}{UTF8}{min}2018年2月18日.\end{CJK}
+
+\begin{teilaufgaben}
+\item Formulieren Sie einen regulären Ausdruck für europäische Datumsangaben,
+der nur gültige Monatszahlen akzeptiert.
+\item Formulieren Sie einen regulären Ausdruck für japanische Datumsangaben in
+beliebigen Ären, der nur gültige Monatsszahlen akzeptiert.
+\item Formulieren Sie einen regulären Ausdruck, der jede Form von Datum
+akzeptiert.
+\end{teilaufgaben}
+
+\begin{hinweis}
+Ihre regulären Ausdrücke sollen nur Tageszahlen 1--31 akzeptieren, aber
+es ist nicht nötig, dass nur die Tageszahlen des jeweiligen Monats akzeptiert
+werden.
+\end{hinweis}
+
+\thema{reguläre Ausdrücke}
+\thema{regulär}
+
+\begin{loesung}
+In beiden Teilaufgaben a) und b) dürfen nur Monatszahlen von 1 bis 12
+akzeptiert werden, dies erreichen die regulären Ausdrücke
+\begin{align*}
+m &= \texttt{[1-9]|1[0-2]}\\
+m_0 &= \texttt{0[1-9]|1[0-2]}
+\end{align*}
+Der Index $0$ gibt an, dass führende Nullen zu verwenden sind.
+Tageszahlen sind von der Form
+\begin{align*}
+d &= \texttt{[1-9]|[12][0-9]|3[01]}\\
+d_0 &= \texttt{[012][0-9]|3[01]},
+\end{align*}
+internationale Jahreszahlen sind vierstellige ganze Zahlen der Form
+$y = \texttt{[12][0-9]\{3\}}$.
+Diese regulären Ausdrücke werden nun verwendet, um die Teilaufgaben
+zu lösen.
+\begin{teilaufgaben}
+\item
+Europäische Daten werden von dem regulären Ausdruck
+\[
+r_e =
+d\texttt{\\. }m\texttt{\\. }y\texttt{|}y\texttt{-}m_0\texttt{-}d_0
+\]
+\item
+Japanische Jahreszahlen sind von der Form
+\[
+r_j
+=
+\texttt{(..[1-9][0-9]*|}y\texttt{)}
+\text{\begin{CJK}{UTF8}{min}年\end{CJK}}
+m
+\text{\begin{CJK}{UTF8}{min}月\end{CJK}}
+d
+\text{\begin{CJK}{UTF8}{min}日\end{CJK}}
+\]
+\item
+Eine beliebige Datumsangabe ist von der Form
+\[
+r = r_e\texttt{|} r_j
+\qedhere
+\]
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+Ausdruck für Tageszahlen 1--31 ({\bf D}) 1 Punkt,
+Ausdruck für Monatszahlen mit ({\bf N}) und ohne ({\bf M})
+führende Nullen 1 Punkt,
+Lösung für jede Teilaufgaben ({\bf A}, {\bf B}, {\bf C}) je ein Punkt.
+\end{bewertung}
+
+
