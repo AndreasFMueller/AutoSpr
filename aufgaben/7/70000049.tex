@@ -1,0 +1,74 @@
+Ein Tourist besucht ein fernes Land und kauft sich bei der Ankunft
+am Flughafen einen Führer, der all die zahlreichen Sehenswürdigkeiten enthält,
+die er gerne besuchen möchte.
+Er sagt sich, dass er seine Besichtigungspläne am besten so organisiert,
+dass er an jedem Tag eine Gruppe von Sehenswürdigkeiten  besucht, die
+nahe beeinander liegen.
+Als nahe beeinander liegend klassifiziert er jeweils solche, die in kurzer
+Zeit mit öffentlichen Verkehrsmitteln erreichbar sind.
+Für jeden Tag seines Aufenthalts könnte er dann genau eine Gruppe von
+Sehenswürdigkeiten auswählen, so dass er am Ende alle gewünschten
+Sehenswürdigkeiten gesehen hat und keine zweimal besucht.
+Dank eines Sabbaticals war er zeitlich frei und stellte sich vor,
+seinen Aufenhalt nötigenfalls zu verlängern, sollte er mit seinen
+Besichtigungen nicht durchkommen.
+
+Nach einigen fehlgeschlagenen Versuchen, das Problem im Kopf zu lösen,
+setzt er sich in eine Caffeteria am Flughafen und arbeitet an dem Problem
+weiter.
+Er sagt sich, dass eine sorgfältige Planung durchaus einen ersten Tag
+ohne Besuch einer Sehenswürdigkeit wert ist.
+Als es dunkel wird ohne dass er eine Lösung gefunden hat, muss er sich
+eingestehen, dass das Problem doch nicht ganz einfach ist und beschliesst,
+am nächsten Morgen weiterzuarbeiten.
+Schliesslich geht nichts über eine sorgfältige Planung.
+Warum besteht die Gefahr, dass der arme Mann seine Heimreise antreten wird,
+ohne auch nur eine einzige Sehenswürdigkeit besucht zu haben?
+
+\thema{polynomielle Reduktion}
+\thema{NP-vollständig}
+
+\begin{loesung}
+Das beschriebene Problem {\em BESICHTIGUNGS-PLANUNG}
+ist das NP-vollständige Problem {\em EXACT-COVER}, 
+für das es nach aktuellem Wissen keinen polynomiellen Algorithmus gibt.
+Die Menge $U$ besteht aus allen Sehenswürdigkeiten des Führers.
+Die Teilmengen $S_j$ sind die Sehenswürdigkeiten, die der Tourist 
+als nahe beeinander klassifiziert hat.
+Die Vereinigung $\bigcup_{j=1}^n S_j$ umfasst die Sehenswürdigkeiten, die
+der Tourist in seine Planung einbezogen hat.
+Gesucht ist eine disjunkte Teilfamilie $S_{j_i}$, die alle Sehenswürdigkeiten
+umfasst, also
+\begin{align*}
+S_{j_i}\cap S_{j_k}&=\emptyset \qquad \forall i\ne k
+\\
+\bigcup_{j=1}^n S_j &= \bigcup_{i=1}^m S_{j_i}.
+\end{align*}
+Die Reduktionsabbildung von {\em EXACT-COVER} auf 
+{\em BESICHTIGUNGS-PLANUNG} ist
+\begin{align*}
+\text{\em EXACT-COVER}
+&\leftrightarrow
+\text{\em BESICHTIGUNGS-PLANUNG}
+\\[5pt]
+U&\leftrightarrow\{\text{alle Sehenswürdigkeiten}\}
+\\
+S_j&\leftrightarrow\{\text{nahe beeinander liegende Sehenswürdigkeiten}\}
+\\
+i&\leftrightarrow\text{Nummer des Besuchtstages}
+\\
+S_{j_i}&\leftrightarrow\text{Für Tag $i$ ausgewählte Gruppe von Sehenswürdigkeiten}
+\end{align*}
+Dies beweist, dass
+$\text{\em EXACT-COVER}\le_{P}\text{\em BESICHTIGUNGS-PLANUNG}$
+und damit dass {\em BESICHTIGUNGS-PLANUNG} NP-vollständig ist.
+\end{loesung}
+
+\begin{bewertung}
+Reduktionsprinzip ({\bf R}) 1 Punkt,
+Wahl eines Vergleichsproblems ({\bf V}) 1 Punkt,
+Mapping ({\bf M}) 3 Punkte.
+Folgerung NP-vollständig und Folgerung für Laufzeit ({\bf NP}) 1 Punkt.
+\end{bewertung}
+
+

@@ -1,0 +1,185 @@
+In der Turing-Maschine 
+\[
+M = (Q, \Sigma, \Gamma, \delta, q_0, q_{\text{accept}}, q_{\text{reject}})
+\]
+mit
+\begin{align*}
+Q &= \{q_0, q_1,q_{\text{accept}}, a_{\text{reject}}\}
+\\
+\Sigma &= \{\texttt{1}\}
+\\
+\Gamma &= \{\texttt{1},\texttt{0}\}
+\end{align*}
+hat die Übergangsfunktion $\delta(q,a) = (q',a',d)$ folgende Wertetabelle:
+\begin{center}
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
+\hline
+q&a&q'&a'&d\\
+\hline
+q_0&\texttt{0}&q_1              &\texttt{1}&\text{R}\\
+q_0&\texttt{1}&q_1              &\texttt{1}&\text{L}\\
+q_1&\texttt{0}&q_0              &\texttt{1}&\text{L}\\
+q_1&\texttt{1}&q_{\text{accept}}&\texttt{1}&\text{R}\\
+\hline
+\end{tabular}
+\end{center}
+Man beachte, dass das Zeichen \texttt{0} die Funktion des Leerzeichens
+auf dem Band "ubernimmt.
+Das Band ist daher zu Beginn mit \texttt{0} initialisiert.
+
+\begin{teilaufgaben}
+\item Zeichnen Sie ein Zustandsdiagramm dieser Turing-Maschine.
+\item Hält diese Turing-Maschine auf leerem Band und wenn ja, nach
+wievielen Schritten und mit welchem Bandinhalt?
+\end{teilaufgaben}
+
+Dieser Automat heisst ein {\em Fleissiger Biber} mit zwei Zuständen.
+
+\thema{Turing-Maschine}
+\thema{Zustandsdiagramm}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Die Turingmaschine wird durch das Zustandsdiagramm
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{} \ar[r]
+	&{q_0} \ar@/^/[r]^{\scriptstyle\texttt{0}\to\texttt{1},R \atop \scriptstyle\texttt{1}\to\texttt{1},L}
+		&{q_1}	\ar[r]^{\texttt{1}\to\texttt{1},R}
+			\ar@/^/[l]^{\texttt{0}\to\texttt{1},L}
+			&*++[o][F=]{q_{\text{accept}}}
+}
+\]
+beschrieben.
+\item
+Die Berechnung der Turingmaschine $M$ auf leerem Band verläuft wie folgt
+(aktuelle Kopfposition {\text{red}rot} angedeutet):
+\begin{center}
+\begin{tabular}{l>{$}r<{$} >{$}c<{$} >{$}c<{$} >{$}c<{$} >{$}c<{$} >{$}c<{$} >{$}c<{$} >{$}c<{$} >{$}c<{$} >{$}c<{$} >{$}c<{$} }
+% 0
+&
+q_0 &
+\dots &
+\texttt{0} &
+\texttt{0} &
+\texttt{0} &
+\texttt{0} &
+\color{red}\texttt{0} &
+\texttt{0} &
+\texttt{0} &
+\texttt{0} &
+\dots
+\\
+% 1
+1:&
+q_1 &
+\dots &
+\texttt{0} &
+\texttt{0} &
+\texttt{0} &
+\texttt{0} &
+\texttt{1} &
+\color{red}\texttt{0} &
+\texttt{0} &
+\texttt{0} &
+\dots
+\\
+% 2
+2:&
+q_0 &
+\dots &
+\texttt{0} &
+\texttt{0} &
+\texttt{0} &
+\texttt{0} &
+\color{red}\texttt{1} &
+\texttt{1} &
+\texttt{0} &
+\texttt{0} &
+\dots
+\\
+% 3
+3:&
+q_1 &
+\dots &
+\texttt{0} &
+\texttt{0} &
+\texttt{0} &
+\color{red}\texttt{0} &
+\texttt{1} &
+\texttt{1} &
+\texttt{0} &
+\texttt{0} &
+\dots
+\\
+% 4
+4:&
+q_0 &
+\dots &
+\texttt{0} &
+\texttt{0} &
+\color{red}\texttt{0} &
+\texttt{1} &
+\texttt{1} &
+\texttt{1} &
+\texttt{0} &
+\texttt{0} &
+\dots
+\\
+% 5
+5:&
+q_1 &
+\dots &
+\texttt{0} &
+\texttt{0} &
+\texttt{1} &
+\color{red}\texttt{1} &
+\texttt{1} &
+\texttt{1} &
+\texttt{0} &
+\texttt{0} &
+\dots
+\\
+% 6
+6:&
+q_{\text{accept}} &
+\dots &
+\texttt{0} &
+\texttt{0} &
+\texttt{1} &
+\texttt{1} &
+\color{red}\texttt{1} &
+\texttt{1} &
+\texttt{0} &
+\texttt{0} &
+\dots
+\\
+\end{tabular}
+\end{center}
+Die Maschine hält nach sechs Schritten im Zustand $q_{\text{accept}}$
+und hinterlässt die Zeichenkette
+\texttt{1111} auf dem Band.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{diskussion}
+Unter einem {\em Fleissigen Biber} mit $n$ Zuständen versteht
+man eine Turingmaschine mit $n$ Zuständen zusätzlich zu $a_{\text{accept}}$
+und $q_{\text{reject}}$ und dem Bandalphabet $\Sigma=\{\texttt{1}\}$,
+die auf einem leeren Band die mit dieser Anzahl von Zuständen maximal
+mögliche Anzahl von Einsen schreibt und dann anhält.
+Die Anzahl $k_n$ der geschriebenen Einsen definiert die Rad\'o-Funktion.
+Die Turingmaschine in der Aufgabe ist ein Fleissiger Biber mit zwei Zuständen,
+also ist $k_2=4$.
+Für $n>4$ ist $k_n$ nicht exakt bekannt, aber es sind Abschätzungen bekannt.
+Für $n\ge 7$ sind nicht einmal Abschätzungen bekannt.
+\end{diskussion}
+
+\begin{bewertung}
+Zustandsdiagramm ({\bf Z}) 3 Punkte,
+Berechnungsgeschichte ({\bf B}) 2 Punkte,
+Resultat auf dem Band ({\bf R}) 1 Punkt.
+\end{bewertung}

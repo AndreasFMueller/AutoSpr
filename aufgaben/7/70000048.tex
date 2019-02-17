@@ -1,0 +1,72 @@
+{\em Nurimaze}
+(\text{\begin{CJK}{UTF8}{min}ぬりめいず\end{CJK}})
+ist ein japanisches Logikrätsel, welches auf einem
+$n\times m$-Feld gespielt wird,
+welches von fetten Linien in kleine Gebiete unterteilt wird.
+Der Spieler muss nun
+Gebiete grau einfärben, die keines der Zeichen $S$, $Z$, Dreieck oder
+Kreis enthalten.
+Die verbleibenden weissen Felder bilden ein Labyrinth.
+Weder die weissen noch die grauen Felder dürfen irgendwo einen Bereich
+der Grösse $2\times 2$ enthalten.
+Die weissen Felder müssen einen zusammenhängenden Bereich bilden.
+Sie bilden ein Wegnetz im Labyrinth, welches keinen Rundweg enthalten darf.
+Es muss einen Weg von $S$ nach $Z$ geben, der alle mit Kreis markierten 
+Felder enthält aber keines der mit Dreieck markierten Felder.
+
+Das folgende Beispiel zeigt links das Rätsel und rechts die Lösung.
+Der gesuchte Weg ist rosa (hellgrau) eingezeichnet.
+
+\begin{center}
+\includeagraphics[]{nurimaze.pdf}
+\end{center}
+Kann eine nichtdeterministische Turingmaschine in polynomieller Zeit
+entscheiden, ob ein Nurimaze-Rätsel lösbar ist?
+
+\thema{NP}
+\thema{polynomieller Verifizierer}
+
+\begin{loesung}
+Das Problem ist sicher entscheidbar, indem man jede beliebige Einfärbung
+von Gebieten durchprobiert.
+
+Es ist von einer nichtdeterministischen Turingmaschine in polynomieller 
+Zeit genau dann entscheidbar, wenn es einen polynomiellen Verifizierer
+gibt.
+Als Lösungszertifikat $c$ verlangen wir die grau einzufärbenden Felder
+und den rosa eingezeichneten Weg von $S$ nach $Z$.
+Dann müssen folgende Verifikationen vorgenommen werden:
+\begin{center}
+\begin{tabular}{c|p{13cm}|>{$}c<{$}}
+&Verifikation&\text{Aufwand}\\
+\hline
+1&Kein $2\times 2$-Bereich im weissen Gebiet&O(mn)\\
+2&Kein $2\times 2$-Bereich im grauen Gebiet&O(mn)\\
+3&Alle Kreise auf dem rosa Weg&O(mn)\\
+4&Keine Dreiecke auf dem rosa Weg&O(mn)\\
+5&Keine Kreise oder Dreiecke im grauen Gebiet&O(mn)\\
+6&$S$ und $Z$ auf dem rosa Weg&O(mn)\\
+7&Mit einem Markierungsalgorithmus, der ausgehend von $S$ im weissen Bereich
+iterativ alle benachbarten Felder bereits markierter Felder markiert,
+feststellen, ob das weisse Gebiet zusammenhängend ist.&O(m^2n^2)\\
+8&Überprüfen, ob das weisse Gebiet keine Rundwege enthält. Dies
+kann dadurch geschehen, indem man von jedem schwarzen Teilgebiet prüft, ob
+es von einem Weg von weissen Feldern umgeben ist.&O(m^2n^2)\\
+\hline
+&Total&O(m^2n^2)\\
+\hline
+\end{tabular}
+\end{center}
+Der Verifizierer hat also polynomielle Laufzeit.
+\end{loesung}
+
+\begin{bewertung}
+Entscheidbarkeit ({\bf E}) 1 Punkt,
+Verifizierer ({\bf V}) 1 Punkt,
+Zertifikat ({\bf Z}) 1 Punkt,
+Verifikationsschritte ({\bf S}) 2 Punkte,
+Komplexitätsabschätzung ({\bf K}) 1 Punkt.
+\end{bewertung}
+
+
+
