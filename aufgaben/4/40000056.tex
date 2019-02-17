@@ -1,0 +1,88 @@
+Betrachten Sie die Sprache, die aus allen geschachtelten
+und verketteten Kontrollstrukturen der Form
+\begin{align*}
+&\texttt{foreach (} \text{\em forparameters}\text{) } \dots \texttt{ end}
+\\
+&\texttt{while (} \text{\em whileparameters}\text{) } \dots \texttt{ end}
+\\
+&\texttt{do } \dots \texttt{ while (}\text{ \em doparameters\tt)}
+\end{align*}
+besteht.
+\begin{teilaufgaben}
+\item 
+Geben Sie eine kontextfreie Grammatik für diese Sprache.
+\item 
+Führt Ihre Grammatik auf eindeutige Parse-Trees?
+\item 
+Können Sie Ihre Grammatik so modifizieren, dass sie eindeutige Parse-Trees hat.
+\item 
+Hat Ihre Grammatik Chomsky Normalform?
+\end{teilaufgaben}
+
+\begin{hinweis}
+Betrachten Sie die Variablen
+\text{\em forparameters},
+\text{\em whileparameters} und
+\text{\em doparameters}
+als Terminalsymbole, Sie müssen also keine Regeln für diese Variablen
+konstruieren.
+\end{hinweis}
+
+\thema{kontextfrei}
+\thema{Grammatik}
+\thema{Chomsky Normalform}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Eine mögliche Grammatik ist
+\begin{align}
+S&\rightarrow \varepsilon
+\\
+ &\rightarrow
+\text{'{\tt foreach}'\; '{\tt (}' \; {\em forparameters}\; '{\tt)}'\;
+$L$
+\;'{\tt end}'}
+\\
+ &\rightarrow
+\text{'{\tt while}'\; '{\tt (}' \; {\em whileparameters}\; '{\tt)}'\;
+$L$
+\;'{\tt end}'}
+\\
+ &\rightarrow
+\text{'{\tt do}'\;
+$L$
+\; '{\tt until}'\; '{\tt (}'\; {\em doparameters}\;
+'{\tt)}'}
+\\
+L&\rightarrow LS
+\\
+ &\rightarrow S
+\\
+\end{align}
+\item
+Die Regel $L\to LS$ stellt sicher, dass verkettete Kontrollstrukturen
+von links nach rechts aufgebaut werden, dass also der Parse-Tree eindeutig ist.
+\item
+Eine Regel der Form $S\to SS$, wie wir sie im Skript und den Übungen
+getroffen haben, führt auf nicht eindeutige Parse-Trees.
+Die vorgeschlagene Lösung vermeidet dies.
+\item
+Die Regeln (2), (3) und (4) sind in der CNF verboten,
+weil nicht mehr als zwei Variablensymbole auf der rechten Seite einer Regel
+stehen dürfen.
+Regel (6) ist eine Unit-Rule, die ebenfalls verboten ist.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+Schachtelung ({\bf S}) 1 Punkt,
+Iteration ({\bf I}) 1 Punkt,
+Kontrollstrukturen ({\bf K}) 1 Punkt,
+Leeres Wort ({\bf L}) 1 Punkt,
+Eindeutigkeit ({\bf E}) 1 Punkt,
+Chomsky Normalform ({\bf C}) 1 Punkt.
+\end{bewertung}
+
+

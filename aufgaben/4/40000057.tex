@@ -1,0 +1,102 @@
+Betrachten Sie folgende zwei Sprachen über dem Alphabet $\Sigma = \{
+\texttt{a},
+\texttt{b},
+\texttt{c},
+\texttt{d}\}$:
+\begin{align*}
+L_1&=\{\;\texttt{a}^n\texttt{b}^m\texttt{c}^m\texttt{d}^n
+\;|\;
+m,n\ge 0\}
+\\
+\text{und}
+\qquad
+L_2&=\{w\in\Sigma^*
+\;|\;
+|w|_{\texttt{a}} = |w|_{\texttt{d}}
+\wedge
+|w|_{\texttt{b}} = |w|_{\texttt{c}}
+\}
+\end{align*}
+Es ist klar, dass $L_1\subset L_2$.
+Sind diese Sprachen kontextfrei?
+
+\thema{kontextfrei}
+\thema{Pumping Lemma für kontextfreie Sprachen}
+\thema{Grammatik}
+
+\begin{loesung}
+Die Sprache $L_1$ hat die kontextfreie Grammatik
+\begin{align*}
+S&\to R                             \\
+ &\to \texttt{a}\;S\;\texttt{d}     \\
+R&\to\varepsilon                    \\
+ &\to\texttt{b}\;R\;\texttt{c}
+\end{align*}
+somit ist $L_1$ kontextfrei.
+
+Die Sprache $L_2$ ist nicht kontextfrei, wie man mit dem Pumping-Lemma
+beweisen kann.
+\begin{enumerate}
+\item
+Annahme: $L_2$ ist kontextfrei.
+\item
+Nach dem Pumping-Lemma gibt es die Pumping Length $N$.
+\item
+Wir konstruieren das Wort
+$w=
+\texttt{a}^N
+\texttt{b}^N
+\texttt{c}^N
+\texttt{d}^N$.
+Wegen $
+|w|_{\texttt{a}}
+=
+|w|_{\texttt{b}}
+=
+|w|_{\texttt{c}}
+=
+|w|_{\texttt{d}}
+=N$ ist $w\in L_2$.
+\item
+Wegen $|w|=4N$ ist es das Wort lang genug, dass das Pumping Lemma darauf
+anwendbar ist.
+Es muss also eine Unterteilung $w=
+{\color{blue}u}
+{\color{red}v}
+{\color{green}x}
+{\color{red}y}
+{\color{blue}z}
+$ geben derart, dass $|vxy|\le N$ ist und derart, dass alle aufgepumpten
+Wörter $uv^kxy^kz\in L_2$ sind für $k\ge 0$.
+\item
+Der Teil $vxy$ kann höchstens zwei verschiedene Arten von Buchstaben umfassen,
+und zwar nur
+\begin{enumerate}
+\item
+\texttt{a} und \texttt{b}
+\item
+\texttt{b} und \texttt{c}
+\item
+\texttt{c} und \texttt{d}
+\end{enumerate}
+In jedem dieser Fälle wird beim Pumpen die Anzahl mindestens eines Buchstabens
+verändert,
+aber die Anzahl des anderen Buchstabens, von dem es im Wort gleich
+viele geben sollte, wird nicht verändert.
+Damit ist das Wort $w$ nach dem Pumpen mit $k\ne 1$ nicht mehr in $L_2$
+\item
+Dieser Widerspruch zeigt, dass die Sprache $L_2$ nicht kontextfrei sein kann.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+Sprache $L_1$ kontextfrei ({\bf L}$\mathstrut_1$) 1 Punkt,
+Grammatik für Sprache $L_1$ ({\bf G}) 1 Punkt,
+Beispielwort ({\bf W}) 1 Punkt,
+Aufteilung ({\bf A}) 1 Punkt,
+Widerspruch beim Pumpen ({\bf P}) 1 Punkt,
+Schlussfolgerung ({\bf S}) 1 Punkt.
+\end{bewertung}
+
+
