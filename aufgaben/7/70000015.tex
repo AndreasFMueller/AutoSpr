@@ -26,7 +26,8 @@ in NP?
 \thema{polynomieller Verifizierer}
 
 \begin{loesung}
-Sie ist mit Sicherheit entscheidbar, denn man kann alle $2^{uv}$
+Wir schreiben $n=uv$ für die Anzahl der Felder.
+Sie ist mit Sicherheit entscheidbar, denn man kann alle $2^{n}$
 möglichen Belegungen des Spielfeldes mit schwarzen Feldern daraufhin
 überprüfen, ob sie die Regeln einhalten. Dieser Algorithmus braucht
 zwar exponentielle Zeit, zeigt aber, dass die Sprache entscheidbar ist.
@@ -43,7 +44,7 @@ durchgeführt:
 Für jedes Zahlfeld ($O(n)$) verwendet man einen Markieralgorithmus,
 der alle zum Gebiet dieses Zahlfeldes gehörenden weissen
 Felder bestimmt ($O(n)$ Durchgänge mit Aufwand
-$O(n)$.\strut\end{minipage}&$O(n^3)$\\
+$O(n)$).\strut\end{minipage}&$O(n^3)$\\
 2&\begin{minipage}[t]{4.2truein}\strut
 Trifft dieser Algorithmus auf ein weiteres
 Zahlfeld, ist der erste Teil von Regel 1 verletzt
