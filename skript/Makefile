@@ -6,12 +6,36 @@
 #
 all:	skript.pdf
 
-TEXFILES = cfg.tex grundlagen.tex komplexitaet.tex regulaer.tex \
-	skript.tex sprachen.tex turing.tex entscheidbarkeit.tex \
-	einleitung.tex vollstaendig.tex realworldparser.tex karp.tex \
-	sudoku.tex algorithmen.tex ausfuellraetsel.tex \
-	bison/tabelle1.tex bison/tabelle2.tex bison/tabelle3.tex \
-	bison/bisongrammar.txt bison/state14.txt \
+TEXFILES = \
+	skript.tex \
+	0-einleitung/einleitung.tex					\
+	1-grundlagen/grundlagen.tex					\
+	1-grundlagen/notation.tex					\
+	1-grundlagen/beweis.tex						\
+	2-sprachen/sprachen.tex						\
+	3-regulaer/regulaer.tex						\
+	3-regulaer/dea.tex						\
+	3-regulaer/nea.tex						\
+	3-regulaer/regex.tex						\
+	3-regulaer/lex.tex						\
+	4-cfg/cfg.tex							\
+	4-cfg/grammatik.tex						\
+	4-cfg/pda.tex							\
+	4-cfg/noncfl.tex						\
+	4-cfg/realworldparser.tex					\
+	4-cfg/bison/tabelle1.tex					\
+	4-cfg/bison/tabelle2.tex					\
+	4-cfg/bison/tabelle3.tex					\
+	4-cfg/bison/bisongrammar.txt					\
+	4-cfg/bison/state14.txt						\
+	5-turing/turing.tex						\
+	6-entscheidbarkeit/entscheidbarkeit.tex				\
+	7-komplexitaet/komplexitaet.tex					\
+	7-komplexitaet/sudoku.tex					\
+	7-komplexitaet/ausfuellraetsel.tex				\
+	7-komplexitaet/karp.tex						\
+	8-vollstaendigkeit/vollstaendig.tex				\
+	a-algorithmen/algorithmen.tex					\
 	references.bib
 
 images/timestamp:

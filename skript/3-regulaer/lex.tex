@@ -1,0 +1,289 @@
+\section{Anhang: Reguläre Ausdrücke in der Praxis\label{regulaer:praxis}}
+\rhead{Regex in der Praxis}
+\subsection{Flex}
+\index{Flex}%
+\index{Scanner}%
+\index{Scannergenerator}%
+Flex ist ein Scannergenerator.
+Er verarbeitet eine Spezifikation einer
+Sprache als Menge von regulären Ausdrücken in einen deterministischen 
+endlichen Automaten.
+Als Beispiel soll verfolgt werden, wie die
+Flex-Spezifikation
+\verbatiminput{3-regulaer/lex/example4.l}
+in einen endlichen Automaten umgesetzt wird.
+Mit der Option {\tt -T}
+kann man sich die erzeugten Tabellen des NEA anzeigen lassen:
+\verbatiminput{3-regulaer/lex/dumpnfa}
+Die Tabelle ist wie folgt zu lesen.
+In der mittleren Spalte steht das zu verarbeitende Zeichen, also
+die Beschriftung eines Pfeils.
+Für jedes Zeichen sind zwei Zielzustände
+möglich, die in den letzten beiden Spalten eingetragen werden.
+Einen
+Zustand {\tt 0} gibt es nicht, Übergänge nach ${\tt 0}$ müssen als
+nicht verwendete Pfeile interpretiert werden.
+$\varepsilon$-Übergänge
+werden durch mit dem Symbol {\tt 257} bezeichnet.
+Sind von einem Punkt
+aus mehr also zwei Alternativen möglich, wie im vorliegenden Fall
+bei der Alternative {\tt h|s|r}, dann muss dies mit Hilfe von zusätzlichen
+$\varepsilon$-Übergangen aus Zweier-Alternativen zusammengesetzt werden.
+Zeichnet man diesen NEA, ergibt sich das folgende Zustandsdiagramm:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{15} \ar[r]^{\varepsilon} \ar[d]^{\varepsilon}
+		&{13}\ar[r]^{{\tt EOF}}
+			&*++[o][F=]{14}
+\\
+*+\txt{}
+	&{12}\ar[d]^{\varepsilon} \ar[r]^{\varepsilon}
+		&{1}
+\\
+*+\txt{}
+	&{8}\ar[d]^{\varepsilon} \ar[r]^{\varepsilon}
+		&{7}\ar[dr]^{\tt r}
+\\
+*+\txt{}
+	&{5}\ar[dr]^{\varepsilon} \ar[r]^{\varepsilon}
+		&{3}\ar[r]^{\tt h}
+			&{6}\ar[r]^{\varepsilon}
+				&{9}\ar[r]^{\tt 1}
+					&{10}\ar[r]^{\tt 0}
+						&*++[o][F=]{11}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{4}\ar[ur]^{\tt s}
+\\
+*+\txt{}
+	&{2}
+}
+\]
+Man kan im unteren Teil sehr schön erkennen, wie der Automat, der
+die Dreier-Alternative {\tt h|s|r} akzeptiert, über einen
+$\varepsilon$-Übergang mit dem Automaten verkettet wird, der 
+den String {\tt 10} akzeptiert.
+Zustand {\tt 14} wurde von Flex
+hinzugefügt, er erlaubt das Fileende zu erkennen, so dass das
+erzeugte Programm am Fileende auf jeden Fall terminieren kann.
+
+Der NEA kann natürlich auch in einen DEA umgewandelt werden.
+Auch dies protokolliert Flex: 
+\verbatiminput{3-regulaer/lex/dumpdfa}
+Zu jedem Zustand wird jetzt aufgeführt, welche Zeichen zu welchen
+Übergängen führen.
+Flex hat die Zeichen in Klassen zusammengefasst,
+die Ziffern bedeuten:
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Zeichenklasse&Inhalt\\
+\hline
+{\tt 1}&andere\\
+{\tt 2}&{\tt 0}\\
+{\tt 3}&{\tt 1}\\
+{\tt 4}&{\tt h}\\
+{\tt 5}&{\tt s}\\
+{\tt 6}&{\tt r}\\
+\hline
+\end{tabular}
+\end{center}
+Auch den DEA kann man in ein Zustandsdiagramm zurückübersetzen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+	&*+\txt{}\ar[d]
+\\
+*+\txt{}
+	&{1}\ar[dr]^{{\tt h},{\tt s},{\tt r}} \ar[dl]_{{\tt 0}, {\tt 1}, \text{andere}}
+\\
+*++[o][F=]{4}
+	&*+\txt{}
+		&*++[o][F=]{5}\ar[r]^{\tt 1}
+			&{6}\ar[r]^{\tt 0}
+				&*++[o][F=]{7}
+\\
+*+\txt{}
+	&{2}\ar[ur]_{{\tt h},{\tt s},{\tt r}} \ar[ul]^{{\tt 0}, {\tt 1}, \text{andere}}
+\\
+*+\txt{}
+	&*++[o][F=]{3}
+}
+\]
+Man kann sehen, dass Flex nicht alles wirklich aufräumt, es bleiben
+unerreichbare Zustände {\tt 2} und {\tt 3} stehen, einer davon sogar ein
+Akzeptierzustand.
+Die Zustände 4 und 5 sind als
+Akzeptierzustände markiert, aber nur 7 ist als Akzeptierzustand zu
+verstehen, der ein auf den regulären Ausdruck passendes Wort
+akzeptiert.
+
+\subsection{Performance}
+\index{Laufzeit!eines DEA}%
+\index{Laufzeit!eines NEA}%
+Ein DEA hat immer Laufzeit $O(n)$, d.\,h.~ein Regex-Matcher auf der
+Basis eines DEA wird innerhalb einer Zeit proportional zur
+Länge des Inputstrings erkennen, ob ein Inputstring passt.
+Die einfachste Implementation eines NEA hingegen wird alle Möglichkeiten
+von nicht eindeutigen Übergängen durchprobieren müssen, mit
+möglicherweise exponentieller Laufzeit.
+Normalerweise sind in der
+Praxis eingesetzte reguläre Ausdrücke klein und die untersuchten
+Strings sind ebenfalls nicht allzu gross.
+Man kann allerdings auch
+Ausdrücke konstruieren, die den Unterschied zwischen DEA und simplistischer
+NEA-Implementation offensichtlich werden lassen.
+Ein solcher Ausdruck ist
+\begin{center}
+\tt a?a?a?a?a?aaaaa
+\end{center}
+Also $n$ fakultative {\tt a} gefolgt von $n$ obligatorischen {\tt a}.
+Um ein Wort bestehend aus $n$ {\tt a} zu akzeptieren, gibt es genau eine
+Möglichkeit, die man erhält, wenn man in der Alternativen
+${\tt a?} = \varepsilon|{\tt a}$
+jeweils das leere Wort wählt.
+Falls das immer die zweite ausprobierte 
+Möglichkeit ist, ist die Laufzeit dieses Algorithmus proportional zu
+$2^n$, wird also bei langen Strings schnell sehr gross.
+
+Es ist einfach, einen geeigneten DEA für den regulären
+Ausdruck {\tt a?a?a?aaa} hinzuschreiben:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&\ar[r]^{\tt a}
+		&\ar[r]^{\tt a}
+			&\ar[r]^{\tt a}
+				&*++[o][F=]{}\ar[r]^{\tt a}
+					&*++[o][F=]{}\ar[r]^{\tt a}
+						&*++[o][F=]{}\ar[r]^{\tt a}
+							&*++[o][F=]{}
+}
+\]
+Und auch einen NEA findet man aus der Konstruktion eines Automaten
+aus einem regulären Ausdruck ohne Probleme:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&\ar@/^/[r]^{\tt a} \ar@/_/[r]_{\varepsilon}
+		&\ar@/^/[r]^{\tt a} \ar@/_/[r]_{\varepsilon}
+			&\ar@/^/[r]^{\tt a} \ar@/_/[r]_{\varepsilon}
+				&\ar[r]^{\tt a}
+					&\ar[r]^{\tt a}
+						&\ar[r]^{\tt a}
+							&*++[o][F=]{}
+}
+\]
+Auch die Vereinfachung der $\varepsilon$-Übergänge ist noch sehr
+übersichtlich:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&\ar[r]^{\tt a}
+	\ar@/^20pt/[rr]^{\tt a}
+	\ar@/^20pt/[rrr]^{\tt a}
+	\ar@/^20pt/[rrrr]^{\tt a}
+		&\ar[r]^{\tt a}
+		\ar@/_20pt/[rr]_{\tt a}
+		\ar@/_20pt/[rrr]_{\tt a}
+			&\ar[r]^{\tt a} \ar@/_20pt/[rr]_{\tt a}
+				&\ar[r]^{\tt a}
+					&\ar[r]^{\tt a}
+						&\ar[r]^{\tt a}
+							&*++[o][F=]{}
+}
+\]
+Auch in diesem Beispiel kann man sich von Flex helfen lassen,
+einen NEA zu erstellen.
+Unverkennbar sind auch hier wieder die
+Spuren der Konstruktionsschritte, mit denen man aus regulären
+Ausdrücken Teilautomaten baut und diese dann zum ganzen Automaten
+zusammenbaut.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{19}\ar[d]^{\varepsilon}\ar[r]^{\varepsilon}
+		&{17}\ar[r]^{\tt EOF}
+			&*++[o][F=]{18}
+\\
+*+\txt{}
+	&{16}\ar[d]^{\varepsilon} \ar[r]^{\varepsilon}
+		&{1}
+\\
+*+\txt{}
+	&{5} \ar[r]^{\varepsilon}
+	     \ar[dr]^{\varepsilon}
+		&{3} \ar[d]^{\tt a}
+			&{8} \ar[r]^{\varepsilon}
+			     \ar[dr]^{\varepsilon}
+				&{6} \ar[d]^{\tt a}
+					&{11} \ar[r]^{\varepsilon}
+					     \ar[dr]^{\varepsilon}
+						&{9} \ar[d]^{\tt a}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{4} \ar[ur]^{\varepsilon}
+			&*+\txt{}
+				&{7} \ar[ur]^{\varepsilon}
+					&*+\txt{}
+						&{10} \ar@/_10pt/[dlll]_{\varepsilon}
+\\
+*+\txt{}
+	&*+\txt{}
+		&*+\txt{}
+			&{12} \ar[r]^{\tt a}
+				&{13} \ar[r]^{\tt a}
+					&{14} \ar[r]^{\tt a}
+						&*++[o][F=]{15}
+}
+\]
+Daraus macht Flex dann den folgenden DEA:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[d]
+\\
+{1}\ar[r]^{\tt a} \ar[d]^{\text{andere}} \
+	&{5}\ar[r]^{\tt a}
+		&{6}\ar[r]^{\tt a}
+			&*++[o][F=]{7} \ar[r]^{\tt a}
+				&*++[o][F=]{8} \ar[r]^{\tt a}
+					&*++[o][F=]{9} \ar[r]^{\tt a}
+						&*++[o][F=]{10}
+\\
+{4}
+\\
+{3}
+}
+\]
+$3$ und $4$ sind wieder Zustände die benötigt werden, um andere Inputs
+wie zum Beispiel EOF zu erkennen.
+Der resultierend DEA entspricht genau
+dem oben vorgeschlagenen DEA.
+
+\begin{sloppypar} % To prevent "java.lang.string" from overflowing
+Nicht alle Implementationen verwenden jedoch diese Theorie.
+Die Regex-Funktionen in der C-Library verwenden dies und sind entsprechend
+schnell.
+Alle Unix-Tools, die auf dieser Bibliothek basieren, sind
+entsprechend schnell.
+Perl hat seine eigene erweiterte Regex-Library,
+verwendet keinen DEA und ist langsam.
+Ebenfalls langsam ist die
+Implementation der {\tt matches} Methode in {\tt java.lang.String}.
+Man würde hoffen, dass wenigstens das Package {\tt java.util.regex} einen
+besseren Regex-Matcher beinhalten würde.
+Leider wurde da nur am Interface herumgebastelt, nicht an der Substanz.
+Vielleicht sollten
+die Implementatoren von {\tt java.util.regex} mal die Vorlesung AutoSpr
+besuchen.
+\end{sloppypar}
