@@ -1,0 +1,362 @@
+%
+%  entscheidbar.tex -- Entscheidbarkeit
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+\section{Entscheidbare Sprachen}
+\rhead{Entscheidbare Sprachen}
+\index{Sprache!entscheidbare}%
+Wenn ein Problem von einem Computer gelöst werden soll, dann
+muss der Computer die Problembeschreibung und eine mögliche Lösung
+lesen können, und entscheiden können, ob die beiden zusammen passen.
+Er muss also korrekte Problem- und Lösungs-Beschreibungen von
+inkorrekten unterscheiden können.
+Die Menge der korrekten
+Beschreibungen bilden eine Sprache, das Problem ist also darauf
+zurückgeführt, eine Sprache zu entscheiden.
+
+\subsection{Entscheidbare Sprachen}
+Eine Sprache heisst entscheidbar, wenn es einen Entscheider gibt, der
+dazu verwendet werden kann, herauszufinden, ob ein Wort $w$ in der Sprache
+liegt.
+
+\begin{beispiel}
+Sei $A$ ein DEA.
+Dann kann man folgenden Algorithmus $M_A$ mit Input $w$ bauen:
+\begin{compactenum}
+\item Simuliere den DEA $A$ auf dem Input $w$
+\item Falls $A$ in einem Akzeptierzustand steht: $q_{\text{accept}}$
+\item Andernfalls: $q_{\text{reject}}$
+\end{compactenum}
+Dieser Algorithmus ist sicher ein Entscheider, er terminiert immer.
+Ob er ein Wort $w$ akzeptiert, hängt davon ab, ob $A$ das Wort akzeptiert:
+\begin{align*}
+  A&\text{ akzeptiert $w$}&
+   &\Leftrightarrow&
+M_A&\text{ erkennt $w$}
+\\
+  A&\text{ akzeptiert $w$ nicht}&
+   &\Leftrightarrow&
+M_A&\text{ erkennt $w$ nicht}
+\end{align*}
+Das bedeutet aber, dass $L(A)=L(M_A)$, oder $M_A$ ist ein Entscheider für
+die Sprache $L(A)$.
+\end{beispiel}
+
+Zu jeder regulären Sprache mit DEA $A$ gibt es also einen
+Algorithmus $M_A$, der die gleiche Sprache erkennt: $L(A)=L(M_A)$.
+Kürzer:
+
+\begin{satz}
+\label{regulaer-entscheidbar}
+Reguläre Sprachen sind entscheidbar.
+\end{satz}
+
+\begin{beispiel}
+Sei $G$ eine kontextfreie Grammatik.
+Dann kann man den folgenden Algorithmus $M_G$ mit Input $w$ bauen:
+\begin{compactenum}
+\item Wandle $G$ in Chomsky-Normalform $G'$ um
+\item Wende den CYK-Algorithmus (Satz \ref{cyk-algorithm}) auf $G'$ und das
+Wort $w$ an
+\item Wenn der CYK-Algorithmus das Wort $w$ akzeptiert: $q_{\text{accept}}$
+\item Andernfalls: $q_{\text{reject}}$.
+\end{compactenum}
+Weil der CYK-Algorithmus (Satz \ref{cyk-algorithm}) deterministisch 
+feststellen kann, ob ein Wort von einer Grammatik erzeugt wird, ist
+$M_G$ ein Entscheider.
+$M_G$ erkennt ein Wort genau dann, wenn des von
+der Grammatik produziert wird, also $L(M_G)=L(G)$.
+\end{beispiel}
+
+Zu jeder kontextfreien Sprache mit Grammatik $G$ gibt es also einen 
+Algorithmus $M_G$, der die gleiche Sprache erkennt: $L(G)=L(M_G)$.
+Kürzer:
+
+\begin{satz}
+Kontextfreie Sprachen sind entscheidbar.
+\end{satz}
+Dieser Satz zeigt, dass die entscheidbaren Sprachen eine 
+Obermenge der kontextfreien Sprachen sind, wie in folgender
+Grafik dargestellt.
+\begin{center}
+%\includegraphics[width=0.7\hsize]{images/lang-2}
+\includegraphics{images/lang-2}
+\end{center}
+
+\subsection{Entscheidbare Probleme für reguläre Sprachen}
+Wir wollen jetzt eine Ebene höher geben.
+Unser Fokus sind jetzt nicht
+mehr einzelne Sprachen, sondern eine ganze Menge von Sprachen, und eventuell
+weitere Daten.
+Wir suchen also nicht mehr Algorithmen, die eine Frage
+für eine einzelne Sprache beantworten können, sondern Algorithmen, die
+die Frage gleich für mehrere Sprachen beantworten.
+
+In Satz~\ref{regulaer-entscheidbar} ging es darum, einen Algorithmus
+zu finden, der entscheidet, ob ein Wort $w$ von {\em einem} ganz bestimmten,
+vorgegebenen endlichen Automaten $A$ akzeptiert wird.
+Jetzt fragen wir, ob es einen Algorithmus gibt, der für {\em jede beliebige}
+Kombination von DEA und Wort $w$ diese Entscheidung treffen kann.
+Dies ist offenbar ein viel allgemeineres Problem, ob $A$ das Wort
+akzeptiert ist ein Spezialfall.
+Dieses Problem heisst das
+Akzeptanzproblem für endliche Automaten.
+
+\subsubsection{Akzeptanzproblem}
+\index{Akzeptanzproblem!für reguläre Sprachen}%
+Wir betrachten das folgende Problem: Gegeben sei ein endlicher Automat $B$
+und ein Wort $w$,
+kann man entscheiden, ob der Automat das Wort akzeptiert?
+Um dies als Sprachproblem zu formulieren, braucht  man eine Codierung
+$\langle B,w\rangle$ von Automat und Wort.
+Die Sprache, die zu
+entscheiden ist, lautet dann:
+\[
+A_{\text{DEA}} =\{
+\langle B,w\rangle\;|\;\text{$B$ ist ein DEA und $B$ akzeptiert $w$}.
+\}
+\]
+\index{ADEA@$A_{\text{DEA}}$}%
+\begin{satz}
+\label{adea_decidable}
+$A_{\text{DEA}}$ ist entscheidbar.
+\end{satz}
+\index{Akzeptanzproblem!für DEAs}%
+
+\begin{proof}[Beweis]
+Der folgende Algorithmus entscheidet
+$A_{\text{DEA}}$:
+\medskip
+\begin{compactenum}
+\item Simuliere $B$ auf einer TM mit Input $w$.
+\item Falls $B$ akzeptiert, gehe in den Zustand $q_{\text{accept}}$.
+\item Falls $B$ nicht akzeptiert, gehe in den Zustand $q_{\text{reject}}$.
+\end{compactenum}
+\medskip
+\end{proof}
+
+Das gleiche Problem kann man auch für nicht deterministische Automaten
+formulieren:
+
+\begin{satz}
+\index{Akzeptanzproblem!für NEAs}%
+Das Akzeptanzproblem für nicht deterministische endlich Automaten
+\[
+A_{\text{NEA}} =\{
+\langle B,w\rangle\;|\;\text{$B$ ist ein NEA und $B$ akzeptiert $w$}.
+\}
+\]
+\index{ANEA@$A_{\text{NEA}}$}%
+ist entscheidbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Der folgende Algorithmus entscheidet 
+$A_{\text{NEA}}$:
+\medskip
+\begin{compactenum}
+\item Wandle $B$ in einen DEA $B'$ um.
+\item Verwende die TM von Satz \ref{adea_decidable}, um zu
+entscheiden, ob $B'$ das Wort $w$ akzeptiert.
+\end{compactenum}
+\medskip
+\end{proof}
+
+\begin{satz} Das Akzeptanzproblem für reguläre Ausdrücke
+\index{Akzeptanzproblem!für regul\äre Ausdr\ücke}%
+\[
+A_{\text{REX}}=\{
+\langle R,w\rangle\;|\;\text{$R$ ist ein regulärer Ausdruck und $R$ akzeptiert $w$}
+\}
+\]
+\index{AREX@$A_{\text{REX}}$}%
+ist entscheidbar.
+\end{satz}
+
+\subsubsection{Leerheitsproblem}
+\index{Leerheitsproblem!für DEAs}%
+Wir wollen einem endlichen Automaten ansehen können, ob er überhaupt
+irgend ein Wort akzeptieren wird, und untersuchen daher
+\[
+E_{\text{DEA}}
+=\{
+\langle A\rangle \;|\;\text{$A$  ist ein DEA und $L(A)=\emptyset$}
+\}.
+\]
+\begin{satz}
+$E_{\text{DEA}}$
+\index{EDEA@$E_{\text{DEA}}$}%
+ist entscheidbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Man muss herausfinden, ob überhaupt je ein Akzeptierzustand erreicht
+werden kann.
+Der folgende Algorithmus schafft dies:
+\medskip
+\begin{compactenum}
+\item Markiere den Startzustand
+\item Solange sich noch neue Zustände markieren liessen:
+ Markiere alle Zustände, die sich von den bereits markierten aus
+erreichen lassen.
+\item Falls ein Akzeptierzustand markiert wurde: $q_{\text{reject}}$,
+andernfalls
+$q_{\text{accept}}$
+\end{compactenum}
+\medskip
+\end{proof}
+
+\subsubsection{Gleichheitsproblem}
+\index{Gleichheitsproblem!für DEAs}%
+Akzeptieren zwei DEAs die gleiche Sprache? Im Kapitel \ref{chapter-regular}
+haben wir einen Algorithmus skizziert, mit dem dies entschieden werden kann.
+
+\begin{satz}
+\label{satz:eqdea}
+Die Sprache
+\[
+\text{\it EQ}_{\text{DEA}}=\{
+\langle A,B\rangle\;|\;\text{$A$ und $B$ sind DEAs und $L(A)=L(B)$}
+\}
+\]
+\index{EQDEA@$\textit{EQ}_{\text{DEA}}$}%
+ist entscheidbar.
+\end{satz}
+
+\begin{proof}[Beweis 1]
+In Anlehnung an Kapitel \ref{chapter-regular} können wir den folgenden
+Algorithmus verwenden:
+\medskip
+\begin{compactenum}
+\item Erzeuge den minimalen Automaten $A'$ zu $A$.
+\item Erzeuge den minimalen Automaten $B'$ zu $B$.
+\item Falls $A'=B'$: $q_{\text{accept}}$, andernfalls $q_{\text{reject}}$.
+\end{compactenum}
+\medskip
+Dieser Algorithmus entscheidet offenbar 
+$\text{\it EQ}_{\text{DEA}}$.
+\end{proof}
+
+\begin{proof}[Beweis 2]
+Noch etwas eleganter ist der folgende Beweis.
+Ob $L(A)=L(B)$ ist
+offenbar gleichbedeutend damit, dass die symmetrische Differenz
+(Abbildung~\ref{symdiff})
+\[
+L(A){\;\Delta\;} L(B)=
+(L(A)\setminus L(B)) \cup (L(B)\setminus L(A))
+\]
+leer ist.
+Da sich die Mengenoperationen aber durch Operationen mit
+endlichen Automaten abbilden lassen, gibt es einen Algorithmus,
+der  zu jedem Paar $(A,B)$
+von endlichen Automaten  einen endlichen Automaten $C$ konstruiert mit
+$L(C)=L(A){\;\Delta\;} L(B)$.
+Dann muss nur noch mit Hilfe eines Entscheiders
+für $E_{\text{DEA}}$ entschieden werden, ob $\langle C\rangle\in
+E_{\text{DEA}}$.
+\end{proof}
+
+Das Prinzip dieses zweiten Beweises wird uns später weiter beschäftigen.
+Entscheidend war, dass es einen Algorithmus gibt, mit dem das
+Entscheidungsproblem 
+$\text{\it EQ}_{\text{DEA}}$
+auf das Leerheitsproblem
+$E_{\text{DEA}}$ zurückgeführt werden konnte.
+Die Entscheidung erfolgte dann mit dem Entscheider für
+$E_{\text{DEA}}$.
+
+\subsection{Entscheibarkeitsproblem für kontextfreie Sprachen}
+\subsubsection{Akzeptanzproblem}
+\index{Akzeptanzproblem!für kontextfreie Grammatiken}%
+\begin{satz}
+\label{satz:acfg-entscheidbar}
+Die Sprache
+\[
+A_{\text{CFG}}=\{
+\langle G,w\rangle\;|\; \text{die kontextfreie Grammatik $G$ erzeugt $w$}
+\}
+\]
+ist entscheidbar.
+\index{ACFG@$A_{\text{CFG}}$}%
+\end{satz}
+
+\begin{proof}[Beweis 1]
+Der CYK-Algorithmus von Satz \ref{cyk-algorithm} entscheidet
+$A_{\text{CFG}}$.
+\end{proof}
+
+\begin{proof}[Beweis 2]
+Der folgende Algorithmus entscheidet
+$A_{\text{CFG}}$:
+\medskip
+\begin{compactenum}
+\item Wandle $G$ in Chomsky Normalform um.
+\item Erzeuge alle Wörter, die sich durch Anwendung
+von $|w|-1$ Regeln der Form $A\to BC$ und $|w|$ Regeln
+der Form $A\to a$ ableiten lassen.
+\item Falls $w$ darunter vorkommt: $q_{\text{accept}}$, 
+andernfalls $q_{\text{reject}}$.
+\end{compactenum}
+\medskip
+\end{proof}
+
+\subsubsection{Leerheitsproblem}
+\index{Leerheitsproblem!für kontextfreie Grammatiken}%
+\begin{satz}
+Die Sprache
+\[
+E_{\text{CFG}}=\{
+\langle G\rangle\;|\; \text{$G$ ist eine kontextfreie Grammatik und $L(G)=\emptyset$}
+\}
+\]
+ist entscheidbar.
+\index{ECFG@$E_{\text{CFG}}$}%
+\end{satz}
+
+\begin{proof}[Beweis]
+Eine Grammatik erzeugt Wörter, wenn alle Variablen, die im Laufe
+der Ableitung auftreten, am Ende mit Hilfe von Regeln der Form $A\to a$
+in Terminalsymbole umgewandelt werden können.
+Man könnte also einen
+Markierungsalgorithmus entwickeln, der alle Terminalsymbole markiert,
+und alle Symbole, die mit geeigneten Regeln ebenfalls markierte Symbole
+erzeugen.
+Falls die Startvariable nicht markiert wird, ist die Sprache leer.
+Der Algorithmus 
+\medskip
+\begin{compactenum}
+\item Wandle $G$ in Chomsky Normalform um.
+\item Markiere alle Terminalsymbole.
+\item Solange sich neue Variablen markieren lassen: markiere alle
+Variablen $A$, zu denen es eine Regel gibt, so dass alle Symbole auf
+der rechten Seite der Regel bereits markiert sind.
+\item Falls $S$ markiert wurde: $q_{\text{reject}}$, andernfalls
+$q_{\text{accept}}$.
+\end{compactenum}
+\medskip
+entscheidet also
+$E_{\text{CFG}}$.
+\end{proof}
+
+\subsubsection{Gleichheit}
+\index{Gleichheitsproblem!für kontextfreie Grammatiken}%
+Es ist verlockend zu vermuten, dass das Gleichheitsproblem
+\[
+\text{\it EQ}_{\text{CFG}}=\{
+\langle G,H\rangle\;|\; \text{$G$  und $H$ sind kontextfreie Grammatiken und $L(G)=L(H)$}
+\}
+\]
+\index{EQCFG@$\textit{EQ}_{\text{CFG}}$}%
+mit der gleichen Methode mit Hilfe der symmetrischen Differenz
+wie bei regulären Sprachen entschieden werden könnte.
+Dem ist
+allerdings nicht so, denn das Komplement einer kontextfreien Sprache
+ist im Allgemeinen nicht kontextfrei, also auch die symmetrische
+Differenz nicht.
+In der Tat ist 
+$\text{\it EQ}_{\text{CFG}}$ nicht entscheidbar, die Methoden zum Beweis
+werden allerdings erst später bereitgestellt.
+

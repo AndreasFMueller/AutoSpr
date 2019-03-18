@@ -1,0 +1,47 @@
+%
+% komplexitaet.tex -- Kapitel ueber Komplexitaetstheorie
+%
+% (c) 2011 Prof Dr Andreas Mueller, Hochschule Rapperswil
+%
+\chapter{Komplexitätstheorie\label{chapter-komplexitaet}}
+\lhead{Komplexitätstheorie}
+\rhead{}
+Im Kapitel \ref{chapter-entscheidbarkeit} wurde untersucht, ob ein
+Problem überhaupt mit einer Turingmaschine lösbar ist. Die
+Effizienz der gewonnenen Algorithmen spielte keine Rolle.
+In diesem Kapitel soll die Laufzeit eines Algorithmus genauer
+untersucht werden. Dabei sind nur Unterscheidungen interessant,
+die unabhängig von den speziellen Fähigkeiten der verwendeten
+Maschine sind, nur so lassen sich allgemeingültige Aussagen
+ableiten, die für jede Art von Computer gelten. Die absolute Laufzeit
+ist daher kein brauchbares Kriterium, sie hängt zu stark
+von individuell verschiedenen Parametern wie Taktrate, Wortbreite,
+Instruktionssatz etc.~ab. 
+
+Sobald ein geeignetes Kriterium gefunden werden kann, kann man
+die Sprachen in ``leicht'' und ``schwierig'' zu entscheidende 
+unterteilen. Dabei kristallisiert sich eine Klasse von
+Problemen heraus, die von nichtdeterministischen Turingmaschinen
+gerade noch gelöst werden können, die aber für grosse
+Probleme ausserhalb der Reichweite von deterministischen Turingmaschinen
+sind. Es scheint, dass diese Kluft nicht überbrückt werden kann.
+
+Für die Praxis bedeutet dies, dass einige Probleme mit effizienten
+Algorithmen gelöst werden können, während für andere 
+keine effizienten Algorithmen möglich sind. Der Praktiker wird daher
+das Problem einschränken müssen, denn oft lassen sich solche
+Probleme unter zusätzlichen Bedingungen effizient lösen.
+Voraussetzung ist natürlich, dass er Probleme diesen beiden
+Klassen zuordnen kann.
+
+\input{7-komplexitaet/laufzeit.tex}
+\input{7-komplexitaet/pnp.tex}
+\input{7-komplexitaet/reduktion.tex}
+\input{7-komplexitaet/npcomplete.tex}
+\input{7-komplexitaet/sat.tex}
+\input{7-komplexitaet/beispiele.tex}
+\input{7-komplexitaet/katalog.tex}
+\input{7-komplexitaet/karp.tex}
+\input{7-komplexitaet/minesweeper.tex}
+
+

@@ -1,0 +1,250 @@
+%
+% koufzeitmplexitaet.tex -- Laufzeitkomplexität
+%
+% (c) 2011 Prof Dr Andreas Mueller, Hochschule Rapperswil
+%
+\section{Laufzeitkomplexität}
+\rhead{Laufzeitkomplexität}
+\index{Laufzeitkomplexit\ät}%
+\subsection{Inputlänge}
+\index{Inputl\änge}%
+Wenn die absolute Laufzeit eines Algorithmus nicht als Mass für
+die Komplexität eines Problems dienen kann, dann vielleicht
+wenigstens die Abhängigkeit der Laufzeit von der Grösse des
+Problems. Da wir unter Problemen immer ihre Übersetzung in ein
+Sprachproblem verstehen, haben wir für die Grösse des Problems
+ein Mass: die Länge des Wortes, welches das Problem beschreibt.
+
+Als Beispiel betrachten wir das Problem
+\index{PRIME@\textsl{PRIME}}%
+\[
+\text{\textsl{PRIME}}=\{ n\;|\; \text{$n\in\mathbb N$ und $n$ ist prim}\}.
+\]
+Es ist entscheidbar, man kann zum Beispiel alle Teiler durchtesten,
+das ist mit $n$ Tests möglich. Ein Entscheider ist also eine Turingmaschine,
+der man die Zahl $n$ auf das Band schreibt, und die Turingmaschine
+stellt dann fest, ob die Zahl eine Primzahl ist. Die Zahl $n$ muss
+als String auf das Band geschrieben werden. Dazu ist eine Codierung
+zu wählen, üblicherweise wird dies eine Zifferndarstellung in
+irgendeiner Basis $b$ sein. Zur Darstellung der Zahl $n$ in Basis $b$
+sind $l=\lfloor \log_bn\rfloor+1$ Zeichen notwendig.
+
+Man könnte aber auch die unäre Darstellung verwenden, also so viele
+$0$ auf das Band schreiben, wie die Zahl $n$ angibt. In dieser Codierung
+ist also der Input wesentlich länger, nämlich $l=n$.
+Für die Beurteilung der
+Komplexität kann also die Codierung des Inputs durchaus einen
+merklichen Einfluss haben. Nehmen wir an, der Algorithmus hat
+eine Laufzeit proportional zu $n$, dann wächst die Laufzeit im
+zweiten Fall proportional zur Inputlänge $l$, im ersten Fall
+aber wächst die Laufzeit mit $b^l$. Man kann also Algorithmen
+nur vergleichen, wenn man die gleiche Inputcodierung verwendet.
+
+\subsection{Laufzeit}
+\index{Laufzeit}%
+Sei jetzt also eine Turingmaschine $M$ gegeben, die ein Entscheider
+ist. Für jedes Inputwort $w$ wird die Maschine eine gewisse Zeit
+laufen und dann im Zustand $q_{\text{accept}}$ oder $q_{\text{reject}}$
+anhalten. Die Anzahl der Rechenschritte, die die Maschine auf dem
+Inputwort $w$ benötigt, bezeichnen wir mit $t(w)$.
+Die maximale Laufzeit, die für Inputwörter der Länge nicht
+grösser als $n$ benötigt wird, bezeichnen wir mit $t(n)$,
+\[
+t(n)=\max \{ t(w)\;|\; |w|\le n\}.
+\]
+Der absolute Wert von $t(n)$ ist nicht interessant, da er sich
+selbst unter trivialen Veränderungen der Turingmaschine verändern
+kann. Das Verhalten von $t(n)$ für grosse $n$ hingegen scheint
+wesentlich robuster zu sein, es interessiert also nur noch, wie
+sich verschiedene Funktionen zueinander verhalten, wenn man $n\to\infty$
+streben lässt. Falls wir die Turingmaschine angeben wollen, deren
+Laufzeit bestimmt wird, schreiben wir sie als Index zu $t$: $t_M(n)$.
+
+\begin{definition}
+Sind $f$ und $g$ Funktionen $\mathbb N\to\mathbb R^+$, dann ist
+$f(n)=O(g(n))$, falls es eine Konstante $c$ und ein $n_0\in\mathbb N$
+gibt mit
+\[
+f(n)\le cg(n)\quad \forall n\in\mathbb N\text{ mit } n > n_0.
+\]
+Es ist $f(n)=O(g(n))$ wenn 
+\begin{equation}
+\lim_{n\to\infty}\frac{f(n)}{g(n)}=0.
+\label{oquotientlimit}
+\end{equation}
+\end{definition}
+\index{Laufzeit!polynomielle}%
+Man beachte, dass für $f(n)=O(g(n))$ die Ungleichung $f(n)\le
+cg(n)$ nicht für alle $n$ gelten muss, insbesondere spielen kleine
+Werte von $n$ keine Rolle, es interessiert uns nur das Verhalten
+bei grossen Werten von $n$.
+Und auch für $f(n)=O(g(n))$ sind die kleinen Werte von $n$ nicht
+von Bedeutung, die Funktionswerte für kleine $n$ haben keinen
+Einfluss auf den Grenzwert des Quotienten (\ref{oquotientlimit}).
+
+Die Funktion $g$ muss offenbar nicht sonderlich genau bekannt
+sein. Ist $g$ zum Beispiel ein Polynom, interessiert nur noch
+die höchste Potenz. Es gilt ja zum Beispiel
+$ n^r\le n^k $ für jeden Exponenten $r<k$, und damit
+$n^r=O(n^k)$. Ausserdem ist $an^r=O(n^k)$, und damit
+für $f(n)=a_0+a_1n+a_2n^2+\dots+a_{k-1}n^{k-1}+a_nn^k$ auch
+$ f(n)=O(n^k) $. Somit genügt es bei Polynomen für $g$ die
+höchste Potenz anzugeben.
+
+\begin{beispiel}
+Für das früher genannte Beispiel \textsl{PRIME} wurde 2004 etwas
+überraschend ein Algorithmus mit
+polynomieller Laufzeit gefunden \cite{skript:aks}.
+\end{beispiel}
+
+\subsection{Varianten von Turingmaschinen}
+Wieviel schneller arbeitet eine Turingmaschine mit mehreren Bändern 
+gegenüber einer Standardturingmaschine? Wieviel schneller ist eine
+nichtdeterministische Turingmaschine gegenüber einer deterministischen?
+
+\begin{satz}
+\index{Turing-Maschine!mit mehreren B\ändern}%
+Eine Turingmaschine mit mehreren Bändern und Laufzeit $t(n)$ kann
+in Laufzeit $O(t(n)^2)$ auf einer Standardturingmaschine
+simuliert werden.
+\end{satz}
+
+\begin{proof}[Beweis]
+In Satz \ref{mehrbandturingmaschine} wurde beschrieben, wie man eine
+Turingmaschine mit mehreren Bändern auf einer Turingmaschine mit
+einem einzigen Band simulieren kann. Dabei ist für jeden der
+$t(n)$ Berechnungsschritt ein Durchgang durch das Band nötig, bei
+dem die Turingmaschine die Inhalte der markierten Felder zusammensammelt,
+um dann die notwendigen Änderungen zu bestimmen. Die Änderungen
+auf dem Band einzutragen erfordert dann nochmals einen Durchgang
+durch das Band.
+
+Wir nehmen an, dass $t(n)\ge n$, denn sonst könnte die
+Turingmaschine nicht einmal ihren Input vollständig lesen.
+Der tatsächlich benutzte Teil des Bandes kann dann nicht länger sein
+als $t(n)$. Zusammen mit den $t(n)$ durchläufen erhalten wir,
+dass die simulierte Turingmaschine die Laufzeit $O(t(n)^2)$ hat.
+\end{proof}
+
+Einen wesentlichen Unterschied der Laufzeit erwarten wir aber
+bei nichtdeterministischen Turingmaschinen.
+Die Berechnung in einer nichtdeterministischen Turingmaschine
+kann ja auf ganz verschiedenen Wegen stattfinden, wovon
+einer gefunden werden muss, der akzeptiert. Wenn eine simulierende
+Turingmaschine alle Wege durchprobiert, spielt die Laufzeit auf
+demjenigen Weg, der am längsten braucht, eine wesentliche Rolle.
+
+\begin{definition}
+\index{Laufzeit!einer nichtdeterministischen Turingmaschine}%
+Sei $N$ eine nicht deterministische Turingmaschine, die auch ein
+Entscheider ist. Dann ist ihre Laufzeit $t(n)$ die maximale Anzahl
+von Schritten, die jede mögliche Berechnung auf einem Input der
+Länge $\le n$ braucht.
+\end{definition}
+
+\begin{satz}
+\label{exponentialtime}
+Eine nichtdeterministische Turingmaschine mit Laufzeit $t(n)$
+kann in Laufzeit $2^{O(t(n))}$
+auf einer deterministischen Turingmaschine simuliert werden.
+\end{satz}
+
+\begin{proof}[Beweis]
+In Satz \ref{nichtdeterministischeturingmaschine} wurde gezeigt,
+wie man eine nichtdeterministische Turingmaschine auf einer
+Mehrband-Maschine simulieren kann. Da wir im vorliegenden Fall
+sogar einen Entscheider haben, können wir den Algorithmus noch
+etwas vereinfachen. Wir verwenden Band~1 wieder für den Input,
+Band~2 als Arbeitsband für die simulierte Turingmaschine und
+Band~3 als Steuerband für die nichtdeterministischen
+Entscheidungen.
+
+Wir müssen ausrechnen, wie sich die Simulation auf die 
+Gesamtlaufzeit auswirkt. Jeder Berechnungspfad der simulierten
+nichtdeterministischen Turingmaschine hat Laufzeit nicht
+länger als $t(n)$. Die Erzeugung der nächsten möglichen
+Berechnungsgeschichte auf Band~3 kann in einem Durchgang
+durch Band~3 erfolgen, braucht also Zeit $O(t(n))$.
+Die Anzahl der Berechnungsgeschichten ist $|Q\times \Gamma|^{t(n)}$,
+also von der Form $c^{t(n)}$. Im schlimmsten Fall ist die
+Laufzeit dieses Algorithmus also
+\[
+c^{t(n)}(t(n) + O(t(n)))
+=
+2^{t(n) \log_2 c+ \log_2(O(t(n)))}
+=
+2^{O(t(n))}.
+\]
+\end{proof}
+\subsection{Wie langsam ist exponentielle Laufzeit?}
+\index{Laufzeit!exponentielle}%
+Satz \ref{exponentialtime} zeigt, dass zur Simulation eines
+nichtdeterministischen Automaten eine exponentiell längere
+Zeit nötig ist, als die nichtdeterministische Maschine
+benötigt hätte. Aber wieviel langsamer ist das?
+Zunächst ist für jeden Exponenten $k$
+\[
+\lim_{n\to\infty}\frac{2^{n}}{n^k}=\infty,
+\]
+$2^n$ wächst also schneller als jedes Polynom. 
+Setzen wir $t=n^r$, dann ist auch
+\[
+\lim_{n\to\infty}\frac{2^{n^r}}{n^k}
+=
+\lim_{t\to\infty}\frac{2^t}{t^{k/r}}
+=
+\infty,
+\]
+wie zu erwarten war, wächst $2^{n^k}$ noch schneller.
+Da nur schon für das Lesen des Input $n$ Schritte notwendig sind,
+spielt es gar keine Rolle, wie effizient der Algorithmus der
+nichtdeterministischen Turingmaschine ist, es ist unmöglich,
+je polynomielle Laufzeit zu erreichen.
+
+Aber wie gross ist denn nun exponentielle Laufzeit?
+Nehmen wir an,
+ein wir hätten einen Algorithmus mit Laufzeit $n^k$. Vergrössert
+man die Input-Länge um $1$ Zeichen, ändert sich die Laufzeit um
+\[
+\frac{(n+1)^k}{n^k}
+=
+1+\frac{k}{n} +\dots,
+\]
+die relative Zunahme wird also immer kleiner. Bei einer Verdoppelung
+der Inputlänge wird die Laufzeit mit dem Faktor $2^k$ multipliziert.
+Ganz anders bei exponentieller Laufzeit.
+Erhöht man die Inputlänge um $1$, wird die Laufzeit mit einem
+konstanten Faktor multipliziert. Und die Verdoppelung von $n$
+quadriert die Laufzeit.
+Ausgehend von einer angenommenen
+Zeit pro Schritt von einer Nanosekunde, ergeben sich
+für die Laufzeit eines Algorithmus
+mit polynomieller Laufzeit, genauer mit $n^5$ und exponentieller Laufzeit,
+genauer mit $2^n$ die Werte in Tabelle~\ref{laufzeittabelle}.
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|rr|}
+\hline
+$n$&$n^5$&$2^n$\\
+\hline
+  1&             1ns&             2ns\\
+  2&            32ns&             4ns\\
+  4&       1.0$\mu$s&            16ns\\
+  8&      32.7$\mu$s&           256ns\\
+ 16&           1.0ms&      65.5$\mu$s\\
+ 32&          33.5ms&           4.3ms\\
+ 64&            1.0s&       584 Jahre\\
+128&           34.4s& $10^{21}$ Jahre\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Polynomielle und exponentielle Laufzeit\label{laufzeittabelle}}
+\end{table}
+Die Zeit von $10^{21}$ Jahren entspricht dem 78 Milliardenfachen des
+Alters des Universums. Grosse Probleme mit exponentieller Laufzeit
+sind also schlicht unlösbar, während selbst relativ grosse
+polynomielle Laufzeiten durchaus im Bereich des erreichbaren sind.
+Der Unterschied zwischen polynomieller und exponentieller Laufzeit
+ist also für grosse Inputlänge der Unterschied zwischen lösbaren und
+unlösbaren Problemen.
+

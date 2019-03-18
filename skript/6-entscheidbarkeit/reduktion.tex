@@ -1,0 +1,338 @@
+%
+% reduktion.tex -- Reduktion
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Reduktion}
+\index{Reduktion}%
+\rhead{Reduktion}
+Im letzten Abschnitt wurde die Entscheidbarkeit der Sprache $L$
+auf das Akzeptanzproblem in dem Sinne zurückgeführt, dass
+aus einem Entscheider für $L$ ein Entscheider für das Akzeptanzproblem
+konstruiert wurde.
+Die Nichtentscheidbarkeit des Akzeptanzproblems
+hat dann gezeigt, dass auch $L$ nicht entscheidbar sein kann.
+
+Dieses Vorgehen funktioniert in sehr vielen Fällen, wir wollen es
+daher etwas abstrakter formulieren und damit die Anwendung in weiteren
+Beispielen vereinfachen.
+Gleichzeitig ermöglicht es uns, die
+Sprachen mindestens teilweise nach ihrer Schwierigkeit, sie zu entscheiden,
+anzuordnen.
+
+\subsection{Reduktionsabbildung}
+\index{Reduktionsabbildung}%
+\begin{figure}
+\begin{center}
+%\includegraphics[width=\hsize]{images/red-1}
+\includegraphics{images/red-1}
+\end{center}
+\caption{Reduktionsabbildung $f\colon A\to B$.\label{reduktionsabbildung}}
+\end{figure}
+Wir möchten zwei verschiedene Sprachen 
+$A$ und $B$ 
+vergleichen.
+Dazu bilden wir Wörter von der einen Sprache in
+die andere Sprache ab, wir brauchen also eine Abbildung, die
+$f\colon\Sigma^*\to \Sigma^*$, die $A$ in $B$ überführt,
+d.\,h.
+\[
+w\in A\Leftrightarrow f(w)\in B.
+\]
+Diese Abbildung hilft uns allerdings nur dann, Entscheidbarkeitsfragen
+von $B$ nach $A$ zu transportieren, wenn sie mit einer Turingmaschine
+berechnet werden kann.
+Wir definieren daher
+
+\begin{definition}
+\index{berechenbar}%
+Eine Abbildung $f\colon \Sigma^*\to \Sigma^*$ heisst berechenbar wenn es eine
+Turingmaschine gibt, die auf jedem Input $w\in \Sigma^*$ anhält
+und ausschliesslich das Wort $f(w)$ auf dem Band zurücklässt.
+\end{definition}
+
+\begin{definition}
+\index{Reduktion}%
+Eine Sprache $A$ ist reduzierbar auf die Sprache $B$, in Zeichen
+\[
+A\le B
+\]
+wenn es eine
+berechenbare Abbildung $f\colon \Sigma^*\to \Sigma^*$ gibt, mit
+\[
+w\in A\Leftrightarrow f(w)\in B.
+\]
+Wir schreiben dafür auch
+\[
+f\colon A\le B.
+\]
+\end{definition}
+Die Schreibweise $A\le B$ soll ausdrücken, dass die Sprache $A$ ``leichter''
+zu entscheiden ist als die Sprache $B$.
+Die nachfolgenden zwei Sätze
+zeigen, dass diese Leseart berechtigt ist.
+
+\begin{satz}
+Seien $A\le B$ Sprachen.
+Ist $B$ entscheidbar, dann auch $A$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Ist $B$ entscheidbar, dann gibt es einen Entscheider für $B$, also
+eine Turingmaschine $M$, die auf jedem Inputwort anhält, und
+entscheidet, ob es zu $B$ gehört.
+Daraus können wir jetzt einen Entscheider für $A$ konstruieren.
+Um zu entscheiden, ob $w\in A$
+ist, verwenden wir den folgenden Algorithmus $M'$ mit Input
+$w$:
+\medskip
+\begin{compactenum}
+\item Berechne $f(w)$, dafür gibt es wegen $A\le B$ eine Turingmaschine.
+\item Verwende den Entscheider $M$ um zu entscheiden, ob $f(w)\in B$.
+\item Falls $M$ akzeptiert ist $f(w)\in B\Rightarrow w\in A$
+\item Falls $M$ nicht akzeptiert ist $f(w)\not\in B\Rightarrow w\not\in A$.
+\end{compactenum}
+\medskip
+$M'$ ist offenbar ein Entscheider für $A$, also ist $A$ entscheidbar.
+\end{proof}
+
+Die Kontraposition dieser Aussage ist
+\begin{satz}
+Ist $A\le B$ und $A$ nicht entscheidbar, dann ist auch $B$ nicht
+entscheidbar.
+\end{satz}
+Damit haben wir eine Methode, um Sprachen als nicht entscheidbar 
+zu beweisen.
+Wir müssen nur eine Abbildung $f\colon \Sigma^*\to \Sigma^*$
+konstruieren, wobei $A$ ein bekanntermassen nicht
+entscheidbares Problem ist, und $f$ berechenbare Abbildung ist,
+die die Reduktion $A\le B$ vermittelt.
+
+\subsection{Weitere nicht entscheidbare Sprachprobleme}
+\index{Halteproblem}%
+\begin{satz} Das Halteproblem
+\[
+\text{\it HALT}_{\text{TM}}=\{\langle M,w\rangle\;|\;
+\text{$M$ ist eine TM und $M$ hält auf Input $w$}\}
+\]
+\index{HALTTM@$\textit{HALT}_{\text{TM}}$}%
+ist nicht entscheidbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir konstruieren eine Reduktion
+$
+A_{\text{TM}}
+\le
+\text{\it HALT}_{\text{TM}}
+$.
+Die Reduktion muss aus einer TM $M$ und einem Inputwort $w$ eine
+neue TM $S$ und ein Inputwort $w$ machen, so dass $S$ auf
+Input $w$ genau dann hält, wenn $M$ das Wort $w$ akzeptiert.
+Die Abbildung $f$ ist also
+\[
+f\colon 
+A_{\text{TM}}
+\le
+\text{\it HALT}_{\text{TM}}
+\colon
+\langle M,w\rangle\mapsto \langle S,w\rangle.
+\]
+$S$ konstruieren wir wie folgt:
+\medskip
+\begin{compactenum}
+\item lasse $M$ laufen auf Input $w$
+\item falls $M$ das Wort $w$ erkennt: $q_{\text{accept}}$
+\item falls $M$ verwirft: beginne eine Endlosschleife
+\end{compactenum}
+\medskip
+Offenbar ist
+$\langle S,w\rangle\in \text{\it HALT}_{\text{TM}}$
+genau dann, wenn $\langle M,w\rangle\in A_{\text{TM}}$.
+Wir haben also
+\[
+\langle M,w\rangle\in A_{\text{TM}}
+\qquad
+\Leftrightarrow
+\qquad
+\langle S,w\rangle=f(\langle M,w\rangle)
+\in \text{\it HALT}_{\text{TM}}.
+\]
+Somit ist 
+$A_{\text{TM}}\le\text{\it HALT}_{\text{TM}}$, und da
+$A_{\text{TM}}$ nicht entscheidbar ist, ist auch
+$\text{\it HALT}_{\text{TM}}$ nicht entscheidbar.
+\end{proof}
+Statt des Anhaltens könnte man auch viele andere spezielle
+Betriebszustände einer Turingmaschine als ``Haltekriterien''
+heranziehen.
+Dann bedeutet der Satz, dass es keinen allgemeinen
+Algorithmus geben kann, der ein Stück Code inspizieren kann und
+daraus ableiten kann, ob dieser Code auf einem System Schaden
+anrichtet.
+Echte Schadcode-Erkennung gibt es also grundsätzlich
+nicht (auch wenn das Marketing-Material gewisser Produkte sich
+da zu ganz erstaunlichen Aussagen versteigt).
+Das beste, was man
+tun kann, ist Mustererkennung (endliche Sprachen sind alle regulär).
+
+\begin{satz}
+\index{Leerheitsproblem!f\ür Turingmaschinen}%
+Das Leerheitsproblem für Turingmaschinen
+\[
+E_{\text{TM}}
+=
+\{ \langle M\rangle\;|\; \text{$M$ ist eine TM und $L(M)=\emptyset$}\}
+\]
+\index{ETM@$E_{\text{TM}}$}%
+ist nicht entscheidbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir möchten eine Reduktion $A_{\text{TM}}\le E_{\text{TM}}$ konstruieren.
+Dazu müssen wir aus $\langle M,w\rangle$ eine Maschine $S$ konstruieren,
+die genau dann kein einziges Wort akzeptiert, wenn $M$ das Wort $w$
+akzeptiert.
+Es ist allerdings einfacher, die Negation zu behandeln,
+also zu zeigen, dass 
+\[
+\bar E_{\text{TM}}=
+\{ \langle M\rangle\;|\; \text{$M$ ist eine TM und $L(M)\ne\emptyset$}\}
+\]
+nicht entscheidbar ist.
+Wir brauchen dann eine Reduktion
+$A_{\text{TM}}\le \bar E_{\text{TM}}$, d.\,h.~eine Maschine $S$,
+die genau dann mindestens ein Wort erkennt, wenn $M$ das Wort $w$ 
+erkennt.
+
+Die Maschine $S$ muss auf beliebigen Wörtern $u$ als Input ausgeführt
+werden können.
+Wir könnten folgenden Algorithmus verwenden:
+\medskip
+\begin{compactenum}
+\item Falls $u\ne w$: $q_{\text{reject}}$.
+\item Lasse $M$ auf $w$ laufen.
+\item Falls $M$ erkennt: $q_{\text{accept}}$.
+\end{compactenum}
+\medskip
+Wenn $M$ das Wort $w$ erkennt, dann erkennt $S$ die Sprache 
+$L(S)=\{w\}$.
+Wenn $M$ das Wort $w$ nicht erkennt, ist $L(S)=\emptyset$.
+Oder
+\begin{align*}
+M&\operatorname{erkennt}w              &&\Rightarrow&L(S)&=\{w\}\ne \emptyset
+\\
+M&\operatorname{erkennt}w\text{ nicht} &&\Rightarrow&L(S)&=\emptyset
+\end{align*}
+oder
+\[
+\langle M,w\rangle \in A_{\text{TM}}
+\qquad
+\Leftrightarrow
+\qquad
+\langle S\rangle = f(\langle M,w\rangle)\in
+\bar E_{\text{TM}},
+\]
+also $A_{\text{TM}}\le \bar E_{\text{TM}}$.
+\end{proof}
+
+\begin{satz}
+Es ist nicht entscheidbar, ob eine Turingmaschine eine reguläre
+Sprache erkennt.
+\end{satz}
+
+\begin{proof}[Beweis]
+Als Sprache formuliert möchten wir eine Reduktion 
+\[
+A_{\text{TM}}\le\text{\it REGULAR}_{\text{TM}}=\{
+\langle M\rangle\;|\;\text{$M$ ist eine TM und $L(M)$ ist regulär}
+\}
+\]
+\index{REGULARTM@$\textit{REGULAR}_{\text{TM}}$}%
+konstruieren.
+Auch in diesem Fall ist es einfacher, eine
+Reduktion
+\[
+A_{\text{TM}}\le\overline{\text{\it REGULAR}}_{\text{TM}}
+\]
+zu konstruieren.
+
+Wir müssen also eine TM $S$ konstruieren, die genau
+dann eine nicht reguläre Sprache erkennt, wenn $w$ von $M$ erkannt wird.
+Der folgende Algorithmus tut dies.
+Auf Input $u$ geht er wie folgt
+vor:
+\medskip
+\begin{compactenum}
+\item Falls $u$ nicht von der Form $0^n1^n$ ist: $q_{\text{reject}}$
+\item Lasse $M$ auf $w$ laufen.
+\item Falls $M$ $w$ erkennt: $q_{\text{accept}}$
+\item Falls $M$ $w$ verwirft: $q_{\text{reject}}$
+\end{compactenum}
+\medskip
+Wegen Schritt~1 kann $S$ höchstens die Wörter der Form
+$\texttt{0}^n\texttt{1}^n$ erkennen, alle anderen werden bereits in
+Schritt $1$ verworfen.
+Ob die Wörter 
+$\texttt{0}^n\texttt{1}^n$ erkannt werden, hängt davon ab, ob $M$ das Wort
+$w$ erkennt:
+\begin{align*}
+   M&\text{ erkennt $w$}      &
+    &\Leftrightarrow&
+L(S)&=\{\texttt{0}^n\texttt{1}^n\,|\, n\ge 0\}&
+    &\Leftrightarrow&
+    &\text{$L(S)$ nicht regulär}\\
+   M&\text{ erkennt $w$ nicht}&
+    &\Leftrightarrow&
+L(S)&=\{\quad\}=\emptyset&
+    &\Leftrightarrow&
+    &\text{$L(S)$ regulär}
+\end{align*}
+$S$ erkennt die nicht reguläre Sprache $\{0^n1^n\;|\;n\in\mathbb N\}$
+genau dann, wenn $M$ das Wort $w$ erkennt.
+Die Reduktion $\langle M,w\rangle\to \langle S\rangle$ übersetzt
+``erkennen'' in ``nicht reguläre Sprache erkennen'', also also $A_{\text{TM}}$
+in $\overline{\textsl{REGULAR}}_{\text{TM}}$.
+\end{proof}
+
+\index{Gleichheitsproblem!f\ür Turingmaschinen}%
+\begin{satz}
+Ob zwei Turingmaschinen die gleiche Sprache
+\[
+\text{\it EQ}_{\text{TM}}=\{
+\langle M_1,M_2\rangle\;|\;\text{$M_i$ sind Turingmaschinen und $L(M_1)=L(M_2)$}
+\}
+\]
+\index{EQTM@$\textit{EQ}_{\text{TM}}$}%
+erkennen, ist nicht entscheidbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir konstruieren eine Reduktion
+$
+E_{\text{TM}}\le \text{\it EQ}_{\text{TM}}
+$
+.
+Dazu sei $M_0$ eine Turingmaschine, die jeden Input verwirft,
+also $L(M_0)=\emptyset$.
+Für die Abbildung $f$ verwenden wir
+\[
+f
+\colon
+E_{\text{TM}}\le \text{\it EQ}_{\text{TM}}
+\colon
+\langle M\rangle\mapsto \langle M,M_0\rangle
+\]
+Es ist $\langle M,M_0\rangle\in \text{\it EQ}_{\text{TM}}$
+genau dann, wenn
+$L(M)=L(M_0)=\emptyset$, also genau dann, wenn
+$\langle M\rangle\in E_{\text{TM}}$.
+\end{proof}
+
+Dieser Satz hat zum Beispiel zur Folge, dass es keine zuverlässige
+maschinelle
+Möglichkeit gibt, herauszufinden, ob zwei Programme das gleiche tun.
+Damit ist die Entscheidung, ob ein beliebiges Programm ein beliebiges
+Softwarepatent verletzt, nur durch den subjektiven Prozess in Form
+eines Gerichtes möglich, kann also grundsätzlich niemals objektiv sein.
+

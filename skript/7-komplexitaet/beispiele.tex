@@ -1,0 +1,545 @@
+%
+% beispiele.tex -- Beispiele 
+%
+% (c) 2011 Prof Dr Andreas Mueller, Hochschule Rapperswil
+%
+\section{Beispiele NP-vollständiger Probleme}
+\rhead{NP-vollständige Probleme}
+Viele praktisch wichtige Probleme sind NP-vollständig. Der Nachweis
+der NP-Vollständigkeit ist jedoch nicht immer einfach. Im Allgemeinen
+wird er dadurch geführt, dass eine Reduktion von einem bereits als
+NP-vollständig bekannten Problem konstruiert wird. Es lohnt sich
+daher, einen möglichst grossen Katalog von NP-vollständigen
+Problemen kennen zu lernen, einerseits um Übung im Konstruieren
+von Reduktionen zu erhalten, andererseits um eine grössere Auswahl 
+von Problemen zu bekommen, von denen ausgehend eine Reduktion 
+konstruiert werden könnte. In diesem Kapitel werden einige
+solche Probleme vollständig untersucht.
+\subsection{3SAT}
+\index{3SAT@\textsl{3SAT}}%
+\begin{satz}
+$\text{\textsl{3SAT}}$ ist NP-vollständig.
+\end{satz}
+
+\begin{proof}[Beweis]
+Zum Beweis muss eine polynonmielle Reduktion
+$\text{\textsl{SAT}}\le_P\text{\textsl{3SAT}}$ konstruiert werden.
+Eine Reduktionsabbilung
+$\text{\textsl{SAT}}\to\text{\textsl{3SAT}}$ muss eine allgemeine Formel
+$\varphi$ in eine gleichwertige Formel in konjunktiver Normalform umwandeln, 
+die ausserdem nur noch maximal drei Variablen in jeder Klausel enthält.
+
+Ein erster Versuch verwendet die Distributivgesetze für die 
+logischen Operationen, also
+\begin{align*}
+a\wedge(b\vee c)&=(a\wedge b)\vee(a\wedge c)\\
+a\vee(b\wedge c)&=(a\vee b)\wedge(a\vee c),
+\end{align*}
+um die $\wedge$ nach ``aussen'' und die $\vee$ nach ``innen'' zu
+bringen. Aus der Formel 
+\begin{equation}
+(x_1\wedge y_1)
+\vee
+(x_2\wedge y_2)
+\vee
+\dots
+\vee
+(x_n\wedge y_n)
+\label{exponentialformula}
+\end{equation}
+wird, wie schon in (\ref{bigcnf}) bemerkt, eine Konjunktion von $2^n$
+Termen der Form
+\[
+(u_1\vee u_2\vee \dots u_n)
+\]
+wobei $u_i=x_i$ oder $u_i=y_i$ sein kann. 
+Die entstehende Konjunktion hat also exponentiell viele Terme, insbesondere
+ist es nicht möglich, auf diesem Weg eine Reduktion
+$f\colon\text{\textsl{3SAT}}\to\text{\textsl{SAT}}$ zu konstruieren.
+
+Die gesuchte ``gleichwertige'' Formel muss nur im Sinne des
+\textsl{SAT}-Problems gleichwertig sein, sie muss nicht eine
+logisch äquivalente Formel sein. Es reicht, wenn die transformierte
+Formel genau dann erfüllbar ist, wenn auch die ursprüngliche Formel
+erfüllbar ist. Das bedeutet auch, dass wir neue Variablen einführen
+dürfen.
+
+Das Problem in Formel (\ref{exponentialformula}) entstand dadurch, dass
+beim ``ausmultiplizieren'' sehr viele Kombinationen entstehen. Hätte
+man eine Abkürzung $z_i=x_i\wedge y_i$, würde die Formel viel
+kürzer, nämlich nur
+\[
+z_1\vee z_2\vee\dots\vee z_n.
+\]
+Diese Formel wäre sogar in konjunktiver Normalform, da man sie
+als Formel mit nur einer Klausel betrachten kann.
+Die Bedingung, dass man mit $z_i$ eigentlich $x_i\wedge y_i$ 
+meint, kann man auch als 
+\[
+z_i\vee \neg(x_i\wedge y_i)
+=
+z_i\vee \bar x_i\vee\bar y_i
+\]
+formulieren. Die Übersetzung der Formel (\ref{exponentialformula})
+in konjunktive Normalform ist dann
+\begin{equation}
+(z_1\vee z_2\vee\dots\vee z_n)
+\wedge
+\bigwedge_{i=1}^n (z_i\vee \bar x_i\vee\bar y_i).
+\label{equivalentcnfformula}
+\end{equation}
+In (\ref{equivalentcnfformula}) kommen $4n$ Variablen vor,
+in der ursprünglichen Formel
+nur $2n$, die Formel wird also um den Faktor $2$ länger, die
+Vergrösserung ist jetzt linear, nicht mehr exponentiell.
+
+Es genügt also Regeln anzugeben, mit denen man Konjunktionen
+``nach aussen'' bringen kann, so dass die Erfüllbarkeit der
+Formel erhalten bleibt, und so dass die Länge der Formel 
+höchstens polynomiell zunimmt. Für die Formel
+\[
+\varphi=
+(
+\varphi_{11}
+\wedge
+\varphi_{12}
+\wedge
+\dots
+\wedge
+\varphi_{1n_1}
+)
+\vee
+(
+\varphi_{21}
+\wedge
+\varphi_{22}
+\wedge
+\dots
+\wedge
+\varphi_{2n_2}
+)
+\vee\dots\vee
+(
+\varphi_{k1}
+\wedge
+\varphi_{k2}
+\wedge
+\dots
+\wedge
+\varphi_{kn_k}
+)
+\]
+verwendet man wieder Variablen $z_i$, welche dafür die einzelnen
+Klammerausdrücke stehen. Um auszudrücken, dass diese wahr sein
+sollen, wenn die Klammerausdrücke wahr sind, fügt man
+die Bedingungen
+\[
+z_i\vee \neg
+(
+\varphi_{i1}
+\wedge
+\varphi_{i2}
+\wedge
+\dots
+\wedge
+\varphi_{in_i}
+)
+=
+z_i\vee
+\neg\varphi_{i1}
+\vee
+\neg\varphi_{i2}
+\vee
+\dots
+\vee
+\neg\varphi_{in_i}
+\]
+hinzu. So erhält man die Formel
+\[
+(z_1\vee z_2\vee \dots\vee z_k)
+\wedge
+\bigwedge_{i=1}^k \biggl(z_i\vee \bigvee_{j=1}^{n_i} \neg\varphi_{ij}\biggr).
+\]
+Ihre Länge ist $O(k+\sum_{j=1}^k(1+n_j))=O(|\varphi|)$.
+Durch wiederholte Anwendung dieser Methode kann die
+Formel also in polynomieller Zeit in konjunktive Normalform gebracht
+werden.
+
+Die inzwischen erreichte konjunktive Normalform der Formel kann durchaus
+noch mehrere Variablen pro Klausel enthalten. Sei 
+\[
+(x_1\vee x_2\vee \dots\vee x_n)
+\]
+eine solche Klausel.
+Wir müssen sie ersetzen durch eine
+Formel in konjunktiver Normalform mit drei Variablen pro Klausel.
+Dazu kann man den folgenden Trick verwenden.
+Die Formel $(\varphi\vee\psi)$ wird wahr, wenn eine der Unterformeln
+$\varphi$ oder $\psi$ war ist. Sie wird nicht wahr sein, wenn 
+beide Unterformeln nicht wahr sind. Sei $z$ eine neue Variable,
+wir möchten mit ihr ausdrücken, dass $\psi$ wahr ist. Wir
+verlangen $\bar z \vee \psi$, wenn $\psi$ nicht wahr ist, darf auch $z$
+nicht wahr sein. Dann ist die Formel
+\[
+(\varphi \vee z)\wedge(\bar z\vee \psi)
+\]
+genau dann erfüllbar, wenn $\varphi\vee \psi$ erfüllbar ist.
+Ist $\varphi$ nicht erfüllbar, dann muss $z$ wahr sein, und
+damit auch $\varphi$, d.\,h.~auch $\varphi\vee\psi$ ist erfüllbar.
+Eine zu lange Disjunktion kann also immer in kürzere Disjunktionen 
+aufgespaltet werden. Rekursive Anwendung liefert jetzt eine Formel
+mit mit maximal drei Literalen pro Klausel.
+\end{proof}
+
+\begin{satz}
+$\text{\textsl{CLIQUE}}$ ist NP-vollständig.
+\end{satz}
+
+\begin{proof}[Beweis]
+Da wir bereits früher gezeigt haben, dass
+$\text{\textsl{3SAT}}\le_P\text{\textsl{CLIQUE}}$ ist, folgt jetzt auch,
+dass $\text{\textsl{CLIQUE}}$ NP-vollständig ist.
+\end{proof}
+
+\subsection{Hamiltonscher Pfad}
+Ein Hamiltonscher Pfad in einem gerichteten Graphen ist ein Pfad, der jeden
+Vertex des Graphen genau einmal besucht. Als Sprachproblem formuliert 
+\[
+\text{\textsl{HAMPATH}}
+=\{\langle G\rangle\,|\,\text{$G$ ist ein Graph mit einem hamiltonschen Pfad}\}
+\]
+Es ist leicht, zu verifizieren, ob
+ein Pfad ein Hamiltonscher Pfad ist:
+\begin{satz} $\text{\textsl{HAMPATH}}\in\text{NP}$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Als Zertifikat $c$ verwendet man den Pfad. Seine Länge ist geringer
+als die Länge der Beschreibung des Graphen selbst.
+Die Punkte des Pfades müssen benachbart sein, dies kann man in 
+$O(n)$ testen.
+Dann muss man überprüfen, ob jeder Vertex des Graphen vorkommt,
+dies ist in Zeit $O(n^2)$ möglich. Auf dem Pfad darf kein Vertex
+zweimal vorkommen, auch dies kann man in $O(n^2)$ verifizieren.
+Insgesamt kann man also in polynomieller Zeit nachprüfen, ob ein
+Pfad tatsächlich ein hamiltonscher Pfad ist.
+\end{proof}
+
+\begin{satz} \textsl{HAMPATH} ist NP-vollständig.
+\end{satz}
+
+\begin{proof}[Beweis]
+Da bereits bekannt ist dass \textsl{HAMPATH} in NP ist, muss nur
+noch eine Reduktion von einem bekanntermassen NP-vollständigen
+Problem auf \textsl{HAMPATH} konstruiert werden. Die hier vorgestellte
+ingeniöse Konstruktion reduziert \textsl{3SAT} auf \textsl{HAMPATH}.
+Dazu muss zu jeder \textsl{3CNF}-Formel ein gerichteter Graph angegeben
+werden, der genau dann einen hamiltonschen Pfad besitzt, wenn die
+Formel erfüllbar ist.
+
+Sei also $\varphi$ eine \textsl{3CNF}-Formel mit $k$ Klauseln in den Variablen
+$x_1,\dots,x_n$. Der zu konstruierende Graph muss zu jeder Variablen
+$x_i$ einen Teilgraphen enthalten, mit dem ausserdem ausgedrückt
+werden kann, ob die Variable wahr oder falsch ist. Der Graph
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+	&*+\txt{}
+		&*+\txt{}
+			&*+\txt{}
+				&{} \ar@/_10pt/[ddllll]\ar@/^10pt/[ddrrrr]
+					&*+\txt{}
+						&*+\txt{}
+							&*+\txt{}
+								&*+\txt{}
+\\
+*+\txt{}
+\\
+{}\ar@/^/[r] \ar@/_10pt/[ddrrrr]
+	&{}\ar@/^/[r] \ar@/^/[l]
+		&{}\ar@/^/[r] \ar@/^/[l]
+			&{}\ar@/^/[r] \ar@/^/[l]
+				&*+\txt{\dots}\ar@/^/[r] \ar@/^/[l]
+					&{}\ar@/^/[r] \ar@/^/[l]
+						&{}\ar@/^/[r] \ar@/^/[l]
+							&{}\ar@/^/[r] \ar@/^/[l]
+								&{} \ar@/^/[l]\ar@/^10pt/[ddllll]
+\\	
+*+\txt{}
+\\
+*+\txt{}
+	&*+\txt{}
+		&*+\txt{}
+			&*+\txt{}
+				&{}
+					&*+\txt{}
+						&*+\txt{}
+							&*+\txt{}
+								&*+\txt{}
+}
+\]
+hat genau zwei hamiltonsche Pfade, die die ``Perlenkette'' in der
+Mitte in entgegengesetzter Richtung durchlaufen.
+Wir konstruieren einen Graphen, der
+genau $n$ solche Teilgraphen untereinander enthält. Der $i$-te solche
+Teilgraph steht für die Variable $x_i$. Der Durchlaufsinn der ``Perlenkette''
+von links nach rechts bedeutet, dass diese Variable wahr sein soll,
+der Durchlaufsinn von rechts nach links bedeutet, dass sie falsch ist.
+
+Die Formel $\varphi$ besteht aus $k$ Klauseln, hat also die
+Form $c_1\wedge c_2\wedge\dots\wedge c_k$. Wir wollen die Tatsache,
+dass Klausel $c_j$ wahr ist, dadurch ausdrücken, dass der Pfad einen
+Vertex $c_j$ besucht. $c_j$ kann von der Variablen $x_i$ wahr gemacht
+werden wird dadurch ausgedrückt, dass der Pfad beim Durchlaufen
+der ``Perlenkette'' von Variable $x_i$ einen ``Abstecher'' zu $c_j$
+machen kann. Jedem Paar von Vertizes in der ``Perlenkette'' ordnen
+wir daher eine Klausel zu. Falls $x_i$ in der Klausel $c_j$
+vorkommte, fügen wir zwischen den beiden der Klausel $c_j$
+zugeordneten Vertizes zusätzliche Kanten nach $c_j$ und wieder
+zurück hinzu.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+	&*+\txt{}
+		&*+\txt{}
+			&*+\txt{}
+				&*+\txt{}
+					&*+\txt{}
+						&*+\txt{}
+							&*+\txt{}
+								&{c_j} \ar@/_15pt/[ddllll]
+\\
+*+\txt{}
+	&*+\txt{}\ar[dl]
+		&*+\txt{}
+			&*+\txt{}
+				&*+\txt{}
+					&*+\txt{}
+						&*+\txt{}\ar[dr]
+							&*+\txt{} 
+\\
+{}\ar@/^/[r] \ar[dr]
+	&{}\ar@/^/[r] \ar@/^/[l]
+		&*+\txt{\dots}\ar@/^/[r] \ar@/^/[l]
+			&{}\ar@/^/[r] \ar@/^/[l] \ar@/^15pt/[uurrrrr]
+				&{}\ar@/^/[r] \ar@/^/[l]
+					&*+\txt{\dots}\ar@/^/[r] \ar@/^/[l]
+						&{}\ar@/^/[r] \ar@/^/[l]
+							&{} \ar@/^/[l]\ar[dl]
+\\
+*+\txt{}
+	&*+\txt{}
+		&*+\txt{}
+			&*+\txt{}
+				\&*+\txt{}
+					&*+\txt{}
+						&*+\txt{}
+							&*+\txt{}
+}
+\]
+Enthält die Klausel $c_j$ die Variable $\bar x_i$ wird der
+``Abstecher'' zu $c_j$ in die Durchlaufrichtung von rechts nach
+links eingebaut.
+
+Die Auswahl von Wahrheitswerten für die Variablen $x_i$ entspricht
+der Entscheidung, in welcher Richtung die ``Perlenketten'' durchlaufen
+werden. Die Formel ist offenbar genau dann erfüllbar, wenn ein
+Abstecher zu jeder Klausel $c_j$ möglich ist, oder wenn es einen
+hamiltoschen Pfad gibt.
+
+Die Konstruktion erzeugt einen Graphen mit $O(nk)$ Vertizes,
+ist also sicher in polynomialer Zeit durchführbar. Also ist
+$\text{\textsl{3SAT}}\le_P\text{\textsl{HAMPATH}}$.
+\end{proof}
+
+\subsection{SUBSET-SUM}
+\index{SUBSET-SUM@\textsl{SUBSET-SUM}}%
+Das Problem \textsl{SUBSET-SUM} ist auch bekannt als das Rucksack-Problem.
+Gegeben ist eine Menge $S$ von ganzen Zahlen, kann man darin eine
+Teilmenge finden, die als Summe einen bestimmten Wert $t$ hat?
+Als Sprache formuliert:
+\[
+\text{\textsl{SUBSET-SUM}}
+=\left\{
+\langle S,t\rangle\,\left|\,
+\begin{minipage}{3truein}
+$S$ eine Liste von ganzen Zahlen, in der es eine Teilliste
+$T\subset S$ gibt mit
+\[
+\sum_{x\in T}x=t.
+\]
+\end{minipage}\right.
+\right\}
+\]
+Der Name ``Rucksack''-Problem rührt daher, dass man sich 
+die Zahlen aus $S$ als ``Grösse'' von Gegenständen vorstellt, und
+wissen möchte, ob man einen Rucksack der Grösse $t$ exakt füllen
+kann mit einer Teilmenge von Gegenständen aus $S$.
+
+\begin{satz}\textsl{SUBSET-SUM} ist NP-vollständig
+\end{satz}
+
+\begin{proof}[Beweis]
+Es ist ziemlich klar, dass $\text{\textsl{SUBSET-SUM}}\in\operatorname{NP}$,
+es ist also nur noch eine Reduktion zu konstruieren, wir wählen
+$\text{\textsl{3SAT}}\le_P\text{\textsl{SUBSET-SUM}}$.
+
+Zu einer \textsl{3CNF}-Formel $\varphi$ mit Variablen $x_1,\dots,x_l$
+muss eine Menge von Zahlen $S$ und eine Zahl $t$ gefunden werden,
+die genau dann eine Teilmenge mit Summe $t$ hat, wenn $\varphi$
+erfüllbar ist.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+Zahl&1&2&3&\dots&$l$\\
+\hline
+$y_1$&1&0&0&\dots&0\\
+$z_1$&1&0&0&\dots&0\\
+$y_2$& &1&0&\dots&0\\
+$z_2$& &1&0&\dots&0\\
+$y_3$& & &1&\dots&0\\
+$z_3$& & &1&\dots&0\\
+\vdots&& & &     & \\
+$y_l$& & & &\dots&1\\
+$z_l$& & & &\dots&1\\
+\hline
+$t$&1&1&1&\dots&1\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Abbildung der Variablen $x_i$ und $\bar x_i$ in Zahlen
+eines \textsl{SUBSET-SUM}-Problems\label{subsetsumnumbers}}
+\end{table}
+
+Wir konstruieren Zahlen $y_i$ und $z_i$, die jeweils ausdrücken
+ob $x_i$ wahr oder falsch ist. Wir bauen die Zahlen in einer
+Stellendarstellung zu einer später zu bestimmenden genügend
+grossen Basis auf. Sofern die Zahlen nur wenige Stellen haben, die 
+von $0$ verschieden sind, gibt es bei der Addition keinen Übertrag.
+Die Zahlen $y_i$ und $z_i$ müssen so sein, dass nur jeweils eine
+in der Summe auftreten kann. Dies erreichen wir, wenn wir
+sie gemäss Tabelle \ref{subsetsumnumbers} wählen.
+Die Auswahl einer Teilmenge mit Summe $t$ ist gleichbedeutend
+mit der Wahl einer Belegung der Variablen $x_i$ mit Wahrheitswerten.
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|ccccc|cccc|}
+\hline
+Zahl&1&2&3&\dots&$l$&$c_1$&$c_2$&\dots&$c_k$\\
+\hline
+$y_1$&1&0&0&\dots&0&1&0&\dots&0\\
+$z_1$&1&0&0&\dots&0&0&0&\dots&0\\
+$y_2$& &1&0&\dots&0&0&1&\dots&0\\
+$z_2$& &1&0&\dots&0&1&0&\dots&0\\
+$y_3$& & &1&\dots&0&1&1&\dots&0\\
+$z_3$& & &1&\dots&0&0&0&\dots&0\\
+\vdots&& & &     & & & &     & \\
+$y_l$& & & &     &1&0&1&\dots&1\\
+$z_l$& & & &     &1&0&0&\dots&0\\
+\hline
+$g_1$& & & &     & &1&0&\dots&0\\
+$h_1$& & & &     & &1&0&\dots&0\\
+$g_2$& & & &     & & &1&\dots&0\\
+$h_2$& & & &     & & &1&\dots&0\\
+\vdots&& & &     & & & &     & \\
+$g_k$& & & &     & & & &     &1\\
+$h_k$& & & &     & & & &     &1\\
+\hline
+$t$  &1&1&1&\dots&1&3&3&\dots&3\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Reduktion von \textsl{3SAT} auf
+\textsl{SUBSET-SUM}\label{subsetsumtable}}
+\end{table}
+
+Jetzt muss noch codiert werden, in welchen Klauseln von $\varphi$ 
+die Variablen $x_i$ auftreten. Dazu fügen wir der Tabelle für jede
+Klausel $c_i$ eine weiter Spalte hinzu, und tragen eine $1$ ein
+in der Zeile von $y_i$ wenn $x_i$ in der Klausel $c_j$ vorkommt.
+Falls $\bar x_i$ in $c_j$ vorkommt tragen wir eine $1$ in der Zeile
+von $z_i$ ein.
+
+Die Formel ist erfüllbar, wenn es eine Belegung mit Wahrheitswerten
+gibt, die jede Klausel wahr macht. Dabei können auch mehrere Literale
+in einer Klausel war werden, die Summe der Spalte einer wahren Klausel kann
+also Werte zwischen 1 und 3 annehmen. Da die Summe $t$ exakt erreicht
+werden muss, führen wir für jede Klausel zusätzliche Zahlen $g_j$ und
+$h_j$ hinzu, die in der Spalte der Klausel $c_j$ eine $1$ haben und sonst
+nur $0$. Indem man zur Teilmenge falls nötig $g_j$ und $h_j$ hinzunimmt,
+kann man erreichen, dass die Summe in der Spalte von Klausel $c_j$ immer
+$3$ ergibt.
+Die Tabelle \ref{subsetsumtable} zeigt die konstruierten Zahlen
+für die Formel
+\[
+(x_1\vee \bar x_2\vee x_3)\wedge(x_2\vee x_3\vee x_l)\wedge \dots\wedge
+(\dots\vee \bar x_3).
+\]
+Da die grösste vorkommende Ziffer eine $3$ ist, kann man die
+Zahlen aus $S$  und $t$ im $4$-er-System aus der Tabelle ablesen.
+
+Der Zeitaufwand für die Erstellung der Tabelle \ref{subsetsumtable}
+ist $O((k+l)^2)$, also sicher polynomiell in der Länge der
+Formel $\varphi$.
+
+Damit ist 
+$\text{\textsl{3SAT}}\le_P\text{\textsl{SUBSET-SUM}}$ gezeigt.
+\end{proof}
+
+%\subsection{Vertex Coloring}
+%Das Eckenfärbeproblem wurde bereits verwendet und seine Äquivalenz
+%mit dem Stundenplanproblem gezeigt. Es ist auch einfach zu verifizieren,
+%dass \textsl{VERTEX-COLORING} in NP ist. Daher ist es nicht überraschend,
+%dass es auch NP-vollständig ist.
+%
+%\begin{satz}
+%$\text{\textsl{3SAT}}\le_P\text{\textsl{VERTEX-COLORING}}$,
+%insbesondere ist \textsl{VERTEX-COLORING} NP-vollständig.
+%\end{satz}
+%
+%\begin{proof}[Beweis]
+%Eine Reduktion
+%$\text{\textsl{3SAT}}\le_P\text{\textsl{VERTEX-COLORING}}$
+%ordnet einer \textsl{3CNF}-Formel $\varphi$ einen Graphen $G$
+%und eine Zahl $k$ zu, der genau dann mit $k$ Farben eingefärbt
+%werden kann, wenn $\varphi$ erfüllbar ist.
+%
+%Wir verwenden $k=2$, die Bedeutung der zwei Farben soll wahr
+%oder falsch sein. Die Formel $\varphi$ besteht aus $l$ verschiedenen
+%Klauseln, wir schreiben 
+%\[
+%\varphi = c_1\wedge c_1\wedge \dots\wedge c_l.
+%\]
+%Dem Graphen $G$ fügen wir einen Knoten für jede Klausel hinzu,
+%sowie einen Knoten $o$. Jede Klausel wird mit dem Knoten $o$ verbunden.
+%Eine Einfärbung bedeutet, dass alle Klauseln mit der gleichen Farbe
+%eingefärbt werden müssen, dies interpretieren wir als Ausdruck
+%der Tatsache, dass in einer erfüllbaren Formel die Wahrheitswerte
+%so gewählt werden können, dass alle Klauseln wahr werden.
+%\[
+%\xymatrix{
+%*+\txt{}
+%	&*+\txt{}
+%		&*+[o][F-]{o}\ar@{-}[dll] \ar@{-}[dl] \ar@{-}[d] \ar@{-}[drr]
+%\\
+%*+[o][F-]{c_1}
+%	&*+[o][F-]{c_2}
+%		&*+[o][F-]{c_3}
+%			&\dots
+%				&*+[o][F-]{c_l}
+%}
+%\]
+%
+%Die Klauseln sind alle von der Form
+%\[
+%c_i=(x_1\vee x_2\vee x_3)
+%=\neg(\bar x_1\wedge \bar x_2 \wedge \bar x_3).
+%\]
+%Damit sie wahr wird, muss $\bar x_1\wedeg \bar x_2\wedge \bar x_3$
+%falsch sein.
+%\end{proof}
+

@@ -1,0 +1,500 @@
+%
+% kontrollstrukturen.tex
+%
+% (c) 2011 Prof Dr Andreas Mueller, Hochschule Rapperswil
+%
+\section{Kontrollstrukturen und Turing-Vollständigkeit}
+\rhead{Kontrollstrukturen}
+Das Turing-Vollstandigkeits-Kriterium von Satz
+\ref{turingvollstaendigkeitskriterium} verlangt, dass man einen
+Turing-Maschinen-Simulator in der gewählten Sprache schreiben muss.
+Dies ist in jedem Fall eine nicht triviale Aufgabe.
+Daher wäre es nützlich Kriterien zu erhalten, welche einfacher
+anzuwenden sind. Einen wesentlichen Einfluss auf die Möglichkeiten,
+was sich mit einer Programmiersprache ausdrücken lassen, haben die
+Kontrollstrukturen.
+
+\newcommand{\assignment}{\mathbin{\texttt{:=}}}
+
+\subsection{Grundlegende Syntaxelemente%
+\label{subsection:grundlegende-syntaxelement}}
+In den folgenden Abschnitten werden verschiedene vereinfachte Sprachen
+diskutiert, die aber einen gemeinsamen Kern fundamentaler Anweisungen
+beinahlten.
+In allen Sprachen gibt es nur einen einzigen Datentyp, nämlich
+natürliche Zahlen.
+Einerseits können Konstanten beliebig grosse natürliche Werte haben,
+andererseits lassen sich in Variablen beliebig grosse natürliche Zahlen
+speichern.
+Dazu sind die folgenden Sytanxelemente notwendig:
+\begin{compactitem}
+\item Konstanten: {\tt 0}, {\tt 1}, {\tt 2}, \dots
+\item Variablen $x_0$, $x_1$, $x_2$,\dots
+\item Zuweisung: $\assignment$
+\item Trennung von Anweisungen: {\tt ;}
+\item Operatoren: {\tt +} und {\tt -}
+\end{compactitem}
+Die einzige Möglichkeit, den Wert einer Variablen zu ändern ist die
+Zuweisung.  Diese ist entweder die Zuweisung einer Konstante als
+Wert einer Variable:
+\begin{algorithmic}
+\STATE $x_i\assignment c$
+\end{algorithmic}
+oder eine Berechnung mit den beiden vorhandenen Operatoren
+\begin{algorithmic}
+\STATE $x_i \assignment x_j$ {\tt +} $c$
+\STATE $x_i \assignment x_j$ {\tt -} $c$
+\end{algorithmic}
+Dabei ist das Resultat der Subtraktion als $0$ definiert, wenn
+der Minuend kleiner ist als der Subtrahend.
+
+Die verschiedenen Sprachen unterschieden sich in den Kontrollstrukturen
+mit denen diese Zuweisungsbefehle miteinander verbunden werden können.
+
+\subsection{LOOP}
+\index{LOOP}%
+Die Programmiersprache
+LOOP\footnote{Die in diesem Abschnitt beschriebene
+LOOP Sprache darf nicht verwechselt werden mit dem gleichnamigen
+Projekt einer objektorientierten parallelen Sprache seit
+2001 auf Sourceforge.}
+hat als einzige Kontrollstruktur die
+Iteration eines Anweisungs-Blocks mit einer festen, innerhalb des
+Blocks nicht veränderbaren Anzahl von Durchläufen.
+
+\subsubsection{Syntax}
+LOOP verwendet die 
+Schlüsselwörter: {\tt LOOP}, {\tt DO}, {\tt END}
+Programme werden daraus wie folgt aufgebaut:
+\begin{itemize}
+\item Das leere Programm $\varepsilon$ ist eine LOOP-Programm,
+während der Ausführung tut es nichts.
+\item Wertzuweisungen sind LOOP-Programme
+\item Sind $P_1$ und $P_2$ LOOP-Programme, dann auch
+$P_1{\tt ;}P_2$. Um dieses Programm auszuführen wird zuerst $P_1$
+ausgeführt und anschliessend $P_2$.
+\item Ist $P$ ein LOOP-Programm, dann ist auch
+\begin{algorithmic}
+\STATE {\tt LOOP} $x_i$ {\tt DO} $P$ {\tt END}
+\end{algorithmic}
+ein LOOP-Programm. Die Ausführung wiederholt $P$ so oft, wie der
+Wert der Variable $x_i$  zu Beginn angibt.
+\end{itemize}
+Durch Setzen der Variablen $x_i$ kann einem LOOP-Progamm Input übergeben
+werden.
+Ein LOOP-Programm definiert also eine Abbildung $\mathbb N^k\to\mathbb N$,
+wobei $k$ die Anzahl der Variablen ist, in denen Input zu übergeben ist.
+
+\subsubsection{Beispiel: Summer zweier Variablen}
+LOOP kann nur jeweils eine Konstante hinzuaddieren, das genügt aber
+bereits, um auch die Summe zweier Variablen zu berechnen. Der folgende
+Code berechnet die Summe von $x_1$ und $x_2$ und legt das Resultat in
+$x_0$ ab:
+\begin{algorithmic}
+\STATE $x_0 \assignment x_1$
+\STATE {\tt LOOP} $x_2$ {\tt DO}
+\STATE{\tt \ \ \ \ }$x_0 \assignment x_0$ {\tt +} $1$
+\STATE{\tt END}
+\end{algorithmic}
+
+\subsubsection{Beispiel: Produkt zweier Variablen}
+\index{Multiplikation}%
+Die Sprache LOOP ist offenbar relativ primitiv, trotzdem
+ist sie leistungsfähig genug, um die Multiplikation von zwei
+Zahlen, die in den Variablen $x_1$ und $x_2$ übergeben werden,
+zu berechnen:
+
+\begin{algorithmic}
+\STATE $x_0 \assignment 0$
+\STATE {\tt LOOP} $x_1$ {\tt DO}
+\STATE{\tt \ \ \ \ LOOP} $x_2$ {\tt DO}
+\STATE{\tt \ \ \ \ \ \ \ \ }$x_0 \assignment x_0$ {\tt +} $1$
+\STATE{\tt \ \ \ \ END}
+\STATE{\tt END}
+\end{algorithmic}
+
+\subsubsection{IF-Anweisung}
+In LOOP fehlt eine IF-Anweisung, auf die die wenigsten Programmiersprachen
+verzichten. Es ist jedoch leicht, eine solche in LOOP nachzubilden.
+Eine Anweisung
+\begin{algorithmic}
+\STATE {\tt IF} $x = 0$ {\tt THEN } $P$ {\tt END}
+\end{algorithmic}
+kann unter Verwendung einer zusätzlichen Variable $y$ in LOOP ausgedrückt
+werden:
+\begin{algorithmic}[1]
+\STATE $y \assignment 1${\tt ;}
+\STATE {\tt LOOP }$x${\tt\ DO }$y \assignment 0$ {\tt END;}
+\STATE {\tt LOOP }$y${\tt\ DO }$P$ {\tt END;}
+\end{algorithmic}
+Natürlich wird die {\tt LOOP}-Anweisung in Zeile 2 meistens viel öfter
+als nötig ausgeführt, aber es stehen hier ja auch nicht Fragen
+der Effizienz sonder der prinzipiellen Machbarkeit zur Diskussion.
+
+\subsubsection{LOOP ist nicht Turing-vollständig}
+\begin{satz}
+LOOP-Programme terminieren immer.
+\end{satz}
+
+\begin{proof}[Beweis]
+Der Beweis kann mit Induktion über die Schachtelungstiefe
+von {\tt LOOP}-Anweisungen geführt werden. Die LOOP-Programme
+ohne {\tt LOOP}-Anweisung, also die Programme mit Schachtelungstiefe
+$0$ terminieren offensichtlich immer. Ebenso die LOOP-Programme
+mit Schachtelungstiefe $1$, da die Anzahl der Schleifendurchläufe
+bereits zu Beginn der Schleife festliegt.
+
+Nehmen wir jetzt an wir wüssten bereits, dass jedes LOOP-Programm mit
+Schachtelungstiefe $n$ der {\tt LOOP}-Anweisungen immer terminiert.
+Ein LOOP-Programm mit Schachtelungstiefe $n+1$ ist dann eine
+Abfolge von Teilprogrammen mit Schachtelungstiefe $n$, die nach
+Voraussetzung alle terminieren, und {\tt LOOP}-Anweisungen der
+Form
+\begin{algorithmic}
+\STATE{\tt LOOP }$x_i${\tt\ DO }$P${\tt\ END}
+\end{algorithmic}
+wobei $P$ ein LOOP-Programm mit Schachtelungstiefe $n$ ist, das also
+ebenfalls immer terminiert. $P$ wird genau so oft ausgeführt, wie
+$x_i$ zu Beginn angibt. Die Laufzeit von $P$ kann dabei jedesmal
+anders sein, $P$ wird aber auf jeden Fall terminieren. Damit ist
+gezeigt, dass auch alle LOOP-Programme mit Schachtelungstiefe $n+1$
+terminieren.
+\end{proof}
+
+\begin{satz}
+LOOP ist nicht Turing vollständig.
+\end{satz}
+
+\begin{proof}[Beweis]
+Es gibt Turing-Maschinen, die nicht terminieren. Gäbe es einen
+Turing-Maschinen-Simulator in LOOP, dürfte dieser bei der
+Simulation einer solchen Turing-Maschine nicht terminieren, im
+Widerspruch zur Tatsache, dass LOOP-Programme immer terminieren.
+Also kann es keinen Turing-Maschinen-Simulator in LOOP geben.
+\end{proof}
+
+\subsection{WHILE}
+\index{WHILE}%
+WHILE-Programme können zusätzlich zur {\tt LOOP}-Anweisung
+eine {\tt WHILE}-Anweisung der Form
+\begin{algorithmic}
+\STATE{\tt WHILE }$x_i>0${\tt\ DO }$P${\tt\ END}
+\end{algorithmic}
+Dadurch ist die {\tt LOOP}-Anweisung nicht mehr unbedingt
+notwendig, denn
+\begin{algorithmic}
+\STATE{\tt LOOP }$x${\tt\ DO }$P${\tt\ END}
+\end{algorithmic}
+kann durch
+\begin{algorithmic}
+\STATE$y \assignment x$;
+\STATE{\tt WHILE }$y>0${\tt\ DO }$P$; $y \assignment y-1${\tt\ END}
+\end{algorithmic}
+nachgebildet werden.
+
+\subsection{GOTO}
+\index{GOTO}%
+GOTO-Programme bestehen aus einer markierten Folge von Anweisungen
+\begin{center}
+\begin{tabular}{rl}
+$M_1$:&$A_1$\\
+$M_2$:&$A_2$\\
+$M_3$:&$A_3$\\
+$\dots$:&$\dots$\\
+$M_k$:&$A_k$
+\end{tabular}
+\end{center}
+Zu den bereits bekannten,
+Abschnitt~\ref{subsection:grundlegende-syntaxelement} beschriebenen
+Zuweisungen
+$x_i \assignment c$ 
+und
+$x_i \assignment x_j \pm c$ 
+kommt bei GOTO eine bedingte Sprunganweisung
+\begin{center}
+\begin{tabular}{rl}
+$M_l$:&{\tt IF\ }$x_i=c${\tt\ THEN GOTO\ }$M_j$
+\end{tabular}
+\end{center}
+Natürlich lässt sich damit auch eine unbedingte Sprunganweisung
+implementieren:
+\begin{center}
+\begin{tabular}{rl}
+$M_l$:&$x_i \assignment c$;\\
+$M_{l+1}$:&{\tt IF\ }$x_i=c${\tt\ THEN GOTO\ }$M_j$
+\end{tabular}
+\end{center}
+In ähnlicher Weise lassen sich auch andere bedingte Anweisungen
+konstruieren, zum Beispiel ein
+Konstrukt {\tt IF }\dots{\tt\ THEN }\dots{\tt\ ELSE }\dots{\tt\ END}, welches
+einen ganzen Anweisungsblock enthalten kann.
+
+\subsection{Äquivalenz von WHILE und GOTO}
+Die Verwendung eines Sprungbefehles wie GOTO ist in der modernen
+Softwareentwicklung verpönt. Sie führe leichter zu Spaghetti-Code,
+der kaum mehr wartbar ist. Gewisse Sprachen verbannen daher
+GOTO vollständig aus ihrer Syntax, und propagieren dagegen
+die Verwendung von `strukturierten' Kontrollstrukturen wie
+WHILE. Die Aufregung ist allerdings unnötig: GOTO und WHILE sind äquivalent.
+
+
+\begin{satz}
+Eine Funktion ist genau dann mit einem GOTO-Programm berechenbar,
+wenn sie mit einem WHILE-Programm berechenbar ist.
+\end{satz}
+\begin{proof}[Beweis]
+Man braucht nur zu zeigen, dass man ein GOTO-Programm in ein äquivalentes
+WHILE-Programm übersetzen kann, und umgekehrt.
+
+Um eine GOTO-Programm zu übersetzen, verwenden wir eine zusätzliche Variable
+$z$, die die Funktion des Programm-Zählers übernimmt.
+Aus dem GOTO-Programm machen wir dann folgendes WHILE-Programm
+\begin{algorithmic}
+\STATE $z \assignment 1$
+\STATE{\tt WHILE\ }$z>0${\tt\ DO}
+\STATE{\tt IF\ }$z=1${\tt\ THEN\ }$A_1'${\tt\ END};
+\STATE{\tt IF\ }$z=2${\tt\ THEN\ }$A_2'${\tt\ END};
+\STATE{\tt IF\ }$z=3${\tt\ THEN\ }$A_3'${\tt\ END};
+\STATE\dots
+\STATE{\tt IF\ }$z=k${\tt\ THEN\ }$A_k'${\tt\ END};
+\STATE{\tt IF\ }$z=k+1${\tt\ THEN\ }$z \assignment 0${\tt\ END};
+\STATE{\tt END}
+\end{algorithmic}
+Die Anweisung $A_i'$ entsteht aus der Anweisung $A_i$ nach folgenden
+Regeln
+\begin{itemize}
+\item Falls $A_i$ eine Zuweisung ist, wird ihr eine weitere Zuweisung
+\begin{algorithmic}
+\STATE $z \assignment z+1$
+\end{algorithmic}
+angehängt.
+Dies hat zur Folge, dass nach $A_z'$ als nächste Anweisung
+$A_{z+1}$ ausgeführt wird.
+\item
+Falls $A_i$ eine bedingte Sprunganweisung
+\begin{center}
+\begin{tabular}{rl}
+$M_l$:&{\tt IF\ }$x_i=c${\tt\ THEN GOTO\ }$M_j$
+\end{tabular}
+\end{center}
+ist, wird $A_i'$
+\begin{algorithmic}
+\STATE{\tt IF\ }$x_i=c${\tt\ THEN\ }$z \assignment j${\tt\ ELSE }$z=z+1$;
+\end{algorithmic}
+Dies ist zwar keine WHILE-Anweisung, aber es wurde bereits
+früher gezeigt, wie man sie in WHILE übersetzen kann.
+\end{itemize}
+Damit ist gezeigt, dass ein GOTO-Programm in ein äquivalentes WHILE-Programm
+mit genau einer WHILE-Schleife übersetzt werden kann.
+
+Umgekehrt zeigen wir, dass jede WHILE-Schleife mit Hilfe von GOTO
+implementiert werden kann. Dazu übersetzt man jede WHILE-Schleife
+der Form
+\begin{algorithmic}
+\STATE{\tt WHILE\ }$x_i>0${\tt\ DO }$P${\tt\ END}
+\end{algorithmic}
+in ein GOTO-Programm-Segment der Form
+\begin{algorithmic}[1]
+\STATE{\tt IF\ }$x_i=0${\tt\ THEN GOTO }4
+\STATE$P$
+\STATE{\tt GOTO\ }1
+\STATE
+\end{algorithmic}
+wobei die Zeilennummern durch geeignete Marken ersetzt werden müssen.
+Damit haben wir einen Algorithmus spezifiziert, der WHILE-Programme in
+GOTO-Programme übersetzen kann.
+\end{proof}
+
+\subsection{Turing-Vollständigkeit von WHILE und GOTO}
+Da WHILE und GOTO äquivalent sind, braucht die Turing-Vollständigkeit
+nur für eine der Sprachen gezeigt zu werden.
+Wir skizzieren, wie man eine Turing-Maschine in ein GOTO-Programm
+übersetzen kann. Dies genügt, da man nur die universelle
+Turing-Maschine zu übersetzen braucht, um damit jede andere
+Turing-Maschine ausführen zu können.
+
+\subsubsection{Alphabet, Zustände und Band}
+Die Zeichen des Bandalphabetes werden durch natürliche Zahlen
+dargestellt.  Wir nehmen an, dass das Bandalphabet $k$ verschiedene Zeichen
+umfasst. Das Leerzeichen $\text{\textvisiblespace}$ wird durch die Zahl $0$
+dargestellt.
+
+Auch die Zustände der Turing-Maschine werden durch natürliche Zahlen
+dargestellt,
+die Variable $s$ dient dazu, den aktuellen Zustand zu
+speichern.
+
+Der Inhalt des Bandes kann durch eine einzige Variable $b$ dargestellt
+werden. Schreibt man die Zahl im System zur Basis $k$, können die
+die Zeichen in den einzelnen Felder des Bandes als die Ziffern
+der Zahl $b$ interpretiert werden.
+
+Die Kopfposition wird durch eine Zahl $h$ dargestellt. Befindet sich
+der Kopf im Feld mit der Nummer $i$, wird $h$ auf den Wert $k^i$
+gesetzt.
+
+\subsubsection{Arithmetik}
+Alle Komponenten der Turing-Maschine werden mit natürlichen Zahlen
+und arithmetischen Operationen dargestellt.
+Zwar beherrscht LOOP nur die Addition oder Subtraktion einer Konstanten,
+aber durch wiederholte Addition einer $1$ kann damit jede beliebige
+Addition oder Subtraktion implementiert werden.
+
+Ebenso können Multiplikation und Division auf wiederholte Addition
+zurückgeführt werden.
+Im Folgenden nehmen wir daher an, dass die arithmetischen Operationen
+zur Verfügung stehen.
+
+\subsubsection{Lesen eines Feldes}
+Um den Inhalt eines Feldes zu lesen, muss die Stelle von $b$ an der
+aktuellen Kopfposition ermittelt werden.
+Dies kann durch die Rechnung
+\begin{equation}
+z=b / h \mod k
+\label{getchar}
+\end{equation}
+ermittelt werden, wobei $/$ für eine ganzzahlige Division steht.
+Beide Operationen können mit einem GOTO-Programm ermittelt werden.
+
+\subsubsection{Löschen eines Feldes}
+Das Feld an der Kopfposition kann wie folgt gelöscht werden.
+Zunächst ermittelt man mit (\ref{getchar}) den aktuellen Feldinhalt.
+Dann berechnet man
+\begin{equation}
+b' = b - z\cdot h.
+\label{clearchar}
+\end{equation}
+$b'$ enthält an der Stelle der Kopfposition ein $0$.
+
+\subsubsection{Schreiben eines Feldes}
+Soll das Feld an der Kopfposition mit dem Zeichen $x$ überschrieben
+werden, wird mit (\ref{clearchar}) zuerst das Feld gelöscht.
+Anschliessend wird das Feld durch
+\[
+b'=b+x\cdot h
+\]
+neu gesetzt.
+
+\subsubsection{Kopfbewegung}
+Die Kopfposition wird durch die Zahl $h$ dargestellt.
+Da $h$ immer eine Potenz von $k$ ist, und die Nummer des Feldes der
+Exponent ist, brauchen wir nur Operationen, die den Exponenten
+ändern, also
+\[
+h'=h/k\qquad\text{bzw.}\qquad h'=h\cdot k
+\]
+
+\subsubsection{Übergangsfunktion}
+Die Übergangsfunktion
+\[
+\delta\colon Q\times \Gamma\to Q\times \Gamma\times\{1, 2\}
+\]
+ermittelt aus aktuellem Zustand $s$ und
+aktuellem Zeichen $z$ den neuen Zustand, das neue Zeichen auf
+dem Band und die Kopfbewegung ermittelt. Im Gegensatz zur früheren
+Definition verwenden wir jetzt die Zahlen $1$ und $2$ für die
+Kopfbewegung L bzw.~R.
+Wir schreiben $\delta_i$ für die $i$-te Komponente von $\delta$.
+Der folgende GOTO-Pseudocode
+beschreibt also ein Programm, welches die Turing-Maschine implementiert
+\begin{algorithmic}[1]
+\STATE Bestimme das Zeichen $z$ unter der aktuellen Kopfposition $h$
+\STATE Lösche das aktuelle Zeichen auf dem Band
+\STATE {\tt IF\ }$s=0${\tt\ THEN}
+\STATE {\tt \ \ \ \ IF\ }$z=0${\tt\ THEN}
+\STATE {\tt \ \ \ \ \ \ \ \ }$s\assignment\delta_1(0,0)$
+\STATE {\tt \ \ \ \ \ \ \ \ }$z\assignment\delta_2(0,0)$
+\STATE {\tt \ \ \ \ \ \ \ \ }$m\assignment\delta_3(0,0)$
+\STATE {\tt \ \ \ \ END}
+\STATE {\tt END}
+\STATE {\tt IF\ }$s=1${\tt\ THEN}
+\STATE {\tt \ \ \ \ }\dots
+\STATE {\tt END}
+\STATE Zeichen $z$ schreiben
+\STATE {\tt IF\ }$m=1${\tt\ THEN }$h\assignment h/k$
+\STATE {\tt IF\ }$m=2${\tt\ THEN }$h\assignment h\cdot k$
+\STATE \dots
+\STATE {\tt GOTO\ }1
+\end{algorithmic}
+Damit ist gezeigt, dass eine gegebene Turingmaschine in ein
+GOTO-Programm übersetzt werden kann. Übersetzt man die universelle
+Turing-Maschine, erhält man ein GOTO-Programm, welches jede beliebige
+Turing-Maschine simulieren kann. Somit ist GOTO und damit auch WHILE
+Turing-vollständig.
+
+\subsection{Esoterische Programmiersprachen}
+\index{Programmiersprache!esoterische}%
+Zur Illustration der Tatsache, dass eine sehr primitive Sprache
+ausreichen kann, um Turing-Vollständigkeit zu erreichen, wurden
+verschiedene esoterische Programmiersprachen erfunden.
+Ihre Nützlichkeit liegt darin, ein bestimmtest Konzept der Theorie
+möglichst klar hervorzuheben, die Verwendbarkeit für irgend einen
+praktischen Zweck ist nicht notwendig, und manchmal explizit unerwünscht.
+
+\subsubsection{Brainfuck}
+\index{Brainfuck}%
+Brainfuck
+wurde von Urban Müller 1993 entwickelt mit dem Ziel, dass der
+Compiler für diese Sprache möglichst klein sein sollte. In der
+Tat ist der kleinste Brainfuck-Compiler für Linux nur 171 Bytes
+lang.
+
+Brainfuck basiert auf einem einzelnen Pointer {\tt ptr}, welcher
+im Programm inkrementiert oder dekrementiert werden kann.
+Jeder Pointer-Wert zeigt auf eine Zelle, deren Inhalt inkrementiert
+oder dekrementiert werden kann.
+Dies erinnert an die Position des Kopfes einer Turing-Maschine.
+Zwei Instruktionen für Eingabe und Ausgabe eines Zeichens
+an der Pointer-Position ermöglichen Datenein- und -ausgabe.
+Als einzige Kontrollstruktur steht WHILE zur Verfügung. Damit
+die Sprache von einem minimalisitischen Compiler kompiliert
+werden kann, wird jede Anweisung durch ein einziges Zeichen
+dargestellt. Die Befehle sind in der folgenden Tabelle
+zusammen mit ihrem C-Äquivalent zusammengstellt:
+\begin{center}
+\begin{tabular}{|c|l|}
+\hline
+Brainfuck&C-Äquivalent\\
+\hline
+{\tt >}&\verb/++ptr;/\\
+{\tt <}&\verb/--ptr;/\\
+{\tt +}&\verb/++*ptr;/\\
+{\tt -}&\verb/--*ptr;/\\
+{\tt .}&\verb/putchar(*ptr);/\\
+{\tt ,}&\verb/*ptr = getchar();/\\
+{\tt [}&\verb/while (*ptr) {/\\
+{\tt ]}&\verb/}/\\
+\hline
+\end{tabular}
+\end{center}
+Mit Hilfe des Pointers lassen sich offenbar beliebige Speicherzellen
+adressieren, und diese können durch Wiederholung der Befehle {\tt +}
+und {\tt -} auch um konstante Werte vergrössert
+oder verkleinert werden. Etwas mehr Arbeit erfordert die Zuweisung
+eines Wertes zu einer Variablen. Ist dies jedoch geschafft, kann
+man WHILE in Brainfuck übersetzen, und hat damit gezeigt, dass
+Brainfuck Turing-vollständig ist.
+
+\subsubsection{Ook}
+\index{Ook}%
+Die Sprache Ook verwendet als syntaktische Element das Wort {\tt Ook} gefolgt
+von `{\tt .}', `{\tt !}' oder `{\tt ?}'. Wer beim Lesen eines Ook-Programmes
+den Eindruck hat, zum Affen gemacht zu werden, liegt nicht ganz falsch:
+Ook ist eine einfache Umcodierung von Brainfuck:
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Ook&Brainfuck\\
+\hline
+{\tt Ook. Ook?}&{\tt >}\\
+{\tt Ook? Ook.}&{\tt <}\\
+{\tt Ook. Ook.}&{\tt +}\\
+{\tt Ook! Ook!}&{\tt -}\\
+{\tt Ook! Ook.}&{\tt .}\\
+{\tt Ook. Ook!}&{\tt ,}\\
+{\tt Ook! Ook?}&{\tt [}\\
+{\tt Ook? Ook!}&{\tt ]}\\
+\hline
+\end{tabular}
+\end{center}
+Da Brainfuck Turing-vollständig ist, ist auch Ook Turing-vollständig.

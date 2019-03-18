@@ -1,0 +1,176 @@
+%
+% akzeptanz.tex -- Akzeptanzproblem für Turing-Maschinen
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Das Akzeptanzproblem für Turingmaschinen}
+\index{Akzeptanzproblem!für Turingmaschinen}%
+\rhead{Akzeptanzproblem für Turingmaschinen}
+Das Akzeptanzproblem für Turing-erkennbare Sprachen fragt, ob 
+eine Turingmaschine $M$ ein Inputwort $w$ erkennen wird.
+Das Problem ist entscheidbar, wenn man aus der Beschreibung
+der Maschine $M$ und dem Inputwort mit einem Algorithmus, der
+für alle Turingmaschinen und alle Wörter immer anhält, ableiten
+kann, ob $M$ das Wort $w$ akzeptieren wird.
+Man kann also immer
+entscheiden, ob $M$ im Zustand $q_{\text{accept}}$ anhalten wird.
+
+Dabei können wir nicht einfach $M$ laufen lassen, weil $M$
+ja auch in eine Endlosschleife fallen könnte, womit sich die
+Frage nicht mehr entscheiden liesse.
+
+Als Sprachproblem formuliert, suchen wir jetzt also einen
+Entscheider für die Sprache
+\[
+A_{\text{TM}}=\{
+\langle M,w\rangle\;|\; \text{$M$ ist eine TM und $M$ erkennt $w$}
+\}
+\]
+\index{ATM@$A_{\text{TM}}$}%
+
+\begin{satz}
+\label{ATM}
+$A_{\text{TM}}$ ist nicht entscheidbar.
+\end{satz}
+
+Auf den ersten Blick ist dieses Resultat sehr überraschend, warum
+soll für Turing-Maschinen alles grundsätzlich anders sein, als
+für endliche Automaten und Stackautomaten? Der wesentliche Unterschied
+verbirgt sich in dem Wort ``entscheidbar'' selbst.
+Ein Entscheider ist eine
+TM, welche in diesem Fall Aussagen über andere TMs machen muss, also
+zum Beispiel auch über sich selbst.
+Bei DEAs und CFGs war die Sache
+insofern einfacher, als eine TM Aussagen über einen DEA oder eine
+CFG gemacht hat.
+
+Ein solcher Selbstbezug kann einen in Teufels Küche bringen.
+Nehmen wir an, in einem Dorf lebt ein Barbier, der genau diejenigen
+Leute rasiert, die sich selbst nicht rasieren.
+Soll er sich rasieren?
+Wenn er sich rasiert, gehört er zu den Leuten, die sich selbst rasieren,
+die rasiert er nicht, also darf er sich nicht rasieren.
+Wenn er sich
+aber nicht rasiert, gehört er zu den Leuten, die sich nicht selbst
+rasieren, daher muss er sich rasieren.
+Der Rückbezug ist, was den
+Barbier in die Zwickmühle bringt.
+Und genau so einen ``Barbier''
+konstruiert der Beweis des Satzes~\ref{ATM}.
+
+\begin{proof}[Beweis]
+Wir führen den Beweis mit Hilfe eines Widerspruchs.
+Dazu nehmen wir
+an, es gäbe eine Turingmaschine $H$, welche das Akzeptanzproblem entscheidet.
+Sie verhält sich wie folgt:
+\[
+H(\langle M,w\rangle)\begin{cases}
+\text{erkennt}&\qquad\text{falls $M$ auf $w$ im Zustand $q_{\text{accept}}$ anhält}
+\\
+\text{verwirft}&\qquad\text{falls $M$ auf $w$ nicht oder im Zustand $q_{\text{reject}}$ anhält}
+\end{cases}
+\]
+Daraus konstruieren wir jetzt eine neue TM $D$ mit Input $\langle M\rangle$:
+\medskip
+\begin{compactenum}
+\item Lasse $H$ auf dem Input $\langle M,\langle M\rangle\rangle$ laufen
+\item Falls $H$ erkennt: $q_{\text{reject}}$
+\item Falls $H$ verwirft: $q_{\text{accept}}$
+\end{compactenum}
+\medskip
+Die Maschine $D$ verhält sich wie folgt:
+\[
+D(\langle M\rangle)\begin{cases}
+\text{erkennt}&\qquad\Leftrightarrow\qquad \text{$M$ verwirft $\langle M\rangle$}
+\\
+\text{verwirft}&\qquad\Leftrightarrow\qquad \text{$M$ erkennt $\langle M\rangle$}
+\end{cases}
+\]
+($D$ entspricht dem Barbier, der genau die rasiert, die sich selbst
+nicht rasieren.)
+
+Lassen wir jetzt $D$ auf seiner eigenen Beschreibung operieren
+(wir fragen uns, ob der Barbier sich selbst rasieren soll), muss
+sich folgendes Resultat ergeben
+\[
+D(\langle D\rangle)\begin{cases}
+\text{erkennt}&\qquad\Leftrightarrow\qquad \text{$D$ verwirft $\langle D\rangle$}
+\\
+\text{verwirft}&\qquad\Leftrightarrow\qquad \text{$D$ erkennt $\langle D\rangle$}
+\end{cases}
+\]
+$D$ muss also genau das Gegenteil dessen tun, was $D$ tut.
+$D$ ist der Barbier, der sich nicht entscheiden kann, ob er sich selbst
+rasieren will.
+Dieser
+Widerspruch zeigt, dass die Annahme, es gäbe einen Entscheider $H$
+nicht haltbar ist.
+Also ist das Problem nicht entscheidbar.
+\end{proof}
+
+\index{Goedel@Gödel, Kurt}%
+Die Entdeckung, dass gewisse Probleme nicht entscheidbar sind,
+geht auf Kurt Gödel zurück.
+Gödel hat sie jedoch in leicht anderem Zusammenhang gefunden.
+Er untersuchte die Frage, ob ein
+Axiomensystem eine Aussage beweisen kann.
+Dabei zeigte sich,
+dass es Aussagen geben muss, die nicht bewiesen werden können,
+obwohl sie wahr sind.
+
+Die Formulierung für Turing-Maschinen geht auf eine Arbeit von
+Alan Turing 1936 zurück.
+\index{Turing, Alan}%
+Aus der Lösung des Halteproblems kann
+man eine konkrete solche Aussage ableiten.
+
+Am Input $w$ allein liegt es nicht, dass das Problem nicht
+entschieden werden kann.
+Nicht einmal für den speziellen Input $\varepsilon$ ist es
+entscheidbar, auch die Sprache
+\[
+\textit{HALT}\varepsilon_{\text{TM}}
+=\{
+\langle M\rangle \;|\;
+\text{$M$ ist eine TM und hält auf Input $\varepsilon$}
+\}
+\]
+\index{HALTepsilonTM@$\textit{HALT}\varepsilon_{\text{TM}}$}%
+ist nicht entscheidbar.
+Nehmen wir an, es gäbe einen
+Entscheider $H$ für $\textit{HALT}\varepsilon_{\text{TM}}$, dann können wir daraus
+auch einen Entscheider für $A_{\text{TM}}$ konstruieren.
+Dazu gehen wir wie folgt vor.
+Auf dem Input $\langle M,w\rangle$ bauen wir folgende Maschine $M'$:
+\medskip
+\begin{compactenum}
+\item Schreibe $w$ auf das Band
+\item Lasse $M$ laufen
+\item Falls $M$ erkennt: $q_{\text{accept}}$.
+\item Falls $M$ verwirft: gehe in eine Endlosschleife.
+\end{compactenum}
+\medskip
+Die Maschine $M'$ hält auf leerem Input genau dann, wenn $M$
+das Wort $w$ erkennt.
+Der Entscheider $H$, angewendet auf $M'$
+entscheidet also, ob $w\in L(M)$, löst also das Akzeptanzproblem
+$A_{\text{TM}}$.
+Da $A_{\text{TM}}$ nicht entscheidbar ist, darf es keinen solchen
+Entscheider geben.
+Dieser Widerspruch zeigt, dass die Annahme, es
+gäbe einen Entscheider für $\textit{HALT}\varepsilon_{\text{TM}}$ gibt,
+nicht haltbar ist.
+$\textit{HALT}\varepsilon_{\text{TM}}$ heisst
+auch das {\em spezielle Halteproblem}.
+\index{Halteproblem!spezielles}%
+
+Das Halteproblem beweist, dass es Sprachen gibt, die nicht
+entscheidbar sind, obwohl sie von einer Turing-Maschine
+erkennbar sind.
+Die Turing-erkennbaren Sprachen bilden also eine
+echte Obermenge der entscheidbaren Sprachen.
+\begin{center}
+%\includegraphics[width=0.8\hsize]{images/lang-3}
+\includegraphics{images/lang-3}
+\end{center}
+
