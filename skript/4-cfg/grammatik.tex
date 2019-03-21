@@ -474,6 +474,24 @@ oder
 
 
 \subsection{Chomsky Normalform}
+%Die Regeln einer Grammatik unterliegen kaum Einschränkungen, abgesehen
+%von der Forderung, dass sie kontextfrei sind.
+%Zum Beispiel ist zulässig, dass es beliebig viele Regeln der Form
+%$A\to\varepsilon$ geben kann.
+%Solche Regeln ermöglichen, ein einmal erzeugtes Wort wieder zu verkürzen.
+%Gäbe es keine solchen Regeln, könnte ein Wort nur länger werden und damit
+%liesse sich besser abschätzen, wie lange die Ableitung eines Wortes
+%überhaupt werden kann.
+
+%Umgekehrt können Regeln mit sehr vielen Variablen oder Terminalsymbolen
+%auf der rechten Seite ein Wort in sehr wenigen Ableitungsschritten
+%stark aufblasen, was wieder eie Abschätzung der Anzahl der nötigen
+%Ableitungsschritte erschwert.
+%Regeln der Form $A\to B$ können zu Umwandlungsschleifen führen,
+%die zu beliebig langen Ableitungen führen könnten.
+%Um solchen Schwierigkeiten aus dem Weg zu gehen, sollen die 
+%Regeln etwas eingeschränkt werden.
+
 Reduziert man die Grammatik für Klammerausdrücke auf die beiden Regeln
 \begin{equation}
 \begin{aligned}
