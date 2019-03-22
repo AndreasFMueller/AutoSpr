@@ -254,6 +254,19 @@ aber auf das nächste Zeichen des Eingabewortes passen. Die Regel
 entfernt ein solches Terminalssymbol, wenn das gleiche Symbol
 als Input anliegt.
 
+Schiesslich müssen wir Übergänge für die möglicherweise vorhandene
+Regel $S\to\varepsilon$ beschreiben.
+Der Übergang 
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+{R}\ar@(ur,dr)^{S,S\to\varepsilon}
+}
+\]
+entfernt die Startvariable vom Stack, ohne dass ein Terminalsymbol dort
+lieben bleibt.
+So kann das leere Wort akzeptiert werden.
+
 Der so konstruierte Automat akzeptiert genau die
 Wörter, die von der Grammatik erzeugt werden.
 \end{proof}
