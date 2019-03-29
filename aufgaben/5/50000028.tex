@@ -1,0 +1,74 @@
+Sind die folgenden Mengen abzählbar oder überabzählbar unendlich?
+\begin{teilaufgaben}
+\item
+Die Menge $G_n$ aller linearen Gleichungssystem mit $n$ Gleichungen
+und $n$ Unbekannten und ganzzahligen Koeffizienten und rechten Seiten.
+\item
+Die Menge $G$ aller linearen Gleichungssysteme mit gleich vielen Gleichungen
+wie Unbekannten und ganzzahligen Koeffizienten.
+\item
+Die Menge $\mathbb Z[X]_n$ aller Polynome
+\[
+a_{\mathstrut n}X^n+a_{n-1}X^{n-1}+\dots a_2X^2+a_1X+a_0
+\]
+vom Grad $n$ mit ganzzahligen Koeffizienten.
+\item
+Die Menge $\mathbb Z[X]$ aller Polynome
+beliebigen Grades $n$ mit ganzzahligen Koeffizienten.
+\item
+Eine Zahl $x\in \mathbb R$ heisst algebraisch, wenn sie Nullstelle
+eines Polynoms mit ganzzahligen Koeffizienten ist.
+Die Zahl $\sqrt{2}$ ist Nullstelle von $X^2-2$ und ist daher algebraisch.
+Die Zahlen $\pi$ und $e$ sind dagegen nicht algebraisch, dies ist sehr
+aufwendig zu beweisen.
+Ist die Menge $\mathbb{A}$ aller algebraischen Zahlen abzählbar oder
+überabzählbar unendlich?
+\end{teilaufgaben}
+\thema{abzählbar}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Ein $n\times n$-Gleichungssystem mit ganzzahligen Koeffizienten
+Koeffizienten ist beschrieben durch $n^2+n$ ganze Zahlen, nämlich
+die $n^2$ Koeffizienten und die $n$ rechten Seiten.
+Die Menge der $n\times n$-Gleichungssysteme ist daher gleich
+mächtig wie $\mathbb Z^{n(n+1)}$, eine abzählbar unendliche Menge.
+\item
+Die Menge $G$ aller Gleichungssysteme ist daher 
+\[
+G = \bigcup_{n=1}^\infty G_n \simeq \bigcup_{k=1}^\infty \mathbb Z^{n(n+1)}.
+\]
+Die rechte Seite ist als abzählbare Vereinigung von abzählbaren Mengen
+wieder abzählbar.
+\item
+Die Menge der Polynome vom Grad $n$ mit ganzzahligen Koeffizienten
+ist gleich mächtig wie die Menge $\mathbb Z^{n+1}$.
+Die Abbildung
+\[
+a_{\mathstrut n}X^n+a_{n-1}X^{n-1}+\dots a_2X^2+a_1X+a_0
+\mapsto
+(a_0,a_1,\dots,a_{n+1},a_{\mathstrut n}) \in \mathbb{Z}^{n+1}
+\]
+vermittelt die bijektive Abbildung zwischen $G$ und $\mathbb Z^{n+1}$.
+\item
+Die Menge $\mathbb Z[X]$ der ganzzahligen Polynome ist gleichmächtig
+\[
+\mathbb Z[X]
+\simeq
+\bigcup_{n=1}^\infty \mathbb Z[X]_n
+\simeq
+\bigcup_{n=1}^\infty \mathbb Z^{n+1}.
+\]
+Da $\mathbb Z[X]_n$ abzählbar unendlich ist, ist auch $\mathbb Z[X]$
+als abzählbare Vereinigung abzählbarer Mengen abzählbar.
+\item
+Zu jeder algebraischen Zahl gibt es ein ganzzahliges Polynom, welches
+die algebraische Zahl als Nullstelle hat.
+Es gibt nur abzählbar unendlich viele verschiedene ganzzahlige Polynome
+also kann es höchstens abzählbar unendlich viele algebraische Zahlen geben.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+
