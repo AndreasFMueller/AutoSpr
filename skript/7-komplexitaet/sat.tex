@@ -1,0 +1,353 @@
+%
+% sat.tex -- SAT
+%
+% (c) 2011 Prof Dr Andreas Mueller, Hochschule Rapperswil
+%
+\section{SAT}
+\rhead{SAT}
+\index{Cook, Steven}%
+\index{Levin, Leonid}%
+Bislang ist noch nicht klar, dass es überhaupt NP-vollständige
+Problem gibt. Dies änderte sich mit dem Satz von Cook und Levin,
+der beweist, dass \textsl{SAT} NP-vollständig ist.
+
+\begin{satz}[Cook-Levin]
+\label{cooklevin}
+\textsl{SAT} ist NP-vollständig.
+\end{satz}
+
+\input{7-komplexitaet/sudoku.tex}
+\input{7-komplexitaet/ausfuellraetsel.tex}
+
+\subsection{Beweis des Satzes von Cook-Levin}
+
+NP-vollständig heisst, dass jedes beliebige Problem in polynomieller
+Zeit auf ein \textsl{SAT}-Problem reduziert werden kann.
+Wir müssen
+also einen Algorithmus angeben, mit dem aus einer Turingmachine
+$M$ und einem Wort $w$
+eine logische Formel $\varphi$ konstruiert werden kann, die genau
+dann erfüllbar ist, wenn die Turingmaschine $M$ das Wort $w$
+akzeptieren kann.
+
+Die nicht deterministische Turingmaschine $M$ hat polynomielle Laufzeit,
+jede Berechnung auf Inputwörter der Länge $n$ ist einer Zeit $n^k$
+abgeschlossen. In dieser Zeit kann die Maschine höchstens $n^k$ Felder
+des Bandes beschreiben, es wird also höchstens ein Abschnitt der
+Länge $n^k$ des Bandes benutzt. Dabei werden maximal $n^k$
+Konfigurationen durchlaufen. Schreibt man diese untereinander,
+haben alle Konfigurationen in einem Quadrat $n^k\times n^k$
+Platz.
+
+Die Aufgabe ist jetzt also, das $n^k \times n^k$-Quadrat so mit Zuständen
+und Symbolen auszufüllen, dass eine gültige Berechnung beschrieben wird,
+die im Zustand $q_{\text{accept}}$ endet.
+Dies ist ein Ausfüll-Rätsel, es bleibt uns also nur noch zu verstehen,
+dass es sich auch um ein polynomielles Ausfüllrätsel handelt,
+dass wir also die Bedingungen, denen die Symbole unterworfen sind,
+in eine polynomielle Formel gefasst werden können.
+
+Wir möchten jetzt also eine Formel aufstellen, die genau dann wahr
+ist, wenn sich in das Quadrat $n^k\times n^k$ die Bandsymbole und
+Zustände so hineinschreiben lassen, dass die Konfigurationen eine
+Abfolge beschreiben, die einer gültigen Berechnung entsprechen.
+
+Die einzelnen Zellen $c_{ij}$ der Tabelle sind mit einer Zeilennummer $i$
+und einer Spaltennummer $j$ indiziert, in jede Zelle kann
+genau ein Zeichen $z_{ij}$ geschrieben werden.
+Zeichen können entweder Bandalphabetzeichen oder Zustände sein.
+Der grösseren Einheitlichkeit wegen markieren wir die Enden des verwendeten
+Bandabschnittes mit einem weiteren, bisher unbenutzten Zeichen {\tt\#}.
+In einer Zelle finden wir also immer ein Zeichen aus $C=Q\cup \Gamma\cup\{\text{\tt\#}\}$.
+Wir verwenden die logischen
+Variablen $x_{ijs}$ mit $1\le i,j\le n^k$ und $s\in C$, die
+genau dann wahr ist, wenn die Zelle $c_{ij}$ das Zeichen $s$ enthält.
+
+Wir wissen bereits aus Satz~\ref{skript:satz:vergleichsformel}, dass wir
+eine Vergleichsformel polynomiell in eine logische Formel umwandeln
+können, es ist also nur noch nötig, die Bedingungen für das Ausfüllrätsel
+als Vergleichsformel zu schrieben.
+
+%In jede Zelle muss genau ein Zeichen geschrieben werden. Damit die Zelle
+%$c_{ij}$ ein Zeichen enthält, muss mindestens eine der Variablen $x_{ijs}$
+%wahr sein. Es dürfen aber keine zwei Zeichen einer Zelle zugeordnet sein,
+%$x_{ijs}\wedge x_{ijt}$ für zwei verschiedenen Zeichen $s$ und $t$ darf
+%also nicht wahr sein. Also muss jede Formel
+%$\neg(x_{ijs}\wedge x_{ijt})=\overline{x_{ijs}}\vee\overline{x_{ijt}}$
+%für zwei verschiedene Zeichen wahr sein, zusammen mit der
+%Bedingung, dass ein Zeichen in der Zelle steht, erhalten wir
+%für die Zellen $c_{ij}$ die Formel
+%\[
+%\varphi_{c_{ij}}=
+%\biggl(\bigvee_{s\in C} x_{ijs}\biggr)\wedge
+%\bigwedge_{\myatop{s,t\in C}{s\ne t}} (\overline{x_{ijs}}\vee\overline{x_{ijt}}).
+%\]
+%Dies muss für jede Indexkombination gelten, also
+%\[
+%\varphi_c
+%=
+%\bigwedge_{1\le i,j\le n^k}
+%\varphi_{c_{ij}}
+%=
+%\bigwedge_{1\le i,j\le n^k}\biggl(
+%\biggl(\bigvee_{s\in C} x_{ijs}\biggr)\wedge
+%\bigwedge_{\myatop{s,t\in C}{s\ne t}} (\overline{x_{ijs}}\vee\overline{x_{ijt}})
+%\biggr).
+%\]
+%Da unsere Redukton polynomiell sein soll, müssen wir auch bestimmen,
+%wie lang die Formel $\varphi_c$ ist. Alle Formeln $\varphi_{c_{ij}}$
+%sind gleich gross, abhängig nur von $|C|$, also einer Konstanten.
+%Damit ist die Länge von $\varphi_c$ bestimmt durch die Grösse der
+%Tabelle, also $O(n^2k)$. Die zum Aufbau von $\varphi_c$ notwendig Zeit
+%ist ebenfalls $O(n^2k)$.
+
+\subsubsection{Start mit dem Wort $w$}
+Als nächstes drücken wir in einer Formel $\varphi_i$ aus,
+dass die Turingmaschine mit dem
+Wort $w$ initialisiert worden ist. Dazu muss in irgendeiner
+Zelle der ersten Zeile das Zeichen $q_0$ stehen, und rechts
+anschliessen die Zeichen des Wortes $w=a_1a_2\dots a_{|w|}$.
+Steht $q_0$ in der
+Zelle $j$, wird die Formel
+\[
+\varphi_{\text{start},j}
+=
+x_{11\#}\wedge
+x_{12\blank}\wedge \dots \wedge
+x_{1,j-1,\blank}\wedge
+x_{1,j,q_0}\wedge
+x_{1,j+1,a_1}\wedge\dots\wedge
+x_{1,j+|w|,a_{|w|}}\wedge
+x_{1,j+|w|+1,\blank}\wedge\dots\wedge
+x_{1,n^k,\#}
+\]
+wahr.
+Soll der Initialisierungsstring irgendwo in der ersten Zeile
+stehen, wird eine der Formeln war, also
+\[
+\varphi_{\text{start}} = \bigvee_{1\le j\le n^k} \varphi_{\text{start}_j}.
+\]
+Auch diese Formel ist nicht grösser als $O(n^{2k})$ und kann in
+polynomieller Zeit erzeugt werden.
+
+\subsubsection{Akzeptierzustand}
+In der letzten Zeile der Tabelle muss der Zustand $q_\text{accept}$ stehen,
+wir können dies durch den 
+Irgendwo in der Tabelle muss der Akzeptierzustand stehen, also
+\[
+\varphi_{\text{accept}} 
+=
+\bigvee_{1\le i\le n^k} x_{N,i,q_{\text{accept}}}.
+\]
+ausdrücken.
+
+\subsubsection{Berechnungsgeschichte}
+Die Konfigurationen in der Tabelle müssen alle durch
+Turingmaschinenübergänge auseinander hervorgehen, die Tabelle muss
+mit einer Berechnungsgeschichte ausgefüllt werden.
+Ob dies der Fall ist, kann durch die Betrachtung von zwei Zeilen
+hohen und drei Zellen breiten Ausschnitten aus der Tabelle
+überprüft werden.
+Solche Ausschnitte zeigen fast immer zwei
+gleiche Zeilen, ausser an der aktuellen Kopfposition, wo
+sich etwas ändern kann.
+
+Ein Übergang
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+p\ar[r]^{a\to b,R}
+	&q
+}
+\]
+wird zum Beispiel in den Ausschnitten
+\[
+\begin{tabular}{|c|c|c|}
+\hline
+$x$&$y$&$p$\\
+\hline
+$x$&$y$&$b$\\
+\hline
+\end{tabular}
+\quad
+\begin{tabular}{|c|c|c|}
+\hline
+$y$&$p$&$a$\\
+\hline
+$y$&$b$&$q$\\
+\hline
+\end{tabular}
+\quad
+\begin{tabular}{|c|c|c|}
+\hline
+$p$&$a$&$x$\\
+\hline
+$b$&$q$&$x$\\
+\hline
+\end{tabular}
+\quad
+\begin{tabular}{|c|c|c|}
+\hline
+$a$&$x$&$y$\\
+\hline
+$q$&$x$&$y$\\
+\hline
+\end{tabular}
+\]
+sichtbar. Ein Übergang mit einer Kopfbewegung nach links
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+p\ar[r]^{a\to b,L}
+	&q
+}
+\]
+dagegen in den Ausschnitten
+\[
+\begin{tabular}{|c|c|c|}
+\hline
+$z$&$x$&$y$\\
+\hline
+$z$&$x$&$q$\\
+\hline
+\end{tabular}
+\quad
+\begin{tabular}{|c|c|c|}
+\hline
+$x$&$y$&$p$\\
+\hline
+$x$&$q$&$y$\\
+\hline
+\end{tabular}
+\quad
+\begin{tabular}{|c|c|c|}
+\hline
+$y$&$p$&$a$\\
+\hline
+$q$&$y$&$b$\\
+\hline
+\end{tabular}
+\quad
+\begin{tabular}{|c|c|c|}
+\hline
+$p$&$a$&$x$\\
+\hline
+$y$&$b$&$x$\\
+\hline
+\end{tabular}
+\quad
+\begin{tabular}{|c|c|c|}
+\hline
+$a$&$x$&$y$\\
+\hline
+$b$&$x$&$y$\\
+\hline
+\end{tabular}
+\]
+Es gibt eine endliche Anzahl korrekter Belegungen solcher
+$2\times 3$-Ausschnitte mit den Zeichen aus $C$, die Anzahl
+hängt nur von $|C|$ und den Übergängen der Turingmaschine ab.
+
+Jetzt müssen wir zeigen, dass wir gültige Übergänge, die durch erlaubte
+Inhalte von $2\times 3$-Ausschnitten charakterisiert sind, mit
+einer Vergleichsformel erkennen können.
+Wir können aber für jede Ausschnitt-Position eine Vergleichsformel
+aufstellen, die wahr wird, wenn die Zeichen im Ausschnitt 
+gleich sind zu einem erlaubten Ausschnitt.
+Insbesondere gibt es eine Vergleichsformel für Ausschnitt-Inhalte.
+
+%Die Belegung
+%\[
+%\begin{tabular}{|c|c|c|}
+%\hline
+%$a_1$&$a_2$&$a_3$\\
+%\hline
+%$a_4$&$a_5$&$a_6$\\
+%\hline
+%\end{tabular}
+%\]
+%eines Ausschnitts mit der Zelle $c_{ij}$ in der
+%linken oberen Ecke entspricht 
+%\[
+%x_{i,j,a_1}\wedge
+%x_{i+1,j,a_2}\wedge
+%x_{i+2,j,a_3}\wedge
+%x_{i,j+1,a_4}\wedge
+%x_{i+1,j+1,a_5}\wedge
+%x_{i+2,j+1,a_6}.
+%\]
+%Davon muss eine wahr sein, also
+%\[
+%\varphi_{\text{Ausschnitt}_{ij}}
+%=
+%\bigvee_{\text{$a_1,\dots,a_6$ korrekt}}
+%x_{i,j,a_1}\wedge
+%x_{i+1,j,a_2}\wedge
+%x_{i+2,j,a_3}\wedge
+%x_{i,j+1,a_4}\wedge
+%x_{i+1,j+1,a_5}\wedge
+%x_{i+2,j+1,a_6}.
+%\]
+%Ausserdem muss jeder Ausschnitt gültig belegt sein, also
+%muss
+%\[
+%\varphi_{\text{Ausschnitt}} =\bigwedge_{1\le i,j\le n^k}\varphi_{\text{Ausschnitt}_{ij}}
+%\]
+%wahr sein. Auch diese Formel lässt sich in polynomieller Zeit konstruieren
+%und sie hat polynomielle Länge.
+
+\subsubsection{Maschine hält auf einem Akzeptierzustand an}
+Die Maschine kann schon wesentlich früher anhalten, also die worst case
+Laufzeit anzeigt.
+Wir müssen die Tabelle daher nach Ende der Berechnung mit immer gleichen
+Zeilen ausfüllen.
+Wir können dies erreichen, indem wir den erlaubten Ausschnitt-Inhalten
+die drei Ausschnitte
+\[
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|}
+\hline
+q_*&x&y\\
+\hline
+q_*&x&y\\
+\hline
+\end{tabular}
+\qquad\text{oder}\qquad
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|}
+\hline
+x&q_*&y\\
+\hline
+x&q_*&y\\
+\hline
+\end{tabular}
+\qquad\text{oder}\qquad
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|}
+\hline
+x&y&q_*\\
+\hline
+x&y&q_*\\
+\hline
+\end{tabular}
+\]
+mit $q_*\in\{q_\text{accept},q_\text{reject}\}$ und beliebigen
+Bandalphabetzeichen $x$ und $y$ hinzufügen.
+
+Wir haben also mehrere logische Formeln und Vergleichsformeln
+gefunden, die genau dann alle wahr sind, wenn die Tabelle mit einer
+akzeptierenden Berechnungsgeschichte gefüllt ist.
+Die einzelnen Teile sind von polynomieller Grösse, also auch deren
+Konjunktion.
+Damit ist gezeigt, dass sich $A$ polynomiell auf ein polynomielles
+Ausfüllrätsel reduzieren lässt.
+
+%Damit die Tabelle eine akzeptierende Berechnung beschreibt, müssen
+%alle Teile wahr sein, also ist
+%\[
+%\varphi =
+%\varphi_{c}\wedge
+%\varphi_{\text{start}}\wedge
+%\varphi_{\text{accept}}\wedge
+%\varphi_{\text{Ausschnitt}}
+%\]
+%die gesuchte Formel, die genau dann erfüllbar ist, wenn $w$ von der
+%Turingmaschine $M$ akzeptiert werden kann.
+

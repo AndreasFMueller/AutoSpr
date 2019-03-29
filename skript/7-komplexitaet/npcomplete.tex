@@ -1,0 +1,50 @@
+%
+% npcomplete.tex -- NP-vollständige Probleme
+%
+% (c) 2011 Prof Dr Andreas Mueller, Hochschule Rapperswil
+%
+\section{NP-vollständige Probleme}
+\rhead{NP-vollständige Probleme}
+\begin{figure}
+\begin{center}
+\includegraphics{images/lang-4}
+\end{center}
+\caption{Beziehung zwischen P, NP und NP-vollständigen Problemen.
+\label{pnpnpcomplete}}
+\end{figure}%
+Die polynomielle Reduktion ordnet die Sprachen nach ``Schwierigkeitsgrad''
+(Abbildung~\ref{pnpnpcomplete}).
+Je ``grösser'' eine Sprache $B$ ist, desto mehr Sprachen $A$ gibt es
+mit $A\le_P B$. Findet man einen polynomiellen Algorithmus für $B$,
+löst man damit automatisch auch $A$ für alle diese $A$. 
+
+Möchte man $\text{P} = \text{NP}$ beweisen, dann muss man nach
+möglichst ``schwierigen'' Problemen suchen, also nach solchen,
+deren polynomielle Lösung die polynomielle Lösung vieler anderer
+Probleme nach sich ziehen würde. 
+
+\begin{definition}
+\index{NP-vollst\ändig}%
+Eine Sprache $B$ heisst NP-vollständig, wenn 
+\begin{compactenum}
+\item $B\in\text{NP}$
+\item $A\le_P B$ für alle $A\in\text{NP}$
+\end{compactenum}
+\end{definition}
+
+Wenn man die polynomielle Lösung eines NP-vollständigen Problemes
+findet, sind auch alle anderen Probleme in NP in polynomieller Zeit
+lösbar:
+
+\begin{satz}
+Falls $B$ NP-vollständig ist und $B\in\text{P}$, dann ist
+$\text{P}=\text{NP}$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Ist $A\in\text{NP}$, dann ist $A\le_P B$, weil $B$ NP-vollständig ist.
+Nach Satz \ref{polynomiellreduction} ist dann aber auch
+$A\in\text{P}$, alle Sprachen
+in NP sind also auch in P, oder $\text{P}=\text{NP}$.
+\end{proof}
+

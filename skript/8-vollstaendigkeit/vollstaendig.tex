@@ -1,0 +1,257 @@
+%
+% vollstaendig.tex -- Turing-Vollständigkeit
+%
+% (c) 2011 Prof Dr Andreas Mueller, Hochschule Rapperswil
+%
+
+\section{Turing-vollständige Programmiersprachen}
+\rhead{Turing-vollständige Programmiersprachen}
+Die Turing-Maschine liefert einen wohldefinierten Begriff der
+Berechenbarkeit, der auch robust gegenüber milden Änderungen
+der Definition einer Turing-Maschine ist.
+Der Aufbau aus einem endlichen Automaten mit zusätzlichem
+Speicher und der einfache Kalkül mit Konfigurationen hat
+sie ausserdem Beweisen vieler wichtiger Eigenschaften zugänglich
+gemacht. Die vorangegangenen Kapitel über Entscheidbarkeit und
+Komplexität legen davon eindrücklich Zeugnis ab. Am direkten
+Nutzen dieser Theorie kann jedoch immer noch ein gewisser Zweifel
+bestehen, da ein moderner Entwickler seine Programme ja nicht
+direkt für eine Turing-Maschine schreibt, sondern nur mittelbar,
+da er eine Programmiersprache verwendet, deren Code anschliessend
+von einem Compiler oder Interpreter übersetzt und von einer realen
+Maschine ausgeführt wird.
+
+Der Aufbau der realen Maschine ist sehr
+nahe an einer Turing-Maschine, ein Prozessor liest und schreibt
+jeweils einzelne
+Speicherzellen eines mindestens für praktische Zwecke unendlich
+grossen Speichers und ändert bei Verarbeitung der gelesenen
+Inhalte seinen eigenen Zustand. Natürlich ist die Menge der
+Zustände eines modernen Prozessors sehr gross, nur schon die $n$
+Register der Länge $l$ tragen $2^{nl}$ verschiedene Zustände bei,
+und jedes andere Zustandsbit verdoppelt die Zustandsmenge nochmals.
+Trotzdem ist die Zustandsmenge endlich, und es braucht nicht viel
+Fantasie, sich den Prozessor mit seinem Hauptspeicher als Turingmaschine
+vorzustellen. Es gibt also kaum Zweifel, dass die Computer-Hardware
+zu all dem fähig ist, was ihr in den letzten zwei Kapiteln an
+Fähigkeiten zugesprochen wurde.
+
+Die einzige Einschränkung der Fähigkeiten realer Computer gegenüber
+Turing-Maschinen ist
+die Tatsache, dass reale Computer nur über einen endlichen Speicher
+verfügen, während eine Turing-Maschine ein undendlich langes Band
+als Speicher verwenden kann. Da jedoch eine endliche Berechnung auch
+nur endlich viel Speicher verwenden kann, sind alle auf einer Turing-Maschine
+durchführbaren Berechnungen, die man auch tatsächlich durchführen
+will, auch von einem realen Computer durchführbar. Für praktische
+Zwecke darf man also annehmen, dass die realen Computer echte Turing-Maschinen
+sind.
+
+Trotzdem ist nicht sicher, ob die Programmierung in einer übersetzten
+oder interpretierten Sprache alle diese Fähigkeiten auch einem
+Anwendungsprogrammierer zugänglich macht.
+Letztlich äussert sich dies auch darin, dass Computernutzer
+für verschiedene Problemstellung auch verschiedene Werkzeuge
+verwenden. Wer tabellarische Daten summieren will, wird gerne
+zu einer Spreadsheet-Software greifen, aber nicht erwarten, dass er
+damit auch einen Näherungsalgorithmus für das Cliquen-Problem wird
+programmieren können. Die Tabellenkalkulation definiert ein eingeschränktes,
+an das Problem angepasstes Berechnungsmodell, welches aber
+höchstwahrscheinlich weniger leistungsfähig ist als die Hardware, auf
+der es läuft. Es ist also durchaus möglich und je nach Anwendung auch
+zweckmässig, dass ein Anwender nicht die volle Leistung einer
+Turing-Maschine zur Verfügung hat.
+
+Damit stellt sich jetzt die Frage, wie man einem Berechnungsmodell und
+das heisst letztlich der Sprache, in der der Berechnungsauftrag
+formuliert wird, ansehen kann, ob sie gleich mächtig ist wie eine
+Turing-Maschine.
+
+\subsection{Programmiersprachen}
+Eine Programmiersprache ist zwar eine Sprache im Sinne dieses Skriptes,
+für den Programmierer wesentlich ist jedoch die Semantik, die bisher
+nicht Bestandteil der Diskussion war. Für ihn ist die Tatsache wichtig,
+dass die Semantik der Sprache Berechnungen beschreibt,
+wie sie mit einer Turing-Maschine ausgeführt werden können.
+
+\begin{definition}
+\index{Programmiersprache}%
+Eine Sprache $A$ heisst eine {\em Programmiersprache}, wenn es eine Abbildung
+\[
+c\colon A\to \Sigma^*\colon w\mapsto c(w)
+\]
+gibt, die einem Wort der Sprache die Beschreibung einer Turing-Maschine
+zuordnet. Die Abbildung $c$ heisst {\em Compiler} für die Sprache $A$.
+\end{definition}
+Die Forderung, dass $c(w)$ die Beschreibung einer Turing-Maschine
+sein muss, ist nach obiger Diskussion nicht wesentlich.
+
+\subsection{Interaktion}
+Man beachte, dass in dieser Definition einer Programmiersprache kein Platz ist
+für Input oder Output während des Programmlaufes.
+Das Band der Turing-Maschine, bzw.~sein Inhalt bildet den Input, der Output
+kann nach Ende der Berechnung vom Band gelesen werden.
+Man könnte dies als Mangel dieses Modells ansehen, in der Tat ist aber
+keine Erweiterung nötig, um Interaktion abzubilden.
+Interaktionen mit einem Benutzer bestehen immer aus einem Strom von
+Ereignissen, die dem Benutzer zufliessen (Änderungen des Bildschirminhaltes,
+Signaltöne) oder die der Benutzer veranlasst (Bewegungen des Maus-Zeigers,
+Maus-Klicks, Tastatureingaben). Alle diese Ereignisse kann man sich codiert
+auf ein Band geschrieben denken, welches die Turing-Maschine bei Bedarf
+liest.
+
+Der Inhalt des Bandes einer Standard-Turing-Maschine kann während des
+Programmlaufes nur von der Turing-Maschine selbst verändert werden.
+Da sich die Turing-Maschine aber nicht daran erinnern kann, was beim
+letzten Besuch eines Feldes dort stand, ist es für eine Turing-Maschine
+auch durchaus akzeptabel, wenn der Inhalt eines Feldes von aussen
+geändert wird. Natürlich werden damit das Laufzeitverhalten der
+Turing-Maschine verändert. Doch in Anbetracht der
+Tatsache, dass von einer Turing-Maschine im Allgemeinen nicht einmal
+entschieden werden kann, ob sie anhalten wird, ist wohl nicht mehr
+viel zu verlieren.
+
+Die Ausgaben eines Programmes sind deterministisch, und was der Benutzer
+erreichen will, sowie die Ereignisse, die er einspeisen wird, sind es ebenfalls.
+Man kann also im Prinzip im Voraus wissen, was ausgegeben werden wird
+und welche Ereignisse ein Benutzer auslösen wird. Schreibt man diese
+vorgängig auf das Band, so wie man es auch beim automatisierten Testen
+eines Userinterfaces tut, entsteht aus dem interaktiven Programm eines,
+welches ohne Zutun des Benutzers zur Laufzeit funktionieren kann.
+
+\subsection{Die universelle Turing-Maschine}
+\index{Turing, Alan}%
+\index{Turing-Maschine!universelle}%
+In seinem Paper von 1936 hat Alan Turing gezeigt, dass man eine
+Turing-Maschine definieren kann,
+der man die Beschreibung
+$\langle M,w\rangle$
+einer Turing-Maschine $M$ und eines Wortes $w$
+und die $M$ auf dem Input-Wort $w$ simuliert.
+Diese spezielle Turing-Maschine ist also leistungsfähig genug, jede
+beliebige andere Turing-Maschine zu simulieren. Sie heisst die {\em universelle
+Turing-Maschine}.
+
+Die universelle Turing-Maschine kann die Entscheidung vereinfachen,
+ob eine Funktion Turing-berechenbar ist. Statt eine Turing-Maschine
+zu beschreiben, die die Funktion berechnet, reicht es, ein Programm
+in der Programmiersprache $A$ zu beschreiben, das Programm mit dem
+Compiler $c$ zu übersetzen, und die Beschreibung mit der universellen
+Turing-Maschine auszuführen.
+
+\index{Church-Turing-Hypothese}%
+Die Church-Turing-Hypothese besagt, dass sich alles, was man berechnen
+kann, auch mit einer Turing-Maschine berechnen lässt. Die universelle
+Turing-Maschine zeigt, dass jede berechenbare Funktion von der
+universellen Turing-Maschine berechnet werden kann.
+Etwas leistungsfähigeres als eine Turing-Maschine gibt es nicht.
+
+\subsection{Turing-Vollständigkeit}
+Jede Funktion, die in der Programmiersprache $A$ implementiert werden
+kann, ist Turing-berechenbar.
+Der Compiler kann
+aber durchaus Fähigkeiten unzugänglich machen, die Programmiersprache
+$A$ kann dann gewisse Berechnungen, die mit einer Turing-Maschine
+möglich wären, nicht formulieren. Besonderes interessant sind daher
+die Sprachen, bei denen ein solcher Verlust nicht eintritt.
+
+\begin{definition}
+\index{Turing-vollständig}%
+Eine Programmiersprache heisst Turing-vollständig, wenn sich jede
+berechenbare Abbildung in dieser Sprache formulieren lässt.
+Zu jeder berechenbaren Abbildung $f\colon\Sigma^*\to \Sigma^*$ gibt
+es also ein Programm $w$ so, dass $c(w)$ die Funktion $f$ berechnet.
+\end{definition}
+
+Zu einer berechenbaren Abbildung gibt es eine Turing-Maschine, die
+sie berechnet, es würde also genügen, wenn man diese Turing-Maschine
+von einem in der Sprache $A$ geschriebenen Turing-Maschinen-Simulator
+ausführen lassen könnte. Dieser Begriff muss noch etwas klarer gefasst
+werden:
+
+\begin{definition}
+\index{Turing-Maschinen-Simulator}%
+Ein Turing-Maschinen-Simulator ist eine Turing-Maschine $S$, die als Input
+die Beschreibung $\langle M,w\rangle$ einer Turing-Maschine $M$ und eines
+Input-Wortes für $M$ erhält, und die Berechnung durchführt, die $M$ auf $w$
+ausführen würde.
+Ein Turing-Maschinen-Simulator in der Programmiersprache $A$ ist
+ein Wort $s\in A$ so, dass $c(s)$ ein Turing-Maschinen-Simulator ist.
+\end{definition}
+
+Damit erhalten wir ein Kriterium für Turing-Vollständigkeit:
+
+\begin{satz}
+\label{turingvollstaendigkeitskriterium}
+Eine Programmiersprache $A$ ist Turing-vollständig, genau dann
+wenn es einen Turing-Maschinen-Simulator in $A$ gibt.
+\end{satz}
+
+
+\subsection{Beispiele}
+Die üblichen Programmiersprachen sind alle Turing-vollständig, denn es
+ist eine einfache Programmierübung, eines Turing-Maschinen-Simulator
+in einer dieser Sprachen zu schreiben. In einigen Programmiersprachen
+ist dies jedoch schwieriger als in anderen.
+
+\subsubsection{Javascript}
+\index{Javascript}%
+Fabrice Bellard hat 2011 einen PC-Emulator in Javascript geschrieben, der
+leistungsfähig genug ist, Linux zu booten. Auf seiner Website
+\url{http://bellard.org/jslinux/} kann man den Emulator im eigenen Browser
+starten. Das gebootete Linux enthält auch einen C-Compiler. Da C
+Turing-vollständig ist, gibt es einen Turing-Maschinen-Simulator in
+C, den man auch auf dieses Linux bringen und mit dem C-Compiler
+kompilieren kann. Somit gibt es einen Turing-Maschinen-Simulator in
+Javascript, Javascript ist Turing-vollständig.
+
+\subsubsection{XSLT}
+\index{XSLT}%
+XSLT ist eine XML-basierte Sprache, die Transformationen von XML-Dokumenten
+zu beschreiben erlaubt. XSLT ist jedoch leistungsfähig, eine Turing-Maschine
+zu simulieren. Bob Lyons hat auf seiner Website
+\url{http://www.unidex.com/turing/utm.htm} ein XSL-Stylesheet publiziert,
+welches einen Simulator implementiert. Als Input verlangt es
+ein
+XML-Dokument, welches die Beschreibung der Turing-Maschine in einem
+zu diesem Zweck definierten XML-Format namens Turing Machine Markup
+Language (TMML) enthält. TMML definiert XML-Elemente, die das Alphabet
+(\verb+<symbols>+),
+die Zustandsmenge $Q$ (\verb+<state>...</state>+)
+und die Übergangsfunktion $\delta$ in \verb+<mapping>+-Elementen
+der Form
+\begin{verbatim}
+<mapping>
+    <from current-state="moveRight1" current-symbol=" " />
+    <to next-state="check1" next-symbol=" " movement="left" />
+</mapping>
+\end{verbatim}
+beschreiben. Der initiale Bandinhalt wird als Parameter \verb+tape+
+auf der Kommandozeile übergeben.
+Das Stylesheet wandelt das TMML Dokument in eine ausführliche
+Berechnungsgeschichte um, aus der auch der Bandinhalt am Ende der Berechnung
+abzulesen ist. Es beweist somit, dass XSLT einen Turing-Maschinen-Simulator
+hat, also Turing-vollständdig ist.
+
+\subsubsection{\LaTeX}
+\index{LaTeX@\LaTeX}%
+\index{Knuth, Don}%
+Don Knuth, der Autor von \TeX, hat sich lange davor gedrückt, seiner
+Schriftsatz-Sprache auch eine Turing-vollständige Programmiersprache
+zu spendieren. Schliesslich kam er nicht mehr darum herum, und wurde
+von Guy Steeles richtigegehend dazu gedrängt, wie er in
+\url{http://maps.aanhet.net/maps/pdf/16\_15.pdf}
+gesteht.
+
+Dass \TeX Turing-vollständig ist beweist ein Satz von \LaTeX-Macros, den
+man auf
+\url{https://www.informatik.uni-augsburg.de/en/chairs/swt/ti/staff/mark/projects/turingtex/}
+finden kann.
+Um ihn zu verwenden, formuliert man die Beschreibung
+von Turing-Maschine und initialem Bandinhalt als eine Menge von
+\LaTeX-Makros. Ebenso ruft man den Makro \verb+\RunTuringMachine+ auf,
+der die Turing-Machine simuliert und die Berechnungsgeschichte im
+\TeX-üblichen perfekten Schriftsatz ausgibt.
+
+
+

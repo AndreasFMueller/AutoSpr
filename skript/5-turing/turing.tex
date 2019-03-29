@@ -1,0 +1,455 @@
+%
+% turing.tex -- Turing Maschinen und rekursiv aufzaehlbare Sprachen
+%
+% (c) 2009 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+\section{Turing Maschinen}
+\rhead{Turingmaschinen}
+\subsection{Zwei Stacks: Random Access}
+Ein Stack hat die Möglichkeiten eines endlichen Automaten dramatisch
+erweitert, ein Stackautomat kann die bedeutend grössere Klasse der
+kontextfreien Sprachen analysieren. Wir haben aber auch schon gesehen,
+dass es nicht kontextfreie Sprachen gibt. Mit welcher möglichst kleinen
+Erweiterung können wir eine Sprache wie $\{a^nb^nc^n\,|\, n\ge 0\}$
+analysieren?
+
+Eine erste Idee könnte sein, einen zweiten Stack hinzuzufügen.
+Damit könnte man mit Sicherheit die Sprache $\{a^nb^nc^n\,|\,n\ge 0\}$
+behandeln. Doch man fügt damit wesentlich mehr hinzu. Ein Buch ist
+sicher ein Random-Access Speichermedium. Durch Blättern im Buch
+kann man jede beliebige Seite erreichen. Wenn man aber ein Buch
+aufschlägt, besteht es eigentlich nur aus zwei Stapeln von Blättern.
+Blättern bedeutet nichts anderes, dass man ein Blatt des Buches vom
+einen Stapel wegnimmt und auf den anderen Stapel legt. Zwei Stacks
+bilden also bereits ein Random-Access Medium.
+
+Antike Schriftrollen sind auch Bücher, die aber nicht als Stapel
+von Seiten organisiert sind, sondern als langes Band. Es ist aber klar,
+dass man durch zerschneiden und binden jede Schriftrolle in ein
+Buch verwandeln kann, und ein Buch durch zusammenkleben der einzelnen
+Seiten zu einem Band in eine Schriftrolle.
+Die heutigen Bücher (Kodices) haben sich gegenüber den Schriftrollen
+etwa im ersten Jahrhundert n.~Chr. durchgesetzt.
+Für unsere Anwendung ist die Vorstellung eines Random-Access Mediums
+als endloses Band von Speicherzellen praktischer. Sie passt besser zu
+unserem Bild vom Hauptspeicher eines Computers oder von Massenspeichermedien.
+\subsection{Definition}
+\index{Band}%
+\index{Bandalphabet}%
+\index{Schreib-/Lese-Kopf}%
+Wir wollen einem endlichen Automaten statt eines Stacks einen unendlich
+grossen Speicher zur Verfügung stellen. Wir stellen uns diesen
+Speicher als ein in beide Richtungen unendlich langes Band vor,
+welches in einzelne Speicherzellen aufgeteilt ist, in die jeweils
+genau ein Zeichen geschrieben werden kann (Abbildung~\ref{turingfig}).
+Wie beim Stackautomaten gehen
+wir davon aus, dass dieser Speicher auch Dinge speichern kann, die nicht
+im Input vorkommen, wir verwenden daher ein Bandalphabet $\Gamma$, welches
+das Input-Alphabet umfasst: $\Gamma\supset \Sigma$.
+
+\begin{figure}
+\begin{center}
+%\includegraphics[width=0.8\hsize]{images/turing-1}
+\includegraphics{images/turing-1}
+\end{center}
+\caption{Schematische Darstellung einer Turing-Maschine\label{turingfig}}
+\end{figure}
+
+Der Zugriff auf den Speicher erfolgt jeweils zellenweise, wir stellen
+uns einen Schreib-/Lese-Kopf vor, der auf dem Band positioniert werden
+kann, und genau ein Zeichen lesen kann, oder das auf dem Band vorhandene
+Zeichen überschreiben kann. Um zu Beginn einen wohldefinierten Zustand
+zu haben, brauchen wir ein zusätzliches ``Blank''-Zeichen $\blank$,
+welches in $\Gamma$ aber nicht in $\Sigma$ enthalten ist\footnote{Wäre
+das ``Blank''-Zeichen $\blank$ auch in $\Sigma$, könnte man das
+leere Band nicht vom Input unterscheiden.}.
+
+Da wir jetzt diesen unendlich grossen Speicher haben, gibt es keinen
+Grund mehr, sich vorzustellen, dass der Input Zeichen für Zeichen
+in den endlichen Automaten gefüttert wird. Stattdessen gehen wir
+davon aus, dass der Input auf das Band geschrieben wird, der
+Schreib-/Lesekopf auf das erste Feld des Input positioniert wird,
+und man dann die Maschine arbeiten lässt.
+
+Die Maschine muss jetzt Zeichen vom Band lesen, und zusammen mit
+ihrem aktuellen Zustand entscheiden, in welchem neuen Zustand
+sie nach der Verarbeitung dieses Zeichens sein soll, welches Zeichen
+an dieser Stelle auf dem Band stehen soll, und ob der Schreib-/Lesekopf
+bewegt werden soll. Wir erlauben nur zwei Bewegungen: L und R, insbesondere
+ist es nicht zulässig, dass der Kopf nach der Verarbeitung stehen
+bleibt.
+
+Im Gegensatz zu DEA oder Stackautomat ist die Berechnung in diesem
+Modell nach dem Ende des Input-Strings noch nicht zu Ende. Die Maschine
+kann mehrmals über die auf dem Band gespeicherten Daten fahren und
+sie immer wieder modifizieren. Sie könnte also im Prinzip auch
+gar nie aufhören zu arbeiten. Daher brauchen wir Zustände, die
+die Maschine anhalten. Wenn die Maschine angehalten hat, müssen wir
+zudem wissen, ob das auf das Band geschriebene Input-Wort für die
+Sprache akzeptabel war oder nicht.
+
+All dies führt uns auf folgende formale Definition einer Turing-Maschine
+\begin{definition}
+\index{Turing-Maschine}%
+Eine Turing-Maschine ist ein $7$-tupel
+$M=(Q,\Sigma,\Gamma,\delta,q_0,q_{\text{accept}},q_{\text{reject}})$,
+wobei $Q$, $\Sigma$ und $\Gamma$ endliche Mengen sind mit folgenden
+zusätzlichen Eigenschaften
+\begin{compactenum}
+\index{Zustand}%
+\item $Q$ heisst die Menge der Zustände
+\index{Inputalphabet}%
+\index{Eingabe-Alphabet}%
+\index{blank@Blank}%
+\index{$\blank$|see{Blank}}%
+\item $\Sigma$ heisst das Inputalphabet, es enthält das spezielle
+``Blank''-Zeichen $\blank$ nicht.
+\index{Bandalphabet}%
+\item $\Gamma$ ist das Bandalphabet, es gilt $\blank\in\Gamma$ und
+$\Sigma\subset\Gamma$.
+\index{Uebergangsfunktion@Übergangsfunktion}%
+\item $\delta\colon Q\times \Gamma\to Q\times\Gamma\times\{\text{L},\text{R}\}$
+ist die Übergangsfunktion
+\index{Startzustand}%
+\item $q_0\in Q$ ist der Startzustand
+\index{Akzeptierzustand}%
+\item $q_{\text{accept}}\in Q$ ist der Akzeptierzustand
+\index{Ablehnungszustand}%
+\item $q_{\text{reject}}\in Q$ ist der Ablehnungszustand
+\end{compactenum}
+\end{definition}
+Die Übergangsfunktion liefert also zu jedem Zustand und zum
+Inhalt des Feldes unter dem Schreib-/Lesekopf einen neuen
+Zustand, einen neuen Bandinhalt und die Information, ob
+der Kopf nach links (L) oder rechts (R) bewegt werden muss.
+
+\subsection{Sprache}
+Sei eine Turingmaschine
+$M=(Q,\Sigma,\Gamma,\delta,q_0,q_{\text{accept}},q_{\text{reject}})$
+gegeben.
+Zu $M$ kann man auf folgende Weise eine Sprache konstruieren:
+Um zu entscheiden, ob ein Wort $w\in\Sigma^*$
+zu der Sprache gehört,
+schreibt man es auf das Band, platziert den Schreib-/Lesekopf auf
+das erste Zeichen und bringt die Maschine in den Zustand $q_0$.
+\index{Konfiguration}%
+Man beschreibt diese Konfiguration der Maschine mit der Zeichenkette
+$q_0w$, die Maschine ist im Zustand $q_0$ und der Schreib-/Lesekopf
+steht über dem ersten Zeichen von $w$.
+
+Mit Hilfe der Übergangsfunktion wird dann der nächste Zustand,
+der neue Inhalt des Feldes unter dem Schreib-/Lesekopf und die
+Kopfbewegung ermittelt. Auch diesen neuen Zustand kann man wieder
+als Konfiguration hinschreiben. Der Schreib-/Lesekopf steht
+jetzt womöglich mitten im Wort drin, und die Maschine befindet
+sich in irgend einem Zustand $q$: $w_1qw_2$.
+
+Nehmen wir an, die Maschine befindet sich zu Beginn eines Zyklus im
+Zustand $q_1$ und hat den Kopf auf das Zeichen $a_k$ positioniert.
+Die Funktion $\delta$ berechnet daraus ein Tripel $(q_1,b_k,R)$
+oder $(q_2,b_k,L)$. Die Konfiguration ändert sich dabei wie
+folgt:
+\begin{align*}
+&\text{Ausgangskonfiguration:}&a_1\dots a_{k-1}&\;q_1\;a_k\dots a_n\\
+&\text{Übergang mit } \delta(q_1,a_k)=(q_2,b_k,L)&a_1\dots a_{k-2}&\;q_2\;a_{k-1}b_k\dots a_n\\
+&\text{Übergang mit } \delta(q_1,a_k)=(q_2,b_k,R)&a_1\dots a_{k-1}b_k&\;q_2\;a_{k+1}\dots a_n
+\end{align*}
+
+Die Maschine arbeitet so immer weiter, bis einer der Zustände $q_{\text{accept}}$
+oder $q_{\text{reject}}$ erreicht wird, dann hält sie an.
+Das Inputwort gilt als akzeptiert, wenn der Zustand $q_{\text{accept}}$
+erreicht wurde, es gilt als verworfen, wenn $q_{\text{reject}}$ erreicht
+wurde.
+
+\index{Berechnungsgeschichte}%
+Die Folge von Konfigurationen, die die Turing-Maschine
+während der Berechnung durchläuft, nennt man auch
+{\em Berechnungsgeschichte}.
+
+\begin{definition}
+\index{Sprache!von einer Turing-Maschine erkannte}%
+Ist $M$ eine Turingmaschine, dann heisst
+\[
+L(M)=\{w\in\Sigma^*\;|\;\text{$M$ akzeptiert $w$}\}.
+\]
+die von $M$ erkannte Sprache.
+\end{definition}
+
+\begin{definition}
+\index{Turing-erkennbar}%
+Eine Sprache $L$ heisst Turing-erkennbar, wenn es eine Turing-Maschine
+$M$ gibt mit $L=L(M)$.
+\end{definition}
+
+Die Definition der erkannten Sprache erlaubt, dass die zur Erkennung
+verwendete Turing-Maschine auf einigen Wörtern $w\in\Sigma^*$ nicht
+anhält. Diese Wörter werden nie akzeptiert, und gehören
+damit nicht zur Sprache. Testet man sie mit $M$, wird die Berechnung
+aber nie anhalten, man weiss also eigentlich nie, ob das Wort
+nicht zur Sprache gehört, oder ob man einfach noch etwas mehr
+Geduld braucht.
+
+Gewissheit hat man erst, wenn man sicher sein kann, dass $M$ auf
+jedem Input anhält.
+
+\begin{definition}
+\index{Entscheider}%
+Ein Entscheider ist eine Turingmaschine, die auf jedem Input $w\in\Sigma^*$
+anhält. Eine Sprache heisst entscheidbar, wenn ein Entscheider sie
+erkennt.
+\index{entscheidbar}%
+\end{definition}
+Es ist klar, dass eine Turing-entscheidbare Sprache auch Turing-erkennbar
+ist.
+Die Definition der Eigenschaft ``Turing-entscheidbar'' unterscheidet sich
+von der Definition der Eigenschaft ``Turing-erkennbar'' nur dadurch,
+dass bei einer entscheidbaren Sprache die Turing-Maschine auf jedem
+beliebigen Input anhalten muss, während bei einer nur erkennbaren
+Sprache einzelne Input-Wörter auch dazu führen können, dass die
+Turing-Maschine endlos weiterrechnet.
+
+\begin{beispiel}
+Die kleinsten Mersenne-Primzahlen sind $3=2^2-1$, $7=2^3-1$, $31=2^5-1$,
+andererseits ist $2^{11}-1=2047=23\cdot 89$ keine Primzahl.
+Das finden von Mersenneschen Primzahlen ist mit GIMPS (Great Internet
+Mersenne Prime Search \cite{skript:gimps}) zu einem Volkssport geworden.
+Es ist nicht bekannt, ob es unendlich viele Mersennesche Primzahlen gibt.
+
+Wir bilden jetzt die folgende Sprache über dem Alphabet
+$\Sigma=\{\texttt{0},\texttt{1}\}$:
+\[
+L=\{w\in\Sigma^*\,|\,\text{die Anzahl Mersennescher Primzahlen ist grösser als $w$}\}.
+\]
+Ein Turing-Maschinen-Programm, welches prüfen muss, ob $w\in L$ ist,
+muss herausfinden, ob es mindestens $w$ (interpretiert als Zahl)
+Mersennsche Primzahlen gibt.
+Dazu müssen der Reihe nach alle Zweierpotenzen $2^k$ daraufhin getestet werden,
+ob $2^k-1$ eine Primzahl ist.
+Wenn mindestens $n$ Mersennsche Primzahlen gefunden wurden, wird $n$
+akzeptiert, sonst nicht. Falls $n\in L$ ist, wird der Algorithmus
+die Zahl $n$ akzeptieren, die Sprache $L$ ist also Turing-erkennbar.
+
+Falls es nur endlich viele Mersennesche Primzahlen gibt, zum Beispiel
+nur $N$, dann wird dieser Algorithmus für jede Zahl $n>N$ nicht
+aufhören zu laufen.
+Der Algorithmus kann ja nicht abschätzen, ob noch eine Mersennesche
+Primzahl kommen wird, ob es also einfach noch etwas mehr Geduld
+braucht.
+Diese Sprache $L$ ist also nicht Turing-entscheidbar.
+\end{beispiel}
+
+\subsection{Zustandsdiagramm}
+\index{Graph!gerichteter!beschrifteter!einer Turing-Maschine}%
+Auch eine Turingmaschine kann man als gerichteten beschrifteten Graphen
+darstellen. Übergänge zwischen zwei Zuständen sind immer begleitet von
+einer Änderung des Inhaltes des Feldes unter dem Schreib-/Lesekopf
+und von einer Kopfbewegung. Beide müssen mit der Beschriftung
+der Pfeile codiert werden. In Anlehnung an die bei den Stackautomaten
+verwendete Notation schreiben wir für den Übergang
+$\delta(q_1,a)=(q_2,b,\text{R})$
+die Notation
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm{
+{q_1}\ar[r]^{a\to b,\text{R}}
+	&{q_2}
+}
+\]
+und für den Übergang
+$\delta(q_1,a)=(q_2,b,\text{L})$
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm{
+{q_1}\ar[r]^{a\to b,\text{L}}
+	&{q_2}
+}
+\]
+
+\subsection{Beispiel}
+Wir konstruieren eine Turingmaschine, welche die bereits als weder regulär
+noch kontextfrei erkannte Sprache $L=\{\texttt{0}^{2^n}\;|\; n\in\mathbb N\}$
+erkennt.
+
+Zweierpotenzen kann man daran erkennen, dass man die Zahl ohne
+Rest durch zwei teilen kann, bis nur noch 1 übrig bleibt. Genau
+diesen Prozess kann man mit einer Turingmaschine auf dem Band
+nachbilden. Die Maschine muss also folgendes tun:
+
+Auf dem Input $w$:
+\begin{compactenum}
+\item Fahre von links nach rechts über das Band und streiche jedes zweite $\texttt{0}$.
+\item Falls im Schritt 1 das Band genau eine $\texttt{0}$ enthielt, {\it akzeptiere}.
+\item Falls im Schritt 1 das Band eine ungerade Zahl und mehr als ein $\texttt{0}$
+enthielt, {\it verwerfe}.
+\item Fahre mit dem Kopf zurück zum linken Ende des Bandes
+\item Weiter bei Schritt 1
+\end{compactenum}
+In jedem Durchgang wird die Anzahl der Nullen halbiert, es sei denn,
+sie war nicht gerade. In diesem Fall bleibt nach dem Durchgang eine
+ungerade Anzahl $\texttt{0}$ auf dem Band stehen, was beim darauffolgenden Durchgang
+in Schritt~3 erkannt wird. Geht die Division immer auf, bleibt am Schluss
+nur genau eine $\texttt{0}$ stehen, was im Schritt~2 erkannt wird. Daher funktioniert
+dieser Algorithmus.
+
+Um den Algorithmus mit einer Turing-Maschine zu realisieren, brauchen wir
+ein neues Zeichen {\tt x}, mit dem wir gestrichene Zeichen markieren
+können. Es ist also $\Gamma = \{\texttt{0},{\tt x},\blank\}$.
+Ausserdem brauchen wir
+Zustände, mit denen man die Parität der Anzahl $\texttt{0}$ bestimmen kann, und
+mit denen man die Aktivitäten in Schritt 4 von den anderen unterscheiden
+kann. Schritt $4$ wird zum Beispiel implementiert durch das
+Zustandsdiagramm
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm{
+{}\ar@(ul,ur)^{\genfrac{}{}{0pt}{1}{\texttt{0}\to \texttt{0},\text{L}}{{\tt x}\to{\tt x},\text{L}}}
+\ar[r]^{\blank\to\blank,\text{R}}
+	&
+}
+\]
+Jede zweite Null streichen wird implementiert durch
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm{
+*+\txt{}\ar[d]
+\\
+\ar@/^/[r]^{\texttt{0}\to{\tt x},\text{R}}
+\ar@(ul,dl)_{\tt x\to\tt x,\text{R}}
+	&\ar@/^/[l]^{\texttt{0}\to \texttt{0},\text{R}}
+         \ar@(ur,dr)^{\tt x\to\tt x,\text{R}}
+	 \ar[d]^{\blank\to\blank,?}
+\\
+*+\txt{}
+	&{}
+}
+\]
+Dass akzeptiert werden soll, wenn nach dem Ersetzen einer $\texttt{0}$ durch
+ein {\tt x} keine weiteren $\texttt{0}$ mehr gefunden werden können, kann durch
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+10mm{
+\ar[r]^{\texttt{0}\to{\tt x},\text{R}}
+	&{} \ar@(dl,dr)_{{\tt x}\to{\tt x},\text{R}}
+	    \ar[r]^{\blank\to\blank,\text{R}}
+		&*++[o][F=]{q_{\text{accept}}}
+}
+\]
+ausgedrückt werden. Die Schleife beim mittleren Zustand
+bildet ab, dass {\tt x}-Zeichen übersprungen werden sollen.
+Mit solchen Elementen können wir die Turingmaschine jetzt schrittweise
+aufbauen.
+
+Zunächst stellen wir sicher, dass der Input tatsächlich mit \texttt{0}
+beginnt:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[d]
+\\
+{q_1}\ar[d]_{\genfrac{}{}{0pt}{1}{\blank\to\blank,\text{R}}{{\tt x}\to{\tt x},\text{R}}}
+\\
+*++[o][F=]{q_\text{reject}}
+}
+\]
+Jetzt hängen wir das Segment an, welches prüft, ob es noch genau ein $\texttt{0}$
+auf dem Band hat:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[d]
+\\
+{q_1}\ar[d]_{\genfrac{}{}{0pt}{1}{\blank\to\blank,\text{R}}{{\tt x}\to{\tt x},\text{R}}}
+	\ar[r]^{\texttt{0}\to{\tt x},\text{R}}
+	&{q_2}\ar[d]^{\blank\to\blank,\text{R}}
+              \ar@(u,ul)_{{\tt x}\to {\tt x},\text{R}}
+\\
+*++[o][F=]{q_{\text{reject}}}
+	&*++[o][F=]{q_\text{accept}}
+}
+\]
+Falls dies nicht zutrifft, müssen weitere Nullen weggestrichen werden,
+wobei über die Parität der noch vorhandenen Nullen Buch geführt werden
+muss. Dafür braucht es die beiden Zustände $q_3$ und $q_4$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[d]
+\\
+{q_1}\ar[d]_{\genfrac{}{}{0pt}{1}{\blank\to\blank,\text{R}}{{\tt x}\to{\tt x},\text{R}}}
+	\ar[r]^{\texttt{0}\to\blank,\text{R}}
+	&{q_2}\ar[d]_{\blank\to\blank,\text{R}}
+	      \ar[r]^{\texttt{0}\to{\tt x},\text{R}}
+              \ar@(u,ul)_{{\tt x}\to {\tt x},\text{R}}
+		&{q_3}\ar@(u,r)^{{\tt x}\to{\tt x},\text{R}}
+		      \ar@/^/[d]^{\texttt{0}\to \texttt{0},\text{R}}
+\\
+*++[o][F=]{q_\text{reject}}
+	&*++[o][F=]{q_\text{accept}}
+		&{q_4}\ar@/^/[u]^{\texttt{0}\to {\tt x},\text{R}}
+		      \ar@(d,r)_{{\tt x}\to{\tt x},\text{R}}
+}
+\]
+Wenn die Maschine nach dem Abarbeiten aller \texttt{0} und {\tt x} auf einen
+neuen Blank \textvisiblespace\ trifft, ist sie entweder im Zustand
+$q_3$ oder in $q_4$. Im letzten Fall hat sie ein ungerade Anzahl
+von \texttt{0} gefunden, gemäss Schritt 3 des Algorithmus muss also verworfen
+werden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[d]
+\\
+{q_1}\ar[d]_{\genfrac{}{}{0pt}{1}{\blank\to\blank,\text{R}}{{\tt x}\to{\tt x},\text{R}}}
+	\ar[r]^{\texttt{0}\to\blank,\text{R}}
+	&{q_2}\ar[d]_{\blank\to\blank,\text{R}}
+	      \ar[r]^{\texttt{0}\to{\tt x},\text{R}}
+              \ar@(u,ul)_{{\tt x}\to {\tt x},\text{R}}
+		&{q_3}\ar@(u,r)^{{\tt x}\to{\tt x},\text{R}}
+		      \ar@/^/[d]^{\texttt{0}\to \texttt{0},\text{R}}
+\\
+*++[o][F=]{q_\text{reject}}
+	&*++[o][F=]{q_\text{accept}}
+		&{q_4}\ar@/^/[u]^{\texttt{0}\to {\tt x},\text{R}}
+		      \ar@(d,r)_{{\tt x}\to{\tt x},\text{R}}
+		      \ar@/^20pt/[ll]^{\blank\to\blank,\text{R}}
+}
+\]
+Wenn sie dagegen im Zustand $q_3$ ist, muss sie nach links fahren,
+bis zum ersten Blank, und dann im Zustand $q_2$ ankommen. Dies erreicht
+man mit Hilfe eines weitere Zustands $q_5$.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[d]
+	&*+\txt{}
+		&{q_5}\ar@(ul,ur)^{\genfrac{}{}{0pt}{1}{\texttt{0}\to \texttt{0},\text{L}}{{\tt x}\to {\tt x},\text{L}}}
+		      \ar[dl]_{\blank\to\blank,\text{R}}
+\\
+{q_1}\ar[d]_{\genfrac{}{}{0pt}{1}{\blank\to\blank,\text{R}}{{\tt x}\to{\tt x},\text{R}}}
+	\ar[r]^{\texttt{0}\to\blank,\text{R}}
+	&{q_2}\ar[d]_{\blank\to\blank,\text{R}}
+	      \ar[rr]^{\texttt{0}\to{\tt x},\text{R}}
+              \ar@(u,ul)_{{\tt x}\to {\tt x},\text{R}}
+		&*+\txt{}
+			&{q_3}\ar@(u,r)^{{\tt x}\to{\tt x},\text{R}}
+			      \ar@/^/[d]^{\texttt{0}\to \texttt{0},\text{R}}
+			      \ar[ul]_{\blank\to\blank,\text{L}}
+\\
+*++[o][F=]{q_\text{reject}}
+	&*++[o][F=]{q_\text{accept}}
+		&*+\txt{}
+			&{q_4}\ar@/^/[u]^{\texttt{0}\to {\tt x},\text{R}}
+			      \ar@(d,r)_{{\tt x}\to{\tt x},\text{R}}
+			      \ar@/^20pt/[lll]^{\blank\to\blank,\text{R}}
+}
+\]
+Mit diesem Beispiel haben wir gezeigt, dass die Menge der
+Sprachen, die von einer Turingmaschine erkennbar sind, Sprachen
+enthält, die mit den bisherigen Mitteln nicht erkennbar waren.
+
+\begin{definition}
+Die von einer Turingmaschine $M$ erkannten Wörter bilden die
+Sprache $L(M)$.
+\end{definition}
+

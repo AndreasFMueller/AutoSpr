@@ -1,0 +1,52 @@
+%
+% chapter.tex -- Regulaere Sprachen und endliche Automaten
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\chapter{Endliche Automaten und reguläre Sprachen\label{chapter-regular}}
+\lhead{Reguläre Sprachen}
+Endliche Automaten stellen das einfachste Berechnungsmodell
+dar, welches in diesem Skript untersucht werden soll.
+Ausser über seine Zustände verfügt ein Automat über keinen weiteren
+Speicher.
+Trotzdem defineren endliche Automaten eine Menge von Sprachen, die 
+mathematisch und für die Praxis sehr zweckmässige Eigenschaften
+haben.
+Ausserdem gibt es ein besonders einfachen Syntax, um
+solche Sprachen zu beschreiben: die regulären Ausdrücke.
+Es geht in diesem Kapitel allerdings nicht darum, das Arbeiten
+mit regulären Ausdrücken zu lernen.
+Vielmehr geht es vor allem um das Verständnis, welche Eigenschaften
+eine Sprache hat, die mit einem endlichen Automaten oder einem
+regulären Ausdruck beschrieben werden kann.
+
+\input{3-regulaer/dea.tex}
+\input{3-regulaer/nea.tex}
+\input{3-regulaer/regex.tex}
+\input{3-regulaer/lex.tex}
+
+\section{Zusammenfassung: Das Wichtigste in Kürze}
+\begin{enumerate}
+\item Zu jedem DEA gibt es einen
+minimalen Automaten, der zum Beispiel dazu verwendet werden kann,
+DEA zu vergleichen
+(\ref{regulaer:minimalautomat}).
+\item Eine Sprache ist regulär, wenn sie von einem endlichen Automaten
+akzeptiert wird (\ref{regulaer:definition:regulaere-sprache}).
+\item Selbst wenn man von einer Sprache nur weiss, dass sie regulär
+ist, kann man einen DEA finden, der die Sprache akzeptiert
+(Satz \ref{satz_dea_aus_sprache}).
+\item Jeder NEA kann in einen DEA umgewandelt werden (\ref{regulaer:nea-dea}).
+\item Reguläre Sprachen erfüllen das Pumping Lemma
+(\ref{regulaer:pumpinglemma}).
+Eine Sprache ist nicht regulär, wenn sie ein Wort enthält, welches
+nicht aufgepumpt werden kann: wie auch immer man das Wort
+auf ein Pumping Lemma zerlegt, mindestens ein aufgepumptes
+oder abgepumptes Wort ist nicht mehr in der Sprache drin.
+\item Die regulären Operationen Vereinigung, Verkettung und $*$-Operation
+erzeugen aus regulären Sprachen neue reguläre Sprachen
+(\ref{regulaer:regulaere-operationen}).
+\item Zu jedem endlichen Automaten kann man einen regulären Ausdruck
+finden, der die gleiche Sprache akzeptiert wie der Automat.
+(\ref{regulaer:dea-re}).
+\end{enumerate}

@@ -1,0 +1,151 @@
+%
+% beweis.tex -- Beweistechinken
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\rhead{Beweistechniken}
+\section{Beweistechniken}
+Da in dieser Vorlesung Beweise zentral sind, hier drei grundlegende 
+Techniken zur Erinnerung.
+
+\subsection{Konstruktion}
+\index{Beweis!konstruktiver}%
+Ein konstruktiver Beweis gibt einfach eine Konstruktion an, die
+das behauptete Objekt liefert oder für die die behauptete Eigenschaft
+offensichtlich ist.
+Ein solches Vorgehen wird auch oft eine Herleitung genannt.
+
+\begin{satz}
+\index{Gleichung!quadratische}%
+Falls $a\ne0$ und $b^2-4ac>0$ hat die quadratische Gleichung
+\[
+ax^2+bx+c=0
+\]
+zwei verschiedene Lösungen.
+\end{satz}
+
+\begin{proof}[Beweis]
+Man kann die quadratische Gleichung mit vollständigem Ergänzen wie
+folgt umformen:
+{
+\allowdisplaybreaks
+\begin{align*}
+ax^2+bx+c&=0\\
+x^2+2\cdot \frac{b}{2a} x +\frac{c}a&=0\\
+x^2+2\cdot \frac{b}{2a} x 
++\left(\frac{b}{2a}\right)^2
++\frac{c}a&=0
++\left(\frac{b}{2a}\right)^2\\
+\left(x+\frac{b}{2a}\right)^2 &= \left(\frac{b}{2a}\right)^2 -\frac{c}a \\
+\left(x+\frac{b}{2a}\right)^2 &=
+\frac{b^2-4ac}{4a^2}\\
+x+\frac{b}{2a}&=\frac{\pm\sqrt{b^2-4ac}}{2a}\tag{*}\\
+x_{\pm}&=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+\end{align*}
+}
+Die Voraussetzung $a>0$ wird im ersten Schritt dieser Ableitung verwendet.
+Da $b^2-4ac>0$ kann im Schritt (*) tatsächlich die Wurzel gezogen werden,
+und die beiden Wurzeln sind auch verschieden. Man hat also zwei verschiedene
+Lösungen konstruiert, womit die Behauptung bewiesen ist.
+\end{proof}
+
+\subsection{Widerspruch\label{widerspruchsbeweis}}
+\index{Beweis!mit Widerspruch}%
+\index{Widerspruch}%
+In der Mathematik darf es keine Widersprüche geben, denn aus einem
+Widerspruch liesse sich jede beliebige Aussage ableiten. Wäre zum
+Beispiel $P$ eine Aussage, die sowohl wahr wie auch falsch ist,
+dann hätte die Menge
+\[
+\{x\in\{P\}\,|\, \text{$x$ ist wahr}\}
+\]
+je nachdem ob $P$ nun wahr oder falsch ist $1$ oder $0$ Elemente.
+Da das aber natürlich immer die gleiche Menge ist, müsste man
+folgern $0=1$. Daraus lässt sich dann ableiten, dass alle natürlichen
+Zahlen gleich sind (zum Beispiel mit vollständiger Induktion, siehe
+unten), dass alle Mengen gleich viele Elemente haben, nämlich gar
+keine, dass es die ganze Mathematik also gar nicht gibt.
+
+Wenn man also eine Aussage $P$ beweisen will, kann man annehmen,
+dass $P$ falsch ist, oder $\neg P$ wahr ist. Wenn daraus jetzt
+eine Aussage $Q$ folgt, von der wir bereits wissen, dass sie falsch
+ist, dann bedeutet das, dass die Annahme $\neg P$ nicht haltbar
+war.
+
+Und noch etwas formaler: wenn $\neg P\Rightarrow \neg Q$, dann können
+wir das umformen zu $\neg Q\Rightarrow P$ (nach Kontrapositionsformel
+(\ref{kontraposition})), wir wissen bereits, dass
+$Q$ falsch ist, die linke Seite also wahr ist, also muss auch $P$
+wahr sein.
+
+Das klassische Beispiel für einen Beweis mit Widerspruch ist das 
+folgende:
+\begin{satz}$\sqrt{2}$ ist irrational: $\sqrt{2}\not\in\mathbb Q$.
+\index{irrational}%
+\end{satz}
+\begin{proof}[Beweis]
+Wir nehmen $\sqrt{2}\in\mathbb Q$ und führen dies zu einem
+Widerspruch. Wenn $\sqrt{2}\in\mathbb Q$ ist, kann man $\sqrt{2}$
+als gekürzten Bruch $\frac{p}{q}$ schreiben. Dann gilt aber
+auch
+\[
+\sqrt{2}^2=2=\frac{p^2}{q^2}\quad\Rightarrow\quad p^2=2q^2.
+\]
+Wenn $p$ den Primfaktor $2$ enthält, dann enthält $p^2$
+eine gerade Anzahl von Primfaktoren $2$. Ebenso enthält
+$q^2$ eine gerade Anzahl von Primfaktoren $2$, also $2q^2$
+eine ungerade Anzahl von Primfaktoren $2$.
+Im Ausdruck $p^2=2q^2$ steht also links eine Zahl mit einer
+geraden Anzahl von Primfaktoren $2$, und rechts eine Zahl mit
+einer ungeraden Anzahl von Primfaktoren $2$.
+Dieser Widerspruch zeigt, dass die
+Annahme $\frac{p}q\in\mathbb Q$ nicht zu halten ist.
+\end{proof}
+
+\subsection{Induktion}
+\index{Beweis!mit Induktion}%
+\index{Induktion}%
+Möchte man eine Aussage mit einem natürlichen Parameter $n$ für jeden
+möglichen Wert von $n$ beweisen, kann man dazu vollständige Induktion
+verwenden. Dazu geht man wie folgt vor:
+\begin{description}
+\index{Verankerung}%
+\item[Verankerung:] Beweise die Aussage für den kleinsten Wert,
+für den sie bewiesen werden soll.
+\index{Induktionsannahme}%
+\item[Induktionsannahme:] Nehme an, für einen bestimmten Wert
+$n$ sei die Aussage bereits bewiesen (nach der Verankerung ist sie 
+für den kleinsten möglichen Wert ja tatsächlich bereits bewiesen).
+\index{Induktionsschritt}%
+\item[Induktionsschritt:] Beweise jetzt die Aussage für den Wert $n+1$.
+\end{description}
+
+Als Beispiel soll der folgene Satz dienen:
+
+\begin{satz} Für alle natürlichen Zahlen $n$ gilt
+\[
+\sum_{k=1}^nk=\frac{n(n+1)}2
+\]
+\end{satz}
+\begin{proof}[Beweis]
+\begin{description}
+\item[Verankerung:] für $n=0$ ist die Summe leer, ergibt also $0$.
+Auf der rechten Seite steht $0(0+1)/2=0$, die Formel trifft also zu.
+\item[Induktionsannahme:]Wir nehmen also an, dass
+\[
+\sum_{k=1}^nk=\frac{n(n+1)}2
+\]
+\item[Induktionsschritt:] Wir müssen die Behauptung für $n+1$ zeigen. Dazu
+berechnen wir
+\begin{align}
+\sum_{k=1}^{n+1}k&=\biggl(\sum_{k=1}^nk\biggr) + (n+1)\notag\\
+&=\frac{n(n+1)}2+(n+1)\label{verwendung_annahme}\\
+&=\frac{n(n+1)+2(n+1)}2\notag\\
+&=\frac{(n+1)(n+2)}2=\frac{(n+1)((n+1)+1)}2\notag
+\end{align}
+In Schritt (\ref{verwendung_annahme}) haben wir die Induktionsannahme
+verwendet. In der letzten Zeile auf der rechten Seite steht tatsächlich
+die Formel des Satzes, in der $n$ durch $n+1$ ersetzt worden ist.
+Damit ist die Formel für $n+1$ bewiesen.
+\end{description}
+\end{proof}

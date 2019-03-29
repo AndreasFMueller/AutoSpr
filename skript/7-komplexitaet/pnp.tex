@@ -1,0 +1,342 @@
+%
+% pnp.tex -- Klassen P und NP
+%
+% (c) 2011 Prof Dr Andreas Mueller, Hochschule Rapperswil
+%
+\section{Klassen P und NP}
+\index{Klasse P}%
+\rhead{Klassen P und NP}
+\subsection{Klasse P}
+Bei der Simulation einer Turingmaschine mit mehreren Bändern
+auf einer Standardmaschine wird die Laufzeit im schlimmsten
+Fall quadriert. Die Funktion $t_M(n)$ ist also keine Invariante
+in der Menge der entscheidbaren Sprachen. Für das gleiche Problem kann
+je nach eingesetztem Maschinentyp ein völlig anderes Laufzeitverhalten
+beobachtet werden. 
+
+Erhalten bleibt aber die Eigenschaft der Funktion $t_M(n)$, 
+polynomiell zu sein. Simuliert man eine Turingmaschine $M_1$ mit
+mehreren Bändern auf einer Standardturingmaschine $M_2$,
+dann ist $t_{M_2}=O(t_{M_1}(n)^2)$.
+Wenn also $t_{M_1}(n)=O(n^k)$ ist, dann ist $t_{M_2}(n)=O(n^{2k}).$
+Beide Maschinen haben eine Laufzeit, die durch ein Polynom beschränkt
+sind.
+
+\begin{definition}
+\index{Klasse P}%
+Die Klasse $P$ besteht aus den Sprachen, die mit einem Entscheider
+mit polynomieller Laufzeit entschieden werden können.
+\end{definition}
+
+\subsection{Beispiele von Sprachen in P}
+\index{Sprachen!kontextfreie}%
+\begin{satz}
+Kontextfreie Sprachen sind in P.
+\end{satz}
+
+Der Satz besagt, dass es zu jeder kontextfreien Sprache eine
+Turingmaschine gibt, die die Zugehörigkeit eines Wortes zur
+Sprache in einer Zeit entscheiden kann, die polynomiell ist in
+der Länge des Wortes.
+
+\begin{proof}[Beweis]
+Der CYK-Algorithmus aus Satz \ref{cyk-algorithm}
+kann in Zeit $O(n^3)$ durchgeführt werden.
+\end{proof}
+
+Sei $G$ ein gerichteter Graph und $s$ und $t$ zwei Vertizes
+des Graphen. Das Pfad-Problem fragt, ob es einen von $s$ nach $t$
+führend Pfad in dem Graphen gibt. Übersetzt in ein Spracheproblem
+liefert es uns den folgenden Satz.
+
+\begin{satz}
+\index{PATH@\textsl{PATH}}%
+Die Sprache
+\[
+\text{\textsl{PATH}}
+=\{
+\langle G,s,t\rangle
+\;|\;\text{$G$ ist ein gerichteter Graph mit einem Pfad von $s$ nach $t$}
+\}
+\]
+ist in P.
+\end{satz}
+
+\begin{proof}[Beweis]
+\index{Markierungsalgorithmus}%
+Ein Markierungsalgorithmus, der beginnend bei $s$ alle erreichbaren
+Vertizes markiert, solange sich noch neue Vertizes markieren lassen,
+hat polynomielle Laufzeit.
+\end{proof}
+
+\begin{satz}
+\index{RELPRIM@\textsl{RELPRIME}}%
+Die Sprache
+\[
+\text{\textsl{RELPRIME}}
+=\{
+\langle a,b\rangle \;|\;
+\text{$a, b\in \mathbb N$ und $a$ und $b$ sind teilerfremd}
+\}
+\]
+ist in P.
+\end{satz}
+
+\begin{proof}[Beweis]
+\index{Algorithmus!euklidischer}%
+Teilerfremdheit kann mit dem euklidischen Algorithmus entscheiden werden.
+Dieser funktioniert wie folgt:
+\begin{compactenum}
+\item Wiederhole Schritte 2 und 3 bis $y=0$:
+\item Weise $x$ den Wert $x\mod y$ zu
+\item Vertausche $x$ und $y$
+\item Gebe Resultat $x$ zurück.
+\end{compactenum}
+Bei diesem Algorithmus wird $x$ in jedem Schritt mindestens halbiert,
+die Laufzeit ist also proportional zur grösseren der
+beiden Zahlen $\log_2 a$ und $\log_2 b$, also ist die Laufzeit
+polynomiell in der Inputlänge $\log_2 a+\log_2 b$.
+\end{proof}
+
+\subsection{Verifizierer}
+Sprachen, die von einer nichtdeterministischen Turingmaschine
+in polynomieller Zeit entschieden werden, brauchen bei der
+Simulation auf einer deterministischen Turingmaschine im
+schlimmsten Fall exponentiell länger. Es ist also im
+Allgemeinen fast unmöglich, ein solches Problem zu lösen.
+
+Gibt man allerdings die Lösung vor, zum Beispiel indem man
+die richtigen nichtdeterministischen Entscheidungen vorgibt,
+kann man die Problemlösung in polynomieller Zeit nachvollziehen.
+Genau diese Idee formalisiert das Konzept des Verifizierers.
+
+\begin{definition}
+\index{Verifizierer}%
+Ein Verifizierer für die Sprache $A$ ist eine Turingmaschine
+$V$ mit
+\[
+A=\{
+w\;|\;\text{$\exists c\in C^*$ so dass $V$ $\langle w,c\rangle$ akzeptiert}
+\},
+\]
+wobei $C$ eine endliche Menge ist.
+Ein Verifizierer heisst polynomiell, wenn seine Laufzeit polynomiell
+ist in der Länge des Wortes $w$.
+\end{definition}
+
+Man beachte, dass die Länge von $c$ auf die Laufzeit keinen
+Einfluss haben darf. Der Verifizierer muss nämlich gar nicht
+den ganzen String $c$ anschauen, er muss davon nur soviel
+nehmen, wie er für die Verifikation braucht. Aber natürlich
+muss er den ganzen String $w$ lesen, von dessen Länge muss
+die Laufzeit abhängen.
+
+Ein Verifizierer ist erst nützlich, wenn man auch $c\in C^*$
+hat. Im Falle des Akzeptanzproblems durch eine nichtdeterministische
+Turingmaschine (siehe Einführungsbeispiel) kann die Folge der
+nichtdeterministischen Entscheidungen in der Berechnung diese
+Funktion übernehmen. Daraus schliessen wir
+
+\begin{satz} Eine Sprache wird genau dann von einer
+nichtdeterministischen Turingmaschine in polynomieller Zeit entschieden,
+wenn sie einen polynomiellen Verifizierer hat.
+\end{satz}
+
+\begin{proof}[Beweis]
+Bereits gezeigt haben wir, dass eine nichtdeterministisch in
+polynomieller Zeit entscheidbare Sprache einen polynomiellen Verifizierer hat.
+Es ist also
+nur noch zu klären, dass auch das Umgekehrte gilt, dass also eine
+Sprache mit einem polynomiellen Verifizierer nichtdeterministisch
+in polynomieller Zeit entschieden werden kann.
+
+Dazu verwenden wir den folgenden Entscheidungsalgorithmus:
+\begin{compactenum}
+\item Erzeuge nicht deterministisch $c\in C^*$.
+\item Teste, ob $V$ $\langle w,c\rangle$ akzeptiert.
+\item falls $V$ akzeptiert: $q_{\text{accept}}$, falls nicht:
+$q_{\text{reject}}$
+\end{compactenum}
+Die Laufzeit dieses Algorithmus wird bestimmt von der Laufzeit von $V$,
+ist also polynomiell in der Länge von $w$.
+\end{proof}
+
+\begin{beispiel}[Faktorisierung]
+Die Faktorisierung eines Produktes von zwei grossen Primzahlen
+gilt allgemein als schwierig. Die Sicherheit des RSA-Algorithmus,
+der in zahlreichen im Internet verbreiteten kryptographischen
+Protokollen verwendet wird, basiert wesentlich auf der Tatsache, dass
+es sehr einfach ist, ein Produkt von zwei grossen Primzahlen zu
+bilden, aber sehr viel schwieriger, aus dem Produkt die beiden
+Faktoren wieder zu ermitteln.
+
+Es geht also um die Sprache
+\[
+L
+=
+\{
+n\;|\,\text{$n=pq$, wobei $p$ und $q$ Primzahlen sind}.
+\}
+\]
+Erfahrungsgemäss ist es praktisch unmöglich, die Faktoren
+einer Zahl in $n$ zu bestimmen, und damit zu entscheiden, ob
+$n\in L$ ist. Kennt man jedoch einen der beiden Faktoren,
+zum Beispiel $p$, dann kann man mit dem Divisionsalgorithmus
+nachprüfen, ob die Division ``aufgeht'', was in einer Anzahl
+von Schritten möglich ist, die proportional zur Länge von 
+$n$, also zu $\log_b n$ ist. Der Test auf Rest 0 bei Teilung
+durch $p$ ist also ein polynomieller Verifizierer mit $c=p$.
+\end{beispiel}
+
+\subsection{Klasse NP}
+Keine Variante der Turingmaschine macht aus einem Problem,
+welches sich in einer Laufzeit $2^{O(n^k)}$ entscheiden
+lässt, ein Problem in $P$. Es ist daher zu vermuten,
+dass die Sprachen, die nichtdeterministisch in polynomieller
+Zeit entschieden werden können, eine wesentlich grössere
+Klasse bilden als $P$.
+
+\begin{definition}
+\index{Klasse NP}%
+Die Klasse der von einer nichtdeterministischen Turingmaschine
+in polynomieller Zeit entscheidbaren Sprachen heisst NP.
+\end{definition}
+
+\begin{figure}
+\begin{center}
+\includegraphics{images/lang-5}
+\end{center}
+\caption{Jede Sprache in P ist auch in NP\label{psubsetnp}}
+\end{figure}%
+
+Insbesondere enthält NP alle Sprachen mit einem polynomiellen
+Verifizierer. Es ist auch klar, dass $\text{P}\subset\text{NP}$,
+siehe Abbildung \ref{psubsetnp}.
+Ein offenes Problem ist jedoch, ob $\text{P}\ne \text{NP}$.
+Die Bedeutung dieser Frage wird später klar werden.
+
+\subsection{Satisfiability: \textsl{SAT}}
+\index{SAT}%
+\index{Satisfiability}%
+Die Sprache 
+\[
+\text{\textsl{SAT}}=\{\varphi\;|\;\text{$\varphi$ ist eine erfüllbare logische Formel}\}
+\]
+ist entscheidbar. Für eine logische Formel $\varphi(x_1,\dots,x_n)$
+testet man einfach alle möglichen Belegungen der Variablen $x_1,\dots,x_n$
+mit Wahrheitswerten.
+Dafür sind $2^n$ Verifikationen notwendig, dies ist also
+bestimmt kein Algorithmus in P.
+
+\textsl{SAT} ist aber in NP,
+denn wir können einen polynomiellen Verifizierer angeben.
+Der Verifizierer verlangt als Lösungszertifikate $c$ eine
+Belegung der Variablen mit Wahrheitswerten $c=(x_1,\dots,x_n)$,
+und überprüft, ob durch einsetzen der Werte $x_1,\dots,x_n$
+die Formel $\varphi(x_1,\dots,x_n)$ wahr wird.
+
+Eine Variante von \textsl{SAT} ist \textsl{3SAT}.
+Im Gegensatz zu \textsl{SAT} enthält \textsl{3SAT}
+nur Formeln in konjunktiver Normalform, und jede Klausel
+enthält genau drei Terme (3cnf-Formel).
+Eine typische Formel in \textsl{3SAT} ist 
+\[
+\varphi=(x_1\vee x_2\vee x_3)\wedge (\bar x_1\vee x_3\vee \bar x_4)\wedge
+	(x_1\vee x_3\vee x_5).
+\]
+Die Sprache \textsl{3SAT} ist
+\[
+\text{\textsl{3SAT}} =\{\varphi\;|\; \text{$\varphi$ ist eine erfüllbare 3cnf-Formel}\}.
+\]
+Wie \textsl{SAT} ist \textsl{3SAT} in NP.
+
+\subsection{Existenz von Cliquen: \texorpdfstring{$k$}{k}-\textsl{CLIQUE}}
+\begin{figure}
+\begin{center}
+%\includegraphics[width=0.6\hsize]{images/comp-1}
+\includegraphics[width=0.35\hsize]{images/comp-1}
+\end{center}
+\caption{Graph mit sechs Knoten, keiner 4-Clique, aber
+vier 3-Cliquen\label{6graph}}
+\end{figure}%
+\begin{figure}
+\begin{center}
+\begin{tabular}{cccc}
+\includegraphics[width=0.35\hsize]{images/comp-2}&%
+\includegraphics[width=0.35\hsize]{images/comp-3}\\
+\includegraphics[width=0.35\hsize]{images/comp-4}&%
+\includegraphics[width=0.35\hsize]{images/comp-5}
+\end{tabular}
+\end{center}
+\caption{3-Cliquen des Graphen von Abbildung~\ref{6graph}}
+\end{figure}%
+\index{Clique}%
+\index{Clique@$k$-Clique}%
+\index{Cliquen-Problem}%
+\index{CLIQUE@\textsl{CLIQUE}}%
+Eine $k$-Clique in einem Graph $G$ ist eine Menge von $k$
+Ecken des Graphen so, dass in $G$ jede Ecke der Teilmenge mit
+jeder anderen Ecke verbunden ist. Im umgangssprachlichen Gebrauch
+ist eine Clique eine Gruppe von Leuten, in der jeder jeden kennt.
+
+Das Cliquen-Problem
+\[
+\text{$k$-\textsl{CLIQUE}} = \{ \langle G\rangle\;|\;
+\text{$G$ ist ein Graph mit einer $k$-Clique}\}
+\]
+ist entscheidbar. Man probiert alle möglichen $k$-elementigen
+Teilmengen der Ecken des Graphen durch, ob sie eine Clique
+bilden. Da Zahl der Teilmengen ist $\binom{n}{k}$, wenn $n$
+die Zahl der Ecken ist, und $\binom{n}{k}$ von der Grössenordnung
+$O(n^k)$ ist, ist dieser Algorithmus nicht in P.
+
+Das Cliquen-Problem ist aber in NP. Dazu muss wieder ein
+Verfizierer angegeben werden. Als Lösungszertifikat verlangt
+der Verifizierer die Menge $c=\{v_1,\dots,v_k\}$ der
+Vertizes, die angeblich eine $k$-Clique bilden. Dann testet
+er jedes Paar von Vertices in $c$ daraufhin, ob sie in $G$
+verbunden sind. Dies sind weniger als $k^2$ Tests die nicht
+weniger Aufwand als die Grösse des Graphen brauchen, die
+Komplexität dieses Algorithmus ist also $O(n)$, das
+Cliquen-Problem ist in NP.
+
+\subsection{Färbeproblem: \texorpdfstring{$k$}{k}-\textsl{VERTEX-COLORING}}
+\index{F\ärbeproblem}%
+\begin{figure}
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics{images/comp-6}&
+\qquad&\qquad
+\includegraphics{images/comp-7}
+\end{tabular}
+\end{center}
+\caption{Zum Färbeproblem: der Graph links kann mit drei Farben
+eingefärbt werden, der Graph rechts braucht vier verschiedene Farben
+\label{vertex-coloring-examples}}
+\end{figure}%
+\index{VERTEX-COLORING@\textsl{VERTEX-COLORING}}%
+Man sagt, die Vertizes eines Graphen $G$ können mit $k$ Farben
+eingefärbt werden, wenn sich für jeden Vertex eine der $k$ Farben
+wählen lässt, so dass nie zwei durch eine Kante verbundene Vertizes
+die gleiche Farbe bekommen.
+
+Das Färbe-Problem 
+\[
+\text{$k$-\textsl{VERTEX-COLORING}}
+=
+\{
+\langle G\rangle\;|\;
+\text{$G$ ist ein mit $k$ Farben einfärbbarer Graph}\}
+\}
+\]
+ist entscheidbar. Man kann alle $k^n$ möglichen Färbungen
+($n$ die Anzahl der Vertizes) durchtesten, ob sie die Bedingung
+erfüllen, dass verbundene Vertizes nicht die gleiche Farbe haben
+dürfen.
+
+$k$-\textsl{VERTEX-COLORING} ist in NP, denn ein polynomieller Verifizierer
+wird als Lösungszertifikat die Farbzuordnung $c=(c_1,\dots,c_n)$ der
+Ecken $1,\dots,n$ des Graphen verlangen, und kann damit in polynomieller
+Zeit prüfen, ob die Bedingung verschiedener Farbe an den Enden
+jeder Kante erfüllt ist.
+

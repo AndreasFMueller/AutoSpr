@@ -1,0 +1,88 @@
+In Aufgabe~\ref{40000030} wurde der Stackautomat
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix {
+*+\txt{}\ar[r]
+        &{0} \ar[r]^{\varepsilon,\varepsilon\to{\tt \$}}
+                &{1}	\ar@(u,ur)^{\texttt{a},\varepsilon\to\texttt{a}}
+                	\ar@(ur,r)^{\texttt{b},\varepsilon\to\texttt{b}}
+			\ar@/_30pt/[dd]_{\texttt{a},\varepsilon\to\varepsilon}
+			\ar@/^30pt/[dd]^{\texttt{b},\varepsilon\to\varepsilon}
+			\ar[dd]^{\varepsilon,\varepsilon\to\varepsilon}
+\\
+*+\txt{}
+	&*+\txt{}
+		&*+\txt{}
+\\
+*+\txt{}
+        &*++[o][F=]{4}
+                &{3}	\ar@(r,dr)^{\texttt{a},\texttt{a}\to\varepsilon}
+                	\ar@(dr,d)^{\texttt{b},\texttt{b}\to\varepsilon}
+			\ar[l]^{\varepsilon,{\tt \$}\to\varepsilon}
+}
+\]
+für Palindrome über dem Alphabet $\Sigma=\{\texttt{a},\texttt{b}\}$
+konstruiert.
+Leiten Sie daraus eine Grammatik für Palindrome über $\Sigma$ ab.
+
+\thema{Grammatik aus Stackautomat}
+
+\begin{loesung}
+Gemäss dem im Skript beschriebenen Algorithmus muss der Automat zunächst
+standardisiert werden.
+Die einzige nötige Änderung ist, dass die vertikalen Übergange von
+$1$ nach $3$ ein Zeichen auf den Stack legen müssen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix {
+*+\txt{}\ar[r]
+        &{0} \ar[r]^{\varepsilon,\varepsilon\to{\tt \$}}
+                &{1}	\ar@(u,ur)^{\texttt{a},\varepsilon\to\texttt{a}}
+                	\ar@(ur,r)^{\texttt{b},\varepsilon\to\texttt{b}}
+			\ar@/_30pt/[d]_{\texttt{a},\varepsilon\to\texttt{x}}
+			\ar@/^30pt/[d]^{\texttt{b},\varepsilon\to\texttt{x}}
+			\ar[d]^{\varepsilon,\varepsilon\to\texttt{x}}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{2} \ar[d]_{\varepsilon,\texttt{x}\to\varepsilon}
+\\
+*+\txt{}
+        &*++[o][F=]{4}
+                &{3}	\ar@(r,dr)^{\texttt{a},\texttt{a}\to\varepsilon}
+                	\ar@(dr,d)^{\texttt{b},\texttt{b}\to\varepsilon}
+			\ar[l]^{\varepsilon,{\tt \$}\to\varepsilon}
+}
+\]
+Daraus kann man jetzt die Regeln ableiten
+\begin{align*}
+A_{04}&\to A_{13}
+\\
+A_{13}&\to \texttt{a} A_{13} \texttt{a} \\
+      &\to \texttt{b} A_{13} \texttt{b} \\
+      &\to \texttt{a}A_{22}\\
+      &\to \texttt{b}A_{22}\\
+      &\to \varepsilon A_{22}\\
+A_{00}&\to\varepsilon\\
+A_{11}&\to\varepsilon\\
+A_{22}&\to\varepsilon\\
+A_{33}&\to\varepsilon\\
+A_{44}&\to\varepsilon\\
+\end{align*}
+Da man $A_{22}$ nur in $\varepsilon$ verwandeln kann, kann man die Variable
+$A_{22}$ in den Regeln ganz weglassen.
+Da man ausserdem $A_{04}$ nur in $A_{13}$ verwandeln kann, kann man auch
+direkt von $A_{13}$ als Startvariable ausgehen.
+Schreibt man $S=A_{13}$ wird die Grammatik zu
+\begin{align*}
+S&\to\texttt{a} S\texttt{a}\\
+ &\to\texttt{b} S\texttt{b}\\
+ &\to\texttt{a}\\
+ &\to\texttt{b}\\
+ &\to\varepsilon
+\qedhere
+\end{align*}
+\end{loesung}
+
+
+

@@ -1,0 +1,219 @@
+%
+% katalog.tex -- Katalog NP-vollständiger Probleme
+%
+% (c) 2011 Prof Dr Andreas Mueller, Hochschule Rapperswil
+%
+\section{Katalog NP-vollständiger Probleme von Karp}
+\rhead{Liste von Karp}
+\index{Karp, Richard}%
+\index{Karp's Liste}%
+Schon kurz nach der Veröffentlichung des Beweises des Satzes
+\ref{cooklevin} hat Richard Karp einen Baum von Reduktionen
+veröffentlicht, in dem ausgehend von SAT 21 Probleme verzeichnet
+waren.
+Selbstverständlich lässt
+sich jedes dieser Probleme auf jedes andere reduzieren. Zum Beispiel
+hatten wir \textsl{3SAT} auf \textsl{CLIQUE} reduziert, während
+Karp direkt von \textsl{SAT} ausgeht. Karps Reduktionsbaum
+beginnt wie folgt.
+\[
+\xymatrix{
+{}
+	&\text{\textsl{SAT}} \ar[dl] \ar[d] \ar[dr]
+\\
+\text{\textsl{CLIQUE}} \ar[d] \ar[dr]
+	&\text{\textsl{BIP}}
+		&\text{\textsl{3SAT}} \ar[d]
+\\
+\text{\textsl{VERTEX-COVER}}
+	&\text{\textsl{SET-PACKING}}
+		&\text{\textsl{VERTEX-COLORING}}
+}
+\]
+Weiter oben haben wir \textsl{CLIQUE} von \textsl{3SAT} aus
+reduziert. \textsl{VERTEX-COLORING} haben wir im Zusammenhang
+mit dem Stundenplanproblem getroffen.
+
+\index{BIP@\textsl{BIP}}%
+\textsl{BIP} ist ``binary integer programming'', zu einer ganzzahligen
+Matrix $C$ und einem ganzzahligen Vektor $d$ ist ein binärer
+Vektor $x$ zu finden mit $Cx=d$.
+
+\begin{satz}
+\textsl{BIP} ist NP-vollständig.
+\end{satz}
+
+\begin{proof}[Beweis]
+Es ist klar, dass \textsl{BIP} in NP ist. Es genügt daher, eine
+Reduktion
+\[
+\text{\textsl{SUBSET-SUM}}\le_P\text{\textsl{BIP}}
+\]
+zu konstruieren.
+
+Dazu muss zu einer Menge $S$ von ganzen Zahlen und einer Summe $t$
+eine Matrix und ein Vektor konstruiert werden. Als Matrix nehmen wir
+eine Matrix mit einer Zeile, in der die Elemente von $S$ stehen. Als
+Vektor $d$ nehmen wir den Vektor mit der einen Komponenten $t$.
+Einen binären Vektor $x$ finden mit $Cx=d$ ist jetzt gleichbedeutend
+damit, eine Auswahl von Zahlen in $S$ zu finden, deren Summe $t$ ist.
+Also ist
+$\text{\textsl{SUBSET-SUM}}\le_P\text{\textsl{BIP}}$.
+\end{proof}
+
+Im folgenden wollen die von Karp als NP-vollständig erkannten Probleme
+ohne Beweis im Sinne einer Referenz zusammenstellen. Hat man ein
+Problem als NP-vollständig nachzuweisen, kann man von jedem dieser
+Probleme aus eine Reduktion versuchen.
+
+Für die Abhängigkeiten unterhalb von \textsl{VERTEX-COVER} gibt 
+Karp folgenden Baum
+\[
+\xymatrix{
+	&\text{\textsl{VERTEX-COVER}} \ar[dl] \ar[d]\ar[dr]\ar[drr]
+\\
+\begin{minipage}{1.0truein}
+\textsl{FEEDBACK-NODE-SET}
+\end{minipage}
+	&\begin{minipage}{1.0truein}\textsl{FEEDBACK-ARC-SET}\end{minipage}
+		&\text{\textsl{HAMPATH}}\ar[d]
+			&\text{\textsl{SET-COVERING}}
+\\
+	&
+		&\text{\textsl{UHAMPATH}}
+}
+\]
+\textsl{UHAMPATH} ist das Problem in einem ungerichteten Graphen
+einen hamiltonschen Pfad zu finden. Die anderen Probleme sind wie
+folgt definiert:
+\begin{description}
+\index{VERTEX-COVER@\textsl{VERTEX-COVER}}%
+\item[\textsl{VERTEX-COVER}:] Gegeben ein Graph $G$ und eine Zahl
+$k$, gibt es eine Teilmenge von $k$ Vertizes so, dass jede
+Kante des Graphen ein Ende in dieser Teilmenge hat?
+\index{FEEDBACK-NODE-SET@\textsl{FEEDBACK-NODE-SET}}%
+\item[\textsl{FEEDBACK-NODE-SET}:] Gegeben ein gerichteter Graph $G$
+und eine Zahl $k$, gibt es eine endliche Teilmenge von $k$ Vertizes
+von $G$ so, dass jeder Zyklus in $G$ einen Vertex in der Teilmenge 
+enthält?
+\index{FEEDBACK-ARC-SET@\textsl{FEEDBACK-ARC-SET}}%
+\item[\textsl{FEEDBACK-ARC-SET}:] Gegeben ein gerichteter Graph $G$
+und eine Zahl $k$, gibt es eine Teilmenge von $k$ Kanten so, dass
+jeder Zyklus in $G$ eine Kante aus der Teilmenge enthält?
+\index{SET-COVERING@\textsl{SET-COVERING}}%
+\item[\textsl{SET-COVERING}:] Gegeben eine endliche Familie endlicher
+Mengen $(S_j)_{1\le j\le n}$ und eine Zahl $k$, gibt es eine Unterfamilie
+bestehend aus $k$ Mengen, die die gleiche Vereinigung hat?
+\end{description}
+Die Abhängigkeiten unter \textsl{VERTEX-COLORING} sind etwas vielfältiger:
+\[
+\xymatrix{
+	&\begin{minipage}{1truein}
+	\textsl{VERTEX-COLORING}
+	\end{minipage} \ar[d]\ar[dr]
+\\
+	&\begin{minipage}{0.6truein}
+	\textsl{EXACT-COVER}
+	\end{minipage} \ar[dl] \ar[d] \ar[dr] \ar[drr]
+		&\begin{minipage}{0.8truein}
+		\textsl{CLIQUE-COVER}
+		\end{minipage} 
+\\
+\text{\textsl{3D-MATCHING}}
+	&\text{\textsl{SUBSET-SUM}} \ar[dr] \ar[d]
+		&\begin{minipage}{0.8truein}
+		\textsl{HITTING-SET}
+		\end{minipage}
+			&\begin{minipage}{0.8truein}
+			\textsl{STEINER-TREE}
+			\end{minipage}
+\\
+	&\text{\textsl{SEQUENCING}}
+		&\text{\textsl{PARTITION}} \ar[d]
+\\
+	&
+		&\text{\textsl{MAX-CUT}}
+}
+\]
+\begin{description}
+\item[\textsl{EXACT-COVER}] Gegeben eine Familie $(S_j)_{1\le j\le n}$
+von Teilmengen
+einer Menge $U$ gibt es eine Unterfamilie von Mengen, die disjunkt sind,
+aber die gleiche Vereinigung haben?
+Die Unterfamilie $(S_{j_i})_{1\le i\le m}$ muss also
+$S_{j_i}\cap S_{j_k}=\emptyset$ und 
+\[
+\bigcup_{j=1}^n S_j=\bigcup_{i=1}^mS_{j_i}
+\]
+erfüllen.
+\index{CLIQUE-COVER@\textsl{CLIQUE-COVER}}%
+\item[\textsl{CLIQUE-COVER}:] Gegeben ein Graph $G$ und eine positive Zahl
+$k$, gibt es $k$ Cliquen so, dass jede Ecke in genau einer der Cliquen ist?
+\index{3D-MATCHING@\textsl{3D-MATCHING}}%
+\item[\textsl{3D-MATCHING}:] Sei $T$ eine endliche Menge und $U$ eine 
+Menge von Tripeln aus $T$: $U\subset T\times T\times T$.
+Gibt es eine
+Teilmenge $W\subset U$ so, dass $|W|=|T|$ und keine zwei Elemente
+von $W$ stimmen in irgendeiner Koordinate überein?
+\index{HITTING-SET@\textsl{HITTING-SET}}%
+\item[\textsl{HITTING-SET}:] Gegeben eine Menge von Teilmengen $S_i\subset S$,
+gibt es eine Menge $H$, die jede Menge in genau einem Punkt trifft, also
+$|H\cap S_i|=1\forall i$?
+\index{STEINER-TREE@\textsl{STEINER-TREE}}%
+\item[\textsl{STEINER-TREE}:]
+Gegeben ein Graph $G$, eine Teilmenge $R$ von Vertizes, und eine
+Gewichtsfunktion $w\colon E\to\mathbb Z$ und eine postive Zahl $k$, gibt es
+einen Baum mit Gewicht $\le k$, dessen Knoten in $R$ enthalten sind?
+Das Gewicht des Baumes ist die Summe der Gewichte 
+$w(\{u,v\})$ über alle Kanten $\{u,v\}$ im Baum.
+\index{SEQUENCING@\textsl{SEQUENCING}}%
+\item[\textsl{SEQUENCING}:] Gegeben sei ein Vektor
+$(t_1,\dots,t_p)\in\mathbb Z^p$
+von Laufzeiten von $p$ Jobs, ein Vektor von spätesten Ausführungszeiten 
+$(d_1,\dots,d_p)\in\mathbb Z^p$, einem Strafenvektor 
+$(s_1,\dots,s_p)\in\mathbb Z^p$ und eine positive ganze Zahl $k$.
+Gibt es eine Permutation $\pi$ der Zahlen $1,\dots,p$, so dass
+die Gesamtstrafe für verspätete Ausführung bei der Ausführung der Jobs
+in der Reihenfolge $\pi(1),\dots,\pi(p)$ nicht grösser ist als $k$? 
+Formal lautet die Bedingung
+\[
+\sum_{j=1}^p
+\vartheta(t_{\pi(1)} +\dots +t_{\pi(j)} - d_{\pi(j)}) s_{\pi(j)} \le k,
+\]
+darin ist $\vartheta$ die Stufenfunktion definiert durch
+\[
+\vartheta(x)=\begin{cases}
+1&x\ge 0\\
+0&x<0.
+\end{cases}
+\]
+\index{PARTITION@\textsl{PARTITION}}%
+\item[\textsl{PARTITION}:] Gegeben ein Folge von $s$ ganzen Zahlen
+$c_1,c_2,\dots,c_s$, kann man die Indizes $1,2,\dots,s$ in zwei
+Teilmengen $I$ und $\bar I$ teilen, so dass die Summe der zugehörigen
+$c_i$ identisch ist:
+\[
+\sum_{i\in I}c_i=\sum_{i\not\in I}c_i
+\]
+\index{MAX-CUT@\textsl{MAX-CUT}}%
+\item[\textsl{MAX-CUT}:] Gegeben ein Graph $G$ mit einer Gewichtsfunktion
+$w\colon E\to\mathbb Z$ und eine ganze Zahl $W$.
+Gibt es eine Teilmenge
+$S$ der Vertizes, so dass das Gesamtgewicht der Kanten, die $S$ mit
+seinem Komplement verbinden, mindestens so gross ist wie $W$:
+\[
+\sum_{\{u,v\}\in E\wedge u\in S\wedge v\not\in S} w(\{u,v\})\ge W
+\]
+\index{SET-PACKING@\textsl{SET-PACKING}}%
+\item[\textsl{SET-PACKING}:] Gegeben eine Familie $(S_i)_{i\in I}$ von
+Mengen und eine Zahl $k\in \mathbb N$.
+Gibt es eine $k$-elementige Teilfamilie $(S_i)_{i\in J}$ mit $J\subset I$,
+d.~h.~$|J|=k$,
+derart,
+dass die Mengen der Teilfamilie paarweise diskjunkt sind, also 
+\[
+	S_i \cap S_j = \emptyset \quad\forall i,j\in J \;\text{mit}\; i\ne j?
+\]
+\end{description}
+
+

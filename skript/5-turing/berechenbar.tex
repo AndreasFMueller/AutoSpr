@@ -1,0 +1,513 @@
+%
+% berechenbar.tex -- Berechenbarkeit
+%
+% (c) 2009 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Berechenbarkeit}
+\rhead{Berechenbarkeit}
+In diesem Abschnitt wollen wir klären, welche Dinge überhaupt
+berechnet werden können. Dabei sehen wir die Tatsache, dass für
+die Darstellung einer reellen Zahl eine unendliche Folge von Ziffern
+nötig sein kann, nicht als Hindernis an. Wir nennen eine Zahl
+berechenbar, wenn wir ein Programm schreiben können, welches
+möglicherweise unendlich lange läuft und dabei eine Stelle der
+Zahl nach der anderen liefern kann. Die Turingmaschine
+funktioniert also als Aufzähler, der die Stellen der zu berechnenden
+Zahl aufzählen soll.  In diesem Sinne ist die
+Zahl $1/3=0.3333\dots$ berechenbar, aber auch die Zahlen $\sqrt{2}$, $\pi$,
+$e$ und weitere. Wir werden allerdings sehen, dass die meisten
+Zahlen gar nicht berechenbar sind.
+
+\subsection{Abzählbar und überabzählbar}
+Unendlich ist nicht gleich unendlich, die Mengen $\mathbb N$ und
+$\mathbb R$ haben zwar beide unendlich viele Elemente, dennoch
+gibt es keine bijektive Abbildung $\mathbb N\to \mathbb R$.
+
+\begin{definition}
+\index{Machtigkeit@Mächtigkeit}%
+Zwei Mengen $A$ und $B$ heissen gleich mächtig, wenn es eine bijektive
+Abbildung $A\to B$ gibt.
+\end{definition}
+
+Es ist bekannt, dass $\mathbb Q$ und $\mathbb N$ gleich mächtig sind,
+aber die Menge $\mathbb R$ scheint wesentlich grösser
+zu sein als $\mathbb N$.
+Diese Unterschiede zwischen verschiedenen
+unendlichen Mengen wird illustriert von der nachfolgenden Geschichte,
+die David Hilbert zu erzählen pflegte.
+
+\subsubsection{Hotel ``Unendlich''}
+\index{Hotel ``Unendlich''}%
+\index{Hilbert!-Hotel}%
+In einem fernen Land gibt es ein Hotel, welches Hotel ``Unendlich''
+genannt wird. Unsere Geschichte beginnt kurz nachdem der Nachtportier
+die Nachtschicht übernommen hat. Ein verspäteter Gast meldet sich
+am Eingang, während der Nachtportier damit beschäftigt ist,
+die herumlungernden Besoffenen
+aus den naheliegenden Pubs zu vertreiben, die auch gerade geschlossen haben.
+Der Gast möchte im Hotel übernachten, doch der Nachtportier zeigt sich
+unnachgiebig: ``Du kommst hier nicht rein!''
+
+Zum Glück hat der Hotelmanager den Wortwechsel mitbekommen und greift
+ein. Selbstverständlich haben wir noch ein Zimmer für jeden noch so
+späten Gast. Der Nachportier protestiert, es seien doch alle Zimmer
+belegt. ``Kein Problem'' sagt der Manager, und greift zum Mikrofon
+der Sprechanlage. Er bittet alle Gäste, aus ihrem aktuellen Zimmer
+ins nächste Zimmer umzuziehen. Dieses Ansinnen zu später Stunden
+verursacht zwar bei einigen Gästen etwas Unmut, aber jeder ist damit
+einverstanden, denn hätten sie sich selbst verspätet, wären sie ja
+auch auf das Entgegenkommen der anderen Gäste angewiesen. Auf diese
+Weise wird das Zimmer mit der Nummer $0$ frei für den neu angekommenen
+Gast.
+
+Kurze Zeit später kommt eine verspätete Reisegruppe aus dreissig
+Touristen an, die ebenfalls
+Einlass verlangt. Der Nachtportier will nicht nochmals einen schlechten
+Eindruck hinterlassen und ruft den Manager. Dieser greift
+wieder zum Mikrofon, und bittet wieder alle Gäste, diesmal aus
+ihrem Zimmer mit der Nummer $n$ ins Zimmer mit der Nummer $n+30$
+umzuziehen. So werden die Zimmer mit den Nummern $0$ bis $29$ frei,
+Platz genug für die neu angekommene Reisegruppe.
+
+Diese Nacht ist ziemlich viel los im Hotel ``Unendlich'', denn
+kaum waren die dreissig Gäste untergebracht, fährt ein Hilbert-Bus
+vor: ein Bus mit unendlich vielen Sitzplätzen, numeriert mit den
+natürlichen Zahlen. Der Nachtportier ist schockiert: Unendlich
+viele Gäste, ohne Reservation. Dass man für endlich viele Gäste
+immer noch Platz schaffen kann, hat er inzwischen verstanden, aber
+für unendlich viele Gäste sei das unmöglich, stellt er fest, und
+will die Gesellschaft wegschicken. Doch der Hotelmanager möchte
+sich das Geschäft nicht entgehen lassen. Er greift erneut zum
+Mikrofon und bittet die Gäste, vom Zimmer $n$ ins Zimmer $2n$ umzuziehen.
+So werden alle Zimmer mit ungeraden Nummern frei, Platz genug für alle
+Passagiere des Hilbert-Buses. Nur die Stimmung unter den Stammgästen
+hat sich bereits deutlich verschlechtert.
+
+Schliesslich fahren gleich dreissig Hilbertbusse vor. Ein Hilbert-Jumbo
+hatte sich verspätet, und so dass die Feriengäste erst sehr spät
+mit ihren Hilbertbussen vom Flughafen zum Hotel abfahren konnten.
+Der Nachtportier hat schon einen Verdacht, dass der Manager auch
+hierfür eine Lösung bereit hat. Tatsächlich: per Mikrofondurchsage
+gibt er wieder alle ungerade Zimmer frei. Dann bringt er die Neuankömmlinge
+darin unter, und zwar schön nacheinander immer je einen aus jedem Bus,
+also in die ersten dreissig freien Zimmer die jeweils ersten Gäste
+aus jedem Bus, dann die zweiten aus jedem Bus in die zweiten dreissig
+freien Zimmer und so weiter.
+
+Man ahnt es schon, in dieser Nacht gibt es für die Gäste im Hotel
+``Unendlich'' keine Ruhe. Als nächstes findet sich ein Hilbert-Konvoi
+vor dem Hotel ein. Also einer Folge von Hilbert-Bussen, die mit natürlichen
+Zahlen numeriert waren. Der Nachtportier hat gar nicht erst gewagt,
+den Neuankömmlingen abschlägigen Bescheid zu geben, sondern gleich
+den Manager gerufen. Der muss zwar auch einen Moment nachdenken, findet
+dann aber eine Lösung. Zunächst wendet er nochmals den Trick an,
+mit dem er jetzt schon mehrmals die ungeraden Zimmer frei bekommen hat.
+Dabei kommt es auch zu wüsten Szenen mit Gästen, die jetzt schon vier mal
+geweckt worden sind, und sich ihre Nachtruhe nicht von der Geldgier des
+Managers ruinieren lassen wollen.
+
+Die Gäste aus dem Hilbert-Konvoi müssen sich in Einerkolonnen auf
+dem Vorplatz aufstellen, der Manager rief sie daraufhin in der
+eingezeichneten Reihenfolge ab. Auch dies trägt nicht  unbedingt
+zur Zufriedenheit der Gäste bei, hinter vorgehaltener Hand wird
+über den ``Kasernenton'' und ``Zustände wie in einem Konzentrationslager''
+geschimpft.
+Aber jeder kommt früher oder später dran,
+am Ende hat jeder Gast ein Zimmer, was die Gemüter wieder
+etwas beruhigt.
+
+\[
+\xymatrix{
+\ar[r]
+\cdot	     &\cdot\ar[dl] &\cdot\ar[r] &\cdot\ar[dl]  &\cdot\ar[r] &\cdot\ar[dl] &\cdot
+\\
+\cdot\ar[d]  &\cdot\ar[ur] &\cdot\ar[dl] &\cdot\ar[ur] &\cdot\ar[dl]&\cdot        &\cdot
+\\
+\cdot\ar[ur] &\cdot\ar[dl] &\cdot\ar[ur] &\cdot\ar[dl] &\cdot       &\cdot        &\cdot
+\\
+\cdot\ar[d]  &\cdot\ar[ur] &\cdot\ar[dl] &\cdot        &\cdot       &\cdot        &\cdot
+\\
+\cdot\ar[ur] &\cdot        &\cdot        &\cdot        &\cdot       &\cdot        &\cdot
+}
+\]
+
+Ein Ereignis steht allerdings noch bevor, und hier sollte sich die
+Geldgier des Managers rächen. Gegen morgen nämlich fährt
+ein voller Cantor-Bus vor. Dieses hochmoderne Verkehrsmittel hat Sitze,
+\index{Cantor!-Bus}%
+die mit den reellen Zahlen angeschrieben sind. Natürlich wollen auch
+diese Gäste im Hotel ``Unendlich'' untergebracht werden. Aber so sehr
+sich der Manager auch anstrengt, in seinem Hotel kann er diese
+Gäste nicht unterbringen. Daraufhin wird er zwar vom Verwaltungsrat
+entlassen, der noch weniger Mathematik versteht, was ihm dank üppiger
+Abgangsentschädigung jedoch nicht weiter Sorgen macht. Unbestätigten
+Gerüchten zufolge soll er jetzt bei einer Hotelkette ``Cantor Hotels''
+arbeiten, die mit mit dem Spruch ``Present in uncountable locations
+throughout the Universe'' für sich wirbt.
+
+\subsubsection{Lehren aus der Geschichte}
+Eine unendliche Menge ist offenbar so gross, dass man darin immer noch
+Platz genug für eine Kopie der ganzen Menge finden kann. Oder anders
+herum: endliche Mengen sind solche, in denen man niemals Platz finden
+könnte:
+
+\begin{satz}
+Eine Menge ist endlich, wenn jede injektive Abbildung auch surjektiv ist.
+\end{satz}
+
+In der Geschichte kam eine ganze Reihe von unendlichen Mengen auf, die
+alle in $\mathbb N$ untergebracht werden konnten, die also nicht
+grösser waren als $\mathbb N$ selbst, und das obwohl sie aus natürlichen
+Zahlen konstruiert worden waren. Mit $\mathbb N$ vergleichbare Mengen
+bilden also eine robuste Klasse von Mengen.
+
+\begin{definition}
+\index{abzahlbar unendlich@abzählbar unendlich}%
+\index{uberabzahlbar unendlich@überabzählbar unendlich}%
+Eine unendliche Menge $A$ heisst abzählbar unendlich, wenn sie
+gleichmächtig ist wie die natürlichen Zahlen. $A$ heisst
+überabzählbar unendlich, wenn es keine Bijektion zwischen
+$\mathbb N$ und $A$ gibt.
+\end{definition}
+Bildlich gesprochen ist eine abzählbare Menge eine solche,
+bei der sich die Elemente in eine mit den natürlichen Zahlen numerierte
+Liste einordnen lassen.
+
+Auch die Menge der Paare $(k,l)\in \mathbb N^2$ ist abzählbar.
+Ein Gast aus dem Hilbert-Konvoi wird durch seine Busnummer $k$ und
+seine Platz-Nummer $l$ identifiziert, der Konvoi hat also gleich
+viele Gäste wie $\mathbb N^2$ Paare enthält. Und alle diese Paare
+passen in die Menge $\mathbb N$, also die Zimmer des Hotels ``Unendlich''
+hinein. Somit sind $\mathbb N^2$ und $\mathbb N$ gleich mächtig.
+
+Die Geschichte hat exemplarisch den folgenden Satz gezeigt:
+
+\begin{satz}Die Vereinigung von endlich vielen abzählbaren
+Mengen ist abzählbar. Das kartesische Produkt zweier abzählbarer
+Mengen ist abzählbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Sei $A_1,\dots,A_n$ eine endliche Familie abzählbarer Mengen,
+je mit einer Funktion $f_i\colon \mathbb N\to A_i$, dann
+können wir eine Abzählfunktion für die Vereinigung konstruieren:
+\[
+f\colon \mathbb N\to\bigcup_{i=1}^n A_i\colon nk+l \mapsto f_l(k)
+\]
+wobei wir verwenden, dass wir jede Zahl eindeutig als $nk+l$
+schreiben können mit geeigneten Zahlen $k$ und $l$.
+
+Für das kartesische Produkt müssen wir zeigen, dass sich die
+Menge der Paare $\mathbb N^2$ aufzählen lässt, was mit dem
+Diagonaltrick des Hotelmanagers geschehen kann.
+\end{proof}
+
+Daraus folgen jetzt weitere Sätze über die Kardinalität
+der bekannten Zahlmengen.
+
+\begin{satz}
+Die Mengen $\mathbb Z$ und $\mathbb Q$ sind abzählbar unendlich.
+\end{satz}
+
+\begin{proof}[Beweis]
+Die Menge $\mathbb Z$ ist abzählbar, da sie die Vereinigung
+von zwei Mengen ist, die offensichtlich abzählbar sind:
+\[
+\mathbb Z = \mathbb N\cup \{-n\;|\;n\in\mathbb N\}.
+\]
+Die rationalen Zahlen können durch Brüche dargestellt werden,
+also durch Paare $(p,q)$ von ganzen Zahlen:
+\[
+\mathbb Q=\left\{\left.\frac{p}{q}\;\right|\;p\in \mathbb Z,q\in\mathbb N\setminus\{0\}\right\}
+\]
+Da sich einige Brüche noch kürzen lassen, ist $\mathbb Q$ noch
+kleiner als $\mathbb N^2$, aber insbesondere abzählbar.
+\end{proof}
+
+\begin{satz}
+Die Menge $\mathbb R$ ist überabzählbar unendlich.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir führen den Beweis mit Hilfe eines Widerspruchs. Nehmen wir
+an, $\mathbb R$ wäre abzählbar unendlich. Dann müssten auch
+die reellen Zahlen zwischen $0$ und $1$ abzählbar sein,  es gäbe also eine
+Liste all dieser Zahlen, wir schreiben die Zahlen
+dieser Liste in Dezimaldarstellung
+\begin{align*}
+0.&r_{11}r_{12}r_{13}r_{14}\dots\\
+0.&r_{21}r_{22}r_{23}r_{24}\dots\\
+0.&r_{31}r_{32}r_{33}r_{34}\dots\\
+0.&r_{41}r_{42}r_{43}r_{44}\dots\\
+&\vdots
+\end{align*}
+Jetzt konstruieren wir eine Zahl $x$, die nicht in dieser Liste vorkommen
+kann. Um die $k$-te Stelle $x_k$ von $x$ zu konstruieren, betrachten
+wir die $k$-te Stelle der $k$-ten Zahl $r_{kk}$, und setzen
+\[
+x_k=\begin{cases}
+r_{kk}-1&\qquad r_{kk}>0\\
+5&\qquad r_{kk}=0
+\end{cases}
+\]
+$x_k$ ist also verschieden von $r_{kk}$, und zwar für jedes $k$.
+Die Ziffer $9$ kommt in $x$ nicht vor, es kann also keine Zahl
+mit lauter $9$ am Ende sein, die gleichbedeutend mit einer anderen
+Zahl ist, die möglicherweise bereits in der Liste ist.
+Also unterscheidet sich $x$ von jeder der Zahlen aus der Liste, $x$
+kommt also in der Liste nicht vor. Wir hatten angenommen, dass die
+Liste alle reellen Zahlen zwischen $0$ und $1$ umfasst, dieser
+Widerspruch zeigt, dass es keine solche Liste geben kann, die
+reellen Zahlen sind also überabzählbar.
+\end{proof}
+
+\index{Cantor!Georg}%
+Georg Cantor (1845-1918) leistete wichtige Beiträge zur Mengelehre,
+unter anderem entdeckte er den Unterschied der Mächtigkeit von
+natürlichen und reellen Zahlen. Daher haben wir in der Geschichte
+den Bus, dessen Sitzplätze mit reellen Zahlen angeschrieben waren,
+als Cantor-Bus bezeichnet.
+
+Verwandt damit und mit einem ähnlichen Beweis kann man auch einsehen,
+dass die Potenzmenge einer abzählbaren Menge überabzählbar ist.
+
+\begin{satz}\label{powersetuncountable}
+Ist $A$ eine abzählbar unendliche Menge, dann ist $P(A)$
+überabzählbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Da $A$ abzählbar ist gibt es eine bijektive Abbildung
+$i\mapsto a_i\in A$. Nehmen wir an, es gäbe eine bijektive
+Abbildung von $\mathbb N$ in $P(A)$, also $i\mapsto A_i\subset A$.
+Dann kann man wie folgt eine Menge bilden, die unter den Mengen
+$A_i$ nicht vorkommt.
+\[
+a_i\in B\quad\Leftrightarrow\quad a_i\not\in A_i
+\]
+Die Menge $B$ unterscheidet sich von jeder Menge $A_i$. Falls
+$A_i$ das Elemente $a_i$ enthält, enthält $B$ es nicht und
+umgekehrt. Somit ist $B\ne A_i\forall i$, im Widerspruch zur Annahme
+dass $i\mapsto A_i$ eine Bijektion ist.
+\end{proof}
+
+Jetzt können wir auch einige Mengen aus der bisher betrachteten
+Theorie der Sprachen auf ihre Mächtigkeit untersuchen.
+
+\begin{satz}
+$\Sigma^*$ ist abzählbar unendlich. Die Menge aller Sprachen über dem
+Alphabet $\Sigma$ ist überabzählbar unendlich.
+\end{satz}
+
+\begin{proof}[Beweis]
+Eine Aufzählung von $\Sigma^*$ kann man konstruieren, indem man
+die Wörter von $\Sigma^*$ der Länge nach sortiert, und innerhalb
+der Wörter gleicher Länge die lexikographische Ordnung verwendet.
+Dazu braucht man natürlich eine Anordnung der Zeichen des Alphabets $\Sigma$,
+da dieses aber endlich ist, kann man immer eine solche Anordnung finden.
+
+Die Menge aller Sprache ist die Potenzmenge der Menge $\Sigma^*$, welche
+abzählbar unendlich ist. Nach Satz \ref{powersetuncountable} ist
+$P(\Sigma^*)$ überabzählbar unendlich.
+\end{proof}
+
+\begin{satz}\label{countablefinite}
+Eine abzählbare Vereinigung $\bigcup_{i\in\mathbb N}A_i$ von endlichen
+Mengen $(|A_i|<\infty)$ ist abzählbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Endliche Mengen kann man immer abzählen, also kann man eine Abzählung
+von $\bigcup_{i\in\mathbb N}A_i$ einfach dadurch konstruieren, dass
+man zuerst die Elemente von $A_0$ durchzählt, dann die von $A_1$, und
+so weiter. Weil keine der Mengen $A_i$ unendlich ist, kommt jede
+Menge irgendwann dran.
+\end{proof}
+
+\begin{satz} Sei $\Sigma$ ein festes Alphabet. Dann sind die folgenden
+Mengen alle abzählbar unendlich:
+\begin{enumerate}
+\item Die Menge aller deterministischen endlichen Automaten.
+\item Die Menge aller nichtdeterministischen endlichen Automaten.
+\item Die Menge der regulären Sprachen.
+\item Die Menge aller kontextfreien Grammatiken.
+\item Die Menge aller kontextfreien Sprachen.
+\item Die Menge aller Stackautomaten.
+\item Die Menge aller Turingmaschinen.
+\end{enumerate}
+\end{satz}
+
+\begin{proof}[Beweis]
+\begin{enumerate}
+\item Es genügt zu zeigen, dass die Menge der deterministischen
+endlichen Automaten mit $k$ Zuständen endlich ist, dann ist nach
+Satz \ref{countablefinite} auch die Vereinigung abzählbar. Ein
+deterministischer endlicher Automat ist aber durch die Tabellendarstellung
+gegeben. In der Tabelle sind $|Q|\cdot|\Sigma|$ Felder mit Zuständen
+zu besetzen, dafür gibt es $|Q|^{|Q|\cdot|\Sigma|}$ Möglichkeiten.
+Für jede solche Möglichkeit ist ausserdem festzulegen, welche Zustände
+Akzeptierzustände sind, das sind $|P(Q)|=2^{|Q|}$ Möglichkeiten. Es gibt
+also
+\[
+|Q|^{|Q|\cdot|\Sigma|}\cdot 2^{|Q|}
+\]
+DEAs mit $|Q|$ Zuständen.
+\item Obwohl in der Definition der nichtdeterministischen endlichen
+Automaten auch die Potenzmenge vorkommt, wird dadurch die Menge
+noch nicht über\-abzählbar. Der Funktionswert der Übergangsfunktion
+$\delta$ ist ja immer eine Teilmenge einer endlichen Menge, die Potenzmenge
+einer endlichen Menge ist aber auch endlich. Es ändert sich am Argument
+nur, dass in die Tabelle eines Automaten mit $|Q|$ Zuständen und
+$|\Sigma|$ Zeichen im Alphabet an $|Q|\cdot|\Sigma|$ Stellen
+nicht $|Q|$ verschieden Objekte einfüllen lassen, sondern $2^{|Q|}$.
+An der Abzählbarkeit ändert dies nichts.
+\item Die regulären Sprachen werden von deterministischen endlichen
+Automaten akzeptiert, es gibt also eine surjektive Abbildung von
+den deterministischen endlichen Automaten auf die regulären Sprachen,
+eine Aufzählung der deterministischen endlichen Automaten liefert also
+auch automatisch eine Aufzählung der regulären Sprachen.
+\item Es gibt nur endliche viele Grammatiken mit $n$ verschiedenen
+Variablen und höchstens $n$ Zeichen langen rechten Seiten der Regeln,
+einfach weil es nur endlich viele rechte Seiten gibt. Also ist die
+Menge aller kontextfreien Grammatiken abzählbar.
+\item Kontextfreie Sprachen werden von einer kontextfreien Grammatik
+erzeugt. Die Abbildung $G\mapsto L(G)$ macht aus einer Aufzählung
+der kontextfreien Grammatiken eine Aufzählung der kontextfreien Sprachen.
+\item Stackautomaten sind nichtdeterministische endliche Automaten mit
+zusätzlicher Beschriftung der Übergangspfeile. Trotzdem bleibt die
+Anzahl der Stackautomaten mit $k$ Zuständen endlich, also ist die
+Menge der Stackautomaten abzählbar unendlich.
+\item Turingmaschinen sind im wesentlichen deterministische endliche Automaten
+mit zusätzlichen Beschriftungen der Pfeile. Wie in 1.~gibt es nur endlich
+viele Turingmaschinen mit $k$ Zuständen, also ist die Menge der Turingmaschinen
+abzählbar unendlich.
+\end{enumerate}
+\end{proof}
+
+\subsection{Nicht berechenbare Zahlen}
+
+\begin{satz}
+Die rationalen Zahlen sind berechenbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Der Algorithmus der schriftlichen Division erlaubt alle Stellen
+zu finden, man kann sich gut vorstellen, dass er sich auf einer
+Turingmaschine als Aufzähler implementieren lässt. Zähler und
+Nenner werden zu Beginn auf das Band geschrieben, der Algorithmus
+berechnet dann alle Stellen des Quotienten. Also sind die rationalen
+Zahlen berechenbar.
+\end{proof}
+
+\begin{satz}Die algebraischen Zahlen, also die Nullstellen von
+Polynomen mit rationalen Koeffizienten sind berechenbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Zunächst können wir das Polynom mit dem gemeinsamen Nenner der
+Koeffizienten multiplizieren und erhalten ein Polynom mit ganzzahligen
+Koeffizienten.
+Die Nullstellen eines Polynoms können mit dem Newton-Algorithmus
+mit beliebiger Genauigkeit bestimmt werden. Dazu muss nur eine
+Schätzung $\hat x_0$ für die Nullstelle bekannt sein, dann können
+mit der Iteration
+\[
+x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)},\quad x_0 = \hat x_0
+\]
+immer genauere Approximationen berechnet werden. Alle Operationen
+in der Iterationsformel sind Operationen in rationalen Zahlen, sind
+also berechenbar.
+\end{proof}
+
+\begin{satz}
+Die Menge der nicht berechenbaren Zahlen ist überabzählbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Die berechenbaren Zahlen sind abzählbar. Wir können nämlich
+eine Liste aller Turingmaschinen erstellen, zunächst schreiben
+wir die Turingmaschinen mit nur einem Zustand hin, dann all jene
+mit genau zwei Zuständen u.\,s.\,w. Da jede Turingmaschine genau eine
+Zahl berechnen kann, ist die Menge der berechnenbaren Zahlen abzählbar,
+die Menge der reellen Zahlen ist also überabzählbar, daher müssen die
+nicht berechenbaren Zahlen auch überabzählbar sein.
+\end{proof}
+
+\subsection{Das 10.~Hilbertsche Problem}
+\index{Hilbert!David}%
+\index{Hilbertsche Probleme}%
+Im Jahre 1900 hielt der deutsche Mathematiker David Hilbert am
+\index{Internationaler Kongress}%
+internationalen Mathematikerkongress in Paris einen berühmten Vortrag,
+in dem er eine Reihe von Problemen zusammenstellte, deren Lösung
+nach seiner Meinung die Mathematik im zwanzigsten Jahrhundert
+entscheidend voranbringen würden. Einige dieser Probleme wurden
+inzwischen gelöst, andere, darunter die Riemannsche Vermutung,
+sind immer noch offen.
+
+Von besonderem Interesse für unser Thema war das zehnte Problem:
+Gibt es ein Verfahren, das für eine beliebige diophantische Gleichung
+entscheidet, ob sie lösbar ist?
+
+Schon die Problemstellung wirft einige Fragen auf.
+Zunächst zu den Begriffen:
+\index{Gleichung!diophantische}%
+eine diophantische Gleichung ist eine
+Polynomgleichung mit mehreren Variablen aber ausschliesslich
+ganzzahligen Koeffizienten. Die Gleichung
+\[
+x^2+y^2-z^2=0
+\]
+ist eine diophantische Gleichung, und es ist auch bekannt, dass sie
+Lösungen hat, zum Beispiel $x=3$, $y=4$ und $z=5$. Seit wenigen
+Jahren ist auch bekannt, dass
+\[
+x^n+y^n-z^n=0,
+\]
+ebenfalls eine diophantische Gleichung, nur ganz wenige Lösungen hat.
+Dies ist die berühmte Fermatsche Vermutung, die Andrew Wiles 1995
+\index{Fermatsche Vermutung}%
+\index{Wiles, Andrew}%
+vollständig bewiesen hat.
+
+Die schwierigerere Frage aber ist: Was für eine Art von Verfahren
+ist gemeint? Hilbert hat keine Definition gegeben. Heute würden
+wir wohl fragen, ob ein Algorithmus angegeben werden kann, mit dem
+die Frage entschieden werden kann. Doch das führt uns nur wieder
+auf die Frage nach einer  mathematisch strengen Definition was
+ein Algorithmus ist.
+
+\index{Turing, Alan}%
+Im Jahre 1936 gab Alan Turing eine Antwort: ein Algorithmus ist eine
+Rechenvorschrift, die sich mit einer Turingmaschine implementieren
+lässt. Probleme, für die es einen Lösungsalgorithmus gibt, sind
+also solche, deren Inputdaten man als Wort auf das Band einer
+Turingmaschine schreiben kann, die Turingmaschine verarbeitet die
+Problembeschreibung, schreibt die Lösung auf das Band und hält im
+Zustand $q_{\text{accept}}$ an. Falls das Problem keine Lösung hat,
+hält die Maschine im Zustand $q_{\text{reject}}$ an. Solche
+Probleme definieren also auch eine Sprache: $L(M)$ ist die
+Menge der Inputwörter, für die eine Lösung existiert.
+
+Ein Beispiel soll dies illustrieren. Wir möchten die Frage
+von einem Algorithmus beantworten lassen, ob es in einem Graphen $G$
+einen Weg gibt, der alle Knoten trifft.  Dazu müssen wir eine
+Beschreibung des Graphen erzeugen, wir nennen sie $\langle G\rangle$,
+diese auf das Band einer geeignet programmierten Turingmaschine $M$ schreiben,
+diese laufen lassen, und warten, bis sie die Frage beantwortet. $L(M)$
+besteht aus Beschreibungen $\langle G\rangle$ von Graphen $G$, die
+einen solchen Weg haben.
+
+Auf dieser Basis gelang es 1970 Yuri Matijasevi\v c übrigens,
+\index{Matijasevi\v c, Yuri}%
+das zehnte Hilbertsche Problem etwas überraschend zu lösen: es gibt
+keinen Algorithmus, mit dem entschieden werden kann, ob eine
+diophantische Gleichung eine Lösung hat. Es ist also durchaus
+nicht selbstverständlich, wenn ein Problem eine algorithmische
+Lösung hat. Wir werden im nächsten Kapitel sehen, dass es viele
+Probleme gibt, die keine algorithmische Lösung haben. Im übernächsten
+Kapitel werden wir dann Probleme kennenlernen, die zwar von einem Computer
+gelöst werden können, deren Lösung aber länger dauert als man
+jeden realistischen Computer laufen lassen kann.
+Die im folgenden entwickelte Theorie zeigt also, wo die Grenzen
+der Berechenbarkeit mit Computern liegen.

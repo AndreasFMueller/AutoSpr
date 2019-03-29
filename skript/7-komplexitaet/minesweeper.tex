@@ -1,0 +1,292 @@
+%
+% minesweeper.tex -- Minesweeper
+%
+% (c) 2011 Prof Dr Andreas Mueller, Hochschule Rapperswil
+%
+\section{Schaltungen, Minesweeper und \textsl{SAT}}
+\rhead{Minesweeper}
+\index{Minesweeper}%
+\subsection{Schaltungen}
+\begin{figure}
+\begin{center}
+\includegraphics{images/mine-1}
+\end{center}
+\caption{Grundgatter AND, OR und NOT\label{gatter}}
+\end{figure}%
+\begin{figure}
+\begin{center}
+\includegraphics{images/mine-2}
+\end{center}
+\caption{Umsetzung der Formel
+$(\bar x\wedge y)\vee(x\wedge \bar z)$ mit Gattern aus der
+Abbildung~\ref{gatter}\label{gatterformel}}
+\end{figure}%
+\index{Gatter}%
+\index{AND}%
+\index{OR}%
+\index{NOT}%
+In der Computertechnik lernt man, dass sich moderne Computer mit
+Hilfe von logischen Grundschaltungen, den Gattern, realisieren lassen.
+Abbildung~\ref{gatter} zeigt die Schaltsymbole der Grundgatter AND, OR
+und NOT. Wir gehen hier von idealen Gattern aus, deren Ausgänge beliebig
+viele Eingänge anderer Gatter treiben können. Mit solchen Gattern
+lassen sich beliebig komplexe logische Formeln umsetzen. Zum Beispiel
+zeigt Abbildung~\ref{gatterformel}, wie die Formel
+$(\bar x\wedge y)\vee(x\wedge \bar z)$ umgesetzt werden kann.
+
+\index{CURCUIT}%
+Die Tatsache, dass sich jede Formel in eine äquivalente Schaltung mit Gattern
+übersetzen lässt kann man so formulieren: Es gibt eine Sprache
+\[
+\text{\textsl{CIRCUIT}}=\{
+C\;|\; \text{$C$ ist eine Schaltung, deren Ausgang wahr werden kann}\}.
+\}
+\]
+Ausserdem gibt es eine polynomielle Reduktion
+$\text{\textsl{SAT}}\le_P\text{\textsl{CIRCUIT}}$. Da wir bereits wissen,
+dass \textsl{SAT} NP-vollständig ist, schliessen wir, dass es ein schwieriges
+Problem ist, einer logischen Schaltung anzusehen, ob ihr Ausgang überhaupt
+je wahr werden kann.
+
+\subsection{Minesweeper}
+\index{Minesweeper}%
+Beim Spiel Mine-Sweeper, wird dem Spieler von einigen der noch nicht
+aufgedeckten Felder die Anzahl benachbarter Fehler angezeigt, unter
+denen sich eine Bombe befindet. Der Spieler soll dann nur diejenigen
+Felder betreten, unter denen sich keine Bombe versteckt, und alle
+Felder markieren, unter denen eine Bombe liegt. Betrachten Sie das
+Problem {\it MINE-SWEEPER-CONSISTENCY}, in dem zu einer Belegung der
+Felder mit Zahlen (der Anzahl Bomben auf Nachbarfeldern) und eventuell
+auch einigen bereits platzierten Bomben entscheiden
+werden muss, ob diese Zahlen konsistent sind, ob also Bomben so
+auf dem Spielfeld verteilt werden können, dass die Zahlen stimmen.
+Es ist ziemlich klar, dass
+\[
+\text{\textsl{MINE-SWEEPER-CONSISTENCY}}\in \text{NP}.
+\]
+Als Lösungszertifikat brauchen wir die Verteilung der Bomben.
+Zur Verifikation müssen wir dann die Anzahl der Bomben auf den
+Nachbarfeldern zählen, was in Laufzeit $O(n^2)$ möglich ist,
+wenn $n$ die Länge der längeren Seite des Spielfeldes ist.
+Also hat
+\textsl{MINE-SWEEPER-CONSISTENCY} einen polynomiellen Verifizierer und
+ist damit in NP.
+
+\subsection{Äquivalenz von \textsl{SAT} und \textsl{MINESWEEPER-CONSISTENCY}}
+Da \textsl{SAT} NP-vollständig ist, lässt sich jedes NP-Problem auf
+\textsl{SAT} reduzieren. Der Beweis des Satzes von Cook-Levin gibt
+auch eine Konstruktion, die aber nicht sehr intuitiv ist.
+Daher ist die Frage berechtigt, ob man auf etwas intuitivere Art einsehen
+kann, dass
+\textsl{SAT}
+und
+\textsl{MINESWEEPER-CONSISTENCY}
+äquivalent sind.
+
+Man kann nämlich direkt einsehen, dass \textsl{MINESWEEPER-CONSISTENCY}
+ein Ausfüllrätsel ist.
+Das Spielfeld muss nämlich mit zwei Zeichen ausgefüllt werden, ``Bombe''
+und ``Keine Bombe''.
+Es ist die Regel einzuhalten, dass die Zahl der Bomben auf den Nachbarfeldern
+mit der Zahl auf dem Feld übereinstimmt.
+Ausserdem kann man verifizieren, dass diese Regel als polynomielle Formel
+ausgedrückt werden kann.
+Also ist \textsl{MINESWEEPER-CONSISTENCY} ein polynomielles
+Ausfüllrätsel, und damit polynomiell auf \textsl{SAT} reduzierbar.
+
+Umgekehrt können wir auch eine Reduktion von \textsl{SAT} auf
+\textsl{MINESWEEPER-CONSISTENCY} konstruieren, wir tun dies in
+zwei Schritten.
+Zunächst ist
+klar, dass wir jede Formel in eine Schaltung umwandeln können, und
+dass dies in polynomieller Zeit geht. Wir haben also auf jeden
+Fall eine polynomielle Reduktion $\text{\textsl{SAT}}\le_P\text{\textsl{CIRCUIT}}$.
+Insbesondere sind wir fertig, wenn wir eine Schaltung in ein Minesweeper-%
+Problem übersetzen können.
+
+Gesucht ist jetzt also eine Reduktion 
+\[
+\text{\textsl{CIRCUIT}} \le_P \text{\textsl{MINESWEEPER-CONSISTENCY}}.
+\]
+Aus Abbildung~\ref{gatterformel} können wir sehen, was dazu alles
+übersetzt werden können muss. Leitungen, Verzweigungen, und die Grundgatter
+müssen alle in geeignete Zahlemuster auf einem Minesweeper-Spielfeld
+übersetzt werden, so dass sich genau dann konsistente Bomben
+finden lassen, wenn der Ausgang der Schaltung wahr werden kann.
+
+Auf das OR-Gatter kann genau genommen verzichtet werden, denn eine
+ODER-Verknüpfung kann man nach den de Morganschen Regeln auch durch
+Negationen und UND-Verknüpfungen ausdrücken:
+\[
+x\vee y = \overline{(\bar x \wedge \bar y)}.
+\]
+Somit bleibt übrig, dass wir jeden Schaltplan aus AND- und NOT-Gattern
+in einen Minesweeper-Spielplan übersetzen können müssen. Dazu gehören
+auch Verbindungen zwischen verschiedenen Gattern, und Überkreuzungen von
+solchen Verbindungen. Wir brauchen also einen Spielplan, der die Rolle
+eines Drahtes in einem Schaltschema übernehmen kann. Eine solchen Spielplan
+zeigt Abbildung~\ref{minesweeper-wire}.
+
+\begin{figure}
+\begin{center}
+\begin{tabular}{cc}
+\multicolumn{2}{c}{\includegraphics[width=0.45\hsize]{graphics/wire}}\\
+\multicolumn{2}{c}{``Draht'' ohne Signal}\\
+&\\
+\includegraphics[width=0.45\hsize]{graphics/wire-0}&
+\includegraphics[width=0.45\hsize]{graphics/wire-1}\\
+Bombenbelegung für logisch ``0''&
+Bombenbelegung für logisch ``1''
+\end{tabular}
+\end{center}
+\caption{Minesweeper-``Draht'', Spielplan mit zwei möglichen Bombenbelegungen,
+die für die zwei möglichen Zustände stehen können, die entlang des
+Drahtes transportiert werden können.\label{minesweeper-wire}}
+\end{figure}%
+
+Drähte müssen sich auch überkreuzen, in Abbildung~\ref{minesweeper-cross}
+ist ein Spielplan mit zwei sich kreuzenden Drähten gezeigt. Dieses
+Kreuz kann zwei verschiedene Inputs vertikal und horizontal haben,
+wie in Abbildung~\ref{minesweeper-crosses} dargestellt. Man kann
+erkennen, dass sich die Zustände bei der Kreuzung gegenseitig nicht
+verändern. Was links als Zustand 0 eingeht, wird auch rechts als Zustand
+0 weitergeleitet.
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.6\hsize]{graphics/cross}
+\end{center}
+\caption{Kreuzung zweier ``Drähte''\label{minesweeper-cross}}
+\end{figure}%
+\begin{figure}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\raisebox{12ex}{$0$}&
+\raisebox{0pt}[0.4\hsize][0pt]{%
+\includegraphics[width=0.41\hsize]{graphics/cross-11}}&
+\includegraphics[width=0.41\hsize]{graphics/cross-10}\\
+\hline
+\raisebox{12ex}{$1$}&
+\raisebox{0pt}[0.4\hsize][0pt]{%
+\includegraphics[width=0.41\hsize]{graphics/cross-01}}&
+\includegraphics[width=0.41\hsize]{graphics/cross-00}\\
+\hline
+&\raisebox{0pt}[15pt][7pt]{$0$}&%
+\raisebox{0pt}[15pt][7pt]{$1$}\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Vier verschiedene mögliche Zustandskombinationen auf
+einer Drahtkreuzung\label{minesweeper-crosses}}
+\end{figure}%
+
+Das NOT-Gatter muss aus einem Signal das invertierte Signal
+machen. Dies schafft der Spielplan in Abbildung~\ref{splitter}.
+Der von links eingespeiste Zustand wird rechts invertiert weitergeleitet.
+Gleichzeitig wird der eingespeiste Zustand auch unverändert nach
+oben und unten abgeleitet, so dass man mit dieser Struktur auch
+eine Aufteilung eines Signals in zwei Signale durchführen kann.
+\begin{figure}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multirow{2}{0.4\hsize}{%
+\raisebox{-5ex}[0.4\hsize][0pt]{%
+\includegraphics[width=\hsize]{graphics/splitter}%
+}}&
+\raisebox{11.5ex}{$0$}&
+\raisebox{0pt}[0.35\hsize][0pt]{%
+\includegraphics[width=0.4\hsize]{graphics/splitter-1}}&
+\raisebox{11ex}{$1$}\\
+\cline{2-4}
+&
+\raisebox{11.5ex}{$1$}&
+\raisebox{0pt}[0.35\hsize][0pt]{%
+\includegraphics[width=0.4\hsize]{graphics/splitter-0}}&
+\raisebox{11ex}{$0$}\\
+\hline
+\end{tabular}
+\end{center}
+\caption{NOT-Schaltung und Aufspaltung von Zuständen\label{splitter}}
+\end{figure}%
+
+Damit bleibt nur noch das AND-Gatter. Dieses ist in Abbildung~\ref{andgate}
+dargestellt, und in Abbildung~\ref{andstates} kann man die Funktion des
+Gatters verfolgen.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.55\hsize]{graphics/and}
+\end{center}
+\caption{Minesweeper-Spielplan für das UND-Gatter\label{andgate}}
+\end{figure}%
+\begin{figure}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\raisebox{0pt}[13pt][4pt]{oberer Input}&unterer Input&Resultat&Output\\
+\hline
+\multirow{2}{10pt}{0}&%
+\raisebox{11ex}{$0$}&%
+\raisebox{0pt}[0.324\hsize][0pt]{%
+\includegraphics[width=0.342\hsize]{graphics/and-00}}&%
+\raisebox{11ex}{$0$}%
+\\
+\cline{2-4}
+&\raisebox{11ex}{$1$}&%
+\raisebox{0pt}[0.324\hsize][0pt]{%
+\includegraphics[width=0.342\hsize]{graphics/and-01}}&%
+\raisebox{11ex}{$0$}%
+\\
+\hline
+\multirow{2}{10pt}{1}&%
+\raisebox{11ex}{$0$}&%
+\raisebox{0pt}[0.324\hsize][0pt]{%
+\includegraphics[width=0.342\hsize]{graphics/and-10}}&%
+\raisebox{11ex}{$0$}%
+\\
+\cline{2-4}
+&\raisebox{11ex}{$1$}&%
+\raisebox{0pt}[0.324\hsize][0pt]{%
+\includegraphics[width=0.342\hsize]{graphics/and-11}}&%
+\raisebox{11ex}{$1$}%
+\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Nachweis der konsistenten ``Funktion'' des AND-Gatters
+\label{andstates}}
+\end{figure}%
+
+Damit ist gezeigt, dass sich jede Schaltung in polynomieller Zeit in 
+einen Minesweeper-Plan übersetzen lässt. Für eine polynomielle
+Reduktion wird aber verlangt, dass eine erfüllbare Formel auf einen
+Plan abgebildet wird, der am Ausgang eine logische 1 haben.
+Da in unseren ``Drähten'' eine logische 1 einer Bombe im zweiten
+Feld (in Fortpflanzungsrichtung des Signals) entspricht, können
+wir der Forderung nach einer logischen 1 dadurch Nachdruck verleihen,
+dass wir diese letzte Bombe bereits platzieren. Als letzten Schritt
+in der Übersetzung pflanzen wir also im ``letzten'' Feld eine Bombe.
+Der so konstruierte Spielplan hat dann genau dann eine konsistente
+Bombenbelegung, wenn der ursprüngliche Schaltplan Output 1 haben kann.
+
+Damit ist jetzt gezeigt, dass
+\[
+\text{\textsl{SAT}}\le_P
+\text{\textsl{CIRCUIT}}\le_P\text{\textsl{MINESWEEPER-CONSISTENCY}},
+\]
+und weil \textsl{SAT} NP-vollständig ist, folgt auch, dass 
+\textsl{MINESWEEPER-CONSISTENCY} NP-vollständig ist.
+
+\subsection{Direkter Beweis}
+Unter Verwendung der eben entwickelten Ideen könnte es möglich sein,
+einen direkten Beweis der NP-Vollständigkeit von
+\textsl{MINESWEEPER-CONSISTENCY} zu geben, ohne die Verwendung
+von \textsl{SAT}. Dazu braucht man eine Theorie die besagt, dass
+Schaltungen und Turing-Maschinen im wesentlichen Äquivalent sind.
+So eine Theorie existiert, und wird auch benötigt, um Turing-Maschinen
+mit Quantencomputern vergleichen zu können. Letztere sind nämlich
+über ``Quantenschaltungen'' definiert. Dann sagt die Maschinerie des
+vorangegangenen Abschnitts jedoch, dass man jede Turing-Maschine in
+ein Minesweeper-Problem übersetzen kann, was NP-Vollständigkeit
+beweist.

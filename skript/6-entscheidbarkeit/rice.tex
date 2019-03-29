@@ -1,0 +1,172 @@
+%
+% rice.tex -- Satz von Rice
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+\section{Satz von Rice}
+\rhead{Satz von Rice}
+Eigenschaften von Turing-erkennbaren Sprachen sind im Allgemeinen
+nicht entscheidbar, wie die vorangegangenen Beispiel zeigen.
+Allerdings müssen sie genü\-gend kompliziert sein.
+Dann lässt
+sich aber sogar der Beweis vereinheitlichen.
+Zum Beispiel wurde
+beim Beweis von $\text{\it REGULAR}_{\text{TM}}$ eigentlich
+nur verwendet, dass wir eine reguläre Sprache ($\emptyset$) und
+eine nicht reguläre ($\{0^n1^n\;|\;n\in\mathbb N\}$) kennen.
+
+\begin{definition}
+\index{Eigenschaft!nicht-triviale}%
+Sei $P$ eine Eigenschaft einer Sprache $L$, $P(L)$ ist also wahr oder
+falsch.
+$P$ heisst nicht trivial, falls es eine Sprache $L_1$ gibt,
+die die Eigenschaft $P$ hat, und eine Sprache $L_2$, die die
+Eigenschaft nicht hat.
+\end{definition}
+
+\begin{satz}[Rice]
+\index{Rice!Satz von}%
+\label{rice-theorem}
+Sei $P$ eine nicht triviale Eigenschaft von Turing-erkennbaren Sprachen,
+dann ist $P$ nicht entscheidbar.
+Als Sprachproblem formuliert:
+\[
+P_{\text{TM}}=\{ \langle M\rangle\;|\;
+\text{$M$ ist eine TM und $L(M)$ hat die Eigenschaft $P$}
+\}
+\]
+ist nicht entscheidbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir konstruieren eine Reduktion $A_\text{TM}\le P_{\text{TM}}$.
+Zu einem Paar
+$\langle M,w\rangle$
+müssen wir also auf
+berechenbare Weise eine Turingmaschine $M'$
+\[
+f\colon \langle M,w\rangle\mapsto M'
+\]
+konstruieren, deren Sprache genau dann die Eigenschaft $P$
+hat, wenn $M$ das Wort $w$ akzeptiert.
+
+Dazu brauchen wir die beiden Turing-erkennbaren Sprachen $L_1$ und $L_2$,
+wobei $L_1$ die Eigenschaft $P$ hat, $L_2$ aber nicht.
+Wir können dabei annehmen, dass $L_2=\emptyset$ ist, dass also
+$\emptyset$ die Eigenschaft $P$ nicht hat.
+Wäre dies nicht so, könnten
+wir stattdessen $L_1=\emptyset$  wählen, und die Eigenschaft $\neg P$
+untersuchen.
+Aussserdem gibt es eine Turingmaschine $M_1$ mit $L(M_1)=L_1$.
+
+Die Turingmaschine $M'$ operiert auf dem Input $u$ wie folgt:
+\medskip
+\begin{compactenum}
+\item Lasse $M$ auf Input $w$ laufen
+\item Falls $M$ das Wort $w$ akzeptiert, lasse $M_1$ auf $u$ laufen.
+Falls $M_1$ im Zustand $q_{\text{accept}}$ anhält, halte ebenfalls
+im Zustand $q_{\text{accept}}$ an.
+\item In allen anderen Fällen: $q_{\text{reject}}$
+\end{compactenum}
+\medskip
+
+Falls $w\in L(M)$ akzeptiert die Turingmaschine $M'$ genau die Wörter
+$u\in L_1$.
+Falls $w\not\in L(M)$ akzeptiert $M'$ überhaupt keine
+Wörter, in diesem Fall ist also $L(M')=\emptyset$:
+\begin{align*}
+w\in L(M)&\qquad \Rightarrow\qquad L(M')=L_1\\
+w\not\in L(M)&\qquad \Rightarrow\qquad L(M')=\emptyset
+\end{align*}
+Da $f$ berechnenbar ist, haben wir die verlangte Reduktion
+gefunden, und es folgt, dass $P_{\text{TM}}$ nicht
+entscheidbar ist.
+\end{proof}
+
+\subsubsection{Anwendungen}
+
+\begin{beispiel}[\bf $\text{\textsl{ALL}}_{\text{TM}}$ ist nicht entscheidbar]
+\index{ALLTM@$\textit{ALL}_{\text{TM}}$}%
+$\text{\textsl{ALL}}_{\text{TM}}$ ist die Sprache
+\[
+\text{\textsl{ALL}}_{\text{TM}}=\{
+\langle M\rangle\;|\; \text{$M$ ist eine TM und $L(M)=\Sigma^*$}
+\}
+\]
+Der Satz von Rice verlangt, dass wir das Problem als eine Eigenschaft
+der von einer TM erkannten Sprache formulieren.
+\[
+P=\text{\textsl{ALL}}:\text{Die erkannte Sprache ist $\Sigma^*$}
+\]
+Offensichtlich ist dies eine Eigenschaft der Sprache, und nicht zum
+Beispiel der konkreten Implementation der TM.
+
+Ausserdem verlangt der Satz von Rice, dass die Eigenschaft nicht trivial ist,
+dass es also Sprachen gibt, die die Eigenschaft haben, und andere, die
+sie nicht haben.
+\begin{enumerate}
+\item Die Sprache $\Sigma^*$ ist Turing-erkennbar und hat die Eigenschaft
+$P=\text{\textsl{ALL}}$.
+\item Die Sprache $\emptyset$ ist auch Turing-erkennbar, hat aber die
+Eigenschaft
+$P=\text{\textsl{ALL}}$ nicht.
+\end{enumerate}
+Damit ist klar, dass die Eigenschaft nicht trivial ist.
+
+Jetzt kann der Satz von Rice angewandt werden, er besagt, dass die
+Eigenschaft
+$P=\text{\textsl{ALL}}$ nicht entscheidbar ist.
+\end{beispiel}
+
+\begin{beispiel}[\bf Primzahlprüfer] Es ist entscheidbar, ob eine Zahl $n$
+prim ist oder nicht, man testet einfach jeden möglichen Teiler $<n$,
+wenn immer ein Rest bleibt, ist die Zahl prim.
+Dies ist natürlich
+kaum der effizienteste Algorithmus, tatsächlich gibt es viele Alternativen,
+die wir in eine Menge zusammenfassen können:
+\[
+\text{\textsl{PRIMALITY-TESTER}}=
+\left\{\langle M\rangle\;\left|\;
+\begin{minipage}{2.15truein}
+\raggedright
+$M$ ist eine Turingmaschine und\\
+ein korrekter Primzahltester
+\end{minipage}
+\right.\right\}.
+\]
+\index{PRIMALITY-TESTER@$\textit{PRIMALITY-TESTER}$}%
+\textsl{PRIMALITY-TESTER} enthält also genau diejenigen Programme, welche
+als Primzahlprüfer korrekt funktionieren.
+
+Gibt es ein Programm, welches beliebige Primzahlprüfer auf Korrektheit
+testen kann? Wenn ja, dann ist \textsl{PRIMALITY-TESTER} entscheidbar.
+Leider kann es kein solches Programm geben,
+\textsl{PRIMALITY-TESTER} ist nicht entscheidbar, wie man mit dem Satz
+von Rice einsehen kann.
+
+Zunächst muss man wieder die Eigenschaft formulieren
+\[
+P: \text{Die akzeptierte Sprache ist die Menge der Primzahlen}
+\]
+Weiter muss es zwei Sprachen geben, die eine muss die Eigenschaft
+$P$ haben, die anderen nicht:
+\begin{enumerate}
+\item
+Der oben beschriebene primitive Primzahlprüfer, der alle möglichen Teiler
+durchprobiert, akzeptiert genau die Primzahlen, die akzeptierte Sprache
+hat also die Eigenschaft $P$.
+\item 
+Die leere Sprache $\emptyset$ ist Turing-erkennbar, hat aber ganz bestimmt
+die Eigenschaft $P$ nicht.
+\end{enumerate}
+Die Eigenschaft $P$ ist also nicht trivial, und nach dem Satz von Rice
+kann sie daher auch nicht entscheidbar sein.
+\end{beispiel}
+
+Die Beispiele illustrieren, dass es im Allgmeinen unmöglich ist, Programme
+automatisch darauf zu testen, ob sie in allen Fällen korrekt arbeiten
+werden.
+Dies ist nur dann möglich, wenn die akzeptierte Sprache einfach,
+zum Beispiel regulär, ist, oder nur für eine Teilmenge aller möglichen
+Programmen.

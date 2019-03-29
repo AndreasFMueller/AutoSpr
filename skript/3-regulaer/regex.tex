@@ -1,0 +1,718 @@
+\rhead{Reguläre Ausdrücke}
+\section{Reguläre Ausdrücke\label{regulaer:re}}
+\index{reguläre Ausdrücke}%
+Endliche Automaten beschreiben reguläre Sprachen, sind aber für die
+Anwendung eher unhandlich.
+In der Praxis haben sich reguläre Ausdrücke
+durchgesetzt, die mit einer einfachen Syntax ebenfalls Mengen von
+Wörtern zu spezifizieren erlauben.
+Ziel dieses Abschnittes ist
+zu zeigen, dass reguläre Ausdrücke genau gleich ausdrucksstark sind
+wie DEAs.
+
+\subsection{Reguläre Operationen\label{regulaer:regulaere-operationen}}
+\index{reguläre Operationen}%
+Wir wissen bereits, dass wir die Mengenoperationen auf reguläre
+Sprachen anwenden dürfen, ohne die Klasse der regulären Sprachen
+zu verlassen.
+Es sind jedoch noch zwei weitere Operationen möglich, die ebenfalls
+nicht aus der Klasse herausführen:
+
+\begin{definition}
+\index{Verkettung}%
+Seien $L_1$ und $L_2$ Sprachen, dann ist die
+Verkettung von $L_1$ und $L_2$ die Sprache
+\[
+L_1L_2=\{w_1w_2\;|\;w_1\in L_1,w_2\in L_2\}.
+\]
+Die mehrfache Verkettung von $L$ wird mit $L^n$ bezeichnet:
+\begin{align*}
+L^0&=\{\varepsilon\}\\
+L^n&=L^{n-1}L
+\end{align*}
+\end{definition}
+
+\begin{definition}
+\index{*-Operation@$*$-Operation}%
+Sei $L$ eine Sprache, dann ist die Stern-Operation
+von $L$ die Sprache
+\[
+L^*=\bigcup_{k\in\mathbb N} L^k.
+\]
+\end{definition}
+
+Wir möchten jetzt zeigen, dass diese Operationen nicht aus den
+regulären Sprachen herausführen.
+Dazu müssen wir zu gegebenen Automaten $A_1$ und $A_2$ für zwei Sprachen
+$L_1$ und $L_2$ neue Automaten konstruieren, welche
+die Sprachen $L_1L_2$ oder $L_1^*$ akzeptieren.
+Die Automaten $A_1$ und $A_2$ müssen wir dabei als ``Black Box'' betrachten,
+wir dürfen daran nichts ändern.
+
+\subsubsection{Automat zu einer Verkettung $L_1L_2$}
+\index{Verkettung}%
+Für die Verkettung $L_1L_2$ ist es zum Beispiel
+nicht zulässig, die Akzeptierzustände von
+$A_1$ mit dem Startzustand von $A_2$ zusammenzulegen.
+Dadurch
+würde es nämlich möglich, auch Wege wieder zurück in
+den ersten Automaten zu verwenden.
+Im folgenden Beispiel akzeptiert der erste Automat Strings mit
+einer ungeraden Anzahl Nullen, der zweite Strings mit einer
+ungeraden Anzahl {\tt a}.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{} \ar@/^/[r]^{\tt 0}
+		&*++[o][F=]{} \ar@/^/[l]^{\tt 0}
+			&*\txt{}\ar[r]
+				&{} \ar@/^/[r]^{\tt a}
+					&*++[o][F=]{} \ar@/^/[l]^{\tt a }
+}
+\]
+Verkettet man die Automaten, indem man den Akzeptierzustand des
+ersten mit dem Startzustand des zweiten Automaten zusammenlegt,
+erhält man
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{} \ar@/^/[r]^{\tt 0}
+		&{} \ar@/^/[l]^{\tt 0}
+				 \ar@/^/[r]^{\tt a}
+					&*++[o][F=]{} \ar@/^/[l]^{\tt a }
+}
+\]
+Dieser Automat akzeptiert aber auch das Wort {\tt 0aa00a}, welches
+gar nicht in $L_1L_2$ ist! Die Verkettung muss also mit Hilfe
+einer ``Einbahnstrasse'' erfolgen, ein $\varepsilon$-Übergang
+ist ideal dafür geeignet.
+Die folgende Verkettung funktioniert:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{} \ar@/^/[r]^{\tt 0}
+		&{} \ar@/^/[l]^{\tt 0} \ar[r]^{\varepsilon}
+			&{} \ar@/^/[r]^{\tt a}
+				&*++[o][F=]{} \ar@/^/[l]^{\tt a }
+}
+\]
+
+Für die allgemeine Konstruktion gehen wir aus
+von zwei Automaten $A_1$ und $A_2$:
+\begin{center}
+\includegraphics{images/nea-1}
+\end{center}
+Ein Automat für die Verkettung entsteht, indem man
+die Akzeptierzustände im ersten Automaten über
+$\varepsilon$-Übergänge mit dem
+Startzustand des zweiten verbindet:
+\begin{center}
+\includegraphics{images/nea-2}
+\end{center}
+Die $\varepsilon$-Übergänge
+fungieren als Einbahnstrassen und stellen sicher, auch innerhalb der
+einzelnen Automaten keine neuen akzeptierten Wörter entstehen können.
+
+Etwas formeller kann man das Resultat im folgenden Satz zusammenfassen.
+
+\begin{satz}
+\index{Verkettung}%
+\label{satz_concat}
+Sind $L_1$ und $L_2$ reguläre Sprachen, dann ist auch $L_1L_2$
+regulär.
+\end{satz}
+
+\begin{proof}[Beweis]
+Ein Wort $w\in L_1L_2$ besteht aus zwei Teilen, die von $L_1$
+bzw.~$L_2$ akzeptiert werden.
+Ein Automat $A$ für $L=L_1L_2$ kann aus Automaten $A_1$ und $A_2$
+konstruiert werden, indem man
+die Akzeptierzustände von $A_1$ über $\varepsilon$-Übergänge
+mit dem Startzustand von $A_2$ verbindet.
+Also verwenden wir $Q=Q_1\cup Q_2$.
+Startzustand ist der Startzustand $q_{01}$ von $L_1$, Akzeptierzustände
+sind die Akzeptierzustände $F_2$ von $A_2$.
+Also
+\begin{align*}
+Q&=Q_1\cup Q_2\\
+F&=F_2\\
+q_0&=q_{01}\\
+\delta(q,a)&=\begin{cases}
+\delta_1(\varepsilon,a)\cup\{q_{02}\}&\qquad q\in F_1 \wedge a=\varepsilon\\
+\delta_1(q,a)                        &\qquad q\in F_1 \wedge a\ne\varepsilon
+\quad\text{oder}\quad q\in Q_1\setminus F_1\\
+%\\
+%\delta_1(q,a)                        &\qquad q\in Q_1\setminus F_1\\
+\delta_2(q,a)                        &\qquad q\in Q_2
+\end{cases}
+\end{align*}
+\end{proof}
+
+\subsubsection{Automat zur *-Operation $L^*$}
+\index{*-Operation@$*$-Operation}%
+Die Stern-Operation verlangt, dass man einen Automaten mehrfach
+durchlaufen können muss.
+Dies könnte man mit einem $\varepsilon$-Übergang
+von den Akzeptierzuständen direkt zum Startzustand realisieren.
+Dadurch ändert man aber den Automaten für die Sprache $L$,
+der Automat ist nicht mehr eine wiederverwendbare Einheit.
+
+Wir streben an, die regulären Operationen ohne interne Änderungen
+des Automaten zu konstruieren.
+Insbesondere dürfen dem Automaten keine neuen Übergänge hinzugefügt
+werden.
+Es ist hingegen zulässig, einen Akzeptierzustand zu einem
+Nichtakzeptierzustand zu degradieren.
+Ob nämlich ein Zustand als Akzeptierzustand interpretiert wird,
+hängt davon ab, was ein zusammengesetzter Automat mit der Information
+macht, dass ein Teilautomat sich in einem Akzeptierzustand befindet.
+
+Zur Verdeutlichung stelle man sich eine Automaten-Objekt $A$ vor mit
+folgendem Interface
+\begin{verbatim}
+interface Automat {
+        // Zeichen verarbeiten
+        void    process(char zeichen);
+        // testen, ob sich der Automat in einem Akzeptierzustand befindet
+        boolean accept();
+        // in den Startzustand zurueckversetzen
+        void    reset();
+}
+\end{verbatim}
+Offensichtlich enthält dieses Interface keine Möglichkeit, den Automaten
+zu modifizieren, oder auch nur den inneren Zustand auf eine andere Art
+zu ändern als mit einem normalen Übergang.
+Das Interface genügt aber, um die *-Operation auszuführen.
+Um ein Wort in $L^*$ zu akzeptieren, muss man nur jedes Zeichen
+des Wortes in den Automaten $A$ einspeisen und fragen, ob er sich
+in einem Akzeptierzustand befindet.
+Falls ja, darf man das Teilwort
+akzeptieren und den Automaten in den Startzustand zurückversetzen.
+
+Für die *-Operation darf also der Automat
+\begin{center}
+\includegraphics{images/nea-3}
+\end{center}
+nicht modifiziert werden, insbesondere darf der naheligende
+$\varepsilon$-Übergang von einem Akzeptierzustand zum Startzustand
+nicht hinzugefügt werden.
+Um das leere Wort muss daher ein zusätzlicher Zustand hinzugefügt werden.
+Und für die Wiederholung darf kann man diesen neuen Zustand ebenfalls
+verwenden, indem man von den Akzeptierzuständen von $A$ zu diesem
+neuen Zustand zurückkehrt.
+So erhält man den Automaten
+\begin{center}
+\includegraphics{images/nea-4}
+\end{center}
+
+Formal kann man das Resultat wie folgt zusammenfassen:
+\begin{satz}
+\index{*-Operation@$*$-Operation}%
+\label{satz_star}
+Ist $L$ eine reguläre Sprache, dann ist auch $L^*$ regulär.
+\end{satz}
+
+Zum Beweis reicht es nicht, den Satz \ref{satz_concat} zu verwenden
+um zu zeigen, dass $L^n$ regulär ist, und dann aus wiederholter
+Anwendung Satz \ref{satz_union} zu schliessen zu versuchen,
+dass die Vereinigung aller $L^n$ auch regulär sei.
+Da dies eine unendliche
+Vereinigung ist, würde nach der Konstruktion im Beweis von Satz
+\ref{satz_union} ein Automat mit unendlich vielen
+Zuständen entstehen, also keinen NEA.
+
+\begin{proof}[Beweis]
+Aus dem Automaten
+\[
+A=(Q,\Sigma, \delta,q_0,F)
+\]
+mit $L(A)=L$ konstruieren wir einen neuen
+Automaten
+\[
+A'=(Q',\Sigma,\delta',q',F')
+\]
+mit einem neuen Anfangszustand $q'$, der auch
+ein Akzeptierzustand ist.
+Damit wird sichergestellt, dass der neue Automat das in $L^0$
+enthaltene leere Wort akzeptiert.
+Zusätzlich wird der neue Anfangszustand mit einem $\varepsilon$-Übergang
+mit $q'$ verbunden.
+Ebenso werden alle Akzeptierzustände über $\varepsilon$-Übergänge
+mit dem neuen Startzustand verbunden:
+\begin{align*}
+Q'&=Q\cup \{q'\}\\
+F'&=\{q'\}\\
+\delta'(q',a)&=\emptyset\\
+\delta'(q',\varepsilon)&= \{q_0\}\\
+\delta'(q,a)&= \delta(q,a)\\
+\delta'(q,\varepsilon)&=\begin{cases}
+\delta(q,\varepsilon)          &\qquad q\not\in F\\
+\delta(q,\varepsilon)\cup\{q'\}&\qquad q\in F
+\end{cases}
+\end{align*}
+\end{proof}
+\subsubsection{Variante: mindestens eine Wiederholung}
+Die Sprache $LL^*$ besteht aus Verkettungen von Wörtern aus $L$,
+im Unterschied zu $L^*$ kommt aber mindestens ein Wort vor.
+Einen Automaten dafür kann man auf verschiedene Arten gewinnen,
+sie laufen aber alle im Wesentlichen auf die Lösung
+\begin{center}
+\includegraphics{images/nea-7}
+\end{center}
+hinaus.
+Wesentlich ist, dass man den Automaten durchlaufen muss, bevor
+etwas akzeptiert werden kann, und dass man von den Akzeptierzuständen
+auch wieder zum Startzustand zurückkehren kann.
+Dabei darf allerdings
+kein ``Kurzschluss'' entstehen, man muss eine Einbahnstrasse aus
+$\varepsilon$-Übergängen verwenden.
+
+\subsubsection{Automat zur Alternative $L_1\cup L_2$}
+\index{Alternative}%
+\index{Vereinigung}%
+Für die Alternative $L_1\cup L_2$ hatten wir bei der Diskussion
+des Produkt-Automaten schon einen Automaten gefunden, auch
+hierfür lässt sich ein etwas einfacherer Automat im gleichen
+Stil wie für Verkettung und *-Operation finden.
+Ein neuer Startzustand
+wird dazu mit $\varepsilon$-Übergängen mit den Startzuständen
+der Automaten $A_1$ und $A_2$ verbunden, wie in Abbildung~\ref{neaalternative}.
+\begin{figure}
+\begin{center}
+\includegraphics{images/nea-5}
+\qquad
+\qquad
+\includegraphics{images/nea-6}
+\end{center}
+\caption{Automatenkonstruktion für die Alternative, rechts der Automat
+für die Sprache $L(A_1)\cup L(A_2)$\label{neaalternative}}
+\end{figure}
+
+\subsubsection{Reguläre Operationen}
+Damit haben wir alle drei regulären Operationen kennengelernt:
+
+\begin{definition}
+Die drei Operationen
+\begin{enumerate}
+\item Vereinigung $(L_1,L_2)\mapsto L_1\cup L_2$
+\item Verkettung $(L_1,L_2)\mapsto L_1L_2$ und
+\item Stern-Operation $L\mapsto L^*$
+\end{enumerate}
+heissen reguläre Operationen.
+\end{definition}
+
+Diese Operationen genügen, um alle regulären Sprachen aus
+einelementigen Teilmengen von $\Sigma$ aufzubauen.
+Dazu werden wir im nächsten Abschnitt eine prägnantere Notation,
+die regulären Ausdrücke definieren.
+Danach werden wir zeigen,
+dass sich jeder DEA in einen regulären Ausdruck umwandeln lässt.
+
+\subsection{Reguläre Ausdrücke\label{regulaer:regulaere-ausdruecke}}
+\index{reguläre Ausdrücke}%
+\index{Ausdrücke!reguläre}%
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Ausdruck $r$&Bedeutung\\
+\hline
+{\tt a}&steht für das Zeichen ${\tt a}\in \Sigma$\\
+{\tt .}&steht für ein beliebiges Zeichen aus $\Sigma$\\
+{\tt [aeiou]}&steht für ein Zeichen aus $\{{\tt a},{\tt e},{\tt i},{\tt o},{\tt u}\}\subset \Sigma$\\
+{\tt [1-9]}&steht für die positiven Ziffern\\
+$\varepsilon$&steht für das leere Wort\\
+$\emptyset$&steht für die leere Sprache\\
+\hline
+\end{tabular}
+\end{center}
+\index{reguläre Ausdrücke!primitive}%
+\index{Ausdrücke!reguläre!primitive}%
+\caption{Primitive reguläre Ausdrücke.\label{regtab1}}
+\end{table}
+Reguläre Ausdrücke sind Zeichenketten, die (reguläre) Sprachen
+beschreiben.
+Die einfachsten regulären Sprachen sind die Sprachen mit Wörtern,
+die nicht länger als 1 Zeichen sind.
+Reguläre Ausdrücke für
+diese primitiven Sprachen werden in Tabelle~\ref{regtab1} zusammengestellt.
+
+Reguläre Ausdrücke bauen reguläre Sprachen aus einzelnen
+Zeichen und regulären Operationen aus.
+Ist $r$ ein regulärer Ausdruck, dann schreiben wir  $L(r)$ für die
+Sprache, die vom regulären Ausdruck $r$ beschrieben wird.
+Für die regulären Operationen verwenden wir die Notation
+gemäss Tabelle~\ref{regtab2}
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+&Ausdruck&reguläre Operation\\
+\hline
+\index{Verkettung}%
+Verkettung&$r_1r_2$&$L(r_1)L(r_2)$\\
+\index{Alternative}%
+Alternative&$r_1{\tt |}r_2$&$L(r_1)\cup L(r_2)$\\
+\index{*-Operation@$*$-Operation}%
+Stern-Operation&$r{\mathstrut^{\tt *}}$&$L(r)^*$\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Notation für reguläre Operationen\label{regtab2}}
+\end{table}
+Falls nötig können Klammern verwendet werden, um anzuzeigen,
+welche Gruppen verknüpft werden.
+Da mit regulären Operationen
+verknüpfte Sprachen wieder regulär sind, können alle mit
+regulären Ausdrücken beschriebenen Sprachen von einem DEA
+akzeptiert werden.
+
+\subsubsection{Automaten für die primitiven regulären Ausdrücke}
+Die primitiven regulären Ausdrücke aus Tabelle~\ref{regtab1} können
+von folgenden Automaten akzeptiert werden:
+\begin{enumerate}
+\item Ein einzelnes Zeichen {\tt a}:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}\ar[r]^{\tt a}
+		&*++[o][F=]{}
+}
+\]
+\item Sprache $L=\Sigma$, regulärer Ausdruck $r={\tt .}$:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}\ar[r]^{\Sigma}
+		&*++[o][F=]{}
+}
+\]
+\item Das leere Wort:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&*++[o][F=]{}
+}
+\]
+\item Die leere Sprache:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}
+}
+\]
+\end{enumerate}
+
+\subsubsection{Automat eines regulären Ausdrucks}
+Mit Hilfe der Automaten für die primitven regulären Ausdrücke
+und den regulären Operationen kann man jetzt zu jedem regulären
+Ausdruck einen NEA aufbauen.
+
+\begin{beispiel}[\bf Beispiel 1] NEA des regulären Ausdrucks
+${\tt ab}|{\tt cd}$.
+
+Zunächst brauchen wir einen NEA für die Verkettung ${\tt ab}$.
+Diesen können wir mit der Verkettungskonstruktion aus primitiven
+NEAs für {\tt a} und {\tt b} bilden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}\ar[r]^{\tt a}
+		&{}\ar[r]^{\varepsilon}
+			&{}\ar[r]^{\tt b}
+				&*++[o][F=]{}
+}
+\]
+Auf die gleiche Art kann auch ein NEA für ${\tt cd}$ gebildet werden.
+Diese müssen jetzt mit Hilfe der Konstruktion für die Alternative
+zu einem NEA für den Gesamtausdruck zusammengesetzt werden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}
+	&*+\txt{}
+		&{}\ar[r]^{\tt a}
+			&{}\ar[r]^{\varepsilon}
+				&{}\ar[r]^{\tt b}
+					&*++[o][F=]{}
+\\
+*+\txt{} \ar[r]
+	&{}\ar[ur]^{\varepsilon} \ar[dr]^{\varepsilon}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{}\ar[r]^{\tt c}
+			&{}\ar[r]^{\varepsilon}
+				&{}\ar[r]^{\tt d}
+					&*++[o][F=]{}
+}
+\]
+\end{beispiel}
+
+\begin{beispiel}[\bf Beispiel 2] NEA für den regulären Ausdruck
+$({\tt ab})^*{\tt c}$.
+
+Die einzelnen Teile sind uns schon bekannt, wir müssen nur noch
+die *-Konstruktion auf den verketten Automaten anwenden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}\ar[r]^{\varepsilon}
+		&{}\ar[r]^{\varepsilon}
+			\ar[d]^{\varepsilon}
+			&\ar[r]_{\tt a}
+				&{}\ar[r]^{\varepsilon}
+					&{}\ar[r]_{\tt b}
+						&{}\ar@/_20pt/[llll]_{\varepsilon}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{}\ar[r]^{\tt c}
+			&*++[o][F=]{}
+}
+\]
+\end{beispiel}
+
+\begin{beispiel}[\bf Beispiel 3:] NEA für den regulären Ausdruck
+$({\tt ab})+$.
+
+Das Zeichen ${\tt+}$ bedeutet bei regulären Ausdrücken ``mindestens ein''.
+Die einfachste Modifikation der *-Konstruktion, die dies leistet, besteht
+darin, den Akzeptierzustand ans Ende des Automaten zu verschieben:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}\ar[r]^{\varepsilon}
+		&{}\ar[r]^{\tt a}
+			&{}\ar[r]^{\varepsilon}
+				&{}\ar[r]^{\tt b}
+					&*++[o][F=]{}\ar@/^20pt/[llll]^{\varepsilon}
+}
+\]
+Alternativ könnte man auch einfach den NEA für die Verkettung
+nehmen und keinen neuen Startzustand hinzufügen.
+Bei der
+*-Konstruktion wurde das ja gemacht, um auch das leere Wort
+akzeptieren zu können, was bei der {\tt +}-Operation nicht
+nötig ist:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{}\ar[r]^{\tt a}
+		&{}\ar[r]^{\varepsilon}
+			&{}\ar[r]^{\tt b}
+				&*++[o][F=]{}\ar@/^20pt/[lll]^{\varepsilon}
+}
+\]
+\end{beispiel}
+Diese Beispiele illustrieren, dass sich aus jedem regulären Ausdruck
+ein NEA bauen lässt.
+Die Konstruktion hat die Form eines Algorithmus,
+lässt sich also auch mit einem Computer implementieren, sie geht
+auf Ken Thompson zurück.
+\index{Thompson, Ken}%
+
+\subsection{Regulärer Ausdruck eines DEA\label{regulaer:dea-re}}
+Zu jedem DEA gibt es einen regulären Ausdruck, der angibt,
+welche Wörter er akzeptiert.
+In diesem Abschnitt geben
+wir einen Algorithmus an, der einen DEA in einen äquivalenten
+regulären Ausdruck umwandelt.
+
+\index{NEA!verallgemeinerter}%
+\index{VNEA}%
+Wir verwenden dazu den Begriff eines verallgemeinerten NEA (VNEA),
+dessen Pfeile nicht mehr nur mit Zeichen des Alphabets oder mit
+$\varepsilon$ angeschrieben sei können, sondern mit regulären
+Ausdrücken.
+Dann wandelt man einen DEA zunächst um in einen
+VNEA und reduziert ihn dann auf einen VNEA mit nur zwei Zuständen,
+einem Startzustand und einem Akzeptierzustand:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{q_0}\ar[r]^{r}
+		&*++[o][F=]{q_1}
+}
+\]
+Offenbar werden genau diejenigen Wörter von diesem Automaten
+akzeptiert, welche auf den regulären Ausdruck $r$ passen.
+
+Sei jetzt also ein NEA $A$ gegeben.
+Da er möglicherweise viele
+Endzustände haben kann, wir aber am Schluss nur noch einen
+Endzustand haben wollen, fügen wir einen neuen Endzustand
+$q_{\text{accept}}$ hinzu.
+Da der Automat auch Pfeile haben kann, die im Startzustand enden,
+der endgültige VNEA aber keine solche Pfeile hat, fügen wir
+auch einen zusätzlichen Startzustand $q_{\text{start}}$ hinzu.
+
+%Natürlich müssen wir jetzt auch noch Pfeile ergänzen. Zusätzlich
+%zu den ursprünglichen Pfeilen des NEA ergänzen wir darin
+%alle möglichen Pfeile, die es bis jetzt noch nicht gab, und
+%beschriften Sie mit dem regulären Ausdruck $\emptyset$, was bedeutet,
+%dass diese Pfeile gar nie ``genommen'' werden.
+
+Ausserdem fügen wir vom neuen Startzustand $q_{\text{start}}$
+aus einen Pfeil zum ursprünglichen Startzustand des NEAs mit Beschriftung $\varepsilon$ hinzu.
+
+Alle Akzeptierzustände des ursprünglichen NEAs werden jetzt noch mit
+$q_{\text{accept}}$ verbunden, beschriftet mit $\varepsilon$.
+
+Damit haben wir jetzt einen VNEA.
+Diesen müssen wir jetzt auf einen VNEA reduzieren, der nur noch
+die beiden Zustände $q_{\text{start}}$ und $q_{\text{accept}}$
+enthält.
+Dazu reissen wir nacheinander alle Zustände des ursprünglichen
+NEA heraus.
+Die entstehenden Löcher müssen wir natürlich reparieren, indem wir die
+verbleibenden Pfeile mit erweiterten regulären Ausdrücken
+anschreiben, welche die verlorengegangenen Teile ersetzen.
+
+Nehmen wir also an, wir möchten den Zustand $q_ {\text{rip}}$
+herausreissen.
+Seien weiter $q_i$ und $q_j$ zwei Zustände, die
+Übergänge haben, die über $q_{\text{rip}}$ führen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+{q_i}\ar[rr]^{r_4} \ar[dr]_{r_1}
+	&*+\txt{}
+		&{q_j}
+\\
+*+\txt{}
+	&{q_{\text{rip}}}\ar[ur]_{r_3} \ar@(dl,dr)_{r_2}
+}
+\]
+Der Weg über $q_{\text{rip}}$ entspricht einem Übergang
+von $q_i$ nach $q_j$ mit regulärem Ausdruck $r_1r_2^*r_3$,
+der zusätzlich zum Ausdruck $r_4$, möglich ist.
+Wenn $q_{\text{rip}}$ entfernt wird, muss also $r_4$ durch 
+\[
+r_4{\tt |}r_1r_2^{\tt *}r_3
+\]
+ersetzt werden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+{q_i}\ar[rr]^{r_4|r_1r_2^*r_3}
+	&*+\txt{}
+		&{q_j}
+}
+\]
+Die vom VNEA akzeptierte Sprache ändert sich dabei nicht.
+Diese Operation wird wiederholt, bis die Zustände des ursprünglichen
+NEA vollständig entfernt sind.
+
+Damit  haben wir jetzt folgenden Satz bewiesen.
+\begin{satz}
+Ist $A$ ein NEA, dann gibt es einen regulären Ausdruck $r$ mit
+$L(A)=L(r)$.
+\end{satz}
+
+\subsubsection{Beispiel}
+Wir wollen den DEA
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&{1}\ar@/^/[r]^{\tt a} \ar@/^/[d]^{\tt b}
+		&*++[o][F=]{2} \ar@(ul,ur)^{\tt b} \ar@/^/[l]^{\tt a}
+\\
+*+\txt{}
+	&*++[o][F=]{3} \ar[ur]_{\tt a} \ar@/^/[u]^{\tt b}
+}
+\]
+in einen äquivalenten regulären Ausdruck umwandeln.
+
+Im ersten Schritt fügen wir die neuen Start- und Akzeptierzustände 
+hinzu, die Zustände $2$ und $3$ sind damit nicht mehr Akzeptierzustände:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&S\ar[r]^{\varepsilon}
+		&{1}\ar@/^/[r]^{\tt a} \ar@/^/[d]^{\tt b}
+			&{2} \ar@(ul,ur)^{\tt b} \ar@/^/[l]^{\tt a}\ar[r]^{\varepsilon}
+				&*++[o][F=]{A}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{3} \ar[ur]_{\tt a} \ar@/^/[u]^{\tt b} \ar[urr]^{\varepsilon}
+}
+\]
+Jetzt entfernen wir nacheinander alle ``inneren'' Zustände.
+Wir beginnen mit dem Zustand $1$, dabei sind die Pfade
+$S$-$1$-$2$,
+$S$-$1$-$3$,
+$2$-$1$-$3$,
+$3$-$1$-$2$
+und
+$2$-$1$-$2$
+zu berücksichtigen
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&S\ar[rr]^{\tt a} \ar[dr]_{\tt b}
+		&*+\txt{}
+			&{2} \ar@(ul,ur)^{\tt aa|b} \ar@/_/[dl]_{\tt ab} \ar[r]^{\varepsilon}
+				&*++[o][F=]{A}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{3} \ar@/_/[ur]_{\tt a|ba} \ar@/_20pt/[urr]_{\varepsilon} \ar@(dl,dr)_{\tt bb}
+}
+\]
+Jetzt wird der Zustand $2$ entfernt, dabei sind die Pfade 
+$S$-$2$-$A$,
+$S$-$2$-$3$,
+$3$-$2$-$A$,
+und
+$3$-$2$-$3$
+zu berücksichtigen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&S\ar[rrr]^{\tt a(aa|b)^*} \ar[dr]_{\tt b|a(aa|b)^*ab}
+		&*+\txt{}
+			&*+\txt{}
+				&*++[o][F=]{A}
+\\
+*+\txt{}
+	&*+\txt{}
+		&{3} \ar[urr]_{{\tt (a|ba)(aa|b)^*}|\varepsilon} \ar@(dl,dr)_{{\tt bb|(a|ba)(aa|b)^*ab}}
+}
+\]
+Jetzt muss nur noch der Zustand $3$ entfernt werden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+*+\txt{}\ar[r]
+	&S\ar[rrrrrrrr]^{\tt (a(aa|b)^*)|(b|a(aa|b)^*ab)(bb|(a|ba)(aa|b)^*ab)^*(((a|ba)(aa|b)^*)|\varepsilon)}
+		&*+\txt{}
+			&*+\txt{}
+			&*+\txt{}
+			&*+\txt{}
+			&*+\txt{}
+			&*+\txt{}
+			&*+\txt{}
+				&*++[o][F=]{A}
+}
+\]
+Damit ist der reguläre Ausdruck gefunden, der die gleiche Sprache
+akzeptiert wie der ursprüngliche DEA.
+

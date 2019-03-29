@@ -1,0 +1,228 @@
+%
+% nichtentscheidbar.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Nicht entscheidbare Probleme für CFGs}
+\rhead{Nicht entscheidbare Probleme für CFGs}
+Der letzte Abschnitt könnte den Eindruck hinterlassen haben,
+dass nicht entscheidbare Probleme erst bei Turingmaschinen
+auftreten, und dass alle naheliegenden Probleme bei regulären
+und kontextfreien Sprachen entscheidbar sind.
+Dem ist jedoch nicht so.
+Es ist zum Beispiel nicht entscheidbar, ob zwei
+Grammatiken die gleiche Sprache erzeugen.
+
+\begin{satz} Ob eine kontextfreie Grammatik
+\[
+\text{\it ALL}_{\text{CFG}}=\{\langle G\rangle\;|\; \text{$G$
+ist eine kontextfreie Grammatik und $L(G)=\Sigma^*$}\}
+\]
+\index{ALLCFG@$\textit{ALL}_{\text{CFG}}$}%
+alle Wörter erzeugt, ist nicht entscheidbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir konstruieren eine Reduktion 
+$A_{\text{TM}}\le \text{\it ALL}_{\text{CFG}}$.
+Wir müssen also aus einem Paar $\langle M,w\rangle$ einen
+Grammatik erzeugen, die genau dann alle Wörter erzeugt, wenn
+$M$ das Wort $w$ erkennt.
+Dabei müssen wir diese Strings in
+Zusammenhang bringen mit einer Berechnung der Turingmaschine, die
+auf $w$ im Zustand $q_{\text{accept}}$ endet.
+
+Dazu können wir
+die Berechnungsgeschichte verwenden.
+Jede Konfiguration der
+Turingmaschine ist ja ein String der Form $C=w_1qw_2$.
+Die gesamte
+Berechnung besteht aus einer Folge $C_i$ von solchen Konfigurationen.
+Wir können sie protokollieren, indem wir alle $C_i$
+mit Hilfe eines zusätzlichen Zeichens verketten,
+welches nicht in $\Gamma$ vorkommt.
+Wir bezeichnen diese Zeichen
+mit {\tt\#}.
+
+Die Grammatik soll jetzt also alle Strings ausser der Berechnungsgeschichte
+erzeugen, die zum Erkennen des Wortes $w$ führen.
+Diese Grammatik
+erzeugt also genau dann alle Strings, wenn $M$ das Wort $w$ erkennt.
+
+Um alle Strings ausser der erkennden Berechnung zu bekommen,
+überlegen wir uns, wie ein String
+$h={\tt\#}C_1{\tt\#}C_2{\tt\#}\dots{\tt\#}C_n{\tt\#}$
+keine korrekte Berechungsgeschichte sein könnte:
+\medskip
+\begin{compactenum}
+\item $C_1$ könnte nicht die Startkonfiguration sein, also
+$C_1\ne q_0w$.
+\item $C_n$ könnte nicht eine akzeptierende Konfiguration 
+sein, also etwas von der Form $xq_{\text{accept}}y$.
+\item Ein Zwischenschritt könnte nicht den Regeln der Turingmaschine
+$M$ entsprechen.
+\end{compactenum}
+\medskip
+Die gesuchte Grammatik muss all Strings erzeugen, die einen dieser ``Fehler''
+machen.
+Falls es eine erkennende Berechnung für $w$ gibt, wird diese
+die einzige sein, die nicht erzeugt wird.
+
+Statt die Grammatik zu konstruieren, konstruieren wir einen Stackautomaten,
+den wir später in eine Grammatik umwandeln können.
+Der Stackautomat
+muss alle Strings akzeptieren, die einen der Defekte 1-3 haben, wir
+können also damit beginnen, nichtdeterministisch zwischen diesen drei
+Fällen zu unterscheiden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+3mm{
+*+\txt{}
+	&q_1
+\\
+q_0	\ar[ur]^{\varepsilon,\varepsilon\to\varepsilon}
+	\ar[r]^{\varepsilon,\varepsilon\to\varepsilon}
+	\ar[dr]_{\varepsilon,\varepsilon\to\varepsilon}
+	&q_2
+\\
+*+\txt{}
+	&q_3
+}
+\]
+Im Zustand $q_1$ müssen wir einen Stackautomaten anhängen, der
+überprüft, ob im Input der String $q_0w$ steht.
+Dies kann man 
+bereits mit einem DEA machen, man braucht den Stack dafür gar nicht.
+Ist $w=a_1a_2\dots a_k$, dann ist der Automat dafür geeignet
+\[
+\xymatrix @+3mm{
+*++[o][F]{q_1}\ar[r]^{q_0,\varepsilon\to\varepsilon}
+	&*++[o][F]{}\ar[r]^{a_1,\varepsilon\to\varepsilon}
+		&*++[o][F]{}\ar[r]^{a_2,\varepsilon\to\varepsilon}
+			&\dots\ar[r]^{a_{k-1},\varepsilon\to\varepsilon}
+				&*++[o][F]{}\ar[r]^{a_k,\varepsilon\to\varepsilon}
+					&*++[o][F]{}
+}
+\]
+Akzeptieren darf er aber nur, wenn diese Regeln nicht eingehalten
+werden, man muss also noch einen Fehlerzustand hinzufügen, der
+alles akzeptiert, was in diesem Automaten nicht funktioniert.
+
+Im Zustand $q_2$ müssen wir einen Stackautomaten anhängen, welcher
+eine akzeptierende Konfiguration erkennt.
+Er muss also zunächst 
+alle $C_i$ mit $i<n$ überspringen und dann nichtdeterministisch
+die Zeichen von $C_i$ lesen und kontrollieren, ob $q_{\text{accept}}$
+darin vorkommt.
+Ein Automat dafür ist 
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+3mm{
+q_2\ar@(ur,ul)
+	\ar[r]^{{\tt\#},\varepsilon\to\varepsilon}
+	&{}\ar@(ur,ul)
+		\ar[rr]^{q_{\text{accept}},\varepsilon\to\varepsilon}
+		&*+\txt{}
+			&{}\ar@(ur,ul)
+				\ar[r]^{{\tt\#},\varepsilon\to\varepsilon}
+				&*++[o][F]{}
+}
+\]
+Darin enhalten die Schleifen beim zweiten und dritten Zustand keine
+Übergänge mit dem Zeichen {\tt\#}.
+Dazu braucht es zusätzliche
+Übergange, damit der Automat alles ausser diesen Strings akzeptiert.
+
+Im Zustand $q_3$ muss ein Automat konstruiert werden, der erkennen kann,
+ob die Folge $C_i{\tt\#}C_{i+1}$ einem korrekten Übergang zwischen
+zwei Konfigurationen der Turingmaschen $M$ entspricht.
+Dazu schreibt
+der Stackautomat zunächst alle Zeichen von $C_i$ auf den
+Stack, und vergleicht dann dann den Stackinhalt mit den Zeichen von
+$C_{i+1}$.
+Bis auf die Zeichen um die Kopfposition dürfen sich
+die Strings nicht unterscheiden.
+Dieser Automat enthält also
+einerseits alle Übergänge, welche das Zeichen auf dem Stack
+mit dem nächsten Inputzeichen vergleichen:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+q\ar@(ur,dr)^{a,a\to\varepsilon}
+}
+\]
+Ausserdem Übergänge, die zu gültigen
+Turingmaschinen-Konfigurationsübergängen gehören.
+Ist zum Beispiel
+$px\to yq$ ein solcher Übergang, dann müssen folgende
+Stackautomaten-Übergänge hinzugefügt werden:
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix{
+{}\ar@/^/[r]^{y,p\to\varepsilon}
+	&\ar@/^/[l]^{q,x\to\varepsilon}
+}
+\]
+Leider funktioniert dies noch nicht ganz: die Zeichen von $C_i$
+befinden sich auf dem Stack in umgekehrter Reihenfolge, passen
+also nicht zu $C_{i+1}$.
+Diesen Mangel kann man mit folgendem
+Trick beheben: man schreibt in der Berechnungsgeschichte jede
+zweite Konfiguration rückwärts, also
+\[
+{\tt\#}C_1{\tt\#}C_2^t{\tt\#}C_3{\tt\#}C_4^t{\tt\#}\dots
+\]
+Die Regeln für die korrekten Turingmaschinen-Übergang müssen
+natürlich an diese umgekehrte Ordnung angepasst werden, dabei
+muss beachtet werden, dass mit jedem gelesenen {\tt\#}-Zeichen
+die ``Leserichtung'' ändert.
+Und wiederum muss der Automat alles
+akzeptieren, was nicht den Turingmaschinen-Regeln entspricht.
+
+Auf diese Weise kann ein Stackautomat konstruiert werden, der
+alle Strings akzeptiert ausser der korrekten Berechnungsgeschichte
+(mit alternierenden Schreibrichtungen geschrieben).
+Die daraus
+erzeugte Grammatik erzeugt alle Strings ausser der
+korrekten Berechnungsgeschichte.
+Damit ist die Reduktionsabbildung
+konstruiert.
+\end{proof}
+
+\begin{satz}
+\index{Gleichheitsproblem!für kontextfreie Grammatiken}%
+Das Gleichheitsproblem für kontextfreie Grammatiken
+\[
+\text{\it EQ}_{\text{CFG}}=\{
+\langle G_1,G_2\rangle\;|\;\text{$G_i$ sind kontextfreie Grammatiken
+und $L(G_1)=L(G_2)$}
+\}
+\]
+\index{EQCFG@$\textit{EQ}_{\text{CFG}}$}%
+ist nicht entscheidbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir konstruieren eine Reduktion
+\[
+\text{\it ALL}_{\text{CFG}}
+\le
+\text{\it EQ}_{\text{CFG}}.
+\]
+Da $\text{\it ALL}_{\text{CFG}}$ nicht entscheidbar ist, folgt
+auch, dass $\text{\it EQ}_{\text{CFG}}$ nicht entscheidbar
+ist.
+
+Sei $G_0$ die Grammatik, die $\Sigma^*$ erzeugt.
+Offenbar ist
+$\langle G\rangle$ genau dann in $\text{ALL}_{\text{CFG}}$,
+wenn $G$ und $G_0$ die gleiche Sprache erzeugen, also
+$\langle G,G_0\rangle\in\text{\it EQ}_{\text{CFG}}$.
+Die Reduktionsabbildung ist also
+\[
+\langle G\rangle \mapsto \langle G,G_0\rangle,
+\]
+dies ist sicher berechenbar.
+\end{proof}
+
+

@@ -1,3 +1,9 @@
+%
+% realworldparser.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\rhead{Praktische Parser}
 \section{Real World Parser}
 \subsection{Deterministische Parser}
 Kontextfreie Sprachen können von einem nichtdeterministischen
@@ -54,7 +60,7 @@ Variablen und legt das Resultat auf den Stack. Dies ist in Tabelle \ref{shiftred
 dargestellt.
 
 \begin{table}[H]
-\input{bison/tabelle1.tex}
+\input{4-cfg/bison/tabelle1.tex}
 \caption{Vorgehen eins Shift-Reduce-Parser am Beispiel der Sprache $L=\{\texttt{0}^n\texttt{1}^n|n>0\}$
 \label{shiftreduce}}
 \end{table}
@@ -91,7 +97,7 @@ Fasst man diese Wörter
 zusammen als Namen der Zustände, können wir den Parse-Prozess wie in
 Tabelle \ref{lrelemente} durchführen.
 \begin{table}[H]
-\input{bison/tabelle2.tex}
+\input{4-cfg/bison/tabelle2.tex}
 \caption{Shift-Reduce mit $LR(0)$-Elementen\label{lrelemente}}
 \end{table}
 Der Automat legt also immer seinen neuen Zustand zuoberst auf den
@@ -216,7 +222,7 @@ nicht alle Input-Zeichen akzeptabel sind, und verschiedene Eingabezeichen
 zu verschiedenen Ausgabezuständen führen können. Das Beispiel
 $L=\{\texttt{0}^n\texttt{1}^n|n>0\}$ führt auf Tabelle \ref{parsetable}.
 \begin{table}[H]
-\input{bison/tabelle3.tex}
+\input{4-cfg/bison/tabelle3.tex}
 \caption{Parsertabelle für $L=\{\texttt{0}^n\texttt{1}^n|n>0\}$\label{parsetable}}
 \end{table}
 Die Tabelle ist wie folgt zu lesen. In Spalten 3 und 4 wird jeweils
@@ -322,12 +328,12 @@ Zweck die Regel
 \end{equation}
 hinzu. Bison fügt dann seinerseits eine Regel mit der Nummer 0 hinzu, so ergibt
 sich folgende Grammatik in Bisons Schreibweise:
-\verbatiminput{bison/bisongrammar.txt}
+\verbatiminput{4-cfg/bison/bisongrammar.txt}
 Man kann Bison nicht nur mit einer Kommandozeilenoption dazu bringen, diese
 Grammatik im Klartext auszugeben, er zeigt auch die erzeugten Parsetabellen
 an. Exemplarisch soll dargestellt werden, wie Zustand 14 verarbeitet
 wird:
-\verbatiminput{bison/state14.txt}
+\verbatiminput{4-cfg/bison/state14.txt}
 Das zugehörige $LR(0)$-Element beginnt also mit \text{term}. Die Zeichen
 `{\tt *}' und `{\tt /}' lösen jeweils eine Schiebeoperation aus, andernfalls
 wird mit Hilfe der Regel 2 reduziert.

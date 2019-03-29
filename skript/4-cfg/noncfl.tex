@@ -1,0 +1,140 @@
+%
+% noncfl.tex -- nicht kontextfreie Sprachen
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Nicht kontextfreie Sprachen}
+\rhead{Nicht kontextfreie Sprachen}
+Mit einem Stack kann man nur über eine Art von eingegangenen
+Zeichen Buch führen. Möchte man mehrere Zeichen verfolgen,
+bräuchte man freien Zugriff auf verschiedene Zähler für jedes
+Zeichen. Eine Maschine mit so vielen Stacks wie Zeichen zur Verfügung
+stehen, könnte also auch die Sprache
+\[
+L=\{ {\tt a}^n {\tt b}^n {\tt c}^n\;|\;n\in\mathbb N\}
+\]
+erkennen. Ein ``standard'' Stackautomat kann das jedoch nicht,
+in diesem Abschnitt soll gezeigt werden, dass $L$ nicht kontextfrei
+ist. 
+
+\subsection{Pumping Lemma für kontextfreie Sprachen}
+\index{Pumping Lemma!f\ür kontextfreie Sprachen}%
+Bei regulären Sprachen ermöglicht das Pumping-Lemma den einfachen
+Beweis, dass eine Sprache nicht regulär ist. Die Grundidee dabei ist,
+dass sich in einem endlichen Automaten früher oder später ein
+Zustand wiederholen muss, und dass die Schleife zwischen dem ersten
+und dem zweiten Auftreten dieses Zustandes beliebig oft durchlaufen
+werden kann, um immer wieder neue akzeptable Wörter zu liefern.
+
+Die Äquivalenz von kontextfreien Sprachen mit Sprachen, die von einem
+Stackautomaten akzeptiert werden können, suggeriert, dass so etwas
+auch für kontextfreie Sprachen möglich sein sollte. Stackautomaten
+wurden aber grundsätzlich als nicht deterministische Automaten
+konstruiert, wo die Argumente, die das Pumping Lemma für reguläre
+Sprachen geliefert haben, nicht direkt anwendbar sind. Wir verwenden
+daher nicht einen Stackautomaten, sondern direkt die Grammatik, um
+das Pumping Lemma herzuleiten.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.35\hsize]{images/cfg-1}
+\end{center}
+\caption{Parse Tree für die Erzeugung des Wortes $uvxyz$ aus der
+Startvariablen $S$.\label{cfg-tree-1}}
+\end{figure}
+\begin{figure}
+\begin{center}
+\begin{tabular}{cc}
+\includegraphics[width=0.35\hsize]{images/cfg-2}&%
+\includegraphics[width=0.35\hsize]{images/cfg-3}\\
+\end{tabular}
+\end{center}
+\caption{Parse Tree für das aufgepumpte Wort $uv^2xy^2z$ (links) und das
+abgepumpte Wort $uxz$ (rechts).\label{cfg-tree-2}}
+\end{figure}
+
+Ist ein Wort $w\in L(G)$ genügend lang, gibt es auch lange Pfade im
+Ableitungsbaum. Bei Verwendung der Chomsky-Normalform ist die 
+Tiefe des Baumes im besten Fall $\log_2 |w|$, im schlimmsten Fall $|w|-1$.
+Ist $|w|>2^{|V|}$, muss mindestens eine
+Variable auf einem Ast des Baumes zweimal verwendet werden\footnote{
+Innerhalb des Baumes werden genau $|w|-1$ Regeln der
+Form $A\to BC$ angewendet.
+Trotzdem reicht es nicht, $|w|-1>|V|$ zu verlangen, weil die
+zweimal verwendete Variable nicht auf dem gleichen Ast des
+Baumes zu sein braucht. Für die Durchführung des Argumentes
+brauchen wir aber, dass wir die beiden Vorkommnisse der Variablen
+über Ableitungsregeln verbinden können.}.
+Sei $A$ die unterste Variable im Ableitungsbaum, die wiederholt
+wird (Abbildung~\ref{cfg-tree-1}).
+Es erzeugt ein Wort $x$. Das nächsthöhere Vorkommen von $A$
+erzeugt dagegen ein Wort, welches aus drei Teilen besteht:
+$vxy$, die Länge dieses Wortes ist $\le N$. Für das ganze Wort fehlen
+noch die Teile, die von Regeln ``weiter oben'' im Ableitungsbaum
+erzeugt werden, also $w=uvxyz$.
+Da die beiden Vorkommnisse von $A$ veschieden sind, muss mindestens
+eines der Teilwörter $v$ und $y$ nicht leer sein, also $|vy|>0$
+Indem man den Teil des Ableitungsbaumes
+zwischen den Vorkommnissen von $A$ repliziert, kann man jetzt die
+Wörter $uv^kxy^kz$ bilden, die alle auch mit der Grammatik $G$ 
+abgeleitet werden können, also zu $L(G)$ gehören (Abbildung~\ref{cfg-tree-2}).
+Damit haben wir folgenden Satz bewiesen:
+
+\begin{satz}[Pumping Lemma für kontextfreie Sprachen]
+\index{Pumping Lemma!f\ür kontextfreie Sprachen}%
+\index{pumping length!f\ür kontextfreie Sprachen}%
+Sei $L$ eine kontextfreie Sprache, dann gibt es ein Zahl $N$, die pumping
+length, so dass jedes Wort $w\in L$ mit $|w|\ge N$ zerlegt werden
+kann in fünf Teile $w=uvxyz$
+\begin{compactenum}
+\item
+$|vy|>0$,
+\item
+$|vxy|\le N$ und
+\item
+$uv^kxy^kz\in L$ für alle $k\in\mathbb N$.
+\end{compactenum}
+\end{satz}
+
+\subsection{Beispiele nicht kontextfreier Sprachen}
+\subsubsection{Die Sprache $L=\{a^nb^nc^n\,|\,n\in\mathbb N\}$.}
+\begin{figure}
+\begin{center}
+%\includegraphics[width=\hsize]{images/pl-5}\\%
+\includegraphics{images/pl-5}\\%
+\smallskip
+%\includegraphics[width=\hsize]{images/pl-6}\\%
+\includegraphics{images/pl-6}\\%
+\smallskip
+%\includegraphics[width=\hsize]{images/pl-7}\\%
+\includegraphics{images/pl-7}\\%
+\smallskip
+%\includegraphics[width=\hsize]{images/pl-8}%
+\includegraphics{images/pl-8}%
+\end{center}
+\caption{Pumping Lemma für kontextfreie Sprachen angewandt auf das 
+Wort ${\tt a}^N{\tt b}^N{\tt c }^N\in L$, wobei $N$ die pumping length
+von $L$ ist. Da $w$ lang genug ist, gibt es eine Zerlegung 
+$w=uvxyz$ (2.~Zeile).
+Abpumpen (3.~Zeile) und Aufpumpen (4.~Zeile) des
+Wortes führt zu Wörtern, die nicht mehr in $L$ liegen.\label{pumpingcfgimage}}
+\end{figure}
+
+Die Sprache $L=\{a^nb^nc^n\;|\;n\in\mathbb N\}$ ist nicht kontextfrei.
+Wir verwenden das Pumping Lemma für kontextfreie Sprachen.  Dazu
+nehmen wir zunächst an, die Sprache $L$ sei kontextfrei. Dann
+besagt das Pumping Lemma, dass es eine Zahl $N$ gibt, so dass
+Wörter mit Länge mindestens $N$ besondere Eigenschaften haben.
+Als solches langes Wort nehmen wir $w=a^Nb^Nc^N$. Nach dem
+Pumping Lemma gibt es eine Zerlegung in fünf Teile
+$w=uvxyz$, wobei der mittlere Teil nicht zu lang ist:
+$|vxy|\le N$ (Abbildung~\ref{pumpingcfgimage}).
+Insbesondere enthält $|vxy|$ höchstens zwei
+Arten von Zeichen, denn es ist zu kurz, die $N$ $b$s in der Mitte
+von $w$ zu überspannen. Beim Aufpumpen zu $uv^kxy^kz$ nimmt also
+die Zahl dieser beiden Zeichen zu, nicht jedoch die Zahl des nicht
+in $vxy$ enthaltenen Zeichens.
+Damit kann $uv^kxy^kz$ nicht mehr in $L$ sein, obwohl das
+Pumping Lemma dies behauptet. Aus diesem Widerspruch folgt,
+dass $L$ nicht kontextfrei sein kann.
+
