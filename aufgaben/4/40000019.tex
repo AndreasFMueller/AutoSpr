@@ -86,6 +86,10 @@ Konsonanten gelesen wurden:
         &*++[o][F=]{E}
 }
 \]
+Dabei stehen die Variablen $V$ und $K$ in den Übergängen für 
+die Terminalsymbole, in die sie gemäss der Regeln der Grammatik
+verwandelt werden können.
+
 Die möglichen Parse Trees sind:
 \[
 \xymatrix{
@@ -95,13 +99,20 @@ Die möglichen Parse Trees sind:
         &S\ar[dl] \ar[d] \ar[drr]
                 &
                         &
-                                &S\ar[dd] \ar[ddr]
+                                &S\ar[d] \ar[dr]
 \\
-K\ar[d]
+K\ar[dd]
         &S\ar[d] \ar[dr]
                 &
-                        &V\ar[d]
-                                &
+                        &V\ar[dd]
+                                &K\ar[dd]
+					&V\ar[dd]
+\\
+	&K\ar[d]
+		&V\ar[d]
+			&
+				&
+					&
 \\
 {\tt f}
         &{\tt r}
@@ -117,17 +128,23 @@ K\ar[d]
         &
                 &S\ar[dll] \ar[d] \ar[drrr]
 \\
-K\ar[dd]
+K\ar[ddd]
         &
                 &S\ar[dl] \ar[dr]
                         &
                                 &
-                                        &V\ar[dd]
+                                        &V\ar[ddd]
 \\
         &S\ar[d] \ar[dr]
                 &
                         &S\ar[d] \ar[dr]
                                 &
+\\
+	&K\ar[d]
+		&V\ar[d]
+			&K\ar[d]
+				&V\ar[d]
+					&
 \\
 {\tt f}
         &{\tt r}
