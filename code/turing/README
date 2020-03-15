@@ -13,3 +13,10 @@ beaver3      Bekannte busy beaver Programme mit 3 bis 5 Zustaenden
 beaver4
 beaver5
 
+How to copy the code to the linux emulator by Fabrice Bellart written
+in Javascript https://bellard.org/jslinux:
+
+1. copy to pasteboard: 
+	pbcopy < turing-1.0.tar.gz.uu
+
+
