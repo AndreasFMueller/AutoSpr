@@ -2,7 +2,6 @@
  * turing.c -- turing machine simulator
  *
  * (c) 2010 Prof Dr Andreas Mueller, Hochschule Rapperswil
- * $Id$
  */
 #include <stdlib.h>
 #include <stdio.h>
@@ -444,7 +443,9 @@ static void	show_tm(tm_t *tm) {
 }
 
 /*
- * start turing computation
+ * \brief start turing computation
+ *
+ * \param tm	the turing machine to run
  */
 static void	tm_run(tm_t *tm) {
 	while (1) {
@@ -464,7 +465,8 @@ static void	tm_run(tm_t *tm) {
 			exit(EXIT_FAILURE);
 			break;
 		}
-		tm->tape->contents[tm->position] = tm_nextcontent(statechange->value);
+		tm->tape->contents[tm->position]
+			= tm_nextcontent(statechange->value);
 		tm->position += statechange->movement;
 		tm->current = statechange->nextstate;
 
