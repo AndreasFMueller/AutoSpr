@@ -1,0 +1,71 @@
+Am 2.~Juli 2019 waren während etwa einer halben Stunde Millionen von
+Websites nicht erreichbar, die beim Provider Cloudflare gehostet sind.
+In einem Blog-Post von Cloudflare auf
+\url{https://blog.cloudflare.com/cloudflare-outage/} kann man
+lesen, dass dafür ein regulärer Ausdruck in einer Regel der verwendeten
+Web Application Firewall (WAF) verantwortlich gewesen sei.
+Dieser reguläre Ausdruck habe dazu geführt, dass die CPU-Last auf allen
+WAFs auf 100\% geschnellt sei, was dann zu Ausfällen geführt habe.
+
+\begin{teilaufgaben}
+\item
+Was lässt sich auf Grund dieses Berichts über die Implementation der
+regulären Ausdrücke in der von Cloudflare verwendeten WAF schliessen?
+\item
+Der CEO des Konkurrenten Fogstorm\footnote{Jede Ähnlichkeit mit real 
+existierenden Firmen ist rein zufällig} diktiert seinen Technikern
+sofort neue Vorgehensweisen für das Deployment von WAF-Regeln in seiner
+Firma, damit so etwas nicht passieren kann.
+Er fordert, dass alle Regeln vor dem Deployment automatisch daraufhin
+gescannt werden müssen, ob sie beim Matching exponentielle Laufzeit haben.
+Wenn ja, muss das Deployment verhindert werden.
+Ist so etwas möglich?
+\item
+Es stellt sich heraus, dass man in den WAF-Regeln bei Fogstorm
+nicht nur reguläre Ausdrücke spezifizieren kann, sondern auch
+Grammatik-Regeln.
+Kann man diese daraufhin scannen, ob sie exponentielle Laufzeit haben?
+\item
+Es können auch in Javascript geschriebene Regeln verwendet werden.
+Der CEO hat in einem Youtube-Video gesehen, dass damit noch schlimmere
+Situationen eintreten können, nämlich dass die Regeln unendliche Laufzeit
+haben.
+Er verlangt daher auch einen Scanner für diese Art von Regeln.
+Was meinen Sie dazu?
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Reguläre Ausdrücke können mit DEA implementiert werden,
+die immer Laufzeit $O(|w|)$ haben. 
+Man muss daher schliessen, dass die WAF bei Cloudflare eine
+Regex-Engine verwendet, welche nur mit einem NEA implementiert
+werden kann.
+\item
+Eine gute Regex-Engine verwendet DEAs und hat damit immer lineare Laufzeit,
+es ist keine Massnahme erforderlich.
+Bei einer Regex-Engine, die NEAs verwendet, ist es implementationsabhängig,
+ob das Matching eines regulären Ausdrucks exponentiell lange dauern wird.
+Man kann daher keinen von der Engine unabhängigen Algorithmus angeben.
+\item
+Parsen auf der Basis einer Grammatik ist mit dem CYK-Algorithmus immer
+in Zeit $O(n^3)$ möglich, also kann der Fall exponentieller Laufzeit
+gar nicht auftreten, es ist kein Scanner für diesen Fall notwendig.
+\item
+Javascript ist Turing-vollständig, das Halteproblem lässt sich daher
+für Javascript-Programm nicht lösen.
+Einen Scanner der verlangten Art kann es daher nicht geben.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item NEA ({\bf N}) 1 Punkt,
+\item Keine Massnahme ({\bf K}) 1 Punkt,
+\item CYK ({\bf C}) 1 Punkt, Laufzeit $O(n^3)$ ({\bf L}) 1 Punkt,
+\item Halteproblem ({\bf H}) 1 Punkt, nicht  möglich ({\bf M}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
+
