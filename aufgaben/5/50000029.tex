@@ -1,0 +1,112 @@
+Betrachten Sie die Turing-Machine mit dem Bandalphabet
+$\Gamma=\{\texttt{0},\texttt{1},\blank\}$
+mit dem Zustandsdiagramm
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+15mm {
+*+\txt{} \ar[r]
+	&{q_0}	\ar@(ur,ul)_{{\scriptstyle\texttt{0}\to\texttt{0},R}
+			\atop{\scriptstyle\texttt{1}\to\texttt{1},R}}
+		\ar[r]^{\blank\to\blank,L}
+		&{q_1}	\ar[r]^{{\scriptstyle\texttt{0}\to\texttt{0},L}
+			\atop {\scriptstyle\texttt{1}\to\texttt{1},L}}
+			\ar[r]_{\blank\to\texttt{0},L}
+			&{q_2} \ar@(r,u)_{\texttt{1}\to\texttt{0},L}
+				\ar[d]^{{\scriptstyle\blank\to\texttt{1},L}
+				    \atop{\scriptstyle\texttt{0}\to\texttt{1},L}}
+\\
+*+\txt{}
+	&*++[o][F=]{q_{\text{reject}}}
+		&*+\txt{}
+			&*++[o][F=]{q_{\text{accept}}}
+}
+\]
+\begin{teilaufgaben}
+\item
+Wie verarbeitet die Machine die Inputwörter $\varepsilon$,
+\texttt{001} und \texttt{110}?
+\item
+Wenn die Inputwörter als Binärzahlen interpretiert werden, wie lässt sich
+dann die Wirkung der Turing-Maschine als arithmetische Operation beschreiben?
+\item
+Hält diese Turing-Maschine immer an? Falls ja, wieviele Schritte
+führt die Maschine höchstens aus, bis sie anhält?
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Die Resultate sind \texttt{10}, \texttt{011} und \texttt{1000} kann man
+aus der Berechnungsgeschichte ablesen:
+\begin{center}
+\begin{tabular}{>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}}
+q_0&\blank&\blank&\blank&\color{red}\blank\\
+q_1&\blank&\blank&\color{red}\blank&\blank\\
+q_2&\blank&\color{red}\blank&\texttt{0}&\blank\\
+q_{\text{accept}}&\color{red}\blank&\texttt{1}&\texttt{0}&\blank\\
+\strut&&&\\
+\strut&&&\\
+\strut&&&\\
+\strut&&&\\
+\strut&&&\\
+\end{tabular}
+\qquad
+\begin{tabular}{>{$}c<{$}|
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}}
+q_0&\blank&\color{red}\texttt{0}&\texttt{0}&\texttt{1}&\blank\\
+q_0&\blank&\texttt{0}&\color{red}\texttt{0}&\texttt{1}&\blank\\
+q_0&\blank&\texttt{0}&\texttt{0}&\color{red}\texttt{1}&\blank\\
+q_0&\blank&\texttt{0}&\texttt{0}&\texttt{1}&\color{red}\blank\\
+q_1&\blank&\texttt{0}&\texttt{0}&\color{red}\texttt{1}&\blank\\
+q_2&\blank&\texttt{0}&\color{red}\texttt{0}&\texttt{1}&\blank\\
+q_{\text{accept}}&\blank&\color{red}\texttt{0}&\texttt{1}&\texttt{1}&\blank\\
+\strut&&&&&\\
+\strut&&&&&\\
+\end{tabular}
+\qquad
+\begin{tabular}{>{$}c<{$}|
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}}
+q_0&\blank&\blank&\color{red}\texttt{1}&\texttt{1}&\texttt{0}&\blank\\
+q_0&\blank&\blank&\texttt{1}&\color{red}\texttt{1}&\texttt{0}&\blank\\
+q_0&\blank&\blank&\texttt{1}&\texttt{1}&\color{red}\texttt{0}&\blank\\
+q_0&\blank&\blank&\texttt{1}&\texttt{1}&\texttt{0}&\color{red}\blank\\
+q_1&\blank&\blank&\texttt{1}&\texttt{1}&\color{red}\texttt{0}&\blank\\
+q_2&\blank&\blank&\texttt{1}&\color{red}\texttt{1}&\texttt{0}&\blank\\
+q_2&\blank&\blank&\color{red}\texttt{1}&\texttt{0}&\texttt{0}&\blank\\
+q_2&\blank&\color{red}\blank&\texttt{0}&\texttt{0}&\texttt{0}&\blank\\
+q_{\text{accept}}&\color{red}\blank&\texttt{1}&\texttt{0}&\texttt{0}&\texttt{0}&\blank\\
+\end{tabular}
+\end{center}
+\item
+Die Maschine funktioniert ganz ähnlich wie die Turing-Maschine aus den
+Übungen, die eine Binärzahl inkrementiert hat.
+Allerdings wird beim Übergang von $q_1$ zu $q_2$ die letzte Stelle
+übersprungen bevor mit dem inkrementieren begonnen wird.
+Dies bedeutet, dass die Turing-Maschine die Addition der Konstanten $2$ 
+implementiert.
+\item 
+Im Zustand $q_0$ bewegt sich der Kopf immer nach rechts, bis er auf ein
+Leerzeichen trifft.
+Danach bewegt er sich immer nach links, im schlimmsten Fall wieder bis
+er auf ein Leerzeichen trifft.
+Nach maximal $2|w|+2$ Schritten hält die Maschine an.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item 1 Punkt für die Verarbeitung jedes Wortes,
+\item Addition von 2 ({\bf A}) 1 Punkt,
+\item TM hält ({\bf H}) 1 Punkt, Laufzeit ({\bf L}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
