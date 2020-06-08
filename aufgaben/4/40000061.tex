@@ -1,0 +1,53 @@
+Finden Sie eine Grammatik für die Sprache
+\[
+L=\{
+\texttt{a}^n\texttt{ba}^m\texttt{ba}^{n+m}
+\;|\; n,m>0
+\}.
+\]
+
+\begin{loesung}
+Um zu sehen, wie man eine Grammatik aufbauen kann, zerlegen wir den
+dritten Block aus Zeichen \texttt{a} eines Wortes in $L$ in zwei
+Teile mit Längen $n$ und $m$:
+\[
+w
+=
+\texttt{a}^n\texttt{ba}^m\texttt{ba}^{n+m}
+=
+\texttt{a}^n\texttt{ba}^m\texttt{ba}^m \texttt{a}^n
+\]
+In dieser Form kann man das Wort $w$ als ein Wort der Form
+$v=\texttt{ba}^m\texttt{ba}^m$ ``eingeklammert'' zwischen $n$ Paaren von
+\texttt{a}.
+$v$ wiederum ist ein Zeichen \texttt{b} eingeklammert zwischen $m$ Paaren
+von \texttt{a}, denen noch ein \texttt{b} vorangestellt ist.
+Die Grammatik kann jetzt gefunden werden, indem man für die einzelnen
+Teile Grammatiken aufstellt.
+
+Ein Wort der Form $u=\texttt{a}^m\texttt{ba}^m$ wird erzeugt von der Grammatik
+\begin{align*}
+U&\to \texttt{a}U\texttt{a} \\
+ &\to \texttt{aba}
+\end{align*}
+Die zweite Regel stellt sicher, dass die Anzahl der \texttt{a} auf jeder
+Seite mindestens 1 ist.
+
+Ein Wort wie $v$ wird daher erzeugt von der Grammatik
+\begin{align*}
+V&\to \texttt{b}U \\
+U&\to \texttt{a}U\texttt{a} \\
+ &\to \texttt{aba}
+\end{align*}
+Das Wort $w$ kann jetzt erzeugt werden, in dem man ein Wort, welches sich
+aus der Variablen $V$ ableiten lässt zwischen \texttt{a} einschachtelt:
+\begin{align*}
+S&\to \texttt{a}S\texttt{a}\\
+ &\to \texttt{a}V\texttt{a}\\
+V&\to \texttt{b}U \\
+U&\to \texttt{a}U\texttt{a} \\
+ &\to \texttt{aba}
+\end{align*}
+Die zweite Regel stellt sicher, dass mindestens ein Paar von \texttt{a}
+hinzugefügt wird.
+\end{loesung}
