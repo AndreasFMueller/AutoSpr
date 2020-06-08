@@ -1,0 +1,93 @@
+Auf der Website \url{http://regular-expression.info} findet man die folgenden
+Beispiele von regulären Ausdrücken.
+\begin{teilaufgaben}
+\item
+Der reguläre Ausdruck
+\verb+<TAG [^>]*>.*</TAG>+
+soll HTML-Tags und das zugehörige schliessende Element finden.
+Warum funktioniert er nicht?
+\item
+Finden Sie einen regulären Ausdruck, welcher ein öffnendes Tag mit
+dem Namen
+\verb+TAG+
+und das zugehörige schliessende Tag findet unter
+der Annahme, dass der Inhalt nur aus gewöhnlichen Zeichen besteht und
+keine geschachtelten Tags enthalten sind.
+Ausserdem wird verlangt, dass das Tag ein \texttt{style}-Attribut hat.
+\item
+Was soll der reguläre Ausdruck
+\begin{verbatim}
+(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])
+\end{verbatim}
+wohl bezwecken (die Abkürzung \verb+\d+ steht für die Zeichenklasse
+\verb+[0-9]+%
+)?
+Finden Sie mindestens zwei akzeptierte Wörter, die nicht diesem Zweck
+entsprechen.
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Es wird nicht überprüft, ob Tags korrekt geschachtelt sind,
+zum Beispiel wird
+\texttt{<TAG ></TAG></TAG>}
+akzeptiert.
+Andererseits wird
+\texttt{<TAG></TAG>}
+nicht akzeptiert, weil der reguläre Ausdruck ein Leerzeichen nach dem
+Tag-Namen im öffnenden Tag verlangt.
+\item
+Der Ausdruck
+\begin{center}
+\texttt{<(TAG|TAG [\char`\^>]*) style=\char`\"[\^{}\char`\"]*\char`\"[\char`\^{}>]*>.*</TAG>}
+\end{center}
+tut das gewünschte.
+Die erste Alternative stellt sicher, dass der Ausdruck auch funktioniert,
+wenn zusätzliche Attribute vor dem \texttt{style}-Attribute vorkommen.
+
+Der Ausdruck könnte viel einfacher werden, wenn es ein Zeichen gäbe, mit dem
+man eine Wortgrenze erkennen könnte.
+Einige Regex-Dialekte verstehen das Zeichen \texttt{\textbackslash b}, welches
+genau dies tut.
+Damit kann man sicherstellen, dass nach \texttt{TAG} und vor \texttt{style}
+eine Wortgrenze kommt.
+Damit kann man sich die Alternative sparen, der Ausdruck wird dann
+\begin{center}
+\texttt{<TAG\textbackslash
+b[\char`\^>]*\textbackslash b%
+style=\char`\"[\^{}\char`\"]*\char`\"[\char`\^{}>]*>.*</TAG>%
+}
+\end{center}
+\item
+Der Ausdruck versucht, gültige Datumsangaben zu akzeptieren.
+Dabei sind Jahreszahlen zwischen 1900 und 2099 akzeptiert,
+Monatsangaben zwischen 01 und 12 Tagesangaben zwischen 01 und 31.
+Es wird allerdings nicht überprüft, ob die Tageszahl zum Monat passt,
+der String
+\texttt{2020-02-31}
+wird akzeptiert, obwohl der Februar höchstens
+29 Tage haben kann.
+Auch werden Separatoren akzeptiert, die nicht zu einem gültigen Datum
+gehören.
+So ist
+\texttt{2020-02-02}
+ein gültiges Datum, aber
+\texttt{2020.02.02}
+ist nicht sinnvoll genau so wenig wie gemischte Separator-Zeichen.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item
+Schachtelung oder Leerzeichen ({\bf A}) 1 Punkt.
+\item
+Grundlegende Struktur ({\bf G}) 1 Punkt, 
+\texttt{style}-Attribut ({\bf S}) 1 Punkt,
+Problem der Leerzeichen im Element ({\bf L}) 1 Punkt.
+\item
+Zweck ({\bf Z}) 1 Punkt, Gegenbeispiele ({\bf B}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}

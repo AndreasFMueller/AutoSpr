@@ -1,0 +1,48 @@
+Ist die Sprache
+\[
+L = \{ \texttt{a}^n \texttt{b}^l \texttt{c}^{n+l}\,|\, n,l\ge 0\}
+\]
+über dem Alphabet $\Sigma=\{\texttt{a},\texttt{b},\texttt{c}\}$ regulär?
+
+\begin{loesung}
+Die Sprache ist nicht regulär, wie man mit dem Pumping Lemma zeigen kann.
+\begin{enumerate}
+\item Annahme: $L$ ist regulär
+\item Sei $N$ die Pumping Length, die nach dem Pumping Lemma existiert
+\item Wähle das Wort $w=\texttt{a}^N \texttt{b}^N \texttt{c}^{2N}\in L$.
+\item Nach dem Pumping Lemma gibt es eine Unterteilung des Wortes $w=xyz$
+derart, dass $|xy|\le N$. Folglich bestehen sowohl $x$ als auch $y$ aus
+Zeichen $\texttt{a}$.
+\item Beim Pumpen ändert die Anzahl der Zeichen \texttt{a} um $(k-1)|y|$,
+aber die Anzahl der Zeichen $\texttt{b}$ und $\texttt{c}$ ändert nicht.
+Das aufgepumpte Wort ist von der Form
+$w'=\texttt{a}^{N+(k-1)|y|}\texttt{b}^N\texttt{c}^{2N}$.
+\item
+Die Sprache verlangt
+\[
+\underbrace{|w'|_{\texttt{a}}}_{\displaystyle N+(k-1)|y|}
++
+\underbrace{|w'|_{\texttt{b}}}_{\displaystyle N}
+=
+\underbrace{|w'|_{\texttt{c}}}_{\displaystyle 2N}
+\qquad\Rightarrow\qquad
+2N+(k-1)|y|=2N
+\]
+was ganz offensichtlich nicht stimmt.
+Dieser Widerspruch zeigt, dass die Annahme, $L$ sei regulär,
+nicht haltbar ist.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+6 Schritte des Pumping-Lemma-Beweises:
+Annahme ({\bf A}) 1 Punkt, 
+Pumping Length ({\bf N}) 1 Punkt,
+Wort ({\bf W}) 1 Punkt,
+Unterteilung ({\bf U}) 1 Punkt,
+Widersprucht beim Pumpen ({\bf P}) 1 Punkt,
+Folgerung ({\bf F}) 1 Punkt.
+Als Wort könnte man auch $\texttt{a}^N\texttt{c}^N$ verwenden.
+\end{bewertung}
+
