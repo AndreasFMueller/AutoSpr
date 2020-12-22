@@ -12,10 +12,8 @@ akzeptiert.
 Finden Sie eine Grammatik für die Sprache $L$.
 \item
 Hat die von Ihnen in b) gefundene Grammatik Chomsky-Normalform?
-\ifthenelse{\boolean{pruefung}}{}{
 \item 
 Bestimmen Sie die Chomsky-Normalform der in b) gefundenen Grammatik.
-}
 \end{teilaufgaben}
 
 \begin{hinweis}
@@ -87,7 +85,6 @@ Die Startvariable kommt auf der rechten Seite vor, die $\varepsilon$-Regel
 $B\to\varepsilon$ ist nicht zulässig, es gibt eine unit rule $A\to B$
 und die verbleibenden Regeln haben drei statt höchstens zwei Zeichen
 auf der rechten Seite.
-\ifthenelse{\boolean{pruefung}}{\qedhere}{
 \item
 Um die Grammatik in Chomsky-Normalform zu bringen, ist erst die Startvariable
 zu ersetzen, da die aktuelle Startvariable $A$ auf der rechten Seite vorkommt:
@@ -119,7 +116,7 @@ Im dritten Schritt werden Unit-Rules eliminiert.
 Wir beginnen mit $S\to A$:
 \begin{align*}
 S&\rightarrow \varepsilon \;|\; B \;|\; \texttt{a}A\texttt{c} \;|\;\texttt{ac}\\
-A&\rightarrow \texttt{a} A \texttt{c} \;|\; \texttt{ac}\\
+A&\rightarrow B \;|\; \texttt{a} A \texttt{c} \;|\; \texttt{ac}\\
 B&\rightarrow \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
 \end{align*}
 Es ist eine neue Unit-rule $S\to B$ enstanden, welche als nächste eliminiert
@@ -128,7 +125,16 @@ werden muss:
 S&\rightarrow \varepsilon \;|\; \texttt{a}A\texttt{c} \;|\;\texttt{ac}
 \;|\; \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
 \\
-A&\rightarrow \texttt{a} A \texttt{c} \;|\; \texttt{ac}\\
+A&\rightarrow B \;|\; \texttt{a} A \texttt{c} \;|\; \texttt{ac}\\
+B&\rightarrow \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
+\end{align*}
+Es bleibt die Regel $A\to B$, welche wie folgt eliminiert werden kann:
+\begin{align*}
+S&\rightarrow \varepsilon \;|\; \texttt{a}A\texttt{c} \;|\;\texttt{ac}
+\;|\; \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
+\\
+A&\rightarrow \texttt{a} A \texttt{c} \;|\; \texttt{ac} \;|\;
+ \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c} \\
 B&\rightarrow \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
 \end{align*}
 
@@ -136,7 +142,7 @@ Im vierten Schritt müssen jetzt noch die Terminalsymbole und die
 Dreier-Regeln aufgelöst werden:
 \begin{align*}
 S&\rightarrow \varepsilon \;|\; XW \;|\; UW \;|\; YW \;|\; VW \\
-A&\rightarrow X W \;|\; UW \\
+A&\rightarrow X W \;|\; UW \;|\; YW \;|\; VW \\
 B&\rightarrow YW \;|\; VW \\
 X&\rightarrow UA \\
 Y&\rightarrow VB \\
@@ -145,7 +151,6 @@ V&\rightarrow \texttt{b} \\
 W&\rightarrow \texttt{c}
 \qedhere
 \end{align*}
-}
 \end{teilaufgaben}
 \end{loesung}
 
