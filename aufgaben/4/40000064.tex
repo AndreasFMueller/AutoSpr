@@ -1,0 +1,60 @@
+Können Sie eine Grammatik für die Sprache
+\[
+L = \{
+w\in\{\texttt{0},\texttt{1}\}^*
+\;|\;
+w =
+\texttt{0}^k
+\texttt{1}
+\texttt{0}^k
+\texttt{1}
+\texttt{0}^k
+\}
+\]
+angeben?
+
+\begin{loesung}
+Nein, dies ist nicht möglich, weil die Sprache nicht kontextfrei ist, wie
+man mit dem Pumping-Lemma für kontextfreie Sprachen zeigen kann.
+\begin{enumerate}
+\item
+Annahme: $L$ ist kontextfrei
+\item
+Nach dem Pumping Lemma für kontextfreie Sprachen gibt es die Pumping Length $N$.
+\item
+Wähle das Wort $w=
+\texttt{0}^N
+\texttt{1}
+\texttt{0}^N
+\texttt{1}
+\texttt{0}^N$
+\item
+Nach dem Pumping Lemma gibt es eine Aufteilung von $w$ in fünf Teile
+$w=uvxyz$ derart, dass $|vxy| \le N$ und $|vy|\ge 1$.
+Ausserdem ist jedes gepumpte Wort $uv^kxy^kz\in L$.
+\item
+Da sich die Anzahl der Einsen beim Pumpen nicht ändern darf, müssen
+$v$ und $y$ vollständig in einem Nullen-Block enthalten sein.
+Daher kann sich nur die Anzahl der Nullen in höchstens zwei Nullen-Blöcken
+ändern, nicht aber im dritten, so dass das gepumpte Wort nicht mehr
+gleich viele Nullen in jedem Nullen-Block hat und damit nicht mehr
+in der Sprache ist.
+\item
+Dieser Widerspruch zeigt, dass die Annahme, $L$ sei kontextfrei, nicht
+haltbar ist.
+Also ist $L$ nicht kontextfrei.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+Pumping Lemma und Annahme $L$ kontextfrei ({\bf PL}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+Wahl eines Wortes ({\bf W}) 1 Punkt,
+Unterteilung ({\bf U}) 1 Punkt,
+Widerspruch beim Pumpen ({\bf P}) 1 Punkt,
+Schlussfolgerung ({\bf S}) 1 Punkt.
+\end{bewertung}
+
+
+

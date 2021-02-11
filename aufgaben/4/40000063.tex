@@ -1,0 +1,153 @@
+Betrachten Sie die kontextfreie Grammatik
+\begin{align*}
+S&\to \texttt{a} S \texttt{c} \;|\; X
+\\
+X&\to \texttt{b}X\texttt{c} \;|\; \varepsilon
+\end{align*}
+\begin{teilaufgaben}
+\item
+Welche Sprache wird von dieser Grammatik beschrieben?
+Schreiben Sie die Sprache in Mengennotation 
+$L=\{
+w\in\{\texttt{a},\texttt{b},\texttt{c}\}^*
+\;|\dots\}$.
+\item
+Hat die Grammatik Chomsky-Normalform?
+Wenn nicht, bringen Sie sie in Chomsky Normalform.
+\end{teilaufgaben}
+
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Die zweite Zeile erzeugt Wörter der Form $\texttt{b}^n\texttt{c}^n$.
+Die erste Regel ermöglicht, ein solches Wort zwischen \texttt{a} und
+\texttt{c} einzuschachteln, so dass ein Wort der Form
+$\texttt{a}^m\texttt{b}^n\texttt{c}^{n+m}$ entsteht.
+Die Sprache ist also
+\[
+L=\{
+w\in\{\texttt{a},\texttt{b},\texttt{c}\}^*
+\;|\;
+\text{$
+w=
+\texttt{a}^m \texttt{b}^n \texttt{c}^{k}$
+mit
+$n+m=k$
+}
+\}.
+\]
+\item
+1. Schritt: Startvariable darf auf der rechten Seite nicht vorkommen:
+\begin{align*}
+S_0 & \to S
+\\
+S & \to \texttt{a} S \texttt{c} \;|\; X
+\\
+X & \to \texttt{b}X\texttt{c} \;|\; \varepsilon
+\end{align*}
+2. Schritt: $\varepsilon$-Regel entfernen.
+Die $\varepsilon$-Regel $X\to\varepsilon$ bedeuetet, dass $X$ weggelassen
+werden kann:
+\begin{align*}
+S_0 & \to S
+\\
+S & \to \texttt{a} S \texttt{c} \;|\; X \;|\; \varepsilon
+\\
+X & \to \texttt{b}X\texttt{c} \;|\; \texttt{bc}
+\end{align*}
+Dadurch ist eine neue $\varepsilon$-Regel $S\to\varepsilon$ entstanden,
+welche bedeutet, dass $S$ ebenfalls weggelassen werden kann:
+\begin{align*}
+S_0 & \to S \;|\; \varepsilon
+\\
+S & \to
+\texttt{a} S \texttt{c} \;|\; \texttt{ac} \;|\; X
+\\
+X & \to \texttt{b}X\texttt{c} \;|\; \texttt{bc}
+\end{align*}
+3. Schritt: Unit rules entfernen.
+Zunächst die Regel $S_0\to S$:
+\begin{align*}
+S_0 & \to
+\texttt{a} S \texttt{c} \;|\; \texttt{ac} \;|\; X \;|\; \varepsilon
+\\
+S & \to
+\texttt{a} S \texttt{c} \;|\; \texttt{ac} \;|\; X
+\\
+X & \to \texttt{b}X\texttt{c} \;|\; \texttt{bc}
+\end{align*}
+Es ist eine neue Regel $S_0\to X$ entstanden:
+\begin{align*}
+S_0 & \to
+\texttt{a} S \texttt{c} \;|\; \texttt{ac} \;|\;
+\texttt{b}X\texttt{c} \;|\; \texttt{bc}
+\;|\; \varepsilon
+\\
+S & \to
+\texttt{a} S \texttt{c} \;|\; \texttt{ac} \;|\; X
+\\
+X & \to \texttt{b}X\texttt{c} \;|\; \texttt{bc}
+\end{align*}
+Schliesslich bleibt $S\to X$:
+\begin{align*}
+S_0 & \to
+\texttt{a} S \texttt{c} \;|\; \texttt{ac} \;|\;
+\texttt{b}X\texttt{c} \;|\; \texttt{bc}
+\;|\; \varepsilon
+\\
+S & \to
+\texttt{a} S \texttt{c} \;|\; \texttt{ac} \;|\;
+\texttt{b}X\texttt{c} \;|\; \texttt{bc}
+\\
+X & \to \texttt{b}X\texttt{c} \;|\; \texttt{bc}
+\end{align*}
+4. Schritt: Terminalsymbole müssen separat umgesetzt werden:
+\begin{align*}
+S_0 & \to
+ASC \;|\; AC \;|\;
+BXC \;|\; BC
+\;|\; \varepsilon
+\\
+S & \to
+A S C \;|\; AC \;|\;
+BXC \;|\; BC
+\\
+X & \to BXC \;|\; BC
+\\
+A&\to \texttt{a} \\
+B&\to \texttt{b} \\
+C&\to \texttt{c}
+\end{align*}
+und Tripel müssen in zwei Schritten aufgebaut werden:
+\begin{align*}
+S_0 & \to AU \;|\; AC \;|\; BV \;|\; BC \;|\; \varepsilon
+\\
+S & \to AU \;|\; AC \;|\; BV \;|\; BC
+\\
+X & \to BV \;|\; BC
+\\
+U&\to SC
+\\
+V & \to XC
+\\
+A&\to \texttt{a} \\
+B&\to \texttt{b} \\
+C&\to \texttt{c}
+\end{align*}
+Damit ist Chomsky-Normalform erreicht.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item Gleiche viele \texttt{c} wie \texttt{a} und \texttt{b} zusammen
+({\bf G}) 1 Punkt,
+Reihenfolge ({\bf R}) 1 Punkt,
+\item Startvariable ({\bf S}) 1 Punkt,
+$\varepsilon$-Regel ({\bf E}) 1 Punkt,
+Unit rules ({\bf U}) 1 Punkt,
+Terminalsymbole und 3er-Regeln ({\bf T}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
