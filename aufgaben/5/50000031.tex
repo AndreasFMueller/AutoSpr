@@ -1,0 +1,114 @@
+Betrachten Sie die Turing-Maschine mit Bandalphabet
+$\Gamma=\{\texttt{0},\texttt{1},\blank\}$
+und Zustandsdiagramm
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{}\ar[r]
+	&{q_0}	\ar@/_/[r]_{\texttt{0}\to \texttt{0},R}
+		\ar@(ur,ul)_{\texttt{1}\to\texttt{1},R}
+		\ar[d]_{\blank\to\blank,L}
+		&{q_1}	\ar@/_/[l]_{\texttt{0}\to\texttt{0},R}
+			\ar@(ur,ul)_{\texttt{1}\to\texttt{1},R}
+			\ar[d]^{\blank\to\blank,L}
+\\
+*++[o][F=]{q_{\text{accept}}}
+	&{q_2}	\ar@/_/[r]_{\texttt{1}\to \texttt{1},L}
+		\ar@(dr,dl)^{\texttt{0}\to\texttt{0},L}
+		\ar[l]_{\blank\to\blank,L}
+		&{q_3}	\ar@/_/[l]_{\texttt{1}\to \texttt{1},L}
+			\ar@(dr,dl)^{\texttt{0}\to\texttt{0},L}
+			\ar[r]^{\blank\to\blank,L}
+			&*++[o][F=]{q_{\text{reject}}}
+}
+\]
+\begin{teilaufgaben}
+\item
+Wie verarbeitet die Maschine das Wort \texttt{010}?
+\item
+Welche der Wörter
+\texttt{0110},
+\texttt{10100},
+\texttt{100100},
+\texttt{101111}
+und
+\texttt{1101000}
+werden akzeptiert?
+\item
+Welche Sprache wird von der Turing-Maschine akzeptiert?
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Die folgende Tabelle beschreibt die Berechnung
+\begin{center}
+\begin{tabular}{>{$}r<{$}|>{$}l<{$}>{$}l<{$}>{$}l<{$}>{$}l<{$}>{$}l<{$}}
+q_0 & \blank & \color{red}\texttt{0} & \texttt{1} & \texttt{0} & \blank \\
+q_1 & \blank & \texttt{0} & \color{red}\texttt{1} & \texttt{0} & \blank \\
+q_1 & \blank & \texttt{0} & \texttt{1} & \color{red}\texttt{0} & \blank \\
+q_0 & \blank & \texttt{0} & \texttt{1} & \texttt{0} & \color{red}\blank \\
+q_2 & \blank & \texttt{0} & \texttt{1} & \color{red}\texttt{0} & \blank \\
+q_2 & \blank & \texttt{0} & \color{red}\texttt{1} & \texttt{0} & \blank \\
+q_3 & \blank & \color{red}\texttt{0} & \texttt{1} & \texttt{0} & \blank \\
+q_3 & \color{red}\blank & \texttt{0} & \texttt{1} & \texttt{0} & \blank \\
+q_{\text{reject}} & &&&&
+\end{tabular}
+\end{center}
+Das Wort \texttt{010} wird nicht akzeptiert.
+\item
+Wie in c) gezeigt wird, werden genau die Wörter akzeptiert, welche für
+die die Anzahl Nullen und Einsen beide gerade oder beide ungerade sind:
+\begin{align*}
+\text{akzeptiert:}&
+\text{
+\texttt{0110},
+\texttt{100100},
+\texttt{101111},
+}
+\\
+\text{nicht akzeptiert:}&
+\text{
+\texttt{10100},
+\texttt{1101000}
+}
+\end{align*}
+\item
+Die oberen zwei Zustände durchlaufen das Wort von links nach rechts,
+wobei der Zustand mit jeder gefundenen \texttt{0} wechselt.
+Der Zustand $q_0$ steht also für eine gerade Anzahl gefundener Nullen,
+$q_1$ für eine ungerade Anzahl.
+Am Ende des Wortes wechselt die Maschine zu den unteren zwei Zuständen
+und tut dort dasselbe für die Einsen.
+Der Zustand $q_2$ steht dafür, dass noch eine gerade Anzahl von Einsen
+erwartet wird, $q_3$ steht für eine ungerade Anzahl.
+Wörter werden akzeptiert, wenn die Anzahl der Nullen und Einsen die 
+gleiche Parität hat:
+\[
+L = \{ w\in\{\texttt{0},\texttt{1}\}^*\;|\;
+|w|_{\texttt{0}}
+\equiv
+|w|_{\texttt{1}}
+\mod 2\}.
+\]
+Wenn für ein Wort $|w|_{\texttt{0}}\equiv |w|_{\texttt{1}}\mod 2$ gilt, dann gilt
+auch 
+\[
+|w|
+=
+|w|_{\texttt{0}} + |w|_{\texttt{1}} \equiv 0\mod 2,
+\]
+d.~h.~es werden genau die Wörter gerader Länge akzeptiert.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item Dokumentation der Berechnung ({\bf D}) 1 Punkt,
+\item ({\bf B}) 3 Punkte,
+\item Teillösung 1 Punkt, vollständige Lösung 2 Punkte.
+\end{teilaufgaben}
+\end{bewertung}
+
+
