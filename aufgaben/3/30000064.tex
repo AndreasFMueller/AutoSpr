@@ -1,0 +1,75 @@
+Auf der Website \url{http://www.vogella.com} findet man ein Tutorial
+zu regulären Audrücken, aus dem die folgenden Beispiele stammen.
+
+\begin{teilaufgaben}
+\item
+Was für Strings akzeptiert der folgende reguläre Ausdruck?
+\verbatimainput{ausdruck.txt}
+Gesucht ist eine inhaltliche Spezifikation in Worten, die nicht einfach
+nur eine Wiedergabe des regulären Ausdrucks in Worten ist.
+\item
+Die Klasse \texttt{LinkGetter} enthält den folgenden Konstruktor, mit
+dem reguläre Ausdrücke in NEAs kompiliert werden:
+\verbatimainput{30000064.java}
+Das Metazeichen \texttt{\textbackslash b} steht für einen Wortanfang
+oder ein Wortende (wie hier).
+Damit wird erreicht, dass das Zeichen \texttt{a} alleine stehen muss.
+Wozu dient der erste dieser regulären Ausdrücke?
+\item
+Die Idee des regulären Ausdrucks \texttt{link} war, dass damit der Wert
+des \texttt{href}-Attributes isoliert werden kann.
+Wenn der reguläre Ausdruck eine Zeichenkette $s$ akzeptiert, dann ist der 
+Teil zwischen dem ersten und letzten Anführungszeichen der Wert des
+Attributes, so die Erklärung.
+Warum ist dies falsch?
+\item
+Können Sie sich einen String vorstellen, bei dem die regulären Ausdrücke
+nicht das machen, was deren Autor von ihnen erwartet hat?
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Akzeptiert werden beliebige Zeichenketten, die irgendwo genau eine höchstens
+dreistellige ganze Zahl enthalten, die kleiner als 300 sein muss.
+\item
+Es werden korrekt geschlossene \texttt{a}-Elemente gefunden, die ein 
+\texttt{href}-Attribut haben, dessen Wert mit \texttt{\textquotedbl}
+begrenzt ist.
+Das \texttt{a}-Element kann auch noch weitere Attribute enthalten.
+\item
+Der Teilausdruck
+\texttt{[\textasciicircum>]*}
+akzeptiert auch Anführungszeichen.
+Daher kann der Teil zwischen dem ersten und letzten Anführungszeichen
+auch ganze Attributespezifikationen enthalten, die nach dem
+\texttt{href}-Attribute angegeben wurden.
+\item
+Zusätzlich zu dem in c) erwähnten Problem können
+Attributewerte in HTML auch mit Apostroph \texttt{\textquotesingle}
+statt mit dem Anführungszeichen \texttt{\textquotedbl} begrenzt werden.
+In diesem Fall erkennen die regulären Ausdrücke weder das \texttt{<a>}-Tag
+noch das \texttt{href}-Attribut.
+Ein Attribute mit dem Namen \texttt{xyhref} wird als \texttt{href}
+interpretiert.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{diskussion}
+Das erwähnte Tutorial ist zu finden auf
+\url{https://www.vogella.com/tutorials/JavaRegularExpressions/article.html}.
+\end{diskussion}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item String enthält genau eine Zahl ({\bf Z}) 1 Punkt,
+Zahl $<300$ ({\bf 3}) 1 Punkt.
+\item \texttt{A}-Element ({\bf E}) 1 Punkt,
+\texttt{href}-Element muss geschossen sein ({\bf H}) oder 
+Element muss geschlossen sein ({\bf G}) 1 Punkt.
+\item Zusätzliche Attribute ({\bf A}) 1 Punkt.
+\item Quoting-Problem ({\bf Q}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
+

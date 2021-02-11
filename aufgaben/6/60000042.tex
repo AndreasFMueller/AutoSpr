@@ -1,0 +1,40 @@
+Sei $L$ eine Turing-erkennbare Sprache.
+Man sagt, die Sprache sei links-kürzbar, wenn man von einem Wort ein beliebiges
+Anfangsstück entfernen kann und das verkürzte Wort immer noch ein Wort
+der Sprache ist.
+Also zum Beispiel
+\[
+\texttt{BIBER}\in L
+\quad\Rightarrow\quad
+\texttt{IBER},
+\texttt{BER},
+\texttt{ER},
+\texttt{R},
+\varepsilon \in L.
+\]
+Wie könnte man ein Programm aufbauen, welches immer anhält und mit
+welchem man andere Programme analysieren kann, ob deren akzeptierte Sprache
+links-kürzbar ist?
+
+\begin{loesung}
+Die Eigenschaft einer Sprache, links-kürzbar zu sein, ist eine nichttriviale 
+Eigenschaft.
+Die Liste der Wörter in der Aufgabenstellung bildet eine links-kürzbare
+Sprache, die Sprache bestehend nur aus dem Wort \texttt{BIBER} hat diese
+Eigenschaft nicht.
+Der Satz von Rice besagt jetzt, dass man kein Programm schreiben kann, welches
+entscheiden könnte, ob die akzeptierte Sprache die Eigenschaft hat,
+links-kürzbar zu sein.
+\end{loesung}
+
+\begin{bewertung}
+Satz von Rice ({\bf R}) 1 Punkt,
+Eigenschaft ({\bf E}) 1 Punkt,
+zwei Sprachen ({\bf Z}) 1 Punkt,
+Eigenschaft ist nicht trivial ({\bf T}) 1 Punkt,
+Schlussfolgerung nicht entscheidbar ({\bf N}) 2 Punkt.
+\end{bewertung}
+
+
+
+

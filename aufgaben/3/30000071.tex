@@ -1,0 +1,75 @@
+In der Analysis lernt man, dass zu jedem Integralzeichen ein 
+Symbol für die Integrationsvariable vorhanden sein muss.
+In diesem Verständnis ist
+\[
+\int_{a_1}^{b_1}
+\int_{a_2}^{b_2}
+f(x_1,x_2)
+\,dx_2
+\int_{a_3}^{b_3}
+g(x_1,x_2,x_3)
+\int_{a_4}^{b_4}
+h(x_1,x_2,x_3,x_4)
+\,dx_4
+\,dx_3
+\,dx_1
+\]
+ein korrekter Integralausdruck,
+\[
+\int_{a_1}^{b_1}
+f(x_1)\,dx_1\,dx_2 g(x_2)
+\int_{a_2}^{b_2}
+\]
+jedoch nicht.
+Kann man mit einem regulären Ausdruck testen, ob ein Ausdruck ein korrekter
+Integralausdruck ist?
+
+\begin{loesung}
+Nein, denn Integralzeichen und $dx$ bilden eine Klammer, müssen also 
+mindestens in gleicher Zahl vorhanden sein.
+Schon dies lässt sich im Allgemeinen nicht testen, wie man mit dem 
+Pumping Lemma zeigen kann.
+Die Sprache $L$ besteht also aus allen korrekten Integralausdrücken.
+\begin{enumerate}
+\item
+Annahme: $L$ ist regulär
+\item
+Nach dem Pumping Lemma gibt es die Pumping Length $N$
+\item
+Bilde den Integralausdruck
+\[
+w=
+\int_{a_1}^{b_1}
+\int_{a_2}^{b_2}
+\dots
+\int_{a_N}^{b_N}
+\,dx_N
+\dots
+\,dx_2
+\,dx_1
+\in L
+\]
+\item
+Nach dem Pumping Lemma lässt sich $w$ in drei Teile $w=xyz$ aufteilen, wobei
+$|y|\ge 1$ und $|xy|\le N$, ausserdem sind alle gepumpten Wörter $xy^kz\in L$.
+\item
+Der Teil $xy$ enthält keine $dx_k$, beim Pumpen nimmt also die Anzahl
+der Integralzeichen zu, nicht jedoch die Anzahl der $dx_k$, so dass
+kein korrekter Integralausdruck stehen bleibt.
+\item
+Der Widerspruch zeigt, dass die Annahme, $L$ sei regulär, nicht haltbar ist.
+Also ist $L$ nicht regulär.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+6 Schritte des Pumping-Lemma-Beweises:
+Annahme ({\bf A}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+Wort ({\bf W}) 1 Punkt,
+Unterteilung ({\bf U}) 1 Punkt,
+Widerspruch beim Pumpen ({\bf P}) 1 Punkt,
+Folgerung ({\bf F}) 1 Punkt.
+\end{bewertung}
+

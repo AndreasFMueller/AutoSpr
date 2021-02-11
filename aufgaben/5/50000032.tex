@@ -1,0 +1,111 @@
+Betrachten Sie die Turing-Maschine mit Bandalphabet
+$\Gamma=\{\texttt{0},\texttt{1},\blank\}$
+und Zustandsdiagramm
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{}\ar[r]
+	&{q_0}	\ar[r]^{\texttt{0}\to \texttt{0},R}
+		\ar@(ur,ul)_{\texttt{1}\to\texttt{1},R}
+		\ar[d]_{\blank\to\blank,L}
+		&{q_1}	\ar[r]^{\texttt{0}\to\texttt{0},R}
+			\ar@(ur,ul)_{\texttt{1}\to\texttt{1},R}
+			\ar[d]^{\blank\to\blank,L}
+			&{q_2}	\ar@/_33pt/[ll]_{\texttt{0}\to\texttt{0},R}
+				\ar@(ur,ul)_{\texttt{1}\to\texttt{1},R}
+				\ar[d]^{\blank\to\blank,L}
+\\
+*++[o][F=]{q_{\text{accept}}}
+	&{q_3}	\ar@(dr,dl)^{\texttt{0}\to\texttt{0},L}
+		\ar[l]_{\blank\to\blank,L}
+		&{q_4}	\ar[l]_{\texttt{1}\to \texttt{1},L}
+			\ar@(dr,dl)^{\texttt{0}\to\texttt{0},L}
+			\ar[r]^{\blank\to\blank,L}
+			\ar@/_33pt/[rr]_{\blank\to\blank,L}
+			&{q_5}	\ar@/^33pt/[ll]^{\texttt{1}\to \texttt{1},L}
+				\ar@(dr,dl)^{\texttt{0}\to\texttt{0},L}
+				\ar[r]^{\blank\to\blank,L}
+				&*++[o][F=]{q_{\text{reject}}}
+}
+\]
+\begin{teilaufgaben}
+\item
+Wie verarbeitet die Maschine das Wort \texttt{010}?
+\item
+Welche der Wörter
+\texttt{0110},
+\texttt{10100},
+\texttt{100100},
+\texttt{101111}
+und
+\texttt{1101000}
+werden akzeptiert?
+\item
+Welche Sprache wird von der Turing-Maschine akzeptiert?
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Die folgende Tabelle beschreibt die Berechnung
+\begin{center}
+\begin{tabular}{>{$}r<{$}|>{$}l<{$}>{$}l<{$}>{$}l<{$}>{$}l<{$}>{$}l<{$}}
+q_0 & \blank & \color{red}\texttt{0} & \texttt{1} & \texttt{0} & \blank \\
+q_1 & \blank & \texttt{0} & \color{red}\texttt{1} & \texttt{0} & \blank \\
+q_1 & \blank & \texttt{0} & \texttt{1} & \color{red}\texttt{0} & \blank \\
+q_2 & \blank & \texttt{0} & \texttt{1} & \texttt{0} & \color{red}\blank \\
+q_5 & \blank & \texttt{0} & \texttt{1} & \color{red}\texttt{0} & \blank \\
+q_5 & \blank & \texttt{0} & \color{red}\texttt{1} & \texttt{0} & \blank \\
+q_3 & \blank & \color{red}\texttt{0} & \texttt{1} & \texttt{0} & \blank \\
+q_3 & \color{red}\blank & \texttt{0} & \texttt{1} & \texttt{0} & \blank \\
+q_{\text{accept}} &&&&
+\end{tabular}
+\end{center}
+Das Wort \texttt{010} wird akzeptiert.
+\item
+Offenbar fehlt beim Zustand $q_3$ ein Übergang für das Zeichen \texttt{1},
+dies TM ist nicht deterministisch.
+Keines der Wörter wird akzeptiert, wie man aus der Beschreibung der
+Sprache ablesen kann.
+\item
+Im oberen Teil des Diagramms wird ermittelt, ob die Anzahl der Nullen
+durch drei teilbar ist (Zustand $q_0$) oder ob ein Rest $k$ stehen
+bleibt (Zustand $q_k$).
+Im unteren Teil wird dann das Wort von rechts nach links nochmals
+durchgelesen.
+Die folgenden Fälle können eintreten:
+\begin{enumerate}
+\item Rest 0: Das Wort darf nur \texttt{0} enthalten, weil sonst kein
+Übergang mehr möglich ist.
+\item Rest $1$ und $2$: Das Wort enthält genau eine \texttt{1}.
+\end{enumerate}
+Die akzeptierte Sprache ist daher
+\[
+L
+=
+\{
+w\in\{\texttt{0},\texttt{1}\}^*
+\;|\;
+|w|_{\texttt{0}}\equiv 0\mod 3
+\veebar
+|w|_{\texttt{1}}=1
+\}
+\]
+Das Zeichen $\veebar$ bedeutet exklusives ODER.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item
+Berechnungsgeschichte ({\bf B}) 1 Punkt,
+akzeptiert ({\bf A}) 1 Punkt,
+\item
+Kein Wort wird akzeptiert ({\bf K}) 1 Punkt,
+Begründung ({\bf G}) 1 Punkt,
+\item
+Teilbarkeit ({\bf T}) 1 Punkt,
+nur eine Eins ({\bf E}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}

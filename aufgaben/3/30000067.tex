@@ -1,0 +1,49 @@
+Ist die Sprache
+\[
+L=\{\texttt{a}^n\texttt{ba}^m\texttt{ba}^{n+m}\;|\;n,m>0\}
+\]
+regulär?
+
+\begin{loesung}
+Wir verwenden das Pumping-Lemma um nachzuweisen, dass $L$ nicht 
+regulär ist.
+\begin{enumerate}
+\item
+Wir nehmen an, $L$ sei regulär.
+\item
+Nach dem Pumping Lemma gibt es die Pumping Length $N$.
+Wörter der Länge $\ge N$ haben die Pump-Eigenschaft.
+\item
+Wir wählen als Testwort
+$w = \text{a}^N\text{ba}^N\text{ba}^{2N}$, es ist $w\in L$.
+\item
+Nach dem Pumping Lemma lässt sich das Wort $w$ in drei Teile $w=xyz$
+zerlegen derart, dass $|xy|\le N$ und dass $xy^kz\in L$ für alle
+$k\in\mathbb N$.
+Weil $|y| \le |xy|\le N$ ist, muss $y$ vollständig aus Zeichen
+\texttt{a} bestehen.
+Beim Pumpen wird daher die Anzahl der \texttt{a} im ersten \texttt{a}-Block
+erhöht ohne dass auch die Anzahl im letzten Block erhöht wird.
+Folglich ist $xy^kz\not\in L$ für $k\ne 1$.
+\item
+Dieser Widerspruch zeigt, dass $L$ nicht regulär sein kann.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+
+\begin{diskussion}
+Wäre die Sprache $L$ regulär, könnte ein regulärer Ausdruck die
+Addition $n+m$ ``ausführen''.
+\end{diskussion}
+
+\begin{bewertung} 1 Punkt für jeden Schritt des Beweises mit dem
+Pumping Lemma:
+Annahme ({\bf PL}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+Beispielwort ({\bf W}) 1 Punkt,
+Aufteilung ({\bf A}) 1 Punkt,
+Widerspruch beim Pumpen ({\bf P}) 1 Punkt,
+Schlussfolgerung ({\bf S}) 1 Punkt.
+\end{bewertung}
+

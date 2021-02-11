@@ -1,0 +1,62 @@
+\begin{teilaufgaben}
+\item Was für Strings passen auf den regulären Ausdruck
+\begin{verbatim}
+([0-9]{1,2})/([0-9]{1,2})/([0-9]{4})
+\end{verbatim}
+\item
+Der reguläre Ausdruck \texttt{(.*\textbackslash.)[\textasciicircum.]+} wird
+für das Editieren von Filenamen verwendet, indem der auf den Klammerausdruck
+passende Teil des Filenamens behalten wird und dafür die Zeichenkette
+\texttt{log} angehängt wird.
+Was wird bei diesem Prozess aus dem Filenamen \texttt{pruefung.2020.tex}?
+\item
+In der Konfiguration eines Apache-Webservers findet man die
+folgende Direktive
+\begin{verbatim}
+RewriteCond %{HTTP_USER_AGENT} Zeus.*?Webster
+\end{verbatim}
+mit dem der Webmaster die Zugriffsrechte eines bestimmten Useragenten
+einschränkten wollte.
+Die Direktive bezweckt, Benutzer umzuleiten, deren Browser auf den als
+letztes Argument angegebenen regulären Ausdruck passt.
+Warum ist das Fragezeichen in diesem regulären Ausdruck unnötig?
+\item
+Geben Sie einen regulären Ausdruck an, der auf alle Wörter mit genau
+10 Zeichen passt und den String \texttt{AutoSpr} enthält.
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item Die passenden Strings sind Datumsangaben, drei Zahlen getrennt durch
+\texttt{/}.
+Die letzte Zahl ist die Jahreszahl.
+\item Der Klammerausdruck passt auf alles bis zum letzten \texttt{.},
+den Punkt eingeschlossen.
+Vom vorgegeben Filenamen ist dies der Teil \texttt{pruefung.2020.}.
+Daran wird jetzt \texttt{log} angehängt, so dass sich
+\texttt{pruefung.2020.log} ergibt.
+\item Das Fragezeichen macht den Teil \texttt{.*} optional, aber dieser
+Teil kann durchaus das leere Wort sein.
+Der Webmaster hat offenbar nicht daran gedacht, dass die *-Operation
+auch das leere Wort beinhaltet.
+\item Da \texttt{AutoSpr} bereits 7 Zeichen enthält, gibt es genau vier
+Möglichkeiten, ein Wort mit 10 Zeichen zu bilden, welches den String
+enthält:
+\[
+\texttt{AutoSpr...|.AutoSpr..|..AutoSpr.|...AutoSpr}
+\qedhere
+\]
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item ({\bf A}) 1 Punkt
+\item ({\bf B}) 1 Punkt
+\item Bedeutung on \texttt{*} 1 Punkt {(\bf S)},
+Bedeutung von \texttt{?} ({\bf F}) 1 Punkt.
+\item Alternative ({\bf V}) 1 Punkt, verschiedene Verkettungen ({\bf K}) 1 Punkt
+\end{teilaufgaben}
+\end{bewertung}
+
+

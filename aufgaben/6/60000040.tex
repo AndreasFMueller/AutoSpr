@@ -1,0 +1,32 @@
+In einer verteilten Anwendung sollen Log-Meldungen zentral gesammelt
+und ausgewertet werden.
+Die Meldungen könnten leicht mit etwa einem Dutzend ziemlich
+komplexer regulärer Ausdrücke klassifiziert werden.
+Die zugehörigen endlichen Automaten sind jedoch komplex genug, dass
+sich bereits Performance-Engpässe abzeichnen.
+Daher sollen jetzt alternative Algorithmen untersucht werden.
+Um sicherzustellen, dass durch diesen Umbau nicht neue Fehler
+eingeführt werden, wird verlangt, dass ein Testprogramm geschrieben
+wird, welches vorgeschlagene Algorithmen darauf hin prüfen soll,
+ob sie genau die Log-Messages akzeptieren, die auch die genannten
+regulären Ausdrücke akzeptieren würden.
+Ist so etwas möglich?
+
+\begin{loesung}
+Nein.
+Die Algorithmen müssen eine Sprache akzeptieren, die die Eigenschaft
+\begin{center}
+P = \text{``besteht nur aus Wörtern, die von den regulären Ausdrücken akzeptiert werden''}
+\end{center}
+haben.
+Sofern die regulären Ausdrücke nicht alle Wörter akzeptieren, was man
+hier annehmen darf, ist dies eine nichttriviale Eigenschaft.
+Nach dem Satz von Rice kann es daher kein Programm geben, welches
+entscheiden kann, ob eine Maschine eine Sprache mit der Eigenschaft
+$P$ akzeptiert.
+\end{loesung}
+
+
+
+
+

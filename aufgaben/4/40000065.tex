@@ -1,0 +1,119 @@
+Betrachten Sie die Grammatik
+\begin{align*}
+S & \to X \texttt{1} X \texttt{1} X \\
+X & \to \texttt{0} X  \;|\; \texttt{1} X \;|\; \varepsilon
+\end{align*}
+\begin{teilaufgaben}
+\item
+Beschreiben Sie die Wörter, die von dieser Grammatik produziert werden können.
+Schreiben Sie die Sprache in Mengennotation
+$L=\{w\in\{\texttt{0},\texttt{1}\}^*\;|\dots\}$.
+\item
+Hat die Grammatik Chomsky-Normalform?
+Wenn nicht, bringen Sie sie in Chomsky-Normalform.
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Die Regel für $X$ erzeugt beliebige Folgen von \texttt{0} und \texttt{1}.
+Die Regel für S stellt sicher, dass das erzeugte Wort mindestens zwei
+\texttt{1} enthält.
+Die erzeugte Sprache ist also
+\[
+L=\{
+w\in\{\texttt{0},\texttt{1}\}^*
+\;|\;
+|w|_{\texttt{1}} \ge 2\}.
+\]
+\item
+Die Grammatik hat offenbar nicht Chomsky-Normalform.
+Immerhin kommt die Startvariable auf der rechten Seite nicht vor,
+so dass der erste Schritt des Algorithmus entfällt.
+
+2. Schritt: Entfernung der $\varepsilon$-Regel:
+\begin{align*}
+S & \to
+X \texttt{1} X \texttt{1} X
+\;|\;
+X \texttt{1} X \texttt{1} 
+\;|\;
+X \texttt{1}   \texttt{1} X
+\;|\;
+X \texttt{1}   \texttt{1} 
+\;|\;
+  \texttt{1} X \texttt{1} X
+\;|\;
+  \texttt{1} X \texttt{1}  
+\;|\;
+  \texttt{1}   \texttt{1} X
+\;|\;
+  \texttt{1}   \texttt{1}  
+\\
+X & \to
+\texttt{0} X
+\;|\;
+\texttt{0}
+\;|\;
+\texttt{1} X
+\;|\;
+\texttt{1}
+\end{align*}
+Es gibt keine Unit-Rules, so dass der 3.~Schritt entfallen kann.
+
+4. Schritt: Die Einsen in der ersten Regeln müssen durch Variablen
+ersetzt werden, ebenso die \texttt{0} und \texttt{1} in den Zweierregeln
+$X\to\texttt{0}X$ und $X\to\texttt{1}X$.
+\begin{align*}
+S & \to XAXAX \;|\; XAXA \;|\; XAAX \;|\; XAA \;|\; AXAX \;|\; AXA  \;|\; AAX \;|\; AA  
+\\
+X & \to
+BX
+\;|\;
+\texttt{0}
+\;|\;
+BX
+\;|\;
+\texttt{1}
+\\
+A&\to \texttt{1}
+\\
+B&\to \texttt{0} \;|\; \texttt{1}
+\end{align*}
+Die langen Regeln in der ersten Regel müssen schrittweise aufgebaut werden:
+\begin{align*}
+S & \to WU \;|\; WA \;|\; VU \;|\; VA \;|\; UU \;|\; UA  \;|\; AU \;|\; AA  
+\\
+U & \to AX
+\\
+V & \to XA
+\\
+W & \to XU
+\\
+X & \to
+BX
+\;|\;
+\texttt{0}
+\;|\;
+BX
+\;|\;
+\texttt{1}
+\\
+A&\to \texttt{1}
+\\
+B&\to \texttt{0} \;|\; \texttt{1}
+\end{align*}
+Damit ist Chomsky-Normalform erreicht.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item Sprache ({\bf L}) 2 Punkte,
+\item keine Chomsky-Normalform ({\bf C}) 1 Punkt,
+\item $\varepsilon$-Regeln ({$\bm \varepsilon$}) 1 Punkt,
+\item Terminalsymbole ({\bf T}) 1 Punkt,
+\item Verkettungen ({\bf V}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
