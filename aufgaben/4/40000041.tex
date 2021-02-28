@@ -78,30 +78,51 @@ Regel für $A_{11}$
 \begin{align*}
 A_{11}&\to\varepsilon.
 \end{align*}
-Für die Variable $A_{04}$ gibt es zwei Regeln, eine, die über den
-Zustand $2$ führt, die andere, die über den Zustand $3$ führt:
+Für die Variable $A_{04}$ gibt es drei Regeln. Eine, die über den
+Zustand $2$ führt, die zweite, die über den Zustand $3$ führt, und
+schliesslich eine, die die Möglichkeit von Zustand $4$ nach $4$ 
+berücksichtigt:
 \begin{align*}
 A_{04}&\to \varepsilon A_{12}\varepsilon\\
-      &\to \varepsilon A_{13}\varepsilon
+      &\to \varepsilon A_{13}\varepsilon\\
+      &\to A_{04}A_{44}
 \end{align*}
+Wegen des einzig möglichen Übergangs von $4$ zu $1$ ist die Menge der
+Wörter, die von $0$ zu $4$ führen können mit leerem Stack die gleiche
+ist wie die, die von $4$ zu $4$ führen können mit leerem Stack.
+Die erzeugten Wörter sind also Verkettungen von Wörtern, die
+aus $A_{12}$ oder $A_{13}$ erzeugt werden.
+
 Für $A_{12}$ und $A_{13}$ wiederum bekommt man die Regeln
 \begin{align*}
 A_{12}&\to\texttt{0} A_{22}\texttt{1}\\
-A_{13}&\to\texttt{1} A_{33}\texttt{0}
+      &\to A_{12}A_{22} \\
+A_{13}&\to\texttt{1} A_{33}\texttt{0}\\
+      &\to A_{13}A_{33}
 \end{align*}
+Aus der Variablen $A_{12}$ entstehen immer Wörter, die mit \texttt{0}
+beginnen, aus $A_{13}$ entstehen immer Wörter, die mit \texttt{1}
+beginnen.
+Beim Parsen mit dieser Grammatik zeigt daher das nächste Zeichen
+immer an, in welche der Variablen $A_{12}$ oder $A_{13}$ man $A_{04}$
+auflösen muss.
+
 Zusätzlich zu den $\varepsilon$-Regeln für die Variablen $A_{22}$ und $A_{33}$
 findet man die Regeln, die ein Zeichen auf den Stack legen und am
 Schluss wieder abbauen:
 \begin{align*}
-A_{22}&\to \texttt{0}A_{22}\texttt{1}\;|\;\varepsilon\\
-A_{33}&\to \texttt{1}A_{33}\texttt{0}\;|\;\varepsilon
+A_{22}&\to \texttt{0}A_{22}\texttt{1} \;|\; A_{22}A_{22} \;|\; \varepsilon\\
+A_{33}&\to \texttt{1}A_{33}\texttt{0} \;|\; A_{33}A_{33} \;|\; \varepsilon
 \end{align*}
-Diese zwei Regeln besagen, dass $A_{22}$ für Wörter der Form
-$\texttt{0}^n\texttt{1}^n$ steht und $A_{33}$ für Wörter der Form
-$\texttt{1}^n\texttt{0}^n$ mit $n\ge 0$.
-Entsprechend steht die Variablen $A_{12}$  für Wörter der Form
-$\texttt{0}^n\texttt{1}^n$ und $A_{13}$ für Wörter der Form
-$\texttt{1}^n\texttt{0}^n$ mit $n\ge 1$.
+Die Regel für $A_{22}$ erzeugt Wörter der Form
+$\texttt{0}^n\texttt{1}^n$,
+Verkettungen davon und sie schachtelt solche Wörter auch wieder zwischen
+\texttt{0} und \texttt{1} ein.
+Betrachtet man \texttt{0} als die öffnende ``Klammer'' und \texttt{1}
+als die schliessende ``Klammer'', dann steht $A_{22}$ für einen
+korrekten Klammerausdruck.
+Dasselbe gilt für $A_{33}$ mit vertauschten Rollen von \texttt{0}
+und \texttt{1}.
 
 Wir müssen noch die Variable $A_{45}$ weiter entwickeln. Es gibt
 drei Wege, wie man von $4$ nach $5$ gelangen kann ohne den
@@ -112,38 +133,28 @@ Diesen Wegen entsprechen die Regeln
 A_{45}&\to\varepsilon A_{11}\varepsilon\to\varepsilon\\
       &\to A_{44}A_{45}\\
 A_{44}&\to\varepsilon A_{12}\varepsilon\\
-      &\to\varepsilon A_{13}\varepsilon
+      &\to\varepsilon A_{13}\varepsilon\\
+      &\to A_{44}A_{44}
 \end{align*}
 Diese Regeln drücken aus, dass $A_{45}$ eine Verkettung von Wörtern
 ist, die jeweils aus $A_{44}$ entwickelt werden können.
-Letztere Variable kann, wie bereits oben dargelegt,
-in Wörter der Form $\texttt{0}^n\texttt{1}^n$ bzw.~$\texttt{1}^n\texttt{0}^n$
-mit $n>0$ umgewandelt werden.
 
-Schreiben wir der besseren Lesbarkeit halber $N$ für Wörter, die mit
-einer Folgen von Nullen beginnen, also von der
-Form $\texttt{0}^n\texttt{1}^n$ mit $n\ge 1$ sind, und $E$ für Wörter,
-die mit einer Folge von Einsen beginnen, also von der
-Form $\texttt{1}^n\texttt{0}^n$ sind, sieht die Grammatik jetzt so aus
+Man kann diese Grammatik noch etwas abkürzen.
+Wir schreiben $B$ für die Wörter, die aus $A_{44}$ erzeugt werden können.
+Die erzeugten Wörter sind dann Verkettungen von $B$-Wörtern.
+Schreibt man $N$ für die ``Klammerausdrücke'' mit \texttt{0} als ``öffnender 
+Klammer'' und $E$ für die entsprechenden Ausdrücke mit \texttt{1}
+als ``öffnender Klammer, dann wird die Grammatik zu
 \begin{align*}
-A_{05}&\to\varepsilon \\
-      &\to A_{04}A_{45} \\
-A_{04}&\to A_{04}A_{44} \\
-      &\to N \\
-      &\to E \\
-A_{44}&\to N \\
-      &\to E \\
-      &\to \varepsilon
+S&\to SB \;|\; \varepsilon
+\\
+B&\to N\;|\; E
+\\
+N&\to NN \;|\; \texttt{0}N\texttt{1} \;|\; \texttt{01}
+\\
+E&\to EE \;|\; \texttt{1}E\texttt{0} \;|\; \texttt{10}.
+\qedhere
 \end{align*}
-Dies kann man noch etwas vereinfachen zu
-\begin{align*}
-S&\to \varepsilon\;|\; B\\
-B&\to BN\;|\;BE\;|\;N\;|\;E\\
-N&\to \texttt{0}N\texttt{1}\;|\; \texttt{01}\\
-E&\to \texttt{1}E\texttt{0}\;|\; \texttt{10}
-\end{align*}
-Darin steht $B$ für eine nicht leere Folge von Wörtern der Art $N$
-oder $E$.
 \end{loesung}
 
 
