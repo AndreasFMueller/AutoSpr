@@ -3,7 +3,6 @@
  * lexer definition for the Turing machine compiler
  *
  * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
- * $Id$
  */
 #include <tmc-grammar.h>
 #undef YY_INPUT
