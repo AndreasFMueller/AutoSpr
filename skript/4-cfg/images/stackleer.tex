@@ -19,19 +19,23 @@
 	--( 8.0,3.0)
 	--(11.0,0.0);
 
-\draw[->,line width=1.4pt,color=red] (0,0)--(4.0,0);
-\draw[->,line width=1.4pt,color=red] (4.0,0)--(11.0,0);
+\uncover<2->{
+	\fill[color=red] ( 4.0,0.0) circle[radius=0.08];
+	\node[color=red] at ( 4.0,0.0) [below] {$\mathstrut r$};
+}
+\uncover<3->{
+	\draw[->,line width=1.4pt,color=red] (0,0)--(4.0,0);
+	\draw[->,line width=1.4pt,color=red] (4.0,0)--(11.0,0);
+	\node[color=red] at (2,0) [above] {$A_{pr}$};
+	\node[color=red] at (7.5,0) [above] {$A_{rq}$};
+}
 
-\node[color=red] at (2,0) [above] {$A_{pr}$};
-\node[color=red] at (7.5,0) [above] {$A_{rq}$};
 \node[color=blue] at (5.5,2) {$A_{pq}$};
 
 \fill[color=blue] ( 0.0,0.0) circle[radius=0.08];
-\fill[color=red] ( 4.0,0.0) circle[radius=0.08];
 \fill[color=blue] (11.0,0.0) circle[radius=0.08];
 
 \node[color=blue] at ( 0.0,0.0) [below] {$\mathstrut p$};
-\node[color=red] at ( 4.0,0.0) [below] {$\mathstrut r$};
 \node[color=blue] at (11.0,0.0) [below] {$\mathstrut q$};
 
 \end{tikzpicture}
