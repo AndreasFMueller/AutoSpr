@@ -87,17 +87,9 @@ Im Ganzzahl-Automat führen viele Übergänge zum Zustand $e$, der
 alle fehlerhaften Inputs aufsammelt.
 Wir könnten diesen Zustand einfach
 weglassen und erhalten folgenden, wesentlich übersichtlicheren NEA:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-	&{q_0}  \ar[dl]_{{\tt 1},\dots,{\tt 9}} \ar[dr]^{\tt -}
-\\
-*++[o][F=]{p}\ar@(ul,dl)_{{\tt 0},\dots,{\tt 9}}
-	&*+\txt{}
-		&{m} \ar[ll]^{{\tt 1},\dots,{\tt 9}}
-}
-\]
+\begin{center}
+\includegraphics{3-regulaer/images/zahlennea.pdf}
+\end{center}
 Aus Zustand $q_0$ ist kein Übergang mit dem Zeichen {\tt 0} möglich,
 dadurch werden führende Nullen verboten.
 Ein {\tt -} kann nur am Anfang
@@ -139,27 +131,9 @@ Beginn noch nicht wissen können, ob wir einen ankommenden
 String auf Teilbarkeit durch $2$ oder durch $3$ testen sollen.
 Also verwenden wir $\varepsilon$-Übergänge aus dem Startzustand
 in zwei verschiedene Automaten, die die Teilbarkeit testen:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}
-	&*+\txt{}
-		&*++[o][F=]{q_1} \ar@/^/[r]^{\tt 0}
-			&{q_2} \ar@/^/[l]^{\tt 0}
-\\
-*+\txt{} \ar[r]
-	&{q_0}\ar[ur]^{\varepsilon} \ar[dr]^{\varepsilon}
-\\
-*+\txt{}
-	&*+\txt{}
-		&*++[o][F=]{q_3}\ar[r]^{\tt 0}
-			&{q_4}\ar[dl]^{\tt 0}
-\\
-*+\txt{}
-	&*+\txt{}
-		&{q_5}\ar[u]^{\tt 0}
-}
-\]
+\begin{center}
+\includegraphics{3-regulaer/images/teilbarkeit.pdf}
+\end{center}
 \end{beispiel}
 
 \subsection{Erreichbare Zustände\label{regulaer:erreichbarezustaende}}

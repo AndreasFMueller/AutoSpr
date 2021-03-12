@@ -192,17 +192,9 @@ Offenbar gibt es also folgende Fälle: Zahl mit Minus, Zahl ohne Minus,
 führende Null oder andere Illegalitäten.
 Zusammen mit dem Startzustand sollten wir also mit vier Zuständen auskommen.
 Sei $Q={q_0, m,p,e}$, dann wird das Zustandsdiagramm:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-	&{q_0}  \ar[dl]_{{\tt 1},\dots,{\tt 9}} \ar[d]^{\tt 0} \ar[dr]^{\tt -}
-\\
-*++[o][F=]{p}\ar[r]^{\tt -} \ar@(ul,dl)_{{\tt 0},\dots,{\tt 9}}
-	&{e} \ar@(dr,dl)^{\Sigma}
-		&{m}\ar[l]_{{\tt 0},{\tt -}} \ar@/^40pt/[ll]^{{\tt 1},\dots,{\tt 9}}
-}
-\]
+\begin{center}
+\includegraphics{3-regulaer/images/zahlen0.pdf}
+\end{center}
 \end{beispiel}
 \begin{beispiel}[\bf Ganzzahlen, diesmal richtig]
 Der eben gezeigte Automat ist insofern eine wörtliche Realisierung
@@ -210,20 +202,9 @@ der Anforderungen, dass er keine führende $0$ akzeptiert.
 Allerdings
 möchten wir in der Praxis auch eine einzelne $0$ akzeptieren können.
 Dazu ist es nötig, den Automaten um einen Zustand zu erweitern:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-	&{q_0}  \ar[ddl]_{{\tt 1},\dots,{\tt 9}} \ar[d]^{\tt 0} \ar[ddr]^{\tt -}
-\\
-*+\txt{}
-	&*++[o][F=]{0}\ar[d]^{\Sigma}
-\\
-*++[o][F=]{p}\ar[r]^{\tt -} \ar@(ul,dl)_{{\tt 0},\dots,{\tt 9}}
-	&{e} \ar@(dr,dl)^{\Sigma}
-		&{m}\ar[l]_{{\tt 0},{\tt -}} \ar@/^40pt/[ll]^{{\tt 1},\dots,{\tt 9}}
-}
-\]
+\begin{center}
+\includegraphics{3-regulaer/images/zahlen.pdf}
+\end{center}
 \end{beispiel}
 
 \subsubsection{Tabellenform}
