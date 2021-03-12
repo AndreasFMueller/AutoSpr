@@ -42,7 +42,7 @@ Da $B\in\text{P}$ gibt es eine Turingmaschine $M$ mit polynomieller Laufzeit,
 die $w\in B$ entscheiden kann. Der folgende Algorithmus entscheidet
 jetzt auch $w\in A$:
 \begin{compactenum}
-\item Berechnen $f(w)$
+\item Berechne $f(w)$
 \item Wende $M$ auf $f(w)$ an.
 \end{compactenum}
 Wir müssen uns nur noch versichern, dass dieser Algorithmus 
@@ -69,7 +69,7 @@ einen polynomiellen Verifizierer für $A$ konstruieren.
 \end{proof}
 
 Die letzten zwei Sätze zeigen, dass sich Sprachen in $P$ und $NP$
-mit Hilfe der polynomiellen in ``leichte'' und ``schwierige'',
+mit Hilfe der polynomiellen Reduktion in ``leichte'' und ``schwierige'',
 in ``schnell'' bzw.~``langsam'' zu lösende unterteilen lassen
 (Abbildung \ref{pnporder}).
 \begin{figure}
@@ -157,7 +157,7 @@ Sei also die Formel von der Form
 wobei jede Teilformel $\varphi_i$ nur eine Disjunktion (Oder-Verknüpfung)
 von Variablen oder negierten Variablen ist. Damit $\varphi$
 erfüllbar ist, muss es eine Zuordnung von Wahrheitswerten zu
-den Variable geben, so dass jede der Teilformeln $\varphi_i$ wahr
+den Variablen geben, so dass jede der Teilformeln $\varphi_i$ wahr
 wird. In jeder Teilformel gibt es also eine Variable oder 
 negierte Variable, die wahr ist. Es würde also genügen,
 die Terme in den $\varphi_i$ zu finden, die alle gleichzeitig

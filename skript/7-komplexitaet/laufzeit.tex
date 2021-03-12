@@ -122,7 +122,8 @@ durch das Band.
 Wir nehmen an, dass $t(n)\ge n$, denn sonst könnte die
 Turingmaschine nicht einmal ihren Input vollständig lesen.
 Der tatsächlich benutzte Teil des Bandes kann dann nicht länger sein
-als $t(n)$. Zusammen mit den $t(n)$ durchläufen erhalten wir,
+als $t(n)$. Zusammen mit den $t(n)$ Durchläufen erhalten wir
+die Erkenntnis,
 dass die simulierte Turingmaschine die Laufzeit $O(t(n)^2)$ hat.
 \end{proof}
 
@@ -161,7 +162,7 @@ Entscheidungen.
 
 Wir müssen ausrechnen, wie sich die Simulation auf die 
 Gesamtlaufzeit auswirkt. Jeder Berechnungspfad der simulierten
-nichtdeterministischen Turingmaschine hat Laufzeit nicht
+nichtdeterministischen Turingmaschine hat eine Laufzeit nicht
 länger als $t(n)$. Die Erzeugung der nächsten möglichen
 Berechnungsgeschichte auf Band~3 kann in einem Durchgang
 durch Band~3 erfolgen, braucht also Zeit $O(t(n))$.
@@ -203,7 +204,7 @@ je polynomielle Laufzeit zu erreichen.
 
 Aber wie gross ist denn nun exponentielle Laufzeit?
 Nehmen wir an,
-ein wir hätten einen Algorithmus mit Laufzeit $n^k$. Vergrössert
+wir hätten einen Algorithmus mit Laufzeit $n^k$. Vergrössert
 man die Input-Länge um $1$ Zeichen, ändert sich die Laufzeit um
 \[
 \frac{(n+1)^k}{n^k}

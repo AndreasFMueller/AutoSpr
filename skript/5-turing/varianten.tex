@@ -42,7 +42,7 @@ erkannten werden.
 \begin{proof}[Beweis]
 Sei $L$ eine Sprache, die von der Turingmaschine $M$ mit $n$ Spuren
 erkannten wird. Das Bandalphabet ist $\Gamma$. Wir konstruieren aus
-$M$ eine neue Turingmaschine $M'$, welches nur noch eine Spur hat,
+$M$ eine neue Turingmaschine $M'$, welche nur noch eine Spur hat,
 jedoch als Bandalphabet die Menge $\Gamma^n$. Dadurch wird die ``Wortbreite''
 des Bandes erhöht, es wird nur noch eine, breite Spur verwendet, um die
 gleiche Information unterzubringen.
@@ -80,7 +80,7 @@ Und nach Satz \ref{mehrspurigeturingmaschine} lässt sich eine solche wiederum
 auf einer Standardturingmaschine simulieren.
 \end{proof}
 Die geraden Spuren werden also dazu verwendet, die Position des
-Schreib-/Lese-Kopfes zu speichern, während die ungeraden Spuren
+Schreib-/Lesekopfes zu speichern, während die ungeraden Spuren
 die Daten enthalten:
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c|c|c|c}
@@ -256,7 +256,7 @@ weiterarbeiten.
 \begin{definition}
 \index{Aufzahler@Aufzähler}%
 Eine Turingmaschine mit einem Drucker, die auf einem leeren Band beginnt,
-heisst ein Aufzähler. Die von einem Aufzähler auf dem Drucker ausgegebene
+heisst ein Aufzähler. Die von einem Aufzähler auf dem Drucker ausgegebenen
 Wörter bilden eine Sprache, die vom Aufzähler aufgezählte Sprache.
 \end{definition}
 
@@ -276,7 +276,7 @@ erkannt werden kann, andererseits muss zu einer Turingmaschine, die
 die Sprache erkennt, ein Aufzähler konstruiert werden, der die Sprache
 aufzählt.
 
-Sei als $A$ ein Aufzähler. Wir konstruieren eine Turingmaschine $M$, die
+Sei also $A$ ein Aufzähler. Wir konstruieren eine Turingmaschine $M$, die
 zum Inputwort $w$ folgenden Algorithmus implementiert.
 \begin{compactenum}
 \item Lasse $A$ laufen. Jedesmal, wenn $A$ ein Wort auf den Drucker schreibt,
@@ -299,7 +299,7 @@ Sei also $s_1,s_2,s_3,\dots$ eine Liste aller Wörter von $\Sigma^*$.
 Beim Testen der Wörter mit $M$
 haben wir die Schwierigkeit, dass $M$ auf einem Inputwort
 möglicherweise nicht anhält. Wir müssen also mit einem Trick
-simulieren, dass unsere Algorithmus nicht in einer ``Endlosschleife''
+simulieren, dass unser Algorithmus nicht in einer ``Endlosschleife''
 in $M$ stecken bleibt. Wir lassen $M$ daher nur jeweils für einige
 Schritte laufen.
 Genauer:
@@ -310,7 +310,7 @@ laufen.
 \item Falls $M$ das Wort $s_i$ akzeptiert, schreibe es auf den Drucker.
 \end{compactenum}
 Dieser Algorithmus verhindert, dass $M$ in eine ``Endlosschleife''
-gerät, und druckt alle Wörter aus, von der Turingmaschine erkannt
+gerät, und druckt alle Wörter aus, die von der Turingmaschine erkannt
 werden, sogar unendlich oft.
 \end{proof}
 

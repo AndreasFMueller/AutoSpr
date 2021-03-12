@@ -25,7 +25,7 @@ alle Wörter erzeugt, ist nicht entscheidbar.
 \begin{proof}[Beweis]
 Wir konstruieren eine Reduktion 
 $A_{\text{TM}}\le \text{\it ALL}_{\text{CFG}}$.
-Wir müssen also aus einem Paar $\langle M,w\rangle$ einen
+Wir müssen also aus einem Paar $\langle M,w\rangle$ eine
 Grammatik erzeugen, die genau dann alle Wörter erzeugt, wenn
 $M$ das Wort $w$ erkennt.
 Dabei müssen wir diese Strings in
@@ -63,7 +63,7 @@ sein, also etwas von der Form $xq_{\text{accept}}y$.
 $M$ entsprechen.
 \end{compactenum}
 \medskip
-Die gesuchte Grammatik muss all Strings erzeugen, die einen dieser ``Fehler''
+Die gesuchte Grammatik muss alle Strings erzeugen, die einen dieser ``Fehler''
 machen.
 Falls es eine erkennende Berechnung für $w$ gibt, wird diese
 die einzige sein, die nicht erzeugt wird.
@@ -131,14 +131,14 @@ q_2\ar@(ur,ul)
 Darin enhalten die Schleifen beim zweiten und dritten Zustand keine
 Übergänge mit dem Zeichen {\tt\#}.
 Dazu braucht es zusätzliche
-Übergange, damit der Automat alles ausser diesen Strings akzeptiert.
+Übergänge, damit der Automat alles ausser diesen Strings akzeptiert.
 
 Im Zustand $q_3$ muss ein Automat konstruiert werden, der erkennen kann,
 ob die Folge $C_i{\tt\#}C_{i+1}$ einem korrekten Übergang zwischen
 zwei Konfigurationen der Turingmaschen $M$ entspricht.
 Dazu schreibt
 der Stackautomat zunächst alle Zeichen von $C_i$ auf den
-Stack, und vergleicht dann dann den Stackinhalt mit den Zeichen von
+Stack, und vergleicht dann den Stackinhalt mit den Zeichen von
 $C_{i+1}$.
 Bis auf die Zeichen um die Kopfposition dürfen sich
 die Strings nicht unterscheiden.
@@ -172,7 +172,7 @@ zweite Konfiguration rückwärts, also
 \[
 {\tt\#}C_1{\tt\#}C_2^t{\tt\#}C_3{\tt\#}C_4^t{\tt\#}\dots
 \]
-Die Regeln für die korrekten Turingmaschinen-Übergang müssen
+Die Regeln für die korrekten Turingmaschinen-Übergänge müssen
 natürlich an diese umgekehrte Ordnung angepasst werden, dabei
 muss beachtet werden, dass mit jedem gelesenen {\tt\#}-Zeichen
 die ``Leserichtung'' ändert.

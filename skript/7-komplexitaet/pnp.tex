@@ -46,7 +46,7 @@ kann in Zeit $O(n^3)$ durchgeführt werden.
 
 Sei $G$ ein gerichteter Graph und $s$ und $t$ zwei Vertizes
 des Graphen. Das Pfad-Problem fragt, ob es einen von $s$ nach $t$
-führend Pfad in dem Graphen gibt. Übersetzt in ein Spracheproblem
+führenden Pfad in dem Graphen gibt. Übersetzt in ein Spracheproblem
 liefert es uns den folgenden Satz.
 
 \begin{satz}
@@ -230,7 +230,7 @@ bestimmt kein Algorithmus in P.
 
 \textsl{SAT} ist aber in NP,
 denn wir können einen polynomiellen Verifizierer angeben.
-Der Verifizierer verlangt als Lösungszertifikate $c$ eine
+Der Verifizierer verlangt als Lösungszertifikat $c$ eine
 Belegung der Variablen mit Wahrheitswerten $c=(x_1,\dots,x_n)$,
 und überprüft, ob durch einsetzen der Werte $x_1,\dots,x_n$
 die Formel $\varphi(x_1,\dots,x_n)$ wahr wird.
@@ -286,7 +286,7 @@ Das Cliquen-Problem
 \]
 ist entscheidbar. Man probiert alle möglichen $k$-elementigen
 Teilmengen der Ecken des Graphen durch, ob sie eine Clique
-bilden. Da Zahl der Teilmengen ist $\binom{n}{k}$, wenn $n$
+bilden. Da die Zahl der Teilmengen $\binom{n}{k}$ ist, wenn $n$
 die Zahl der Ecken ist, und $\binom{n}{k}$ von der Grössenordnung
 $O(n^k)$ ist, ist dieser Algorithmus nicht in P.
 
@@ -337,6 +337,6 @@ dürfen.
 $k$-\textsl{VERTEX-COLORING} ist in NP, denn ein polynomieller Verifizierer
 wird als Lösungszertifikat die Farbzuordnung $c=(c_1,\dots,c_n)$ der
 Ecken $1,\dots,n$ des Graphen verlangen, und kann damit in polynomieller
-Zeit prüfen, ob die Bedingung verschiedener Farbe an den Enden
+Zeit prüfen, ob die Bedingung verschiedener Farben an den Enden
 jeder Kante erfüllt ist.
 
