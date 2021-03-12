@@ -2,9 +2,9 @@
 \lhead{Algorithmen-Übersicht}
 \rhead{}
 In den vergangenen Kapiteln wurde eine grosse Zahl von Algorithmen
-für die verschiedensten Probleme formuliert. Hier werden die wichtigsten
-im Sinne einer Übersicht zusammengestellt, mit Verweisen auf die 
-detaillierte Beschreibung weiter vorne im Text.
+für die verschiedensten Probleme formuliert.
+Hier werden die wichtigsten im Sinne einer Übersicht zusammengestellt,
+mit Verweisen auf die detaillierte Beschreibung weiter vorne im Text.
 \section{Endliche Automaten und reguläre Sprachen}
 \subsection{Minimalautomat}
 \newtheorem*{Minimalautomat}{Minimalautomat}
@@ -23,7 +23,7 @@ beiden Automaten die gleiche Sprache akzeptieren, also $L(A)=L(B)$.
 \end{Automatenvergleich}
 Das Problem, ob zwei Automaten die gleiche Sprache akzeptieren,
 ist mit Hilfe des Minimalautomaten (Seite \pageref{algorithmus:minimalautomat})
-entscheidbar. 
+entscheidbar.
 Der Algorithmus wurde auch im Satz~\ref{satz:eqdea} verwendet, wo die
 Entscheidbarkeit von $\textsl{EQ}_\textsl{DEA}$ gezeigt wurde.
 
@@ -64,7 +64,8 @@ Automaten $C$ derart, dass $L(C)=L(A)\cap L(B)$.
 
 Satz~\ref{satz_intersection} beschreibt eine Konstruktion, mit der
 ein deterministischer endlicher Automat für die Schnittmenge gefunden
-werden kann. Sie verwendet die Produktautomaten-Konstruktion von Seite
+werden kann.
+Sie verwendet die Produktautomaten-Konstruktion von Seite
 \pageref{reg_produktautomat}.
 
 \newtheorem*{RegNegation}{Komplement einer regulären Sprache}
@@ -210,7 +211,7 @@ $L(G')=L(G)^*$.
 \subsection{Parser}
 Stackautomaten sind nicht deterministisch und eignen sich daher nicht
 dazu, ein Wort $w$ daraufhinzu zu prüfen, ob es von einer kontextfreien
-Grammatik $G$ produziert werden kann: $w\in L(G)$. 
+Grammatik $G$ produziert werden kann: $w\in L(G)$.
 Es gibt aber einen deterministischen Algorithmus, der in
 Satz~\ref{cyk-algorithm} beschrieben wird.
 Dieser Algorithmus wird auch zur Entscheidung des Problems $A_\textsl{CFG}$

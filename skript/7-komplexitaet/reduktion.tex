@@ -8,10 +8,10 @@
 Die Beispiele des vorangegangenen Abschnittes haben gezeigt,
 dass der Nachweis, dass eine Sprache in P ist, mit grossem
 Aufwand verbunden sein kann, weil ein geeigneter Algorithmus
-gefunden werden muss. Ein ähnliches Problem konnte in der
-Entscheidungstheorie durch die Verwendung einer Reduktionsabbildung
-$f\colon A\le B$
-gelöst werden. Eine solche musste berechenbar sein, und erlaubte
+gefunden werden muss.
+Ein ähnliches Problem konnte in der Entscheidungstheorie durch die
+Verwendung einer Reduktionsabbildung $f\colon A\le B$ gelöst werden.
+Eine solche musste berechenbar sein, und erlaubte
 die Entscheidung, ob ein Wort in $A$ ist, in die Sprache
 $B$ zu transportieren, und dort zu entscheiden.
 
@@ -39,26 +39,32 @@ Ist $A\le_P B$ und $B$ in P, dann ist auch $A$ in P.
 
 \begin{proof}[Beweis]
 Da $B\in\text{P}$ gibt es eine Turingmaschine $M$ mit polynomieller Laufzeit,
-die $w\in B$ entscheiden kann. Der folgende Algorithmus entscheidet
+die $w\in B$ entscheiden kann.
+Der folgende Algorithmus entscheidet
 jetzt auch $w\in A$:
 \begin{compactenum}
 \item Berechne $f(w)$
 \item Wende $M$ auf $f(w)$ an.
 \end{compactenum}
 Wir müssen uns nur noch versichern, dass dieser Algorithmus 
-polynomielle Laufzeit hat. Die Laufzeit der Turingmaschine ist
-$t_M(|f(w)|)$. Aber $|f(w)|$ kann nicht länger als die Laufzeit 
+polynomielle Laufzeit hat.
+Die Laufzeit der Turingmaschine ist
+$t_M(|f(w)|)$.
+Aber $|f(w)|$ kann nicht länger als die Laufzeit 
 der Berechnung von $f(w)$ sein, man kann ja in jedem Schritt höchstens
-ein Zeichen schreiben. Schreiben wir $t_f(n)$ für die Laufzeit
+ein Zeichen schreiben.
+Schreiben wir $t_f(n)$ für die Laufzeit
 der Berechnung von $f$, ist die Gesamtlaufzeit des Algorithmus
-$t_M(t_f(|w|))$. Sowohl $t_M$ als auch $t_f$ sind Polynome, 
+$t_M(t_f(|w|))$.
+Sowohl $t_M$ als auch $t_f$ sind Polynome, 
 also ist auch die Zusammensetzung ein Polynom, der Algorithmus
 hat somit polynomielle Laufzeit.
 \end{proof}
 
 \begin{satz}
 Ist $A\le_P B$ und hat $B$ einen polynomiellen Verifizierer, dann
-hat auch $A$ einen polynomiellen Verifizierer. Falls $A\le_P B$ und 
+hat auch $A$ einen polynomiellen Verifizierer.
+Falls $A\le_P B$ und 
 $B\in\text{NP}$, dann ist auch $A\in\text{NP}$.
 \end{satz}
 
@@ -89,9 +95,11 @@ Die Lektionen müssen dabei auf Zeitfenster verteilt werden,
 so dass es keine Kollisionen gibt.
 
 Um dieses Problem zu lösen, muss man es auf ein bekanntes
-Problem reduzieren. In diesem Fall bietet sich das Eckenfärbeproblem
+Problem reduzieren.
+In diesem Fall bietet sich das Eckenfärbeproblem
 \textsl{VERTEX-COLORING}
-für Graphen an. Es wird verlangt, die Ecken eines Graphen mit 
+für Graphen an.
+Es wird verlangt, die Ecken eines Graphen mit 
 verschiedenen Farben so einzufärben, dass keine zwei benachbarten
 Ecken die gleiche Farbe haben.
 
@@ -100,10 +108,12 @@ so, dass kein Student zwei Fächer im gleich Zeitfenster
 besuchen will.
 Die Lektionen bilden als Ecken eines Graphen, zwischen zwei
 Ecken gibt es eine Kante, wenn ein Student sich für beide 
-Lektionen angemeldet hat. Den Lektionen müssen jetzt Zeitfenster
+Lektionen angemeldet hat.
+Den Lektionen müssen jetzt Zeitfenster
 zugeordnet werden, so dass es keine Kollisionen gibt, die
 Zeitfenster sind also die Farben, mit denen die Ecken  des
-Graphen eingefärbt werden sollen. Die Einfärbung ist genau
+Graphen eingefärbt werden sollen.
+Die Einfärbung ist genau
 dann möglich, wenn es eine Lösung für das Stundenplanproblem gibt.
 Damit haben wir eine Abbildung konstruiert
 \[
@@ -128,10 +138,12 @@ es gibt also auch eine Reduktion
 
 \begin{beispiel}[\bf\textsl{3SAT} und \textsl{CLIQUE}]
 Eine $k$-Clique in einem Graphen ist ein vollständiger
-Untergraph mit $k$ Ecken in einem gegebenen Graphen. Im Cliquen-Problem müssen
+Untergraph mit $k$ Ecken in einem gegebenen Graphen.
+Im Cliquen-Problem müssen
 in einem gegebenen Graphen $k$ Ecken gefunden werden, so dass
 jede mögliche Verbindung zwischen den Ecken auch im Graphen $G$ 
-besteht. Als Sprache formuliert, ist es
+besteht.
+Als Sprache formuliert, ist es
 \[
 \text{\textsl{CLIQUE}}
 =\{
@@ -145,8 +157,8 @@ Wir konstruieren jetzt eine Reduktion
 \]
 Man muss also aus jeder Formel in konjunktiver Normalform mit
 drei Klauseln einen Graphen konstruieren, der genau dann eine
-$k$-Clique besitzt, wenn die Formel erfüllbar ist. Ausserdem
-muss die Konstruktion in polynomieller Zeit durchführbar sein.
+$k$-Clique besitzt, wenn die Formel erfüllbar ist.
+Ausserdem muss die Konstruktion in polynomieller Zeit durchführbar sein.
 
 Sei also die Formel von der Form
 \[
@@ -155,18 +167,23 @@ Sei also die Formel von der Form
 \varphi_1\wedge\varphi_2\wedge\dots\wedge\varphi_k,
 \]
 wobei jede Teilformel $\varphi_i$ nur eine Disjunktion (Oder-Verknüpfung)
-von Variablen oder negierten Variablen ist. Damit $\varphi$
+von Variablen oder negierten Variablen ist.
+Damit $\varphi$
 erfüllbar ist, muss es eine Zuordnung von Wahrheitswerten zu
 den Variablen geben, so dass jede der Teilformeln $\varphi_i$ wahr
-wird. In jeder Teilformel gibt es also eine Variable oder 
-negierte Variable, die wahr ist. Es würde also genügen,
+wird.
+In jeder Teilformel gibt es also eine Variable oder 
+negierte Variable, die wahr ist.
+Es würde also genügen,
 die Terme in den $\varphi_i$ zu finden, die alle gleichzeitig
 wahr sein können.
 
-Wir konstruieren jetzt den Graphen wie folgt. Die Ecken des Graphen
-sind die Variablen der Teilformeln $\varphi_i$. Eine Kante wird
+Wir konstruieren jetzt den Graphen wie folgt.
+Die Ecken des Graphen sind die Variablen der Teilformeln $\varphi_i$.
+Eine Kante wird
 eingezeichnet für jedes Paar von Variablen in verschiedenen
-Teilformeln, die gleichzeitig wahr sein können. Die Formel $\varphi$
+Teilformeln, die gleichzeitig wahr sein können.
+Die Formel $\varphi$
 ist genau dann erfüllbar, wenn der Graph eine $k$-Clique enthält.
 
 \begin{figure}
@@ -241,7 +258,8 @@ Als Beispiel für die Konstruktion des Graphen nehmen wir die Formel
 Der nach obigen Regeln konstruierte Graph ist in Abbildung~\ref{phiformel}
 dargestellt.
 Natürlich enthält dieser Graph genügend Kanten, so dass es relativ
-leicht ist, eine $4$-Clique zu finden, zum Beispiel die in Abbildung~\ref{phiclique} dargestellte. Man kann daraus ablesen, dass die Formel $\varphi$
+leicht ist, eine $4$-Clique zu finden, zum Beispiel die in Abbildung~\ref{phiclique} dargestellte.
+Man kann daraus ablesen, dass die Formel $\varphi$
 wahr wird, wenn $x_1$ und $x_2$ falsch sind.
 \begin{figure}
 \[

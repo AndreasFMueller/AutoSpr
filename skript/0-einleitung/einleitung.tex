@@ -7,16 +7,18 @@
 \rhead{}
 \chapter*{Worum geht es?\label{chapter-intro}}
 Ursprünglich wurden Computer dazu entwickelt, aufwendige
-Berechnungen zu automatisieren. Inzwischen wird nur noch ein
+Berechnungen zu automatisieren.
+Inzwischen wird nur noch ein
 ganz kleiner Teil der weltweit installierten Rechenleistung für
-diese Art von Problemen genutzt. 
+diese Art von Problemen genutzt.
 Die heutige Informatik befasst sich vorwiegend mit der maschinellen
-Verarbeitung von Zeichenfolgen. 
+Verarbeitung von Zeichenfolgen.
 
 Während früher noch die Frage nach der effizientesten Lösung von
 Berechnungsaufgaben mit dem Computer, also die Numerik, im Vordergrund stand,  
 ist heute die Lösung komplizierterer und oft nicht numerischer Probleme 
-gefragt. Zum Beispiel ist der kürzeste Weg zu finden, den ein Spediteur
+gefragt.
+Zum Beispiel ist der kürzeste Weg zu finden, den ein Spediteur
 zur Auslieferung aller ihm anvertrauten Sendungen verwenden kann, eine
 Aufgabe, in der die Numerik offensichtlich eine untergeordnete Rolle spielt.
 
@@ -38,7 +40,7 @@ Sie definiert, welche Mengen von Zeichenfolgen überhaupt untersucht
 werden sollen, und nennt sie {\em Sprachen}.
 Sie studiert, welche abstrakten Typen von
 Rechnern welche Arten von Zeichenfolgen erkennen oder hervorbringen
-können. 
+können.
 
 Es geht weniger darum, Methoden oder Algorithmen zur Verarbeitung
 von Zeichenfolgen zu behandeln.
@@ -73,7 +75,8 @@ Die Aussagen sind also absolute Wahrheiten, die unabhängig vom Stand
 der Com\-pu\-ter-Technik oder der Programmier-Kunst gelten.
 Solche Aussagen sind nur dann glaub\-würdig, wenn man sich von deren
 Richtigkeit mit Hilfe eines mathematischen Beweises jederzeit überzeugen
-kann. In dieser Vorlesung geht es also vor allem auch um Beweise, 
+kann.
+In dieser Vorlesung geht es also vor allem auch um Beweise, 
 warum eine Sprache eine Eigenschaft hat, oder ob eine Eigenschaft
 unter bestimmten Voraussetzungen überhaupt vorhanden sein kann.
 Daher werden im ersten Kapitel kurz einige Beweistechniken rekapituliert.
@@ -84,7 +87,7 @@ Dabei geht es nicht darum, wer den schnellsten Algorithmus findet,
 sondern um die grundsätzliche Frage, ob es einen Algorithmus mit
 einer gewissen Laufzeitkomplexität überhaupt geben kann.
 Wiederum geht es um eine absolute mathematische Aussage, welche
-einen Beweis erfordert. 
+einen Beweis erfordert.
 
 In dieser Vorlesung wird nichts berechnet.
 In anderen
@@ -94,7 +97,7 @@ Gleichungen, zur Flächenberechnung oder zur Modellierung eines
 physikalischen Prozesses behandelt werden.
 Dazu wird ein Kalkül mit einer eigenen Formelsprache entwickelt,
 mit dem diese Berechnungen durchgeführt werden können.
-In dieser Vorlesung werden kaum Formeln vorkommen. 
+In dieser Vorlesung werden kaum Formeln vorkommen.
 Und wenn Formeln vorkommen, dann werden es logische Formeln sein,
 nicht algebraische.
 
@@ -102,20 +105,28 @@ Nachdem jetzt geklärt ist, was in dieser Vorlesung nicht behandelt
 wird, hier einige Hinweise, was in den kommenden Kapiteln untersucht
 wird:
 \begin{description}
-\item[Kapitel \ref{chapter-regular}:] Deterministische endliche Automaten (DEA). Von einem
-DEA akzeptierte Sprache. Rekonstruktion des DEA aus der Sprache.
-Reguläre Sprachen und DEAs. Reguläre Ausdrücke. Nicht deterministische
-endliche Automaten (NEA). Wie beweist man, dass eine Sprache nicht regulär
+\item[Kapitel \ref{chapter-regular}:] Deterministische endliche Automaten (DEA).
+Von einem
+DEA akzeptierte Sprache.
+Rekonstruktion des DEA aus der Sprache.
+Reguläre Sprachen und DEAs.
+Reguläre Ausdrücke.
+Nicht deterministische
+endliche Automaten (NEA).
+Wie beweist man, dass eine Sprache nicht regulär
 ist?
 
 In diesem Kapitel geht es nicht darum, ein Virtuose in der
-Anwendung regulärer Ausdrücke zu werden. Viel wichtiger ist, Klarheit darüber
+Anwendung regulärer Ausdrücke zu werden.
+Viel wichtiger ist, Klarheit darüber
 zu bekommen, in welchen Fällen reguläre Ausdrücke anwendbar sind,
 und wo ihre Grenzen sind.
 
 \item[Kapitel \ref{chapter-cfl}:] Stack-Automaten und von einem Stack-Automaten
-erzeugte Sprache. Kontextfreie Grammatiken und davon erzeugte Sprachen. 
-Normalform einer Grammatik. Komplexität des Parse-Problems.
+erzeugte Sprache.
+Kontextfreie Grammatiken und davon erzeugte Sprachen.
+Normalform einer Grammatik.
+Komplexität des Parse-Problems.
 Wiederum geht es nicht darum, besonders gewandt im Umgang mit Grammatiken
 zu werden.
 
@@ -125,47 +136,57 @@ von Programmiersprachen, sondern das Verständnis, welche Eigenschaften eine
 Sprache haben muss, damit sie mit Hilfe einer Grammatik beschrieben werden kann.
 In einem Beispiel wird auch gezeigt, wie man aus einer Grammatik mit geeigneten
 Software-Werkzeugen direkt einen Parser für die von der Grammatik beschriebene
-Sprache generieren kann. Wieder ist nicht die Beherrschung solcher Tools das
+Sprache generieren kann.
+Wieder ist nicht die Beherrschung solcher Tools das
 Ziel, dies wird in der Vorlesung Compilerbau geschehen.
 
-\item[Kapitel \ref{chapter-turing}:] Turing Maschinen und davon erkannte Sprachen. 
+\item[Kapitel \ref{chapter-turing}:] Turing Maschinen und davon erkannte Sprachen.
 Rekursiv aufzählbare Sprachen und Aufzähler.
 
 Eine Turing Maschine ist ein stark vereinfachtes Modell eines Computers.
 Alle modernen Computer sind im Prinzip nur besonders raffinierte Turing Maschinen.
 Turing Maschinen sind aber einfach genug, um sich mit ihrer Hilfe darüber Gedanken
 zu machen, ob und mit welcher Geschwindigkeit ein Problem mit einem
-Computer gelöst werden kann. In diesem Zusammenhang müssen wir uns
+Computer gelöst werden kann.
+In diesem Zusammenhang müssen wir uns
 darüber Gedanken machen, was es heissen soll, dass ein Problem mit
-einem Computer lösbar sein soll. Dabei werden wir zeigen, dass es Probleme
-gibt, die nicht mit dem Computer gelöst werden können. Allerdings wird
-es uns schwerfallen, solche Probleme explizit zu beschreiben. 
+einem Computer lösbar sein soll.
+Dabei werden wir zeigen, dass es Probleme
+gibt, die nicht mit dem Computer gelöst werden können.
+Allerdings wird
+es uns schwerfallen, solche Probleme explizit zu beschreiben.
 Gelingen wird uns dies erst im Kapitel 6.
 
-\item[Kapitel \ref{chapter-entscheidbarkeit}:] Entscheidbare Sprachen. Unlösbare Probleme.
+\item[Kapitel \ref{chapter-entscheidbarkeit}:] Entscheidbare Sprachen.
+Unlösbare Probleme.
 
 Ziel dieses Kapitels ist zu lernen, wie man ein beliebiges Problem als
 Sprache formulieren kann, und damit die bisher gelernte Theorie darauf
-anwenden kann. Damit wird es möglich, konkrete und für die Praxis eines
+anwenden kann.
+Damit wird es möglich, konkrete und für die Praxis eines
 Informatikers wichtige Probleme zu beschreiben, die
 nicht mit Computern gelöst werden können.
 Es ist zum Beispiel unmöglich, Programme maschinell daraufhin
 zu prüfen, ob sie je anhalten werden.
 Ausserdem lernen wir eine Technik kennen, mit der wir Probleme 
-nach ``Schwierigkeitsgrad'' miteinander vergleichen können. 
+nach ``Schwierigkeitsgrad'' miteinander vergleichen können.
 
-\item[Kapitel \ref{chapter-komplexitaet}:] Komplexitätstheorie. In diesem Kapitel sollen 
+\item[Kapitel \ref{chapter-komplexitaet}:] Komplexitätstheorie.
+In diesem Kapitel sollen 
 die prinzipiellen Grenzen der Geschwindigkeit ermittelt werden,
-mit der ein Problem mit dem Computer gelöst werden kann. Es wird sich
+mit der ein Problem mit dem Computer gelöst werden kann.
+Es wird sich
 herausstellen, dass es zwar viele Probleme gibt, die mit aktuellen Computern in
 vernünftiger Zeit lösbar sind, dass aber auch eine Klasse von Aufgaben
 existiert, für die es nach aktuellem Wissen keinen Algorithmus geben kann,
-der die Aufgabe bei etwas grösseren Problemen lösen kann. Diese Probleme sind
+der die Aufgabe bei etwas grösseren Problemen lösen kann.
+Diese Probleme sind
 zwar im Prinzip lösbar, aber alle Rechenleistung der Welt kann die Probleme nicht lösen.
 
 \item[Kapitel \ref{chapter-vollstaendigkeit}:]
 Turing-Maschinen haben eine universelle Eigenschaft: eine Turing-Maschine
-kann jede andere Turing-Maschine simulieren. Doch in der Praxis
+kann jede andere Turing-Maschine simulieren.
+Doch in der Praxis
 programmiert niemand direkt eine Turing-Maschine, dazu werden
 spezialisierte Programmiersprachen verwendet.
 Welche Eigenschaften muss eine Sprache haben, damit

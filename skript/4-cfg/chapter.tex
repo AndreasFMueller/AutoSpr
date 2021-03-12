@@ -14,28 +14,32 @@ DEA erkannt werden.
 
 Ursache ist, dass sich ein DEA nicht
 daran ``erinnern'' kann, wieviele Klammern schon geöffnet
-worden sind. Um das für beliebig viele Klammern tun zu können,
+worden sind.
+Um das für beliebig viele Klammern tun zu können,
 bräuchte er unendlich viele Zustände (Satz von Myhill-Nerode),
-das ist in einem DEA nicht möglich. Dazu ist als Erweiterung
-eine Art von Speicher nötig. In diesem Kapitel betrachten
+das ist in einem DEA nicht möglich.
+Dazu ist als Erweiterung
+eine Art von Speicher nötig.
+In diesem Kapitel betrachten
 wir Automaten, die mit einem Stack ausgestattet worden sind.
 
 \index{Stack}%
 \index{Stackautomat}%
 Auch reguläre Ausdrücke sind nicht dazu geeigneet, die Schachtelung
-von Klammern auszudrücken. Daher brauchen wir auch für die
+von Klammern auszudrücken.
+Daher brauchen wir auch für die
 regulären Ausdrücke eine Alternative, dies werden die kontextfreien
-Grammatiken sein. Es wird sich zeigen, dass die von Stackautomaten
+Grammatiken sein.
+Es wird sich zeigen, dass die von Stackautomaten
 akzeptierten Sprachen auch mit einer kontextfreien Grammatik erzeugt
 werden können, wir haben also eine ähnliche Situation wie
-bei DEAs und regulären Ausdrücken. So entsteht die neue
-Kategorie der kontextfreien Sprachen.
+bei DEAs und regulären Ausdrücken.
+So entsteht die neue Kategorie der kontextfreien Sprachen.
 \index{Sprache!kontextfreie}%
 Natürlich werden auch kontextfreie Sprachen nicht alles
 abdecken, so dass wir wieder ein Kriterium brauchen, mit dem
-man entscheiden kann, ob eine Sprache kontextfrei ist. Wir
-werden auch für kontextfreie Sprachen
-ein Pumping Lemma finden.
+man entscheiden kann, ob eine Sprache kontextfrei ist.
+Wir werden auch für kontextfreie Sprachen ein Pumping Lemma finden.
 
 \input{4-cfg/grammatik.tex}
 \input{4-cfg/pda.tex}

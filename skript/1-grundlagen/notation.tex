@@ -14,7 +14,8 @@ zusammen.
 Wir verwenden die Prädikatenlogik.
 \index{Prädikat}%
 {\em Prädikate} sind formale Aussagen über mathematische Objekte, die auch
-variable Teile enthalten können. Prädikate sind also ``Funktionen'' mit
+variable Teile enthalten können.
+Prädikate sind also ``Funktionen'' mit
 Wahrheitswerten als Rückgabewerten.
 \begin{align*}
 P(x,y)&=x < y&&\text{wahr falls $x$ kleiner als $y$}\\
@@ -38,9 +39,10 @@ Negation&NICHT&$\neg P$&wahr falls $P$ nicht wahr ist\\
 \end{center}
 Die Kombination $\neg P\vee Q$ ist also wahr, wenn $P$ nicht
 wahr ist, oder falls $P$ wahr ist, auf jeden Fall auch $Q$
-wahr ist. Die Aussage, dass $\neg P\vee Q$ wahr sei, heisst also
-nichts anderes, als dass $Q$ folgt, wenn $P$ wahr ist. Daher schreibt
-man
+wahr ist.
+Die Aussage, dass $\neg P\vee Q$ wahr sei, heisst also
+nichts anderes, als dass $Q$ folgt, wenn $P$ wahr ist.
+Daher schreibt man
 \[
 \neg P\vee Q\qquad =\qquad P\Rightarrow Q.
 \]
@@ -108,7 +110,8 @@ in disjunktiver Normalform wird bei dieser Art von Umwandlung zu
 \label{bigcnf}
 \end{equation}
 wobei $(z_1,\dots,z_n)$ eine beliebige Kombination $z_i=x_i$ oder $z_i=y_i$
-ist. Die Formel (\ref{bigcnf}) hat also $2^n$ Klauseln.
+ist.
+Die Formel (\ref{bigcnf}) hat also $2^n$ Klauseln.
 
 \subsubsection{de Morgansche Regeln}
 \index{de Morgansche Regeln}%
@@ -128,7 +131,7 @@ eines Beweises mit Widerspruch (siehe Abschnitt \ref{widerspruchsbeweis})
 \subsubsection{Quantoren}
 \index{Quantor}%
 Prädikate mit mindestens einer freien Variablen können mit Hilfe
-von Quantoren zu neuen Präkdikaten zusammengebaut werden. 
+von Quantoren zu neuen Präkdikaten zusammengebaut werden.
 Die Aussage $n^2\ge 0$ ist zum Beispiel für alle natürlichen
 Zahlen richtig, man schreibt dafür
 \[
@@ -139,7 +142,8 @@ Das Zeichen $\forall$ wird ``für alle'' gelesen, es heisst
 {\em All-Quantor}.
 \index{Existenz-Quantor}%
 Jede positive reelle Zahl $x$ hat eine Wurzel, es gibt also eine
-Zahl $w$ mit der Eigenschaft $x=w^2$. Formal drückt man dies mit
+Zahl $w$ mit der Eigenschaft $x=w^2$.
+Formal drückt man dies mit
 dem {\em Existenz-Quantor} $\exists$ aus:
 \[
 \exists w\in\mathbb R(x =w^2)
@@ -167,7 +171,8 @@ $E$ haben:
 Die Menge der $Q$ der Quadratzahlen besteht zum Beispiel aus den
 Zahlen $n$, für
 die es eine andere Zahl $w$ gibt (die Wurzel), mit der Eigenschaft
-$n=w^2$.  In Formeln:
+$n=w^2$.
+In Formeln:
 \[
 Q=\{n\; |\; \exists m\in\mathbb N(n=m^2)\}
 \]
@@ -250,7 +255,8 @@ Die Mengen $[n]$ enthalten genau $n$ Elemente, $|[n]|=n$.
 
 Enthält eine Menge $B$ alle Elemente von $A$, sagt man, $A$ sei in $B$
 enthalten, schreibt dafür $A\subset B$ und sagt, $A$ sei eine
-{\em Teilmenge} von $B$. Ist $A\subset B$ und auch
+{\em Teilmenge} von $B$.
+Ist $A\subset B$ und auch
 $B\subset A$, dann enthalten $A$ und $B$ die gleichen Elemente, also
 $A=B$.
 
@@ -274,7 +280,8 @@ möglich ist, also $|P(A)|=2^{|A|}$.
 \index{Tupel@$n$-Tupel}%
 \index{kartesisches Produkt}%
 Die Beschreibung eines Punktes in der Ebene erfordert die Angabe zweier
-Koordinaten, die man üblicherweise als Paar $(x,y)$ schreibt. Allgemein
+Koordinaten, die man üblicherweise als Paar $(x,y)$ schreibt.
+Allgemein
 kann man aus den Elementen $a\in A$ und $b\in B$ zweier Mengen $A$ und $B$
 die Menge der Paare (2-Tupel) bilden, diese Menge heisst das
 {\em kartesische Produkt} der beiden Mengen:
@@ -302,9 +309,11 @@ für das kartesische Produkt von $n$ Faktoren $A$.
 \index{Relation}%
 Eine zweistellige {\em Relation} $R$ ist ein Spezialfall eines Prädikates.
 Realisieren könnte man eine Relation dadurch, dass man die Menge
-aller Paare bildet, für die die Relation erfüllt ist. Um zu entscheiden,
+aller Paare bildet, für die die Relation erfüllt ist.
+Um zu entscheiden,
 ob $xRy$ gilt, muss man also nur noch in der Menge nachschauen,
-ob $(x,y)$ dort drin ist. Man kann also die Relation mit der
+ob $(x,y)$ dort drin ist.
+Man kann also die Relation mit der
 Menge
 \[
 \{(x,y)\in A\times B\,| xRy\}
@@ -337,28 +346,33 @@ jedem Element von $A$ genau ein Element von $B$ zuordnet.
 \index{Bild}%
 \index{Urbild}%
 Das Element
-$b=f(a)$ heisst das {\em Bild} von $a$, $a$ heisst ein {\em Urbild} von $b$. Ein
+$b=f(a)$ heisst das {\em Bild} von $a$, $a$ heisst ein {\em Urbild} von $b$.
+Ein
 Element in $b$ kann mehrere Urbilder haben.
 
 Eine Funktion ist eine spezielle Relation: 
-$a$  und $b$ stehen in der Relation zueinander, wenn $f(a)=b$. 
+$a$  und $b$ stehen in der Relation zueinander, wenn $f(a)=b$.
 \index{Graph!einer Abbildung}%
 Die zugehörige Menge von Paaren ist
 \[
 G(f)=\{(a,b)\,|\,b=f(a)\},
 \]
-und heisst der {\em Graph}. Ist $A=\mathbb R$, $B=\mathbb R$ und
+und heisst der {\em Graph}.
+Ist $A=\mathbb R$, $B=\mathbb R$ und
 $f\colon\mathbb R\to\mathbb R$, dann ist $G(f)$ die Menge
 der Punkte $(x,y)$ in der Ebene, die $y=f(x)$ erfüllen, also
 genau der Graph im üblichen Sinne.
 
 \index{Menge aller Abbildungen}%
 Die Menge aller Abbildungen von $A$ nach $B$ schreibt man auch
-$B^A$. Die Notation wird verständlich, wenn man für endliche
+$B^A$.
+Die Notation wird verständlich, wenn man für endliche
 Mengen $A$ und $B$ zählt, wieviel
-Abbildungen zwischen $A$ und $B$ es gibt. Um eine Abbildung von
+Abbildungen zwischen $A$ und $B$ es gibt.
+Um eine Abbildung von
 $A$ nach $B$ zu konstruieren, muss man für jedes der $|A|$ Elemente von $A$
-eines der $|B|$ Elemente von $B$ auswählen. Man muss also $|A|$ mal
+eines der $|B|$ Elemente von $B$ auswählen.
+Man muss also $|A|$ mal
 eine Auswahl mit $|B|$ Möglichkeiten treffen, man hat also
 \[
 \underbrace{|B|\cdot\dots\cdot|B|}_{\text{$|A|$ Faktoren}}=|B|^{|A|}
@@ -390,9 +404,11 @@ Ein Graph besteht aus Ecken (Vertizes) und Kanten,
 die die Ecken verbinden.
 Dabei
 soll es aber anders als zum Beispiel bei einem Verkehrsnetz zwischen zwei
-Ecken immer nur eine Verbindung geben können. Die Kante ist also durch
+Ecken immer nur eine Verbindung geben können.
+Die Kante ist also durch
 die beiden Endpunkte vollständig bestimmt, ausserdem spielt deren
-Reihenfolge keine Rolle. Um eine Kante zu beschreiben, braucht man
+Reihenfolge keine Rolle.
+Um eine Kante zu beschreiben, braucht man
 also nur die Menge $\{a,b\}$ der Endpunkte zu kennen.
 Wir fassen das in folgende Definition zusammen.
 
@@ -470,8 +486,10 @@ Ein einfacher Zyklus ist ein Zyklus,
 der keine Ecke zweimal besucht.
 
 \index{Baum}%
-Ein {\em Baum} ist ein Graph ohne Zyklen. Ein Baum kann einen ausgezeichneten
-Punkt, die {\em Wurzel} des Baumes, enthalten. Alle anderen Ecken vom Grad 1
+Ein {\em Baum} ist ein Graph ohne Zyklen.
+Ein Baum kann einen ausgezeichneten
+Punkt, die {\em Wurzel} des Baumes, enthalten.
+Alle anderen Ecken vom Grad 1
 \index{Blatt}%
 heissen Blätter des Baumes.
 
@@ -534,16 +552,16 @@ Automaten ist aber noch komplizierter: auf den Verbindungen zwischen
 den Netzwerken sind auch verschiedene Bahnlinien im Einsatz, so gibt
 es zwischen Rapperswil und Pfäffikon zum Beispiel je eine Kante, die
 mit ``S5'' bzw.~mit ``Voralpenexpress'' angeschrieben ist
-(Abbildung~\ref{grundlagen:beschrgraph}). Dies
-wird von folgender Definition eingefangen:
+(Abbildung~\ref{grundlagen:beschrgraph}).
+Dies wird von folgender Definition eingefangen:
 
 \begin{definition}
 \label{def_gerichteter_beschrifteter_graph}
 \index{Graph!gerichteter!beschrifteter}%
 Ein gerichteter beschrifteter Graph ist ein Tripel $(V,E,L)$ bestehend
 aus einer Menge $V$ von Ecken, einer Menge $L$ von Beschriftungen (Labels) und 
-einer Menge $E$ von Tripeln $(a,e,l)\in V\times V\times L$. Das
-Tripel $(a,e,l)$ heisst Kante von $a$ nach $e$ mit Beschriftung $l$.
+einer Menge $E$ von Tripeln $(a,e,l)\in V\times V\times L$.
+Das Tripel $(a,e,l)$ heisst Kante von $a$ nach $e$ mit Beschriftung $l$.
 \end{definition}
 
 Der in Abbildung~\ref{grundlagen:beschrgraph} abgebildete Graph

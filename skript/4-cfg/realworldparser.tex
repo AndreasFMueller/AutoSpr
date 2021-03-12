@@ -7,17 +7,20 @@
 \section{Real World Parser}
 \subsection{Deterministische Parser}
 Kontextfreie Sprachen können von einem nichtdeterministischen
-Stackautomaten analysiert werden. Ein deterministischer Algorithmus mit
-kubischer Laufzeit ist verfügbar. Doch kubische Laufzeit ist bei grossem
+Stackautomaten analysiert werden.
+Ein deterministischer Algorithmus mit kubischer Laufzeit ist verfügbar.
+Doch kubische Laufzeit ist bei grossem
 Input immer noch sehr gross, eine Verdoppelung der Inputgrösse hat eine
-Verachtfachung der Laufzeit zur Folge. 
+Verachtfachung der Laufzeit zur Folge.
 Für praktische Zwecke der Syntaxanalyse
 zum Beispiel in einem Compiler wird daher ein Verfahren benötigt, welches
 Wörter deterministisch in linearer Zeit erkennen kann.
 
-Leider ist das in voller Allgemeinheit nicht möglich. Daher wurden Parser-Techniken
+Leider ist das in voller Allgemeinheit nicht möglich.
+Daher wurden Parser-Techniken
 erfunden, welche deterministisch und in linearer Laufzeit Sprachen erkennen,
-deren Grammatiken zusätzliche Eigenschaften haben. Natürlich sollen diese
+deren Grammatiken zusätzliche Eigenschaften haben.
+Natürlich sollen diese
 Techniken möglichst nicht mehr als einen Stackautomaten benötigen, den Input
 von links nach rechts lesen und wenn möglich laufend die Informationen ausgeben,
 die zum Beispiel für die Erzeugung von Code in einem Compiler benötigt wird.
@@ -29,15 +32,18 @@ Grammatik für die Reduktion angewendet werden soll.
 
 Der nicht deterministische Stackautomat ist so konstruiert worden, dass er aus
 der Startvariablen auf dem Stack durch Anwendung der Produktionsregeln 
-ein Wort konstruiert. Das Resultat der bereits angewendeten Regeln
-liegt auf dem Stack. Sobald zuoberst auf dem Stack ein Terminalsymbol auftaucht,
+ein Wort konstruiert.
+Das Resultat der bereits angewendeten Regeln liegt auf dem Stack.
+Sobald zuoberst auf dem Stack ein Terminalsymbol auftaucht,
 kann es mit dem nächsten Zeichen des Input verglichen und bei Übereinstimmung
-gelesen werden. Das Input-Wort wird akzeptiert, wenn der Stack und der Input
-gleichzeitig leer werden. Nicht deterministisch ist jeweils die Auswahl der
-Produktionsregel.
+gelesen werden.
+Das Input-Wort wird akzeptiert, wenn der Stack und der Input
+gleichzeitig leer werden.
+Nicht deterministisch ist jeweils die Auswahl der Produktionsregel.
 
 Der Prozess wird also sozusagen vom Orakel gesteuert,
-welches die Produktionsregeln vorschlägt. Der Input spielt dabei gar keine
+welches die Produktionsregeln vorschlägt.
+Der Input spielt dabei gar keine
 Rolle, man hat es nur den guten Eigenschaften des Orakels zu verdanken,
 dass der Input auf den vom Prozess erzeugten String passt.
 
@@ -45,18 +51,23 @@ dass der Input auf den vom Prozess erzeugten String passt.
 \index{shift-reduce Parser}%
 Ein deterministischer Prozess muss stattdessen vom Input kontrolliert werden.
 Das Input-Zeichen oder der aktuelle Stackinhalt müssen bestimmen, was
-als nächstes zu geschehen hat. Wie das erreicht werden könnte, kann man am
+als nächstes zu geschehen hat.
+Wie das erreicht werden könnte, kann man am
 Beispiel der Sprache $L=\{\texttt{0}^n\texttt{1}^n|n> 0\}$ erahnen, welche die
 Grammatik
 \begin{align}
 w&\rightarrow \texttt{0}\;w\;\texttt{1}\tag{1}\\
 &\rightarrow \texttt{01}\tag{2}
 \end{align}
-hat. Ein Parser könnte bei der Analyse des Wortes $\texttt{000111}$ wie folgt vorgehen.
-Er schiebt Zeichen um Zeichen vom Input auf den Stack. Sobald
-er erkennt, dass auf dem Stack eine Folge von Zeichen liegt, die auf die rechte
-Seite einer Regel passt, wendet er die Regel an, reduziert das Wort zu einer
-Variablen und legt das Resultat auf den Stack. Dies ist in Tabelle \ref{shiftreduce}
+hat.
+Ein Parser könnte bei der Analyse des Wortes $\texttt{000111}$ wie folgt
+vorgehen.
+Er schiebt Zeichen um Zeichen vom Input auf den Stack.
+Sobald er erkennt, dass auf dem Stack eine Folge von Zeichen liegt,
+die auf die rechte Seite einer Regel passt, wendet er die Regel an,
+reduziert das Wort zu einer Variablen und legt das Resultat auf den
+Stack.
+Dies ist in Tabelle \ref{shiftreduce}
 dargestellt.
 
 \begin{table}[H]
@@ -74,7 +85,8 @@ her (bottom-up) auf, und operiert offenbar vollständig deterministisch.
 Er kann jedoch nicht mit einem Stackautomaten implementiert werden,
 weil Die Aufforderung ``Schaue nach, ob die obersten $n$ Elemente auf dem Stack
 auf die rechte Seite einer Regel passen'', ist für bei einem Stack nicht
-durchführbar. Man kann immer nur das oberste Element einsehen.
+durchführbar.
+Man kann immer nur das oberste Element einsehen.
 
 \subsection{\texorpdfstring{$LR(0)$}{LR(0)}-Elemente}
 \index{LR(0)-Element@$LR(0)$-Element}%
@@ -101,7 +113,8 @@ Tabelle \ref{lrelemente} durchführen.
 \caption{Shift-Reduce mit $LR(0)$-Elementen\label{lrelemente}}
 \end{table}
 Der Automat legt also immer seinen neuen Zustand zuoberst auf den
-Stack, behält aber die alten Zustände. Der Name des Zustandes ist
+Stack, behält aber die alten Zustände.
+Der Name des Zustandes ist
 die teilweise gelesene rechte Seite einer Regel, man kann also aus
 dem Namen des Zustandes auch ablesen, welche Regeln für den nächsten
 Reduktionsschritt in Frage kommen könnten.
@@ -127,15 +140,17 @@ Produktionsregeln die {\em $LR(0)$-Elemente}.
 
 \subsection{Übergangsfunktion des \texorpdfstring{$LR(0)$}{LR(0)}-Parsers}
 Wenn eine Reduktionsregel angewendet werden kann, werden so viele Elemente
-aus dem Stack entfernt, wie die rechte Seite der Regel Zeichen hat. Das
-neue oberste Zeichen auf dem Stack ist der letzte Zustand des Automaten
-bevor die jetzt reduzierten Zeichen gelesen wurden. Dieser Zustand
+aus dem Stack entfernt, wie die rechte Seite der Regel Zeichen hat.
+Das neue oberste Zeichen auf dem Stack ist der letzte Zustand des Automaten
+bevor die jetzt reduzierten Zeichen gelesen wurden.
+Dieser Zustand
 bestimmt zusammen mit dem Reduktionsresultat den nächsten Zustand
 des Automaten.
 
 Es gilt jetzt zu überprüfen, dass diese Operationen tatsächlich mit
-Hilfe eines Stackautomaten durchführbar sind. Die einfachste ist natürlich
-die Shift-Ope\-ration. Da diese jedoch abhängig ist vom aktuellen Element zuoberst
+Hilfe eines Stackautomaten durchführbar sind.
+Die einfachste ist natürlich die Shift-Ope\-ration.
+Da diese jedoch abhängig ist vom aktuellen Element zuoberst
 auf dem Stack, braucht es dafür zwei Schritte:
 \[
 \boxed{\texttt{0}}\xrightarrow{\texttt{0},\scalebox{0.7}{\boxed{\texttt{0}}$\rightarrow$\boxed{\texttt{0}}}}\cdot
@@ -151,7 +166,8 @@ in beiden Fällen wird ein neuer Zwischenzustand benötigt, symbolisiert mit dem
 
 Die Reduktion mit der Regel 2 muss zwei Zustände vom Stack entfernen.
 Wenn anschliessend der Zustand $\boxed{\texttt{0}}$ auf dem Stack liegt, ist der
-nächste Zustand $\boxed{\texttt{0}w}$. Dies kann man mit folgenden Übergängen
+nächste Zustand $\boxed{\texttt{0}w}$.
+Dies kann man mit folgenden Übergängen
 realisieren:
 \[
 \boxed{\texttt{01}}
@@ -207,29 +223,36 @@ nach vorherigem Zustand $q$ weitere Übergänge der Form
 \[
 \cdot\xrightarrow{\varepsilon,q\to q q'}q'
 \]
-hinzugenommen werden müssen. Es folgt, dass obiger $LR(0)$-Parser mit
+hinzugenommen werden müssen.
+Es folgt, dass obiger $LR(0)$-Parser mit
 Hilfe eines Stackautomaten implementiert werden kann.
 
 \subsection{Parser-Tabellen}
 Da gezeigt wurde, dass der Beispiel-$LR(0)$-Parser in einem Stackautomaten
 implementiert werden kann, kann die Übergangsfunktion mit Hilfe
-einer Tabelle codiert werden. Die Zeilen dieser Tabelle sind die
-Zustände, also die $LR(0)$-Elemente. In den Spalten müssen die
-Schiebe- und Reduktions-Schritte codiert sein. In einem Zustand
+einer Tabelle codiert werden.
+Die Zeilen dieser Tabelle sind die Zustände, also die $LR(0)$-Elemente.
+In den Spalten müssen die
+Schiebe- und Reduktions-Schritte codiert sein.
+In einem Zustand
 entscheidet man sich immer entweder für einen Reduktionsschritt
 unabhängig vom Input, oder für eine Schiebeoperation, wobei
 nicht alle Input-Zeichen akzeptabel sind, und verschiedene Eingabezeichen
-zu verschiedenen Ausgabezuständen führen können. Das Beispiel
+zu verschiedenen Ausgabezuständen führen können.
+Das Beispiel
 $L=\{\texttt{0}^n\texttt{1}^n|n>0\}$ führt auf Tabelle \ref{parsetable}.
 \begin{table}[H]
 \input{4-cfg/bison/tabelle3.tex}
 \caption{Parsertabelle für $L=\{\texttt{0}^n\texttt{1}^n|n>0\}$\label{parsetable}}
 \end{table}
-Die Tabelle ist wie folgt zu lesen. In Spalten 3 und 4 wird jeweils
+Die Tabelle ist wie folgt zu lesen.
+In Spalten 3 und 4 wird jeweils
 angegeben, was für eine Aktion ausgeführt werden soll, wenn das
-Zeichen $\texttt{0}$ bzw.~$\texttt{1}$ vom Input gelesen wird. Ein s$n$ bedeutet, dass
+Zeichen $\texttt{0}$ bzw.~$\texttt{1}$ vom Input gelesen wird.
+Ein s$n$ bedeutet, dass
 eine Schiebeoperation ausgeführt wird, und anschliessend in den
-Zustand $n$ gewechselt wird. Dagegen bedeutet r$n$,
+Zustand $n$ gewechselt wird.
+Dagegen bedeutet r$n$,
 dass die Reduktionsregel mit der Nummer $n$ angewendet wird.
 Dazu gehören folgende Schritte:
 \begin{enumerate}
@@ -274,25 +297,28 @@ A&\rightarrow \texttt{1}\,A\tag{2}
 \end{align*}
 ob man die Regel (1) anwenden soll (Reduce), oder ob man
 in der Hoffnung, irgendwann ein $A$ zu finden, weiterlesen
-soll. Diese Frage kann offenbar nur dadurch entschieden werden, dass
-man vorausschaut. Dies ist in einem $LR(0)$-Parser nicht erlaubt.
+soll.
+Diese Frage kann offenbar nur dadurch entschieden werden, dass
+man vorausschaut.
+Dies ist in einem $LR(0)$-Parser nicht erlaubt.
 Formuliert man obige Grammatik jedoch mit den Regeln
 \begin{align*}
 A&\rightarrow \texttt{1}\tag{1}\\
 A&\rightarrow A\,\texttt{1}\tag{2}
 \end{align*}
 kann die Regel (1) jederzeit angewendet werden, der Konflikt ist
-weggefallen. 
+weggefallen.
 
 \section{Real existierende Parser}
 Parsergeneratoren wie Yacc oder Bison erweitern die gegebene Grammatik
 selb\-ständig um zusätzliche Symbole, die ihnen helfen, das Ende
-des Input oder des Stack zu erkennen. Sie fügen dazu eine
-Regel
+des Input oder des Stack zu erkennen.
+Sie fügen dazu eine Regel
 \[
 \text{\$accept}\rightarrow S\; \text{\$end}
 \]
-hinzu. Wenn also am Ende des Input alles auf die Variable $S$ reduziert
+hinzu.
+Wenn also am Ende des Input alles auf die Variable $S$ reduziert
 werden konnte, liegt offenbar ein Wort vor, welches akzeptiert werden
 muss.
 
@@ -301,7 +327,8 @@ muss.
 \index{Ausdrücke!arithmetische}%
 Hier soll an Hand einer Beispiel-Grammatik gezeigt werden, wie ein 
 von Bison erzeugter Parser einen arithmetischen Ausdruck
-erkennt. Wir verwenden die Grammatik:
+erkennt.
+Wir verwenden die Grammatik:
 \begin{align}
 \textsl{expr}&\rightarrow \textsl{term}\tag{2}\\
 \textsl{expr}&\rightarrow \textsl{expr}\;\text{'{\tt +}'}\;\textsl{term}\tag{3}\\
@@ -318,23 +345,28 @@ erkennt. Wir verwenden die Grammatik:
 \textsl{digit}&\rightarrow\text{'{\tt 9}'}\tag{21}
 \end{align}
 Die Nummerierung der Regeln bezieht sich auf die später gezeigten Regeln
-der von Bison erzeugten Parsetabellen. Damit diese Grammatik in einem
+der von Bison erzeugten Parsetabellen.
+Damit diese Grammatik in einem
 Programm einfach demonstriert werden kann ist es sinnvoll, ein Endzeichen
-für die arithmetischen Ausdrücke einzuführen. Wir fügen zu diesem
+für die arithmetischen Ausdrücke einzuführen.
+Wir fügen zu diesem
 Zweck die Regel 
 \begin{equation}
 \textsl{exprline}\rightarrow \textsl{expr}\;\text{'{\tt $\setminus$n}'}
 \tag{1}
 \end{equation}
-hinzu. Bison fügt dann seinerseits eine Regel mit der Nummer 0 hinzu, so ergibt
+hinzu.
+Bison fügt dann seinerseits eine Regel mit der Nummer 0 hinzu, so ergibt
 sich folgende Grammatik in Bisons Schreibweise:
 \verbatiminput{4-cfg/bison/bisongrammar.txt}
 Man kann Bison nicht nur mit einer Kommandozeilenoption dazu bringen, diese
 Grammatik im Klartext auszugeben, er zeigt auch die erzeugten Parsetabellen
-an. Exemplarisch soll dargestellt werden, wie Zustand 14 verarbeitet
+an.
+Exemplarisch soll dargestellt werden, wie Zustand 14 verarbeitet
 wird:
 \verbatiminput{4-cfg/bison/state14.txt}
-Das zugehörige $LR(0)$-Element beginnt also mit \text{term}. Die Zeichen
+Das zugehörige $LR(0)$-Element beginnt also mit \text{term}.
+Die Zeichen
 `{\tt *}' und `{\tt /}' lösen jeweils eine Schiebeoperation aus, andernfalls
 wird mit Hilfe der Regel 2 reduziert.
 

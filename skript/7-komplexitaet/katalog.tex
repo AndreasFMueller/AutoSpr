@@ -12,10 +12,11 @@ Schon kurz nach der Veröffentlichung des Beweises des Satzes
 veröffentlicht, in dem ausgehend von SAT 21 Probleme verzeichnet
 waren.
 Selbstverständlich lässt
-sich jedes dieser Probleme auf jedes andere reduzieren. Zum Beispiel
+sich jedes dieser Probleme auf jedes andere reduzieren.
+Zum Beispiel
 hatten wir \textsl{3SAT} auf \textsl{CLIQUE} reduziert, während
-Karp direkt von \textsl{SAT} ausgeht. Karps Reduktionsbaum
-beginnt wie folgt.
+Karp direkt von \textsl{SAT} ausgeht.
+Karps Reduktionsbaum beginnt wie folgt.
 \[
 \xymatrix{
 {}
@@ -31,7 +32,8 @@ beginnt wie folgt.
 }
 \]
 Weiter oben haben wir \textsl{CLIQUE} von \textsl{3SAT} aus
-reduziert. \textsl{VERTEX-COLORING} haben wir im Zusammenhang
+reduziert.
+\textsl{VERTEX-COLORING} haben wir im Zusammenhang
 mit dem Stundenplanproblem getroffen.
 
 \index{BIP@\textsl{BIP}}%
@@ -44,17 +46,18 @@ Vektor $x$ zu finden mit $Cx=d$.
 \end{satz}
 
 \begin{proof}[Beweis]
-Es ist klar, dass \textsl{BIP} in NP ist. Es genügt daher, eine
-Reduktion
+Es ist klar, dass \textsl{BIP} in NP ist.
+Es genügt daher, eine Reduktion
 \[
 \text{\textsl{SUBSET-SUM}}\le_P\text{\textsl{BIP}}
 \]
 zu konstruieren.
 
 Dazu muss zu einer Menge $S$ von ganzen Zahlen und einer Summe $t$
-eine Matrix und ein Vektor konstruiert werden. Als Matrix nehmen wir
-eine Matrix mit einer Zeile, in der die Elemente von $S$ stehen. Als
-Vektor $d$ nehmen wir den Vektor mit der einen Komponenten $t$.
+eine Matrix und ein Vektor konstruiert werden.
+Als Matrix nehmen wir
+eine Matrix mit einer Zeile, in der die Elemente von $S$ stehen.
+Als Vektor $d$ nehmen wir den Vektor mit der einen Komponenten $t$.
 Einen binären Vektor $x$ finden mit $Cx=d$ ist jetzt gleichbedeutend
 damit, eine Auswahl von Zahlen in $S$ zu finden, deren Summe $t$ ist.
 Also ist
@@ -62,7 +65,8 @@ $\text{\textsl{SUBSET-SUM}}\le_P\text{\textsl{BIP}}$.
 \end{proof}
 
 Im Folgenden wollen wir die von Karp als NP-vollständig erkannten Probleme
-ohne Beweis im Sinne einer Referenz zusammenstellen. Hat man ein
+ohne Beweis im Sinne einer Referenz zusammenstellen.
+Hat man ein
 Problem als NP-vollständig nachzuweisen, kann man von jedem dieser
 Probleme aus eine Reduktion versuchen.
 
@@ -84,8 +88,8 @@ Karp folgenden Baum
 }
 \]
 \textsl{UHAMPATH} ist das Problem in einem ungerichteten Graphen
-einen hamiltonschen Pfad zu finden. Die anderen Probleme sind wie
-folgt definiert:
+einen hamiltonschen Pfad zu finden.
+Die anderen Probleme sind wie folgt definiert:
 \begin{description}
 \index{VERTEX-COVER@\textsl{VERTEX-COVER}}%
 \item[\textsl{VERTEX-COVER}:] Gegeben ein Graph $G$ und eine Zahl
