@@ -865,3 +865,85 @@ im Widerspruch zur Ausssage des Pumping Lemma (vorangegangener Schritt).
 Der Widerspruch zeigt jetzt, dass die Annahme, $L$ sei regulär, nicht
 haltbar ist, $L$ ist also nicht regulär.
 
+\subsubsection{Eine pumpbare aber nicht reguläre Sprache}
+Das Pumping Lemma wird dazu verwendet nachzuweisen, dass eine Sprache
+nicht regulär ist.
+Dabei verwendet man, dass eine reguläre Sprache immer die Pumpeigenschaft
+hat: lange Wörter lassen sich aufpumpen.
+Das Pumping Lemma erlaubt aber die umgekehrte Schlussfolgerung nicht.
+Eine Sprache mit der Pump-Eigenschaft ist nicht notwendigerweise auch
+regulär, wie das nachfolgende Beispiel illustriert.
+
+Wir betrachten dazu die Sprache
+\[
+L= \{ \texttt{a}^i\texttt{b}^j\texttt{c}^k\;|\; i=0\vee j=k\}.
+\]
+Die Sprache wird etwas leichter verständlich, wenn man sie in zwei 
+disjunkte Teilsprachen
+\(
+L= L_1\cup L_2
+\)
+zerlegt mit
+\begin{align*}
+L_1
+&=
+\{\texttt{b}^j\texttt{c}^k\;|\; j,k\ge 0\}
+\\
+L_2
+&=
+\{\texttt{a}^i\texttt{b}^n\texttt{c}^n\;|\; i> 0\wedge n\ge 0\}.
+\end{align*}
+Die Sprache $L_1$ ist sicher regulär, man kann sie mit dem endlichen
+Automaten
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (2,0);
+\coordinate (e)  at (4,0);
+\draw (q0) circle[radius=0.3];
+\draw (q0) circle[radius=0.35];
+\node at (q0) {$q_0$};
+\draw (q1) circle[radius=0.3];
+\draw (q1) circle[radius=0.35];
+\node at (q1) {$q_1$};
+\draw (e) circle[radius=0.35];
+\node at (e) {$e$};
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (-2,0) -- (q0);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q0) -- (q1);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q1) -- (e);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q0) to[out=60,in=120,distance=1.5cm] (q0);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q1) to[out=60,in=120,distance=1.5cm] (q1);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (e) to[out=30,in=-30,distance=1.5cm] (e);
+\node at ($0.5*(q0)+0.5*(q1)$) [above] {\texttt{b}};
+\node at ($(q0)+(0,1)$) [above] {\texttt{a}};
+\node at ($(q1)+(0,1)$) [above] {\texttt{b}};
+\node at ($0.5*(q1)+0.5*(e)$) [above] {\texttt{a}};
+\node at ($(e)+(1,0)$) [right] {\texttt{a},\texttt{b}};
+\end{tikzpicture}
+\end{center}
+akzeptieren.
+Die Teilsprache $L_2$ ist aber nicht regulär.
+Mit dem Satz von Myhill-Nerode kann man ganz ähnlich wie bei der Sprache
+$\{\texttt{0}^n\texttt{1}^n\;|\;n\ge 0\}$ nachweisen, dass es dafür
+unendlich viele Zustände braucht.
+
+Trotzdem hat die Sprache $L$ die Pumpeigenschaft.
+In der Teilsprache $L_1$ ist dies klar, die Pumpeigenschaft folgt hier,
+weil $L_1$ regulär ist aus dem Pumping Lemma.
+Man kann aber auch direkt sehen, dass das erste Zeichen eines Wortes
+immer aufgepumpt werden kann, die Pumpeigenschaft ist also sogar mit
+Pumping Length $N=1$ erfüllt.
+
+In der Teilsprache $L_2$ beginnt ein Wort immer mit dem Zeichen
+\texttt{a}.
+Dieses Zeichen kann beliebig vervielfacht werden, solange man die
+nachfolgenden \texttt{b} und \texttt{c} nicht stört.
+Damit hat auch $L_2$ die Pumpeigenschaft für $L_2$.
+Somit kann in jedem Wort in $L$ mit mindestens einem Zeichen das erste
+Zeichen beliebig aufgumpt werden, ohne dass das Wort dadurch aus der
+Sprache herausfällt.
+Die Sprache $L$ hat also die Pumpeigenschaft, ohne dass sie regulär ist.
+
+
+
+
