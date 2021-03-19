@@ -104,16 +104,39 @@ aus gibt es keinen mit \texttt{0} angeschrieben Übergang.
 Sei $\Sigma=\{{\tt a},{\tt b}\}$, man finde einen NEA, der die 
 Sprache akzeptiert, deren Wörter an der drittletzten Stelle
 eine {\tt a} haben.
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{} \ar[r]
-	&{q_0} \ar[r]^{\tt a} \ar@(dr,dl)^{{\tt a},{\tt b}}
-		&{q_1}\ar[r]^{{\tt a},{\tt b}}
-			&{q_2}\ar[r]^{{\tt a},{\tt b}}
-				&*++[o][F=]{q_3}
-}
-\]
+Eine mögliche Lösung ist der Automat
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (2,0);
+\coordinate (q2) at (4,0);
+\coordinate (q3) at (6,0);
+
+\draw (q0) circle[radius=0.35];
+\draw (q1) circle[radius=0.35];
+\draw (q2) circle[radius=0.35];
+\draw (q3) circle[radius=0.35];
+\draw (q3) circle[radius=0.3];
+
+\node at (q0) {$q_0$};
+\node at (q1) {$q_1$};
+\node at (q2) {$q_2$};
+\node at (q3) {$q_3$};
+
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (-2,0) -- (q0);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q0) -- (q1);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q1) -- (q2);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q2) -- (q3);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm]
+	(q0) to[out=-60,in=-120,distance=1.3cm] (q0);
+
+\node at ($0.5*(q0)+0.5*(q1)$) [above] {\texttt{a}};
+\node at ($0.5*(q1)+0.5*(q2)$) [above] {\texttt{a},\texttt{b}};
+\node at ($0.5*(q2)+0.5*(q3)$) [above] {\texttt{a},\texttt{b}};
+\node at ($(q0)+(0,-1)$) [below] {\texttt{a},\texttt{b}};
+
+\end{tikzpicture}
+\end{center}
 Der Automat ist nicht deterministisch, weil im Zustand $q_0$ zwei verschiedene
 Übergänge für das Zeichen {\tt a} möglich sind.
 Der Automat bleibt
