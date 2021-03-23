@@ -5,7 +5,6 @@
 # performs.
 #
 # (c) 2010 Prof Dr Andreas Mueller, Hochschule Rapperswil
-# $Id$
 #
 string1='a'
 string2='a?'
