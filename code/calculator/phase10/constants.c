@@ -2,11 +2,12 @@
  * constants.c -- constant lookup
  *
  * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
- * $Id$
  */
 #include "constants.h"
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 double	constant(const char *name) {
 	if (0 == strcmp(name, "pi")) {
@@ -21,4 +22,6 @@ double	constant(const char *name) {
 	if (0 == strcmp(name, "phi")) {
 		return (1+sqrt(5))/2;
 	}
+	fprintf(stderr, "unknown constant %s\n", name);
+	exit(EXIT_FAILURE);
 }

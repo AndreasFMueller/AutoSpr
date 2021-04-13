@@ -6,5 +6,5 @@
 #
 RE2PREFIX = /usr/local
 regex:	regex.cpp
-	g++ -Wall -g -O2 -o regex regex.cpp -I$(RE2PREFIX)/include \
+	g++ -std=c++11 -Wall -g -O2 -o regex regex.cpp -I$(RE2PREFIX)/include \
 		-L$(RE2PREFIX)/lib -Wl,-rpath,$(RE2PREFIX)/lib -lre2 -lpthread

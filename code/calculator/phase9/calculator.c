@@ -9,6 +9,7 @@
 #include <unistd.h>
 
 extern int	yydebug;
+extern int	yyparse();
 
 void	yyerror(char *errmsg) {
 	fprintf(stderr, "error: %s\n", errmsg);

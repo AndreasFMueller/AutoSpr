@@ -8,7 +8,6 @@
 # an equivalent form.
 #
 # (c) 2010 Prof Dr Andreas Mueller, Hochschule Rapperswil
-# $Id$
 #
 string1='a'
 string2='a\{0,1\}'

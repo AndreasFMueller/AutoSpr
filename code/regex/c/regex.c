@@ -2,7 +2,6 @@
  * regex.c -- Regex-Matcher testen der C-Library testen
  *
  * (c) 2010 Prof Dr Andreas Mueller, Hochschule Rapperswil
- * $Id$
  */
 #include <stdio.h>
 #include <stdlib.h>
