@@ -35,6 +35,8 @@ phase8  Syntax on Implementation von Konstanten
 phase9  Syntax fuer eine primitive History-Funktion: Zugriff auf das letzte
         Rechenresultat
 
+phase10	Monadisches Minus und weggelassenes Multiplikationszeichen
+
 Das Makefile in diesem Verzeichnis kann dazu verwendet werden, den Calculator
 in jeder Phase zu bauen.
 
