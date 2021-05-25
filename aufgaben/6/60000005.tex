@@ -1,5 +1,6 @@
-Seien $L_1$ und $L_2$ zwei Turing-entscheidbare Sprachen. Zeigen Sie, dass
-die folgenden Sprachen Turing-entscheidbar sind:
+Seien $L_1$ und $L_2$ zwei Turing-entscheidbare Sprachen über dem
+Alphabet $\Sigma$.
+Zeigen Sie, dass die folgenden Sprachen Turing-entscheidbar sind:
 \begin{teilaufgaben}
 \item $L_1\cup L_2$
 \item $L_1L_2$
@@ -17,7 +18,8 @@ boolean l1(String w);
 boolean l2(String w);
 \end{verbatim}
 gibt, welche genau dann \texttt{true} zurückgeben, wenn
-\texttt{w} in $L_1$ bzw.~$L_2$ ist. Die Aufgabe
+\texttt{w} in $L_1$ bzw.~$L_2$ ist.
+Die Aufgabe
 besteht dann darin, für jede Sprache $L$ in den Teilaufgaben eine neue
 Funktion
 \begin{verbatim}
@@ -33,7 +35,8 @@ zu programmieren, welche genau dann \texttt{true} zurückgibt, wenn
 \begin{teilaufgaben}
 \item Um zu entscheiden, ob ein Wort $w$ in $L_1\cup L_2$ ist,
 lassen wir zuerst $M_1$ auf dem Input $w$ laufen, und falls
-diese das Wort verwirft, $M_2$. Akzeptiert eine der Maschinen
+diese das Wort verwirft, $M_2$.
+Akzeptiert eine der Maschinen
 das Wort, wird es akzeptiert, andernfalls wird es verworfen.
 
 Mit den Notationen des Hinweises könnte man dieses Problem mit folgendem
@@ -42,7 +45,8 @@ Code lösen:
 \item
 Für jede der $|w|+1$ Unterteilungen des Wortes $w$ in zwei
 Teilwörter $xy=w$ lassen wir $M_1$ auf $x$ und $M_2$ auf
-$y$ laufen. Akzeptieren die Maschinen für eine der
+$y$ laufen.
+Akzeptieren die Maschinen für eine der
 Unterteilungen das Wort, akzeptieren wir, wir verwerfen, wenn
 für keine Unterteilung beide Maschinen akzeptieren.
 
