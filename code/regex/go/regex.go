@@ -20,8 +20,7 @@ func main() {
     }
 
     if r.MatchString(r2) {
-      duration := time.Since(start)
-      fmt.Println(r2 + " matches " + regex + " ", duration)
+      fmt.Sprintf("%s matches %s %dns", r2, regex, time.Since(start))
     }
 	}
 }
