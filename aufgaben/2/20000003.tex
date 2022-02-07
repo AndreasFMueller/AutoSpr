@@ -1,0 +1,135 @@
+Zählen Sie mindestens 5 Wörter in jeder der folgenden Sprachen auf.
+\begin{teilaufgaben}
+\item $\Sigma= \{\texttt{0},\texttt{1},\dots,\texttt{9}\}$ und
+\[
+L=\left\{ w\in\Sigma^*\;\left|\;
+\begin{minipage}{8.4cm}
+$w$ ist Dezimaldarstellung des Beitrittsjahres eines Kantons zur
+Eidgenossenschaft
+\end{minipage}
+\right.\right\}.
+\]
+\item Sei das Alphabet der Tasten 
+$\Sigma = \{
+\text{\keys{{$+$}}},
+\text{\keys{{$-$}}},
+\text{\keys{{$\times$}}},
+\text{\keys{{$\div$}}},
+\text{\keys{{$=$}}},
+\text{\keys{0}},
+\dots,
+\text{\keys{9}},
+\text{\keys{C}},
+\text{\keys{AC}}
+\}
+$
+eines Taschenrechners gebeben und
+\[
+L=\left\{
+w\in\Sigma^*\;
+\left|
+\;
+\begin{minipage}{10cm}\raggedright
+$w$ ist eine Tastenfolge, die ohne Fehler zu einer erfolgreichen Berechnung
+auf einem Taschenrechner führt.
+\end{minipage}
+\right.
+\right\}.
+\]
+\item
+Sei $\Sigma = \{
+\texttt{I},
+\texttt{V},
+\texttt{X},
+\texttt{L},
+\texttt{C},
+\texttt{M},
+\texttt{D}\}$ und
+\[
+L=\{
+w\in\Sigma^3\;
+|
+\;
+\text{$w$ ist eine römische Zahl}
+\}
+\]
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item Gemäss der Tabelle auf
+\url{https://de.wikipedia.org/wiki/Kanton_(Schweiz)}
+ist 
+\[
+L=\{
+\texttt{1291},
+\texttt{1332},
+\texttt{1351},
+\texttt{1352},
+\texttt{1353},
+\texttt{1481},
+\texttt{1501},
+\texttt{1513},
+\texttt{1803},
+\texttt{1815},
+\texttt{1979}
+\}.
+\]
+\item
+Solche Tastenfolgen bestehen aus Folgen von Ziffern, getrennt durch
+Operationszeichen
+und abgeschlossen durch ein Gleichheitszeichen:
+\begin{align*}
+L=\mathstrut&\{
+\\
+&\qquad
+\text{\keys{1} \keys{{$+$}} \keys{1} \keys{{$=$}}}\,,
+\\
+&\qquad
+\text{\keys{AC} \keys{9} \keys{{$\div$}} \keys{3} \keys{{$=$}}}\,,
+\\
+&\qquad
+\text{\keys{AC} \keys{1} \keys{2} \keys{9} \keys{1}
+\keys{{$\times$}} \keys{7} \keys{{$=$}}}\,,
+\\
+&\qquad
+\text{\keys{0} \keys{0} \keys{0} \keys{1}
+\keys{{$-$}}
+\keys{1} \keys{1} \keys{1} \keys{1}
+\keys{{$=$}}}\,,
+\\
+&\qquad
+\text{\keys{2}
+\keys{{$\times$}}
+\keys{{$=$}}
+\keys{{$=$}}
+\keys{{$=$}}
+\keys{{$=$}}}\,,
+\\
+&\qquad\dots
+\\
+&\}
+\end{align*}
+Die letzte Tastenfolge berechnet die Zweierpotenzen durch wiederholte 
+Multiplikation mit $2$.
+\item
+Die römischen Zahlen kennen keine Null, sie sind also der Reihe nach
+\[
+L=\{
+\texttt{I},
+\texttt{II},
+\texttt{III},
+\texttt{IV},
+\texttt{V},
+\texttt{VI},
+\texttt{VII},
+\texttt{IIX},
+\texttt{IX},
+\texttt{X},
+\texttt{XI},
+\texttt{XII},
+\dots
+\}
+\]
+\end{teilaufgaben}
+\end{loesung}
