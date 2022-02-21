@@ -37,7 +37,8 @@ beansprucht.
 die Zeichen im vollständig ausgefüllten Feld verwenden.
 Zur Verifikation muss man dann nur überprüfen, ob die
 vorgegebenen Zeichen richtig in die Lösung übernommen wurden und
-ob die Sudoku-Regeln eingehalten wurden. Dies ist in Laufzeit $O(n^4)$
+ob die Sudoku-Regeln eingehalten wurden.
+Dies ist in Laufzeit $O(n^4)$
 möglich, es gibt also einen polynomiellen Verifizierer.
 
 Der Satz~\ref{cooklevin} behauptet, \textsl{SAT} sei NP-vollständig,
@@ -51,21 +52,27 @@ reduzieren lassen:
 \begin{proof}[Beweis]
 Wir müssen eine Reduktion konstrukieren, die jedem Sudoku-Rätsel
 eine logische Formel zuordnet, welche genau dann erfüllbar ist, wenn
-das Sudoku-Rätsel lösbar ist. Wir gehen in zwei Schritten vor. 
+das Sudoku-Rätsel lösbar ist.
+Wir gehen in zwei Schritten vor.
 Zunächst konstrieren wir eine Formel, die genau dann erfüllbar ist,
 wenn das Sudoku lösbar ist, die aber noch keine logische Formel ist.
 Im zweiten Schritt wandeln wir die Formel dann in eine äquivalente
 logische Formel um.
 
-1.~Schritt: Sei also $S$ ein gegebenes $n$-Sudoku. Wenn das Rätsel lösbar
+1.~Schritt: Sei also $S$ ein gegebenes $n$-Sudoku.
+Wenn das Rätsel lösbar
 ist, dann gibt es für jedes Feld ein Zeichen, für welches alle Sudoku-Regeln
-eingehalten werden. Wir bezeichnen das Zeichen in dem Feld in Zeile $i$
-und Spalte $j$ mit $z_{ij}$. Für einige Felder gibt es Vorgaben, die wir mit
-$v_{ij}$ bezeichnen. Jetzt müssen die Bedingungen für eine korrekte
+eingehalten werden.
+Wir bezeichnen das Zeichen in dem Feld in Zeile $i$
+und Spalte $j$ mit $z_{ij}$.
+Für einige Felder gibt es Vorgaben, die wir mit
+$v_{ij}$ bezeichnen.
+Jetzt müssen die Bedingungen für eine korrekte
 Lösung des Sudoku formuliert werden:
 \begin{compactenum}
 \item {\em Vorgaben sind korrekt:} Die Vorgabe im Feld $(i,j)$ ist erfüllt,
-wenn gilt $z_{ij}=v_{ij}$. Alle Vorgaben sind erfüllt, wenn der Ausdruck
+wenn gilt $z_{ij}=v_{ij}$.
+Alle Vorgaben sind erfüllt, wenn der Ausdruck
 \[
 \varphi_{\text{Vorgaben}}=\bigwedge_{\text{Feld $(i,j)$ ist Vorgabefeld}}(z_{ij}=v_{ij})
 \]
@@ -116,11 +123,13 @@ Vorgabe-Bedingungen erfüllt sind, wenn also die Formel
 erfüllbar ist.
 
 2.~Schritt: Die Formel (\ref{sudoku-formel}) ist nahe am Gesuchten,
-sie ist genau dann erfüllbar, wenn das Sudoku lösbar ist. Allerdings
+sie ist genau dann erfüllbar, wenn das Sudoku lösbar ist.
+Allerdings
 ist sie keine logische Formel, die Variablen $z_{ij}$ sind Variablen mit
-Zeichenwerten. Wir können Sie aber durch $n^2$ neue logische Variablen
+Zeichenwerten.
+Wir können Sie aber durch $n^2$ neue logische Variablen
 $x_{ijc}$ ersetzen, wobei $c\in \Sigma$ ist, mit der Bedeutung, dass
-$x_{ijc}$ genau dann wahr ist, wenn $z_{ij}=c$. 
+$x_{ijc}$ genau dann wahr ist, wenn $z_{ij}=c$.
 
 Jede Teilformel von (\ref{sudoku-formel}) setzt sich zusammen
 aus Ausdrücken der Form oder $z_{ij}=c$
@@ -130,7 +139,8 @@ ausdrücken kann.
 \begin{compactenum}
 \item {\em Nur ein Wert:} Für jedes Paar $(i,j)$ darf nur eine der
 Variablen $x_{ijc}$ wahr sein, es kann ja nur ein einziges Zeichen $c$
-die Bedingung $z_{ij}=c$ erfüllen. Die Formel
+die Bedingung $z_{ij}=c$ erfüllen.
+Die Formel
 \[
 x_{ijc}\wedge \bigwedge_{d\in\Sigma\setminus\{c\}}\bar x_{ijd}
 \]
@@ -157,7 +167,8 @@ sein können:
 \end{compactenum}
 Durch Anwendung aller dieser Umformungen auf alle Terme in (\ref{sudoku-formel})
 erhält man eine neue Formel $\varphi$, die nur noch die logischen
-Variablen $x_{ijc}$ enthält. Die neue Formel ist genau dann erfüllbar,
+Variablen $x_{ijc}$ enthält.
+Die neue Formel ist genau dann erfüllbar,
 wenn das Sudoku-Rätsel eine Lösung hat.
 \end{proof}
 

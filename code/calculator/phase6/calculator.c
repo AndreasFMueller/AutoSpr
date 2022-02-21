@@ -2,7 +2,6 @@
  * calculator.c
  *
  * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
- * $Id$
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,6 +9,7 @@
 #include <unistd.h>
 
 extern int	yydebug;
+extern int	yyparse();
 
 void	yyerror(char *errmsg) {
 	fprintf(stderr, "error: %s\n", errmsg);

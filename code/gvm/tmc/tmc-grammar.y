@@ -3,7 +3,6 @@
  * parser for TM compiler
  *
  * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
- * $Id$
  */
 #include <includes.h>
 #include "tmc.h"

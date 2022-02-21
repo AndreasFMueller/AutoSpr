@@ -1,0 +1,57 @@
+%
+% zahlen0.tex -- template for standalon tikz images
+%
+% (c) 2021 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\coordinate (q0) at (0,0);
+\coordinate (p) at (-2.5,-2);
+\coordinate (m) at (2.5,-2);
+\coordinate (z) at (0,-1.5);
+
+\draw[->, shorten >= 0.3cm] (-1.5,0) -- (q0);
+\draw (q0) circle[radius=0.3];
+\node at (q0) {$q_0$};
+
+\draw (p) circle[radius=0.3];
+\draw (p) circle[radius=0.25];
+\node at (p) {$p$};
+
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (q0) -- (p);
+\node at (-1.4,-0.8) [rotate={atan(2/2.5)}]
+	{$\texttt{1},\dots,\texttt{9}$};
+
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm]
+	(p) to[out=-90,in=-170,distance=1cm] (p);
+\node at (-2.7,-2.5) [below] {$\texttt{0},\dots,\texttt{9}$};
+
+\draw (m) circle[radius=0.3];
+\node at (m) {$m$};
+
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (q0) -- (m);
+\node at (1.2,-1) [above right] {$\texttt{-}$};
+
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm]
+	(m) to[out=-135,in=-45] (p);
+\node at (0,-3) [below] {$\texttt{1},\dots,\texttt{9}$};
+
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (q0) -- (z);
+\node at (0,-0.75) [left] {$\texttt{0}$};
+
+\draw (z) circle[radius=0.25];
+\draw (z) circle[radius=0.3];
+\node at (z) {$z$};
+
+\end{tikzpicture}
+\end{document}
+

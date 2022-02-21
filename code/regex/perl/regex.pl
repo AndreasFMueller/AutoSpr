@@ -19,6 +19,7 @@
 #
 # (c) 2010 Prof Dr Andreas Mueller, Hochschule Rapperswil
 #
+use Time::HiRes qw(time);
 $string = "";
 $regex = "";
 
@@ -33,8 +34,10 @@ for ($i = 1; $i <= 29; $i++) {
 	$r = $regex.$string;
 
 	# Fuehre den Regex Match durch
+	$start = time;
 	if ($string =~ m/$r/) {
-		printf("%29s matches %s\n", $string, $r);
+		$end = time;
+		printf("%29s matches %s %*s %.4f\n", $string, $r, 3*(29-$i), "", $end - $start);
 	} else {
 		printf("%29s does not match %s\n", $string, $r);
 	}

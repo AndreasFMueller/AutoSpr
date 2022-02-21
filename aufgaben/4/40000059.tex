@@ -1,0 +1,173 @@
+Gegeben ist das Alphabet $\Sigma=\{\texttt{a},\texttt{b},\texttt{c}\}$.
+\begin{teilaufgaben}
+\item
+Finden Sie das Zustandsdiagramm eines Stackautomaten, der die Sprache
+\[
+L
+=
+\{ \texttt{a}^n \texttt{b}^l \texttt{c}^{n+l}\;|\; n,l\ge 0\}
+\]
+akzeptiert.
+\item
+Finden Sie eine Grammatik für die Sprache $L$.
+\item
+Hat die von Ihnen in b) gefundene Grammatik Chomsky-Normalform?
+\item 
+Bestimmen Sie die Chomsky-Normalform der in b) gefundenen Grammatik.
+\end{teilaufgaben}
+
+\begin{hinweis}
+Verwenden Sie, dass die Wörter der Sprache als
+\[
+w
+=
+\texttt{a}^n \texttt{b}^l \texttt{c}^{l+n}
+=
+\texttt{a}^n \texttt{b}^l \texttt{c}^{l} \texttt{c}^{n}
+\]
+geschrieben werden können.
+\end{hinweis}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Wir verwenden den Stack um die Zeichen \texttt{a} und \texttt{b}
+im Input zu zählen und deren Summe mit der Anzahl der Zeichen \texttt{c}
+zu vergleichen.
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix {
+*+\txt{}\ar[r]
+	&{q_0} \ar[r]^{\varepsilon,\varepsilon\to\texttt{\$}}
+		&{q_1} \ar@(ur,ul)_{\texttt{a},\varepsilon\to\texttt{x}}
+			\ar[r]^{\varepsilon,\varepsilon\to\varepsilon}
+			&{q_2} \ar@(ur,ul)_{\texttt{b},\varepsilon\to\texttt{x}}
+				\ar[r]^{\varepsilon,\varepsilon\to\varepsilon}
+			&{q_3} \ar@(ur,ul)_{\texttt{c},\texttt{x}\to\varepsilon}
+				\ar[r]^{\varepsilon,\texttt{\$}\to\varepsilon}
+			&*++[o][F=]{q_4}
+}
+\]
+\item
+Wörter in dieser Sprache haben die Form
+\[
+w
+=
+\texttt{a}^n \texttt{b}^l \texttt{c}^{l+n}
+=
+\texttt{a}^n \texttt{b}^l \texttt{c}^{l} \texttt{c}^{n}
+\]
+Daraus kann man bereits ablesen, wie man die Grammatik aufbauen kann.
+Man baut erst ein Wort der Form $\texttt{b}^l \texttt{c}^l$ und
+``klammert'' es dann mit Paaren von \texttt{a} und \texttt{c} ein.
+Für ein Wort der Form $\texttt{b}^l \texttt{c}^l$ kann man die von der
+Sprache $\{\texttt{0}^n \texttt{1}^n\;|\; n\le 0\}$ inspirierte Grammatik
+\begin{align*}
+B&\rightarrow \varepsilon \\
+ &\rightarrow \texttt{b} B \texttt{c}
+\end{align*}
+verwenden.
+Das Einklammern besorgen die Regeln
+\begin{align*}
+A&\rightarrow B \\
+ &\rightarrow \texttt{a} A \texttt{c}
+\end{align*}
+Die vollständige Grammatik ist daher
+\begin{align*}
+A&\rightarrow B \\
+ &\rightarrow \texttt{a} A \texttt{c} \\
+B&\rightarrow \varepsilon \\
+ &\rightarrow \texttt{b} B \texttt{c}
+\end{align*}
+\item
+Die Grammatik hat nicht Chomsky-Normalform.
+Die Startvariable kommt auf der rechten Seite vor, die $\varepsilon$-Regel
+$B\to\varepsilon$ ist nicht zulässig, es gibt eine unit rule $A\to B$
+und die verbleibenden Regeln haben drei statt höchstens zwei Zeichen
+auf der rechten Seite.
+\item
+Um die Grammatik in Chomsky-Normalform zu bringen, ist erst die Startvariable
+zu ersetzen, da die aktuelle Startvariable $A$ auf der rechten Seite vorkommt:
+\begin{align*}
+S&\rightarrow A\\
+A&\rightarrow B \\
+ &\rightarrow \texttt{a} A \texttt{c} \\
+B&\rightarrow \varepsilon \\
+ &\rightarrow \texttt{b} B \texttt{c}
+\end{align*}
+Im zweiten Schritt wird die $\varepsilon$-Regel $B\to\varepsilon$ entfernt:
+\begin{align*}
+S&\rightarrow A\\
+A&\rightarrow B \;|\; \varepsilon\\
+ &\rightarrow \texttt{a} A \texttt{c} \\
+B&\rightarrow \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
+\end{align*}
+Da die neue $\varepsilon$-Regel $A\to\varepsilon$ entstanden ist, muss
+dieser Schritt wiederholt werden:
+\begin{align*}
+S&\rightarrow A \;|\; \varepsilon\\
+A&\rightarrow B \\
+ &\rightarrow \texttt{a} A \texttt{c} \;|\; \texttt{ac}\\
+B&\rightarrow \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
+\end{align*}
+Die verbleibende $\varepsilon$-Regel $S\to\varepsilon$ ist erlaubt.
+
+Im dritten Schritt werden Unit-Rules eliminiert.
+Wir beginnen mit $S\to A$:
+\begin{align*}
+S&\rightarrow \varepsilon \;|\; B \;|\; \texttt{a}A\texttt{c} \;|\;\texttt{ac}\\
+A&\rightarrow B \;|\; \texttt{a} A \texttt{c} \;|\; \texttt{ac}\\
+B&\rightarrow \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
+\end{align*}
+Es ist eine neue Unit-rule $S\to B$ enstanden, welche als nächste eliminiert
+werden muss:
+\begin{align*}
+S&\rightarrow \varepsilon \;|\; \texttt{a}A\texttt{c} \;|\;\texttt{ac}
+\;|\; \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
+\\
+A&\rightarrow B \;|\; \texttt{a} A \texttt{c} \;|\; \texttt{ac}\\
+B&\rightarrow \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
+\end{align*}
+Es bleibt die Regel $A\to B$, welche wie folgt eliminiert werden kann:
+\begin{align*}
+S&\rightarrow \varepsilon \;|\; \texttt{a}A\texttt{c} \;|\;\texttt{ac}
+\;|\; \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
+\\
+A&\rightarrow \texttt{a} A \texttt{c} \;|\; \texttt{ac} \;|\;
+ \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c} \\
+B&\rightarrow \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
+\end{align*}
+
+Im vierten Schritt müssen jetzt noch die Terminalsymbole und die 
+Dreier-Regeln aufgelöst werden:
+\begin{align*}
+S&\rightarrow \varepsilon \;|\; XW \;|\; UW \;|\; YW \;|\; VW \\
+A&\rightarrow X W \;|\; UW \;|\; YW \;|\; VW \\
+B&\rightarrow YW \;|\; VW \\
+X&\rightarrow UA \\
+Y&\rightarrow VB \\
+U&\rightarrow \texttt{a} \\
+V&\rightarrow \texttt{b} \\
+W&\rightarrow \texttt{c}
+\qedhere
+\end{align*}
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{diskussion}
+Teilaufgabe d) war nicht Teil der Prüfung.
+\end{diskussion}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item Prinzip ``Zählen mit Hilfe des Stacks'' ({\bf P}) 1 Punkt,
+korrekte Implementation ({\bf I}) 1 Punkt.
+\item 
+Schachtelung mit \texttt{a} bzw.~\texttt{b} und \texttt{c} ({\bf S}) 1 Punkt,
+Schachtelung von $\texttt{b}^l\texttt{c}^l$ zwischen \texttt{a} und \texttt{c}
+({\bf K}) 1 Punkt,
+Terminierung mit $\varepsilon$ ({\bf L}) 1 Punkt.
+\item
+Begründung dafür, dass keine CNF vorliegt ({\bf C}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}

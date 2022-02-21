@@ -1,0 +1,72 @@
+Ist die Sprache
+\[
+L=\{
+\texttt{a}^n\texttt{ba}^m\texttt{ba}^{nm}\;|\;n,m>0
+\}
+\]
+kontextfrei?
+
+\begin{loesung}
+Trotz der grossen Ähnlichkeit mit der Sprache von Aufgabe~\ref{40000061},
+für die eine Grammatik gefunden werden kann, ist dies für die vorliegende
+Sprache nicht möglich, wie wir mit dem Pumping-Lemma für kontextfreie
+Sprachen zeigen wollen.
+
+\begin{enumerate}
+\item
+Wir nehmen an, dass $L$ kontextfrei ist.
+\item
+Da $L$ kontextfrei ist, gibt es nach dem Pumping-Lemma für kontextfreie
+Sprachen gibt es die Pumping Length $N$.
+\item
+Wir konstruieren das Wort $w=\texttt{a}^N\texttt{ba}^N\texttt{ba}^{N^2}$,
+es ist sicher in $L$ und länger als $N$: $|w|=2+2N+N^2>N$.
+Wir wollen zeigen, dass dieses Wort die Pumpeigenschaft nicht hat.
+\item
+Nach dem Pumping Lemma gibt es eine Unterteilung des Wortes $w$ in 
+fünf Teile $w=uvxyz$ derart, dass $|vxy|\le N$ und alle gepumpten
+Wörter $uv^kxy^kz\in L$ für $k\ge 0$.
+\item
+Da ein Wort in $L$ immer genau zwei Zeichen \texttt{b} enhält, dürfen 
+$v$ und $y$ nur aus \texttt{a} bestehen.
+Da die Teile $v$ und $y$ innerhalb von $N$ Zeichen liegen, können 
+sie aus höchstens zwei verschiedenen \texttt{a}-Blöcken kommen.
+Nur ein Block ist nicht möglich, denn wenn man die Anzahl an in einem
+Block ändert, muss man sie auch in einem anderen ändern, um immer noch
+ein Wort in $L$ zu bekommen.
+Es bleibt nur noch der Fall, dass $v$ im zweiten und $y$ im dritten
+\texttt{a}-Block liegt.
+Wenn man aber auch nur ein einziges \texttt{a} in $v$ durch Pumpen hinzufügt,
+muss man sicherstellen, dass in $y$ genau $N$ \texttt{a} hinzugefügt
+werden.
+Dies bedeutet, dass $|vy|\ge N+1$ sein muss.
+Andererseits besagt dass Pumping Lemma, dass $|vy|\le |vxy| \le N$.
+Zusammen folgt
+\[
+N+1\le |vy| \le |vxy| \le N
+\qquad\Rightarrow\qquad
+N+1\le N
+.
+\]
+Dieser Widerspruch zeigt, dass das Wort $w$ die Pumpeigenschaft nicht hat.
+\item
+Wir haben also ein Wort gefunden, welches die vom Pumping Lemma versprochene
+Pumpeigenschaft nicht hat.
+Dies Widerspricht der Annahmen, dass $L$ kontextfrei sei.
+Also kann $L$ nicht kontextfrei sein.
+\end{enumerate}
+Damit ist gezeigt, dass es für $L$ keine Grammatik gefunden werden kann.
+\end{loesung}
+
+\begin{bewertung}
+Sprache $L_1$ kontextfrei ({\bf L}$\mathstrut_1$) 1 Punkt,
+Grammatik für Sprache $L_1$ ({\bf G}) 1 Punkt,
+Beispielwort ({\bf W}) 1 Punkt,
+Aufteilung ({\bf A}) 1 Punkt,
+Widerspruch beim Pumpen ({\bf P}) 1 Punkt,
+Schlussfolgerung ({\bf S}) 1 Punkt.
+\end{bewertung}
+
+
+
+

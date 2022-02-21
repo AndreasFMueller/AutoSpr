@@ -6,19 +6,23 @@
 \chapter{Sprachen\label{chapter-sprachen}}
 \lhead{Sprachen}
 Diese Vorlesung betrachtet Computer in erster Linie als
-Maschinen, die Zeichenketten verarbeiten. Natürlich wird man
+Maschinen, die Zeichenketten verarbeiten.
+Natürlich wird man
 nicht jede Zeichenkette als sinnvollen Input oder Output betrachten,
 nur eine Teilmenge aller möglichen Zeichenketten würden wir
-eine ``Sprache'' nennen. Diese intuitive Vorstellung wollen wir
+eine ``Sprache'' nennen.
+Diese intuitive Vorstellung wollen wir
 jetzt formalisieren.
 
 \index{Alphabet}%
 Die Basis einer Sprachdefinition muss die Auswahl eines geeigneten
-Alphabetes sein. Während in der Informatik das Alphabet meist 
+Alphabetes sein.
+Während in der Informatik das Alphabet meist 
 durch die Maschine vorgegeben ist (sie verarbeitet zum Beispiel
 einzelne Bytes, also Zahlen zwischen 0 und 255), möchten wir für
 unsere theoretischen Überlegungen mehr Freiheit, und akzeptieren
-jede beliebige nichtleere endliche Menge als Alphabet. Alphabete
+jede beliebige nichtleere endliche Menge als Alphabet.
+Alphabete
 bezeichnen wir häufig mit grossen griechischen Buchstaben, zum
 Beispiel
 \begin{align*}
@@ -32,7 +36,8 @@ Zeichenketten sind Tupel aus Elementen eines Alphabets.
 \index{Wort}%
 \index{leeres Wort}%
 Ein Wort $w$ der Länge $n$ über dem Alphabet $\Sigma$ ist ein $n$-Tupel,
-$w\in\Sigma^n$. Es gibt genau ein Wort der Länge $0$, es heisst das
+$w\in\Sigma^n$.
+Es gibt genau ein Wort der Länge $0$, es heisst das
 leere Wort und wird mit $\varepsilon$ bezeichnet, $\Sigma^0=\{\varepsilon\}$.
 Die Menge aller Wörter
 ist die Vereinigung aller $\Sigma^n$ und wird mit $\Sigma^*$ bezeichnet:
@@ -44,9 +49,12 @@ ist die Vereinigung aller $\Sigma^n$ und wird mit $\Sigma^*$ bezeichnet:
 
 Natürlich kann man von jedem Wort $w\in\Sigma^*$ auch wieder bestimmen,
 aus welchem $\Sigma^k$ es stammt, indem man die Länge der Zeichenkette
-auszählt. Wir bezeichnen die Länge von $w$ mit $|w|$. Es ist $|{\tt 1111}|=4$
-und $|\varepsilon|=0$. Manchmal ist es wichtig zu wissen, wie oft ein bestimmtes
-Zeichen in einem Wort vorkommt. Wir bezeichnen mit
+auszählt.
+Wir bezeichnen die Länge von $w$ mit $|w|$.
+Es ist $|{\tt 1111}|=4$ und $|\varepsilon|=0$.
+Manchmal ist es wichtig zu wissen, wie oft ein bestimmtes
+Zeichen in einem Wort vorkommt.
+Wir bezeichnen mit
 $|w|_{a}$ die Anzahl Vorkommnisse des Zeichens $a$, also zum Beispiel
 $|{\tt 0010111}|_{\tt 0}=3$ und $|{\tt 0110011}|_{\tt 1}=4$.
 
@@ -57,7 +65,8 @@ ausgewählt.
 \begin{definition}
 \index{Sprache}%
 Eine Sprache $L$ über dem Alphabet $\Sigma$ ist eine Teilmenge
-von $\Sigma^*$, also $L\subset \Sigma^*$. Über jedem Alphabet
+von $\Sigma^*$, also $L\subset \Sigma^*$.
+Über jedem Alphabet
 gibt es die leere Sprache $\emptyset$ und die Sprache, die nur
 aus dem leeren Wort besteht $\{\varepsilon\}$.
 \end{definition}
@@ -74,23 +83,29 @@ Es gibt eine Abbildung
 \mathbb N\to\Sigma^*\colon n\mapsto \underbrace{1\dots 1}_{\text{$n$ Zeichen}}=1^n
 \]
 Eine Sprache über dem Alphabet $\{{\tt 1}\}$ entspricht unter dieser
-Abbildung genau einer Teilmenge der natürlichen Zahlen. Die Darstellung
+Abbildung genau einer Teilmenge der natürlichen Zahlen.
+Die Darstellung
 einer Zahl $n$ als Folge von $n$ Zeichen {\tt 1} heisst
 {\em unäre Darstellung}
 \index{unaere Darstellung@unäre Darstellung}%
 von $n$.
-\item Sei $\Sigma=\{{\tt (}, {\tt )}\}$. $\Sigma^*$ besteht aus allen
-Ketten von Klammern. Die korrekt geschachtelten Klammerausdrücke bilden
+\item Sei $\Sigma=\{{\tt (}, {\tt )}\}$.
+$\Sigma^*$ besteht aus allen Ketten von Klammern.
+Die korrekt geschachtelten Klammerausdrücke bilden
 darin eine Teilmenge, also eine Sprache.
-\item Sei $\Sigma=\{{\tt 0},{\tt 1},\dots,{\tt 9}\}$. $\Sigma^*$ besteht
-aus allen Ziffernfolgen. Jede solche Ziffernfolge hat natürlich auch
+\item Sei $\Sigma=\{{\tt 0},{\tt 1},\dots,{\tt 9}\}$.
+$\Sigma^*$ besteht aus allen Ziffernfolgen.
+Jede solche Ziffernfolge hat natürlich auch
 einen numerischen Wert, indem man die Ziffernfolge als Zehnersystemdarstellung
-einer Zahl interpretiert. Wegen möglicher führender Nullen können verschiedene
-Ziffernfolgen den gleichen Wert haben. Es gibt also eine Abbildung
+einer Zahl interpretiert.
+Wegen möglicher führender Nullen können verschiedene
+Ziffernfolgen den gleichen Wert haben.
+Es gibt also eine Abbildung
 \[
 v\colon\Sigma^*\to \mathbb N,
 \]
-die den Wert einer Ziffernfolge ermittelt. Damit können wir die Sprache
+die den Wert einer Ziffernfolge ermittelt.
+Damit können wir die Sprache
 der Ziffernfolgen mit Zweierpotenzwerten definieren:
 \[
 \{w\in\Sigma^*\,|\, \exists k (v(w)=2^k)\}=\{
@@ -107,22 +122,25 @@ der Ziffernfolgen mit Zweierpotenzwerten definieren:
 {\tt 004},
 {\tt 008},\dots\}
 \]
-\item Sei $\Sigma=\{{\tt 0}, {\tt 1}\}$. $\Sigma^*$ besteht dann aus den
-binären Zeichenketten. Darin können wir eine Reihe von Sprachen auszeichnen:
+\item Sei $\Sigma=\{{\tt 0}, {\tt 1}\}$.
+$\Sigma^*$ besteht dann aus den binären Zeichenketten.
+Darin können wir eine Reihe von Sprachen auszeichnen:
 \begin{align*}
 L_1&=\{ {\tt 0}^n{\tt 1}^n\,|\,n\ge 0\}\\
 L_2&=\{ w\in\Sigma^*\,|\, |w|_{\tt 0}=|w|_{\tt 1}\}\\
 L_3&=\{ w\in\Sigma^*\,|\, \text{Zahlenwert von $w$ ist durch 3 teilbar}\}
 \end{align*}
-\item Sei $\Sigma$ die Menge der ASCII-Zeichen. Dann ist $\Sigma^*$ die
-Menge aller ASCII-Texte, wie unsinnig sie auch immer sein mögen. Interessant
-ist die Sprache
+\item Sei $\Sigma$ die Menge der ASCII-Zeichen.
+Dann ist $\Sigma^*$ die Menge aller ASCII-Texte, wie unsinnig sie auch
+immer sein mögen.
+Interessant ist die Sprache
 \[
 C=\{w\in\Sigma^*\,|\,\text{$w$ wird von GCC akzeptiert}\}.
 \]
 Die Sprache $C$ heisst GNU-Dialekt von C.
-\item Sei $\Sigma$ die Menge der Unicode-Zeichen. $\Sigma^*$ besteht
-dann aus allen Unicode-Zeichenfolgen. Darin können wir zum Beispiel die
+\item Sei $\Sigma$ die Menge der Unicode-Zeichen.
+$\Sigma^*$ besteht dann aus allen Unicode-Zeichenfolgen.
+Darin können wir zum Beispiel die
 Sprache Java auswählen
 \[
 J

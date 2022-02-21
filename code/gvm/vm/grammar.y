@@ -3,12 +3,13 @@
  * parser for the GVM 
  *
  * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
- * $Id$
  */
 #include <includes.h>
 #include <gvm.h>
 #include <utils.h>
 extern int 	yylineno;
+extern int yyerror();
+extern int yylex();
 
 /* when allocating memory for the vm, do it in chunks */
 #define	ALLOC_CHUNK	100	
@@ -51,7 +52,7 @@ line:	LINENO expression '\n'	{
 				nn *= ALLOC_CHUNK;
 				if (yydebug) {
 					printf("reallocating %p to size %lu\n",
-						nn, nn * sizeof(gvm_node_t));
+						gvm.nodes, nn * sizeof(gvm_node_t));
 				}
 				gvm.nodes = (gvm_node_t *)realloc(gvm.nodes,
 					nn * sizeof(gvm_node_t));

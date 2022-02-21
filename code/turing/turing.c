@@ -12,6 +12,7 @@
 #include <unistd.h>
 #include <regex.h>
 #include <getopt.h>
+#include <unistd.h>
 
 static int	verbose = 0;
 static int	delay = 0;

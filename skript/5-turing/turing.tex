@@ -9,37 +9,43 @@
 \subsection{Zwei Stacks: Random Access}
 Ein Stack hat die Möglichkeiten eines endlichen Automaten dramatisch
 erweitert, ein Stackautomat kann die bedeutend grössere Klasse der
-kontextfreien Sprachen analysieren. Wir haben aber auch schon gesehen,
-dass es nicht kontextfreie Sprachen gibt. Mit welcher möglichst kleinen
+kontextfreien Sprachen analysieren.
+Wir haben aber auch schon gesehen, dass es nicht kontextfreie Sprachen gibt.
+Mit welcher möglichst kleinen
 Erweiterung können wir eine Sprache wie $\{a^nb^nc^n\,|\, n\ge 0\}$
 analysieren?
 
 Eine erste Idee könnte sein, einen zweiten Stack hinzuzufügen.
 Damit könnte man mit Sicherheit die Sprache $\{a^nb^nc^n\,|\,n\ge 0\}$
-behandeln. Doch man fügt damit wesentlich mehr hinzu. Ein Buch ist
-sicher ein Random-Access Speichermedium. Durch Blättern im Buch
-kann man jede beliebige Seite erreichen. Wenn man aber ein Buch
+behandeln.
+Doch man fügt damit wesentlich mehr hinzu.
+Ein Buch ist sicher ein Random-Access Speichermedium.
+Durch Blättern im Buch kann man jede beliebige Seite erreichen.
+Wenn man aber ein Buch
 aufschlägt, besteht es eigentlich nur aus zwei Stapeln von Blättern.
-Blättern bedeutet nichts anderes, dass man ein Blatt des Buches vom
-einen Stapel wegnimmt und auf den anderen Stapel legt. Zwei Stacks
-bilden also bereits ein Random-Access Medium.
+Blättern bedeutet nichts anderes, als dass man ein Blatt des Buches vom
+einen Stapel wegnimmt und auf den anderen Stapel legt.
+Zwei Stacks bilden also bereits ein Random-Access Medium.
 
 Antike Schriftrollen sind auch Bücher, die aber nicht als Stapel
-von Seiten organisiert sind, sondern als langes Band. Es ist aber klar,
+von Seiten organisiert sind, sondern als langes Band.
+Es ist aber klar,
 dass man durch zerschneiden und binden jede Schriftrolle in ein
 Buch verwandeln kann, und ein Buch durch zusammenkleben der einzelnen
 Seiten zu einem Band in eine Schriftrolle.
 Die heutigen Bücher (Kodices) haben sich gegenüber den Schriftrollen
-etwa im ersten Jahrhundert n.~Chr. durchgesetzt.
+etwa im ersten Jahrhundert CE durchgesetzt.
 Für unsere Anwendung ist die Vorstellung eines Random-Access Mediums
-als endloses Band von Speicherzellen praktischer. Sie passt besser zu
+als endloses Band von Speicherzellen praktischer.
+Sie passt besser zu
 unserem Bild vom Hauptspeicher eines Computers oder von Massenspeichermedien.
 \subsection{Definition}
 \index{Band}%
 \index{Bandalphabet}%
 \index{Schreib-/Lese-Kopf}%
 Wir wollen einem endlichen Automaten statt eines Stacks einen unendlich
-grossen Speicher zur Verfügung stellen. Wir stellen uns diesen
+grossen Speicher zur Verfügung stellen.
+Wir stellen uns diesen
 Speicher als ein in beide Richtungen unendlich langes Band vor,
 welches in einzelne Speicherzellen aufgeteilt ist, in die jeweils
 genau ein Zeichen geschrieben werden kann (Abbildung~\ref{turingfig}).
@@ -59,7 +65,8 @@ das Input-Alphabet umfasst: $\Gamma\supset \Sigma$.
 Der Zugriff auf den Speicher erfolgt jeweils zellenweise, wir stellen
 uns einen Schreib-/Lese-Kopf vor, der auf dem Band positioniert werden
 kann, und genau ein Zeichen lesen kann, oder das auf dem Band vorhandene
-Zeichen überschreiben kann. Um zu Beginn einen wohldefinierten Zustand
+Zeichen überschreiben kann.
+Um zu Beginn einen wohldefinierten Zustand
 zu haben, brauchen wir ein zusätzliches ``Blank''-Zeichen $\blank$,
 welches in $\Gamma$ aber nicht in $\Sigma$ enthalten ist\footnote{Wäre
 das ``Blank''-Zeichen $\blank$ auch in $\Sigma$, könnte man das
@@ -67,7 +74,8 @@ leere Band nicht vom Input unterscheiden.}.
 
 Da wir jetzt diesen unendlich grossen Speicher haben, gibt es keinen
 Grund mehr, sich vorzustellen, dass der Input Zeichen für Zeichen
-in den endlichen Automaten gefüttert wird. Stattdessen gehen wir
+in den endlichen Automaten gefüttert wird.
+Stattdessen gehen wir
 davon aus, dass der Input auf das Band geschrieben wird, der
 Schreib-/Lesekopf auf das erste Feld des Input positioniert wird,
 und man dann die Maschine arbeiten lässt.
@@ -76,16 +84,19 @@ Die Maschine muss jetzt Zeichen vom Band lesen, und zusammen mit
 ihrem aktuellen Zustand entscheiden, in welchem neuen Zustand
 sie nach der Verarbeitung dieses Zeichens sein soll, welches Zeichen
 an dieser Stelle auf dem Band stehen soll, und ob der Schreib-/Lesekopf
-bewegt werden soll. Wir erlauben nur zwei Bewegungen: L und R, insbesondere
+bewegt werden soll.
+Wir erlauben nur zwei Bewegungen: L und R, insbesondere
 ist es nicht zulässig, dass der Kopf nach der Verarbeitung stehen
 bleibt.
 
 Im Gegensatz zu DEA oder Stackautomat ist die Berechnung in diesem
-Modell nach dem Ende des Input-Strings noch nicht zu Ende. Die Maschine
+Modell nach dem Ende des Input-Strings noch nicht zu Ende.
+Die Maschine
 kann mehrmals über die auf dem Band gespeicherten Daten fahren und
-sie immer wieder modifizieren. Sie könnte also im Prinzip auch
-gar nie aufhören zu arbeiten. Daher brauchen wir Zustände, die
-die Maschine anhalten. Wenn die Maschine angehalten hat, müssen wir
+sie immer wieder modifizieren.
+Sie könnte also im Prinzip auch gar nie aufhören zu arbeiten.
+Daher brauchen wir Zustände, die die Maschine anhalten.
+Wenn die Maschine angehalten hat, müssen wir
 zudem wissen, ob das auf das Band geschriebene Input-Wort für die
 Sprache akzeptabel war oder nicht.
 
@@ -140,16 +151,17 @@ steht über dem ersten Zeichen von $w$.
 
 Mit Hilfe der Übergangsfunktion wird dann der nächste Zustand,
 der neue Inhalt des Feldes unter dem Schreib-/Lesekopf und die
-Kopfbewegung ermittelt. Auch diesen neuen Zustand kann man wieder
-als Konfiguration hinschreiben. Der Schreib-/Lesekopf steht
+Kopfbewegung ermittelt.
+Auch diesen neuen Zustand kann man wieder als Konfiguration hinschreiben.
+Der Schreib-/Lesekopf steht
 jetzt womöglich mitten im Wort drin, und die Maschine befindet
 sich in irgend einem Zustand $q$: $w_1qw_2$.
 
 Nehmen wir an, die Maschine befindet sich zu Beginn eines Zyklus im
 Zustand $q_1$ und hat den Kopf auf das Zeichen $a_k$ positioniert.
 Die Funktion $\delta$ berechnet daraus ein Tripel $(q_1,b_k,R)$
-oder $(q_2,b_k,L)$. Die Konfiguration ändert sich dabei wie
-folgt:
+oder $(q_2,b_k,L)$.
+Die Konfiguration ändert sich dabei wie folgt:
 \begin{align*}
 &\text{Ausgangskonfiguration:}&a_1\dots a_{k-1}&\;q_1\;a_k\dots a_n\\
 &\text{Übergang mit } \delta(q_1,a_k)=(q_2,b_k,L)&a_1\dots a_{k-2}&\;q_2\;a_{k-1}b_k\dots a_n\\
@@ -184,8 +196,10 @@ $M$ gibt mit $L=L(M)$.
 
 Die Definition der erkannten Sprache erlaubt, dass die zur Erkennung
 verwendete Turing-Maschine auf einigen Wörtern $w\in\Sigma^*$ nicht
-anhält. Diese Wörter werden nie akzeptiert, und gehören
-damit nicht zur Sprache. Testet man sie mit $M$, wird die Berechnung
+anhält.
+Diese Wörter werden nie akzeptiert, und gehören
+damit nicht zur Sprache.
+Testet man sie mit $M$, wird die Berechnung
 aber nie anhalten, man weiss also eigentlich nie, ob das Wort
 nicht zur Sprache gehört, oder ob man einfach noch etwas mehr
 Geduld braucht.
@@ -196,8 +210,8 @@ jedem Input anhält.
 \begin{definition}
 \index{Entscheider}%
 Ein Entscheider ist eine Turingmaschine, die auf jedem Input $w\in\Sigma^*$
-anhält. Eine Sprache heisst entscheidbar, wenn ein Entscheider sie
-erkennt.
+anhält.
+Eine Sprache heisst entscheidbar, wenn ein Entscheider sie erkennt.
 \index{entscheidbar}%
 \end{definition}
 Es ist klar, dass eine Turing-entscheidbare Sprache auch Turing-erkennbar
@@ -227,7 +241,8 @@ Mersennsche Primzahlen gibt.
 Dazu müssen der Reihe nach alle Zweierpotenzen $2^k$ daraufhin getestet werden,
 ob $2^k-1$ eine Primzahl ist.
 Wenn mindestens $n$ Mersennsche Primzahlen gefunden wurden, wird $n$
-akzeptiert, sonst nicht. Falls $n\in L$ ist, wird der Algorithmus
+akzeptiert, sonst nicht.
+Falls $n\in L$ ist, wird der Algorithmus
 die Zahl $n$ akzeptieren, die Sprache $L$ ist also Turing-erkennbar.
 
 Falls es nur endlich viele Mersennesche Primzahlen gibt, zum Beispiel
@@ -242,10 +257,12 @@ Diese Sprache $L$ ist also nicht Turing-entscheidbar.
 \subsection{Zustandsdiagramm}
 \index{Graph!gerichteter!beschrifteter!einer Turing-Maschine}%
 Auch eine Turingmaschine kann man als gerichteten beschrifteten Graphen
-darstellen. Übergänge zwischen zwei Zuständen sind immer begleitet von
+darstellen.
+Übergänge zwischen zwei Zuständen sind immer begleitet von
 einer Änderung des Inhaltes des Feldes unter dem Schreib-/Lesekopf
-und von einer Kopfbewegung. Beide müssen mit der Beschriftung
-der Pfeile codiert werden. In Anlehnung an die bei den Stackautomaten
+und von einer Kopfbewegung.
+Beide müssen mit der Beschriftung der Pfeile codiert werden.
+In Anlehnung an die bei den Stackautomaten
 verwendete Notation schreiben wir für den Übergang
 $\delta(q_1,a)=(q_2,b,\text{R})$
 die Notation
@@ -272,9 +289,10 @@ noch kontextfrei erkannte Sprache $L=\{\texttt{0}^{2^n}\;|\; n\in\mathbb N\}$
 erkennt.
 
 Zweierpotenzen kann man daran erkennen, dass man die Zahl ohne
-Rest durch zwei teilen kann, bis nur noch 1 übrig bleibt. Genau
-diesen Prozess kann man mit einer Turingmaschine auf dem Band
-nachbilden. Die Maschine muss also folgendes tun:
+Rest durch zwei teilen kann, bis nur noch 1 übrig bleibt.
+Genau diesen Prozess kann man mit einer Turingmaschine auf dem Band
+nachbilden.
+Die Maschine muss also folgendes tun:
 
 Auf dem Input $w$:
 \begin{compactenum}
@@ -286,20 +304,23 @@ enthielt, {\it verwerfe}.
 \item Weiter bei Schritt 1
 \end{compactenum}
 In jedem Durchgang wird die Anzahl der Nullen halbiert, es sei denn,
-sie war nicht gerade. In diesem Fall bleibt nach dem Durchgang eine
-ungerade Anzahl $\texttt{0}$ auf dem Band stehen, was beim darauffolgenden Durchgang
-in Schritt~3 erkannt wird. Geht die Division immer auf, bleibt am Schluss
-nur genau eine $\texttt{0}$ stehen, was im Schritt~2 erkannt wird. Daher funktioniert
-dieser Algorithmus.
+sie war nicht gerade.
+In diesem Fall bleibt nach dem Durchgang eine ungerade Anzahl $\texttt{0}$
+auf dem Band stehen, was beim darauffolgenden Durchgang
+in Schritt~3 erkannt wird.
+Geht die Division immer auf, bleibt am Schluss
+nur genau eine $\texttt{0}$ stehen, was im Schritt~2 erkannt wird.
+Daher funktioniert dieser Algorithmus.
 
 Um den Algorithmus mit einer Turing-Maschine zu realisieren, brauchen wir
 ein neues Zeichen {\tt x}, mit dem wir gestrichene Zeichen markieren
-können. Es ist also $\Gamma = \{\texttt{0},{\tt x},\blank\}$.
+können.
+Es ist also $\Gamma = \{\texttt{0},{\tt x},\blank\}$.
 Ausserdem brauchen wir
 Zustände, mit denen man die Parität der Anzahl $\texttt{0}$ bestimmen kann, und
 mit denen man die Aktivitäten in Schritt 4 von den anderen unterscheiden
-kann. Schritt $4$ wird zum Beispiel implementiert durch das
-Zustandsdiagramm
+kann.
+Schritt $4$ wird zum Beispiel implementiert durch das Zustandsdiagramm
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @+5mm{
@@ -335,7 +356,8 @@ ein {\tt x} keine weiteren $\texttt{0}$ mehr gefunden werden können, kann durch
 		&*++[o][F=]{q_{\text{accept}}}
 }
 \]
-ausgedrückt werden. Die Schleife beim mittleren Zustand
+ausgedrückt werden.
+Die Schleife beim mittleren Zustand
 bildet ab, dass {\tt x}-Zeichen übersprungen werden sollen.
 Mit solchen Elementen können wir die Turingmaschine jetzt schrittweise
 aufbauen.
@@ -370,7 +392,8 @@ auf dem Band hat:
 \]
 Falls dies nicht zutrifft, müssen weitere Nullen weggestrichen werden,
 wobei über die Parität der noch vorhandenen Nullen Buch geführt werden
-muss. Dafür braucht es die beiden Zustände $q_3$ und $q_4$:
+muss.
+Dafür braucht es die beiden Zustände $q_3$ und $q_4$:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -392,7 +415,8 @@ muss. Dafür braucht es die beiden Zustände $q_3$ und $q_4$:
 \]
 Wenn die Maschine nach dem Abarbeiten aller \texttt{0} und {\tt x} auf einen
 neuen Blank \textvisiblespace\ trifft, ist sie entweder im Zustand
-$q_3$ oder in $q_4$. Im letzten Fall hat sie ein ungerade Anzahl
+$q_3$ oder in $q_4$.
+Im letzten Fall hat sie eine ungerade Anzahl
 von \texttt{0} gefunden, gemäss Schritt 3 des Algorithmus muss also verworfen
 werden:
 \[
@@ -416,7 +440,8 @@ werden:
 }
 \]
 Wenn sie dagegen im Zustand $q_3$ ist, muss sie nach links fahren,
-bis zum ersten Blank, und dann im Zustand $q_2$ ankommen. Dies erreicht
+bis zum ersten Blank, und dann im Zustand $q_2$ ankommen.
+Dies erreicht
 man mit Hilfe eines weitere Zustands $q_5$.
 \[
 \entrymodifiers={++[o][F]}

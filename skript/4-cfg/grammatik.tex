@@ -11,21 +11,25 @@ eines Wortes von links nach rechts gelesen werden, und nach jedem
 Zeichen entschieden werden kann, ob das Wort akzeptabel ist.
 Der Fokus liegt also auf der Analyse des Strings, und genau dies
 macht das Überprüfen der korrekten Schachtelung von Klammern
-schwierig. 
+schwierig.
 
-\index{Ausdr\ücke!arithmetische}%
+\index{Ausdrücke!arithmetische}%
 Für Klammern ist man sich jedoch meistens eine andere Vorgehensweise
-gewohnt. Wenn man arithmetische Ausdrücke aufbaut, sagt man zum
+gewohnt.
+Wenn man arithmetische Ausdrücke aufbaut, sagt man zum
 Beispiel: ``Wenn man die Summe $a+b$ mit $c$ multiplizeren will,
 dann {\em muss man $a+b$ in Klammern setzen}''.
 Klammern werden also immer paarweise gesetzt, und man baut den
 Ausdruck sozusagen von innen nach aussen auf.
 
-Wir möchten diese Idee ein Stück weit formalisieren. Das Ziel ist,
+Wir möchten diese Idee ein Stück weit formalisieren.
+Das Ziel ist,
 Wörter aus den Zeichen {\tt (} und {\tt )} aufzubauen, die korrekte
-Klammerausdrücke sind. Dazu können wir bereits bekannte korrekte
+Klammerausdrücke sind.
+Dazu können wir bereits bekannte korrekte
 Klammerausdrücke aneinanderhängen, oder wir können einen bereits
-bekannten korrekten Ausdruck ``einklammern''. Schreiben wir $A$
+bekannten korrekten Ausdruck ``einklammern''.
+Schreiben wir $A$
 für einen Klammerausdruck, bedeutet das, dass wir $A$ gemäss
 folgender Regeln umformen können:
 \begin{align*}
@@ -33,11 +37,14 @@ A&\to AA\\
 A&\to {\tt (}A{\tt )}
 \end{align*}
 Dabei ist auf der rechten Seite der ersten Regel gemeint, dass wir zwei beliebige
-Ausdrücke nehmen können, sie müssen nicht identisch sein. Allerdings
+Ausdrücke nehmen können, sie müssen nicht identisch sein.
+Allerdings
 fehlt in diesen Regeln noch ein Anfang, bis jetzt können wir überhaupt
-keine Wörter produzieren. Dazu nehmen wir noch eine Regel $A\to\varepsilon$
+keine Wörter produzieren.
+Dazu nehmen wir noch eine Regel $A\to\varepsilon$
 hinzu, die besagt, dass das leere Wort auch ein akzeptabler
-Klammerausdruck ist. Die Regeln
+Klammerausdruck ist.
+Die Regeln
 \begin{align}
 A&\to\varepsilon       \label{regeln-beispiel-1}\\
 A&\to AA               \label{regeln-beispiel-2}\\
@@ -46,8 +53,8 @@ A&\to {\tt (}A{\tt )}  \label{regeln-beispiel-3}
 erzeugen in diesem Sinne alle korrekt geschachtelten Klammerausdrücke.
 
 Der Buchstabe $A$ steht offenbar nicht immer für das gleiche, 
-er ist Platzhalter für einen korrekten Klammerausdruck. Wir nennen
-$A$ eine Variable.
+er ist Platzhalter für einen korrekten Klammerausdruck.
+Wir nennen $A$ eine Variable.
 Dagegen stehen die Zeichen {\tt (} und {\tt )} nur für sich selbst, sie
 können nicht weiter ersetzt werden, sie heissen Terminalsymbole.
 
@@ -86,8 +93,8 @@ A \to \varepsilon\;|\; AA\;|\; {\tt (}A{\tt )}.
 
 Der Name ``kontextfrei'' rührt daher, dass es bei der Anwendung
 der Regeln nicht auf den Kontext ankommt, in dem eine Variable
-auf der linken Seite des Pfeils~$\rightarrow$ vorkommt. Regeln der
-Form 
+auf der linken Seite des Pfeils~$\rightarrow$ vorkommt.
+Regeln der Form 
 \[
 {\tt a}A\to AA, \qquad {\tt bA}\to BB,
 \]
@@ -95,22 +102,24 @@ sogenannte kontextsensitive Regeln,
 \index{kontextsensitiv}%
 würden dagegen ausdrücken, dass die Umwandlung der Variablen $A$
 unterschiedlich zu erfolgen hat, wenn ihr verschiedene Zeichen
-vorangehen. In diesem Fall käme es auf den Kontext an. Solche
-Regeln sollen jedoch nicht zugelassen sein.
+vorangehen.
+In diesem Fall käme es auf den Kontext an.
+Solche Regeln sollen jedoch nicht zugelassen sein.
 
 \subsection{Kontextfreie Sprachen}
 Eine Grammatik erzeugt eine Sprache auf die folgende Weise.
 Auf die Startvariable werden beliebige Regeln angewendet,
 bis keine Variablen mehr vorhanden sind, jetzt steht nur noch
-eine Kette von Terminalsymbolen da. Dies wollen wir wie folgt
-formalisieren.
+eine Kette von Terminalsymbolen da.
+Dies wollen wir wie folgt formalisieren.
 
 \begin{definition}
 \index{Regel!erzeugtes Wort}%
 \index{Ableitung}%
 Falls $A\to w$ eine Regel einer Grammatik $G$ ist, sagt man
 dass die Regel aus $uAv$ den String $uwv$ erzeugt,
-geschrieben $uAv\Rightarrow uwv$. Man sagt, $v$ lässt sich aus
+geschrieben $uAv\Rightarrow uwv$.
+Man sagt, $v$ lässt sich aus
 $u$ ableiten, wenn es eine Folge $u_1,\dots,u_n$ gibt mit
 \[
 u\Rightarrow u_1\Rightarrow u_2\Rightarrow\dots\Rightarrow u_n\Rightarrow v,
@@ -198,15 +207,17 @@ solche ist ja eine \textsl{ziffer}, und eine \textsl{zahl} kann auch eine
 einzelne Ziffer sein.
 
 \subsubsection{Einfache arithmetische Ausdrücke}
-\index{Ausdr\ücke!arithmetische}%
+\index{Ausdrücke!arithmetische}%
 \index{expression-term-factor Grammatik}%
 Auch arithemtische Ausdrücke können mit einer
-Grammatik erzeugt werden. Da die Zahl der Variablen schnell grösser
-wird, werden wir im Folgenden auch länger Variablennamen zulassen.
+Grammatik erzeugt werden.
+Da die Zahl der Variablen schnell grösser
+wird, werden wir im Folgenden auch längere Variablennamen zulassen.
 Als Alphabet verwenden wir
 $\Sigma=\{{\tt 0},\dots,{\tt 9},{\tt +},{\tt *},{\tt (}, {\tt )}\}$.
 Die Startvariable drückt aus, was erzeugt werden soll, in diesem Fall
-ein Ausdruck, also nennen wir sie \textsl{expression}.  Folgende Grammatik
+ein Ausdruck, also nennen wir sie \textsl{expression}.
+Folgende Grammatik
 erzeugt die arithmetischen Ausdrücke:
 \begin{align*}
 \textsl{expression} &\to \textsl{expression}\;{\tt +}\;\textsl{term}\\
@@ -222,7 +233,8 @@ Z                   &\to {\tt 0}\;|\;\dots \;|\;{\tt 9}
 
 \subsubsection{Eine nicht reguläre Sprache}
 Die Sprache $\{{\tt 0}^n{\tt 1}^n\;|\;n\in\mathbb N\}$ wurde bereits
-früher als nicht regulär erkannt. Sie wird aber von der 
+früher als nicht regulär erkannt.
+Sie wird aber von der 
 Grammatik $G=(\{S\}, \{{\tt 0},{\tt 1}\}, R, S)$ erzeugt
 mit den Regeln
 \begin{align*}
@@ -232,7 +244,8 @@ S&\rightarrow \varepsilon\\
 
 \subsection{Reguläre Operationen\label{sect:cfg-regulaer}}
 In diesem Abschnitt beweisen wir, dass reguläre Sprachen auch
-kontextfrei sind. Dazu ist zu zeigen, dass
+kontextfrei sind.
+Dazu ist zu zeigen, dass
 zu jedem regulären Ausdruck eine kontextfreie Grammatik existiert,
 die die Sprache erzeugt.
 
@@ -245,12 +258,15 @@ dann ist auch $L_1\cup L_2$ kontextfrei.
 
 \begin{proof}[Beweis]
 Weil $L_i$ kontextfrei sind,  gibt es Grammatiken $G_1$ und $G_2$,
-die $L_1$ bzw.~$L_2$ erzeugen. Wir dürfen sogar annehmen, dass
+die $L_1$ bzw.~$L_2$ erzeugen.
+Wir dürfen sogar annehmen, dass
 beide Grammatiken keine
 gemeinsamen Variablen haben, dass also $V_1$ und $V_2$ 
-disjunkt sind. Wir konstruieren jetzt eine neue Grammatik
+disjunkt sind.
+Wir konstruieren jetzt eine neue Grammatik
 $G=(V_1\cup V_2\cup\{S\}, \Sigma, R, S)$ mit einem neuen
-Startzustand $S$. Die Regelmenge $R$ besteht einerseits aus
+Startzustand $S$.
+Die Regelmenge $R$ besteht einerseits aus
 den Regeln in $G_1$ und $G_2$ und andererseits aus der neuen
 Regel
 \[
@@ -262,7 +278,8 @@ R=R_1\cup R_2\cup \{S\to S_1, S\to S_2\}.
 \]
 Die Wörter von $L_1$ werden erzeugt, wenn man $S\to S_1$ als
 erste Regel anwendet, die Wörter von $L_2$ jedoch, wenn 
-man $S\to S_2$ verwendet. Die Regeln können nicht ``gemischt''
+man $S\to S_2$ verwendet.
+Die Regeln können nicht ``gemischt''
 angewendet werden, weil $V_1\cap V_2=\emptyset$.
 \end{proof}
 
@@ -275,7 +292,8 @@ kontextfrei.
 
 \begin{proof}[Beweis]
 Seien wieder $G_i$ die Grammatiken, die $L_i$ erzeugen, mit disjunkten
-Variablenmengen $V_1\cap V_2=\emptyset$. Dann erzeugt die Grammatik
+Variablenmengen $V_1\cap V_2=\emptyset$.
+Dann erzeugt die Grammatik
 $G=(V_1\cup V_2\cup\{S\},\Sigma, R,S)$ mit dem neuen Startzustand
 und den Regeln
 \[
@@ -291,7 +309,8 @@ Ist $L$ kontextfrei, dann auch $L^*$.
 \end{satz}
 
 \begin{proof}[Beweis]
-Sei $G=(V,\Sigma,R,S)$ die Grammatik, die $L$ erzeugt. Dann erzeugt die
+Sei $G=(V,\Sigma,R,S)$ die Grammatik, die $L$ erzeugt.
+Dann erzeugt die
 Grammatik
 \[
 G^*=(V\cup \{S_0\}, \Sigma, R_0, S_0)
@@ -312,17 +331,19 @@ Da reguläre Sprachen mit regulären Operationen aus einfacheren
 Sprachen aufgebaut werden können, ist nur zu zeigen, dass die
 Konstruktionen, die mit regulären Operationen möglich sind,
 auch durch Produktionsregeln einer Grammatik ausgedrückt werden
-können. 
+können.
 \begin{enumerate}
-\item Leere Sprache: Die leere Sprache ist regulär. Sie wird auch 
+\item Leere Sprache: Die leere Sprache ist regulär.
+Sie wird auch 
 von der Grammatik mit $R=\emptyset$ erzeugt, also ist sie auch
 kontextfrei.
-\item Ein einzelnes Zeichen: $L=\{{\tt a}\}$. Die Sprache $L$ wird von
+\item Ein einzelnes Zeichen: $L=\{{\tt a}\}$.
+Die Sprache $L$ wird von
 der Grammatik $G=(\{S\}, \{{\tt a}\}, \{S\to{\tt a}\}, S)$
 erzeugt.
 \item Alle Sprachen, die sich aus den eben genannten durch reguläre
-Operationen konstruieren lassen, sind ebenfalls kontextfrei. Da
-dies für alle regulären Sprachen zutrifft folgt, dass alle
+Operationen konstruieren lassen, sind ebenfalls kontextfrei.
+Da dies für alle regulären Sprachen zutrifft folgt, dass alle
 regulären Sprachen kontextfrei sind.
 \end{enumerate}
 \end{proof}
@@ -335,7 +356,8 @@ Obermenge der regulären Sprachen sind:
 \end{center}
 Wir werden später zeigen, dass kontextfreie Sprachen auch durch
 die Existenz eines Stackautomaten charakterisiert werden können,
-der diese Sprachen akzeptiert. Dann wird sich zeigen, dass 
+der diese Sprachen akzeptiert.
+Dann wird sich zeigen, dass 
 die regulären Sprachen diejenigen kontextfreien Sprachen sind,
 für deren Analyse der Stack gar nicht benötigt wird.
 
@@ -344,7 +366,7 @@ für deren Analyse der Stack gar nicht benötigt wird.
 \index{Ableitungsbaum}%
 Der Ableitungsbaum eines Wortes einer kontextfreien Sprache
 ist eine Darstellung der verwendeten Produktionsregeln in Baum-Struktur.
-\index{Ausdr\ücke!arithmetische}%
+\index{Ausdrücke!arithmetische}%
 Die Grammatik für arithmetische Ausdrücke produziert zum Beispiel
 den Ausdruck {\tt 7 * (3 + 5)}.
 Die dabei verwendeten Regeln können in Baumform wie in
@@ -428,7 +450,8 @@ Expression-Term-Factor-Grammatik.
 
 Offenbar spielt es keine Rolle, ob erst die Regelanwendungen
 im linken Teil des Baumes geschehen, oder die Regelanwendungen im
-rechten Teil. Zwei Ableitungen können daher als gleich angesehen
+rechten Teil.
+Zwei Ableitungen können daher als gleich angesehen
 werden, wenn sich die Ableitungsbäume nicht unterscheiden.
 
 \begin{definition}
@@ -440,10 +463,11 @@ sie mehrdeutig (engl.~ambiguous).
 \end{definition}
 
 Von besonderem praktischem Interesse sind Grammatiken, in denen
-Ableitungen immer eindeutig sind. Die
+Ableitungen immer eindeutig sind.
+Die
 \index{expression-term-factor Grammatik}%
 {\tt expression}-{\tt term}-{\tt factor}-Grammatik für einfache
-arithmetische Ausdrücke erfüllt diese Bedingung. 
+arithmetische Ausdrücke erfüllt diese Bedingung.
 Ein Beispiel für eine zweideutige Grammatik ist
 \[
 G=(\{S\}, \{\texttt{0},\texttt{1}\}, \{S\to \texttt{0}S\texttt{1}|\texttt{1}S\texttt{0}|SS|\varepsilon\}, S).
@@ -545,8 +569,8 @@ Solche sogenannten unit rules sind daher ebenfalls zu vermeiden.
 
 Bei den regulären Sprachen war der Algorithmus zur Reduktion
 auf den minimalen Automaten die Voraussetzung, Automaten vergleichen
-zu können. Eine ähnliche Normalform wünscht man sich auch für
-Grammatiken.
+zu können.
+Eine ähnliche Normalform wünscht man sich auch für Grammatiken.
 
 Aus diesen Gründen definiert man die folgende Standardform einer Grammatik
 \begin{definition}
@@ -559,20 +583,23 @@ A&\to BC\qquad\text{oder}\\
 A&\to a
 \end{align*}
 ist, wobei $A\in V$, $a\in\Sigma$ und $B, C\in V\setminus\{S\}$.
-Zusätzlich ist die Regel $S\to\varepsilon$ erlaubt. 
+Zusätzlich ist die Regel $S\to\varepsilon$ erlaubt.
 \end{definition}
 
 Bei einer Grammatik in Chomsky Normalform kann man sofort abschätzen,
 wieviele Regelanwendungen notwendig sind, um ein gegebenes Wort
-zu erzeugen. Wendet man eine der Regeln $A\to BC$ an, wird das
-Wort verlängert. Dies kann nicht mehr rückgängig gemacht
+zu erzeugen.
+Wendet man eine der Regeln $A\to BC$ an, wird das Wort verlängert.
+Dies kann nicht mehr rückgängig gemacht
 werden, weil dazu eine Regel notwendig wäre, die eine Variable
-in das leere Wort umwandelt. Die Regel $S\to\varepsilon$ ist aber
+in das leere Wort umwandelt.
+Die Regel $S\to\varepsilon$ ist aber
 die einzige erlaubte derartige Regel, aber sie kann nie angewendet
-werden weil $B$ und $C$ nicht $S$ sein können. Es werden also
+werden weil $B$ und $C$ nicht $S$ sein können.
+Es werden also
 höchstens $|w|-1$ Anwendungen von Regeln $A\to BC$ benötig, und dann
 nochmals $|w|$ Anwendungen von Regeln $A\to a$, welche die Variablen
-in Terminalsymbole umwandeln. 
+in Terminalsymbole umwandeln.
 
 Eine Grammatik kann aus folgenden Gründen nicht der Chomsky Normalform
 entsprechen:
@@ -600,11 +627,13 @@ in Chomsky Normalform.
 
 \begin{proof}[Beweis]
 Eine kontextfreie Sprache $L$ wird von einer kontextfreien Grammatik
-$G$ akzeptiert. Es ist zu zeigen, dass diese Grammatik in
+$G$ akzeptiert.
+Es ist zu zeigen, dass diese Grammatik in
 äquivalente Chomsky Normalform gebracht werden kann.
 Weiter oben haben wir eine Liste
 möglicher Defekte zusammengestellt, die eine Grammatik davon abhalten,
-Chomsky Normalform zu haben. Um Chomsky Normalform zu erreichen,
+Chomsky Normalform zu haben.
+Um Chomsky Normalform zu erreichen,
 müssen also genau diese Defekte behoben werden.
 Dazu sind folgende Schritte notwendig
 \begin{enumerate}
@@ -612,12 +641,14 @@ Dazu sind folgende Schritte notwendig
 kann, wird eine neue Startvariable $S_0$ hinzugefügt, sowie eine
 neue Regel
 $S_0\to S$, wobei $S$ die ursprüngliche Startvariable war.
-\item Entfernung aller $\varepsilon$-Regeln. Solche Regeln erlauben,
-eine Variable ``wegzulassen''. Für jede Regel, die auf der rechten
+\item Entfernung aller $\varepsilon$-Regeln.
+Solche Regeln erlauben, eine Variable ``wegzulassen''.
+Für jede Regel, die auf der rechten
 Seite eine solche Variable enthält, fügen wir eine zusätzliche
 Regel hinzu, bei der die $\varepsilon$-Regel auf der rechten Seite
 angwendet worden ist, d.\,h.~die Variable auf der rechten Seite weggelassen
-wurde.  Aus
+wurde.
+Aus
 \[
 \left.
 \begin{aligned}
@@ -673,8 +704,8 @@ A_{n-2}&\to u_{n-1}u_n
 \end{align*}
 Falls $u_i$ ein Terminalsymbol ist, ersetzen wir $u_i$ in obigen
 Regeln durch eine neue Variable $U_i$ und fügen die Regel
-$U_i\to u_i$ hinzu. Damit erhalten alle hinzugefügten Regeln
-Chomsky Normalform.
+$U_i\to u_i$ hinzu.
+Damit erhalten alle hinzugefügten Regeln Chomsky Normalform.
 \end{enumerate}
 Die so konstruierte Grammatik hat Chomsky Normalform und erzeugt die
 gleiche Sprache.
@@ -792,20 +823,24 @@ der Sprache $L$ erzeugt werden können.
 Da in Chomsky Normalform nur Regeln der Form $A\to BC$ und $A\to a$
 enthalten kann, braucht es genau $|w|-1$ Anwendungen von Regeln der Form
 $A\to BC$, um aus der Startvariable einen String aus $|w|$ Zeichen
-herzustellen. Weitere $|w|$ Anwendungen von Regeln der Form $A\to a$
-wandeln Variablen in Terminalsymbole um. Somit kann ein Wort mit
+herzustellen.
+Weitere $|w|$ Anwendungen von Regeln der Form $A\to a$
+wandeln Variablen in Terminalsymbole um.
+Somit kann ein Wort mit
 genau $2|w|-1$ Regelanwendungen produziert werden.
 \end{proof}
 
 
 \subsection{Ein deterministischer Parse-Algorithmus}
 Ob ein Wort zu einer regulären Sprache gehört, kann in linearer
-Zeit entschieden werden. Dazu erzeugt man einen DEA, der die Sprache
+Zeit entschieden werden.
+Dazu erzeugt man einen DEA, der die Sprache
 akzeptiert, und testet ein Wort damit.
 
 Für kontextfreie Sprachen gibt es ebenfalls einen deterministischen
-Algorithmus, den Cocke-Younger-Kasami Algorithmus. Dazu verwendet
-man die Grammatik in Chomsky-Normalform. Der Algorithmus arbeitet
+Algorithmus, den Cocke-Younger-Kasami Algorithmus.
+Dazu verwendet man die Grammatik in Chomsky-Normalform.
+Der Algorithmus arbeitet
 rekursiv um die Frage zu beantworten, ob ein Wort $w$ aus einer
 Variablen $A$ der Grammatik $G=(V,\Sigma,R,S)$  abgeleitet
 werden kann.
@@ -814,25 +849,28 @@ Um das leere Wort zu erzeugen, muss die Regel $S\to\varepsilon$
 angewendet werden, falls sie vorhanden ist.
 
 Ein Wort $w$ mit Länge $|w|=1$ kann genau dann aus der Variablen 
-$A$ abgeleitet werden, wenn es eine Regel $A\to a$ gibt. 
+$A$ abgeleitet werden, wenn es eine Regel $A\to a$ gibt.
 Es kann höchstens $|\Sigma|$ solche Regeln geben.
 
 Um ein Wort der Länge $|w|>1$ zu erzeugen, muss mindestens eine
-Regel der Form
-$A\to BC$ verwendet werden. Sie teilt das Wort in in zwei Teile
+Regel der Form $A\to BC$ verwendet werden.
+Sie teilt das Wort in in zwei Teile
 $w_1$ und $w_2$ mit je geringerer Länge: $w=w_1w_2$ und 
-$|w_i|<|w|$. Es gibt $|w|-1$ solche Zerlegungen. Um also zu testen,
+$|w_i|<|w|$.
+Es gibt $|w|-1$ solche Zerlegungen.
+Um also zu testen,
 ob die Grammatik das Wort $w$ aus der Variablen $A$ ableitet,
 muss man also rekursiv alle möglichen
 Zerlegungen des Wortes daraufhin testen, ob sie von den Variablen
 $B$ bzw.~$C$ erzeugt werden, ob also $B\overset{*}\Rightarrow w_1$
 und $C\overset{*}\Rightarrow w_2$ gilt, und dies für jede
-Regel $A\to BC\in R$. Es gibt weniger als $|R|$ solche Regeln.
+Regel $A\to BC\in R$.
+Es gibt weniger als $|R|$ solche Regeln.
 
 Zur Implementation dieses rekursiven Algorithmus braucht man
 also eine Funktion {\tt ableitbar}, die die Frage beantwortet,
-ob ein Wort aus einer bestimmten Variable ableitbar ist. Sie
-ruft sich für jede Aufteilung des Wortes in zwei Teile
+ob ein Wort aus einer bestimmten Variable ableitbar ist.
+Sie ruft sich für jede Aufteilung des Wortes in zwei Teile
 $w_1$ und $w_2$ und für jede Regel $A\to BC$ selbst auf, um
 herauszufinden, ob $w_1$ aus $B$ und $w_2$ aus $C$ ableitbar ist.
 
@@ -871,8 +909,9 @@ $O(|w|^3)$, welcher entscheidet, ob $w\in L(G)$.
 \end{satz}
 
 Das Argument weiter oben erklärt, dass es einen determinisitischen
-Algorithmus gibt. Es erklärt aber nicht, warum die Komplexität
-nur $O(|w|^3)$ ist. Ähnlich wie man bei einer rekursiven Berechnung
+Algorithmus gibt.
+Es erklärt aber nicht, warum die Komplexität nur $O(|w|^3)$ ist.
+Ähnlich wie man bei einer rekursiven Berechnung
 der Fibonacci-Zahlen die Komplexität von $O(2^n)$ auf $O(n)$ reduzieren
 kann, indem man bereits berechnet Fibonacci-Zahlen speichert, kann
 man auch beim obigen rekursiven Algorithmus die Komplexität wesentlich

@@ -8,6 +8,7 @@
 #include "tmc.h"
 
 extern int	yydebug;
+extern int	yyparse();
 
 void	yyerror(char *errmsg) {
 	fprintf(stderr, "error: %s\n", errmsg);
@@ -184,7 +185,7 @@ char	*read_initialtape(char *filename) {
 	char	buffer[1024];
 	fgets(buffer, sizeof(buffer), f);
 	buffer[strlen(buffer) - 1] = '\0';
-	close(f);
+	fclose(f);
 	return strdup(buffer);
 }
 

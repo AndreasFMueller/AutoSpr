@@ -3,7 +3,6 @@
  * lexer definition for the basic GVM language
  *
  * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
- * $Id$
  */
 #include <gvm.h>
 #include <utils.h>

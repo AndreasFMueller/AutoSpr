@@ -1,4 +1,5 @@
 #! /usr/bin/python
+import time
 import re
 r1 = ""
 r2 = ""
@@ -8,8 +9,10 @@ while i < 29:
 	r1 += "a?"
 	r2 += "a"
 	r = r1 + r2
+	before = time.time()
 	if re.match(r, r2):
-		print(r2 + " matches " + r)
+		runtime = time.time() - before
+		print(r2 + " matches " + r + " " + str(runtime))
 	else:
-		print("matching failure\n")
+		print("matching failure")
 

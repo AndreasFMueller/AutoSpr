@@ -1,0 +1,50 @@
+Ist die Sprache 
+\[
+L=\{\texttt{a}^n\texttt{b}^l \texttt{c}^{n\cdot l}\;|\; n,l\ge 0\}
+\]
+kontextfrei?
+
+\begin{loesung}
+Nein, dies kann man mit dem Pumping Lemma für kontextfreie Sprachen
+nachweisen.
+\begin{enumerate}
+\item
+Wer nehmen an, $L$ sei kontextfrei.
+\item
+Dann gibt es insbesondere die Pumping Length $N$
+\item
+Wir konstruieren das Wort 
+$w=\texttt{a}^N \texttt{b}^N \texttt{c}^{N^2}\in L$
+\item 
+Nach dem Pumping Lemma gibt es eine Aufteilung des Wortes in 
+fünf Teile $w=uvxyz$, wobei $|vxy|\le N$ sein muss.
+\item
+Dies bedeutet, dass vom Pumpen höchstens zwei der Buchstaben
+\texttt{a}, \texttt{b} und \texttt{c} betroffen sein können.
+Es ist aber nicht möglich, dass nur die Zahl der Buchstaben
+\texttt{a} und \texttt{b} zunehmen kann, denn dann muss auch
+die Zahl der Buchstaben \texttt{c} zunehmen.
+
+Es ist aber auch nicht möglich, dass nur die Anzahl der Buchstaben
+\texttt{b} und \texttt{c} zunimmt.
+Mit jedem Zeichen \texttt{b} müssen nämlich genau $N$ Zeichen
+\texttt{c} hinzugefügt werden.
+Das bedeutet, dass $|vy|\le N+1$ sein müsste, was aber ausgeschlossen
+ist, weil ja schon $|vxy|\le N$ ist.
+\item
+Der Widerspruch im letzten Schritt zeigt, dass die Annahme,
+$L$ sei kontextfrei, nicht haltbar ist, und dass daher $L$ nicht
+kontextfrei sein kann.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+Standard-Pumping-Lemma-Beweis.
+Annahme ({\bf A}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+Wort wählen unter Verwendung von $N$ ({\bf W}) 1 Punkt,
+Unterteilung des Wortes ({\bf U}) 1 Punkt,
+Widerspruch beim Pumpen mit Begründung ({\bf P}) 1 Punkt,
+Folgerung ({\bf F}) 1 Punkt.
+\end{bewertung}

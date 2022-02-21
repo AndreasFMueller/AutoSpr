@@ -1,0 +1,110 @@
+Betrachten Sie die Turing-Maschine mit Bandalphabet
+$\Gamma=\{\texttt{0},\texttt{1},\blank\}$
+mit dem Zustandsdiagramm
+\[
+\entrymodifiers={++[o][F]}
+\xymatrix @+5mm {
+*+\txt{}
+	&*+\txt{}
+		&{q_1} \ar[r]^{.\to.,L}
+			&{q_2} \ar[d]^{.\to \texttt{0},R}
+\\
+*+\txt{} \ar[r]
+	&{q_0} \ar[d]_{\blank\to\blank,L}
+		\ar[ur]^{\texttt{0}\to\texttt{0},L}
+		\ar[dr]^{\texttt{1}\to\texttt{0},L}
+		&{q_6} \ar[l]_{.\to .,R}
+			&{q_5} \ar[l]_{.\to .,R}
+\\
+*+\txt{}
+	&{q_7} \ar[d]_{.\to\blank,L}
+		&{q_3} \ar[r]_{.\to.,L}
+			&{q_4} \ar[u]_{.\to \texttt{1},R}
+\\
+*+\txt{}
+	&{q_8} \ar[r]^{.\to\blank,L}
+		&*++[o][F=]{q_{\text{accept}}}
+			&*++[o][F=]{q_{\text{reject}}}
+}
+\]
+Punkte in den Übergangsregeln bedeuten, dass der Übergang unabhängig
+vom aktuellen Bandzeichen erfolgt (Punkt links vom Pfeil $\to$) 
+und das aktuell Bandzeichen nicht überschrieben wird (Punkt rechts vom
+Pfeil).
+\begin{teilaufgaben}
+\item
+Wie verarbeitet die Maschine das leere Wort $\varepsilon$?
+\item
+Wie verarbeitet die Maschine das Inputwort \texttt{01}?
+\item
+Was tut die Maschine für ein beliebiges Wort?
+\item
+Wo steht der Schreib-/Lesekopf am Ende der Berechnung?
+\item
+Wieviele Schritte braucht die Maschine, bis sie anhält?
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Für das leere Wort ist der erste Übergang $q_0\to q_7$. 
+Da aber links von der Ausgangsposition nur Lehrzeichen auf dem Band
+stehen, bewirken die Übergänge nichts ausser dass am Ende der Kopf
+drei Zeichen weiter links stehen.
+\item
+Die Verarbeitung des Wortes \texttt{001} ändert den Bandinhalt wie folgt.
+Die aktuelle Kopfposition ist durch rote Zeichen angedeutet.
+\begin{center}
+\def\R{\color{red}}
+\begin{tabular}{>{$}c<{$}|
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}}
+\\
+q_0              &\blank&\blank    &\blank    &\R\texttt{0}&\texttt{1}&\blank\\
+q_1              &\blank&\blank    &\R\blank    &\texttt{0}&\texttt{1}&\blank\\
+q_2              &\blank&\R\blank    &\blank    &\texttt{0}&\texttt{1}&\blank\\
+q_5              &\blank&\texttt{0}&\R\blank    &\texttt{0}&\texttt{1}&\blank\\
+q_6              &\blank&\texttt{0}&\blank    &\R\texttt{0}&\texttt{1}&\blank\\
+q_0              &\blank&\texttt{0}&\blank    &\texttt{0}&\R\texttt{1}&\blank\\
+q_3              &\blank&\texttt{0}&\blank    &\R\texttt{0}&\texttt{1}&\blank\\
+q_4              &\blank&\texttt{0}&\R\blank    &\texttt{0}&\texttt{1}&\blank\\
+q_6              &\blank&\texttt{0}&\texttt{1}&\R\texttt{0}&\texttt{1}&\blank\\
+q_5              &\blank&\texttt{0}&\texttt{1}&\texttt{0}&\R\texttt{1}&\blank\\
+q_0              &\blank&\texttt{0}&\texttt{1}&\texttt{0}&\texttt{1}&\R\blank\\
+q_7              &\blank&\texttt{0}&\texttt{1}&\texttt{0}&\R\texttt{1}&\blank\\
+q_8              &\blank&\texttt{0}&\texttt{1}&\R\texttt{0}&\blank    &\blank\\
+q_{\text{accept}}&\blank&\texttt{0}&\R\texttt{1}&\blank    &\blank    &\blank\\
+\end{tabular}
+\end{center}
+\item
+Die Maschine kopiert das Inputwort um zwei Zellen nach links.
+\item
+Am Ende der Berechnung steht der Schreibe-/Lese-Kopf auf dem letzten Zeichen
+des Wortes.
+\item
+Für jedes Zeichen durchläuft die Maschine entweder die Zustände
+$a_0\to q_1\to q_2\to q_5\to q_6\to q_0$, falls das Zeichen \texttt{0} ist,
+oder die Zustände
+$a_0\to q_3\to q_4\to q_5\to q_6\to q_0$, falls das Zeichen \texttt{1} ist.
+In jedem Fall werden genau 5 Zustandsübergänge ausgeführt.
+Am Ende des Wortes werden die Übergänge 
+$q_0\to q_7\to q_8\to q_{\text{reject}}$ ausgeführt, dies sind 3 Übergänge.
+Insgesamt werden daher genau $5\cdot|w|+3$ Schritte durchgeführt werden.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item 1 Punkt ({\bf A})
+\item 1 Punkt ({\bf B})
+\item 1 Punkt ({\bf C})
+\item 1 Punkt ({\bf D})
+\item 2 Punkte ({\bf E})
+\end{teilaufgaben}
+\end{bewertung}
+

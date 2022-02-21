@@ -1,0 +1,43 @@
+In einem Textbearbeitungssystem werden Fussnoten durch zwei spezielle
+Zeichen codiert: das eine Zeichen, symbolisch als \texttt{L} dargestellt,
+zeigt wo im Text auf die Fussnote verwiesen werden soll, während das
+andere Zeichen, symbolisch als $\texttt{A}$ dargestellt, den eigentlichen
+Fussnoteninhalt markiert.
+Dabei soll es möglich sein, Fussnoten nicht nur am Fuss einer Seite, sondern
+auf Wunsch auch am Ende eines Kapitels oder sonst irgendwo im Text zu
+platzieren.
+Ist es möglich, mit einem regulären Ausdruck zu testen, ob zu jedem 
+\texttt{L} auch genau ein \texttt{A} vorhanden ist?
+
+
+\begin{loesung}
+Nein, denn dies würde bedeuten, dass die Sprache
+\[
+L = \{w\in\Sigma^*\;|\; |w|_{\texttt{L}} = |w|_{\texttt{A}}\}
+\]
+regulär ist, was man mit dem Pumping Lemma widerlegen kann.
+\begin{enumerate}
+\item Annahme: $L$ ist regulär
+\item Nach dem Pumping Lemma gibt es zu $L$ die Pumping Length $N$
+\item Wähle das Wort $w=\texttt{L}^N\texttt{A}^N$.
+\item Nach dem Pumping Lemma lässt sich das Wort $w$ aufteilen in drei Teile
+$w=xyz$ mit den Eigenschaften $|xy|\le N$ und $|y|\ge 1$ derart dass
+alle aufgepumpten Versionen $xy^kz\in L$.
+\item Der Teil $y$ enthält nur die Zeichen \texttt{L}, beim Pumpen
+ändert also die Anzahl dieser Zeichen, nicht aber die Anzahl der Zeichen
+\texttt{A}.
+Insbesondere sind die gepumpten Wörter nicht mehr in $L$.
+\item Der Widerspruch zeigt, dass die Annahme, $L$ sei regulär, nicht
+haltbar ist, $L$ ist also nicht regulär.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+Verwendung des Pumping Lemmas, Annahme $L$ regulär ({\bf PL}) 1 Punkt,
+Puming Length ({\bf N}) 1 Punkt,
+Wahl eines Wortes ({\bf W}) 1 Punkt,
+Aufteilung des Wortes ({\bf A}) 1 Punkt,
+Widerspruch beim Pumpen ({\bf P}) 1 Punkt,
+Folgerung $L$ regulär ({\bf R}) 1 Punkt.
+\end{bewertung}

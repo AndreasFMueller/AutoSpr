@@ -1,0 +1,18 @@
+Nach der heutigen Vorlesung musste ich natürlich verifizieren,
+dass die Regex-Engine von C# besser sein muss, als jene in Java.
+Zu meinem Schrecken musste ich nach Testen jedoch feststellen,
+dass dies nicht der Fall ist.
+Auch C# leidet wohl unter "Feature-itis" 😨 - immerhin verspricht
+.NET 5 besserung.
+
+Vorbedingung:
+
+Lokal Installiertes .NET Core SDK
+Verwendung:
+
+dotnet run true    - Mit Option 'Compiled', etwa vier mal schneller,
+                     aber immer noch langsam
+dotnet run false   - Ohne Optionen, fast so langsam wie Python
+
+
+Pascal Honegger

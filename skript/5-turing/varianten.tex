@@ -11,18 +11,23 @@ nicht ändert, wenn an dem Modell kleine Veränderungen vorgenommen
 werden.
 
 Das Band einer Turingmaschine können wir als den RAM-Speicher
-eines modernen Computers interpretieren. Moderne Computer verwenden
+eines modernen Computers interpretieren.
+Moderne Computer verwenden
 jedoch verschiedene Wortlänge bei der Arbeit mit ihrem Speicher,
-was auch das Bandalphabet $\Gamma$ verändert. Ein Computer mit
+was auch das Bandalphabet $\Gamma$ verändert.
+Ein Computer mit
 Speicherwortlänge $l$ hat als Bandalphabet die Menge $\Gamma_l=[2^l]$.
 
 \index{von Neumann-Architektur}%
 \index{Harvard-Architektur}%
 Computer mit von Neumann-Architektur verwenden nur einen einzigen RAM-Speicher,
-der Programm und Daten enthält. Computer mit Harvard-Architektur
+der Programm und Daten enthält.
+Computer mit Harvard-Architektur
 verwenden dagegen zwei verschiedene Speicher: einen Programm-Speicher
-und einen Datenspeicher. Die beiden Speicher können sogar verschiedene
-Wortlänge haben. AVR-Microcontroller verwenden zum Beispiel
+und einen Datenspeicher.
+Die beiden Speicher können sogar verschiedene
+Wortlänge haben.
+AVR-Microcontroller verwenden zum Beispiel
 den Flashspeicher, den sie als 16 Bit breiten Speicher adressieren,
 während sie das RAM als 8 Bit breiten Speicher adressieren.
 ARM-Microcontroller dagegen betrachten RAM und Flash einfach als
@@ -41,9 +46,12 @@ erkannten werden.
 
 \begin{proof}[Beweis]
 Sei $L$ eine Sprache, die von der Turingmaschine $M$ mit $n$ Spuren
-erkannten wird. Das Bandalphabet ist $\Gamma$. Wir konstruieren aus
-$M$ eine neue Turingmaschine $M'$, welches nur noch eine Spur hat,
-jedoch als Bandalphabet die Menge $\Gamma^n$. Dadurch wird die ``Wortbreite''
+erkannten wird.
+Das Bandalphabet ist $\Gamma$.
+Wir konstruieren aus
+$M$ eine neue Turingmaschine $M'$, welche nur noch eine Spur hat,
+jedoch als Bandalphabet die Menge $\Gamma^n$.
+Dadurch wird die ``Wortbreite''
 des Bandes erhöht, es wird nur noch eine, breite Spur verwendet, um die
 gleiche Information unterzubringen.
 \end{proof}
@@ -69,18 +77,21 @@ werden.
 \begin{proof}[Beweis]
 Die Konfiguration einer Turingmaschine $M$ mit $n$ Bändern beinhaltet
 ausser dem Inhalt der zusätzlichen Bänder auch noch die Position
-des Schreib-/Lesekopfes jedes einzelnen Bandes. Um diese Information
+des Schreib-/Lesekopfes jedes einzelnen Bandes.
+Um diese Information
 zu codieren, konstruieren wir eine neue Turingmaschine $M'$ mit
-$2n$ Spuren. Spur $2i$ enthält dabei die Daten von Band $i$.
+$2n$ Spuren.
+Spur $2i$ enthält dabei die Daten von Band $i$.
 Auf Spur $2i-1$ verwenden wir eine spezielle Marke $\uparrow$, um die Position
-des Schreib-/Lesekopfes auf Band $i$ zu markieren. Somit lässt sich
+des Schreib-/Lesekopfes auf Band $i$ zu markieren.
+Somit lässt sich
 eine Turingmaschine mit $n$ Bändern auf einer Turingmaschine mit
 $2n$ Spuren und Bandalphabet $\Gamma\cup\{\uparrow\}$ codieren.
 Und nach Satz \ref{mehrspurigeturingmaschine} lässt sich eine solche wiederum
 auf einer Standardturingmaschine simulieren.
 \end{proof}
 Die geraden Spuren werden also dazu verwendet, die Position des
-Schreib-/Lese-Kopfes zu speichern, während die ungeraden Spuren
+Schreib-/Lesekopfes zu speichern, während die ungeraden Spuren
 die Daten enthalten:
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c|c|c|c}
@@ -98,7 +109,8 @@ die Daten enthalten:
 
 \subsection{Bandalphabet}
 Auch das Bandalphabet hat keinen Einfluss auf die Möglichkeiten einer
-Turingmaschine. Die Festplatte eines modernen Computers ist eigentlich
+Turingmaschine.
+Die Festplatte eines modernen Computers ist eigentlich
 ein ``Band'' mit Bandalphabet $\{\texttt{0},1,\blank\}$, erst zusätzliche
 Logik im Controller macht daraus einzelne Bytes, also ein grössers
 Bandalphabet.
@@ -109,10 +121,11 @@ mit Bandalphabet $\{\texttt{0},1,\blank\}$ simuliert werden.
 \end{satz}
 
 \begin{proof}[Beweis]
-Sei also $M$ eine Turingmaschine mit Bandalphabet $\Gamma$ gegeben. Wir
-wollen daraus eine Turingmaschine $M'$ mit dem Alphabet
+Sei also $M$ eine Turingmaschine mit Bandalphabet $\Gamma$ gegeben.
+Wir wollen daraus eine Turingmaschine $M'$ mit dem Alphabet
 $\Gamma_0= \{\texttt{0},\texttt{1},\blank\}$ konstruieren, die dieselbe
-Sprache erkennt. Dazu müssen wir die Zeichen aus $\Gamma$ als
+Sprache erkennt.
+Dazu müssen wir die Zeichen aus $\Gamma$ als
 Bitfolgen codieren, eine beliebige injektive Abbildung
 \[
 e\colon\Gamma\to \Gamma_0^l
@@ -123,21 +136,24 @@ wir verlangen, dass $e(x)\in \{\texttt{0},\texttt{1}\}^l$, die Zeichen $\ne\blan
 also ausschliesslich mit $\texttt{0}$ und $\texttt{1}$ codiert werden, und
 $e(\blank)=(\blank,\dots,\blank)$.
 
-Mit der Codierung $e$ wird der Bandinhalt jetzt umcodiert. Der Inhalt
-$x$
+Mit der Codierung $e$ wird der Bandinhalt jetzt umcodiert.
+Der Inhalt $x$
 eines Feldes des Bandes von $M$ wird auf $l$ aufeinanderfolgende Felder
 des Bandes von $M'$ verteilt, die mit den einzelnen Komponenten
 von $e(x)$ gefüllt werden.
 
 In den folgenden Darstellungen verwenden wir der grösseren
 Übersichtlichkeit halber $\Gamma=\{\texttt{0},\texttt{1},2,3\}$, wobei eines der
-Zeichen die Rolle von $\blank$ übernimmt. Ausserdem ist $l=2$.
+Zeichen die Rolle von $\blank$ übernimmt.
+Ausserdem ist $l=2$.
 
 Jetzt müssen auch die Übergänge in $M$
 durch entsprechend erweiterte Konstruktionen in $M'$ ersetzt werden.
 In einem Zyklus müssen zunächst die nächsten $l$ Zeichen vom Band
-von $M'$ gelesen werden. Welches Zeichen dieser Bitfolge entspricht,
-muss in Zuständen von $M'$ festgehalten werden. Ausgehend vom Zustand
+von $M'$ gelesen werden.
+Welches Zeichen dieser Bitfolge entspricht,
+muss in Zuständen von $M'$ festgehalten werden.
+Ausgehend vom Zustand
 $q$ von $M$ kann zur Decodierung
 des Bandes folgender Automat verwendet werden, der $l$ Bits liest
 und den Kopf wieder auf den Anfang des Codewortes zurückfährt:
@@ -195,7 +211,8 @@ q\ar[r]^{a\to b,\text{R}}
 \]
 muss jetzt übersetzt werden in einen Übergang von $q_\text{accept}$ in einen
 Zwischenzustand, von dem aus das Codewort von $b$ geschrieben.
-wird. Wird $b$ als $b_1\dots b_l$ codiert, wird daraus also
+wird.
+Wird $b$ als $b_1\dots b_l$ codiert, wird daraus also
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix@C+1pc{
@@ -239,24 +256,30 @@ lässt.
 \caption{Schematische Darstellung eines Aufzählers.\label{turing-aufzaehler}}
 \end{figure}
 Unser bisheriges Konzept einer Turingmaschine hat keine Möglichkeit,
-Output zu produzieren. Solange die Turingmaschine arbeitet, wissen wir
+Output zu produzieren.
+Solange die Turingmaschine arbeitet, wissen wir
 nicht, welcher Teil des Bandinhaltes möglicherweise schon ``fertig''
-berechnet ist. Erst wenn sie angehalten hat, weil sie $q_{\text{accept}}$
+berechnet ist.
+Erst wenn sie angehalten hat, weil sie $q_{\text{accept}}$
 oder $q_{\text{reject}}$ erreicht hat, ist die Berechnung fertig.
 
 Für die Praxis wünschen wir uns jedoch auch eine Möglichkeit,
 die Maschine ohne Ende weiterlaufen zu lassen, wobei sie immer neue
-Resultate produziert. Zum Beispiel könnte so eine Maschine der Reihe
-nach alle Wörter einer Sprache aufzählen wollen. Zu diesem Zweck
+Resultate produziert.
+Zum Beispiel könnte so eine Maschine der Reihe
+nach alle Wörter einer Sprache aufzählen wollen.
+Zu diesem Zweck
 fügen wir der Turingmaschine einen Drucker hinzu
-(Abbildung~\ref{turing-aufzaehler}). Die Turingmaschine
+(Abbildung~\ref{turing-aufzaehler}).
+Die Turingmaschine
 kann jederzeit ein Wort auf den Drucker schreiben und dann
 weiterarbeiten.
 
 \begin{definition}
 \index{Aufzahler@Aufzähler}%
 Eine Turingmaschine mit einem Drucker, die auf einem leeren Band beginnt,
-heisst ein Aufzähler. Die von einem Aufzähler auf dem Drucker ausgegebene
+heisst ein Aufzähler.
+Die von einem Aufzähler auf dem Drucker ausgegebenen
 Wörter bilden eine Sprache, die vom Aufzähler aufgezählte Sprache.
 \end{definition}
 
@@ -270,16 +293,19 @@ von einem Aufzähler aufgezählt wird.\end{satz}
 
 \begin{proof}[Beweis]
 Da die Äquivalenz der beiden Modelle zu zeigen ist, sind zwei Implikationen
-zu beweisen. Einerseits muss gezeigt werden, dass die von einem
+zu beweisen.
+Einerseits muss gezeigt werden, dass die von einem
 Aufzähler aufgezählte Sprache auch von einer Turingmaschine
 erkannt werden kann, andererseits muss zu einer Turingmaschine, die
 die Sprache erkennt, ein Aufzähler konstruiert werden, der die Sprache
 aufzählt.
 
-Sei als $A$ ein Aufzähler. Wir konstruieren eine Turingmaschine $M$, die
+Sei also $A$ ein Aufzähler.
+Wir konstruieren eine Turingmaschine $M$, die
 zum Inputwort $w$ folgenden Algorithmus implementiert.
 \begin{compactenum}
-\item Lasse $A$ laufen. Jedesmal, wenn $A$ ein Wort auf den Drucker schreibt,
+\item Lasse $A$ laufen.
+Jedesmal, wenn $A$ ein Wort auf den Drucker schreibt,
 vergleiche das Wort mit $w$.
 \item Falls das Wort mit $w$ übereinstimmt, gehe in den Zustand
 $q_{\text{accept}}$.
@@ -298,9 +324,11 @@ Sei also $s_1,s_2,s_3,\dots$ eine Liste aller Wörter von $\Sigma^*$.
 
 Beim Testen der Wörter mit $M$
 haben wir die Schwierigkeit, dass $M$ auf einem Inputwort
-möglicherweise nicht anhält. Wir müssen also mit einem Trick
-simulieren, dass unsere Algorithmus nicht in einer ``Endlosschleife''
-in $M$ stecken bleibt. Wir lassen $M$ daher nur jeweils für einige
+möglicherweise nicht anhält.
+Wir müssen also mit einem Trick
+simulieren, dass unser Algorithmus nicht in einer ``Endlosschleife''
+in $M$ stecken bleibt.
+Wir lassen $M$ daher nur jeweils für einige
 Schritte laufen.
 Genauer:
 \begin{compactenum}
@@ -310,7 +338,7 @@ laufen.
 \item Falls $M$ das Wort $s_i$ akzeptiert, schreibe es auf den Drucker.
 \end{compactenum}
 Dieser Algorithmus verhindert, dass $M$ in eine ``Endlosschleife''
-gerät, und druckt alle Wörter aus, von der Turingmaschine erkannt
+gerät, und druckt alle Wörter aus, die von der Turingmaschine erkannt
 werden, sogar unendlich oft.
 \end{proof}
 
@@ -319,7 +347,8 @@ werden, sogar unendlich oft.
 Sowohl bei endlichen Automaten wie auch bei Stackautomaten war
 Nichtdeterminismus ein Konzept, welches die Formulierung eines
 Automaten wesentlich vereinfachen konnte, ohne die Möglichkeiten
-zu verändern. Die einzige Änderung in der Definition ist die
+zu verändern.
+Die einzige Änderung in der Definition ist die
 Definition von $\delta$, welche nicht mehr Werte in
 $Q\times \Gamma\times\{\text{L},\text{R}\}$ annimmt, sondern
 in der Potenzmenge:
@@ -354,13 +383,16 @@ Wir dürfen also die Maschine immer nur einige Schritte laufen lassen,
 und müssen dann die anderen Wege durchprobieren.
 
 Wir konstruieren jetzt eine Turingmaschine mit drei Bändern, die die
-nichtdeterministische Turingmaschine simuliert. Das erste Band
-enthält das Input-Wort $w$.
-Das zweite Band dient als Arbeitsband für die Maschine $M$. Das
+nichtdeterministische Turingmaschine simuliert.
+Das erste Band enthält das Input-Wort $w$.
+Das zweite Band dient als Arbeitsband für die Maschine $M$.
+Das
 dritte Band hat Bandalphabet $S=Q\times \Gamma\times\{\text{L},\text{M}\}$
 und speichert die nicht deterministischen Auswahlen aus $\delta(q,a)$,
-die  in jedem Schritt nötig sein können. Eine Folge von Auswahlen
-ist ein String aus $S^*$. Wir wissen bereits, dass die Strings aus $S^*$
+die  in jedem Schritt nötig sein können.
+Eine Folge von Auswahlen
+ist ein String aus $S^*$.
+Wir wissen bereits, dass die Strings aus $S^*$
 aufgezählt werden können.
 
 Auf dieser Maschine führen
@@ -378,7 +410,8 @@ Feld auf Band 3.
 \end{compactenum}
 Dieser Algorithmus probiert nacheinander alle möglichen Berechnungswege
 durch, lässt $M$ aber immer nur eine beschränkte Anzahl Schritte lang
-rechnen. Falls $w$ akzeptiert werden kann, wir der dazu nötige Berechnungsweg
+rechnen.
+Falls $w$ akzeptiert werden kann, wir der dazu nötige Berechnungsweg
 irgendwann auf Band 3 auftauchen, und in entsprechend vielen Schritten wird
 das Wort akzeptiert werden.
 \end{proof}
@@ -406,10 +439,13 @@ Turingmaschine entschieden wird.
 \end{satz}
 
 Nichtdeterminismus ändert also die erkennbaren oder entscheidbaren Sprachen
-nicht. Doch der Algorithmus lässt bereits vermuten, dass die Simulation
+nicht.
+Doch der Algorithmus lässt bereits vermuten, dass die Simulation
 einer nichtdeterministischen Turingmaschine auf einer deterministischen
-Maschine sehr zeitaufwendig ist. Wenn man also eine Performance-Vorgabe
+Maschine sehr zeitaufwendig ist.
+Wenn man also eine Performance-Vorgabe
 macht, kann die Menge der von einer deterministischen Turingmaschine
-erkennbaren Sprachen deutlich kleiner sein. Dies wird uns im Kapitel
+erkennbaren Sprachen deutlich kleiner sein.
+Dies wird uns im Kapitel
 \ref{chapter-komplexitaet} beschäftigen.
 

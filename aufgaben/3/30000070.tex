@@ -1,0 +1,69 @@
+\begin{teilaufgaben}
+\item
+In einem Regex-Dialekt bezeichnet das Metazeichen \texttt{\textbackslash{}b}
+eine Wortgrenze.
+Auf was für Zeichenketten passt der reguläre Ausdruck
+\texttt{\textbackslash{}bb[ou]y\textbackslash{}b}
+\item
+Im gleichen Dialekt wird nach Zeichenketten gesucht, die auf den Ausdruck
+\begin{verbatim}
+\b[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,6}\b
+\end{verbatim}
+Was für Zeichenketten werden gefunden?
+\item
+In einem Konfigurationsfile für einen Apache-Webserver wird die folgende
+Direktive verwendet:
+\begin{verbatim}
+RewriteCond %{REMOTE_ADDR} 192\.168\.\d\d.*
+\end{verbatim}
+Auf welche IP-Adressen passt der Ausdruck?
+\item
+In einem Textfile stehen zeilenweise Informationen über Flughäfen bestehend
+aus Stadt, Kurzzeichen (IATA airport code, drei Grossbuchsatben) und Land
+im Format:
+\begin{verbatim}
+Zurich (ZRH) Switzerland
+San Francisco (SFO) USA
+Sydney (SYD) Australia
+Auckland (AKL) New Zealand
+\end{verbatim}
+Ausserdem gibt es Zeilen, die nicht auf dieses Format passen.
+Mit einem regulären Ausdruck soll nun der Teil vor der Kennung extrahiert
+werden. 
+Geben Sie einen regulären Ausdruck an, der genau auf so strukturierte
+Zeilen passt.
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Zeichenketten, die das \texttt{boy} oder \texttt{buy} als
+alleinstehendes Wort enhalten.
+\item
+Dieser Ausdruck findet gross geschriebene Email-Adressen.
+Der Top-Level-Domain darf allerdings höchstens 6 Zeichen enthalten,
+was für viele TLDs nicht funktioniert, zum Beispiel für \texttt{.university}.
+\item
+Auf diesen Ausdruck passen auf die Klasse-C Adressen mit Netznummern
+zwischen 192.168.0 und 192.168.99.
+Man beachte, dass führende Nullen in IP-Adressen erlaubt sind.
+\item
+Der Ausdruck muss sicherstellen, dass vor und nach der Klammer Blanks stehen
+und dass in der Klammer genau drei Grossbuchstaben stehen.
+Stadtname und Land dürfen Leerzeichen enthalten:
+\verbatimainput{air.txt}
+Die Klammern \texttt{[A-Za-z]} stellen sicher, dass Strasse und Land
+mindesstens ein Zeichen enthalten.
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item ({\bf A}) 1 Punkt
+\item ({\bf B}) 2 Punkte
+\item ({\bf C}) 1 Punkt
+\item ({\bf D}) 2 Punkte
+\end{teilaufgaben}
+\end{bewertung}
+
+

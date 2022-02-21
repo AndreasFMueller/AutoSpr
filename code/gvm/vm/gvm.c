@@ -19,6 +19,9 @@ int     yywrap() {
 	return 1;
 }
 
+extern int	yyparse();
+extern int	yylex();
+
 /* initialize the virtual machine structure */
 gvm_t	gvm = {
 	.nnodes = 0,

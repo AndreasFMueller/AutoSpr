@@ -1,0 +1,46 @@
+Die COVID-19 Pandemie verlangt von Läden Sicherheitsmassnahmen, die
+sicherstellen sollen, dass die Kunden in sicheren Abständen verbleiben.
+Ein Einkaufszentrum entscheidet daher, dass ein Einbahnbetrieb eingeführt werden soll.
+Die Marketing-Abteilung legt fest, in welcher Richtung die einzelnen
+Gänge zwischen den Gestellen durchlaufen werden können sollen.
+Es soll nämlich sichergestellt werden, dass die Kunden immer noch 
+in der ``richtigen'' Reihenfolge mit überflüssiger Werbung zu
+genauso überflüssigen Spontankäufen verleitet werden sollen.
+Schliesslich will der Sicherheitsverantwortliche wissen, ob es möglich
+ist, an einigen
+Kreuzungsstellen Desinfektionsstationen aufzustellen so,
+dass jeder Kunde, der sich auf einem geschlossenen Weg durch das
+Einkaufszentrum bewegt, mindestens einmal an einer Desinfektionsstation
+vorbeikommt.
+Dabei dürfen nicht mehr Desinfektionsstationen verwendet werden, als
+das vorgegebene Budget erlaubt.
+Dies stürtzt die Planer in eine Krise, auch nach stundenlangem
+Probieren können Sie keine definitive Antwort geben.
+Warum?
+
+\begin{loesung}
+Das beschriebene Problem ist das Problem \textsl{FEEDBACK-NODE-SET},
+wie die folgenden Eins-zu-eins-Reduktion zeigt:
+\begin{align*}
+\text{Graph} &\leftrightarrow \text{Plan des Einkaufszentrums}
+\\
+\text{Knoten}&\leftrightarrow \text{Kreuzungsstellen}
+\\
+\text{Kanten}&\leftrightarrow \text{Gänge}
+\\
+\text{Richtung}&\leftrightarrow \text{Einbahnrichtung in jedem Gang}
+\\
+\text{Anzahl $k$}&\leftrightarrow \text{Budget für Desinfektionsstationen}
+\\
+\text{Node set}&\leftrightarrow \text{Platzierung der Desinfektionsstationen}
+\end{align*}
+Das gestellte Problem ist also NP-vollständig, nach aktuellem Wissen gibt
+es daher keinen polynomiellen Algorithmus, der die Frage entscheiden könnte.
+\end{loesung}
+
+\begin{bewertung}
+NP-Vollständigkeit ({\bf N}) 1 Punkt,
+Reduktionsprinzip ({\bf R}) 1 Punkt,
+Vergleichsproblem wählen ({\bf V}) 1 Punkt,
+Mapping Knoten, Kanten, Stationen ({\bf M}) 3 Punkte.
+\end{bewertung}

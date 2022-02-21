@@ -7,8 +7,10 @@
 \index{Stackautomat}%
 \rhead{Stackautomaten}
 Kontextfreie Grammatiken erzeugen Sprachen, die von einem DEA nicht
-akzeptiert werden können. Es ist also eine erweiterte Maschine
-nötig, wenn sie solche Sprachen erkennen soll. Die Erweiterung muss
+akzeptiert werden können.
+Es ist also eine erweiterte Maschine
+nötig, wenn sie solche Sprachen erkennen soll.
+Die Erweiterung muss
 den DEA mit einem Speicher ausstatten, der zum Beispiel erlaubt, 
 in der Sprache $\{0^n1^n\,\;|\; n\in\mathbb N\}$ die Anzahl der
 $0$ zu speichern, damit später die Anzahl der $1$
@@ -16,7 +18,8 @@ damit verglichen werden kann.
 
 Die einfachste Art von Speicher für diesen Zweck ist ein Stack:
 man legt die $0$ auf den Stack, und entfernt für jede $1$ eine 
-$0$. Wenn der Stack am Schluss leer ist, es ``aufgeht'', ist das
+$0$.
+Wenn der Stack am Schluss leer ist, es ``aufgeht'', ist das
 Wort akzeptabel.
 
 \subsection{Formale Definition}
@@ -52,13 +55,15 @@ Bezeichungen und Einschränkungen
 Die Elemente $Q$, $q_0$ und $F$ scheinen für sich genommen
 einen endlichen Automaten zu definieren, jedoch einen, der je nach
 dem Wert, der als drittes Argument der Übergangsfunktion
-übergeben wird, sich etwas anders verhält. Die Idee ist, dass
+übergeben wird, sich etwas anders verhält.
+Die Idee ist, dass
 dieses dritte Argument von einem Stack gelesen werden soll, der in
 der Definition nicht explizit ausgedrückt sein muss, da er
 sich für alle Stackautomaten gleich verhält: Man kann Zeichen
 aus $\Gamma$ dort hinschreiben, oder von dort lesen\footnote{Man könnte
 die Definition eines Stackautomaten auch als C++-Template mit
-sechs Template-Argumenten betrachten. Um den Stack zu
+sechs Template-Argumenten betrachten.
+Um den Stack zu
 implementieren, muss man nur wissen, was man darauf ablegen will,
 man muss also nur $\Gamma$ kennen.}.
 
@@ -71,7 +76,8 @@ Automaten gelegt haben, definieren wir Stackautomaten nur
 % XXX Idee: Zu den Stack-Operationen Bilder hinzufuegen
 \index{Graph!gerichteter!beschrifteter!eines Stackautomaten}%
 Auch zu einem Stackautomaten gibt es einen gerichteten beschrifteten
-Graphen. Die Übergangsfunktion legt jetzt zu jedem Zustand 
+Graphen.
+Die Übergangsfunktion legt jetzt zu jedem Zustand 
 fest, was für ein Zeichen verarbeitet wird, was für ein
 neuer Zustand erreicht wird, und wie sich der Stackinhalt
 verändert.
@@ -86,7 +92,8 @@ hinzugefügt.
 bedeutet, dass der Automat bei der Verarbeitung eines Zeichens $a$
 vom Zustand $p$ in den Zustand $q$ übergeht, wenn gleichzeitig
 ein Zeichen $b$ zuoberst auf dem Stack durch das Zeichen $c$
-ersetzt werden kann. Für Übergänge mit dem leeren Wort gilt:
+ersetzt werden kann.
+Für Übergänge mit dem leeren Wort gilt:
 \[
 \xymatrix{
 *++[o][F]{p}\ar[r]^{a,\varepsilon\to c}
@@ -115,17 +122,20 @@ muss.
 Um die Wörter der nicht reguläre Sprache
 $L=\{\texttt{0}^n\texttt{1}^n\;|\;n\in \mathbb N\}$
 zu erkennen, braucht man einen Zähler, mit dem man die Zahl der $\texttt{0}$
-mit der Zahl der $\texttt{1}$ vergleichen kann. In einem endlichen Automaten
+mit der Zahl der $\texttt{1}$ vergleichen kann.
+In einem endlichen Automaten
 gab es dafür keinen Platz, aber der Stack eines Stackautomaten kann
 diese Aufgabe übernehmen.
 
 Um zu erkennen, dass der Stack wieder leer ist, braucht man ein Zeichen,
-welches den Anfang des Stacks markiert. Das Stack-Alphabet muss also 
+welches den Anfang des Stacks markiert.
+Das Stack-Alphabet muss also 
 etwas grösser sein, wir fügen das Zeichen {\tt \$} hinzu, also
 $\Gamma=\{{\tt 0},{\tt 1},{\tt \$}\}$.
 Die Idee des konstruierten Stackautomaten ist den Stack als Ablage der
 verarbeiteten {\tt 0} zu verwenden, und anschliessend beim verarbeiten
-der  {\tt 1} die Nullen wieder vom Stack zu nehmen. Wenn alles ``aufgeht'',
+der  {\tt 1} die Nullen wieder vom Stack zu nehmen.
+Wenn alles ``aufgeht'',
 wurde ein Wort mit gleich vielen Nullen wie Einsen verarbeitet, also 
 ein Wort in $L$.
 \[
@@ -147,10 +157,12 @@ akzeptiert wird.
 
 \subsubsection{Die Sprache $L=\{a^ib^jc^k\;|\;i,j,k\in\mathbb N, i=j\vee i=k\}$}
 Auch in dieser Sprache muss man die $a$ auf den Stack legen, um sie
-zu zählen. Dann muss man sich nicht deterministisch entscheiden,
+zu zählen.
+Dann muss man sich nicht deterministisch entscheiden,
 ob man auf gleich viele $b$ oder auf gleich viele $c$ testen will,
 beides kann man nicht haben, da nach einem Test der Stack wieder leer
-ist. Als Alphabet verwenden wir daher wieder $\Gamma=\{a,b,c,{\tt\$}\}$.
+ist.
+Als Alphabet verwenden wir daher wieder $\Gamma=\{a,b,c,{\tt\$}\}$.
 Der Automat muss also zunächst das Zeichen {\tt\$} auf den Stack legen.
 Dann beginnt er entweder, die $b$ zu zählen, und die $c$ zu ignorieren,
 oder die $b$ zu ignorieren und dann die $c$ zu zählen.
@@ -202,11 +214,13 @@ dann gibt es einen Stackautomaten, der $L$ akzeptiert.
 
 \begin{proof}[Beweis]
 Die Grammatik erzeugt die Wörter dadurch, dass sie auf die Startvariable
-immer wieder Regeln aus $R$ anwendet. Diesen Prozess kann man auf dem
-Stack nachbilden. Zu Beginn legt man die Startvariable auf den Stack.
+immer wieder Regeln aus $R$ anwendet.
+Diesen Prozess kann man auf dem
+Stack nachbilden.
+Zu Beginn legt man die Startvariable auf den Stack.
 Die Anwendung von Regeln besteht darin, eine Variable vom Stack zu nehmen,
 und stattdessen die Zeichen auf der rechten Seite der Regel
-auf den Stack zu legen. 
+auf den Stack zu legen.
 
 Als Stackalphabet verwenden wir $\Gamma = V\cup \Sigma \cup \{{\tt \$}\}$.
 Zu Beginn wird das Symbol {\tt\$} auf den Stack gelegt, am Schluss wird 
@@ -224,8 +238,10 @@ es wieder entfernt, es sind also insgesamt vier Zustände erforderlich:
 Jetzt müssen im Zustand $R$ noch Übergänge hinzugefügt werden, mit denen
 die Regeln abgebildet werden.
 Dazu dürfen wir annehmen, dass die Grammatik bereits in Chomsky Normalform
-ist. Wir müssen also nur noch für Regeln der Form $A\to BC$ und $A\to a$
-in Übergänge abbilden. Die Regel $A\to a$ ersetzt die Variable $A$
+ist.
+Wir müssen also nur noch für Regeln der Form $A\to BC$ und $A\to a$
+in Übergänge abbilden.
+Die Regel $A\to a$ ersetzt die Variable $A$
 durch das Terminalsymbol $a$, das erreicht man mit dem Übergang
 \[
 \entrymodifiers={++[o][F]}
@@ -244,7 +260,8 @@ R\ar@/^/[r]^{\varepsilon,A\to C}
 \]
 Sobald auf dem Stack ein Terminalsymbol liegt, kann dieses mit
 den Regeln der Grammatik nicht mehr verarbeitet werden, muss 
-aber auf das nächste Zeichen des Eingabewortes passen. Die Regel
+aber auf das nächste Zeichen des Eingabewortes passen.
+Die Regel
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -272,11 +289,13 @@ Wörter, die von der Grammatik erzeugt werden.
 \end{proof}
 
 Wir könnten diesen Beweis mit folgender Notation noch etwas
-prägnanter formulieren. Die Regeln $A\to BC$ werden dadurch abgebildet,
+prägnanter formulieren.
+Die Regeln $A\to BC$ werden dadurch abgebildet,
 dass ein zusätzlicher Zustand hinzugefügt wird, um in zwei Schritten
 die Variable $A$ vom Stack zu entfernen und stattdessen die zwei Variablen
-$BC$ dort abzulegen. Man möchte also eigentlich die Operatione
-$\varepsilon,A\to BC$ implementieren. Daher soll das Symbol
+$BC$ dort abzulegen.
+Man möchte also eigentlich die Operation $\varepsilon,A\to BC$ implementieren.
+Daher soll das Symbol
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -308,7 +327,8 @@ finde man einen Stackautomaten.
 Wir haben zwar nur die Übersetzung für Regeln einer Grammatik in
 Chomsky Normalform diskutiert, das Prinzip ist jedoch übertragbar.
 Wir stellen die Übergänge zusammen, die im Zustand $R$ anzufügen
-sind. Für die Verarbeitung der Terminalsymbole brauchen wir
+sind.
+Für die Verarbeitung der Terminalsymbole brauchen wir
 für jedes Terminalsymbol einen Übergang, der gleichzeitig
 ein Symbol vom Input wie vom Stack entfernt:
 \begin{equation}
@@ -342,7 +362,8 @@ in die drei Schritte
 \label{beispiel-0s1regel}
 \end{equation}
 Jetzt kann man den Ablauf des Akzeptierens des Wortes {\tt 0011}
-verfolgen. Offenbar ist die Ableitung 
+verfolgen.
+Offenbar ist die Ableitung 
 \[
 S
 \overset{\text{(\ref{beispiel-0s1regel})}}{\longrightarrow}
@@ -391,7 +412,8 @@ gleiche Sprache produziert: $L(P)=L(G)$.
 
 \begin{proof}[Beweis]
 Wir müssen eine Grammatik konstruieren, die die gleiche Sprache
-erzeugt. Der Stackautomat sollte möglichst nahe an dem in
+erzeugt.
+Der Stackautomat sollte möglichst nahe an dem in
 Hilfssatz \ref{hilfssatz_cfg_to_pushdown} konstruierten liegen, damit es
 möglichst einfach wird, sich von der Äquivalenz zu überzeugen.
 Wir führen daher an $P$ zunächst drei einfache Modifikationen
@@ -412,10 +434,13 @@ werden dann zu gewöhnlichen Zuständen degradiert:
 }		
 \]
 Der modifizierte Automat akzeptiert die gleichen Wörter wie $P$.
-\item Vor dem Akzeptieren wird der Stack geleert. Dazu wird ein zusätzliches
-Zeichen benötigt, welches das Ende des Stacks signalisiert. Es wird zu
+\item Vor dem Akzeptieren wird der Stack geleert.
+Dazu wird ein zusätzliches
+Zeichen benötigt, welches das Ende des Stacks signalisiert.
+Es wird zu
 Beginn auf den Stack geschrieben, und als letzter Übergang wieder
-vom Stack genommen. Der Startzustand $q_0$ wird also ersetzt durch einen neuen
+vom Stack genommen.
+Der Startzustand $q_0$ wird also ersetzt durch einen neuen
 Startzustand $q_0'$, mit dem einzigen Übergang 
 \[
 \entrymodifiers={++[o][F]}
@@ -435,7 +460,8 @@ den Übergang
 }
 \]
 \item Jeder Übergang legt ein Zeichen auf den Stack, oder entfernt
-eines, aber er macht nicht beides gleichzeitig. Dazu muss jeder Übergang,
+eines, aber er macht nicht beides gleichzeitig.
+Dazu muss jeder Übergang,
 der gleichzeitig ein Zeichen vom Stack nimmt und ein neues dort ablegt,
 mit Hilfe eines neuen Zustandes in zwei Übergänge aufgeteilt werden:
 \[
@@ -480,7 +506,8 @@ Wir setzen $A_{pq}$ mit der Menge der Wörter gleich, die
 auf diese Weise erzeugt werden können.
 
 Dazu müssen wir verstehen, wie die Wörter entstehen, die von $P$
-akzeptiert werden. Während der Berechnung, die zum Akzeptieren des
+akzeptiert werden.
+Während der Berechnung, die zum Akzeptieren des
 Wortes $w$ führt, wird zunächst
 irgendein Zeichen $x$ auf den Stack gelegt, und am Ende muss ein
 Zeichen entfernt werden, welches $x$ oder auch etwas Anderes sein kann.
@@ -493,8 +520,7 @@ Der Stack ist zwischen den Zuständen $r$ und $s$ unverändert, wir
 können ihn schematisch wie in Abbildung~\ref{stacknichtleer} darstellen.
 \begin{figure}
 \begin{center}
-%\includegraphics[width=0.85\hsize]{images/stack-2.pdf}
-\includegraphics{images/stack-2.pdf}
+\includegraphics{4-cfg/images/pda-stacknichtleer.pdf}
 \end{center}
 \caption{Übergänge, die den Stack in keinem Zwischenzustand leeren\label{stacknichtleer}}
 \end{figure}
@@ -502,15 +528,15 @@ können ihn schematisch wie in Abbildung~\ref{stacknichtleer} darstellen.
 Falls das am Schluss vom Stack entfernte Zeichen nicht das Gleiche ist,
 dann muss das $x$ irgendwann im Laufe der Berechnung entfernt worden
 sein, und das neue Zeichen $y$ muss auf dem Stack abgelegt worden
-sein. Es gibt also einen Zwischenzustand $r$, in dem der Stack
+sein.
+Es gibt also einen Zwischenzustand $r$, in dem der Stack
 wieder im selben Zustand wie zu
 Beginn der Berechnung ist, wir können dies durch
 $A_{pq}\to A_{pr}A_{rq}$ symbolisieren.
 Die Abbildung~\ref{stackleer} zeigt diese Situation schematisch.
 \begin{figure}
 \begin{center}
-%\includegraphics[width=0.85\hsize]{images/stack-1.pdf}
-\includegraphics{images/stack-1.pdf}
+\includegraphics{4-cfg/images/pda-stackleer.pdf}
 \end{center}
 \caption{Übergänge, die zwischenzeitlich den Stack leeren\label{stackleer}}
 \end{figure}
@@ -593,20 +619,23 @@ Ableitung $A_{pq}\overset{*}{\Rightarrow} x$ verwenden.
 Falls die Ableitung mit nur einem Schritt möglich ist, dann muss
 dazu eine Regel der Form $A_{pp}\to\varepsilon$ verwendet werden,
 denn dies sind die einzigen Regeln, die auf der rechten Seite
-keine Variablen enthalten. 
+keine Variablen enthalten.
 
 Nehmen wir also an, für Ableitungen der Länge $k$ sei bereits
 bekannt, dass sie den Automaten von einem Zustand mit leerem Stack
 in einen anderen Zustand mit leerem Stack überführen.
 
 Sei jetzt $A_{pq}\overset{*}{\Rightarrow}x$ eine Ableitung mit $k+1$
-Schritten. Der erste Schritt dieser Ableitung ist entweder eine
+Schritten.
+Der erste Schritt dieser Ableitung ist entweder eine
 Regel der Form $A_{pq}\to aA_{rs}b$ oder $A_{pq}\to A_{pr}A_{rq}$.
 Im ersten Fall sagt die Regel, dass $x=ayb$, wobei $y$ ein
 Wort ist, welches aus $A_{rs}$ in höchstens $k$ Schritten abgeleitet
-werden kann. Also kann nach Induktionsannahme $y$ den Automaten vom
+werden kann.
+Also kann nach Induktionsannahme $y$ den Automaten vom
 Zustand $r$ mit leerem Stack in den Zustand $s$ mit leerem Stack
-überführen. Der Übergang von $q$ nach $r$ mit Inputzeichen $a$
+überführen.
+Der Übergang von $q$ nach $r$ mit Inputzeichen $a$
 legt möglicherweise ein Zeichen $t$ auf den Stack, nach Konstruktion
 der Produktionsregeln wird dieses vom Übergang mit Inputzeichen $b$
 auch wieder entfernt, so dass der Stack wieder leer ist.
@@ -631,7 +660,7 @@ $A_{pq}\overset{*}{\Rightarrow} x$.
 
 \begin{proof}[Beweis von Hilfssatz \ref{implies_apq_generates_x}]
 Auch diesen Teil kann man mit vollständiger Induktion beweisen,
-diesmal über die Länge der Berechnung. 
+diesmal über die Länge der Berechnung.
 
 Die kürzeste mögliche Berechnung hat $0$ Schritte, d.\,h.~sie endet
 im gleichen Zustand, in dem sie begonnen hat.
@@ -646,12 +675,14 @@ $A_{pq}\overset{*}{\Rightarrow} x$.
 
 Sei jetzt also eine Berechnung mit Inputwort $x$
 mit $k+1$ Schritten gegeben, die $P$ vom Zustand $p$ in den Zustand $q$ 
-je mit leerem Stack führt. Entweder ist der Stack nur ganz zu
+je mit leerem Stack führt.
+Entweder ist der Stack nur ganz zu
 Beginn oder ganz am Schluss leer, oder er wird dazwischen einmal
 leer.
 
 Im ersten Fall wird ein Symbol $t$ beim ersten Schritt auf den Stack
-gelegt, und beim letzten Schritt entfernt. Es gibt also zwei Zustände
+gelegt, und beim letzten Schritt entfernt.
+Es gibt also zwei Zustände
 $r$ und $s$ und Übergänge
 \[
 \entrymodifiers={++[o][F]}
@@ -693,8 +724,8 @@ Wir möchten die Theorie dazu verwenden, für den Stackautomaten aus
 Abschnitt~\ref{stackbeispiele} für die Sprache
 $L=\{\texttt{0}^n\texttt{1}^n\;|\; n\ge 0\}$ eine Grammatik zu finden.
 Dazu wandeln wir zunächst den Stackautomaten in die Standardform um, die
-wir für die Konstruktion der Grammatik brauchen. Dazu müssen wir
-im vertikalen Übergang einen Zwischenzustand einfügen:
+wir für die Konstruktion der Grammatik brauchen.
+Dazu müssen wir im vertikalen Übergang einen Zwischenzustand einfügen:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -713,15 +744,16 @@ im vertikalen Übergang einen Zwischenzustand einfügen:
 		   \ar@(ur,dr)^{{\tt 1},{\tt 0}\to\varepsilon}
 }
 \]
-Die Startvariable der Grammatik ist $A_{q_0q_a}$. Die Übergänge, die
+Die Startvariable der Grammatik ist $A_{q_0q_a}$.
+Die Übergänge, die
 das Zeichen $\texttt{\$}$ behandeln, führen zu einer Regel
 \begin{equation}
 A_{q_0q_a}\to \varepsilon A_{q_1q_3}\varepsilon = A_{q_1q_3}.
 \label{q0qa}
 \end{equation}
 Wenn man im Zustand $q_1$ eine $\texttt{0}$ auf den Stack legt, dann
-muss man sie auch im Zustand $q_3$ wieder entfernen. Dieser Prozess
-gibt Anlass zu einer Regel
+muss man sie auch im Zustand $q_3$ wieder entfernen.
+Dieser Prozess gibt Anlass zu einer Regel
 \begin{equation}
 A_{q_1q_3}\to \texttt{0}\; A_{q_1q_3}\;\texttt{1}
 \label{q1q3}
@@ -742,8 +774,8 @@ A_{q_1q_3}&\to \varepsilon\tag{\ref{q2q2}}
 \end{align}
 Es werden nur noch zwei Variablen verwendet, aber die Startvariable
 wird immer in $A_{q_1q_3}$ umgewandelt, man kann sie also auch noch
-einsparen. Schreiben wir $S=A_{q_1q_3}$ bleibt somit als
-Grammatik
+einsparen.
+Schreiben wir $S=A_{q_1q_3}$ bleibt somit als Grammatik
 \begin{align}
 S&\to \texttt{0}\; S\; \texttt{1}\tag{\ref{q1q3}}\\
 S&\to\varepsilon,\tag{\ref{q2q2}}

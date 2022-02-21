@@ -61,12 +61,20 @@ public class regex {
 			String	r = s2 + s1;
 			System.out.print(prefix.substring(i));
 			System.out.print(s1);
+			long	current = System.currentTimeMillis();
 			if (match.matches(s1, r)) {
 				System.out.print(" matches ");
 			} else {
 				System.out.print(" doesn't match ");
 			}
-			System.out.println(r);
+			long	runtime = System.currentTimeMillis() - current;
+			System.out.print(r);
+			System.out.print(" ");
+			System.out.print(prefix.substring(i));
+			System.out.print(prefix.substring(i));
+			System.out.print(prefix.substring(i));
+			System.out.print(0.001 * runtime);
+			System.out.println();
 		}
 	}
 

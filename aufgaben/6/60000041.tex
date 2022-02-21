@@ -1,0 +1,47 @@
+Die Firma Leibacher liefert ihre Biber in einer Verpackung, die auf dem
+Deckel alle zyklischen Permutationen des Wortes \texttt{BIBER} zeigt
+(Abbildung~\ref{60000041:fig}).
+Die zyklischen Permutationen eines Wortes sind mit einem Computerprogramm
+leicht zu finden: Man bewegt wie in Abbildung~\ref{60000041:fig} 
+einen Buchstaben um den anderen vom Anfang des Wortes an sein Ende.
+Wir nennen eine Sprache {\em zyklisch invariant}, wenn sie mit jedem
+Wort auch alle seinen zyklischen Permutationen enthält.
+Ist es möglich, ein Programm zu schreiben, welches auf Programme
+angewendet werden kann, um herauszufinden,
+ob die akzeptierte Sprache zyklisch invariant ist, und welches immer
+anhält?
+\begin{figure}[h]
+\centering
+\includeagraphics[width=0.5\hsize]{biber2.jpg}
+\caption{Zyklisch invariante Sprache auf einer Biberverpackung
+\label{60000041:fig}}
+\end{figure}
+
+\begin{loesung}
+Die Eigenschaft, zyklisch invariant zu sein, ist eine nichttriviale
+Eigenschaft.
+Die Sprache auf der Schachtel in Abbildung~\ref{60000041:fig} ist
+zyklisch invariant, die Sprache bestehend nur aus dem Wort
+\texttt{BIBER} hat diese Eigenschaft nicht.
+Nach dem Satz von Rice kann nicht entschieden werden, ob die akzeptierte
+Sprache die Eigenschaft ``zyklisch invariant'' hat, ein Programm der 
+verlangten Art kann es also nicht geben.
+\end{loesung}
+
+\begin{diskussion}
+Man beachte, dass sich das ``anhält'' am Ende auf das zu schreibende
+Analyseprogramm bezieht, nicht auf die untersuchten Programme.
+Daher geht es nicht um die Frage, ob die untersuchten Programme
+anhalten, also das Halteproblem, sondern nur um die Frage, ob die
+untersuchten Programme zyklisch invariante Sprachen akzeptieren.
+\end{diskussion}
+
+\begin{bewertung}
+Satz von Rice ({\bf R}) 1 Punkt,
+Eigenschaft ({\bf E}) 1 Punkt,
+zwei Sprachen ({\bf Z}) 1 Punkt,
+Eigenschaft ist nicht trivial ({\bf T}) 1 Punkt,
+Schlussfolgerung nicht entscheidbar ({\bf N}) 2 Punkt.
+\end{bewertung}
+
+
