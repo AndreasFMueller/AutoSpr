@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <set>
+#include <map>
 #include <string>
 #include <cstdlib>
 #include <unistd.h>
@@ -13,6 +14,10 @@
 #include <locale>
 
 static bool	debug = false;
+
+typedef std::map<std::string, std::string>	texform_t;
+
+static texform_t	texforms;
 
 /**
  * class representing a thema entry
@@ -22,6 +27,7 @@ class entry {
 	int		_problem;
 	std::string	_thema;
 	std::string	_pretty;
+	std::string	_texform;
 	std::string	_label;
 public:
 	int	chapter() const { return _chapter; }
@@ -29,6 +35,7 @@ public:
 	const std::string&	label() const { return _label; }
 	const std::string&	thema() const { return _thema; }
 	const std::string&	pretty() const { return _pretty; }
+	const std::string&	texform() const { return _texform; }
 	entry(const std::string& line) {
 		std::string	s = line;
 		// get the chapter number
@@ -37,6 +44,10 @@ public:
 		s = s.substr(4);
 		size_t	offset = s.find('}');
 		_thema = s.substr(0, offset);
+		// get the texform
+		s = s.substr(offset + 2);
+		offset = s.find('}');
+		_texform = s.substr(0, offset);
 		// get the problem
 		s = s.substr(offset + 2);
 		offset = s.find('}');
@@ -49,8 +60,10 @@ public:
 		s = s.substr(offset + 2);
 		offset = s.find('}');
 		_label = s.substr(0, offset);
-		//std::cout << line << std::endl;
-		//std::cout << _thema << "|" << _chapter << "|" << _problem << std::endl;
+		if (debug) {
+			std::cout << line << std::endl;
+			std::cout << _thema << "|" << _chapter << "|" << _problem << std::endl;
+		}
 	}
 	bool	operator==(const entry& other) const {
 		if (_chapter != other._chapter) {
@@ -116,6 +129,7 @@ int	main(int argc, char *argv[]) {
 	std::ifstream	in(infilename, std::ios::binary | std::ios::in);
 
 	themaindex_t	theindex;
+	texform_t	texforms;
 
 	int	counter = 0;
 	while (in.good()) {
@@ -125,6 +139,7 @@ int	main(int argc, char *argv[]) {
 		try {
 			entry	e(l);
 			theindex.insert(e);
+			texforms.insert(std::make_pair(e.thema(), e.texform()));
 			counter++;
 		} catch (const std::exception& x) {
 		}
@@ -142,13 +157,16 @@ int	main(int argc, char *argv[]) {
 
 	themaindex_t::const_iterator	i;
 	std::string	thema;
+	std::string	texform;
 	for (i = theindex.begin(); i != theindex.end(); i++) {
 		if (thema != i->thema()) {
 			if (thema.size() != 0) {
 				out << "}" << std::endl;
 			}
 			thema = i->thema();
-			out << "\\themasection{" << thema << "}{";
+			texform = texforms.find(thema)->second;
+			out << "\\themasection{" << thema << "}";
+			out << "{" << texform << "}{";
 		} else {
 			out << ", ";
 		}

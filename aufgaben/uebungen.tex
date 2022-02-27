@@ -88,19 +88,30 @@
 %
 \newcommand{\closethemaindex}{\immediate\closeout\themaindex}
 %
-\def\themalink#1{\hyperref[thema:#1]{#1}}
-\def\thema#1{%
+\def\themalink#1#2{\hyperref[thema:#1]{#2}}
+\def\themaL#1#2{%
   \ifthenelse{\boolean{themastatus}}{%
-    \xappto{\themalist}{, \noexpand\themalink{#1}}
+    \xappto{\themalist}{, \noexpand\themalink{#1}{#2}}
   }{%
-    \xdef\themalist{\noexpand\themalink{#1}}
+    \xdef\themalist{\noexpand\themalink{#1}{#2}}
     \setboolean{themastatus}{true}
   }
   \immediate\write\themaindex%
-  {{\thechapter}{#1}{\arabic{problemcounter}}{\thechapter.\arabic{problemcounter}}{\currentaufgabe}}%
+  {{\thechapter}{#1}{#2}{\arabic{problemcounter}}{\thechapter.\arabic{problemcounter}}{\currentaufgabe}}%
 }
+\def\thema#1{\themaL{#1}{#1}}
+%\def\thema#1{%
+%  \ifthenelse{\boolean{themastatus}}{%
+%    \xappto{\themalist}{, \noexpand\themalink{#1}}
+%  }{%
+%    \xdef\themalist{\noexpand\themalink{#1}}
+%    \setboolean{themastatus}{true}
+%  }
+%  \immediate\write\themaindex%
+%  {{\thechapter}{#1}{\arabic{problemcounter}}{\thechapter.\arabic{problemcounter}}{\currentaufgabe}}%
+%}
 % Thema-Information anzeigen
-\def\themasection#1#2{ \item[#1]\label{thema:#1} #2 }
+\def\themasection#1#2{ \item[#2]\label{thema:#1}}
 \newcommand{\printthemata}{
   \IfFileExists{./thema.tex}{
     \chapter*{Aufgaben nach Themen}
