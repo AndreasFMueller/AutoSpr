@@ -1,0 +1,103 @@
+Finden Sie einen deterministischen endlichen Automaten, der
+die Sprache
+\[
+L
+=
+\{
+w = \{\texttt{0},\texttt{1}\}^*
+\;|\;
+|w|_{\texttt{0}}
+\not
+\equiv
+|w|_{\texttt{1}}
+\mod 5
+\}
+\]
+bestehend aus Wörtern, deren Anzahl von Nullen und Einsen verschiedenen 
+Rest bei Teilung durch fünf haben.
+
+\begin{loesung}
+Das Zustandsdiagramm 
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+
+\coordinate (O) at (0,0);
+\coordinate (A) at (2,0);
+\coordinate (B) at (4,0);
+\coordinate (C) at (6,0);
+\coordinate (D) at (8,0);
+\coordinate (E) at (10,0);
+
+\node at (A) {$q_0$};
+\node at (B) {$q_1$};
+\node at (C) {$q_2$};
+\node at (D) {$q_3$};
+\node at (E) {$q_4$};
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (O) -- (A);
+
+\draw (A) circle[radius=0.3];
+\draw (B) circle[radius=0.3];
+\draw (B) circle[radius=0.25];
+\draw (C) circle[radius=0.3];
+\draw (C) circle[radius=0.25];
+\draw (D) circle[radius=0.3];
+\draw (D) circle[radius=0.25];
+\draw (E) circle[radius=0.3];
+\draw (E) circle[radius=0.25];
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(A) to[out=30,in=150] (B);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(B) to[out=30,in=150] (C);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(C) to[out=30,in=150] (D);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(D) to[out=30,in=150] (E);
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(E) to[out=110,in=0] ($(E)+(-1.0,1.3)$)
+	--
+	($(A)+(1.0,1.3)$) to[out=180,in=70] (A);
+
+\node at ($0.5*(A)+0.5*(B)+(0,0.3)$) [above] {\texttt{0}};
+\node at ($0.5*(B)+0.5*(C)+(0,0.3)$) [above] {\texttt{0}};
+\node at ($0.5*(C)+0.5*(D)+(0,0.3)$) [above] {\texttt{0}};
+\node at ($0.5*(D)+0.5*(E)+(0,0.3)$) [above] {\texttt{0}};
+\node at ($(C)+(0,1.3)$) [above] {\texttt{0}};
+
+\draw[<-,shorten >= 0.3cm,shorten <= 0.3cm]
+	(A) to[out=-30,in=-150] (B);
+\draw[<-,shorten >= 0.3cm,shorten <= 0.3cm]
+	(B) to[out=-30,in=-150] (C);
+\draw[<-,shorten >= 0.3cm,shorten <= 0.3cm]
+	(C) to[out=-30,in=-150] (D);
+\draw[<-,shorten >= 0.3cm,shorten <= 0.3cm]
+	(D) to[out=-30,in=-150] (E);
+
+\draw[<-,shorten >= 0.3cm,shorten <= 0.3cm]
+	(E) to[out=-110,in=0] ($(E)-(1.0,1.3)$)
+	--
+	($(A)-(-1.0,1.3)$) to[out=180,in=-70] (A);
+
+\node at ($0.5*(A)+0.5*(B)-(0,0.3)$) [below] {\texttt{1}};
+\node at ($0.5*(B)+0.5*(C)-(0,0.3)$) [below] {\texttt{1}};
+\node at ($0.5*(C)+0.5*(D)-(0,0.3)$) [below] {\texttt{1}};
+\node at ($0.5*(D)+0.5*(E)-(0,0.3)$) [below] {\texttt{1}};
+\node at ($(C)-(0,1.3)$) [below] {\texttt{1}};
+
+\end{tikzpicture}
+\end{center}
+beschreibt diesen Automaten.
+Der Zustand $q_k$ codiert den Fünferrest $k$ der Differenz
+$|w|_{\texttt{0}}-|w|_{\texttt{1}}$.
+\end{loesung}
+
+\begin{bewertung}
+Korrekte Idee für ein Konstruktionsprinzip ({\bf I}) 1 Punkt,
+Startzustand ({\bf S}) 1 Punkt,
+Akzeptierzustände ({\bf A}) 1 Punkt,
+Automat ist deterministisch ({\bf D}) 1 Punkt,
+Reihenfolge von \texttt{0} und \texttt{1} spielt keine Rolle ({\bf R}) 1 Punkt,
+Automat akzeptiert genau die Sprache $L$ ({\bf L}) 1 Punkt.
+\end{bewertung}
