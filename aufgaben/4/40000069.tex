@@ -1,0 +1,64 @@
+Ist die Sprache
+\[
+L=
+\{
+\texttt{0}^i \texttt{1}^j\texttt{0}^k\;|\; j> i>0\wedge k>0\}
+\}
+\]
+kontextfrei?
+Wenn ja, geben Sie eine kontextfreie Grammatik in Chomsky-Normalform dafür an.
+
+\thema{kontextfrei}
+\thema{kontextfreie Grammatik}
+\thema{Chomsky-Normalform}
+
+\begin{loesung}
+Die Sprache ist kontextfrei.
+Die Grammatik muss Wörter der Form $\texttt{0}^i\texttt{1}^i$, $i>0$, mit
+Wörtern der Form $\texttt{1}^l\texttt{0}^k$, $l>0\wedge k>0$, verketten.
+Für Wörter der ersten Art haben wir die Grammatik
+\begin{align*}
+A&\to \texttt{0}A\texttt{1} \;|\; \texttt{01},
+\end{align*}
+für die Wörter der zweiten Art können wir
+\begin{align*}
+B&\to \texttt{1} B \;|\; B\texttt{0} \;|\; \texttt{10}
+\end{align*}
+verwenden.
+Damit finden wir die Grammatik
+\begin{align*}
+S&\to AB
+\\
+A&\to \texttt{0}A\texttt{1} \;|\; \texttt{01}
+\\ 
+B&\to \texttt{1}B \;|\; B\texttt{0} \;|\; \texttt{10}
+\end{align*}
+Diese Grammatik hat nicht Chomsky-Normalform.
+Aber ihre Startvariable kommt auf der rechten Seite nicht vor und
+sie hat weder $\varepsilon$-Regeln noch Unit Rules.
+Es bleibt daher nur noch, die Terminalsymbole und die Dreierregeln
+zu ``flicken'':
+\begin{align*}
+S&\to AB
+\\
+A&\to NU \;|\; NE
+\\
+U&\to AE
+\\ 
+B&\to EB \;|\; BN \;|\; EN
+\\
+N&\to \texttt{0}
+\\
+E&\to \texttt{1}
+\end{align*}
+Damit hat die Grammatik Chomsky-Normalform.
+\end{loesung}
+
+\begin{bewertung}
+Grammatik (3 Punkte) korrekt formuliert ({\bf G}) 1 Punkt,
+Mehr \texttt{1} wie \texttt{0} ({\bf A}) 1 Punkt,
+Mindestens eine \texttt{0} im zweiten Teil ({\bf N}) 1 Punkt.
+CNF Umwandlung (3 Punkte): neue Startvariable ({\bf S}) 1 Punkt,
+unit rules ({\bf U}) 1 Punkt,
+Dreierregeln und Terminalsymbole ({\bf T}) 1 Punkt.
+\end{bewertung}
