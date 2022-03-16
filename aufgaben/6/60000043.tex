@@ -1,0 +1,25 @@
+Endlosschleifen gehören zu den immer wieder vorkommenden Programmierfehlern.
+Da ein Java-Compiler den vollständigen Überblick darüber hat, was in einem
+Java-Programm passiert, könnte man versuchen, die Änderungen, die der Code
+an den Variablen vornimmt, zu verfolgen.
+Dadurch könnte man dem Compiler ein Feature hinzufügen, mit dem der
+Compiler mögliche Endlosschleifen erkennen kann.
+Ist dies möglich?
+
+\themaL{Turing-vollstandig}{Turing-vollständig}
+\thema{Halteproblem}
+\thema{Reduktion}
+
+\begin{loesung}
+Ein solcher Compiler wäre in der Lage, das Halteproblem für alle
+Programme zu lösen, die in dieser Sprache verfasst sind.
+Da Java Turing-vollständig ist, wäre damit das Halteproblem gelöst.
+Dies ist ein Widerspruch zum Haltetheorem.
+\end{loesung}
+
+\begin{bewertung}
+Bezug zum Halteproblem ({\bf H}) 2 Punkte,
+Nichtentscheidbarkeit des Halteproblems ({\bf E}) 2 Punkte,
+Turing-Vollständigkeit von Java ({\bf T}) 2 Punkte.
+\end{bewertung}
+

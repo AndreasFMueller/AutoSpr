@@ -1,0 +1,246 @@
+\def\ovoid{\bigcirc}
+Ein Binoxxo-Rätsel wird auf einem $n\times n$-Feld gespielt, welches
+vollständig mit den Symbolen $\times$ und $\ovoid$ gefüllt werden müssen.
+Dabei sind die folgenden Regelne inzuhalten:
+\begin{enumerate}
+\item In jeder Zeile und Spalte gibt es gleich viel $\times$ und $\ovoid$.
+\item Es dürfen nie mehr als zwei $\times$ oder $\ovoid$ nebeneinander oder
+untereinander stehen.
+\item Alle Zeilen und Spalten sind einzigartig.
+\end{enumerate}
+Einzelne Felder des Rätsels sind bereits mit $\times$ und $\ovoid$
+ausgefüllt.
+Hier ein Binoxxo-Rätsel (links) mit seiner Lösung (rechts):
+\begin{center}
+\begin{tikzpicture}[>=latex,thick,scale=0.5]
+
+\def\spielfeld{
+	\foreach \x in {-0.5,0.5,...,9.5}{
+		\draw[line width=0.6pt] (\x,-0.5) -- (\x,9.5);
+		\draw[line width=0.6pt] (-0.5,\x) -- (9.5,\x);
+	}
+	\draw[line width=1.5pt] (-0.5,-0.5) rectangle (9.5,9.5);
+}
+
+\def\kreuz#1#2{
+	\fill[color=#2] ($#1-(0.5,0.5)$) rectangle ($#1+(0.5,0.5)$);
+	\node at #1 {$\times$};
+}
+\def\kreis#1#2{
+	\fill[color=#2] ($#1-(0.5,0.5)$) rectangle ($#1+(0.5,0.5)$);
+	\node at #1 {$\ovoid$};
+}
+
+\def\vorgaben#1{
+	\kreuz{(5,0)}{#1}
+	\kreuz{(9,0)}{#1}
+
+	\kreis{(0,1)}{#1}
+	\kreis{(8,1)}{#1}
+
+	\kreis{(0,2)}{#1}
+	\kreis{(3,2)}{#1}
+	\kreuz{(6,2)}{#1}
+
+	\kreis{(2,3)}{#1}
+	\kreuz{(5,3)}{#1}
+
+	\kreuz{(4,4)}{#1}
+	\kreuz{(6,4)}{#1}
+	\kreuz{(9,4)}{#1}
+
+	\kreis{(1,5)}{#1}
+	\kreuz{(6,5)}{#1}
+	\kreis{(8,5)}{#1}
+
+	\kreuz{(0,6)}{#1}
+	\kreuz{(3,6)}{#1}
+
+	\kreuz{(3,7)}{#1}
+	\kreuz{(5,7)}{#1}
+	\kreis{(9,7)}{#1}
+
+	\kreuz{(4,8)}{#1}
+	\kreuz{(5,8)}{#1}
+
+	\kreuz{(8,9)}{#1}
+}
+
+\def\loesung{
+	\kreuz{(0,0)}{white}
+	\kreis{(1,0)}{white}
+	\kreuz{(2,0)}{white}
+	\kreis{(3,0)}{white}
+	\kreis{(4,0)}{white}
+	\kreuz{(5,0)}{white}
+	\kreis{(6,0)}{white}
+	\kreuz{(7,0)}{white}
+	\kreis{(8,0)}{white}
+	\kreuz{(9,0)}{white}
+
+	\kreis{(0,1)}{white}
+	\kreuz{(1,1)}{white}
+	\kreis{(2,1)}{white}
+	\kreuz{(3,1)}{white}
+	\kreuz{(4,1)}{white}
+	\kreis{(5,1)}{white}
+	\kreis{(6,1)}{white}
+	\kreuz{(7,1)}{white}
+	\kreis{(8,1)}{white}
+	\kreuz{(9,1)}{white}
+
+	\kreis{(0,2)}{white}
+	\kreuz{(1,2)}{white}
+	\kreuz{(2,2)}{white}
+	\kreis{(3,2)}{white}
+	\kreis{(4,2)}{white}
+	\kreuz{(5,2)}{white}
+	\kreuz{(6,2)}{white}
+	\kreis{(7,2)}{white}
+	\kreuz{(8,2)}{white}
+	\kreis{(9,2)}{white}
+
+	\kreuz{(0,3)}{white}
+	\kreis{(1,3)}{white}
+	\kreuz{(2,3)}{white}
+	\kreis{(3,3)}{white}
+	\kreuz{(4,3)}{white}
+	\kreis{(5,3)}{white}
+	\kreis{(6,3)}{white}
+	\kreuz{(7,3)}{white}
+	\kreuz{(8,3)}{white}
+	\kreis{(9,3)}{white}
+
+	\kreis{(0,4)}{white}
+	\kreuz{(1,4)}{white}
+	\kreis{(2,4)}{white}
+	\kreuz{(3,4)}{white}
+	\kreuz{(4,4)}{white}
+	\kreis{(5,4)}{white}
+	\kreuz{(6,4)}{white}
+	\kreis{(7,4)}{white}
+	\kreis{(8,4)}{white}
+	\kreuz{(9,4)}{white}
+
+	\kreuz{(0,5)}{white}
+	\kreis{(1,5)}{white}
+	\kreuz{(2,5)}{white}
+	\kreis{(3,5)}{white}
+	\kreis{(4,5)}{white}
+	\kreuz{(5,5)}{white}
+	\kreuz{(6,5)}{white}
+	\kreis{(7,5)}{white}
+	\kreis{(8,5)}{white}
+	\kreuz{(9,5)}{white}
+
+	\kreuz{(0,6)}{white}
+	\kreis{(1,6)}{white}
+	\kreis{(2,6)}{white}
+	\kreuz{(3,6)}{white}
+	\kreuz{(4,6)}{white}
+	\kreis{(5,6)}{white}
+	\kreis{(6,6)}{white}
+	\kreuz{(7,6)}{white}
+	\kreuz{(8,6)}{white}
+	\kreis{(9,6)}{white}
+
+	\kreis{(0,7)}{white}
+	\kreuz{(1,7)}{white}
+	\kreis{(2,7)}{white}
+	\kreuz{(3,7)}{white}
+	\kreis{(4,7)}{white}
+	\kreuz{(5,7)}{white}
+	\kreuz{(6,7)}{white}
+	\kreis{(7,7)}{white}
+	\kreuz{(8,7)}{white}
+	\kreis{(9,7)}{white}
+
+	\kreis{(0,8)}{white}
+	\kreis{(1,8)}{white}
+	\kreuz{(2,8)}{white}
+	\kreis{(3,8)}{white}
+	\kreuz{(4,8)}{white}
+	\kreuz{(5,8)}{white}
+	\kreis{(6,8)}{white}
+	\kreuz{(7,8)}{white}
+	\kreis{(8,8)}{white}
+	\kreuz{(9,8)}{white}
+
+	\kreuz{(0,9)}{white}
+	\kreuz{(1,9)}{white}
+	\kreis{(2,9)}{white}
+	\kreuz{(3,9)}{white}
+	\kreis{(4,9)}{white}
+	\kreis{(5,9)}{white}
+	\kreuz{(6,9)}{white}
+	\kreis{(7,9)}{white}
+	\kreuz{(8,9)}{white}
+	\kreis{(9,9)}{white}
+
+}
+
+\begin{scope}[xshift=-7cm]
+\vorgaben{white}
+\spielfeld
+\end{scope}
+
+\begin{scope}[xshift=7cm]
+\loesung
+\vorgaben{gray}
+\spielfeld
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
+Kann eine nichtdeterministische Turing-Maschine in polynomieller
+Zeit entscheiden, ob ein Binoxxo-Rätsel eine Lösung hat?
+
+\thema{NP}
+\thema{polynomieller Verifizierer}
+
+\begin{loesung}
+Die Frage ist sicher entscheidbar, denn man könnte alle $2^{n^2}$-Belegungen
+des Feldes mit $\times$ und $\ovoid$ ausprobieren und nachprüfen, ob die
+Regeln eingehalten werden.
+
+Um zu zeigen, dass eine nichtdeterministische Turing-Maschine diese
+Entscheidung in polynomieller Zeit fällen kann, konstruieren wir einen
+polynomiellen Verifizierer.
+Als Zertifikat wird die Lösung des Rätsels verlangt.
+Dann sind die Regeln zu überprüfen:
+\begin{center}
+\begin{tabular}{>{$}c<{$}|p{8cm}|>{$}c<{$}}
+\text{Regel}&Verifikation&\text{Laufzeit}\\
+\hline
+1
+&In jeder Zeile und Spalte die Zahl der $\times$ und $\ovoid$
+miteinander vergleichen
+&O(2n\cdot n) \\
+2
+&Abfolgen von mehr als zwei $\times$ oder $\ovoid$ in jeder
+Zeile oder Spalte detektieren
+&O(4n\cdot n)\\
+3&Jede Zeile mit jeder anderen Zeile vergleichen und jede Spalte
+einer Spalte mit jeder anderen Spalte vergleichen
+&O(2\cdot \frac{n(n-1)}{2}\cdot n)\\
+\hline
+ &Total&O(n^3)
+\end{tabular}
+\end{center}
+Damit ist ein polynomieller Verifizierer konstruiert und man kann
+schliessen, dass Binoxxo in NP ist.
+\end{loesung}
+
+\begin{bewertung}
+Entscheidbarkeit ({\bf E}) 1 Punkt,
+Prinzip Verifizierer ({\bf V}) 1 Punkt,
+Zertifikat spezifiziert ({\bf Z}) 1 Punkt,
+Laufzeitschätzung ({\bf L}) 2 Punkte,
+Schlussfolgerung polynomieller Verifizierer ({\bf S}) 1 Punkt.
+\end{bewertung}
+
+
+
+
+
+

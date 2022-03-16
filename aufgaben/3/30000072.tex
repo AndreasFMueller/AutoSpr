@@ -1,0 +1,107 @@
+Finden Sie einen deterministischen endlichen Automaten, der
+die Sprache
+\[
+L
+=
+\{
+w = \{\texttt{0},\texttt{1}\}^*
+\;|\;
+|w|_{\texttt{0}}
+\equiv
+|w|_{\texttt{1}}
+\mod 3
+\}
+\]
+akzeptiert,
+bestehend aus Wörtern, deren Anzahl von Nullen und Einsen den 
+gleichen Rest bei Teilung durch drei haben.
+
+\themaL{regular}{regulär}
+\thema{DEA}
+
+\begin{loesung}
+Hier sind zwei mögliche Ansätze, wie man einen solchen endlichen
+Automaten konstruieren kann:
+\begin{enumerate}
+\item
+Man kann Automaten $A_1$ und $A_2$ konstruieren, jeweils mit drei Zuständen,
+die für den Dreierrest der Anzahl der Nullen bzw.~der Einsen steht.
+Dann baut man den Produktautomaten und wählt als Akzeptierzustände
+die Paare bestehend aus Zuständen von $A_1$ und $A_2$, die für den gleichen
+Rest stehen.
+\item
+Man kann auch direkt vorgehen, und einen Automaten konstruieren,
+dessen drei Zustände für den Dreierrest der Differenz der Anzahl der
+Nullen und Einsen steht.
+Um die Übergänge zu finden, muss man sich nur bei jeder \texttt{0} und
+jeder \texttt{1} überlegen, wie sie den Dreierrest der Differenz der
+Anzahl beeinflussen.
+\item
+Man könnte den Satz von Myhill-Nerode verwenden, um die Zustände des
+Automaten zu rekonstruieren.
+\end{enumerate}
+Wir verwenden für die Lösung den zweiten Ansatz.
+Das Zustandsdiagramm 
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+
+\coordinate (O) at (0,0);
+\coordinate (A) at (2,0);
+\coordinate (B) at (4,0);
+\coordinate (C) at (6,0);
+
+\node at (A) {$q_0$};
+\node at (B) {$q_1$};
+\node at (C) {$q_2$};
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (O) -- (A);
+
+\draw (A) circle[radius=0.3];
+\draw (A) circle[radius=0.25];
+\draw (B) circle[radius=0.3];
+\draw (C) circle[radius=0.3];
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(A) to[out=30,in=150] (B);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(B) to[out=30,in=150] (C);
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(C) to[out=110,in=0] ($(C)+(-0.7,1.0)$)
+	--
+	($(A)+(0.7,1.0)$) to[out=180,in=70] (A);
+
+\node at ($0.5*(A)+0.5*(B)+(0,0.3)$) [above] {\texttt{0}};
+\node at ($0.5*(B)+0.5*(C)+(0,0.3)$) [above] {\texttt{0}};
+\node at ($(B)+(0,1.0)$) [above] {\texttt{0}};
+
+\draw[<-,shorten >= 0.3cm,shorten <= 0.3cm]
+	(A) to[out=-30,in=-150] (B);
+\draw[<-,shorten >= 0.3cm,shorten <= 0.3cm]
+	(B) to[out=-30,in=-150] (C);
+
+\draw[<-,shorten >= 0.3cm,shorten <= 0.3cm]
+	(C) to[out=-110,in=0] ($(C)-(0.7,1.0)$)
+	--
+	($(A)+(0.7,-1.0)$) to[out=180,in=-70] (A);
+
+\node at ($0.5*(A)+0.5*(B)-(0,0.3)$) [below] {\texttt{1}};
+\node at ($0.5*(B)+0.5*(C)-(0,0.3)$) [below] {\texttt{1}};
+\node at ($(B)-(0,1.0)$) [below] {\texttt{1}};
+
+\end{tikzpicture}
+\end{center}
+beschreibt diesen Automaten.
+Der Zustand $q_k$ codiert den Dreierrest $k$ der Differenz
+$|w|_{\texttt{0}}-|w|_{\texttt{1}}$.
+\end{loesung}
+
+\begin{bewertung}
+Korrekte Idee für ein Konstruktionsprinzip ({\bf I}) 1 Punkt,
+Startzustand ({\bf S}) 1 Punkt,
+Akzeptierzustände ({\bf A}) 1 Punkt,
+Automat ist deterministisch ({\bf D}) 1 Punkt,
+Reihenfolge von $\texttt{0}$ und $\texttt{1}$ spielt keine Rolle ({\bf R})
+1 Punkt,
+Automat akzeptiert genau die Sprache $L$ ({\bf L}) 1 Punkt.
+\end{bewertung}

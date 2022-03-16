@@ -1,0 +1,77 @@
+Das Miniatur Wunderland\footnote{\url{https://www.miniatur-wunderland.de/}}
+in Hamburg beherbergt die mit
+15715\,m Gleislänge auf 1499\,m$\mathstrut^2$ Anlagefläche grösste
+Modelleisenbahnanlage der Welt.
+Auf der Anlage sind 1040 Züge, 9250 Autos und 52 Flugzeuge unterwegs.
+Die ganze Anlage mit 1380 Signalen, 3454 Weichen und über 479000 LEDs
+wird von 50 Computern gesteuert.
+Die Steuerung einer solchen Anlage teilt das Gleisnetz in Blöcke ein.
+Die Züge fahren auf den Gleisen von Block zu Block, wobei oft nur
+die Fahrt in einer Richtung möglich ist.
+
+fuxbeck\footnote{Playlist der Kamerafahrten von fuxbeck im Miniatur Wunderland:
+\url{https://youtube.com/playlist?list=PLCuBWutVb71b5fWFnQ-LyPo4xqt30kaBe}}
+ist ein Youtuber, der viele Modelleisenbahnanlagen besucht,
+mit Einwilligung der Betreiber einen Videokamera-Wagen auf der Anlage
+fahren lässt und die Videos auf seinem Kanal veröffentlicht.
+Am einfachsten wäre es natürlich, wenn die Steuerung der Anlage den Zug
+mit dem Kamera-Wagen so führt, dass jeder Block genau einmal durchfahren
+wird.
+Bei einer grossen Anlage wie der des Miniatur Wunderlandes ist dies
+vielleicht nicht möglich, weil nicht alle Anlageteile auch tatsächlich
+miteinander verbunden werden.
+Sicher ist es aber möglich innerhalb eines Abschnitts wie zum Beispiel
+des 2005 eröffneten Skandinavien-Abschnittes mit 2000\,m Gleislänge,
+600 Weichen, 150 Zügen und 16 Schiffen, gesteuert von 7 Computern.
+Trotzdem hat fuxbeck zwei verschiedene Videos zum Skandinavien-Abschnitt
+auf seinem Kanal.
+Möglicherweise stand nicht genügend Zeit zur Planung einer einzigen Fahrt
+durch alle Blöcke des Abschnitts zur Verfügung.
+Warum könnte das so sein?
+
+\themaL{NP-vollstandig}{NP-vollständig}
+\thema{polynomielle Reduktion}
+
+\begin{loesung}
+Das Problem zu entscheiden, ob es einen Pfad gibt, ist äquivalent zum
+NP-vollständigen Problem \textsl{HAMPATH}, wie die folgende polynomielle
+Eins-zu-Eins-Reduktion zeigt.
+Die Blöcke bilden die Knoten eines Graphen, die möglichen Fahrten von Block
+zu Block bilden die gerichteten Kanten eines gerichteten Fragen.
+Die Aufgabe, eine Fahrt durch alle Blöcke zu finden besteht jetzt darin,
+einen Hamiltonschen Pfad durch diesen Graphen zu planen:
+\begin{align*}
+\text{Knoten} &\leftrightarrow \text{Block}
+\\
+\text{gerichtete Kante} &\leftrightarrow \text{mögliche Fahrt von einem Block zu anderen}
+\\
+\text{Hamiltonscher Pfad}&\leftrightarrow \text{Kamerafahrt}
+\end{align*}
+Damit ist gezeigt, dass das Planungsproblem für die Kamerafahrt ebenfalls
+NP-vollständig ist.
+Nach aktuellem Wissen muss man davon ausgehen, dass die Laufzeit für die
+Lösung des Problems exponentiell mit der Grösse des Anlagenabschnitts
+wächst.
+\end{loesung}
+
+\begin{diskussion}
+Es wurde auch versucht, das Problem mit {\sl FEEDBACK-NODE-SET} zu vergleichen.
+{\sl FEEDBACK-NODE-SET} verlangt aber, dass jeder Zyklus durch mindestens einen
+Knoten aus einer zu bestimmenden $k$-elementigen Mengen führt. 
+Man kann versuchen, $k=|V|$ zu wählen, dann ist die gesuchte $k$-elementige
+Menge $=V$.
+Dann fragt aber {\sl FEEDBACK-NODE-SET}, ob jeder Zyklus einen Knoten in $V$
+enthält. 
+Dies ist natürlich immer der Fall!
+{\sl FEEDBACK-NODE-SET} ist also nur dann ein interessantes Problem,
+wenn $k\ll |V|$
+ist, wenn man also mit viel weniger Knoten auskommen muss.
+Das ist ganz offensichtlich ein ganz anderes Problem als {\sl HAMPATH}
+\end{diskussion}
+
+\begin{bewertung}
+Reduktionsidee ({\bf R}) 1 Punkt,
+Auswahl eines Vergleichsproblems ({\bf V}) 2 Punkte,
+Mapping ({\bf M}) 2 Punkte,
+NP-Vollständigkeit und Schlussfolgerung ({\bf S}) 1 Punkt.
+\end{bewertung}

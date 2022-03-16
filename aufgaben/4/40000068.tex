@@ -1,0 +1,143 @@
+Ist die Sprache
+\[
+L=\{\texttt{0}^i\texttt{1}^j\texttt{0}^i\;|\; j>0\wedge i\ge 0\}
+\]
+kontextfrei?
+Wenn ja, geben Sie eine Grammatik in Chomsky-Normalform dafür an.
+
+\thema{kontextfrei}
+\thema{kontextfreie Grammatik}
+\thema{Chomsky-Normalform}
+
+\begin{loesung}
+Die Sprache ist kontextfrei, denn die die Anzahl der Einsen ist unabhängig
+von der Anzahl der Nullen. 
+Man kann zum Beispiel den folgenden fast\footnote{Der Stackautomat wird
+deterministisch, wenn man fehlende Übergängen zu einem ``Fehlerzustand''
+ergänzt.} deterministischen Stackautomaten
+verwenden, um die Sprache zu akzeptieren:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+
+\coordinate (start) at (-2,2);
+\coordinate (q0) at (0,2);
+\coordinate (q1) at (3,2);
+\coordinate (q2) at (3,0);
+\coordinate (q3) at (3,-2);
+\coordinate (q4) at (0,-2);
+
+\draw[->,shorten <= 0.3cm, shorten >= 0.3cm] (start) -- (q0);
+
+\draw[->,shorten <= 0.3cm, shorten >= 0.3cm] (q0) -- (q1);
+\draw[->,shorten <= 0.3cm, shorten >= 0.3cm] (q1) -- (q2);
+\draw[->,shorten <= 0.3cm, shorten >= 0.3cm] (q2) -- (q3);
+\draw[->,shorten <= 0.3cm, shorten >= 0.3cm] (q3) -- (q4);
+
+\draw (q0) circle[radius=0.3];
+\node at (q0) {$q_0$};
+
+\node at ($0.5*(q0)+0.5*(q1)$) [above] {$\varepsilon,\varepsilon\to\texttt{\$}$};
+
+\draw (q1) circle[radius=0.3];
+\node at (q1) {$q_1$};
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(q1) to[out=0,in=90,distance=1.3cm] (q1);
+\node at ($(q1)+(0.5,0.6)$) [right] {$\texttt{0},\varepsilon\to\texttt{0}$};
+
+\node at ($0.5*(q1)+0.5*(q2)$) [right] {$\texttt{1},\varepsilon\to\varepsilon$};
+
+\draw (q2) circle[radius=0.3];
+\node at (q2) {$q_2$};
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(q2) to[out=45,in=-45,distance=1.3cm] (q2);
+\node at ($(q2)+(0.7,0)$) [right] {$\texttt{1},\varepsilon\to\varepsilon$};
+
+\node at ($0.5*(q2)+0.5*(q3)$) [right] {$\texttt{0},\texttt{0}\to\varepsilon$};
+
+\draw (q3) circle[radius=0.3];
+\node at (q3) {$q_3$};
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(q3) to[out=0,in=-90,distance=1.3cm] (q3);
+\node at ($(q3)+(0.5,-0.6)$) [right] {$\varepsilon,\texttt{0}\to\varepsilon$};
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (q2) -- (q4);
+\node at ($0.5*(q3)+0.5*(q4)$) [below] {$\varepsilon,\texttt{\$}\to\varepsilon$};
+\node at ($0.7*(q2)+0.3*(q4)+(0,0.1)$) [left] {$\varepsilon,\texttt{\$}\to\varepsilon$};
+
+\draw (q4) circle[radius=0.3];
+\draw (q4) circle[radius=0.25];
+\node at (q4) {$q_4$};
+
+
+\end{tikzpicture}
+\end{center}
+Es ist aber gar nicht nötig, diesen Stackautomaten zu entwickeln, denn 
+die Existenz einer Grammatik zeigt auch, dass die Sprache kontextfrei ist.
+
+Die Grammatik muss Folgen von Einsen beliebiger Länge zwischen Paaren
+von Null einschachteln.
+Die Grammatik
+\begin{align*}
+S&\to \texttt{0}S\texttt{0}
+\\
+ &\to E
+\\
+E&\to E\texttt{1}\\
+ &\to \texttt{1}
+\end{align*}
+schafft das, ist aber nicht in Chomsky-Normalform.
+Wir wandeln Sie daher in Chomsky-Normalform um:
+
+Neue Startvariable:
+\begin{align*}
+S_0&\to S
+\\
+S&\to \texttt{0}S\texttt{0} \;|\; E
+\\
+E&\to E\texttt{1} \;|\; \texttt{1}
+\end{align*}
+Es kommen keine $\varepsilon$-Regeln vor, um die wir uns kümmern müssten,
+wir können daher gleich zur Entfernung der Unit-Rules übergehen.
+Entfernung der Regel $S\to E$:
+\begin{align*}
+S_0&\to S
+\\
+S&\to \texttt{0}S\texttt{0} \;|\; E\texttt{1} \;|\; \texttt{1}
+\\
+E&\to E\texttt{1} \;|\;  \texttt{1}
+\end{align*}
+Entfernung der Unit-Rue $S_0\to S$:
+\begin{align*}
+S_0&\to \texttt{0}S\texttt{0} \;|\; E\texttt{1} \;|\; \texttt{1}
+\\
+S&\to \texttt{0}S\texttt{0} \;|\; E\texttt{1} \;|\; \texttt{1}
+\\
+E&\to E\texttt{1} \;|\; \texttt{1}
+\end{align*}
+Jetzt müssen die Dreierregeln und die Terminalsymbole noch aufgeräumt werden:
+\begin{align*}
+S_0&\to ZA \;|\; EU \;|\; \texttt{1}
+\\
+S&\to ZA \;|\; EU \;|\; \texttt{1}
+\\
+A&\to SZ
+\\
+E&\to EU \;|\; \texttt{1}
+\\
+U&\to \texttt{1}
+\\
+Z&\to \texttt{0}
+\end{align*}
+Damit ist Chomsky-Normalform erreicht.
+\end{loesung}
+
+\begin{bewertung}
+Grammatik (3 Punkte) korrekt formuliert ({\bf G}) 1 Punkt,
+Schachtelung von \texttt{0} ({\bf A}) 1 Punkt,
+Mindestens eine \texttt{1} ({\bf E}) 1 Punkt.
+CNF Umwandlung (3 Punkte): neue Startvariable ({\bf S}) 1 Punkt,
+unit rules ({\bf U}) 1 Punkt,
+Dreierregeln und Terminalsymbole ({\bf T}) 1 Punkt.
+\end{bewertung}

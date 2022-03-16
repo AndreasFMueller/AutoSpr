@@ -1,0 +1,214 @@
+Betrachten Sie die Turing-Maschine mit dem folgenden Zustandsdiagramm.
+Alle fehlenden Übergänge sind als Übergänge zu einem Zustand
+$q_{\text{reject}}$ zu interpretieren.
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+
+\pgfmathparse{1.5*sqrt(3)}
+\xdef\ds{\pgfmathresult}
+
+\coordinate (q0) at (-3,1.5);
+\coordinate (q1) at (0,1.5);
+\coordinate (q2) at (0,-1.5);
+\coordinate (q3) at (3,-1.5);
+\coordinate (reject) at (-3,-4.5);
+\coordinate (q4) at (3,1.5);
+\coordinate (q5) at (6,1.5);
+\coordinate (accept) at (6,-1.5);
+
+\node at (q0) {$q_0$};
+\node at (q1) {$q_1$};
+\node at (q2) {$q_2$};
+\node at (q3) {$q_3$};
+\node at (q4) {$q_4$};
+\node at (q5) {$q_5$};
+\node at (accept) {$q_{\text{accept}}$};
+
+\draw (q0) circle[radius=0.4];
+\draw (q1) circle[radius=0.4];
+\draw (q2) circle[radius=0.4];
+\draw (q3) circle[radius=0.4];
+\draw (q4) circle[radius=0.4];
+\draw (q5) circle[radius=0.4];
+%\draw (reject) ellipse (0.8 and 0.4);
+%\draw (reject) ellipse (0.7 and 0.3);
+\draw (accept) ellipse (0.8 and 0.4);
+\draw (accept) ellipse (0.7 and 0.3);
+
+\draw[->,shorten >= 0.4cm] (-5,1.5) -- (q0);
+
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q0) -- (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q1) -- (q4);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q4) -- (q5);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q4) -- (q5);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q2) -- (q3);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q4) -- (accept);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q5) -- (accept);
+
+
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q1) to[out=-60,in=60] (q2);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q2) to[out=120,in=-120] (q1);
+
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q0) to[out=60,in=120,distance=2cm] (q0);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=60,in=120,distance=2cm] (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q4) to[out=60,in=120,distance=2cm] (q4);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q5) to[out=60,in=120,distance=2cm] (q5);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q2) to[out=-60,in=-120,distance=2cm] (q2);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q3) to[out=-60,in=-120,distance=2cm] (q3);
+\draw[->,shorten >= 0.5cm,shorten <= 0.4cm] (q3) -- (q4);
+
+\node at ($0.5*(q0)+0.5*(q1)$) [above] {$\texttt{1}\to\texttt{x},L$};
+\node at ($0.5*(q1)+0.5*(q4)$) [above] {$\blank\to\blank,R$};
+\node at ($0.5*(q4)+0.5*(q5)$) [above] {$\texttt{1}\to\texttt{1},R$};
+\node at ($0.5*(q2)+0.5*(q3)$) [above] {$\blank\to\blank,L$};
+
+\node at ($(accept)+(0,1.0)$) [above] {$\blank\to\blank,R$};
+
+\node at ($(q0)+(0,1.6)$) {$\texttt{0}\to\texttt{0},R$};
+\node at ($(q1)+(0,1.6)$) {$\texttt{x}\to\texttt{x},L$};
+\node at ($(q4)+(0,1.6)$) {$\texttt{x}\to\texttt{x},R$};
+\node at ($(q5)+(0,1.6)$) {$\texttt{1}\to\texttt{1},R$};
+\node at ($(q2)+(0,-1.6)$) {$\texttt{x}\to\texttt{x},R$};
+\node at ($(q3)+(0,-1.6)$) {$\texttt{x}\to\texttt{x},L$};
+
+\node at ($0.5*(q1)+0.5*(q2)+(-0.5,0)$) [left] {$\texttt{1}\to\texttt{x},L$};
+\node at ($0.5*(q1)+0.5*(q2)+(0.5,0)$) [right] {$\texttt{0}\to\texttt{x},R$};
+
+\node at ($0.5*(q3)+0.5*(q4)$) [below right] {$\blank\to\blank,R$};
+
+\end{tikzpicture}
+\end{center}
+\begin{teilaufgaben}
+\item Wie wird das Wort \texttt{0011} verarbeitet?
+\item Welche der folgenden Wörter werden akzeptiert:
+$\texttt{01}$,
+$\texttt{011}$ und
+$\texttt{001}$?
+\end{teilaufgaben}
+
+\thema{Turing-Maschine}
+\thema{Zustandsdiagramm}
+
+\bgroup
+\definecolor{darkred}{rgb}{0.8,0,0}
+\def\rot#1{{\color{darkred}\texttt{#1}}}
+\def\schwarz#1{\texttt{#1}}
+\def\rotb{{\color{darkred}\blank}}
+
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item Die folgende Tabelle zeigt die Verarbeitung des Wortes \texttt{0011}
+\begin{center}
+\begin{tabular}{>{$}c<{$}|cccccc}
+\text{Zustand}&&&&&&\\
+\hline
+q_0& \blank & \rot{0} & \schwarz{0} & \schwarz{1} & \schwarz{1} & \blank \\
+q_0& \blank & \schwarz{0} & \rot{0} & \schwarz{1} & \schwarz{1} & \blank \\
+q_0& \blank & \schwarz{0} & \schwarz{0} & \rot{1} & \schwarz{1} & \blank \\
+q_1& \blank & \schwarz{0} & \rot{0} & \schwarz{x} & \schwarz{1} & \blank \\
+q_2& \blank & \schwarz{0} & \schwarz{x} & \rot{x} & \schwarz{1} & \blank \\
+q_2& \blank & \schwarz{0} & \schwarz{x} & \schwarz{x} & \rot{1} & \blank \\
+q_1& \blank & \schwarz{0} & \schwarz{x} & \rot{x} & \schwarz{x} & \blank \\
+q_1& \blank & \schwarz{0} & \rot{x} & \schwarz{x} & \schwarz{x} & \blank \\
+q_1& \blank & \rot{0} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank \\
+q_2& \blank & \schwarz{x} & \rot{x} & \schwarz{x} & \schwarz{x} & \blank \\
+q_2& \blank & \schwarz{x} & \schwarz{x} & \rot{x} & \schwarz{x} & \blank \\
+q_2& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rot{x} & \blank \\
+q_2& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rotb \\
+q_3& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rot{x} & \blank \\
+q_3& \blank & \schwarz{x} & \schwarz{x} & \rot{x} & \schwarz{x} & \blank \\
+q_3& \blank & \schwarz{x} & \rot{x} & \schwarz{x} & \schwarz{x} & \blank \\
+q_3& \blank & \rot{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank \\
+q_3& \rotb & \schwarz{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank \\
+q_4& \blank & \rot{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank \\
+q_4& \blank & \schwarz{x} & \rot{x} & \schwarz{x} & \schwarz{x} & \blank \\
+q_4& \blank & \schwarz{x} & \schwarz{x} & \rot{x} & \schwarz{x} & \blank \\
+q_4& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rot{x} & \blank \\
+q_4& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rotb \\
+q_{\text{accept}}&
+ \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank \\
+\hline
+\end{tabular}
+\end{center}
+\item
+Die folgenden Berechnungsgeschichten zeigen, dass \texttt{01}
+und \texttt{011} akzeptiert werden, dass aber \texttt{001}
+verworfen wird:
+\begin{center}
+\begin{tabular}{>{$}c<{$}|cccc}
+\text{Zustand}&&&&\\
+\hline
+q_0& \blank & \rot{0} & \schwarz{1} & \blank \\
+q_0& \blank & \schwarz{0} & \rot{1} & \blank \\
+q_1& \blank & \rot{0} & \schwarz{x} & \blank \\
+q_1& \blank & \schwarz{x} & \rot{x} & \blank \\
+q_2& \blank & \schwarz{x} & \schwarz{x} & \rotb \\
+q_3& \blank & \schwarz{x} & \rot{x} & \blank \\
+q_3& \blank & \rot{x} & \schwarz{x} & \blank \\
+q_3& \rotb & \schwarz{x} & \schwarz{x} & \blank \\
+q_4& \blank & \rot{x} & \schwarz{x} & \blank \\
+q_4& \blank & \schwarz{x} & \rot{x} & \blank \\
+q_4& \blank & \schwarz{x} & \schwarz{x} & \rotb \\
+q_{\text{accept}}& \blank & \schwarz{x} & \schwarz{x} & \blank \\
+\\
+\hline
+\end{tabular}
+\quad
+\begin{tabular}{>{$}c<{$}|ccccc}
+\text{Zustand}&&&&&\\
+\hline
+q_0& \blank & \rot{0} & \schwarz{1} & \schwarz{1} & \blank \\
+q_0& \blank & \schwarz{0} & \rot{1} & \schwarz{1} & \blank \\
+q_1& \blank & \rot{0} & \schwarz{x} & \schwarz{1} & \blank \\
+q_2& \blank & \schwarz{x} & \rot{x} & \schwarz{1} & \blank \\
+q_2& \blank & \schwarz{x} & \schwarz{x} & \rot{1} & \blank \\
+q_1& \blank & \schwarz{x} & \rot{x} & \schwarz{x} & \blank \\
+q_1& \blank & \rot{x} & \schwarz{x} & \schwarz{x} & \blank \\
+q_1& \rotb & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank \\
+q_4& \blank & \rot{x} & \schwarz{x} & \schwarz{x} & \blank \\
+q_4& \blank & \schwarz{x} & \rot{x} & \schwarz{x} & \blank \\
+q_4& \blank & \schwarz{x} & \schwarz{x} & \rot{x} & \blank \\
+q_4& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rotb \\
+q_{\text{accept}}& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank \\
+\hline
+\end{tabular}
+\quad
+\begin{tabular}{>{$}c<{$}|ccccc}
+\text{Zustand}&&&&&\\
+\hline
+q_0& \blank & \rot{0} & \schwarz{0} & \schwarz{1} & \blank \\
+q_0& \blank & \schwarz{0} & \rot{0} & \schwarz{1} & \blank \\
+q_0& \blank & \schwarz{0} & \schwarz{0} & \rot{1} & \blank \\
+q_1& \blank & \schwarz{0} & \rot{0} & \schwarz{x} & \blank \\
+q_2& \blank & \schwarz{0} & \schwarz{x} & \rot{x} & \blank \\
+q_2& \blank & \schwarz{0} & \schwarz{x} & \schwarz{x} & \rotb \\
+q_3& \blank & \schwarz{0} & \schwarz{x} & \rot{x} & \blank \\
+q_3& \blank & \schwarz{0} & \rot{x} & \schwarz{x} & \blank \\
+q_3& \blank & \rot{0} & \schwarz{x} & \schwarz{x} & \blank \\
+q_{\text{reject}}& \blank & \schwarz{0} & \schwarz{x} & \schwarz{x} & \blank \\
+\\
+\\
+\\
+\hline
+\end{tabular}
+\end{center}
+\end{teilaufgaben}
+\end{loesung}
+\egroup
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item 
+Akzeptiert ({\bf A}) 1 Punkt,
+Berechnungsgeschichte ({\bf G}) 1 Punkt,
+\item
+Für jedes Wort Punkt ({\bf B}) total 3 Punkte.
+\end{teilaufgaben}
+\end{bewertung}
