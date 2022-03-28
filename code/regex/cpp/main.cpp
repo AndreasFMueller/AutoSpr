@@ -11,7 +11,7 @@ struct option	options[] = {
 int main(int argc, char *argv[]) {
 	int	c;
 	int	longindex;
-	int	n = 29;
+	int	n = 26;
 	while (EOF != (c = getopt_long(argc, argv, "n:", options, &longindex)))
 		switch (c) {
 		case 'n':
