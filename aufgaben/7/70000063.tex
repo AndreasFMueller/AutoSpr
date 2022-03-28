@@ -1,0 +1,77 @@
+Das Miniatur Wunderland\footnote{\url{https://www.miniatur-wunderland.de/}}
+in Hamburg beherbergt die mit
+16138\,m Gleislänge auf 1545\,m$\mathstrut^2$ Anlagefläche grösste
+Modelleisenbahnanlage der Welt.
+Auf der Anlage sind 1120 Züge, 10250 Autos und 47 Flugzeuge unterwegs.
+Die ganze Anlage mit 1392 Signalen, 3454 Weichen und über 497000 LEDs
+wird von 50 Computern gesteuert.
+
+Um die Betriebssicherheit im Dauerbetrieb zu gewährleisten, müssen
+die Gleise ständig sauber gehalten werden.
+Dafür stehen Reinigungszüge zur Verfügung, die in regelmässigen
+Abständen auf vorprogrammierten Routen über die Anlage geführt
+werden.
+Natürlich sind auch noch viele andere Züge ebenfalls auf dem Schienennetz
+unterwegs, allerdings nicht ständig, die Loks sind Spielzeug, welches
+nicht für den Dauerbetrieb ausgelegt ist, sie müssen daher regelmässig
+Pausen zum Abkühlen einlegen.
+Die zeitliche Planung der Zugfahrten soll so gestaltet sein, dass
+innerhalb vorgegebener Zeitintervalle jeder Zug seine Fahrt durchführt.
+Die Zugfahrten der Reinigungszüge sind besonders wichtig.
+Fallen diese Fahren aus oder finden Sie zu spät statt, 
+kann es zu Ausfällen kommen, die den Besuch des Miniatur Wunderlandes
+weniger attraktiv machen.
+Man kann sogar versuchen, den dadurch verursachten Schaden zu beziffern.
+Da die Reinigungszüge nicht so interessant sind wie die normalen
+Modellzüge, soll immer nur ein Reinigungszug aufs Mal unterwegs sein.
+Ziel ist natürlich, den Schaden durch Ausfälle möglichst klein zu halten.
+
+Trotzdem scheint das MiWuLa keine Anstrengungen unternommen zu haben, die
+Reinigungszugfahrten zum Beispiel in ein kleines Interval vor der Öffnung
+am Morgen zu planen und trotzdem die Kosten für Betriebsausfälle
+unter der Schranke $k$ zu behalten.
+Möglicherweise ist das einfach für eine so umfangreiche Anlage ein
+zu schwieriges Problem.
+Woran könnte das liegen?
+
+\themaL{NP-vollstandig}{NP-vollständig}
+\thema{polynomielle Reduktion}
+
+\begin{loesung}
+Das Planungsproblem für die Reinigungszüge ist äquivalent zum
+NP-vollständigen Problem \textsl{SEQUENCING}, wie man mit Hilfe
+einer polynomiellen Reduktion zeigen kann.
+Dazu seien die $t_i$ die Fahrzeiten für jeden der $p$ Reinigungszüge,
+$d_i$ ist die späteste Fahrzeit, zu der die Zugfahrt von Zug
+$i$ abgeschlossen sein muss, und $s_i$ sind die Kosten für eine verspätete
+Reinigung durch den Zug $i$.
+\begin{align*}
+\text{Fahrzeit von Zug $i$}
+&
+\leftrightarrow\text{Ausführungszeit $t_i$ von Job $i$}
+\\
+\text{Deadline für die Fahrt von Zug $i$}
+&
+\leftrightarrow d_i
+\\
+\text{Kosten für Verspätete Reinigungsfahrt $i$}
+&
+\leftrightarrow s_i
+\\
+\text{Reihenfolge der Fahrten}&
+\leftrightarrow \text{Permutation $\pi$}
+\end{align*}
+Die Aufgabe besteht darin, die Reihenfolge $\pi$ der Reinigungszugfahrten so
+zu bestimmen, dass die Kosten für verspätte Reinigungs unter $k$ zu halten,
+dies ist genau die Aufgabe des \textsl{SEQUENCING}-Problems.
+Damit ist gezeigt, dass das Reinigungszugsplanungsproblem NP-vollständig ist.
+Der Aufwand zur Planung der Reinigungszugsplanung steigt daher nach heutigem
+Wissen exponentiell mit der Grösse des Problems.
+\end{loesung}
+
+\begin{bewertung}
+Reduktionsidee ({\bf R}) 1 Punkt,
+Auswahl eines Vergleichsproblems ({\bf V}) 2 Punkte,
+Mapping ({\bf M}) 2 Punkte,
+NP-Vollständigkeit und Schlussfolgerung ({\bf S}) 1 Punkt.
+\end{bewertung}

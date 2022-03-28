@@ -13,5 +13,5 @@ dir="${1}"
 cd ${dir}
 ls *.tex | awk '{
 	file = substr($1, 1, length($1) - 4)
-	printf("\\aufgabe{%s}{%s}\n", "'"${dir}"'", file)
+	printf("\\aufgabe{%s}\n", file)
 }'

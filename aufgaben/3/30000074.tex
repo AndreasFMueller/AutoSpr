@@ -1,0 +1,161 @@
+Ist die Sprache
+\[
+L=
+\{
+w\in \Sigma^*
+\;|\;
+|w|_\texttt{0} \ge 2^{|w|_{\texttt{1}}}
+\}
+\]
+über dem Alphabet $\Sigma = \{ \texttt{0},\texttt{1}\}$ regulär?
+
+\themaL{regular}{regulär}
+\themaL{Pumping Lemma fur regulare Sprachen}{Pumping Lemma für reguläre Sprachen}
+
+\begin{loesung}
+Die Sprache ist nicht regulär, wie man mit dem Pumping Lemma für reguläre
+Sprachen zeigen kann.
+\begin{enumerate}
+\item Annahme ist regulär.
+\item Nach dem Pumping Lemma gibt es die Pumping Length $N$.
+\item Wähle das Wort $w=\texttt{0}^{2^N}\texttt{1}^N\in L$
+\item Es gibt eine Aufteilung des Wortes $w=xyz$ mit $|xy|\le N$ und $|y|>0$.
+Der Teil $y$ besteht ausschliesslich aus Nullen.
+\begin{center}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{tikzpicture}[>=latex,thick,scale=0.5]
+
+\fill[color=gray!40] (0,-0.5) rectangle (20,0.5);
+\draw (0,-0.5) rectangle (20,0.5);
+\draw (16,-0.5) -- (16,0.5);
+
+\node at (18,0) {$\texttt{1}^N$};
+\node at (8,0) {$\texttt{0}^{2^N}$};
+
+\node at (0,0.5) [above] {$0$};
+\node at (4,0.5) [above] {$N$};
+\node at (16,0.5) [above] {$2^N$};
+\node at (20,0.5) [above] {$2^N+N$};
+
+\fill[color=darkgreen!40,opacity=0.5] (0.1,-0.4) rectangle (1.4,0.4);
+\draw[color=darkgreen] (0.1,-0.4) rectangle (1.4,0.4);
+\node[color=darkgreen] at (0.7,0) {$x\mathstrut$};
+
+\fill[color=red!40,opacity=0.5] (1.5,-0.4) rectangle (2.4,0.4);
+\draw[color=red] (1.5,-0.4) rectangle (2.4,0.4);
+\node[color=red] at (1.95,0) {$y\mathstrut$};
+
+\fill[color=blue!40,opacity=0.5] (2.5,-0.4) rectangle (19.9,0.4);
+\draw[color=blue] (2.5,-0.4) rectangle (19.9,0.4);
+\node[color=blue] at (11.2,0) {$z\mathstrut$};
+
+\node at (21.5,0) [right] {$\in L$};
+
+\begin{scope}[yshift=-3.5cm]
+
+	\fill[color=gray!40] (0,-0.5) rectangle (21,0.5);
+	\draw (0,-0.5) rectangle (21,0.5);
+	\draw (17,-0.5) -- (17,0.5);
+
+	\node at (19,0) {$\texttt{1}^N$};
+	\node at (8.5,0) {$\texttt{0}^{2^N+|y|}$};
+
+	\node at (0,0.5) [above] {$0$};
+	\node at (4,0.5) [above] {$N$};
+	\node at (17,0.5) [above] {$2^N+|y|\ge 2^N$};
+	%\node at (21,0.5) [above] {$2^N+N$};
+
+	\fill[color=darkgreen!40,opacity=0.5] (0.1,-0.4) rectangle (1.4,0.4);
+	\draw[color=darkgreen] (0.1,-0.4) rectangle (1.4,0.4);
+	\node[color=darkgreen] at (0.7,0) {$x\mathstrut$};
+
+	\fill[color=red!40,opacity=0.5] (1.5,-0.4) rectangle (2.4,0.4);
+	\draw[color=red] (1.5,-0.4) rectangle (2.4,0.4);
+	\node[color=red] at (1.95,0) {$y\mathstrut$};
+
+	\fill[color=red!40,opacity=0.5] (2.5,-0.4) rectangle (3.4,0.4);
+	\draw[color=red] (2.5,-0.4) rectangle (3.4,0.4);
+	\node[color=red] at (2.95,0) {$y\mathstrut$};
+
+	\fill[color=blue!40,opacity=0.5] (3.5,-0.4) rectangle (20.9,0.4);
+	\draw[color=blue] (3.5,-0.4) rectangle (20.9,0.4);
+	\node[color=blue] at (12.2,0) {$z\mathstrut$};
+
+	\node at (21.5,0) [right] {$\in L$};
+
+\end{scope}
+
+\begin{scope}[yshift=-7.0cm]
+
+	\fill[color=gray!40] (0,-0.5) rectangle (19,0.5);
+	\draw (0,-0.5) rectangle (19,0.5);
+	\draw (15,-0.5) -- (15,0.5);
+
+	\node at (17,0) {$\texttt{1}^N$};
+	\node at (7.5,0) {$\texttt{0}^{2^N-|y|}$};
+
+	\node at (0,0.5) [above] {$0$};
+	\node at (15,0.5) [above] {$2^N-|y|<2^N$};
+	%\node at (20,0.5) [above] {$2^N-|y|+N$};
+
+	\fill[color=darkgreen!40,opacity=0.5] (0.1,-0.4) rectangle (1.4,0.4);
+	\draw[color=darkgreen] (0.1,-0.4) rectangle (1.4,0.4);
+	\node[color=darkgreen] at (0.7,0) {$x\mathstrut$};
+
+	%\fill[color=red!40,opacity=0.5] (1.5,-0.4) rectangle (2.4,0.4);
+	%\draw[color=red] (1.5,-0.4) rectangle (2.4,0.4);
+	%\node[color=red] at (1.95,0) {$y\mathstrut$};
+
+	\fill[color=blue!40,opacity=0.5] (1.5,-0.4) rectangle (18.9,0.4);
+	\draw[color=blue] (1.5,-0.4) rectangle (18.9,0.4);
+	\node[color=blue] at (10.2,0) {$z\mathstrut$};
+
+	\node at (21.5,0) [right] {$\not\in L$};
+
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
+\item Beim Aufpumpen nimmt die Zahl der Nullen zu, dies steht aber nicht
+im Widerspruch zu der Sprachdefinition.
+Beim Abpumpen nimmt jedoch die Zahl der Nullen ab, es ist dann
+$|xz|_{\texttt{w}}=2^N-|y|$.
+Die Zahl der Einsen ist immer noch $N$, damit haben wir
+\[
+|xy|_{\texttt{0}} 
+=
+2^N-|y|
+<
+2^N
+=
+|xy|_{\texttt{1}},
+\]
+im Widerspruch zur Aussage des Pumping Lemmas
+\item 
+Dieser Widerspruch zeigt, dass die Sprache $L$ nicht regulär ist.
+\qedhere
+\end{enumerate}
+Es gibt natürlich viele weitere Möglichkeiten, den gesuchten Widerspruch
+herzustellen. 
+Das oben gewählte Wort ist möglicherweise dasjenigen, welches die meisten
+Studenten als erstes wählen würden, aber das Wort
+$w=\texttt{1}^N\texttt{0}^{2^N}$ ist noch etwas einfacher.
+Beim Aufpumpen nimmt die Anzahl der Einsen zu, die Anzahl der Nullen aber
+nicht.
+Nach Sprachdefinition müsste aber auch die Anzahl der Nullen zunehmen,
+da ja $|w|_{\texttt{0}} \ge 2^{|w|_\texttt{1}}$ sein muss.
+Der Widerspruch zeigt wieder, dass $L$ nicht regulär sein kann.
+\end{loesung}
+
+\begin{bewertung}
+Pumping-Lemma-Beweis: jeder Schritt ein Punkt:
+Annahme regulär ({\bf PL}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+Wort ({\bf W}) 1 Punkt,
+Aufteilung ({\bf A}) 1 Punkt,
+Widerspruch beim Pumpen ({\bf P}) 1 Punkt,
+Schlussfolgerung ({\bf S}) 1 Punkt.
+Falls das gleiche Wort wie in der Musterlösung gewählt wurde wird
+der Punkt für Schritt~5 nur gegeben, wenn erkannt worden ist, dass
+nur Abpumpen zu einem Widerspruch führt.
+\end{bewertung}

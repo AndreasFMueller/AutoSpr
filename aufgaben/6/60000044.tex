@@ -1,0 +1,45 @@
+In vielen Anwendungen wird verlangt, dass der Output sortiert wird.
+Es wäre daher nützlich für die Qualitätssicherung, wenn man ein Tool
+schreiben könnte, welches von einem Programm entscheiden kann,
+ob sein Output korrekt sortiert wird.
+Viele Programmiersprachen haben zum Sortieren Funktionen oder Klassen,
+die Daten sortieren können, man könnte testen, ob diese Klassen vom
+Code verwendet werden.
+Manchmal fallen die Daten aber auch automatisch sortiert an, zum
+Beispiel wenn in einer Datenbank ein Index verwendet wird.
+Es reicht also nicht, nur die Verwendung der genannten Klassen zu
+prüfen.
+Ist es möglich, so ein Tool zu schreiben?
+
+Nehmen Sie der Einfachheit halber an, dass das Tool nur auf Programme
+angewendet werden soll, welche Wörter aus Zeichen in
+$\Sigma=\{\texttt{a},\texttt{b},\dots,\texttt{z}\}$ erzeugen, und
+die Zeichen in einem Wort sollen alphabetisch aufsteigend sortiert sein.
+
+\thema{Reduktion}
+\thema{Satz von Rice}
+
+\begin{loesung}
+Es ist nicht möglich, ein solches Tool zu schreiben, wie man mit dem
+Satz von Rice zeigen kann.
+Die Eigenschaft \textsl{SORTIERT}, die der Output haben muss, ist,
+dass die Wörter im Output sortiert sind.
+Dies ist eine nichttriviale Eigenschaft, den von den Sprachen
+\begin{align*}
+L_1&=\{ \texttt{ab} \}\\
+L_2&=\{ \texttt{ba} \}
+\end{align*}
+besteht die eine aus sortierten Wörtern, die andere nicht. 
+Nach dem Satz von Rice ist es nicht möglich, zu entscheiden, ob die
+akzeptierte Sprache einer Turing-Maschine die Eigenschaft \textsl{SORTIERT}
+hat.
+\end{loesung}
+
+\begin{bewertung}
+Erkenntnis, dass es um eine Eigenschaft der erkannten Sprache geht
+(Wörter sind sortiert) ({\bf E}) 1 Punkt,
+Bezug zum Satz von Rice ({\bf R}) 1 Punkt,
+zwei Beispielsprachen ({\bf L}) 2 Punkte,
+Schlussfolgerung ({\bf S}) 2 Punkte.
+\end{bewertung}
+

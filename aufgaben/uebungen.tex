@@ -51,16 +51,18 @@
 }
 \def\includeagraphics[#1]#2{\expandafter\includegraphics[#1]{\aufgabepath#2}}
 % \aufgabe
-\newcommand{\aufgabe}[2]{%
+\newcommand{\aufgabe}[1]{%
+\StrRemoveBraces{#1}[\FirstChar]%
+\StrChar{\FirstChar}{1}[\FirstChar]%
   \expandafter\def\csname themalist\endcsname{}
   \setboolean{themastatus}{false}
   \refstepcounter{problemcounter}%
-  \label{#2}
+  \label{#1}
   \bigskip{\parindent0pt\strut}\hbox{\bf\theproblemcounter. }%
-  \marginpar{\raggedright\tiny #2}%
-  \expandafter\def\csname currentaufgabe\endcsname{#2}%
-  \expandafter\def\csname aufgabepath\endcsname{\inputpath/#1/#2/}%
-  \expandafter\input{\inputpath#1/#2.tex}
+  \marginpar{\raggedright\tiny #1}%
+  \expandafter\def\csname currentaufgabe\endcsname{#1}%
+  \expandafter\def\csname aufgabepath\endcsname{\inputpath/\FirstChar/#1/}%
+  \expandafter\input{\inputpath\FirstChar/#1.tex}
   %\medskip
   \ifthenelse{\boolean{themastatus}}{
     \parindent 0pt
@@ -88,19 +90,30 @@
 %
 \newcommand{\closethemaindex}{\immediate\closeout\themaindex}
 %
-\def\themalink#1{\hyperref[thema:#1]{#1}}
-\def\thema#1{%
+\def\themalink#1#2{\hyperref[thema:#1]{#2}}
+\def\themaL#1#2{%
   \ifthenelse{\boolean{themastatus}}{%
-    \xappto{\themalist}{, \noexpand\themalink{#1}}
+    \xappto{\themalist}{, \noexpand\themalink{#1}{#2}}
   }{%
-    \xdef\themalist{\noexpand\themalink{#1}}
+    \xdef\themalist{\noexpand\themalink{#1}{#2}}
     \setboolean{themastatus}{true}
   }
   \immediate\write\themaindex%
-  {{\thechapter}{#1}{\arabic{problemcounter}}{\thechapter.\arabic{problemcounter}}{\currentaufgabe}}%
+  {{\thechapter}{#1}{#2}{\arabic{problemcounter}}{\thechapter.\arabic{problemcounter}}{\currentaufgabe}}%
 }
+\def\thema#1{\themaL{#1}{#1}}
+%\def\thema#1{%
+%  \ifthenelse{\boolean{themastatus}}{%
+%    \xappto{\themalist}{, \noexpand\themalink{#1}}
+%  }{%
+%    \xdef\themalist{\noexpand\themalink{#1}}
+%    \setboolean{themastatus}{true}
+%  }
+%  \immediate\write\themaindex%
+%  {{\thechapter}{#1}{\arabic{problemcounter}}{\thechapter.\arabic{problemcounter}}{\currentaufgabe}}%
+%}
 % Thema-Information anzeigen
-\def\themasection#1#2{ \item[#1]\label{thema:#1} #2 }
+\def\themasection#1#2{ \item[#2]\label{thema:#1}}
 \newcommand{\printthemata}{
   \IfFileExists{./thema.tex}{
     \chapter*{Aufgaben nach Themen}
