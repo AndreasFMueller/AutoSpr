@@ -7,6 +7,7 @@
 #include "regex.h"
 
 #include <ostream>
+#include <iomanip>
 #include <regex>
 #include <string>
 #include <chrono>
@@ -30,7 +31,10 @@ void test(std::ostream & out, std::size_t const & numberOfRounds) {
 	}
 
 	auto end = std::chrono::high_resolution_clock::now();
-	out << "Runtime: " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count() << "ns" << '\n';
+	out << "Runtime: ";
+	out << std::setprecision(9);
+	out << (std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count() / 1000000000.) << "s";
+	out << std::endl;
 }
 
 } // namespace Regex

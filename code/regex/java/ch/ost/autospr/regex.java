@@ -4,7 +4,7 @@
 //
 // (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
 //
-package ch.hsr.autospr;
+package ch.ost.autospr;
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -73,7 +73,7 @@ public class regex {
 			System.out.print(prefix.substring(i));
 			System.out.print(prefix.substring(i));
 			System.out.print(prefix.substring(i));
-			System.out.print(0.001 * runtime);
+			System.out.print(String.format("%6.3f", 0.001 * runtime));
 			System.out.println();
 		}
 	}

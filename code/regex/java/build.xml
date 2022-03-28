@@ -40,22 +40,22 @@
     <target name="jar" depends="compile">
         <jar jarfile="${builddir}/regex.jar">
             <fileset dir="${classesdir}">
-                <include name="ch/hsr/autospr/*.class"/>
+                <include name="ch/ost/autospr/*.class"/>
             </fileset>
         </jar>
     </target>
 
     <target name="test-string" depends="jar">
-        <java classname="ch.hsr.autospr.regex"
+        <java classname="ch.ost.autospr.regex"
             classpathref="classpath">
-            <arg line="ch.hsr.autospr.StringMatcher"/>
+            <arg line="ch.ost.autospr.StringMatcher"/>
         </java>
     </target>
 
     <target name="test-regex" depends="jar">
-        <java classname="ch.hsr.autospr.regex"
+        <java classname="ch.ost.autospr.regex"
             classpathref="classpath">
-            <arg line="ch.hsr.autospr.RegexMatcher"/>
+            <arg line="ch.ost.autospr.RegexMatcher"/>
         </java>
     </target>
 
