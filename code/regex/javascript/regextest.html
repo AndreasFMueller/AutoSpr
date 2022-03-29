@@ -22,27 +22,84 @@ td.laufzeit, td.laenge {
 <h1>Javascript <tt>regex</tt> Laufzeit Test</h1>
 <div id="regex">
 <p>
-Zeit, die benötigt wird, um einen String bestehend aus <i>n</i> Zeichen <tt>a</tt>
-gegen den Ausdruck
+Gemessen wird die Zeit, die benötigt wird, um einen String bestehend aus
+<i>n</i> Zeichen <tt>a</tt> gegen den Ausdruck
 <tt>a?</tt><sup><i>n</i></sup><tt>a</tt><sup><i>n</i></sup>
 zu matchen.
 Ein NEA wird eine in <i>n</i> exponentielle Laufzeit <i>O</i>(2<sup><i>n</i></sup>) haben,
 eine DEA-Implementation hat Laufzeit <i>O</i>(<i>n</i>).
 </p>
 <table>
+<tr>
+<td>Anwachsen von <i>n</i></td>
+<td><input type="checkbox" v-model="linear" value="true" @change="linearchange($event)" :disabled="computing == true">linear</input>
+</td>
+</tr>
+<tr>
+<td>
+Länge des regulären Ausdrucks:
+</td>
+<td>
+<select v-model="maxi" @change="maxiwahl($event)" :disabled="computing == true">
+<option value="1"> {{ (linear) ? 1 : 2 }} </option>
+<option value="2"> {{ (linear) ? 2 : 4 }} </option>
+<option value="3"> {{ (linear) ? 3 : 8 }} </option>
+<option value="4"> {{ (linear) ? 4 : 16 }} </option>
+<option value="5"> {{ (linear) ? 5 : 32 }} </option>
+<option value="6"> {{ (linear) ? 6 : 64 }} </option>
+<option value="7"> {{ (linear) ? 7 : 128 }} </option>
+<option value="8"> {{ (linear) ? 8 : 256 }} </option>
+<option value="9"> {{ (linear) ? 9 : 512 }} </option>
+<option value="10"> {{ (linear) ? 10 : 1024 }} </option>
+<option value="11"> {{ (linear) ? 11 : 2048 }} </option>
+<option value="12"> {{ (linear) ? 12 : 4096 }} </option>
+<option value="13"> {{ (linear) ? 13 : 8192 }} </option>
+<option value="14"> {{ (linear) ? 14 : 16384 }} </option>
+<option value="15"> {{ (linear) ? 15 : 32768 }} </option>
+<option value="16"> {{ (linear) ? 16 : 65536 }} </option>
+<option value="17"> {{ (linear) ? 17 : 131072 }} </option>
+<option value="18"> {{ (linear) ? 18 : 262144 }} </option>
+<option value="19" :disabled="linear == false"> {{ (linear) ? 19 : "" }} </option>
+<option value="20" :disabled="linear == false"> {{ (linear) ? 20 : "" }} </option>
+<option value="21" :disabled="linear == false"> {{ (linear) ? 21 : "" }} </option>
+<option value="22" :disabled="linear == false"> {{ (linear) ? 22 : "" }} </option>
+<option value="23" :disabled="linear == false"> {{ (linear) ? 23 : "" }} </option>
+<option value="24" :disabled="linear == false"> {{ (linear) ? 24 : "" }} </option>
+<option value="25" :disabled="linear == false"> {{ (linear) ? 25 : "" }} </option>
+<option value="26" :disabled="linear == false"> {{ (linear) ? 26 : "" }} </option>
+<option value="27" :disabled="linear == false"> {{ (linear) ? 27 : "" }} </option>
+<option value="28" :disabled="linear == false"> {{ (linear) ? 28 : "" }} </option>
+<option value="29" :disabled="linear == false"> {{ (linear) ? 29 : "" }} </option>
+<option value="30" :disabled="linear == false"> {{ (linear) ? 30 : "" }} </option>
+<option value="31" :disabled="linear == false"> {{ (linear) ? 31 : "" }} </option>
+<option value="32" :disabled="linear == false"> {{ (linear) ? 32 : "" }} </option>
+<option value="33" :disabled="linear == false"> {{ (linear) ? 33 : "" }} </option>
+<option value="34" :disabled="linear == false"> {{ (linear) ? 34 : "" }} </option>
+<option value="35" :disabled="linear == false"> {{ (linear) ? 35 : "" }} </option>
+<option value="36" :disabled="linear == false"> {{ (linear) ? 36 : "" }} </option>
+<option value="37" :disabled="linear == false"> {{ (linear) ? 37 : "" }} </option>
+<option value="38" :disabled="linear == false"> {{ (linear) ? 38 : "" }} </option>
+<option value="39" :disabled="linear == false"> {{ (linear) ? 39 : "" }} </option>
+<option value="40" :disabled="linear == false"> {{ (linear) ? 40 : "" }} </option>
+</select>
+</td>
+</tr>
+</table>
+<p>Messresultate:</p>
+<table>
 <thead>
 <th class="laenge">Länge <i><span style="font-weight: normal;">n</span></i></th>
 <th class="laufzeit">Laufzeit <span style="font-weight: normal;">[ms]</span></th>
+<th class="laufzeit">log Laufzeit</th>
 </thead>
 <tbody>
 <tr v-for="resultat in resultate">
 <td class="laenge">{{resultat.laenge}}</td>
 <td class="laufzeit">{{Math.round(resultat.zeit * 1000)/1000.}}</td>
+<td class="laufzeit">{{ (resultat.zeit > 0) ? Math.round((Math.log(resultat.zeit)/Math.log(2)) * 1000)/1000. : "" }}</td>
 </tr>
 </tbody>
 </table>
-<p>Grössere <i>n</i> können nicht getestet werden, da die Regex-Engine die Länge des
-regulären Ausdruck limitiert.
 </div>
 <script src="regextest.js"></script>
 </body>

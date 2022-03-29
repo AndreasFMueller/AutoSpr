@@ -47,16 +47,19 @@ var app = new Vue(
 	router,
 	el: "#regex",
 	data: {
-		minn:	1,
-		maxn:	500000,
+		maxi:	10,
+		linear:	true,
+		computing:	false,
 		resultate: [
 		]
 	},
 	methods: {
 		getData() {
-			let n = this.minn;
+			this.computing = true;
+			this.resultate = [];
 			let i = 0;
-			while (n < this.maxn) {
+			let n = 1;
+			while (i < this.maxi) {
 				console.log("working on " + n);
 				let	x = new RegexTest(n);
 				let	t = x.matchTime();
@@ -65,9 +68,26 @@ var app = new Vue(
 					zeit: t
 				};
 				console.log("match time: " + this.resultate[i].zeit);
-				n = 2 * n;
+				if (this.linear) {
+					n = n + 1;
+				} else {
+					n = 2 * n;
+				}
 				i = i + 1;
 			}
+			this.computing = false;
+		},
+		linearchange(event) {
+			if (this.linear) {
+				console.log("keep maxi");
+			} else {
+				this.maxi = 4;
+			}
+			this.getData();
+		},
+		maxiwahl(event) {
+			console.log("maxi has changed: " + this.maxi);
+			this.getData();
 		}
 	},
 	beforeMount() {
