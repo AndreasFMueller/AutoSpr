@@ -4,7 +4,8 @@ import re
 r1 = ""
 r2 = ""
 i = 0
-while i < 29:
+maxi = 26
+while i < maxi:
 	i += 1
 	r1 += "a?"
 	r2 += "a"
@@ -12,7 +13,7 @@ while i < 29:
 	before = time.time()
 	if re.match(r, r2):
 		runtime = time.time() - before
-		print(r2 + " matches " + r + " " + str(runtime))
+		print("%*s matches %*s %*.3f s" % (maxi, r2, -3*maxi, r, 10, runtime))
 	else:
 		print("matching failure")
 
