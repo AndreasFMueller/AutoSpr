@@ -1,6 +1,7 @@
 package main
 
 import "fmt"
+import "time"
 import "regexp"
 
 func main() {
@@ -12,13 +13,14 @@ func main() {
     r2 += "a"
     regex := r1 + r2
     r, err := regexp.Compile(regex)
+    start := time.Now()
 
     if err != nil {
       fmt.Println(err)
     }
 
     if r.MatchString(r2) {
-      fmt.Println(r2 + " matches " + regex)
+      fmt.Sprintf("%s matches %s %dns", r2, regex, time.Since(start))
     }
 	}
 }
