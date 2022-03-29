@@ -3,7 +3,7 @@
 //
 // (c) 2012 Prof Dr Andreas Müller, Hochschule Rapperswil
 //
-package ch.hsr.autospr;
+package ch.ost.autospr;
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;

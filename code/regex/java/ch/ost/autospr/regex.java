@@ -4,7 +4,7 @@
 //
 // (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
 //
-package ch.hsr.autospr;
+package ch.ost.autospr;
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -59,22 +59,24 @@ public class regex {
 			s1 = s1 + "a";
 			s2 = s2 + "a?";
 			String	r = s2 + s1;
-			System.out.print(prefix.substring(i));
-			System.out.print(s1);
+			java.io.Console	console = System.console();
+			java.io.PrintWriter	writer = console.writer();
+			writer.print(prefix.substring(i));
+			writer.print(s1);
 			long	current = System.currentTimeMillis();
 			if (match.matches(s1, r)) {
-				System.out.print(" matches ");
+				writer.print(" matches ");
 			} else {
-				System.out.print(" doesn't match ");
+				writer.print(" doesn't match ");
 			}
 			long	runtime = System.currentTimeMillis() - current;
-			System.out.print(r);
-			System.out.print(" ");
-			System.out.print(prefix.substring(i));
-			System.out.print(prefix.substring(i));
-			System.out.print(prefix.substring(i));
-			System.out.print(0.001 * runtime);
-			System.out.println();
+			writer.print(r);
+			writer.print(" ");
+			writer.print(prefix.substring(i));
+			writer.print(prefix.substring(i));
+			writer.print(prefix.substring(i));
+			writer.print(String.format("%6.3f", 0.001 * runtime));
+			writer.println();
 		}
 	}
 
