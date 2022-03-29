@@ -1,0 +1,49 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Regex performance test Javascript</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3"></script>
+<style>
+table {
+	border-collapse: collapse;
+}
+td, th {
+	border: 1px solid black;
+	padding: 3px;
+}
+td.laufzeit, td.laenge {
+	text-align: right;
+}
+</style>
+</head>
+<body>
+<h1>Javascript <tt>regex</tt> Laufzeit Test</h1>
+<div id="regex">
+<p>
+Zeit, die benötigt wird, um einen String bestehend aus <i>n</i> Zeichen <tt>a</tt>
+gegen den Ausdruck
+<tt>a?</tt><sup><i>n</i></sup><tt>a</tt><sup><i>n</i></sup>
+zu matchen.
+Ein NEA wird eine in <i>n</i> exponentielle Laufzeit <i>O</i>(2<sup><i>n</i></sup>) haben,
+eine DEA-Implementation hat Laufzeit <i>O</i>(<i>n</i>).
+</p>
+<table>
+<thead>
+<th class="laenge">Länge <i><span style="font-weight: normal;">n</span></i></th>
+<th class="laufzeit">Laufzeit <span style="font-weight: normal;">[ms]</span></th>
+</thead>
+<tbody>
+<tr v-for="resultat in resultate">
+<td class="laenge">{{resultat.laenge}}</td>
+<td class="laufzeit">{{Math.round(resultat.zeit * 1000)/1000.}}</td>
+</tr>
+</tbody>
+</table>
+<p>Grössere <i>n</i> können nicht getestet werden, da die Regex-Engine die Länge des
+regulären Ausdruck limitiert.
+</div>
+<script src="regextest.js"></script>
+</body>
+</html>
