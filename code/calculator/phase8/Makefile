@@ -22,6 +22,7 @@ constants.o:	constants.c constants.h
 calculator.o:	calculator.c
 
 calculator:	calculator.o tokens.o grammar.o constants.o
+	gcc calculator.o tokens.o grammar.o constants.o -lm -o calculator
 
 clean:
 	rm -f tokens.c grammar.c grammar.h *.o calculator
