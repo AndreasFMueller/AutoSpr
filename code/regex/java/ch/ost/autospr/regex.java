@@ -42,7 +42,10 @@ public class regex {
 	 * @param match	Matcher instance to use for matches.
 	 */
 	static void	domatch(matcher match) {
-		System.out.println("matching using "
+		java.io.Console	console = System.console();
+		java.io.PrintWriter	writer = console.writer();
+		writer.println();
+		writer.println("matching using "
 			+ match.getClass().getName());
 		String	s1 = "";
 		String	s2 = "";
@@ -59,8 +62,6 @@ public class regex {
 			s1 = s1 + "a";
 			s2 = s2 + "a?";
 			String	r = s2 + s1;
-			java.io.Console	console = System.console();
-			java.io.PrintWriter	writer = console.writer();
 			writer.print(prefix.substring(i));
 			writer.print(s1);
 			long	current = System.currentTimeMillis();
