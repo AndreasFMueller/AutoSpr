@@ -4,6 +4,9 @@
  *
  * (c) 2009 Prof Dr Andreas Mueller
  */
+extern void     yyerror(char *errmsg);
+extern int      yylex(void);
+
 %}
 %union {
 	double	value;

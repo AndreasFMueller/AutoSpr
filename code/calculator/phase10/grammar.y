@@ -7,6 +7,9 @@
 #include <math.h>
 #include "constants.h"
 
+extern void     yyerror(char *errmsg);
+extern int      yylex(void);
+
 double	registers[100];
 double	previous;
 %}

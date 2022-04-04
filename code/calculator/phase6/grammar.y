@@ -4,6 +4,9 @@
  *
  * (c) 2012 Prof Dr Andreas Mueller
  */
+extern void     yyerror(char *errmsg);
+extern int      yylex(void);
+
 #include <math.h>
 %}
 %union {
