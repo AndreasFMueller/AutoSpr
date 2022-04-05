@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
-import "regexp"
+import (
+  "fmt"
+  "regexp"
+  "time"
+)
 
 func main() {
   r1 := ""
@@ -17,8 +20,9 @@ func main() {
       fmt.Println(err)
     }
 
+    start := time.Now()
     if r.MatchString(r2) {
-      fmt.Println(r2 + " matches " + regex)
+      fmt.Printf("%8d us : %s matches %s\n", time.Since(start).Microseconds(), r2, regex)
     }
-	}
+  }
 }
