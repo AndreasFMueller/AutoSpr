@@ -12,7 +12,7 @@ extern int      yylex(void);
 %union {
 	double	value;
 }
-%token SIN COS TAN SQRT LOG EXP LOG10 LOG2
+%token SIN COS TAN SQRT LOG EXP LOG10 LOG2 J0 J1 JN Y0 Y1 YN GAMMA
 %token <value>NUMBER
 %type <value>expr term factor
 %%
@@ -41,6 +41,13 @@ factor:		'(' expr ')'		{ $$ = $2; }
 	|	LOG10 '(' expr ')'	{ $$ = log10($3); }
 	|	LOG2 '(' expr ')'	{ $$ = log2($3); }
 	|	EXP '(' expr ')'	{ $$ = exp($3); }
+	|	J0 '(' expr ')'		{ $$ = j0($3); }
+	|	J1 '(' expr ')'		{ $$ = j1($3); }
+	|	JN '(' expr ',' expr ')'{ $$ = jn($3, $5); }
+	|	Y0 '(' expr ')'		{ $$ = y0($3); }
+	|	Y1 '(' expr ')'		{ $$ = y1($3); }
+	|	YN '(' expr ',' expr ')'{ $$ = yn($3, $5); }
+	|	GAMMA '(' expr ')'	{ $$ = tgamma($3); }
 	;
 %%
 

@@ -7,7 +7,7 @@ regex:	regex.c
 	gcc -Wall -O -g -o regex regex.c
 
 test:	regex
-	./regex
+	time ./regex
 
 clean:
 	rm ./regex
