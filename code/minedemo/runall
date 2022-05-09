@@ -1,0 +1,10 @@
+#! /bin/bash
+#
+# start all apps
+#
+# (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+#
+nohup ant wire &
+nohup ant cross &
+nohup ant splitter &
+nohup ant and &
