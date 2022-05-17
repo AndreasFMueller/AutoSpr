@@ -48,7 +48,7 @@ tmp/add3.goto:	tmc tmp pgm/add data/addtape3
 	./tmc -p 2 -T data/addtape3 -o tmp/add3.goto pgm/add
 
 add3:	tmp/add3.goto
-	../vm/gvm -s $(sleepinterval) tmp/add3.goto
+	../vm/gvm -s `expr $(sleepinterval) / 5` tmp/add3.goto
 
 tmp/beaver3.goto:	tmc tmp pgm/beaver3
 	./tmc -p 10 -o tmp/beaver3.goto pgm/beaver3

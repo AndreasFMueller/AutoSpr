@@ -28,6 +28,7 @@ extern int yylex();
 %token PRINTVAR
 %token PRINTTM
 %token PRINTSTRING
+%token PRINTSTEPS
 %token <constant>CONSTANT
 %token <operator>OPERATOR
 %token ASSIGN IF
@@ -119,6 +120,9 @@ expression:	VARIABLE ASSIGN CONSTANT {
 		}
 	|	PRINTTM {
 			$$.type = GVM_NODE_PRINTTM;
+		}
+	|	PRINTSTEPS {
+			$$.type = GVM_NODE_PRINTSTEPS;
 		}
 	;
 

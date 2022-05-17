@@ -20,6 +20,7 @@
 #define	GVM_NODE_PRINTSTRING			8
 #define GVM_NODE_PRINTVAR			9
 #define GVM_NODE_PRINTTM			10
+#define GVM_NODE_PRINTSTEPS			11
 
 typedef struct gvm_assign_s {
 	int	target_varno;
@@ -55,6 +56,7 @@ typedef struct gvm_s {
 	int		nvars;
 	mpz_t		*vars;
 	int		sleep;
+	int		steps;
 } gvm_t;
 
 extern gvm_t	gvm;

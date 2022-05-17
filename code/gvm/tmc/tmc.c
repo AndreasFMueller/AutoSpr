@@ -89,6 +89,8 @@ void	tmc_compile(FILE *output, tm_t *tmp) {
 	fprintf(output, "%d: v1 := %d\n", lineno++, tmp->initialstate);
 	// initial head position
 	fprintf(output, "%d: v2 := %d\n", lineno++, tmp->initialposition);
+	// initialize the TM state transition counter
+	fprintf(output, "%d: v12 := 0\n", lineno++);
 	// this is the point we have to return to
 	int	loop = lineno;
 	// show current state
@@ -103,7 +105,7 @@ void	tmc_compile(FILE *output, tm_t *tmp) {
 	fprintf(output, "%d: GOTO %d\n", lineno, lineno - 3);
 	lineno++;
 	fprintf(output, "%d: v3 := v3 %% 4\n", lineno++);
-	int	endline = lineno + tmp->nnodes * 7 + 25;
+	int	endline = lineno + tmp->nnodes * 7 + 26;
 	for (int i = 0; i < tmp->nnodes; i++) {
 		int	next = lineno + 7;
 		fprintf(output, "%d: IF v1 = %d GOTO %d\n", lineno,
@@ -133,6 +135,8 @@ void	tmc_compile(FILE *output, tm_t *tmp) {
 			break;
 		}
 	}
+	// increment the step transition counter
+	fprintf(output, "%d: v12 := v12 + 1\n", lineno++);
 	// compute 4^(position)
 	fprintf(output, "%d: v8 := v2\n", lineno++);
 	fprintf(output, "%d: v9 := 1\n", lineno++);
@@ -173,6 +177,11 @@ void	tmc_compile(FILE *output, tm_t *tmp) {
 	fprintf(output, "%d: PRINTVAR v1\n", lineno++);
 	fprintf(output, "%d: PRINTSTRING \"last tape position:\"\n", lineno++);
 	fprintf(output, "%d: PRINTVAR v2\n", lineno++);
+	fprintf(output, "%d: PRINTSTRING \"number of TM state transitions:\"\n",
+		lineno++);
+	fprintf(output, "%d: PRINTVAR v12\n", lineno++);
+	fprintf(output, "%d: PRINTSTRING \"number of GOTO steps:\"\n", lineno++);
+	fprintf(output, "%d: PRINTSTEPS\n", lineno++);
 	fprintf(output, "%d: HALT\n", lineno);
 }
 

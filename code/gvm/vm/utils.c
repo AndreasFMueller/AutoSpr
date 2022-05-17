@@ -139,6 +139,7 @@ void	gvm_display(gvm_t *gvmp) {
 void	gvm_run(gvm_t *gvmp) {
 	/* we need program counter variable */
 	int	pc = 0;
+	gvmp->steps = 0;
 
 	/* the following variables are mainly operands and results for
 	   assignment commands */
@@ -154,6 +155,7 @@ void	gvm_run(gvm_t *gvmp) {
 		if (gvm_trace) {
 			printf("%d: ", pc + 1);
 		}
+		gvmp->steps++;
 		switch (gvmp->nodes[pc].type) {
 		case GVM_NODE_ASSIGN_CONSTANT:
 			mpz_set(gvmp->vars[gvmp->nodes[pc].u.a.target_varno],
@@ -280,6 +282,13 @@ void	gvm_run(gvm_t *gvmp) {
 				printf("PRINTTM\n");
 			}
 			gvm_printtmstate(gvmp, 70);
+			pc += 1;
+			break;
+		case GVM_NODE_PRINTSTEPS:
+			if (gvm_trace) {
+				printf("PRINTSTEPS\n");
+			}
+			printf("%d\n", gvmp->steps);
 			pc += 1;
 			break;
 		}

@@ -88,6 +88,8 @@ PRINTVAR v1
 PRINT "some string"
 .ti 10
 PRINTTM
+.ti 10
+PRINTSTEPS
 
 The PRINTVAR command prints the contents of a variable in decimal.
 The PRINT command prints an arbitrary string. PRINTTM interprets the
@@ -95,6 +97,8 @@ first three variables as the state of a turing machine as implemented
 by the turing machine compiler
 .BR tmc (1)
 and prints it in more easily interpreted format.
+The PRINTSTEPS command prints the number of GOTO machine steps that
+were performed so far in the program.
 .SH OPTIONS
 .TP
 .B \-d

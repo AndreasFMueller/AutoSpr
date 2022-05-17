@@ -94,6 +94,7 @@ HALT	{
 	}
 PRINTVAR {	return PRINTVAR; }
 PRINTSTRING {	return PRINTSTRING; }
+PRINTSTEPS {	return PRINTSTEPS; }
 PRINTTM	{	return PRINTTM; }
 		
 [ \t]	{ }
