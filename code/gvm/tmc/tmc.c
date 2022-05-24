@@ -198,20 +198,24 @@ char	*read_initialtape(char *filename) {
 }
 
 static void	usage(const char *progname) {
-	printf("usage: %s [ -dh? ] [ -o outfile ] [ -s state ] [ -p position ] \n", progname);
-	printf("\t[ -t tape ] [ -T tapefile ] tmprogramfile\n");
+	printf("usage: %s [ -dh? ] [ -o outfile ] [ -s state ] [ -p position ] \n\n", progname);
+	printf("\t[ -t tape ] [ -T tapefile ] tmprogramfile\n\n");
 	printf("read a turing machine (TM) description from <tmprogramfile> and convert\n");
 	printf("it into a program in the GOTO language that can then be executed by the\n");
-	printf("GOTO virtual machine program gvm.\n");
+	printf("GOTO virtual machine program gvm.\n\n");
 	printf("options:\n");
-	printf("  -d           debug mode, shows lot's of messages during parsing\n");
-	printf("               and compilation of the TM program\n");
-	printf("  -h,-?        show this help message and exit\n");
-	printf("  -o outfile   write compiled GOTO program to <outfile>\n");
-	printf("  -s state     initialize the TM to start in state <state> instead of 0\n");
-	printf("  -p position  initialize the TM to start at position <position> instead of 0\n");
-	printf("  -t tape      use string <tape> to initialize the tape of the TM\n");
-	printf("  -T tapefile  read the initial tape contents from file <tapefile>\n");
+	printf("  -d,--debug                debug mode, shows lot's of messages during\n");
+	printf("                            parsing and compilation of the TM program\n");
+	printf("  -h,-?,--help              show this help message and exit\n");
+	printf("  -o,--outfile=<outfile>    write compiled GOTO program to <outfile>\n");
+	printf("  -s,--start=<state>        initialize the TM to start in state <state>\n");
+	printf("                            instead of 0\n");
+	printf("  -p,--position=<position>  initialize the TM to start at position <position>\n");
+	printf("                            instead of 0\n");
+	printf("  -t,--initialtype=<tape>   use string <tape> to initialize the tape of\n");
+	printf("                            the TM\n");
+	printf("  -T,--tapename=<tapefile>  read the initial tape contents from file\n");
+	printf("                            <tapefile>\n");
 }
 
 static struct option options[] = {
