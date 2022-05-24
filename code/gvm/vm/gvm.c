@@ -45,12 +45,25 @@ static void	usage(const char *progname) {
 	printf("  -t             trace mode, shows result of each executed step\n");
 }
 
+static struct option	options[] = {
+{ "debug",	no_argument,		NULL,		'd' },
+{ "help",	no_argument,		NULL,		'h' },
+{ "norun",	no_argument,		NULL,		'n' },
+{ "trace",	no_argument,		NULL,		't' },
+{ "sleep",	required_argument,	NULL,		's' },
+{ "vzero",	required_argument,	NULL,		'v' },
+{ NULL,		0,			NULL,		 0  }
+};
+
+
 /* main function */
 int	main(int argc, char *argv[]) {
         yydebug = 0;
         int     c;
+	int	longindex;
 	int	norun = 0;
-        while (EOF != (c = getopt(argc, argv, "dnt0:s:h?")))
+        while (EOF != (c = getopt_long(argc, argv, "dnt0:s:h?",
+			options, &longindex)))
                 switch (c) {
                 case 'd':       yydebug = 1;
                                 break;
