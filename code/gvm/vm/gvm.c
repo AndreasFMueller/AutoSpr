@@ -32,17 +32,18 @@ gvm_t	gvm = {
 
 /* usage function */
 static void	usage(const char *progname) {
-	printf("usage: %s [ -dnth? ] [ -0 var0value ] [ -s interval ] file.goto\n", progname);
-	printf("run a GOTO program in file file.goto\n");
+	printf("usage: %s [ -dnth? ] [ -0 var0value ] [ -s interval ] file.goto\n\n", progname);
+	printf("run a GOTO program in file file.goto\n\n");
 	printf("options:\n");
-	printf("  -0 var0value   initialize variable 0 with value var0value instead\n");
-	printf("                 of the default 0\n");
-	printf("  -d             debug mode, show many (difficult to understand) details\n");
-	printf("                 about the parse and execute process\n");
-	printf("  -h,-?          show this help message and exit\n");
-	printf("  -s interval    pause for interval microseconds between two commands\n");
-	printf("                 of the GOTO program\n");
-	printf("  -t             trace mode, shows result of each executed step\n");
+	printf("  -0,--vzero=<var0value>  initialize variable 0 with value var0value instead\n");
+	printf("                          of the default 0. This is the only parameter\n");
+	printf("                          transfer method to the virtual machine.\n");
+	printf("  -d,--debug              debug mode, show many (difficult to understand)\n");
+	printf("                          details about the parse and execute process\n");
+	printf("  -h,-?,--help            show this help message and exit\n");
+	printf("  -s,--sleep=<interval>   pause for interval microseconds between two commands\n");
+	printf("                          of the GOTO program\n");
+	printf("  -t,--trace              trace mode, shows result of each executed step\n");
 }
 
 static struct option	options[] = {
