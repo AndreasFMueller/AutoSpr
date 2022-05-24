@@ -2,7 +2,6 @@
  * utils.h -- the goto virtual machine
  *
  * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
- * $Id$
  */
 #ifndef _utils_h
 #define _utils_h

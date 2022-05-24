@@ -2,7 +2,6 @@
  * tmc.c -- driver program for the turing machine compiler
  *
  * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
- * $Id$ 
  */
 #include <includes.h>
 #include "tmc.h"
@@ -215,11 +214,24 @@ static void	usage(const char *progname) {
 	printf("  -T tapefile  read the initial tape contents from file <tapefile>\n");
 }
 
+static struct option options[] = {
+{ "debug",		no_argument,		NULL,		'd' },
+{ "help",		no_argument,		NULL,		'h' },
+{ "outfile",		required_argument,	NULL,		'o' },
+{ "start",		required_argument,	NULL,		's' },
+{ "position",		required_argument,	NULL,		'p' },
+{ "initialtape",	required_argument,	NULL,		't' },
+{ "tapename",		required_argument,	NULL,		'T' },
+{ NULL,			0,			NULL,		 0  }
+};
+
 int	main(int argc, char *argv[]) {
 	yydebug = 0;
 	int	c;
 	char	*outfilename = "a.goto";
-	while (EOF != (c = getopt(argc, argv, "do:s:p:t:T:h?")))
+	int	longindex;
+	while (EOF != (c = getopt_long(argc, argv, "do:s:p:t:T:h?",
+			options, &longindex)))
 		switch (c) {
 		case 'd':
 			yydebug = 1;

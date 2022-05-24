@@ -2,7 +2,6 @@
  * common includes
  *
  * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
- * $Id$
  */
 /*
 #define _POSIX_C_SOURCE 199309L

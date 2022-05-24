@@ -18,13 +18,20 @@ AC_PROG_LEX
 AC_PROG_YACC
 
 AC_HEADER_STDC
-AC_CHECK_HEADERS(errno.h stdio.h getopt.h fcntl.h time.h sys/time.h sys/types.h sys/select.h)
+AC_CHECK_HEADERS(errno.h stdio.h getopt.h fcntl.h time.h sys/time.h sys/types.h sys/select.h getopt.h)
 AC_CHECK_FUNC(nanosleep, AC_DEFINE(HAVE_NANOSLEEP, [], [Define if nanosleep(2) function is present]), )
 
 AC_CHECK_HEADERS([gmp.h])
 AC_CHECK_LIB(gmp, __gmpz_init)
 
 AC_C_CONST
+
+case `uname` in
+	Linux)	CFLAGS="-D_DEFAULT_SOURCE ${CFLAGS}"
+		;;
+	*)
+		;;
+esac
 
 # substitutions
 AC_CONFIG_FILES([Makefile

@@ -2,7 +2,6 @@
  * gmv.c -- the goto virtual machine
  *
  * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
- * $Id$
  */
 #include <includes.h>
 #include <gvm.h> 

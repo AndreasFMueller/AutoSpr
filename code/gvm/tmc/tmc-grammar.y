@@ -6,6 +6,8 @@
  */
 #include <includes.h>
 #include "tmc.h"
+extern void    yyerror(char *errmsg);
+extern int	yylex (void);
 %}
 %union {
 	int	state;

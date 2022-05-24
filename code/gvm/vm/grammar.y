@@ -52,8 +52,10 @@ line:	LINENO expression '\n'	{
 				int	nn = 1 + (newlineno / ALLOC_CHUNK);
 				nn *= ALLOC_CHUNK;
 				if (yydebug) {
+					unsigned long	u
+						= nn * sizeof(gvm_node_t);
 					printf("reallocating %p to size %lu\n",
-						gvm.nodes, nn * sizeof(gvm_node_t));
+						gvm.nodes, u);
 				}
 				gvm.nodes = (gvm_node_t *)realloc(gvm.nodes,
 					nn * sizeof(gvm_node_t));
@@ -64,8 +66,8 @@ line:	LINENO expression '\n'	{
 			}
 			memcpy(&(gvm.nodes[$1 - 1]), &$2, sizeof(gvm_node_t));
 			if (yydebug) {
-				printf("copying %lu bytes from %p to %p\n",
-					sizeof(gvm_node_t),
+				unsigned long	u = sizeof(gvm_node_t);
+				printf("copying %lu bytes from %p to %p\n", u,
 					&$2, &(gvm.nodes[$1 - 1]));
 				printf("program now:\n");
 				gvm_display(&gvm);

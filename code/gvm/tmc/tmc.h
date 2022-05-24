@@ -2,7 +2,6 @@
  * tmc.h -- global declarations for the turing machine compiler
  *
  * (c) 2012 Prof Dr Andraes Mueller, Hochschule Rapperswil
- * $Id$
  */
 #ifndef _tmc_h
 #define _tmc_h
