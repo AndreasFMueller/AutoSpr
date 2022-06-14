@@ -7,7 +7,7 @@ case `uname` in
 	Darwin)
 		# on Mac OS X, if you have the GNU MP under /usr/local/lib
 		LDFLAGS=-L/usr/local/lib
-		CFLAGS="-g -Wall -O -std=c99 -Wno-implicit-function-declaration"
+		CFLAGS="-g -Wall -O -std=c99 -Wno-implicit-function-declaration -Wno-unused-function"
 		export CFLAGS LDFLAGS
 		;;
 	Linux)
