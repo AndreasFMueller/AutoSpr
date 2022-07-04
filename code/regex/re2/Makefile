@@ -2,9 +2,11 @@
 # Makefile -- Baue Beispielprogramm fuer die Verwendung des schnellen
 #             Regex Matchers RE2 von Google
 #
-# (c) 2010 Prof Dr Andreas Mueller, Hochschule Rapperswil
+# (c) 2010-2020 Prof Dr Andreas Mueller, Hochschule Rapperswil
+# (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 #
-RE2PREFIX = /usr/local
+
 regex:	regex.cpp
-	g++ -std=c++11 -Wall -g -O2 -o regex regex.cpp -I$(RE2PREFIX)/include \
-		-L$(RE2PREFIX)/lib -Wl,-rpath,$(RE2PREFIX)/lib -lre2 -lpthread
+	g++ -std=c++11 -Wall -g -O2 -o regex regex.cpp			\
+		$$(pkg-config --cflags re2)				\
+		$$(pkg-config --libs re2)
