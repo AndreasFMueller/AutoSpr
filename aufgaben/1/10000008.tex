@@ -1,0 +1,57 @@
+Ein Internet-Meme von
+\url{https://mathematicsart.com/solved-exercises/derivative-of-x-squared-and-derivative-of-sumx-x-times/}
+schlägt einen Beweis für $1=0$ vor.
+Was ist falsch am folgenden Beweis.
+Zunächst ist
+\begin{align*}
+x^2
+&=
+\underbrace{x+x+\dots+x}_{\displaystyle\text{$x$ times}}
+\intertext{Durch Ableiten erhält man}
+\frac{d}{dx}x^2
+&=
+\frac{d}{dx}\bigl(
+\underbrace{x+x+\dots+x}_{\displaystyle\text{$x$ times}}.
+\bigr)
+\intertext{Andererseits kennt man die Ableitungen von $x^2$ und $x$ aus
+der Analysis.
+Durch Einsetzen dieser bekannten Ableitungen ergibt sich}
+2x
+&=
+\underbrace{1+1+\dots+1}_{\displaystyle\text{$x$ times}}
+=
+x
+\intertext{Wegen $x\ne 0$ darf man durch $0$ dividieren und 
+erhält}
+2&=1
+\intertext{oder  nach Subtraktion von $1$}
+1&=0
+\end{align*}
+
+\begin{loesung}
+Die Interpretation von $x^2$ als eine Summe von $x$ Faktoren $x$ 
+funktioniert nur für ganzzahlige $x$.
+Um eine Ableitung zu berechnen, muss man die unabhängige Variable 
+aber in $\mathbb{R}$ varieren können.
+
+Doch selbst wenn das möglich wäre, besteht der nächste Fehler darin,
+dass man auf der rechten Seite nach jedem Vorkommen von $x$ ableiten
+müsste, d.~h.~auch nach dem $x$ in ``$x$ times`` ableiten können.
+Formal könnte man das so beschreiben: die rechte Seite ist eine
+Funktion $f(x,y)$ zweier Variablen $x$ und $y$, definiert durch
+\[
+f(x,y) = \underbrace{x+x+\dots+x}_{\displaystyle \text{$y$ times}},
+\]
+wobei man aber $y=x$ setzen muss.
+Nach den Ableitungsregeln für Funktionen mehrerer Variablen müsste
+man die Ableitung gemäss
+\[
+\frac{d}{dx}f(x,x)
+=
+\frac{\partial f}{\partial x}(x,x)
++
+\frac{\partial f}{\partial y}(x,x)\frac{dy}{dx}\bigg|_{y=x}
+\]
+berechnen.
+Der zweite Term fehlt in der ``Ableitungsberechnung'' des Memes.
+\end{loesung}
