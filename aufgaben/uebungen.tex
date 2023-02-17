@@ -113,7 +113,9 @@
 %  {{\thechapter}{#1}{\arabic{problemcounter}}{\thechapter.\arabic{problemcounter}}{\currentaufgabe}}%
 %}
 % Thema-Information anzeigen
-\def\themasection#1#2{ \item[#2]\label{thema:#1}}
+\def\themasection#1#2{
+\item[#2] \label{thema:#1}
+}
 \newcommand{\printthemata}{
   \IfFileExists{./thema.tex}{
     \chapter*{Aufgaben nach Themen}

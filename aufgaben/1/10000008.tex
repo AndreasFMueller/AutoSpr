@@ -1,7 +1,8 @@
 Ein Internet-Meme von
 \url{https://mathematicsart.com/solved-exercises/derivative-of-x-squared-and-derivative-of-sumx-x-times/}
-schlägt einen Beweis für $1=0$ vor.
-Was ist falsch am folgenden Beweis.
+schlägt folgenden Beweis für $2=1$ vor.
+Was ist falsch daran?
+
 Zunächst ist
 \begin{align*}
 x^2
@@ -9,24 +10,21 @@ x^2
 \underbrace{x+x+\dots+x}_{\displaystyle\text{$x$ times}}
 \intertext{Durch Ableiten erhält man}
 \frac{d}{dx}x^2
-&=
-\frac{d}{dx}\bigl(
-\underbrace{x+x+\dots+x}_{\displaystyle\text{$x$ times}}.
-\bigr)
-\intertext{Andererseits kennt man die Ableitungen von $x^2$ und $x$ aus
-der Analysis.
-Durch Einsetzen dieser bekannten Ableitungen ergibt sich}
+=
 2x
 &=
-\underbrace{1+1+\dots+1}_{\displaystyle\text{$x$ times}}
+\frac{d}{dx}\bigl(
+\underbrace{x+x+\dots+x}_{\displaystyle\text{$x$ times}}
+\bigr)
 =
-x
-\intertext{Wegen $x\ne 0$ darf man durch $0$ dividieren und 
-erhält}
-2&=1
-\intertext{oder  nach Subtraktion von $1$}
-1&=0
+\underbrace{\frac{d}{dx}x+\dots+\frac{d}{dx}x}_{\displaystyle\text{$x$ times}}
+=
+\underbrace{1+\dots+1}_{\displaystyle\text{$x$ times}}
+=
+x.
 \end{align*}
+Wegen $x\ne 0$ darf man durch $0$ dividieren und 
+erhält $2=1$.
 
 \begin{loesung}
 Die Interpretation von $x^2$ als eine Summe von $x$ Faktoren $x$ 
