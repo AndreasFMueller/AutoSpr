@@ -1,0 +1,40 @@
+Beweisen Sie mit vollständiger Induktion
+\[
+\sum_{k=1}^n k^2
+=
+\frac{n(n+1)(2n+1)}{6}.
+\]
+
+\begin{loesung}
+{\bf Induktionsverankerung:} n=0, klar.
+\\
+{\bf Induktionsannahme:} Formel gilt für $n$.
+\\
+{\bf Induktionsschritt:} Nachweis für $\color{red}n+1$:
+\begin{align*}
+\sum_{k=1}^{{\color{red}n+1}} k^2
+&=
+\sum_{k=1}^n k^2
++
+(n+1)^2
+=
+\frac{n({\color{red}n+1})(2n+1)}{6}+\frac{{\color{red}n+1}}{6}(6n+6)
+\\
+&
+=
+\frac{{\color{red}n+1}}{6}\bigl(
+2n^2+n+6n+6
+\bigr)
+=
+\frac{{\color{red}n+1}}{6}\bigl(
+2n^2+7n+6
+\bigr)
+\\
+&=
+\frac{{\color{red}n+1}}{6}
+(2n+3)(n+2)
+=
+\frac{{\color{red}n+1}}{6}(2({\color{red}n+1})+1)({\color{red}n+1}+1).
+\end{align*}
+Dies ist die Formel für die Summe mit $n$ ersetzt durch $\color{red}n+1$.
+\end{loesung}
