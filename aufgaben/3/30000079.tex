@@ -17,23 +17,24 @@ zusammen
 \begin{center}
 \begin{tabular}{|>{$}l<{$}|>{$}l<{$}|>{$}l<{$}|}
 \hline
-w            & L(w)                                & Q   \\
+w            & L(w)                                   & Q   \\
 \hline
-\varepsilon  & L(\varepsilon)  = L                 & q_0 \\
-\texttt{0}   & L(\texttt{0})   = L                 & q_0 \\
-\texttt{1}   & L(\texttt{1})   = \emptyset         & e   \\
-\texttt{00}  & L(\texttt{00})  = L                 & e   \\
-\texttt{01}  & L(\texttt{01})  = \{ \texttt{0} \}  & q_1 \\
-\texttt{10}  & L(\texttt{10})  = \emptyset         & e   \\
-\texttt{11}  & L(\texttt{11})  = \emptyset         & e   \\
-\texttt{000} & L(\texttt{000}) = L                 & q_0 \\
-\texttt{001} & L(\texttt{001}) = \{ \texttt{0} \}  & q_1 \\
-\texttt{010} & L(\texttt{010}) = \{ \varepsilon \} & q_2 \\
-\texttt{011} & L(\texttt{011}) = \emptyset         & e   \\
-\texttt{100} & L(\texttt{100}) = \emptyset         & e   \\
-\texttt{101} & L(\texttt{101}) = \emptyset         & e   \\
-\texttt{110} & L(\texttt{110}) = \emptyset         & e   \\
-\texttt{111} & L(\texttt{111}) = \emptyset         & e   \\
+\varepsilon  & L(\varepsilon)  = L                    & q_0 \\
+\texttt{0}   & L(\texttt{0})   = L\cup\{\texttt{10}\} & q_1 \\
+\texttt{1}   & L(\texttt{1})   = \emptyset            & e   \\
+\texttt{00}  & L(\texttt{00})  = L\cup\{\texttt{10}\} & q_1 \\
+\texttt{01}  & L(\texttt{01})  = \{ \texttt{0} \}     & q_2 \\
+\texttt{10}  & L(\texttt{10})  = \emptyset            & e   \\
+\texttt{11}  & L(\texttt{11})  = \emptyset            & e   \\
+\texttt{000} & L(\texttt{000}) = L\cup\{\texttt{10}\} & q_1 \\
+\texttt{001} & L(\texttt{001}) = \{ \texttt{0} \}     & q_2 \\
+\texttt{010} & L(\texttt{010}) = \{ \varepsilon \}    & q_3 \\
+\texttt{011} & L(\texttt{011}) = \emptyset            & e   \\
+\texttt{100} & L(\texttt{100}) = \emptyset            & e   \\
+\texttt{101} & L(\texttt{101}) = \emptyset            & e   \\
+\texttt{110} & L(\texttt{110}) = \emptyset            & e   \\
+\texttt{111} & L(\texttt{111}) = \emptyset            & e   \\
+\dots        & \dots                                  &\dots\\
 \hline
 \end{tabular}
 \end{center}
@@ -45,7 +46,8 @@ Das Zustandsdiagramm wird
 \coordinate (q0) at (0,0);
 \coordinate (q1) at (3,0);
 \coordinate (q2) at (6,0);
-\coordinate (e) at (3,-3);
+\coordinate (q3) at (9,0);
+\coordinate (e) at (4.5,-3);
 \def\pfeil#1#2{
 	\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] #1 -- #2;
 }
@@ -60,22 +62,27 @@ Das Zustandsdiagramm wird
 }
 \zustand{(q0)}{q_0}
 \zustand{(q1)}{q_1}
-\akzeptierzustand{(q2)}{q_2}
+\zustand{(q2)}{q_2}
+\akzeptierzustand{(q3)}{q_3}
 \zustand{(e)}{e}
 \pfeil{(-2,0)}{(q0)}
 \pfeil{(q0)}{(q1)}
 \pfeil{(q1)}{(q2)}
+\pfeil{(q2)}{(q3)}
 \pfeil{(q0)}{(e)}
-\pfeil{(q1)}{(e)}
 \pfeil{(q2)}{(e)}
-\node at ($0.5*(q2)+0.5*(e)$) [below right] {$\Sigma$};
+\pfeil{(q3)}{(e)}
+\node at ($0.5*(q3)+0.5*(e)$) [below right] {$\texttt{1}$};
 \node at ($0.5*(q0)+0.5*(e)$) [below left] {$\texttt{1}$};
-\node at ($0.5*(q1)+0.5*(e)$) [right] {$\texttt{1}$};
-\node at ($0.5*(q0)+0.5*(q1)$) [above] {$\texttt{1}$};
-\node at ($0.5*(q1)+0.5*(q2)$) [above] {$\texttt{0}$};
-\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (q0) to[out=45,in=135,distance=2cm] (q0);
-\node at ($(q0)+(0,1.2)$) [above] {\texttt{0}};
-\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (e) to[out=-45,in=-135,distance=2cm] (e);
+\node at ($0.5*(q2)+0.5*(e)$) [left] {$\texttt{1}$};
+\node at ($0.5*(q0)+0.5*(q1)$) [above] {$\texttt{0}$};
+\node at ($0.5*(q1)+0.5*(q2)$) [above] {$\texttt{1}$};
+\node at ($0.5*(q2)+0.5*(q3)$) [above] {$\texttt{0}$};
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q1) to[out=45,in=135,distance=2cm] (q1);
+\node at ($(q1)+(0,1.2)$) [above] {\texttt{0}};
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(e) to[out=-45,in=-135,distance=2cm] (e);
 \node at ($(e)+(0,-1.2)$) [below] {$\Sigma$};
 \end{tikzpicture}
 \end{center}
