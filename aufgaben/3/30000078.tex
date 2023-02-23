@@ -1,0 +1,46 @@
+Sei $\Sigma=\{\texttt{0},\texttt{1},\texttt{2}\}$.
+Finden Sie einen deterministischen endlichen Automaten, der die
+Sprache
+\[
+L
+=
+\{
+w\in \Sigma^*
+\mid
+\text{$w$ eine ungerade Zahl im Dreiersystem}
+\}
+\]
+akzeptiert.
+
+\begin{loesung}
+Es braucht zwei Zustände $q_0$ und $q_1$ für gerade und ungerade
+Zahlen.
+Es muss untersucht werden, wie die Parität (gerade/ungerade) einer
+Zahl sich beim Anhängen einer Ziffer ändert.
+Anfügen einer \texttt{0} entspricht der Multiplikation mit $3$,
+dies ändert die Parität nicht.
+Anfügen einer \texttt{1} entspricht der Multiplikation mit $3$
+gefolgt von der Addition einer $1$, dies ändert die Parität.
+Anfügen einer \texttt{2} dagegen ändert die Parität nicht.
+Somit ergibt sich der endliche Automat
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (A) at (-2,0);
+\coordinate (B) at (2,0);
+\node at (A) {$q_0$};
+\node at (B) {$q_1$};
+\draw (A) circle[radius=0.5];
+\draw (B) circle[radius=0.5];
+\draw (B) circle[radius=0.45];
+\draw[->,shorten >= 0.5cm] (-4,0) -- (A);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (A) to[out=30,in=150] (B);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (B) to[out=-150,in=-30] (A);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (A) to[out=60,in=120,distance=2cm] (A);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (B) to[out=60,in=120,distance=2cm] (B);
+\node at (0,0.7) [above] {\texttt{1}};
+\node at (0,-0.7) [below] {\texttt{1}};
+\node at ($(A)+(0,1.4)$) [above] {\texttt{0},\texttt{2}};
+\node at ($(B)+(0,1.4)$) [above] {\texttt{0},\texttt{2}};
+\end{tikzpicture}
+\end{center}
+\end{loesung}

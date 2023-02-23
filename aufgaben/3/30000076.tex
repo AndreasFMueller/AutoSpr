@@ -16,34 +16,47 @@ aber nicht
 
 \begin{loesung}
 Wir brauchen zwei Zustände um auszudrücken, ob gerade eine Eins verarbeitet
-worden ist oder eben nicht.
-Ein dritter Zustand ist nötig, um Übergänge abzufangen, die zu nicht
+worden ($q_1$) ist oder eben nicht ($q_0$).
+Ein dritter Zustand $q_2$ ist nötig, um Übergänge abzufangen, die zu nicht
 akzeptablen Zeichenketten führen würden.
+Gestartet wird im Zustand $q_0$, eine \texttt{1} führt über in den 
+Zustand $q_1$.
+Folgt nach einer \texttt{1} eine weitere \texttt{1}, wechselt man
+in den Zustand $q_2$, der kein Akzeptierzustastand ist.
+Folgt eine \texttt{0} ist man wieder in der Situation $q_0$.
+Beide Zustände $q_0$ und $q_1$ sind also Akzeptierzustände:
 \begin{center}
-\begin{tikzpicture}[>=latex,thick]
-\coordinate (A) at (-1.5,0);
-\coordinate (B) at (1.5,0);
-\coordinate (C) at (0,{-\sqrt{3}*3/2});
 \def\zustand#1#2{
 	\fill[color=white] #1 circle[radius=0.5];
 	\node at #1 {$#2$};
 	\draw #1 circle[radius=0.5];
 }
-%\def\akzeptierzustand#1#2{
-%	\fill[color=white] #1 circle[radius=0.5];
-%	\node at #1 {$#2$};
-%	\draw #1 circle[radius=0.5];
-%	\draw #1 circle[radius=0.45];
-%}
-%\def\pfeil#1#2#3{
-%	\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] #1 -- #2;
-%	\node at ($0.5*#1+0.5*#2$) [above] {$#3$};
-%}
-%\akzeptierzustand{(A)}{q_0}
-%\akzeptierzustand{(B)}{q_1}
+\def\akzeptierzustand#1#2{
+	\fill[color=white] #1 circle[radius=0.5];
+	\node at #1 {$#2$};
+	\draw #1 circle[radius=0.5];
+	\draw #1 circle[radius=0.45];
+}
+\def\pfeil#1#2#3{
+	\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] #1 -- #2;
+	\node at ($0.5*#1+0.5*#2$) [above] {$#3$};
+}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (A) at (-3,0);
+\coordinate (B) at (0,0);
+\coordinate (C) at (3,0);
+\akzeptierzustand{(A)}{q_0}
+\akzeptierzustand{(B)}{q_1}
 \zustand{(C)}{q_2}
-%\pfeil{(A)}{(B)}{\texttt{1}}
-%\pfeil{(B)}{(C)}{\texttt{1}}
+\pfeil{(A)}{(B)}{\texttt{1}}
+\pfeil{(B)}{(C)}{\texttt{1}}
+\draw[->,shorten >= 0.5cm, shorten <= 0.5cm] (C) to[out=-45,in=45,distance=2cm] (C);
+\node at ($(C)+(1.2,0)$) [right] {$\texttt{0},\texttt{1}$};
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (A) to[out=45,in=135,distance=2cm] (A);
+\node at ($(A)+(0,1.2)$) [above] {$\texttt{0}$};
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (B) to[out=-135,in=-45] (A);
+\node at ($0.5*(A)+0.5*(B)+(0,-0.8)$) [below] {\texttt{0}};
+\draw[->,shorten >= 0.5cm] (-5,0) -- (A);
 \end{tikzpicture}
 \end{center}
 \end{loesung}
