@@ -1,0 +1,116 @@
+Finden Sie den Minimalautomaten zum deterministischen endlichen Automaten
+mit dem Zustandsdiagramm
+\begin{center}
+\def\l{1.6}
+\def\s{0.3}
+\def\S{0.4}
+\def\zustand#1{
+	\fill[color=white] #1 circle[radius=0.3];
+	\draw #1 circle[radius=0.3];
+}
+\def\akzeptierzustand#1{
+	\fill[color=white] #1 circle[radius=0.3];
+	\draw #1 circle[radius=0.3];
+	\draw #1 circle[radius=0.25];
+}
+\def\nullpfeil#1{
+	\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] #1 -- ($#1+(\l,0)$);
+	\node at ($#1+({0.5*(\s+1)*\l},0)$) [above] {\small\texttt{0}};
+}
+\def\nulllang#1{
+	\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+		#1
+		-- 
+		($#1+({\S*\l},0)$)
+		to[out=0,in=0]
+		($#1+({\S*\l},{-\l*\s})$)
+		--
+		($#1+({(-2-\S)*\l},{-\l*\s})$)
+		to[out=180,in=180]
+		($#1+({(-2-\S)*\l},0)$)
+		--
+		($#1+({-2*\l},0)$);
+	\node at ($#1+({\S*\l+0.1},{-0.5*\s*\l})$) [right] {\small\texttt{0}};
+}
+\def\einspfeil#1{
+	\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] #1 -- ($#1+(0,-\l)$);
+	\node at ($#1+(0,{-0.5*(\s+1)*\l})$) [left] {\small\texttt{1}};
+}
+\def\einslang#1{
+	\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+		#1
+		-- 
+		($#1+(0,{-\S*\l})$)
+		to[out=-90,in=-90]
+		($#1+({\l*\s},{-\S*\l})$)
+		--
+		($#1+({\l*\s},{(2+\S)*\l})$)
+		to[out=90,in=90]
+		($#1+(0,{(2+\S)*\l})$)
+		--
+		($#1+(0,{2*\l})$);
+	\node at ($#1+({0.5*\s*\l},{-\S*\l-0.1})$) [below] {\small\texttt{1}};
+}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (A) at (-\l,-\l);
+\coordinate (B) at (0,-\l);
+\coordinate (C) at (\l,-\l);
+
+\coordinate (D) at (-\l,0);
+\coordinate (E) at (0,0);
+\coordinate (F) at (\l,0);
+
+\coordinate (G) at (-\l,\l);
+\coordinate (H) at (0,\l);
+\coordinate (I) at (\l,\l);
+
+\draw[<-,shorten <= 0.3cm] (G) -- ++({-\l*0.5},{\l*0.5});
+
+\akzeptierzustand{(A)}
+\zustand{(B)}
+\zustand{(C)}
+
+\zustand{(D)}
+\akzeptierzustand{(E)}
+\zustand{(F)}
+
+\zustand{(G)}
+\zustand{(H)}
+\akzeptierzustand{(I)}
+
+\node at (A) {$0$};
+\node at (B) {$1$};
+\node at (C) {$2$};
+\node at (D) {$3$};
+\node at (E) {$4$};
+\node at (F) {$5$};
+\node at (G) {$6$};
+\node at (H) {$7$};
+\node at (I) {$8$};
+
+\nullpfeil{(A)}
+\nullpfeil{(B)}
+\nulllang{(C)}
+\nullpfeil{(D)}
+\nullpfeil{(E)}
+\nulllang{(F)}
+\nullpfeil{(G)}
+\nullpfeil{(H)}
+\nulllang{(I)}
+
+\einspfeil{(G)}
+\einspfeil{(H)}
+\einspfeil{(I)}
+\einspfeil{(D)}
+\einspfeil{(E)}
+\einspfeil{(F)}
+\einslang{(A)}
+\einslang{(B)}
+\einslang{(C)}
+
+\end{tikzpicture}
+\end{center}
+
+
+\begin{loesung}
+\end{loesung}
