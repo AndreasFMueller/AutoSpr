@@ -4,12 +4,20 @@ mit dem Zustandsdiagramm
 \def\l{1.6}
 \def\s{0.3}
 \def\S{0.4}
-\def\zustand#1{
-	\fill[color=white] #1 circle[radius=0.3];
+\def\zustand#1#2{
+	\ifthenelse{\boolean{loesungen}}{
+		\fill[color=#2!20] #1 circle[radius=0.3];
+	}{
+		\fill[color=white] #1 circle[radius=0.3];
+	}
 	\draw #1 circle[radius=0.3];
 }
-\def\akzeptierzustand#1{
-	\fill[color=white] #1 circle[radius=0.3];
+\def\akzeptierzustand#1#2{
+	\ifthenelse{\boolean{loesungen}}{
+		\fill[color=#2!20] #1 circle[radius=0.3];
+	}{
+		\fill[color=white] #1 circle[radius=0.3];
+	}
 	\draw #1 circle[radius=0.3];
 	\draw #1 circle[radius=0.25];
 }
@@ -66,27 +74,27 @@ mit dem Zustandsdiagramm
 
 \draw[<-,shorten <= 0.3cm] (G) -- ++({-\l*0.5},{\l*0.5});
 
-\akzeptierzustand{(A)}
-\zustand{(B)}
-\zustand{(C)}
+\akzeptierzustand{(A)}{darkgreen}
+\zustand{(B)}{red}
+\zustand{(C)}{blue}
 
-\zustand{(D)}
-\akzeptierzustand{(E)}
-\zustand{(F)}
+\zustand{(D)}{blue}
+\akzeptierzustand{(E)}{darkgreen}
+\zustand{(F)}{red}
 
-\zustand{(G)}
-\zustand{(H)}
-\akzeptierzustand{(I)}
+\zustand{(G)}{red}
+\zustand{(H)}{blue}
+\akzeptierzustand{(I)}{darkgreen}
 
-\node at (A) {$0$};
-\node at (B) {$1$};
-\node at (C) {$2$};
+\node at (A) {$6$};
+\node at (B) {$7$};
+\node at (C) {$8$};
 \node at (D) {$3$};
 \node at (E) {$4$};
 \node at (F) {$5$};
-\node at (G) {$6$};
-\node at (H) {$7$};
-\node at (I) {$8$};
+\node at (G) {$0$};
+\node at (H) {$1$};
+\node at (I) {$2$};
 
 \nullpfeil{(A)}
 \nullpfeil{(B)}
@@ -113,4 +121,138 @@ mit dem Zustandsdiagramm
 
 
 \begin{loesung}
+Lösung durch Anstarren: Vom Startzustand kann man mit genau zwei Zeichen
+zu einem Akzeptierzustand kommen.
+Mit genau drei weiteren Zeichen, unabhängig davon, ob es \texttt{0} oder
+\texttt{1} ist, kann man wieder zu einem Akzeptierzustand kommen.
+Der einfachste endliche Automat, der genau dies auch ausdrückt, ist
+\begin{center}
+\def\r{0.35}
+\def\zustand#1#2{
+	\ifthenelse{\boolean{loesungen}}{
+		\fill[color=#2!20] #1 circle[radius=\r];
+	}{
+		\fill[color=white] #1 circle[radius=\r];
+	}
+	\draw #1 circle[radius=\r];
+}
+\def\akzeptierzustand#1#2{
+	\ifthenelse{\boolean{loesungen}}{
+		\fill[color=#2!20] #1 circle[radius=\r];
+	}{
+		\fill[color=white] #1 circle[radius=\r];
+	}
+	\draw #1 circle[radius=\r];
+	\draw #1 circle[radius={\r-0.05}];
+}
+\def\pfeil#1{
+	\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] #1 -- ($#1+(2,0)$);
+	\node at ($#1+(1,0)$) [above] {\texttt{0},\texttt{1}};
+}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (S) at (-2,0);
+\coordinate (A) at (0,0);
+\coordinate (B) at (2,0);
+\coordinate (C) at (4,0);
+\zustand{(A)}{red}
+\zustand{(B)}{blue}
+\akzeptierzustand{(C)}{darkgreen}
+
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (S) -- (A);
+\pfeil{(A)}
+\pfeil{(B)}
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (C) to[out=-120,in=-60] (A);
+\node at ($(B)+(0,-1)$) [below] {\texttt{0},\texttt{1}};
+
+\end{tikzpicture}
+\end{center}
+Dies ist der der Minimalautomat, den man auch mit dem ``Tabellenalgorithmus''
+finden können sollte.
+
+Lösung mit der ``Kreuzchentabelle'': Die Starttabelle bezeichnet
+Paare von Akzeptier- und Nichtakzeptierzuständen als nicht äquivalent:
+\begin{center}
+\def\e{\equiv}
+\def\t{\times}
+\def\o{\otimes}
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
+\hline
+  &0  &1  &2  &3  &4  &5  &6  &7  &8  \\
+\hline
+ 0&\e &   &\t &   &\t &   &\t &   &   \\
+ 1&   &\e &\t &   &\t &   &\t &   &   \\
+ 2&\t &\t &\e &\t &   &\t &   &\t &\t \\
+ 3&   &   &\t &\e &\t &   &\t &   &   \\
+ 4&\t &\t &   &\t &\e &\t &   &\t &\t \\
+ 5&   &   &\t &   &\t &\e &\t &   &   \\
+ 6&\t &\t &   &\t &   &\t &\e &\t &\t \\
+ 7&   &   &\t &   &\t &   &\t &\e &   \\
+ 8&   &   &\t &   &\t &   &\t &   &\e \\
+\hline
+\end{tabular}
+\end{center}
+In der zweiten Generation sucht man Paare, die durch einen Übergang in ein
+nicht äquivalentes Paar übergeführt werden:
+\begin{center}
+\def\e{\equiv}
+\def\t{\times}
+\def\o{\otimes}
+\def\f#1{\raisebox{-0.14cm}{%
+\begin{tikzpicture}
+\fill[color=#1!20] (0,0) rectangle (0.4,0.4);
+\node at (0.2,0.1) {\clap{\smash{$\equiv$}}};
+\end{tikzpicture}}%
+}
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
+\hline
+  &0  &1  &2  &3  &4  &5  &6  &7  &8  \\
+\hline
+ 0&\e &\t &\o &\t &\o &\f{red}   &\o &\f{red}   &\t \\
+ 1&\t &\e &\o &\f{blue}   &\o &\t &\o &\t &\f{blue}   \\
+ 2&\o &\o &\e &\o &\f{darkgreen}   &\o &\f{darkgreen}   &\o &\o \\
+ 3&\t &\f{blue}   &\o &\e &\o &\t &\o &\t &\f{blue}   \\
+ 4&\o &\o &\f{darkgreen}   &\o &\e &\o &\f{darkgreen}   &\o &\o \\
+ 5&\f{red}   &\t &\o &\t &\o &\e &\o &\f{red}   &\t \\
+ 6&\o &\o &\f{darkgreen}   &\o &\f{darkgreen}   &\o &\e &\o &\o \\
+ 7&\f{red}   &\t &\o &\t &\o &\f{red}   &\o &\e &\t \\
+ 8&\t &\f{blue}   &\o &\f{blue}   &\o &\t &\o &\t &\e \\
+\hline
+\end{tabular}
+\end{center}
+Beim nächsten Durchgang können keine neuen Kreuzchen mehr eingetragen
+werden, die leeren Felder bedeuten also, dass diese Zustände zusammengelegt
+werden können.
+Damit haben wir den Minimalautomaten gefunden:
+\begin{center}
+\def\r{0.35}
+\def\zustand#1#2{
+	\fill[color=#2!20] #1 circle[radius=\r];
+	\draw #1 circle[radius=\r];
+}
+\def\akzeptierzustand#1#2{
+	\fill[color=#2!20] #1 circle[radius=\r];
+	\draw #1 circle[radius=\r];
+	\draw #1 circle[radius={\r-0.05}];
+}
+\def\pfeil#1{
+	\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] #1 -- ($#1+(2,0)$);
+	\node at ($#1+(1,0)$) [above] {\texttt{0},\texttt{1}};
+}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (S) at (-2,0);
+\coordinate (A) at (0,0);
+\coordinate (B) at (2,0);
+\coordinate (C) at (4,0);
+\zustand{(A)}{red}
+\zustand{(B)}{blue}
+\akzeptierzustand{(C)}{darkgreen}
+
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (S) -- (A);
+\pfeil{(A)}
+\pfeil{(B)}
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (C) to[out=-120,in=-60] (A);
+\node at ($(B)+(0,-1)$) [below] {\texttt{0},\texttt{1}};
+
+\end{tikzpicture}
+\end{center}
 \end{loesung}
