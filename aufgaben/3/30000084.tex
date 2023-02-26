@@ -1,0 +1,99 @@
+Verwendeln Sie den Thompson-NEA um den folgenden NEA über dem Alphabet
+$\Sigma=\{\texttt{0},\texttt{1}\}$ in einen DEA
+umzuwandeln.
+\begin{center}
+\def\l{2}
+\def\r{0.35}
+\def\punkt#1#2{({(#1)*\l},{(#2)*\l})}
+\def\zustand#1#2{
+	\fill[color=white] #1 circle[radius=\r];
+	\draw #1 circle[radius=\r];
+	\node at #1 {$#2\mathstrut$};
+}
+\def\akzeptierzustand#1#2{
+	\zustand{#1}{#2}
+	\draw #1 circle[radius={\r-0.05}];
+}
+\def\pfeil#1#2{
+	\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] #1 -- #2;
+}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (\l,0);
+\zustand{(q0)}{q_0}
+\akzeptierzustand{(q1)}{q_1}
+%\pfeil{(q0)}{(q1)}
+\draw[->,shorten >= 0.35cm, shorten <= 0.35cm] 
+	(q0) to[out=20,in=160] (q1);
+\draw[->,shorten >= 0.35cm, shorten <= 0.35cm] 
+	(q1) to[out=-160,in=-20] (q0);
+\pfeil{(-1.5,0)}{(q0)}
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm]
+	(q0) to[out=60,in=120,distance=1.2cm] (q0);
+\node at ($(q0)+(0,0.8)$) [above] {\texttt{1}};
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm]
+	(q1) to[out=60,in=120,distance=1.2cm] (q1);
+\node at ($(q1)+(0,0.8)$) [above] {$\Sigma$};
+\node at ($0.5*(q0)+0.5*(q1)+(0,0.2)$) [above] {\texttt{1}};
+\node at ($0.5*(q0)+0.5*(q1)+(0,-0.2)$) [below] {\texttt{0}};
+\end{tikzpicture}
+\end{center}
+Zeichnen Sie auch die nicht erreichbaren Zustände und Übergänge.
+
+\begin{loesung}
+Da der NEA zwei Zustände $Q=\{q_0,q_1\}$ hat, hat der DEA höchstens
+die vier Zustände
+\[
+Q' = P(Q) = \{ \emptyset, \{q_0\}, \{q_1\}, Q \}.
+\]
+Das Zustandsdiagramm ist
+\begin{center}
+\def\l{1.5}
+\def\r{0.55}
+\def\zustand#1#2{
+	\fill[color=white] #1 circle[radius=\r];
+	\draw #1 circle[radius=\r];
+	\node at #1 {$#2\mathstrut$};
+}
+\def\akzeptierzustand#1#2{
+	\zustand{#1}{#2}
+	\draw #1 circle[radius={\r-0.05}];
+}
+\def\pfeil#1#2{
+	\draw[->,shorten >= 0.55cm,shorten <= 0.55cm] #1 -- #2;
+}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (e) at (0,-\l);
+\coordinate (q0) at (-\l,0);
+\coordinate (q1) at (\l,0);
+\coordinate (q01) at (0,\l);
+\zustand{(e)}{\emptyset}
+\zustand{(q0)}{q_0}
+\akzeptierzustand{(q01)}{q_0,q_1}
+\pfeil{(-4,0)}{(q0)}
+\pfeil{(q0)}{(q01)}
+\node at ($0.5*(q0)+0.5*(q01)$) [above left] {\texttt{1}};
+\pfeil{(q0)}{(e)}
+\node at ($0.5*(q0)+0.5*(e)$) [below left] {\texttt{0}};
+
+\begin{scope}
+\color{gray}
+\akzeptierzustand{(q1)}{q_1}
+\pfeil{(q1)}{(q01)}
+\node at ($0.5*(q1)+0.5*(q01)$) [below left] {\texttt{0}};
+\draw[->,shorten >= 0.55cm,shorten <= 0.55cm]
+	(q1) to[out=-30,in=30,distance=1.5cm] (q1);
+\node at ($(q1)+(1,0)$) [right] {\texttt{1}};
+\end{scope}
+
+\draw[->,shorten >= 0.55cm,shorten <= 0.55cm]
+	(e) to[out=-30,in=30,distance=1.5cm] (e);
+\node at ($(e)+(1,0)$) [right] {$\Sigma$};
+\draw[->,shorten >= 0.55cm,shorten <= 0.55cm]
+	(q01) to[out=-30,in=30,distance=1.5cm] (q01);
+\node at ($(q01)+(1,0)$) [right] {\texttt{1}};
+\end{tikzpicture}
+\end{center}
+Der Zustand $\{q_1\}$ ist nicht erreichbar und ist daher zusammen mit
+seinen Übergängen grau gezeichnet.
+\end{loesung}
