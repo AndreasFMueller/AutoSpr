@@ -1,0 +1,95 @@
+Die Sprache $L$, bestehend aus Wörtern über dem Alphabet
+$\Sigma=\{\texttt{0},\texttt{1}\}$, die Einsen immer mindestens als
+Dreiergruppen enhalten, wird vom deterministischen
+endlichen Automaten
+\vspace*{-10pt}
+\begin{center}
+\def\l{1.3}
+\def\r{0.30}
+\def\zustand#1#2{
+	\fill[color=white] #1 circle[radius=\r];
+	\node at #1 {$#2\mathstrut$};
+	\draw #1 circle[radius=\r];
+}
+\def\akzeptierzustand#1#2{
+	\zustand{#1}{#2}
+	\draw #1 circle[radius={\r-0.05}];
+}
+\def\pfeil#1#2{
+	\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] #1 -- #2;
+}
+\def\punkt#1#2#3{($#3*#1+#2-#3*#2$)}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (S) at ({0.8*\l},{0.8*\l});
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (\l,0);
+\coordinate (q2) at (\l,\l);
+\coordinate (q3) at (0,\l);
+\coordinate (e) at ({(1+sqrt(3)/2)*\l},{0.5*\l});
+\pfeil{(S)}{(q0)}
+\akzeptierzustand{(q0)}{q_0}
+\akzeptierzustand{(q3)}{q_3}
+\zustand{(q1)}{q_1}
+\zustand{(q2)}{q_2}
+\zustand{(e)}{e}
+
+\draw[->,shorten >= 0.30cm,shorten <= 0.30cm]
+	(q0) to[out=150,in=-150,distance=1.5cm] (q0);
+\node at ($(q0)+(-1,0)$) [left] {\texttt{0}};
+
+\draw[->,shorten >= 0.30cm,shorten <= 0.30cm]
+	(q3) to[out=150,in=-150,distance=1.5cm] (q3);
+\node at ($(q3)+(-1,0)$) [left] {\texttt{1}};
+
+\draw[->,shorten >= 0.30cm,shorten <= 0.30cm]
+	(e) to[out=-30,in=30,distance=1.5cm] (e);
+\node at ($(e)+(1.0,0)$) [right] {$\Sigma$};
+
+\pfeil{(q0)}{(q1)}
+\node at \punkt{(q0)}{(q1)}{0.5} [below] {\texttt{1}};
+
+\pfeil{(q1)}{(q2)}
+\node at \punkt{(q1)}{(q2)}{0.5} [right] {\texttt{1}};
+
+\pfeil{(q2)}{(q3)}
+\node at \punkt{(q2)}{(q3)}{0.5} [above] {\texttt{1}};
+
+\pfeil{(q3)}{(q0)}
+\node at \punkt{(q3)}{(q0)}{0.5} [left] {\texttt{0}};
+
+\pfeil{(q1)}{(e)}
+\node at \punkt{(q1)}{(e)}{0.7} [below right] {\texttt{0}};
+
+\pfeil{(q2)}{(e)}
+\node at \punkt{(q2)}{(e)}{0.7} [above right] {\texttt{0}};
+
+\end{tikzpicture}
+\end{center}
+\vspace*{-10pt}
+akzeptiert.
+Verwenden Sie den Automaten, um die folgenden Wörter wie im Pumping Lemma
+verprochen zum Aufpumpen zu zerlegen.
+\begin{teilaufgaben}
+\item
+$w=\texttt{111110000}$
+\item
+$w=\texttt{011111000}$
+\end{teilaufgaben}
+
+\begin{loesung}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+Es muss jeweils eine Aufteilung des Wortes $w$ in drei Teile
+$w={\color{darkgreen}x}{\color{red}y}{\color{blue}z}$ gefunden
+werden derart, dass der Teil $y$ beliebig aufgepumpt werden kann.
+\begin{teilaufgaben}
+\item
+$w=\texttt{{\color{darkgreen}111}{\color{red}1}{\color{blue}10000}}$,
+d.~h.~$x=\texttt{\color{darkgreen}111}$, $y=\texttt{\color{red}1}$
+und $z=\texttt{\color{blue}10000}$.
+\item
+$w=\texttt{{\color{red}0}{\color{blue}11111000}}$,
+d.~h.~$x=\varepsilon$, $y=\texttt{\color{red}0}$ und
+$z=\texttt{\color{blue}1111100}$.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}

@@ -3,13 +3,21 @@
 #
 # (c) 2013 Prof Dr Andreas Mueller, Hochschule Rapperswil
 #
-all:	aufgabensammlung.pdf
+all:	
+	@echo choose test or sammlung
+
+test:	test.pdf
+
+sammlung:	aufgabensammlung.pdf
 
 TEXFILES = aufgabensammlung.tex uebungen.tex vorwort.tex \
 	1.tex 2.tex 3.tex 4.tex 5.tex 6.tex 7.tex 8.tex
 
 aufgabensammlung.pdf:	$(TEXFILES) aufgabensammlung.ind thema.tex
 	pdflatex aufgabensammlung.tex
+
+test.pdf:	test.tex testaufgabe.tex $(TEXFILES)
+	pdflatex test.tex
 
 thema.tex:      thema.tix mkthemaidx
 	iconv -f ISO-8859-1 -t UTF-8 thema.tix > thema.tix2
