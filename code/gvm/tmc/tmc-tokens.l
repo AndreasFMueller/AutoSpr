@@ -4,6 +4,7 @@
  *
  * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
  */
+#include <tmc.h>
 #include <tmc-grammar.h>
 #undef YY_INPUT
 #define YY_INPUT(b, r, ms) ( r = tmc_read(b, ms))

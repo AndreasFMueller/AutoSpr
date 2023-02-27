@@ -21,7 +21,7 @@ test:	gvm test.goto
 	./gvm -d test.goto
 
 add:	gvm ../tmc/tmp/add1.goto
-	./gvm -s 200 ../tmc/tmp/add1.goto
+	./gvm -s 50 ../tmc/tmp/add1.goto
 
 add1:	gvm ../tmc/tmp/add1.goto
 	./gvm ../tmc/tmp/add1.goto

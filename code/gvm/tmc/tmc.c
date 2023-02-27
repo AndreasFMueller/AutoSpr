@@ -4,6 +4,7 @@
  * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
  * $Id$ 
  */
+#define _DEFAULT_SOURCE
 #include <includes.h>
 #include "tmc.h"
 
@@ -239,7 +240,7 @@ int	main(int argc, char *argv[]) {
 			tm.initialposition = atoi(optarg);
 			break;
 		case 't':
-			tm.initialtape = optarg;
+			tm.initialtape = strndup(optarg, 1000);
 			break;
 		case 'T':
 			tm.initialtape = read_initialtape(optarg);

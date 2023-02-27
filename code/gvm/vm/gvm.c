@@ -4,6 +4,7 @@
  * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
  * $Id$
  */
+#define _DEFAULT_SOURCE
 #include <includes.h>
 #include <gvm.h> 
 #include <utils.h>

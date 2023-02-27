@@ -25,7 +25,7 @@ beaver5:	turing
 	time ./turing -o 15000 -s 30000 pgm/beaver5
 
 add:	turing
-	./turing -c -p 100000 -v -o 2 -s 40 -t data/addtape pgm/add
+	./turing -c -p 100000 -v -o 2 -s 50 -t data/addtape pgm/add
 
 add1:	turing
 	./turing -c -p 10000 -v -o 2 -s 50 -t data/addtape1 pgm/add
