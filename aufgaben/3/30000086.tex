@@ -1,0 +1,272 @@
+Finden Sie einen DEA für die Differenzmenge $L=L_1\setminus L_2$ der
+Sprachen
+\[
+\def\l{1.7}
+\def\r{0.25}
+\def\punkt#1#2{ ({(#1)*\l},{(#2)*\l}) }
+\def\zustand#1#2{
+	\draw \punkt{#1}{#2} circle[radius=\r];
+}
+\def\akzeptierzustand#1#2{
+	\zustand{#1}{#2}
+	\draw \punkt{#1}{#2} circle[radius={\r-0.05}];
+}
+\def\pfeil#1#2{
+	\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] #1 -- #2;
+}
+L_1=L\left(\raisebox{-1.1cm}{\begin{tikzpicture}[>=latex,thick]
+	%\pfeil{\punkt{-1}{0}}{\punkt{0}{0}}
+	%\zustand{0}{0}
+	%\akzeptierzustand{1}{0}
+	\coordinate (q0) at (0,0);
+	\coordinate (q1) at (\l,0);
+	\zustand{0}{0}
+	\akzeptierzustand{1}{0}
+	\pfeil{\punkt{0}{0.8}}{(q0)}
+	\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+		(q0) to[out=10,in=170] (q1);
+	\node at ($0.5*(q0)+0.5*(q1)+(0,0.1)$) [above] {\texttt{o},\texttt{t}};
+
+	\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+		(q1) to[out=-170,in=-10] (q0);
+	\node at ($0.5*(q0)+0.5*(q1)+(0,-0.1)$) [below] {\texttt{s}};
+
+	\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+		(q0) to[out=-60,in=-120,distance=1cm] (q0);
+	\node at ($(q0)+(0,-0.7)$) [below] {\texttt{s}};
+
+	\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+		(q1) to[out=30,in=-30,distance=1cm] (q1);
+	\node at ($(q1)+(0.7,0)$) [right] {\texttt{o},\texttt{t}};
+
+\end{tikzpicture}}
+\right)
+\quad\text{und}\quad
+L_2=L\left(\raisebox{-1.3cm}{\begin{tikzpicture}[>=latex,thick]
+	\coordinate (z0) at (0,0);
+	\coordinate (z1) at (\l,0);
+	\coordinate (z2) at ({2*\l},0);
+	\akzeptierzustand{0}{0}
+	\akzeptierzustand{1}{0}
+	\zustand{2}{0}
+	\pfeil{\punkt{0}{-0.8}}{\punkt{0}{0}}
+	\draw[->,shorten <= 0.25cm,shorten >= 0.25cm]
+		(z0) to[out=10,in=170] (z1);
+	\node at ($0.5*(z0)+0.5*(z1)+(0,0.10)$) [above] {\texttt{o}};
+
+	\draw[->,shorten <= 0.25cm,shorten >= 0.25cm]
+		(z1) to[out=10,in=170] (z2);
+	\node at ($0.5*(z1)+0.5*(z2)+(0,0.10)$) [above] {\texttt{s}};
+
+	\draw[->,shorten <= 0.25cm,shorten >= 0.25cm]
+		(z2) to[out=-30,in=30,distance=1cm] (z2);
+	\node at ($(z2)+(0.7,0)$) [right] {\texttt{t}};
+
+	\draw[->,shorten <= 0.25cm,shorten >= 0.25cm]
+		(z2) to[out=-170,in=-10] (z1);
+	\node at ($0.5*(z1)+0.5*(z2)+(0,-0.10)$) [below] {\texttt{o}};
+
+	\draw[->,shorten <= 0.25cm,shorten >= 0.25cm]
+		(z1) to[out=-170,in=-10] (z0);
+	\node at ($0.5*(z0)+0.5*(z1)+(0,-0.10)$) [below] {\texttt{t}};
+
+	\draw[->,shorten <= 0.25cm,shorten >= 0.25cm]
+		(z2) to[out=-120,in=0] ({1.5*\l},{-0.4*\l})
+		--
+		({0.5*\l},{-0.4*\l}) to[out=180,in=-60] (z0);
+	\node at ($(z1)+(0,{-0.4*\l})$) [below] {\texttt{s}};
+
+	\draw[->,shorten <= 0.25cm,shorten >= 0.25cm]
+		(z0) to[out=60,in=120,distance=1cm] (z0);
+	\node at ($(z0)+(0,0.7)$) [above] {\texttt{t},\texttt{s}};
+
+	\draw[->,shorten <= 0.25cm,shorten >= 0.25cm]
+		(z1) to[out=60,in=120,distance=1cm] (z1);
+	\node at ($(z1)+(0,0.7)$) [above] {\texttt{o}};
+\end{tikzpicture}}
+\right)
+\]
+über dem Alphabet $\Sigma=\{\texttt{o},\texttt{s},\texttt{t}\}$.
+
+\begin{loesung}
+Wir bestimmen den Produktautomaten:
+\begin{center}
+\def\l{3.0}
+\def\r{0.25}
+\def\punkt#1#2{ ({(#1)*\l},{(#2)*\l}) }
+\def\zustand#1#2{
+	\draw \punkt{#1}{#2} circle[radius=\r];
+}
+\def\akzeptierzustand#1#2{
+	\zustand{#1}{#2}
+	\draw \punkt{#1}{#2} circle[radius={\r-0.05}];
+}
+\def\pfeil#1#2{
+	\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] #1 -- #2;
+}
+\begin{tikzpicture}[>=latex,thick]
+% L1
+\begin{scope}[xshift=-4cm]
+	\coordinate (q0) at (0,0);
+	\coordinate (q1) at (0,-\l);
+	\fill[color=gray!20] \punkt{-0.5}{-1.5} rectangle \punkt{0.5}{0.6};
+	\node at \punkt{-0.5}{0.6} [below right] {$L_1$};
+	\zustand{0}{0}
+	\akzeptierzustand{0}{-1}
+	\pfeil{\punkt{0}{0.5}}{\punkt{0}{0}}
+	\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+		(q0) to[out=-80,in=80] (q1);
+	\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+		(q1) to[out=100,in=-100] (q0);
+	\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+		(q0) to[out=150,in=-150,distance=1cm] (q0);
+	\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+		(q1) to[out=-60,in=-120,distance=1cm] (q1);
+	\node at ($0.5*(q0)+0.5*(q1)+(0.2,0)$) [right] {\texttt{o},\texttt{t}};
+	\node at ($0.5*(q0)+0.5*(q1)+(-0.2,0)$) [left] {\texttt{s}};
+	\node at ($(q0)+(-0.7,0)$) [left] {\texttt{s}};
+	\node at ($(q1)+(0,-0.7)$) [below] {\texttt{o},\texttt{t}};
+\end{scope}
+% L2
+\begin{scope}[yshift=4cm]
+	\fill[color=gray!20] \punkt{-0.6}{-0.5} rectangle \punkt{2.5}{0.5};
+	\node at \punkt{2.5}{0.5} [below left] {$L_2$};
+	\coordinate (z0) at (0,0);
+	\coordinate (z1) at (\l,0);
+	\coordinate (z2) at ({2*\l},0);
+	\akzeptierzustand{0}{0}
+	\akzeptierzustand{1}{0}
+	\zustand{2}{0}
+	\pfeil{\punkt{-0.5}{0}}{\punkt{0}{0}}
+	\draw[->,shorten <= 0.25cm,shorten >= 0.25cm]
+		(z0) to[out=10,in=170] (z1);
+	\node at ($0.5*(z0)+0.5*(z1)+(0,0.15)$) [above] {\texttt{o}};
+
+	\draw[->,shorten <= 0.25cm,shorten >= 0.25cm]
+		(z1) to[out=10,in=170] (z2);
+	\node at ($0.5*(z1)+0.5*(z2)+(0,0.15)$) [above] {\texttt{s}};
+
+	\draw[->,shorten <= 0.25cm,shorten >= 0.25cm]
+		(z2) to[out=-30,in=30,distance=1cm] (z2);
+	\node at ($(z2)+(0.7,0)$) [right] {\texttt{t}};
+
+	\draw[->,shorten <= 0.25cm,shorten >= 0.25cm]
+		(z2) to[out=-170,in=-10] (z1);
+	\node at ($0.5*(z1)+0.5*(z2)+(0,-0.15)$) [below] {\texttt{o}};
+
+	\draw[->,shorten <= 0.25cm,shorten >= 0.25cm]
+		(z1) to[out=-170,in=-10] (z0);
+	\node at ($0.5*(z0)+0.5*(z1)+(0,-0.15)$) [below] {\texttt{t}};
+
+	\draw[->,shorten <= 0.25cm,shorten >= 0.25cm]
+		(z2) to[out=-120,in=0] ({1.5*\l},{-0.3*\l})
+		--
+		({0.5*\l},{-0.3*\l}) to[out=180,in=-60] (z0);
+	\node at ($(z1)+(0,{-0.3*\l})$) [below] {\texttt{s}};
+
+	\draw[->,shorten <= 0.25cm,shorten >= 0.25cm]
+		(z0) to[out=60,in=120,distance=1cm] (z0);
+	\node at ($(z0)+(0,0.7)$) [above] {\texttt{t},\texttt{s}};
+
+	\draw[->,shorten <= 0.25cm,shorten >= 0.25cm]
+		(z1) to[out=60,in=120,distance=1cm] (z1);
+	\node at ($(z1)+(0,0.7)$) [above] {\texttt{o}};
+
+\end{scope}
+% Produktautomat
+\fill[color=gray!20] \punkt{-0.6}{0.6} rectangle \punkt{2.5}{-1.5};
+\node at \punkt{2.5}{0.6} [below left] {$L_1\setminus L_2$};
+\coordinate (z00) at (0,0);
+\coordinate (z10) at (\l,0);
+\coordinate (z20) at ({2*\l},0);
+\coordinate (z01) at (0,-\l);
+\coordinate (z11) at (\l,-\l);
+\coordinate (z21) at ({2*\l},-\l);
+\zustand{0}{0}
+\zustand{2}{0}
+\zustand{0}{-1}
+\zustand{1}{-1}
+\akzeptierzustand{2}{-1}
+\pfeil{\punkt{-0.5}{0.5}}{\punkt{0}{0}}
+
+% z00
+\pfeil{(z00)}{(z11)}
+\node at ($0.3*(z00)+0.7*(z11)+(0.2,0.2)$) {\texttt{o}};
+
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+	(z00) to[out=-80,in=80] (z01);
+\node at ($0.5*(z00)+0.5*(z01)+(0.1,0)$) [right] {\texttt{t}};
+
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+	(z00) to[out=165,in=-135,distance=1cm] (z00);
+\node at ($(z00)+(-0.7,-0.2)$) [left] {\texttt{s}};
+
+% z10
+\begin{scope}
+\color{gray}
+\zustand{1}{0}
+\pfeil{(z10)}{(z11)}
+\node at ($0.7*(z10)+0.3*(z11)$) [right] {\texttt{o}};
+
+\pfeil{(z10)}{(z01)}
+\node at ($0.8*(z10)+0.2*(z01)$) [above left] {\texttt{t}};
+
+\pfeil{(z10)}{(z20)}
+\node at ($0.5*(z10)+0.5*(z20)$) [above] {\texttt{s}};
+\end{scope}
+
+% z20
+\pfeil{(z20)}{(z21)}
+\node at ($0.5*(z20)+0.5*(z21)$) [right] {\texttt{t}};
+
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+	(z20) to[out=-125,in=35] (z11);
+\node at ($0.7*(z20)+0.3*(z11)$) [below right] {\texttt{o}};
+
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+	(z20) to[out=120,in=0] ({1.7*\l},{0.2*\l})
+	--
+	({0.3*\l},{0.2*\l}) to[out=180,in=60] (z00);
+\node at ($(z10)+(0,{0.2*\l})$) [above] {\texttt{s}};
+
+% z01
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+	(z01) to[out=100,in=-100] (z00);
+\node at ($0.5*(z00)+0.5*(z01)+(-0.1,0)$) [left] {\texttt{s}};
+
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+	(z01) to[out=10,in=170] (z11);
+\node at ($0.5*(z01)+0.5*(z11)+(0,0.1)$) [above] {\texttt{o}};
+
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+	(z01) to[out=-105,in=-165,distance=1cm] (z01);
+\node at ($(z01)+(-0.7,-0.7)$) {\texttt{t}};
+
+% z11
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+	(z11) to[out=55,in=-145] (z20);
+\node at ($0.3*(z11)+0.7*(z20)$) [above left] {\texttt{s}};
+
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+	(z11) to[out=-170,in=-10] (z01);
+\node at ($0.5*(z11)+0.5*(z01)+(0,-0.1)$) [below] {\texttt{t}};
+
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+	(z11) to[out=-60,in=-120,distance=1cm] (z11);
+\node at ($(z11)+(0,-0.7)$) [below] {\texttt{o}};
+
+% z21
+\pfeil{(z21)}{(z11)}
+\node at ($0.5*(z11)+0.5*(z21)$) [below] {\texttt{o}};
+
+\pfeil{(z21)}{(z00)}
+\node at ($0.9*(z00)+0.1*(z21)+(0,-0.1)$) [above right] {\texttt{s}};
+
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+	(z21) to[out=-15,in=-75,distance=1cm] (z21);
+\node at ($(z21)+(0.7,-0.7)$) {\texttt{t}};
+
+\end{tikzpicture}
+\end{center}
+\end{loesung}
+
