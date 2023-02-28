@@ -1,0 +1,101 @@
+Zeichnen Sie das Zustandsdiagramm eines endlichen Automaten, der genau
+die Wörter akzeptiert, die auf den regulären Ausdruck
+\[
+\texttt{(0((ab)*|cd))*}
+\]
+passen.
+
+\begin{loesung}
+\def\l{1.2}
+\def\r{0.20}
+\def\zustand#1{
+	\draw #1 circle[radius=\r];
+}
+\def\akzeptierzustand#1#2{
+	\zustand{#1}
+	\draw[color=#2] #1 circle[radius={\r-0.05}];
+}
+\def\pfeil#1#2{
+	\draw[->,shorten >= 0.20cm,shorten <= 0.20cm] #1 -- #2;
+}
+\def\punkte{
+	\coordinate (s) at ({-0.8*\l},0);
+	\coordinate (q0) at ({0*\l},{0*\l});
+	\coordinate (q1) at ({1*\l},{0*\l});
+	\coordinate (q2) at ({2*\l},{0*\l});
+	\coordinate (q3) at ({3*\l},{0*\l});
+	\coordinate (q4) at ({4*\l},{0.5*\l});
+	\coordinate (q5) at ({5*\l},{0.5*\l});
+	\coordinate (q6) at ({6*\l},{0.5*\l});
+	\coordinate (q7) at ({7*\l},{0.5*\l});
+	\coordinate (q8) at ({8*\l},{0.5*\l});
+	\coordinate (q9) at ({4*\l},{-0.5*\l});
+	\coordinate (q10) at ({5*\l},{-0.5*\l});
+	\coordinate (q11) at ({6*\l},{-0.5*\l});
+	\coordinate (q12) at ({7*\l},{-0.5*\l});
+}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\begin{scope}
+	\color{red}
+	\akzeptierzustand{(q0)}{red}
+	\zustand{(q3)}
+	\akzeptierzustand{(q4)}{red!20}
+	\pfeil{(q0)}{(q1)}
+	\node at ($0.5*(q0)+0.5*(q1)$) [above] {$\varepsilon$};
+	\pfeil{(q2)}{(q3)}
+	\node at ($0.5*(q2)+0.5*(q3)$) [above] {$\varepsilon$};
+	\pfeil{(q3)}{(q9)}
+	\node at ($0.5*(q3)+0.5*(q9)$) [above] {$\varepsilon$};
+	\pfeil{(q4)}{(q5)}
+	\node at ($0.5*(q4)+0.5*(q5)$) [above] {$\varepsilon$};
+	\pfeil{(q6)}{(q7)}
+	\node at ($0.5*(q6)+0.5*(q7)$) [above] {$\varepsilon$};
+	\pfeil{(q3)}{(q4)}
+	\node at ($0.5*(q3)+0.5*(q4)$) [above] {$\varepsilon$};
+	\pfeil{(q10)}{(q11)}
+	\node at ($0.5*(q10)+0.5*(q11)$) [above] {$\varepsilon$};
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
+		(q8) to[out=90,in=0] ({7.5*\l},{1.2*\l})
+		--
+		({4.5*\l},{1.2*\l}) to[out=180,in=90] (q4);
+	\node at ({6*\l},{1.2*\l}) [above] {$\varepsilon$};
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
+		(q12) to[out=-90,in=0] ({6.5*\l},{-\l})
+		--
+		(\l,-\l) to[out=180,in=-90] (q0);
+	\node at ({3.5*\l},-\l) [below] {$\varepsilon$};
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
+		(q4) to[out=135,in=0] ({3*\l},\l)
+		--
+		(\l,\l) to[out=180,in=90] (q0);
+	\node at ({2*\l},\l) [above] {$\varepsilon$};
+\end{scope}
+\pfeil{(s)}{(q0)}
+\pfeil{(q1)}{(q2)}
+\node at ($0.5*(q1)+0.5*(q2)$) [above] {\texttt{1}};
+\pfeil{(q5)}{(q6)}
+\node at ($0.5*(q5)+0.5*(q6)$) [above] {\texttt{a}};
+\pfeil{(q7)}{(q8)}
+\node at ($0.5*(q7)+0.5*(q8)$) [above] {\texttt{b}};
+\pfeil{(q9)}{(q10)}
+\node at ($0.5*(q9)+0.5*(q10)$) [above] {\texttt{c}};
+\pfeil{(q11)}{(q12)}
+\node at ($0.5*(q11)+0.5*(q12)$) [above] {\texttt{d}};
+\zustand{(q1)}
+\akzeptierzustand{(q2)}{gray}
+\zustand{(q5)}
+\akzeptierzustand{(q6)}{gray}
+\zustand{(q7)}
+\akzeptierzustand{(q8)}{gray}
+\zustand{(q9)}
+\akzeptierzustand{(q10)}{gray}
+\zustand{(q11)}
+\akzeptierzustand{(q12)}{gray}
+
+
+
+\end{tikzpicture}
+\end{center}
+\end{loesung}
