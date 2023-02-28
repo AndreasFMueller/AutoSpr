@@ -91,7 +91,7 @@ Das Zustandsdiagramm ist
 \pfeil{(q0)}{(e)}
 \node at ($0.5*(e)+0.5*(q0)$) [above left] {\texttt{0}};
 \pfeil{(q0)}{(q012)}
-\node at ($0.2*(q0)+0.8*(q012)$) [above] {\texttt{1}};
+\node at ($0.2*(q0)+0.8*(q012)+(0,0.1)$) [below left] {\texttt{1}};
 
 % from {}
 \draw[->,shorten >= 0.55cm,shorten <= 0.55cm]
@@ -112,7 +112,7 @@ Das Zustandsdiagramm ist
 \node at ($(q12)+(0,1.1)$) [above] {\texttt{0}};
 \draw[->,shorten >= 0.55cm,shorten <= 0.55cm]
 	(q12) to[out=-30,in=120] (q012);
-\node at ($0.7*(q12)+0.3*(q012)$) {\texttt{1}};
+\node at ($0.5*(q12)+0.5*(q012)$) {\texttt{1}};
 
 \end{tikzpicture}
 \end{center}
