@@ -1,0 +1,20 @@
+digraph teilbar {
+	rankdir=LR;
+	node [ shape = point ];
+	ENTRY;
+	en_3;
+	eof_3;
+	node [ shape = circle, height = 0.2 ];
+	node [ fixedsize = true, height = 0.65, shape = doublecircle ];
+	3;
+	node [ shape = circle ];
+	1 -> 2 [ label = "48" ];
+	1 -> 3 [ label = "49" ];
+	2 -> 1 [ label = "48" ];
+	2 -> 2 [ label = "49" ];
+	3 -> 3 [ label = "48" ];
+	3 -> 1 [ label = "49" ];
+	ENTRY -> 3 [ label = "IN" ];
+	en_3 -> 3 [ label = "teilbar" ];
+	3 -> eof_3 [ label = "EOF / istteilbar" ];
+}
