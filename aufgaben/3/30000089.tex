@@ -1,0 +1,102 @@
+Wandeln Sie den NEA
+\begin{center}
+\def\l{2}
+\def\r{0.4}
+\def\zustand#1#2{
+	\draw #1 circle[radius=\r];
+	\node at #1 {$#2\mathstrut$};
+}
+\def\akzeptierzustand#1#2{
+	\zustand{#1}{#2}
+	\draw #1 circle[radius={\r-0.05}];
+}
+\def\punkte{
+	\coordinate (S) at (-\l,0);
+	\coordinate (q0) at (0,0);
+	\coordinate (q1) at (\l,0);
+	\coordinate (E) at ({2*\l},0);
+}
+\def\pfeil#1#2{
+	\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] #1 -- #2;
+}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\zustand{(S)}{S}
+\zustand{(q0)}{q_0}
+\zustand{(q1)}{q_1}
+\pfeil{({-1.8*\l},0)}{(S)}
+\pfeil{(S)}{(q0)}
+\node at ($0.5*(S)+0.5*(q0)$) [above] {$\varepsilon$};
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q0) to[out=20,in=160] (q1);
+\node at ($0.5*(q0)+0.5*(q1)+(0,0.2)$) [above] {\texttt{0}};
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q1) to[out=-160,in=-20] (q0);
+\node at ($0.5*(q0)+0.5*(q1)+(0,-0.2)$) [below] {\texttt{0}};
+\pfeil{(q1)}{(E)}
+\node at ($0.5*(q1)+0.5*(E)$) [above] {$\varepsilon$};
+\akzeptierzustand{(E)}{E}
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q0) to[out=60,in=120,distance=1.5cm] (q0);
+\node at ($(q0)+(0,1)$) [above] {\texttt{1}};
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=60,in=120,distance=1.5cm] (q1);
+\node at ($(q1)+(0,1)$) [above] {\texttt{1}};
+\end{tikzpicture}
+\end{center}
+der Wörter mit einer ungeraden Anzahl Nullen akzeptiert,
+in einen VNEA um, indem Sie nacheinander die Zustände $q_0$ und $q_1$
+entfernen, und lesen Sie den regulären Ausdruck ab, der genau auf die
+Wörter passt, die der NEA akzeptiert
+
+\begin{loesung}
+\def\l{2}
+\def\r{0.4}
+\def\zustand#1#2{
+	\draw #1 circle[radius=\r];
+	\node at #1 {$#2\mathstrut$};
+}
+\def\akzeptierzustand#1#2{
+	\zustand{#1}{#2}
+	\draw #1 circle[radius={\r-0.05}];
+}
+\def\punkte{
+	\coordinate (S) at (-\l,0);
+	\coordinate (q0) at (0,0);
+	\coordinate (q1) at (\l,0);
+	\coordinate (E) at ({2*\l},0);
+}
+\def\pfeil#1#2{
+	\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] #1 -- #2;
+}
+Entfernung des Zustandes $q_0$ liefert
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\zustand{(S)}{S}
+\zustand{(q1)}{q_1}
+\pfeil{({-1.8*\l},0)}{(S)}
+\pfeil{(S)}{(q1)}
+\node at ($0.5*(S)+0.5*(q1)$) [above] {\texttt{1*0}};
+\pfeil{(q1)}{(E)}
+\node at ($0.5*(q1)+0.5*(E)$) [above] {$\varepsilon$};
+\akzeptierzustand{(E)}{E}
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=60,in=120,distance=1.5cm] (q1);
+\node at ($(q1)+(0,1)$) [above] {\texttt{1|01*0}};
+\end{tikzpicture}
+\end{center}
+Entfernung des Zustands $q_1$ liefert:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\zustand{(S)}{S}
+\pfeil{({-1.8*\l},0)}{(S)}
+\pfeil{(S)}{(E)}
+\node at ($0.5*(S)+0.5*(E)$) [above] {\texttt{1*0(1|01*0)*}};
+\akzeptierzustand{(E)}{E}
+\end{tikzpicture}
+\end{center}
+Man kann sich davon überzeugen, dass der reguläre Ausdruck
+\texttt{1*0(1|01*0)*} tatsächlich genau die Wörter mit einer
+ungeraden Anzahl Nullen akzeptiert.
+\end{loesung}
+

@@ -34,68 +34,157 @@ passen.
 	\coordinate (q11) at ({6*\l},{-0.5*\l});
 	\coordinate (q12) at ({7*\l},{-0.5*\l});
 }
+\def\buchstaben#1{
+	\pfeil{(q1)}{(q2)}
+	\node at ($0.5*(q1)+0.5*(q2)$) [above] {\texttt{0}};
+	\pfeil{(q5)}{(q6)}
+	\node at ($0.5*(q5)+0.5*(q6)$) [above] {\texttt{a}};
+	\pfeil{(q7)}{(q8)}
+	\node at ($0.5*(q7)+0.5*(q8)$) [above] {\texttt{b}};
+	\pfeil{(q9)}{(q10)}
+	\node at ($0.5*(q9)+0.5*(q10)$) [above] {\texttt{c}};
+	\pfeil{(q11)}{(q12)}
+	\node at ($0.5*(q11)+0.5*(q12)$) [above] {\texttt{d}};
+	\zustand{(q1)}
+	\akzeptierzustand{(q2)}{#1}
+	\zustand{(q5)}
+	\akzeptierzustand{(q6)}{#1}
+	\zustand{(q7)}
+	\akzeptierzustand{(q8)}{#1}
+	\zustand{(q9)}
+	\akzeptierzustand{(q10)}{#1}
+	\zustand{(q11)}
+	\akzeptierzustand{(q12)}{#1}
+}
+\def\verkettung{
+	\begin{scope}
+		\color{red}
+		\pfeil{(q6)}{(q7)}
+		\node at ($0.5*(q6)+0.5*(q7)$) [above] {$\varepsilon$};
+		\pfeil{(q10)}{(q11)}
+		\node at ($0.5*(q10)+0.5*(q11)$) [above] {$\varepsilon$};
+	\end{scope}
+}
+\def\inneresternoperation{
+	\begin{scope}
+		\color{red}
+		\akzeptierzustand{(q4)}{red!20}
+		\pfeil{(q4)}{(q5)}
+		\node at ($0.5*(q4)+0.5*(q5)$) [above] {$\varepsilon$};
+		\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
+			(q8) to[out=90,in=0] ({7.5*\l},{1.2*\l})
+			--
+			({4.5*\l},{1.2*\l}) to[out=180,in=90] (q4);
+		\node at ({6*\l},{1.2*\l}) [above] {$\varepsilon$};
+	\end{scope}
+}
+\def\aeusseresternoperation{
+	\begin{scope}
+		\color{red}
+		\pfeil{(s)}{(q0)}
+		\akzeptierzustand{(q0)}{red}
+		\pfeil{(q0)}{(q1)}
+		\node at ($0.5*(q0)+0.5*(q1)$) [above] {$\varepsilon$};
+		\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
+			(q12) to[out=-90,in=0] ({6.5*\l},{-\l})
+			--
+			(\l,-\l) to[out=180,in=-90] (q0);
+		\node at ({3.5*\l},-\l) [below] {$\varepsilon$};
+
+		\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
+			(q4) to[out=135,in=0] ({3*\l},\l)
+			--
+			(\l,\l) to[out=180,in=90] (q0);
+		\node at ({2*\l},\l) [above] {$\varepsilon$};
+	\end{scope}
+}
+\def\alternative{
+	\begin{scope}
+		\color{red}
+		\zustand{(q3)}
+		\pfeil{(q3)}{(q9)}
+		\node at ($0.5*(q3)+0.5*(q9)$) [above] {$\varepsilon$};
+		\pfeil{(q3)}{(q4)}
+		\node at ($0.5*(q3)+0.5*(q4)$) [above] {$\varepsilon$};
+	\end{scope}
+}
+\def\aeussereverkettung{
+	\begin{scope}
+		\color{red}
+		\pfeil{(q2)}{(q3)}
+		\node at ($0.5*(q2)+0.5*(q3)$) [above] {$\varepsilon$};
+	\end{scope}
+}
+Die einzelnen Zeichen werden durch einfach Automaten wie folgt
+akzeptiert:
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \punkte
-\begin{scope}
-	\color{red}
-	\akzeptierzustand{(q0)}{red}
-	\zustand{(q3)}
-	\akzeptierzustand{(q4)}{red!20}
-	\pfeil{(q0)}{(q1)}
-	\node at ($0.5*(q0)+0.5*(q1)$) [above] {$\varepsilon$};
-	\pfeil{(q2)}{(q3)}
-	\node at ($0.5*(q2)+0.5*(q3)$) [above] {$\varepsilon$};
-	\pfeil{(q3)}{(q9)}
-	\node at ($0.5*(q3)+0.5*(q9)$) [above] {$\varepsilon$};
-	\pfeil{(q4)}{(q5)}
-	\node at ($0.5*(q4)+0.5*(q5)$) [above] {$\varepsilon$};
-	\pfeil{(q6)}{(q7)}
-	\node at ($0.5*(q6)+0.5*(q7)$) [above] {$\varepsilon$};
-	\pfeil{(q3)}{(q4)}
-	\node at ($0.5*(q3)+0.5*(q4)$) [above] {$\varepsilon$};
-	\pfeil{(q10)}{(q11)}
-	\node at ($0.5*(q10)+0.5*(q11)$) [above] {$\varepsilon$};
-	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
-		(q8) to[out=90,in=0] ({7.5*\l},{1.2*\l})
-		--
-		({4.5*\l},{1.2*\l}) to[out=180,in=90] (q4);
-	\node at ({6*\l},{1.2*\l}) [above] {$\varepsilon$};
-	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
-		(q12) to[out=-90,in=0] ({6.5*\l},{-\l})
-		--
-		(\l,-\l) to[out=180,in=-90] (q0);
-	\node at ({3.5*\l},-\l) [below] {$\varepsilon$};
-	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
-		(q4) to[out=135,in=0] ({3*\l},\l)
-		--
-		(\l,\l) to[out=180,in=90] (q0);
-	\node at ({2*\l},\l) [above] {$\varepsilon$};
-\end{scope}
-\pfeil{(s)}{(q0)}
-\pfeil{(q1)}{(q2)}
-\node at ($0.5*(q1)+0.5*(q2)$) [above] {\texttt{1}};
-\pfeil{(q5)}{(q6)}
-\node at ($0.5*(q5)+0.5*(q6)$) [above] {\texttt{a}};
-\pfeil{(q7)}{(q8)}
-\node at ($0.5*(q7)+0.5*(q8)$) [above] {\texttt{b}};
-\pfeil{(q9)}{(q10)}
-\node at ($0.5*(q9)+0.5*(q10)$) [above] {\texttt{c}};
-\pfeil{(q11)}{(q12)}
-\node at ($0.5*(q11)+0.5*(q12)$) [above] {\texttt{d}};
-\zustand{(q1)}
-\akzeptierzustand{(q2)}{gray}
-\zustand{(q5)}
-\akzeptierzustand{(q6)}{gray}
-\zustand{(q7)}
-\akzeptierzustand{(q8)}{gray}
-\zustand{(q9)}
-\akzeptierzustand{(q10)}{gray}
-\zustand{(q11)}
-\akzeptierzustand{(q12)}{gray}
-
-
-
+\buchstaben{black}
 \end{tikzpicture}
 \end{center}
+Die Paare \texttt{ab} und \texttt{cd} müssen mit $\varepsilon$-Übergängen
+verkettet werden:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\buchstaben{gray}
+\verkettung
+\end{tikzpicture}
+\end{center}
+Der rechte obere Teilautomat muss mit einer Sternoperation iteriert werden:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\buchstaben{gray}
+\verkettung
+\inneresternoperation
+\draw[->,shorten >= 0.2cm,shorten <= 0.2cm,color=red]
+	($(q4)+(-\l,0)$) -- (q4);
+\node[color=red] at ($(q4)+({-0.5*\l},0)$) [above] {$\varepsilon$};
+\end{tikzpicture}
+\end{center}
+Zwischen den beiden Ästen muss eine Alternative eingerichtet werden:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\buchstaben{gray}
+\verkettung
+\inneresternoperation
+\alternative
+\draw[->,shorten >= 0.2cm,shorten <= 0.2cm,color=red]
+	($(q3)+({-0.8*\l},0)$) -- (q3);
+\node[color=red] at ($(q3)+({-0.4*\l},0)$) [above] {$\varepsilon$};
+\end{tikzpicture}
+\end{center}
+Der Automat für \texttt{0} muss mit dem Rest verkettet werden:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\buchstaben{gray}
+\verkettung
+\inneresternoperation
+\alternative
+\aeussereverkettung
+\draw[->,shorten >= 0.2cm,shorten <= 0.2cm,color=red]
+	($(q1)+(-\l,0)$) -- (q1);
+\end{tikzpicture}
+\end{center}
+Diese gesamte Konstruktion muss jetzt nochmals mit einer Sternoperation
+versehen werden:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\buchstaben{gray}
+\verkettung
+\inneresternoperation
+\alternative
+\aeussereverkettung
+\aeusseresternoperation
+\end{tikzpicture}
+\end{center}
+Damit ist der endliche Automat gefunden, der zum 
+regulären Ausdruck
+\texttt{(0((ab)*|cd))*}
+gehört.
 \end{loesung}
