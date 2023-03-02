@@ -3,6 +3,7 @@
 %
 % (c) 2006-2017 Prof. Dr. Andreas Mueller, HSR
 %
+\definecolor{darkgreen}{rgb}{0,0.6,0}
 \newcounter{uebungsaufgabe}
 \newboolean{loesungen}
 % environment fuer uebungsaufgaben
@@ -125,3 +126,8 @@
     \end{description}
   }{}
 }
+\newenvironment{beispiel}[1][Beispiel]{%
+\begin{proof}[#1]%
+\renewcommand{\qedsymbol}{$\bigcirc$}
+}{\end{proof}}
+

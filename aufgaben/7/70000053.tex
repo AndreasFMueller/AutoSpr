@@ -1,0 +1,37 @@
+Ein Koch hat je $n$ Rezepte für Vorspeisen, Hauptspeisen und Desserts.
+Nicht alle Vorspeisen lassen sich mit jeder Hauptspeise kombinieren,
+dasselbe gilt auch für Desserts.
+Damit jedes seiner Rezepte regelmässig zum Einsatz kommt, möchte der
+Koch eine Folge von $n$ Menus zusammenstellen, so dass jedes Rezept
+in genau einem der Menus vorkommt.
+Nach längerem tüfteln gibt er jedoch frustriert auf.
+Können Sie erklären, warum ihm die Menugestaltung so schwer gefallen ist.
+
+\themaL{NP-vollstandig}{NP-vollständig}
+\thema{polynomielle Reduktion}
+
+\begin{loesung}
+Es handelt sich hier um das Problem 3D-MATCHING.
+Die Menge $T$ sind die Nummern der Rezepte, die Tripel aus $T\times T\times T$
+sind die Menuzusammenstellungen, bestehend aus je einer Nummer für
+ein Vorspeisen-, ein Hauptspeisen- und ein Dessert-Rezept.
+Die Menge $U$ ist die Menge der möglichen Menukombinationen.
+Die gesuchte Teilmenge $W$ ist eine Auswahl von $n=|T|=|W|$ Menus
+derart, dass keine Vorspeise (erste Komponente), keine Hauptspeise
+(zweite Komponente) und kein Dessert (dritte Komponente) mehr als
+einmal vorkommt.
+Das Problem 3D-MATCHING ist NP-vollständig, es ist daher kein
+Algorithmus bekannt, der das Problem in polynomieller Zeit lösen könnte.
+\end{loesung}
+
+\begin{bewertung}
+Reduktionsansatz ({\bf R}) 1 Punkt,
+Wahl des Vergleichsproblems ({\bf V}) 1 Punkt,
+Mapping für Rezepte ({\bf W}) 1 Punkt,
+Mapping für Menus ({\bf U}) 1 Punkt,
+Mapping für Bedingung ({\bf P}) 1 Punkt,
+NP-Vollständigkeit ({\bf N}) 1 Punkt.
+\end{bewertung}
+
+
+

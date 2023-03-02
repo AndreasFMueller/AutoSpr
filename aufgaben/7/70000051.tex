@@ -1,0 +1,42 @@
+Die Prüfungsvorbereitungszeit ist intensiv, manchmal reicht die Zeit nicht, 
+alle Prüfungen vorzubereiten, bis die Prüfungssession beginnt.
+Es ist daher unumgänglich, während der Prüfungssession weiter zu lernen.
+Nehmen wir an, dass für die Vorbereitung der $p$ Fächer $1,\dots,p$
+die Vorbereitungszeiten $t_1,\dots,t_p$ notwendig sind.
+Ebenfalls bekannt ist, dass die Prüfungen zu den Zeiten $d_1,\dots,d_p$
+stattfinden, dann muss die Vorbereitung abgeschlossen sein, weil die
+Prüfung sonst nicht zu bestehen ist.
+Es stellt sich daher die Frage, in welcher Reihenfolge die
+Vorbereitungen durchgeführt werden sollen,
+damit höchstens $k$ Prüfungen nicht bestanden werden.
+Ein Student, der AutoSpr nicht besucht hat, wendet viel Zeit dafür auf
+herauszufinden, ob es überheupt eine Reihenfolge dieser Art gibt,
+versteht aber nicht, warum dies so aufwendig ist.
+Können Sie dies erklären?
+
+\themaL{NP-vollstandig}{NP-vollständig}
+\thema{polynomielle Reduktion}
+
+\begin{loesung}
+Das vorliegende Problem ist das Problem \textit{SEQUENCING}, welches
+bekanntermassen NP-vollständig ist.
+\begin{align*}
+\text{Job $i$}&\leftrightarrow\text{Vorbereitung für Fach $i$}
+\\
+\text{Ausführungszeit $t_i$}&\leftrightarrow\text{Vorbereitungszeit $t_i$}
+\\
+\text{Deadline $d_i$}&\leftrightarrow\text{Prüfungszeitpunkt $d_i$}
+\end{align*}
+Die Strafe für eine nicht bestandene Prüfung ist $s_1=\dots=s_p=1$,
+die Reihenfolge muss so gewählt werden, dass die Gesamtstrafe $\le k$ 
+ist.
+\end{loesung}
+
+\begin{bewertung}
+Reduktionsprinzip ({\bf R}) 1 Punkt,
+Vergleichsproblem  ({\bf V}) 1 Punkt,
+Mapplign ({\bf M}) 3 Punkte,
+Begründung NP-vollständig ({\bf N}) 1 Punkt.
+\end{bewertung}
+
+

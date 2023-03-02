@@ -5,124 +5,16 @@
 % (c) 2009-2017 Prof. Dr. Andreas Mueller, HSR
 %
 \documentclass[a4paper,12pt]{book}
-\usepackage{german}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{CJKutf8}
-\usepackage{times}
-\usepackage{geometry}
-\geometry{papersize={210mm,297mm},total={160mm,240mm},top=31mm,bindingoffset=15mm,marginparwidth=9mm}
-\usepackage{alltt}
-\usepackage{verbatim}
-\usepackage{fancyhdr}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsfonts}
-\usepackage{amsthm}
-\usepackage{textcomp}
-\usepackage{graphicx}
-\usepackage{array}
-%\usepackage{picins}
-\usepackage{ifthen}
-\usepackage{multirow}
-\usepackage{txfonts}
-%\usepackage[basic]{circ}
-\usepackage[all]{xy}
-\usepackage{algorithm}
-\usepackage{algorithmic}
-\usepackage{makeidx}
-\usepackage{paralist}
-\usepackage{color}
-\usepackage[colorlinks=true]{hyperref}
-\usepackage{environ}
-\usepackage{menukeys}
-\usepackage{pifont}
-\usepackage{etoolbox}
-\usepackage{bm}
-\usetikzlibrary{arrows,scopes}
+\input{macros/packages.tex}
 \makeindex
 \begin{document}
-\pagestyle{fancy}
-\lhead{Aufgabensammlung}
-\rhead{}
-\frontmatter
-\newcommand\HRule{\noindent\rule{\linewidth}{1.5pt}}
-\begin{titlepage}
-\vspace*{\stretch{1}}
-\HRule
-\vspace*{2pt}
-\begin{flushright}
-{\Huge
-Automaten und Sprachen:\\
-\bigskip
-Aufgabensammlung}
-\end{flushright}
-\HRule
-\begin{flushright}
-\vspace{30pt}
-\LARGE
-Andreas Müller
-\end{flushright}
-\vspace*{\stretch{2}}
-\begin{center}
-Hochschule für Technik, Rapperswil, 2011--2020\\
-OST Ostschweizer Fachhochschule, Rapperswil, 2020--2023
-\end{center}
-\end{titlepage}
-\hypersetup{
-        colorlinks=true,
-        linktoc=all,
-        linkcolor=blue
-}
-\rhead{Inhaltsverzeichnis}
-\tableofcontents
-\newenvironment{beispiel}[1][Beispiel]{%
-\begin{proof}[#1]%
-\renewcommand{\qedsymbol}{$\bigcirc$}
-}{\end{proof}}
+\input{macros/front.tex}
 \mainmatter
-\input{uebungen.tex}
+\input{macros/uebungen.tex}
 \allowdisplaybreaks
 \openthemaindex
 \setboolean{loesungen}{true}
 \aufgabetoplevel{./}
-
-\input{vorwort.tex}
-
-\chapter{Grundlagen}
-\lhead{Kapitel~\thechapter}
-\rhead{Grundlagen}
-\input{1.tex}
-\chapter{Sprachen}
-\lhead{Kapitel~\thechapter}
-\rhead{Sprachen}
-\input{2.tex}
-\chapter{Endliche Automaten und reguläre Sprachen}
-\lhead{Kapitel~\thechapter}
-\rhead{Endliche Automaten und reguläre Sprachen}
-\input{3.tex}
-\chapter{Stackautomaten und kontextfreie Sprachen}
-\lhead{Kapitel~\thechapter}
-\rhead{Stackautomaten und kontextfreie Sprachen}
-\input{4.tex}
-\chapter{Turing Maschinen}
-\lhead{Kapitel~\thechapter}
-\rhead{Turing Maschinen}
-\input{5.tex}
-\chapter{Entscheidbarkeit}
-\lhead{Kapitel~\thechapter}
-\rhead{Entscheidbarkeit}
-\input{6.tex}
-\chapter{Komplexitätstheorie}
-\lhead{Kapitel~\thechapter}
-\rhead{Komplexitätstheorie}
-\input{7.tex}
-\chapter{Turing-Vollständigkeit}
-\lhead{Kapitel~\thechapter}
-\rhead{Turing-Vollständigkeit}
-\input{8.tex}
-\closethemaindex
-
-\printthemata
-\input{aufgabensammlung.ind}
+\input{macros/vorwort.tex}
+\input{macros/content.tex}
 \end{document}

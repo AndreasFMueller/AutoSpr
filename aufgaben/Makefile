@@ -10,57 +10,96 @@ test:	test.pdf
 
 sammlung:	aufgabensammlung.pdf
 
-TEXFILES = aufgabensammlung.tex uebungen.tex vorwort.tex \
-	1.tex 2.tex 3.tex 4.tex 5.tex 6.tex 7.tex 8.tex
+makeindex = makeindex
+pdflatex = pdflatex --output-directory=$(workdir)
+bibtex = bibtex
+touch = touch
 
-aufgabensammlung.pdf:	$(TEXFILES) aufgabensammlung.ind thema.tex
-	pdflatex aufgabensammlung.tex
+TEXFILES = aufgabensammlung.tex 					\
+	macros/uebungen.tex						\
+	macros/packages.tex						\
+	macros/front.tex						\
+	macros/vorwort.tex 						\
+	macros/content.tex 						\
+	$(workdir)/1.tex						\
+	$(workdir)/2.tex						\
+	$(workdir)/3.tex						\
+	$(workdir)/4.tex						\
+	$(workdir)/5.tex						\
+	$(workdir)/6.tex						\
+	$(workdir)/7.tex						\
+	$(workdir)/8.tex
 
-test.pdf:	test.tex testaufgabe.tex $(TEXFILES)
-	pdflatex test.tex
+topdir := ${PWD}
+workdir := work
+
+aufgabensammlung.pdf:	$(workdir)/aufgabensammlung.pdf
+	cp $(workdir)/aufgabensammlung.pdf .
+
+$(workdir)/aufgabensammlung.pdf:	$(workdir) $(TEXFILES) \
+	$(workdir)/aufgabensammlung.ind thema.tex
+	$(pdflatex) aufgabensammlung.tex
+
+$(workdir)/aufgabensammlung.ind: $(workdir) $(workdir)/aufgabensammlung.idx
+	cd $(workdir) ; $(makeindex) aufgabensammlung.idx
+
+$(workdir)/aufgabensammlung.idx:	$(workdir) $(TEXILES) \
+	aufgabensammlung.tex
+	$(touch) $(workdir)/aufgabensammlung.ind
+	$(pdflatex) aufgabensammlung.tex
 
 thema.tex:      thema.tix mkthemaidx
 	iconv -f ISO-8859-1 -t UTF-8 thema.tix > thema.tix2
 	./mkthemaidx thema.tix2 thema.tex
 
 thema.tix:      $(TEXFILES)
-	pdflatex aufgabensammlung.tex
-
-
-aufgabensammlung.ind:	$(TEXFILES) images
-	touch aufgabensammlung.ind
-	pdflatex aufgabensammlung.tex
-	makeindex aufgabensammlung.idx
+	$(pdflatex) aufgabensammlung.tex
 
 mkthemaidx:     mkthemaidx.cpp
 	g++ -Wall -g -O -o mkthemaidx mkthemaidx.cpp
 
 clean:
-	rm -f *.dvi *.log aufgabensammlung.pdf
+	rm -f $(workdir)/*.dvi $(workdir)/*.log aufgabensammlung.pdf
 
-1.tex:	buildchapter.sh 1/*.tex
-	./buildchapter.sh 1 > 1.tex
+$(workdir)/1.tex:	buildchapter.sh 1/*.tex
+	./buildchapter.sh 1 > $(workdir)/1.tex
 
-2.tex:	buildchapter.sh 2/*.tex
-	./buildchapter.sh 2 > 2.tex
+$(workdir)/2.tex:	buildchapter.sh 2/*.tex
+	./buildchapter.sh 2 > $(workdir)/2.tex
 
-3.tex:	buildchapter.sh 3/*.tex
-	./buildchapter.sh 3 > 3.tex
+$(workdir)/3.tex:	buildchapter.sh 3/*.tex
+	./buildchapter.sh 3 > $(workdir)/3.tex
 
-4.tex:	buildchapter.sh 4/*.tex
-	./buildchapter.sh 4 > 4.tex
+$(workdir)/4.tex:	buildchapter.sh 4/*.tex
+	./buildchapter.sh 4 > $(workdir)/4.tex
 
-5.tex:	buildchapter.sh 5/*.tex
-	./buildchapter.sh 5 > 5.tex
+$(workdir)/5.tex:	buildchapter.sh 5/*.tex
+	./buildchapter.sh 5 > $(workdir)/5.tex
 
-6.tex:	buildchapter.sh 6/*.tex
-	./buildchapter.sh 6 > 6.tex
+$(workdir)/6.tex:	buildchapter.sh 6/*.tex
+	./buildchapter.sh 6 > $(workdir)/6.tex
 
-7.tex:	buildchapter.sh 7/*.tex
-	./buildchapter.sh 7 > 7.tex
+$(workdir)/7.tex:	buildchapter.sh 7/*.tex
+	./buildchapter.sh 7 > $(workdir)/7.tex
 
-8.tex:	buildchapter.sh 8/*.tex
-	./buildchapter.sh 8 > 8.tex
+$(workdir)/8.tex:	buildchapter.sh 8/*.tex
+	./buildchapter.sh 8 > $(workdir)/8.tex
+
+woche01.pdf:	$(workdir) $(TEXFILES) woche01.tex
+	$(pdflatex) woche01.tex
+	cp $(workdir)/woche01.pdf .
+
+woche02.pdf:	$(workdir) $(TEXFILES) woche02.tex
+	$(pdflatex) woche02.tex
+	cp $(workdir)/woche02.pdf .
+
+woche03.pdf:	$(workdir) $(TEXFILES) woche03.tex
+	$(pdflatex) woche03.tex
+	cp $(workdir)/woche03.pdf .
+
+woche04.pdf:	$(workdir) $(TEXFILES) woche04.tex
+	$(pdflatex) woche04.tex
+	cp $(workdir)/woche04.pdf .
 
 images:
 	for d in ?/*; \
@@ -73,4 +112,7 @@ images:
 			cd ../..; \
 		fi; \
 	done
+
+test.pdf:	test.tex testaufgabe.tex $(TEXFILES)
+	pdflatex test.tex
 

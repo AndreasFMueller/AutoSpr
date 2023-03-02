@@ -1,0 +1,183 @@
+Das Spiel Hitori wird auf einem $n\times n$ Spielfeld gespielt.
+In jedem Feld ist eine Zahl eingetragen.
+Jetzt müssen so viele Felder schattiert werden, dass in jeder
+Zeile und Spalte eine nicht schattierte Zahl nur einmal vorkommt.
+Die schattierten Felder dürfen sich horizontal und vertikal nicht
+berühren.
+Es muss möglich sein, von einem hellen Feld zu jedem anderen hellen
+Feld zu gelangen, indem man einem Weg über lauter helle Felder folgt,
+die horizontal oder vertikal benachbart sind.
+
+Hier ist ein Beispiel eines Hitori-Rätsels (links) mit Lösung (rechts).
+Ebenfalls eingezeichnet ein Beispiel eines Weges, der nur auf den
+hellen Feldern vom Feld $(2,1)$ links unten zum Feld $(8,1)$ führt.
+
+\begin{center}
+
+\begin{tikzpicture}[>=latex,thick,scale=0.6]
+
+\def\gitter{
+	\zelle{1}{1}{3}
+	\zelle{2}{1}{1}
+	\zelle{3}{1}{5}
+	\schattiert{4}{1}{1}
+	\zelle{5}{1}{7}
+	\zelle{6}{1}{2}
+	\zelle{7}{1}{6}
+	\schattiert{8}{1}{2}
+
+	\schattiert{1}{2}{2}
+	\zelle{2}{2}{8}
+	\zelle{3}{2}{7}
+	\zelle{4}{2}{4}
+	\zelle{5}{2}{5}
+	\zelle{6}{2}{6}
+	\schattiert{7}{2}{5}
+	\zelle{8}{2}{2}
+
+	\zelle{1}{3}{7}
+	\zelle{2}{3}{3}
+	\zelle{3}{3}{8}
+	\schattiert{4}{3}{6}
+	\zelle{5}{3}{4}
+	\schattiert{6}{3}{2}
+	\zelle{7}{3}{2}
+	\zelle{8}{3}{1}
+
+	\schattiert{1}{4}{2}
+	\zelle{2}{4}{7}
+	\schattiert{3}{4}{7}
+	\zelle{4}{4}{8}
+	\zelle{5}{4}{6}
+	\zelle{6}{4}{5}
+	\zelle{7}{4}{4}
+	\zelle{8}{4}{3}
+
+	\zelle{1}{5}{8}
+	\zelle{2}{5}{4}
+	\zelle{3}{5}{6}
+	\schattiert{4}{5}{1}
+	\zelle{5}{5}{2}
+	\zelle{6}{5}{1}
+	\zelle{7}{5}{7}
+	\schattiert{8}{5}{1}
+
+	\zelle{1}{6}{2}
+	\zelle{2}{6}{5}
+	\zelle{3}{6}{4}
+	\zelle{4}{6}{6}
+	\schattiert{5}{6}{4}
+	\zelle{6}{6}{3}
+	\schattiert{7}{6}{4}
+	\zelle{8}{6}{7}
+
+	\zelle{1}{7}{4}
+	\schattiert{2}{7}{6}
+	\zelle{3}{7}{2}
+	\schattiert{4}{7}{5}
+	\zelle{5}{7}{1}
+	\zelle{6}{7}{7}
+	\zelle{7}{7}{8}
+	\zelle{8}{7}{6}
+
+	\schattiert{1}{8}{2}
+	\zelle{2}{8}{2}
+	\zelle{3}{8}{3}
+	\zelle{4}{8}{5}
+	\schattiert{5}{8}{3}
+	\zelle{6}{8}{8}
+	\schattiert{7}{8}{3}
+	\zelle{8}{8}{4}
+}
+
+\def\netz{
+	\foreach \x in {0.5,...,8.5}{
+		\draw (\x,0.5)--(\x,8.5);
+	}
+
+	\foreach \y in {0.5,...,8.5}{
+		\draw (0.5,\y)--(8.5,\y);
+	}
+}
+
+\def\zelle#1#2#3{
+%\fill[color=white] ({#1-0.5},{9-#2-0.5}) rectangle ({#1+0.5},{9-#2+0.5});
+\node[color=black] at (#1,{9-#2}) {$#3$};
+}
+\def\schattiert#1#2#3{
+%\fill[color=white] ({#1-0.5},{9-#2-0.5}) rectangle ({#1+0.5},{9-#2+0.5});
+\node[color=black] at (#1,{9-#2}) {$#3$};
+}
+
+\begin{scope}[xshift=-5cm]
+\netz
+\gitter
+\end{scope}
+
+\def\schattiert#1#2#3{
+\fill[color=black] ({#1-0.5},{9-#2-0.5}) rectangle ({#1+0.5},{9-#2+0.5});
+\node[color=white] at (#1,{9-#2}) {$#3$};
+}
+
+\begin{scope}[xshift=5cm]
+\netz
+\draw[color=red!20,line width=10pt,round cap-round cap,line join=round]
+	(1.7,1)--(3,1)--(3,4)--(2,4)--(2,7)--(5,7)--(5,4)--(6,4)--(6,2)
+	--(8,2)--(8,0.7);
+\gitter
+\end{scope}
+
+\end{tikzpicture}
+
+\end{center}
+Kann eine nichtdeterministische Turing-Maschine in polynomieller Zeit
+entscheiden, ob ein Hitori-Rätsel eine Lösung hat?
+
+\thema{NP}
+\thema{polynomieller Verifizierer}
+
+\begin{loesung}
+Die Frage ist gleichbedeutend damit, ob die Entscheidung, ob ein Hitori-Rätsel
+eine Lösung hat ein Problem in der Klasse N ist.
+Sie ist ausserdem gleichbedeutend damit, dass es einen polynomiellen
+Verifizierer gibt.
+Zur Konstruktion eines solchen Verifizierer müssen wir erst klarstellen,
+was für ein Lösungszertifikat verwendet werden soll.
+Die schattierten Felder bilden das Lösungszertifikat.
+Der Verifikationsalgorithmus muss dann die folgenden Prüfungen vornehmen
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{c|p{10cm}|>{$}c<{$}}
+%\hline
+Schritt&Verifikation&\text{Laufzeit}\\
+\hline
+1&Für jedes helle Feld, überprüfe dass dieselbe Zahl in
+keinem anderen Feld der Zeile vorkommt&n^2 \cdot O(n) \\
+2&Für jedes helle Feld, überprüfe dass dieselbe Zahl in
+keinem anderen Feld der Spalte vorkommt&n^2 \cdot O(n) \\
+3&Mit Hilfe eines Markierungsalgorithmus finde alle hellen Felder, die
+mit dem ersten hellen Feld verbunden sind.
+Dazu muss man höchstens $n^2$ mal durch das ganze Spielfeld der
+Grösse $n^2$ hindurchgehen
+und noch nicht markierte helle Felder markieren (Aufwand $O(1)$),
+bis keine weiteren Felder markiert werden können.
+Am Ende muss man prüfen, ob alle hellen Felder markiert worden sind,
+was in $O(n^2)$ möglich ist.
+&O(n^4)\\
+\hline
+&Total&O(n^4)\\
+\hline
+\end{tabular}
+\end{center}
+Somit ist die Verifikation in polynomieller Zeit unabhängig von der
+Grösse des Zertifikats möglich.
+\end{loesung}
+
+\begin{bewertung}
+Entscheidbarkeit ({\bf E}) 1 Punkt,
+Verifizierer ({\bf V}) 1 Punkt,
+Zertifikat ({\bf Z}) 1 Punkt,
+Verifikationsschritte ({\bf S}) 2 Punkte,
+Komplexitätsabschätzung ({\bf K}) 1 Punkt.
+\end{bewertung}
+

@@ -1,0 +1,64 @@
+Ein Graph kann mit Hilfe einer Tabelle wie folgt codiert werden.
+Die Tabelle hat für jeden Knoten des Graphen eine Zeile und eine Spalte.
+Das Feld in Zeile $i$ und Spalte $j$ beschreibt also das Paar der
+Knoten $i$ und $j$.
+Alle Felder der Diagonale werden schwarz gefüllt.
+Das Feld $(i,j)$  wird genau dann weiss gelassen,
+wenn es eine Kante von $i$ nach $j$ gibt, sonst wird es schwarz gefüllt.
+
+\begin{center}
+\includeagraphics[]{graph.pdf}
+\includeagraphics[]{graph-loesung.pdf}
+\end{center}
+
+\thema{NP}
+\thema{polynomielle Reduktion}
+\thema{polynomieller Verifizierer}
+\themaL{polynomielles Ausfullratsel}{polynomielles Ausfüllrätsel}
+
+\begin{teilaufgaben}
+\item
+Ein hamiltonscher Zyklus ist ein geschlossener Weg durch den Graphen, der
+jeden Knoten des Graphen genau einmal besucht.
+Er besteht aus einer Folge von Kanten, so dass jeder Knoten genau 
+einmal als Anfangs- und einmal als Endpunkt einer Kante vorkommt.
+Wie kann man einen hamiltonschen Zyklus mit Hilfe der Tabelle codieren?
+\item
+Ist es möglich, mit einer nicht deterministischen Maschine in polynomieller
+Zeit zu entscheiden, ob ein Graph einen hamiltonschen Zyklus enthält?
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Ein Pfad im Graphen kann festgelegt werden, indem man die Kanten, die Teil
+des Pfades sind, mit roten Punkten in der Tabelle markiert.
+Ein hamiltonscher Zyklus existiert dann genau dann, wenn sich in der Tabelle
+rote Punkte in den weissen Feldern platzieren lassen so, dass in jeder
+Zeile und Spalte genau zwei rote Punkte liegen und dass ausserdem die
+Punkteanordnung symmetrisch bezüglich Spiegelung an der Diagonalen ist.
+\item
+Offenbar ist das finden eines hamiltonschen Zyklus ein polynomielles
+Ausfüllrätsel.
+Die Frage, ob ein hamiltonscher Zyklus existiert ist daher gleichbedeutend
+mit der Frage, ob das zugehörige polynomielle Ausfüllrätsel eine Lösung hat
+und ist damit in NP.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item Markierungen für Kanten des hamiltonschen Pfades ({\bf M}) 1 Punkt,
+genau zwei Punkte in jeder Zeile/Spalte ({\bf Z}) 1 Punkt.
+\item Polynomielles Ausfüllrätsel ({\bf P}) 4 Punkte. Alternativ kann
+man darauf hinweisen, dass es einen polynomiellen Verifizierer braucht
+({\bf V}) 1 Punkt, man muss das Zertifikat spezifizieren ({\bf C}) 1 Punkt,
+den Verifikationsalgorithmus ({\bf A}) 1 Punkt und die Laufzeitabschätzung
+({\bf L}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
+
+
+
+
