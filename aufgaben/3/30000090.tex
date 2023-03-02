@@ -1,0 +1,49 @@
+In Aufgabe~\ref{30000089} in der Vorlesung wurde gezeigt, dass die
+reguläre Sprache bestehend aus den Wörtern mit einer ungeraden
+Anzahl Nullen vom regulären Ausdruck \texttt{1*0(1|01*0)*} akzeptiert
+werden.
+Der Ragel-Compiler produziert mit der Kommandozeilenoption
+\texttt{-n} aus diesem regulären Ausdruck den nicht minimierten
+deterministischen endlichen Automaten
+\begin{center}
+\includeagraphics[width=\textwidth]{ungerade.pdf}
+\end{center}
+Bestimmen Sie den zugehörigen Minimalautomaten und zeigen Sie, dass er
+mit dem Automaten übereinstimmt, von dem ausgehend in Aufgabe \ref{30000089}
+der reguläre Ausdruck gefunden wurde.
+
+\begin{loesung}
+Der Algorithmus startet mit der Tabelle, die die Paare aus
+Akzeptierzuständen und Nichtakzeptierzuständen als nicht zusammenlegbar
+ausweist:
+\def\t{\times}
+\def\e{\equiv}
+\def\o{\otimes}
+\begin{center}
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
+\hline
+ &1     &2     &3     &4     &5     &6     &7     \\
+\hline
+1&\e    &      &      &      &\t    &\t    &\t    \\
+2&      &\e    &      &      &\t    &\t    &\t    \\
+3&      &      &\e    &      &\t    &\t    &\t    \\
+4&      &      &      &\e    &\t    &\t    &\t    \\
+5&\t    &\t    &\t    &\t    &\e    &      &      \\
+6&\t    &\t    &\t    &\t    &      &\e    &      \\
+7&\t    &\t    &\t    &\t    &      &      &\e    \\
+\hline
+\end{tabular}
+\end{center}
+Jetzt muss für alle freien Paare untersucht werden, ob sie von einem
+Übergang auf ein Zustandspaar abgebildet werden, welches bereits als
+nicht zusammenlegbar erkannt worden ist.
+Es stellt sich heraus, dass das bei keinem Paar eintrifft.
+Somit können alle Nichtakzeptierzustände in einen Zustand zusammengelegt
+werden.
+Ebenso können die drei Akzeptierzustände in einen Zustand
+zusammengelegt werden.
+So ergibt sich der minimierte Automat
+\begin{center}
+\includeagraphics[]{ungerade_minimized.pdf}
+\end{center}
+\end{loesung}

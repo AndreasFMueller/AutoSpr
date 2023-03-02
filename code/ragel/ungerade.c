@@ -23,14 +23,11 @@ int	main(int argc, char *argv[]) {
 		char	*pe = p + strlen(p);
 		char	*eof = pe;
 		%%{
-			ungerade :=  ('0'*'1'('0'|'1'('0')*'1')*) %istungerade;
+			ungerade :=  ('1'*'0'('1'|'0'('1')*'0')*) %istungerade;
 			write init;
 			write exec;
 		}%%
-		
-		printf("p = %p, pe = %p, eof = %p\n", p, pe, eof);
-		printf("cs = %d, res = %d\n", cs, res);
-		printf("%s %sgerade Anzahl Einsen\n", argv[i],
+		printf("%s %sgerade Anzahl Nullen\n", argv[i],
 			(res) ? "un" : "");
 	}
 	return EXIT_SUCCESS;
