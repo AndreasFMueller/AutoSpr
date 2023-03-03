@@ -1,4 +1,51 @@
-XXX Einfache Ableitung eines Wortes
+Gegeben sind die Regeln
+\begin{align*}
+S&\to SS
+&
+S&\to \texttt{a}
+&
+S&\to \texttt{bb}
+&
+S&\to \texttt{ccc}
+\end{align*}
+Leiten Sie damit die folgenden Wörter aus der Variablen $S$ ab.
+\begin{teilaufgaben}
+\item \texttt{abbaccc}
+\item \texttt{cccabba}
+\end{teilaufgaben}
 
 \begin{loesung}
+\begin{teilaufgaben}
+\item
+\(
+S
+\to
+SS
+\to
+\texttt{a}S 
+\to
+\texttt{a}SS
+\to
+\texttt{abb}S
+\to
+\texttt{abb}SS
+\to
+\texttt{abba}S
+\to
+\texttt{abbaccc}
+\)
+\item
+\(
+S\to SS \to SSS \to SSSS
+\to
+SSS\texttt{a}
+\to
+SS\texttt{bba}
+\to
+S\texttt{abba}
+\to
+\texttt{cccabba}
+\)
+\qedhere
+\end{teilaufgaben}
 \end{loesung}
