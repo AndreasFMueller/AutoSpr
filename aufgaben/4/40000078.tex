@@ -1,4 +1,124 @@
-XXX zweiten parse tree einer zweideutigen Grammatik ermitteln
+Die Grammatik
+
+\vspace*{-5mm}
+\hbox to\textwidth{\hfill
+\(
+\begin{aligned}
+S & \to Z
+\\
+S & \to S \;\texttt{+}\; S
+\\
+S & \to S \;\texttt{-}\; S
+\\
+Z & \to 
+\texttt{0} \mid
+\texttt{1} \mid
+\texttt{2} \mid
+\texttt{3} \mid
+\texttt{4} \mid
+\texttt{5} \mid
+\texttt{6} \mid
+\texttt{7} \mid
+\texttt{8} \mid
+\texttt{9}
+\end{aligned}
+\)
+\hfill
+\raisebox{-2.0cm}{
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (S1) at (3,4);
+\coordinate (S2) at (4,3);
+\coordinate (S3) at (1,3);
+\coordinate (S4) at (0,2);
+\coordinate (S5) at (2,2);
+\coordinate (Z1) at (0,1);
+\coordinate (Z2) at (2,1);
+\coordinate (Z3) at (4,1);
+\coordinate (T1) at (0,0);
+\coordinate (T2) at (1,0);
+\coordinate (T3) at (2,0);
+\coordinate (T4) at (3,0);
+\coordinate (T5) at (4,0);
+\node at (S1) {$S$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S1) -- (S2);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S1) -- (S3);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S1) -- (T4);
+\node at (S2) {$S$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S2) -- (Z3);
+\node at (S3) {$S$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S3) -- (S4);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S3) -- (T2);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S3) -- (S5);
+\node at (S4) {$S$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S4) -- (Z1);
+\node at (S5) {$S$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S5) -- (Z2);
+\node at (Z1) {$Z$};
+\node at (Z2) {$Z$};
+\node at (Z3) {$Z$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (Z1) -- (T1);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (Z2) -- (T3);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (Z3) -- (T5);
+\node at (T1) {\texttt{7}};
+\node at (T2) {\texttt{-}};
+\node at (T3) {\texttt{5}};
+\node at (T4) {\texttt{+}};
+\node at (T5) {\texttt{2}};
+\end{tikzpicture}
+}
+\hfill
+}
+
+\medskip
+
+\noindent
+ist nicht eindeutig. 
+Rechts ist ein möglicher Parse-Tree des Ausdrucks \texttt{7-5+2} dargestellt.
+Finden Sie einen zweiten.
 
 \begin{loesung}
+Der zweite Parse Tree beginnt mit den ersten zwei Termen:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (S1) at (1,4);
+\coordinate (S2) at (0,3);
+\coordinate (S3) at (3,3);
+\coordinate (S4) at (2,2);
+\coordinate (S5) at (4,2);
+\coordinate (Z1) at (0,1);
+\coordinate (Z2) at (2,1);
+\coordinate (Z3) at (4,1);
+\coordinate (T1) at (0,0);
+\coordinate (T2) at (1,0);
+\coordinate (T3) at (2,0);
+\coordinate (T4) at (3,0);
+\coordinate (T5) at (4,0);
+\node at (S1) {$S$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S1) -- (S2);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S1) -- (S3);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S1) -- (T2);
+\node at (S2) {$S$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S2) -- (Z1);
+\node at (S3) {$S$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S3) -- (S4);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S3) -- (T4);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S3) -- (S5);
+\node at (S4) {$S$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S4) -- (Z2);
+\node at (S5) {$S$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (S5) -- (Z3);
+\node at (Z1) {$Z$};
+\node at (Z2) {$Z$};
+\node at (Z3) {$Z$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (Z1) -- (T1);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (Z2) -- (T3);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (Z3) -- (T5);
+\node at (T1) {\texttt{7}};
+\node at (T2) {\texttt{-}};
+\node at (T3) {\texttt{5}};
+\node at (T4) {\texttt{+}};
+\node at (T5) {\texttt{2}};
+\end{tikzpicture}
+\end{center}
 \end{loesung}
+
