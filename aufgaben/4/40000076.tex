@@ -1,4 +1,20 @@
-XXX kleine Grammatik konstruieren
+Geben Sie eine Grammatik für eine Sprache über dem Alphabet
+$\Sigma=\{\texttt{a},\texttt{b},\texttt{c}\}$ an, die Wörter gerader
+Länge produziert.
 
 \begin{loesung}
+Solche Wörter entstehen, indem man Paare von Zeichen miteinander
+verknüpft.
+Die Variable $P$ steht daher für ein Paar, die Variable $Z$ für ein
+einzelnes Zeichen.
+Das leere Wort entspricht auch den Forderungen, was durch die Regel
+$S\to\varepsilon$ ausgedrückt werden kann.
+Die Grammatik ist daher:
+\begin{align*}
+S&\to \varepsilon \\
+S&\to SP \\
+P&\to ZZ \\
+Z&\to \texttt{a} \mid \texttt{b} \mid \texttt{c}
+\qedhere
+\end{align*}
 \end{loesung}
