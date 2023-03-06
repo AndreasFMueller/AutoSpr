@@ -1,4 +1,53 @@
-XXX reguläre Operationen für Grammatiken
+Die Grammatiken
+\begin{align*}
+S_1 & \to S_1P \mid Z               & S_2 & \to \texttt{0}S_2\texttt{1}    \\
+P   & \to ZZ                        &     & \to \varepsilon                \\
+Z   & \to \texttt{0}\mid\texttt{1}  &     &                               
+\end{align*}
+erzeugen die Sprachen $L_1=\{w\in\Sigma^*\mid  \text{$|w|$ ungerade}\}$
+und $L_2=\{\texttt{0}^n\texttt{1}^n \mid k\ge 0\}$.
+Konstruieren Sie eine Grammatik für
+\begin{teilaufgaben}
+\item Konstruieren Sie eine Grammatik für die Sprache $L=\{
+\texttt{0}^{n_1}\texttt{1}^{n_1}
+\texttt{0}^{n_2}\texttt{1}^{n_2}
+\dots
+\texttt{0}^{n_l}\texttt{1}^{n_l}
+\mid
+n_i\ge 0\forall i\le l
+\}$
+\item Konstruieren Sie eine Grammatik für die Sprache $L=\{
+w\in\Sigma^* \mid
+\text{$|w|$ ungerade und $w$ endet mit $\texttt{0}n\texttt{1}^n$, $n\ge 0$}
+\}$
+\end{teilaufgaben}
 
 \begin{loesung}
+\begin{teilaufgaben}
+\item
+Die gesuchte Sprache ist $L=L_2^*$, wir müssen daher die *-Konstruktion
+auf die Grammatik von $L_2$ anwenden.
+Dies ergibt 
+\begin{align*}
+S   & \to SS_2 \mid \varepsilon  \\
+S_2 & \to \texttt{0}S_2\texttt{1} \mid \varepsilon
+\end{align*}
+\item
+Da ein Wort der Form $\texttt{0}^n\texttt{1}^n$ gerade Länge hat, besteht
+ein Wort von $L$ aus einem Stück underader Länge gefolgt von einem
+Wort der Form $\texttt{0}^n\texttt{1}^n$.
+Somit ist die Sprache $L=L_1L_2$ eine Verkettung.
+Wir müssen also eine Grammatik für die Verkettung produzieren:
+\begin{align*}
+S   & \to S_1S_2                    &     &                                \\
+S_1 & \to S_1P \mid Z               & S_2 & \to \texttt{0}S_2\texttt{1}    \\
+P   & \to ZZ                        &     & \to \varepsilon                \\
+Z   & \to \texttt{0}\mid\texttt{1}  &     &                               
+\qedhere
+\end{align*}
+\end{teilaufgaben}
 \end{loesung}
+
+
+
+

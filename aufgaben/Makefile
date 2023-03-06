@@ -4,7 +4,7 @@
 # (c) 2013 Prof Dr Andreas Mueller, Hochschule Rapperswil
 #
 all:	
-	@echo choose test or sammlung
+	@echo choose test, sammlung or 'woche(0?|1?)'
 
 test:	test.pdf
 
