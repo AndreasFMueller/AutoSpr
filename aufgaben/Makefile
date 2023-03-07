@@ -3,6 +3,8 @@
 #
 # (c) 2013 Prof Dr Andreas Mueller, Hochschule Rapperswil
 #
+include Makefile.include
+
 all:	
 	@echo choose test, sammlung or 'woche(0?|1?)'
 
@@ -28,7 +30,8 @@ TEXFILES = aufgabensammlung.tex 					\
 	$(workdir)/5.tex						\
 	$(workdir)/6.tex						\
 	$(workdir)/7.tex						\
-	$(workdir)/8.tex
+	$(workdir)/8.tex						\
+	$(aufgabenfiles)
 
 topdir := ${PWD}
 workdir := work

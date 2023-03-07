@@ -1,0 +1,21 @@
+#! /bin/bash
+#
+# mkinclude -- create the Makefile.include
+#
+# (c) 2023 Prof Dr Andreas Müller
+#
+ls ?/????????.tex | awk 'BEGIN {
+	printf("#\n")
+	printf("# Makefile.include -- dependencies\n")
+	printf("#\n")
+	printf("# do not edit, created by mkinlcude\n");
+	printf("# (c) 2023 Prof Dr Andreas Müller\n")
+	printf("#\n")
+	printf("aufgabenfiles = \\\n")
+}
+{
+	printf("\t%s \\\n", $1)
+}
+END {
+	printf("\t\n");
+}' > Makefile.include
