@@ -1,4 +1,4 @@
-Verwendeln Sie den Thompson-NEA um den folgenden $\text{NEA}_\varepsilon$
+Verwendaln Sie den Thompson-NEA um den folgenden $\text{NEA}_\varepsilon$
 über dem Alphabet
 $\Sigma=\{\texttt{0},\texttt{1}\}$ in einen DEA
 umzuwandeln.
@@ -72,7 +72,6 @@ Das Zustandsdiagramm ist
 \coordinate (q1) at ({-0.5*\l},0);
 \coordinate (q2) at ({-0.5*\l},-\l);
 \coordinate (q12) at ({0.5*\l},\l);
-\akzeptierzustand{(q12)}{q_1,q_2}
 \coordinate (q02) at ({0.5*\l},0);
 \coordinate (q01) at ({0.5*\l},-\l);
 
@@ -82,10 +81,11 @@ Das Zustandsdiagramm ist
 \zustand{(q2)}{q_2}
 \akzeptierzustand{(q01)}{q_0,q_1}
 \zustand{(q02)}{q_0,q_2}
+\akzeptierzustand{(q12)}{q_1,q_2}
 \end{scope}
 
 \coordinate (q012) at ({1.5*\l},0);
-\akzeptierzustand{(q012)}{q}
+\akzeptierzustand{(q012)}{Q}
 
 % from {q0}
 \pfeil{(q0)}{(e)}
@@ -101,25 +101,14 @@ Das Zustandsdiagramm ist
 % from q = {q0,q1,q2}
 \draw[->,shorten >= 0.55cm,shorten <= 0.55cm]
 	(q012) to[out=-30,in=30,distance=1.5cm] (q012);
-\node at ($(q012)+(1,0)$) [right] {\texttt{1}};
-\draw[->,shorten >= 0.55cm,shorten <= 0.55cm]
-	(q012) to[out=90,in=0] (q12);
-\node at ($0.5*(q012)+0.5*(q12)+(0.5,0.5)$) [above right] {\texttt{0}};
-
-% from {q1,q2}
-\draw[->,shorten >= 0.55cm,shorten <= 0.55cm]
-	(q12) to[out=60,in=120,distance=1.5cm] (q12);
-\node at ($(q12)+(0,1.1)$) [above] {\texttt{0}};
-\draw[->,shorten >= 0.55cm,shorten <= 0.55cm]
-	(q12) to[out=-30,in=120] (q012);
-\node at ($0.5*(q12)+0.5*(q012)$) {\texttt{1}};
+\node at ($(q012)+(1,0)$) [right] {\texttt{1},\texttt{0}};
 
 \end{tikzpicture}
 \end{center}
 Die grau gezeichneten Zustände sind nicht erreichbar.
 
-Der Minimalautomat-Algorithmus zeigt, dass die Zustände $q=\{q_0,q_1,q_2\}$
+Der Minimalautomat-Algorithmus zeigt, dass die Zustände $Q=\{q_0,q_1,q_2\}$
 und $\{q_1,q_2\}$ nicht unterscheidbar sind und damit zusammengelegt
 werden können.
-So entsteht der gleiche DEA wie in Aufgabe~\ref{30000084}.
+So entsteht der gleiche DEA wie in Aufgabe~\ref{30000090}.
 \end{loesung}
