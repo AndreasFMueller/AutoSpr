@@ -1,4 +1,95 @@
-XXX CNF Regeln üben
+Üben Sie die Regeln zur Reduktion auf CNF an den folgenden Beispielen:
+
+\hbox to\textwidth{%
+\begin{minipage}[t]{0.3\textwidth}%
+\noindent
+a)\;
+Wenden Sie die $\varepsilon$-Regel $A\to\varepsilon$ auf die folgenden
+Regeln an:
+\begin{align*}
+B&\to AC      \\
+ &\to CA      \\
+ &\to ACA     \\
+D&\to AAAA    
+\end{align*}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.3\textwidth}%
+\noindent
+b)\;
+Eliminieren Sie die Unit-Rule $A\to B$ aus den folgenden Regeln
+\begin{align*}
+C &\to AC     \\
+B &\to AB     \\
+  &\to BB \mid C 
+\end{align*}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.3\textwidth}
+\noindent
+c)\;
+Reduzieren Sie die folgenden Regeln auf CNF
+\begin{align*}
+A&\to A\texttt{b}C \mid \texttt{e} \\
+C&\to A\texttt{d}
+\end{align*}
+\end{minipage}}
 
 \begin{loesung}
+\begin{teilaufgaben}
+\item
+Die Regel $A\to\varepsilon$ bedeutet, dass $A$ auf der rechten Seite
+einer Regel optional ist, also weggelassen werden kann:
+\begin{align*}
+B&\to AC \mid C     \\
+ &\to CA \mid C     \\
+ &\to ACA \mid CA \mid AC \mid C    \\
+D&\to AAAA \mid AAA \mid AA \mid A \mid \varepsilon
+\end{align*}
+Darin sind einige Regeln redundant. 
+Lässt man duplizierte Regeln weg, bleibt
+\begin{align*}
+B&\to ACA \mid AC \mid CA \mid C \\
+D&\to AAAA \mid AAA \mid AA \mid A \mid \varepsilon
+\end{align*}
+\item
+Die Regel $A\to B$ bedeutet, dass man alles, was man aus $B$ machen kann,
+auch aus $A$ machen kann:
+\begin{align*}
+C &\to AC     \\
+B &\to AB     \\
+  &\to BB \mid C  \\
+A &\to AB     \\
+  &\to BB \mid C 
+\end{align*}
+\item
+Es gibt zwei Terminalsymbole, die über Zwischenvariablen erzeugt
+werden müssen:
+\begin{align*}
+B & \to \texttt{b} \\
+D & \to \texttt{d} \\
+A&\to ABC \mid \texttt{e} \\
+C&\to AD
+\end{align*}
+Es bleibt die Dreier-Regel, die in Zweier-Schritte aufgeteilt werden
+muss:
+\[
+A\to ABC
+\qquad\Rightarrow\qquad
+\left\{\quad
+\begin{aligned}
+A&\to AA_1 \\
+A_1&\to BC
+\end{aligned}
+\right.
+\]
+Alle Regeln zusammen sind
+\begin{align*}
+B & \to \texttt{b} \\
+D & \to \texttt{d} \\
+A&\to AA_1 \mid \texttt{e} \\
+A_1&\to BC \\
+C&\to AD
+\end{align*}
+\end{teilaufgaben}
 \end{loesung}
