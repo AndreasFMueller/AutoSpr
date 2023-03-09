@@ -1,14 +1,14 @@
 Die Grammatik
 \begin{align*}
-S&\to \varepsilon \\
- &\to NSE \\
+S_0& \to NE \mid NA \mid \varepsilon \\
+S  & \to NE \mid NA \\
+A  &\to SE \\
 N&\to \texttt{0} \\
-E&\to \texttt{1} \\
+E&\to \texttt{1} 
 \end{align*}
 für Wörter der Form
 $\texttt{0}^n\texttt{1}^n$
-hat noch nicht Chomsky-Normalform.
-XXX
+hat Chomsky-Normalform.
 Wenden Sie den CYK-Algorithmus mit dieser Grammatik auf das Wort
 \texttt{0011} an.
 
@@ -24,7 +24,7 @@ Um die spätere Diskussion zu vereinfachen, überlegen wir uns zunächst
 ein paar Spezialfälle.
 
 Das leere Wort ist nur aus der Startvariablen ableitbar, daher ist
-$\ableitbar{A}{\varepsilon}$ nur dann war, wenn $A=S$ ist.
+$\ableitbar{A}{\varepsilon}$ nur dann wahr, wenn $A=S_0$ ist.
 
 Hat das Wort $w$ die Länge $1$, dann ist 
 $\ableitbar{A}{w}$ nur wahr
@@ -32,15 +32,19 @@ für $A=N$ und $w=\texttt{0}$
 bzw.~für $A=E$ und $w=\texttt{1}$.
 
 Der erste Aufruf der Funktion \texttt{ableitbar} fragt, ob das Wort
-\texttt{0011} aus $S$ ableitbar ist.
+\texttt{0011} aus $S_0$ ableitbar ist.
 Dazu muss zunächst kontrolliert werden, ob das leere Wort vorliegt,
 dies ist hier nicht der Fall.
-Dann kommen die Zweierregeln dran, da es nur die Regel $S\to NA$
-gibt, muss jetzt getestet werden, ob die Teile einer der Unterteilungen
+Dann kommen die Zweierregeln dran, die Regeln
+$S_0\to NE$
+und
+$S_0\to NA$.
+Für beide müssen die Unterteilungen
 \texttt{0|011},
 \texttt{00|11} oder
 \texttt{001|1}
-aus $E$ bzw.~$A$ ableitbar sind:
+daraufhin getestet werden, ob die Teile aus $N$ bzw.~$E$ oder $A$
+ableitbar sind:
 \begin{itemize}
 \item
 \texttt{0|011}:
