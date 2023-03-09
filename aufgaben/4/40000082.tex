@@ -1,0 +1,79 @@
+Die Grammatik
+\begin{align*}
+S&\to \varepsilon \\
+ &\to NA \\
+A&\to SE \\
+N&\to \texttt{0} \\
+E&\to \texttt{1} \\
+\end{align*}
+für Wörter der Form
+$\texttt{0}^n\texttt{1}^n$
+hat noch nicht Chomsky-Normalform.
+XXX
+Wenden Sie den CYK-Algorithmus mit dieser Grammatik auf das Wort
+\texttt{0011} an.
+
+\def\ableitbar#1#2{
+	\texttt{ableitbar(}#1\texttt{,}#2\texttt{)}
+}
+
+\begin{loesung}
+Der CYK-Algorithmus verwendet rekursive Aufrufe der Funktion
+\texttt{ableitbar}, um herauszufinden, ob ein Teilwort aus einer 
+Variablen ableitbar ist.
+Um die spätere Diskussion zu vereinfachen, überlegen wir uns zunächst
+ein paar Spezialfälle.
+
+Das leere Wort ist nur aus der Startvariablen ableitbar, daher ist
+$\ableitbar{A}{\varepsilon}$ nur dann war, wenn $A=S$ ist.
+
+Hat das Wort $w$ die Länge $1$, dann ist 
+$\ableitbar{A}{w}$ nur wahr
+für $A=N$ und $w=\texttt{0}$
+bzw.~für $A=E$ und $w=\texttt{1}$.
+
+Der erste Aufruf der Funktion \texttt{ableitbar} fragt, ob das Wort
+\texttt{0011} aus $S$ ableitbar ist.
+Dazu muss zunächst kontrolliert werden, ob das leere Wort vorliegt,
+dies ist hier nicht der Fall.
+Dann kommen die Zweierregeln dran, da es nur die Regel $S\to NA$
+gibt, muss jetzt getestet werden, ob die Teile einer der Unterteilungen
+\texttt{0|011},
+\texttt{00|11} oder
+\texttt{001|1}
+aus $E$ bzw.~$A$ ableitbar sind:
+\begin{itemize}
+\item
+\texttt{0|011}:
+Es muss $\ableitbar{N}{\texttt{0}}$ und $\ableitbar{A}{\texttt{011}}$ 
+aufgerufen werden.
+Der erste Aufruf ist erfolgreich, so dass es jetzt nur noch auf den
+zweiten ankommt.
+Ausgehend von $A$ gibt es nur die Regel $A\to SE$.
+Innerhalb des Aufrufs werden die Unterteilungen
+\texttt{0|11} 
+und
+\texttt{01|1} 
+getestet.
+\begin{itemize}
+\item
+$\ableitbar{S}{\texttt{01}}$ und $\ableitbar{E}{\texttt{1}}$:
+Der zweite Aufruf wird {\em true} zurückgeben, so dass es vor allem
+auf den ersten ankommt.
+\begin{itemize}
+\item
+Da es nur die Regel $S\to NA$ gibt, muss 
+\end{itemize}
+\item
+$\ableitbar{S}{\texttt{0}}$ und $\ableitbar{E}{\texttt{11}}$:
+muss nicht mehr aufgerufen werden.
+\end{itemize}
+\item
+\texttt{00|11}: muss nicht mehr aufgerufen werden.
+\item
+\texttt{001|1}: muss nicht mehr aufgerufen werden.
+\end{itemize}
+
+
+
+\end{loesung}
