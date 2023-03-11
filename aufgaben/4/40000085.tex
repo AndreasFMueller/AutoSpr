@@ -1,0 +1,149 @@
+Verwenden Sie die Tabellendurchführung des CYK-Algorithmus, umd
+das Wort \texttt{000111} mit der Grammatik
+\begin{align*}
+S_0& \to NE \mid NA \mid \varepsilon \\
+S  & \to NE \mid NA \\
+A  &\to SE \\
+N&\to \texttt{0} \\
+E&\to \texttt{1} 
+\end{align*}
+zu produzieren.
+
+\begin{loesung}
+\def\h{1.0}
+\def\punkt#1#2{({(#1)*\h},{(#2)*\h})}
+\def\tabelle{
+	\draw \punkt{0}{0} -- \punkt{6}{0};
+	\foreach \x in {1,...,6}{
+		\draw \punkt{0}{\x} -- \punkt{7-\x}{\x};
+	}
+	\draw \punkt{0}{0} -- \punkt{0}{6};
+	\foreach \x in {1,...,6}{
+		\draw \punkt{\x}{0} -- \punkt{\x}{7-\x};
+	}
+	\node at \punkt{0.5}{-0.5} {\texttt{0}};
+	\node at \punkt{1.5}{-0.5} {\texttt{0}};
+	\node at \punkt{2.5}{-0.5} {\texttt{0}};
+	\node at \punkt{3.5}{-0.5} {\texttt{1}};
+	\node at \punkt{4.5}{-0.5} {\texttt{1}};
+	\node at \punkt{5.5}{-0.5} {\texttt{1}};
+	\draw[decorate,decoration={calligraphic brace},thick]
+		\punkt{6}{-1} -- \punkt{0}{-1};
+	\node at \punkt{3}{-1.5} {$w$};
+}
+\def\terminal#1#2#3{
+	\draw[->,color=red,line width=1.4pt,shorten >= 0.3cm,shorten <= 0.3cm]
+		\punkt{#1-0.5}{#2-0.5} -- ++\punkt{0}{-1};
+	\node at \punkt{#1-0.5}{#2-0.5}{#3};
+}
+\def\zeichen#1#2#3#4{
+	\draw[->,color=red,line width=1.4pt,shorten >= 0.2cm,shorten <= 0.2cm]
+		\punkt{#1-0.5}{#2-0.5} -- ++\punkt{0}{-#4};
+	\draw[->,color=red,line width=1.4pt,shorten >= 0.28cm,shorten <= 0.28cm]
+		\punkt{#1-0.5}{#2-0.5} -- ++\punkt{#2-#4}{#4-#2};
+	\node at \punkt{#1-0.5}{#2-0.5}{#3};
+}
+\def\keinzeichen#1#2{
+	\fill[color=gray!40] \punkt{#1}{#2}
+		-- ++\punkt{-1}{0}
+		-- ++\punkt{0}{-1}
+		-- ++\punkt{1}{0} -- cycle;
+}
+\def\lineone{
+	\terminal{1}{1}{$N$}
+	\terminal{2}{1}{$N$}
+	\terminal{3}{1}{$N$}
+	\terminal{4}{1}{$E$}
+	\terminal{5}{1}{$E$}
+	\terminal{6}{1}{$E$}
+}
+\def\linetwo{
+	\keinzeichen{1}{2}
+	\keinzeichen{2}{2}
+	\zeichen{3}{2}{$S_0,S$}{1}
+	\keinzeichen{4}{2}
+	\keinzeichen{5}{2}
+}
+\def\linethree{
+	\keinzeichen{1}{3}
+	\keinzeichen{2}{3}
+	\zeichen{3}{3}{$A$}{1}
+	\keinzeichen{4}{3}
+}
+\def\linefour{
+	\keinzeichen{1}{4}
+	\zeichen{2}{4}{$S_0,S$}{3}
+	\keinzeichen{3}{4}
+}
+\def\linefive{
+	\keinzeichen{1}{5}
+	\zeichen{2}{5}{$A$}{1}
+}
+\def\linesix{
+	\zeichen{1}{6}{$S_0,S$}{5}
+}
+Im ersten Schritt wird die unterste Tabelle mit den Variablen
+gefüllt, die in Terminalsymbole umgewandelt werden können:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\lineone
+%\linetwo
+%\linethree
+%\linefour
+%\linefive
+%\linesix
+\tabelle
+\end{tikzpicture}
+\end{center}
+In den folgenden Schritten werden die Zeilen weiter oben mit den
+linken Seiten von Zweierregeln gefüllt:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\begin{scope}
+	\lineone
+	\linetwo
+	\tabelle
+\end{scope}
+\begin{scope}[xshift=7.0cm]
+	\lineone
+	\linetwo
+	\linethree
+	\tabelle
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\begin{scope}
+	\lineone
+	\linetwo
+	\linethree
+	\linefour
+	\tabelle
+\end{scope}
+\begin{scope}[xshift=7.0cm]
+	\lineone
+	\linetwo
+	\linethree
+	\linefour
+	\linefive
+	\tabelle
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\begin{scope}
+	\lineone
+	\linetwo
+	\linethree
+	\linefour
+	\linefive
+	\linesix
+	\tabelle
+\end{scope}
+\end{tikzpicture}
+\end{center}
+Es ergibt sich, dass das Wort tatsächlich aus $S_0$ ableitbar ist und
+können auch den Parse-Tree ablesen.
+\end{loesung}
