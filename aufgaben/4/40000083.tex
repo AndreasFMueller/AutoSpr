@@ -1,4 +1,47 @@
 Finden Sie einen Stackautomaten, der korrekte Klammerausdrücke erkennt.
 
 \begin{loesung}
+Der Stackautomat muss überprüfen, ob es zu jeder öffnenden Klammer auch
+wieder eine schliessende Klammer gibt.
+Der folgende Automat schafft dies:
+\begin{center}
+\def\l{3}
+\def\r{0.4}
+\def\zustand#1#2{
+	\draw #1 circle[radius=\r];
+	\node at #1 {$#2\mathstrut$};
+}
+\def\akzeptierzustand#1#2{
+	\zustand{#1}{#2}
+	\draw #1 circle[radius={\r-0.05}];
+}
+\def\pfeil#1#2{\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] #1 -- #2;}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (\l,{-0.5*\l});
+\coordinate (q2) at (0,-\l);
+\zustand{(q0)}{q_0}
+\zustand{(q1)}{q_1}
+\akzeptierzustand{(q2)}{q_2}
+\pfeil{(-2,0)}{(q0)}
+\pfeil{(q0)}{(q1)}
+\pfeil{(q1)}{(q2)}
+
+\node at ($0.3*(q1)+0.7*(q2)$) [below right]
+	{$\varepsilon,\texttt{\$}\to\varepsilon$};
+
+\node at ($0.7*(q0)+0.3*(q1)$) [above right]
+	{$\varepsilon,\varepsilon\to\texttt{\$}$};
+
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=20,in=60,distance=2cm] (q1);
+\node at ($(q1)+(1,1)$) [above right]
+	{$\texttt{(},\varepsilon\to\texttt{(}$};
+
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=-20,in=-60,distance=2cm] (q1);
+\node at ($(q1)+(1,-1)$) [below right]
+	{$\texttt{)},\texttt{(}\to\varepsilon$};
+\end{tikzpicture}
+\end{center}
 \end{loesung}

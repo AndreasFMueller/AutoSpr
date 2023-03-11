@@ -6,4 +6,83 @@ K&\to \varepsilon \\
 \end{align*}
 
 \begin{loesung}
+Wie verwenden die Konstruktion des ``Blümchenautomaten'':
+\begin{center}
+\def\r{0.3}
+\def\l{3.6}
+\def\zustand#1#2{
+	\draw #1 circle[radius=\r];
+	\node at #1 {$#2$};
+}
+\def\akzeptierzustand#1#2{
+	\zustand{#1}{#2}
+	\draw #1 circle[radius={\r-0.05}];
+}
+\def\pfeil#1#2{
+	\draw[->,shorten <= 0.3cm,shorten >= 0.3cm] #1 -- #2;
+}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (\l,0);
+\coordinate (q2) at ({2*\l},0);
+\coordinate (q3) at ({3*\l},0);
+\coordinate (a1) at ({1.5*\l},{-0.5*\l});
+\coordinate (a2) at ({2*\l},{-\l});
+\coordinate (a3) at ({2.5*\l},{-0.5*\l});
+\zustand{(q0)}{q_0}
+\zustand{(q1)}{S}
+\zustand{(q2)}{R}
+\zustand{(a1)}{}
+\zustand{(a2)}{}
+\zustand{(a3)}{}
+\pfeil{(q2)}{(a1)}
+\pfeil{(a1)}{(a2)}
+\pfeil{(a2)}{(a3)}
+\pfeil{(a3)}{(q2)}
+\akzeptierzustand{(q3)}{A}
+\pfeil{(-1.5,0)}{(q0)}
+\pfeil{(q0)}{(q1)}
+\pfeil{(q1)}{(q2)}
+\pfeil{(q2)}{(q3)}
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(q2) to[out=30,in=75,distance=2cm] (q2);
+
+\draw[<-,shorten >= 0.3cm,shorten <= 0.3cm]
+	(q2) to[out=105,in=150,distance=2cm] (q2);
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(q2) to[out=-75,in=-105,distance=2cm] (q2);
+
+\node at ($0.5*(q0)+0.5*(q1)$) [above]
+	{$\varepsilon,\varepsilon\to\texttt{\$}$};
+
+\node at ($0.5*(q1)+0.5*(q2)$) [above]
+	{$\varepsilon,\varepsilon\to K$};
+
+\node at ($0.5*(q2)+0.5*(q3)$) [above]
+	{$\varepsilon,\texttt{\$}\to \varepsilon$};
+
+\node at ($0.7*(a1)+0.3*(q2)$) [above left]
+	{$\varepsilon,K\to K$};
+
+\node at ($0.5*(a1)+0.5*(a2)$) [below left]
+	{$\varepsilon,\varepsilon\to\texttt{)}$};
+
+\node at ($0.5*(a2)+0.5*(a3)$) [below right]
+	{$\varepsilon,\varepsilon\to K$};
+
+\node at ($0.3*(q2)+0.7*(a3)$) [above right]
+	{$\varepsilon,\varepsilon\to \texttt{(}$};
+
+\node at ($(q2)+(0,{-0.5*\l})$) {$\varepsilon,K\to\varepsilon$};
+
+\node at ($(q2)+(-0.2,{0.35*\l})$) [above left]
+	{$\texttt{0},\texttt{0}\to\varepsilon$};
+
+\node at ($(q2)+(0.2,{0.35*\l})$) [above right]
+	{$\texttt{1},\texttt{1}\to\varepsilon$};
+
+\end{tikzpicture}
+\end{center}
 \end{loesung}

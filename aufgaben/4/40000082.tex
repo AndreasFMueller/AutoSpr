@@ -48,35 +48,90 @@ ableitbar sind:
 \begin{itemize}
 \item
 \texttt{0|011}:
-Es muss $\ableitbar{N}{\texttt{0}}$ und $\ableitbar{A}{\texttt{011}}$ 
+Es muss $\ableitbar{N}{\texttt{0}}$ und $\ableitbar{E}{\texttt{011}}$ 
 aufgerufen werden.
-Der erste Aufruf ist erfolgreich, so dass es jetzt nur noch auf den
-zweiten ankommt.
-Ausgehend von $A$ gibt es nur die Regel $A\to SE$.
-Innerhalb des Aufrufs werden die Unterteilungen
-\texttt{0|11} 
-und
-\texttt{01|1} 
-getestet.
-\begin{itemize}
-\item
-$\ableitbar{S}{\texttt{01}}$ und $\ableitbar{E}{\texttt{1}}$:
-Der zweite Aufruf wird {\em true} zurückgeben, so dass es vor allem
-auf den ersten ankommt.
-\begin{itemize}
-\item
-Da es nur die Regel $S\to NA$ gibt, muss 
-\end{itemize}
-\item
-$\ableitbar{S}{\texttt{0}}$ und $\ableitbar{E}{\texttt{11}}$:
-muss nicht mehr aufgerufen werden.
-\end{itemize}
+Der erste Aufruf ist erfolgreich, aber der zweite gibt {\em false} zurück,
+so dass diese Unterteilung nicht in Frage kommt.
 \item
 \texttt{00|11}: muss nicht mehr aufgerufen werden.
+Es muss $\ableitbar{N}{\texttt{00}}$ und $\ableitbar{E}{\texttt{11}}$
+aufgerufen werden.
+Bereits der erste Aufruf gibt {\em false} zurück.
 \item
 \texttt{001|1}: muss nicht mehr aufgerufen werden.
+Es muss $\ableitbar{N}{\texttt{001}}$ und $\ableitbar{E}{\texttt{1}}$
+aufgerufen werden.
+Bereits der erste Aufruf gibt {\em false} zurück, da nützt es auch
+nichts, dass der zweite {\em true} ergeben würde..
 \end{itemize}
-
-
-
+Damit ist die Regel $S_0\to NE$ ausgeschlossen und es kann $S_0\to NA$
+versucht werden.
+\begin{itemize}
+\item
+\texttt{0|011}:
+Es muss $\ableitbar{N}{\texttt{0}}$ und $\ableitbar{A}{\texttt{011}}$ 
+aufgerufen werden.
+Der erste Aufruf ist wieder erfolgreich, es kommt jetzt also auf den
+zweiten an.
+Darin werden die Unterteilungen \texttt{0|11} und \texttt{01|1}
+mit der Regel $A\to SE$ probiert.
+\begin{itemize}
+\item
+\texttt{0|11}: Der Aufruf $\ableitbar{E}{\texttt{11}}$ gibt {\em false}
+zurück.
+\item
+\texttt{01|1}: Der Aufruf $\ableitbar{E}{\texttt{1}}$ gibt {\em true}
+zurück, es ist also nur noch der Rückgabewert von $\ableitbar{S}{\texttt{01}}$
+zu prüfen.
+Dabei wird die Regel $S\to NE$ verwendet, die auf die Aufrufe
+\ableitbar{N}{\texttt{0}}
+und
+\ableitbar{E}{\texttt{1}}
+führt, die beide {\em true} zurückgeben.
+Damit ist gefunden, dass das Wort ableitbar ist.
+\end{itemize}
+\end{itemize}
+Aus der Liste der erfolgreichen Aufrufe kann man auch den Parse-Tree
+ablesen.
+Die erste Regel ist $S_0\to NA$, als nächste Regel wird $A\to SE$ angewendet
+und schliesslich $S\to NE$.
+Dies ergibt den Parse-Tree
+\begin{center}
+\def\pfeil#1#2{\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] #1 -- #2;}
+\begin{tikzpicture}[>=latex,thick]
+\def\l{1}
+\coordinate (T0) at ({-1.5*\l},0);
+\coordinate (T1) at ({-0.5*\l},0);
+\coordinate (T2) at ({0.5*\l},0);
+\coordinate (T3) at ({1.5*\l},0);
+\coordinate (S0) at ({-1.5*\l},{\l});
+\coordinate (S1) at ({-0.5*\l},{\l});
+\coordinate (S2) at ({0.5*\l},{\l});
+\coordinate (S3) at ({1.5*\l},{\l});
+\coordinate (S4) at (0,{2*\l});
+\coordinate (A0) at ({0.75*\l},{3*\l});
+\coordinate (S5) at ({-0.375*\l},{4*\l});
+\node at (T0) {\texttt{0}};
+\node at (T1) {\texttt{0}};
+\node at (T2) {\texttt{1}};
+\node at (T3) {\texttt{1}};
+\node at (S0) {$N$};
+\node at (S1) {$N$};
+\node at (S2) {$E$};
+\node at (S3) {$E$};
+\node at (S4) {$S$};
+\node at (A0) {$A$};
+\node at (S5) {$S_0$};
+\pfeil{(S0)}{(T0)}
+\pfeil{(S1)}{(T1)}
+\pfeil{(S2)}{(T2)}
+\pfeil{(S3)}{(T3)}
+\pfeil{(S4)}{(S1)}
+\pfeil{(S4)}{(S2)}
+\pfeil{(A0)}{(S4)}
+\pfeil{(A0)}{(S3)}
+\pfeil{(S5)}{(S0)}
+\pfeil{(S5)}{(A0)}
+\end{tikzpicture}
+\end{center}
 \end{loesung}
