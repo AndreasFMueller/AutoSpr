@@ -1,0 +1,4 @@
+Zwei regex-Interfaces, die aber intern den gleichen Code verwenden:
+
+	ant test-string
+	ant test-regex
