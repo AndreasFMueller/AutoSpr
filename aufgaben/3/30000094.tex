@@ -15,6 +15,10 @@ passen.
 	\zustand{#1}
 	\draw[color=#2] #1 circle[radius={\r-0.05}];
 }
+\def\ehemaligerakzeptierzustand#1#2{
+	\zustand{#1}
+	\draw[color=#2!30,dashed] #1 circle[radius={\r-0.05}];
+}
 \def\pfeil#1#2{
 	\draw[->,shorten >= 0.20cm,shorten <= 0.20cm] #1 -- #2;
 }
@@ -46,15 +50,52 @@ passen.
 	\pfeil{(q11)}{(q12)}
 	\node at ($0.5*(q11)+0.5*(q12)$) [above] {\texttt{d}};
 	\zustand{(q1)}
-	\akzeptierzustand{(q2)}{#1}
 	\zustand{(q5)}
-	\akzeptierzustand{(q6)}{#1}
 	\zustand{(q7)}
-	\akzeptierzustand{(q8)}{#1}
 	\zustand{(q9)}
-	\akzeptierzustand{(q10)}{#1}
 	\zustand{(q11)}
-	\akzeptierzustand{(q12)}{#1}
+	\if0#1
+		\akzeptierzustand{(q2)}{black}
+		\akzeptierzustand{(q6)}{black}
+		\akzeptierzustand{(q8)}{black}
+		\akzeptierzustand{(q10)}{black}
+		\akzeptierzustand{(q12)}{black}
+	\fi
+	\if1#1
+		\akzeptierzustand{(q2)}{black}
+		\ehemaligerakzeptierzustand{(q6)}{black}
+		\akzeptierzustand{(q8)}{black}
+		\ehemaligerakzeptierzustand{(q10)}{black}
+		\akzeptierzustand{(q12)}{black}
+	\fi
+	\if2#1
+		\akzeptierzustand{(q2)}{black}
+		\ehemaligerakzeptierzustand{(q6)}{black}
+		\ehemaligerakzeptierzustand{(q8)}{black}
+		\ehemaligerakzeptierzustand{(q10)}{black}
+		\akzeptierzustand{(q12)}{black}
+	\fi
+	\if3#1
+		\akzeptierzustand{(q2)}{black}
+		\ehemaligerakzeptierzustand{(q6)}{black}
+		\ehemaligerakzeptierzustand{(q8)}{black}
+		\ehemaligerakzeptierzustand{(q10)}{black}
+		\akzeptierzustand{(q12)}{black}
+	\fi
+	\if4#1
+		\ehemaligerakzeptierzustand{(q2)}{black}
+		\ehemaligerakzeptierzustand{(q6)}{black}
+		\ehemaligerakzeptierzustand{(q8)}{black}
+		\ehemaligerakzeptierzustand{(q10)}{black}
+		\akzeptierzustand{(q12)}{black}
+	\fi
+	\if5#1
+		\ehemaligerakzeptierzustand{(q2)}{black}
+		\ehemaligerakzeptierzustand{(q6)}{black}
+		\ehemaligerakzeptierzustand{(q8)}{black}
+		\ehemaligerakzeptierzustand{(q10)}{black}
+		\ehemaligerakzeptierzustand{(q12)}{black}
+	\fi
 }
 \def\verkettung{
 	\begin{scope}
@@ -65,10 +106,14 @@ passen.
 		\node at ($0.5*(q10)+0.5*(q11)$) [above] {$\varepsilon$};
 	\end{scope}
 }
-\def\inneresternoperation{
+\def\inneresternoperation#1{
 	\begin{scope}
 		\color{red}
-		\akzeptierzustand{(q4)}{red!20}
+		\if0#1
+		\akzeptierzustand{(q4)}{red}
+		\else
+		\ehemaligerakzeptierzustand{(q4)}{red}
+		\fi
 		\pfeil{(q4)}{(q5)}
 		\node at ($0.5*(q4)+0.5*(q5)$) [above] {$\varepsilon$};
 		\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
@@ -120,7 +165,7 @@ akzeptiert:
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \punkte
-\buchstaben{black}
+\buchstaben{0}
 \end{tikzpicture}
 \end{center}
 Die Paare \texttt{ab} und \texttt{cd} müssen mit $\varepsilon$-Übergängen
@@ -128,7 +173,7 @@ verkettet werden:
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \punkte
-\buchstaben{gray}
+\buchstaben{1}
 \verkettung
 \end{tikzpicture}
 \end{center}
@@ -136,9 +181,9 @@ Der rechte obere Teilautomat muss mit einer Sternoperation iteriert werden:
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \punkte
-\buchstaben{gray}
+\buchstaben{2}
 \verkettung
-\inneresternoperation
+\inneresternoperation{0}
 \draw[->,shorten >= 0.2cm,shorten <= 0.2cm,color=red]
 	($(q4)+(-\l,0)$) -- (q4);
 \node[color=red] at ($(q4)+({-0.5*\l},0)$) [above] {$\varepsilon$};
@@ -148,9 +193,9 @@ Zwischen den beiden Ästen muss eine Alternative eingerichtet werden:
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \punkte
-\buchstaben{gray}
+\buchstaben{3}
 \verkettung
-\inneresternoperation
+\inneresternoperation{0}
 \alternative
 \draw[->,shorten >= 0.2cm,shorten <= 0.2cm,color=red]
 	($(q3)+({-0.8*\l},0)$) -- (q3);
@@ -161,9 +206,9 @@ Der Automat für \texttt{0} muss mit dem Rest verkettet werden:
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \punkte
-\buchstaben{gray}
+\buchstaben{4}
 \verkettung
-\inneresternoperation
+\inneresternoperation{0}
 \alternative
 \aeussereverkettung
 \draw[->,shorten >= 0.2cm,shorten <= 0.2cm,color=red]
@@ -175,9 +220,9 @@ versehen werden:
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \punkte
-\buchstaben{gray}
+\buchstaben{5}
 \verkettung
-\inneresternoperation
+\inneresternoperation{1}
 \alternative
 \aeussereverkettung
 \aeusseresternoperation

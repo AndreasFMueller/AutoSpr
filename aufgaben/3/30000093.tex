@@ -91,6 +91,10 @@ $L = L_1(L_2|L_3)^*L_4$.
 	\zustand{#1}
 	\draw[color=#2] #1 circle[radius={\r-0.05}];
 }
+\def\ehemaligerakzeptierzustand#1#2{
+	\zustand{#1}
+	\draw[color=#2!40,dashed] #1 circle[radius={\r-0.05}];
+}
 \def\pfeil#1#2{
 	\draw[->,shorten >= 0.20cm,shorten <= 0.20cm] #1 -- #2;
 }
@@ -105,10 +109,10 @@ Die regulären Operationen für Zustandsdiagramme ergeben
 \coordinate (q5) at ({5*\l},{0.5*\l});
 \coordinate (q6) at ({4*\l},{-0.5*\l});
 \coordinate (q7) at ({2*\l},{-1*\l});
-\fill[color=gray!40] ({-0.4*\l},{-0.4*\l}) rectangle ({1.4*\l},{0.9*\l});
-\fill[color=gray!40] ({1.6*\l},{-1.4*\l}) rectangle ({3.1*\l},{-0.6*\l});
-\fill[color=gray!40] ({3.6*\l},{0.1*\l}) rectangle ({6.1*\l},{0.9*\l});
-\fill[color=gray!40] ({3.6*\l},{-0.9*\l}) rectangle ({5.1*\l},{-0.1*\l});
+\fill[color=gray!20] ({-0.4*\l},{-0.4*\l}) rectangle ({1.4*\l},{0.9*\l});
+\fill[color=gray!20] ({1.6*\l},{-1.4*\l}) rectangle ({3.1*\l},{-0.6*\l});
+\fill[color=gray!20] ({3.6*\l},{0.1*\l}) rectangle ({6.1*\l},{0.9*\l});
+\fill[color=gray!20] ({3.6*\l},{-0.9*\l}) rectangle ({5.1*\l},{-0.1*\l});
 \pfeil{({-0.8*\l},0)}{(q0)}
 \zustand{(q0)}
 \draw[->,shorten <= 0.2cm,shorten >= 0.2cm]
@@ -122,7 +126,7 @@ Die regulären Operationen für Zustandsdiagramme ergeben
 \draw[->,shorten <= 0.2cm,shorten >= 0.2cm]
 	(q1) to[out=60,in=120,distance=0.8cm] (q1);
 \node at ($(q1)+(0,0.5)$) [above] {\texttt{1}};
-\akzeptierzustand{(q1)}{gray}
+\ehemaligerakzeptierzustand{(q1)}{black}
 \begin{scope}
 \color{red}
 \pfeil{(q1)}{(q2)}
@@ -132,7 +136,7 @@ Die regulären Operationen für Zustandsdiagramme ergeben
 \pfeil{(q2)}{(q7)}
 \draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
 	(q4) to[out=90,in=0] ($(q4)+(-0.7,0.7)$) to[out=180,in=90] (q2);
-\akzeptierzustand{(q2)}{red!40}
+\ehemaligerakzeptierzustand{(q2)}{red}
 \zustand{(q3)}
 \node at ($0.3*(q1)+0.7*(q2)$) [above] {$\varepsilon$};
 \node at ($0.5*(q2)+0.5*(q3)$) [above] {$\varepsilon$};
@@ -142,7 +146,7 @@ Die regulären Operationen für Zustandsdiagramme ergeben
 \node at ($(q3)+(0,1)$) {$\varepsilon$};
 \end{scope}
 
-\akzeptierzustand{(q4)}{gray}
+\ehemaligerakzeptierzustand{(q4)}{black}
 \pfeil{(q4)}{(q5)}
 \node at ($0.5*(q4)+0.5*(q5)+(0,-0.05)$) [above] {\texttt{0},\texttt{1}};
 
