@@ -72,29 +72,41 @@ reicht diese Form jedoch.
 	({((#1)-0.5*(#2))*\dx},{(-(#2))*\dy})
 }
 \def\terminal#1#2#3{
-	\fill[color=white] \punkt{#1}{#2} circle[radius=0.15];
+	\fill[color=white,opacity=0.8] \punkt{#1}{#2} circle[radius=0.20];
 	\node at \punkt{#1}{#2} {$#3\mathstrut$};
 }
 \def\gabel#1#2#3#4#5{
 	\draw \punkt{#1}{#2} -- \punkt{#1}{#2+#3};
 	\draw \punkt{#1}{#2} -- \punkt{#1+#4}{#2+#4};
-	\fill[color=white] \punkt{#1}{#2} circle[radius=0.15];
+	\fill[color=white,opacity=0.8] \punkt{#1}{#2} circle[radius=0.20];
 	\node at \punkt{#1}{#2} {$#5\mathstrut$};
 }
 \def\wort{
-	\node at \punkt{0.25}{8.5} {\texttt{1}\strut};
-	\node at \punkt{1.25}{8.5} {\texttt{+}\strut};
-	\node at \punkt{2.25}{8.5} {\texttt{2}\strut};
-	\node at \punkt{3.25}{8.5} {\texttt{+}\strut};
-	\node at \punkt{4.25}{8.5} {\texttt{3}\strut};
-	\node at \punkt{5.25}{8.5} {\texttt{+}\strut};
-	\node at \punkt{6.25}{8.5} {\texttt{4}\strut};
-	\node at \punkt{7.25}{8.5} {\texttt{+}\strut};
-	\node at \punkt{8.25}{8.5} {\texttt{5}\strut};
+	\node at \punkt{0.25}{8.7} {\texttt{1}\strut};
+	\node at \punkt{1.25}{8.7} {\texttt{+}\strut};
+	\node at \punkt{2.25}{8.7} {\texttt{2}\strut};
+	\node at \punkt{3.25}{8.7} {\texttt{+}\strut};
+	\node at \punkt{4.25}{8.7} {\texttt{3}\strut};
+	\node at \punkt{5.25}{8.7} {\texttt{+}\strut};
+	\node at \punkt{6.25}{8.7} {\texttt{4}\strut};
+	\node at \punkt{7.25}{8.7} {\texttt{+}\strut};
+	\node at \punkt{8.25}{8.7} {\texttt{5}\strut};
+}
+\def\dreieck#1#2#3{
+	\fill[color=#3!10] \punkt{#1-0.5}{8.5} rectangle ++({(9.5-#2)*\dx},-0.5);
+	\fill[color=#3!20] \punkt{#1-0.5}{8.5}
+		-- \punkt{#1-0.5}{#2-1}
+		-- \punkt{#1+0.5+(8.5-#2)}{8.5};
+	\draw[color=#3] \punkt{#1-0.5}{8.5}
+		-- \punkt{#1-0.5}{#2-1}
+		-- \punkt{#1+0.5+(8.5-#2)}{8.5};
 }
 \begin{tikzpicture}[>=latex,thick]
 
 \begin{scope}[xshift=-0.3*\textwidth]
+	\dreieck{0}{0}{blue}
+	\dreieck{0}{6}{red}
+	\dreieck{2}{8}{darkgreen}
 	\gabel{0}{0}{4}{5}{A}
 		\gabel{0}{4}{2}{3}{A}
 			\gabel{0}{6}{2}{1}{A}
@@ -118,6 +130,9 @@ reicht diese Form jedoch.
 \end{scope}
 
 \begin{scope}[xshift=0.3*\textwidth]
+	\dreieck{0}{0}{blue}
+	\dreieck{2}{6}{red}
+	\dreieck{4}{8}{darkgreen}
 	\gabel{0}{0}{2}{7}{A}
 		\gabel{0}{2}{2}{5}{A}
 			\gabel{0}{4}{4}{1}{A}
@@ -142,6 +157,30 @@ reicht diese Form jedoch.
 
 \end{tikzpicture}
 \end{center}
+Daraus lassen sich mögliche Aufteilungen ds Wortes ablesen:
+\[
+\bgroup
+\color{red}
+\texttt{1+}
+\color{darkgreen}
+\texttt{2}
+\color{blue}
+\texttt{+3+4+5}
+\egroup
+\qquad\text{bzw.}\qquad
+\bgroup
+\color{blue}
+\texttt{1+}
+\color{red}
+\texttt{2+}
+\color{darkgreen}
+\texttt{3}
+\color{blue}
+\texttt{+4+5}
+\egroup
+\]
+Die roten Teile können beliebig aufgepumpt werden, wobei immer
+Wörter der Sprache entstehen.
 \end{loesung}
 
 
