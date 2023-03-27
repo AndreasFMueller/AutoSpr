@@ -9,8 +9,14 @@ E&\to \texttt{1} 
 für Wörter der Form
 $\texttt{0}^n\texttt{1}^n$
 hat Chomsky-Normalform.
-Wenden Sie den CYK-Algorithmus mit dieser Grammatik auf das Wort
-\texttt{0011} an.
+\begin{teilaufgaben}
+\item
+Verfolgen Sie mit Hilfe des Pseudocode, welche Aufrufe der Funktion
+\texttt{ableitbar} der CYK-Algorithmus durchführen wird, wenn 
+$\texttt{ableitbar(}S_0,\texttt{0011)}$ aufgerufen wird.
+\item 
+Leiten Sie daraus den Parse-Tree ab.
+\end{teilaufgaben}
 
 \def\ableitbar#1#2{
 	\texttt{ableitbar(}#1\texttt{,}#2\texttt{)}

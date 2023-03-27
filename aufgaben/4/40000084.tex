@@ -1,5 +1,5 @@
-Konstruieren Sie einen Stackautomaten aus der folgenden Grammatik
-für Klammerausdrücke
+Konstruieren Sie das Zustandsdiagramm eines Stackautomaten aus der
+folgenden Grammatik für Klammerausdrücke
 \begin{align*}
 K&\to \varepsilon \\
  &\to \texttt{(}K\texttt{)}K
@@ -78,10 +78,10 @@ Wie verwenden die Konstruktion des ``Blümchenautomaten'':
 \node at ($(q2)+(0,{-0.5*\l})$) {$\varepsilon,K\to\varepsilon$};
 
 \node at ($(q2)+(-0.2,{0.35*\l})$) [above left]
-	{$\texttt{0},\texttt{0}\to\varepsilon$};
+	{$\texttt{(},\texttt{(}\to\varepsilon$};
 
 \node at ($(q2)+(0.2,{0.35*\l})$) [above right]
-	{$\texttt{1},\texttt{1}\to\varepsilon$};
+	{$\texttt{(},\texttt{)}\to\varepsilon$};
 
 \end{tikzpicture}
 \end{center}
