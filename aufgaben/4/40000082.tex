@@ -1,39 +1,42 @@
+\def\w#1{\texttt{#1}}
+\def\a#1#2#3{
+	\texttt{\phantom{#3}ableitbar(}#1\w{,}#2\w{)}
+}
 Die Grammatik
 \begin{align*}
 S_0& \to NE \mid NA \mid \varepsilon \\
 S  & \to NE \mid NA \\
 A  &\to SE \\
-N&\to \texttt{0} \\
-E&\to \texttt{1} 
+N&\to \w{0} \\
+E&\to \w{1} 
 \end{align*}
 für Wörter der Form
-$\texttt{0}^n\texttt{1}^n$
+$\w{0}^n\w{1}^n$
 hat Chomsky-Normalform.
 \begin{teilaufgaben}
 \item
 Verfolgen Sie mit Hilfe des Pseudocode, welche Aufrufe der Funktion
-\texttt{ableitbar} der CYK-Algorithmus durchführen wird, wenn 
-$\texttt{ableitbar(}S_0,\texttt{0011)}$ aufgerufen wird.
+\w{ableitbar} der CYK-Algorithmus durchführen wird, wenn 
+$\a{S_0}{\w{0011}}{}$ aufgerufen wird.
 \item 
 Leiten Sie daraus den Parse-Tree ab.
 \end{teilaufgaben}
 
-\def\ableitbar#1#2{
-	\texttt{ableitbar(}#1\texttt{,}#2\texttt{)}
-}
 
 \begin{loesung}
 Der CYK-Algorithmus verwendet rekursive Aufrufe der Funktion
 \texttt{ableitbar}, um herauszufinden, ob ein Teilwort aus einer 
 Variablen ableitbar ist.
+Die Gesamtheit der Aufrufe ist in Tabelle~\ref{40000082:loesung}
+zusammengestellt.
 Um die spätere Diskussion zu vereinfachen, überlegen wir uns zunächst
 ein paar Spezialfälle.
 
 Das leere Wort ist nur aus der Startvariablen ableitbar, daher ist
-$\ableitbar{A}{\varepsilon}$ nur dann wahr, wenn $A=S_0$ ist.
+$\a{A}{\varepsilon}{}$ nur dann wahr, wenn $A=S_0$ ist.
 
 Hat das Wort $w$ die Länge $1$, dann ist 
-$\ableitbar{A}{w}$ nur wahr
+$\a{A}{w}{}$ nur wahr
 für $A=N$ und $w=\texttt{0}$
 bzw.~für $A=E$ und $w=\texttt{1}$.
 
@@ -54,18 +57,18 @@ ableitbar sind:
 \begin{itemize}
 \item
 \texttt{0|011}:
-Es muss $\ableitbar{N}{\texttt{0}}$ und $\ableitbar{E}{\texttt{011}}$ 
+Es muss $\a{N}{\texttt{0}}{}$ und $\a{E}{\texttt{011}}{}$ 
 aufgerufen werden.
 Der erste Aufruf ist erfolgreich, aber der zweite gibt {\em false} zurück,
 so dass diese Unterteilung nicht in Frage kommt.
 \item
 \texttt{00|11}: muss nicht mehr aufgerufen werden.
-Es muss $\ableitbar{N}{\texttt{00}}$ und $\ableitbar{E}{\texttt{11}}$
+Es muss $\a{N}{\texttt{00}}{}$ und $\a{E}{\texttt{11}}{}$
 aufgerufen werden.
 Bereits der erste Aufruf gibt {\em false} zurück.
 \item
 \texttt{001|1}: muss nicht mehr aufgerufen werden.
-Es muss $\ableitbar{N}{\texttt{001}}$ und $\ableitbar{E}{\texttt{1}}$
+Es muss $\a{N}{\texttt{001}}{}$ und $\a{E}{\texttt{1}}{}$
 aufgerufen werden.
 Bereits der erste Aufruf gibt {\em false} zurück, da nützt es auch
 nichts, dass der zweite {\em true} ergeben würde..
@@ -75,7 +78,7 @@ versucht werden.
 \begin{itemize}
 \item
 \texttt{0|011}:
-Es muss $\ableitbar{N}{\texttt{0}}$ und $\ableitbar{A}{\texttt{011}}$ 
+Es muss $\a{N}{\texttt{0}}{}$ und $\a{A}{\texttt{011}}{}$ 
 aufgerufen werden.
 Der erste Aufruf ist wieder erfolgreich, es kommt jetzt also auf den
 zweiten an.
@@ -83,16 +86,16 @@ Darin werden die Unterteilungen \texttt{0|11} und \texttt{01|1}
 mit der Regel $A\to SE$ probiert.
 \begin{itemize}
 \item
-\texttt{0|11}: Der Aufruf $\ableitbar{E}{\texttt{11}}$ gibt {\em false}
+\texttt{0|11}: Der Aufruf $\a{E}{\texttt{11}}{}$ gibt {\em false}
 zurück.
 \item
-\texttt{01|1}: Der Aufruf $\ableitbar{E}{\texttt{1}}$ gibt {\em true}
-zurück, es ist also nur noch der Rückgabewert von $\ableitbar{S}{\texttt{01}}$
+\texttt{01|1}: Der Aufruf $\a{E}{\texttt{1}}{}$ gibt {\em true}
+zurück, es ist also nur noch der Rückgabewert von $\a{S}{\texttt{01}}{}$
 zu prüfen.
 Dabei wird die Regel $S\to NE$ verwendet, die auf die Aufrufe
-\ableitbar{N}{\texttt{0}}
+\a{N}{\texttt{0}}{}
 und
-\ableitbar{E}{\texttt{1}}
+\a{E}{\texttt{1}}{}
 führt, die beide {\em true} zurückgeben.
 Damit ist gefunden, dass das Wort ableitbar ist.
 \end{itemize}
@@ -140,4 +143,42 @@ Dies ergibt den Parse-Tree
 \pfeil{(S5)}{(A0)}
 \end{tikzpicture}
 \end{center}
+\begin{table}
+\centering
+\def\c#1{\multicolumn{1}{|c}{#1}}
+\def\C#1{\multicolumn{1}{|c|}{#1}}
+\begin{tabular}{>{$}l<{$}>{$}l<{$}>{$}l<{$}>{$}l<{$}|>{$}r<{$}>{$}l<{$}|>{$}l<{$}|>{$}l<{$}|>{$}c<{$}|}
+\hline
+\multicolumn{4}{|c|}{\text{Ebene}}&\multicolumn{2}{c|}{Unterteilung}&\text{Regel}&\text{Aufruf}&\text{Resultat}\\
+\hline
+\c{0}&&&&        &        &         &\a{S_0}{\w{0011}}{}  &\checkmark \\
+\hline
+&\c{1}&&&   \w{0}&\w{011} &S_0\to NE&\a{N}{\w{0}}{00}     &\checkmark \\
+&\c{ }&&&        &        &         &\a{E}{\w{011}}{00}   &\times     \\
+\cline{7-9}
+&\c{ }&&&        &        &S_0\to NA&\a{N}{\w{0}}{00}     &\checkmark \\
+&\c{ }&&&        &        &         &\a{A}{\w{011}}{00}   &\times     \\
+\cline{2-2}
+\cline{5-9}
+&&\c{2}&&   \w{0}&\w{11}  &A\to SE  &\a{S}{\w{0}}{0000}   &\times     \\
+&&\c{ }&&        &        &         &\a{E}{\w{11}}{0000}  &\times     \\
+\cline{5-9}
+&&\c{ }&&  \w{01}&\w{1}   &A\to SE  &\a{S}{\w{01}}{0000}  &\checkmark \\
+\cline{3-3}
+\cline{5-9}
+&&&\C{3}&   \w{0}&\w{1}   &S\to NE  &\a{N}{\w{0}}{000000} &\checkmark \\
+&&&\C{ }&        &        &         &\a{E}{\w{1}}{000000} &\checkmark \\
+\cline{3-3}
+\cline{5-9}
+&&\c{2}&&  \w{01}&\w{1}   &A\to SE  &\a{E}{\w{1}}{0000}   &\checkmark \\
+\cline{3-3}
+\cline{5-9}
+&&&\C{3}&   \w{0}&\w{1}   &S\to NE  &\a{N}{\w{0}}{000000} &\checkmark \\
+\cline{4-9}
+\end{tabular}
+\caption{Aufrufe der Funktion $\a{V}{w}{}$ nach dem CYK-Algorithmus,
+die der Aufruf von $\a{S_0}{\w{0011}}{}$ zur Folge hat (Lösung von
+Aufgabe~\ref{40000082}
+\label{40000082:loesung}}
+\end{table}
 \end{loesung}
