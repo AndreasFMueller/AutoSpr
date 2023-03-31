@@ -1,0 +1,8 @@
+- parse tree
+- Evaluation und Anzeige des Parse Tree
+- History von parse trees
+- Registerzuweisungen sind Faktoren, haben damit einen Wert und
+  können auch im Inneren eines Ausdrucks vorkommen
+- neue Funktion: Fakultät, binom, div, mod, trunc, floor
+- Zufallszahlen mit rand()
+
