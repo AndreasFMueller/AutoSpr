@@ -19,7 +19,7 @@ grammar.o:	grammar.c grammar.h constants.h tree.h help.h
 
 constants.o:	constants.c constants.h
 
-tree.o:	tree.c tree.h
+tree.o:	tree.c tree.h constants.h functions.h grammar.h
 
 functions.o:	functions.c functions.h
 

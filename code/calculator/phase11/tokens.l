@@ -6,8 +6,13 @@
 #include "grammar.h"
 %}
 %%
+exit	{ return EXIT; }
 help	{ return HELP; }
 precision	{ return PRECISION; }
+format	{ return FORMAT; }
+eng	{ return DEFAULT; }
+fixed	{ return FIXED; }
+float	{ return FLOAT; }
 tree	{ return TREE; }
 print	{ return PRINT; }
 abs	{ return ABS; }
@@ -27,6 +32,7 @@ tan	{ return TAN; }
 hypot	{ return HYPOT; }
 cbrt	{ return CBRT; }
 sqrt	{ return SQRT; }
+sqr	{ return SQR; }
 log	{ return LOG; }
 log10	{ return LOG10; }
 log2	{ return LOG2; }
@@ -59,7 +65,7 @@ r[0-9][0-9]?	{
 			yylval.treenode = treenode_new(yytext + 1, REGISTER, NULL);
 			return REGISTER;
 		}
-[0-9]+(\.[0-9]*)?([eE]-?[0-9]+)?	{
+[0-9]+(\.[0-9]*)?([eE][-+]?[0-9]+)?	{
 					yylval.treenode = treenode_new(yytext, NUMBER, NULL);
 					yylval.treenode->value = atof(yytext);
 					return NUMBER;

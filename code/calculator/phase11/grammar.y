@@ -51,12 +51,13 @@ static void	previous_save(treenode_p treenode) {
 %union {
 	treenode_p	treenode;
 }
-%token TREE
+%token TREE EXIT
+%token FORMAT DEFAULT FIXED FLOAT
 %token ABS
 %token ASINH ACOSH ATANH SINH COSH TANH
 %token ATAN2 HYPOT
 %token ASIN ACOS ATAN SIN COS TAN
-%token SQRT CBRT
+%token SQRT CBRT SQR
 %token LOG EXP LOG10 LOG2
 %token J0 J1 JN Y0 Y1 YN GAMMA
 %token BINOM MOD DIV
@@ -80,25 +81,34 @@ exprline:
 	|	expr '\n'		{
 						$$ = $1;
 						showoutput(0);
-						printf("%.*f\n", tree_precision, treenode_value($$));
+						treenode_format_number(stdout, tree_value($$));
+						printf("\n");
+						previous_save($$);
+						history_add($$);
+					}
+	|	PREVIOUS '\n'		{
+						$$ = previous;
+						showoutput(0);
+						treenode_format_number(stdout, tree_value($$));
+						printf("\n");
 						previous_save($$);
 						history_add($$);
 					}
 	|	TREE PREVIOUS '\n'	{
 						$$ = previous;
-						treenode_show(stdout, "", previous);
+						tree_show(stdout, "", previous);
 						history_add($$);
 					}
 	|	TREE expr '\n' 		{
 						$$ = $2;
-						treenode_show(stdout, "", $$);
+						tree_show(stdout, "", $$);
 						previous_save($$);
 						history_add($$);
 					}
 	|	PRINT expr '\n'		{
 						$$ = $2;
 						showoutput(0);
-						treenode_print(stdout, $$);
+						tree_print(stdout, $$);
 						fprintf(stdout, "\n");
 						previous_save($$);
 						history_add($$);
@@ -108,7 +118,7 @@ exprline:
 							treenode_p	p = history[i];
 							fprintf(stdout, "o%d> ", i+1);
 							if (NULL != p) {
-								treenode_print(stdout, p);
+								tree_print(stdout, p);
 							}
 							fprintf(stdout, "\n");
 						}
@@ -117,9 +127,24 @@ exprline:
 						tree_precision = $2->value;
 						$$ = NULL;
 					}
+	|	FORMAT DEFAULT '\n'		{
+						tree_format = TREE_FORMAT_DEFAULT;
+						$$ = NULL;
+					}
+	|	FORMAT FIXED '\n'	{
+						tree_format = TREE_FORMAT_FIXED;
+						$$ = NULL;
+					}
+	|	FORMAT FLOAT '\n'	{
+						tree_format = TREE_FORMAT_FLOAT;
+						$$ = NULL;
+					}
 	|	HELP '\n' 		{
 						help();
 						$$ = NULL;
+					}
+	|	EXIT '\n'		{
+						exit(EXIT_SUCCESS);
 					}
 	|	error '\n'		{
 						fprintf(stderr, "error\n");
@@ -177,6 +202,9 @@ factor:		'(' expr ')'		{
 					}
 	|	SQRT '(' expr ')'	{
 						$$ = treenode_new("factor", SQRT, treenode_terminal("sqrt"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
+					}
+	|	SQR '(' expr ')'	{
+						$$ = treenode_new("factor", SQR, treenode_terminal("sqr"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	CBRT '(' expr ')'	{
 						$$ = treenode_new("factor", CBRT, treenode_terminal("cbrt"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
@@ -284,13 +312,13 @@ factor:		'(' expr ')'		{
 						$$ = treenode_new("factor * factor", FACTOR, $1, $2, NULL);
 					}
 	|	PREVIOUS		{
-						$$ = treenode_copy(previous);
+						$$ = tree_copy(previous);
 					}
 	|	HISTORY			{
 						int	i = atoi($1->nodename);
 						treenode_p	h = history_get(i);
 						if (NULL != h) {
-							$$ = treenode_copy(h);
+							$$ = tree_copy(h);
 						} else {
 							fprintf(stderr, "history entry not found\n");
 							YYERROR;

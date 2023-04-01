@@ -1,5 +1,5 @@
 /*
- * tree.c
+ * tree.c -- tree-related functions
  *
  * (c) 2023 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule 
  */
@@ -18,7 +18,22 @@
 static int	treedebug = 0;
 static double	registers[100];
 
-int	tree_precision = 2;
+int	tree_precision = 3;
+int	tree_format = TREE_FORMAT_DEFAULT;
+
+void	treenode_format_number(FILE *out, double value) {
+	switch (tree_format) {
+	case TREE_FORMAT_FIXED:
+		fprintf(out, "%.*f", tree_precision, value);
+		break;
+	case TREE_FORMAT_FLOAT:
+		fprintf(out, "%.*e", tree_precision, value);
+		break;
+	case TREE_FORMAT_DEFAULT:
+		fprintf(out, "%.*g", tree_precision, value);
+		break;
+	}
+}
 
 treenode_p	treenode_new(char *name, int nodetype,
 			treenode_p children, ...) {
@@ -56,11 +71,11 @@ treenode_p	treenode_terminal(char *t) {
 	return treenode_new(strdup(t), TERMINAL, NULL);
 }
 
-treenode_p	treenode_copy(treenode_p treenode) {
+treenode_p	tree_copy(treenode_p treenode) {
 	treenode_p	result = treenode_new(treenode->nodename, treenode->nodetype, NULL);
 	result->value = treenode->value;
 	for (treenode_p *p = treenode->children; *p; p++) {
-		treenode_add(result, treenode_copy(*p));
+		treenode_add(result, tree_copy(*p));
 	}
 	return result;
 }
@@ -83,7 +98,7 @@ void	treenode_add(treenode_p treenode, treenode_p child) {
 	treenode->children[length - 1] = NULL;
 }
 
-static void	treenode_show_children(FILE *out, char *prefix, treenode_p treenode) {
+static void	tree_show_children(FILE *out, char *prefix, treenode_p treenode) {
 	int	l = strlen(prefix);
 	char	*newprefix = (char *)alloca((l + 7) * sizeof(char));
 	strcpy(newprefix, prefix);
@@ -105,10 +120,10 @@ static void	treenode_show_children(FILE *out, char *prefix, treenode_p treenode)
 		newprefix[l+3] = '\0';
 		if (i == n - 1) {
 			newprefix[l] = '`';
-			treenode_show(out, newprefix, p);
+			tree_show(out, newprefix, p);
 		} else {
 			newprefix[l] = '+';
-			treenode_show(out, newprefix, p);
+			tree_show(out, newprefix, p);
 		}
 	}
 }
@@ -132,7 +147,7 @@ static void	treenode_printprefix(FILE *out, char *prefix) {
 	}
 }
 
-void	treenode_show(FILE *out, char *prefix, treenode_p treenode) {
+void	tree_show(FILE *out, char *prefix, treenode_p treenode) {
 	if (NULL == treenode) {
 		return;
 	}
@@ -142,7 +157,9 @@ void	treenode_show(FILE *out, char *prefix, treenode_p treenode) {
 		fprintf(out, "CONSTANT %s\n", treenode->nodename);
 		return;
 	case NUMBER:
-		fprintf(out, "NUMBER %.*f\n", tree_precision, treenode->value);
+		fprintf(out, "NUMBER ");
+		treenode_format_number(out, treenode->value);
+		fprintf(out, "\n");
 		return;
 	case TERMINAL:
 		fprintf(out, "'%s'\n", treenode->nodename);
@@ -154,7 +171,7 @@ void	treenode_show(FILE *out, char *prefix, treenode_p treenode) {
 		fprintf(out, "%s\n",
 			(treenode->nodename) ? treenode->nodename : "(null)");
 	}
-	treenode_show_children(out, prefix, treenode);
+	tree_show_children(out, prefix, treenode);
 }
 
 int	treenode_children(treenode_p treenode) {
@@ -174,14 +191,14 @@ double	treenode_expr_value(treenode_p treenode) {
 	assert(EXPR == treenode->nodetype);
 	switch (treenode_children(treenode)) {
 	case 1:
-		return treenode_value(treenode_child(treenode, 0));
+		return tree_value(treenode_child(treenode, 0));
 		break;
 	case 2:
-		return -treenode_value(treenode_child(treenode, 1));
+		return -tree_value(treenode_child(treenode, 1));
 		break;
 	case 3: {
-			double	operand1 = treenode_value(treenode_child(treenode, 0));
-			double	operand2 = treenode_value(treenode_child(treenode, 2));
+			double	operand1 = tree_value(treenode_child(treenode, 0));
+			double	operand2 = tree_value(treenode_child(treenode, 2));
 			char	operator = treenode_child(treenode, 1)->nodename[0];
 			switch (operator) {
 			case '+':
@@ -202,10 +219,10 @@ double	treenode_term_value(treenode_p treenode) {
 	assert(TERM == treenode->nodetype);
 	switch (treenode_children(treenode)) {
 	case 1:
-		return treenode_value(treenode_child(treenode, 0));
+		return tree_value(treenode_child(treenode, 0));
 	case 3:	{
-			double	operand1 = treenode_value(treenode_child(treenode, 0));
-			double	operand2 = treenode_value(treenode_child(treenode, 2));
+			double	operand1 = tree_value(treenode_child(treenode, 0));
+			double	operand2 = tree_value(treenode_child(treenode, 2));
 			char	operator = treenode_child(treenode, 1)->nodename[0];
 			switch (operator) {
 			case '*':
@@ -232,12 +249,12 @@ double	treenode_factor_value(treenode_p treenode) {
 	assert(FACTOR == treenode->nodetype);
 	switch (treenode_children(treenode)) {
 	case 2:	{
-			double	operand1 = treenode_value(treenode_child(treenode, 0));
+			double	operand1 = tree_value(treenode_child(treenode, 0));
 			treenode_p	child2 = treenode_child(treenode, 1);
 			if (TERMINAL == child2->nodetype) {
 				return tgamma(operand1 + 1);
 			} else {
-				double	operand2 = treenode_value(treenode_child(treenode, 1));
+				double	operand2 = tree_value(treenode_child(treenode, 1));
 				return operand1 * operand2;
 			}
 		}
@@ -245,11 +262,11 @@ double	treenode_factor_value(treenode_p treenode) {
 		{
 			treenode_p	center = treenode_child(treenode, 1);
 			if (TERMINAL == center->nodetype) {
-				double	operand2 = treenode_value(treenode_child(treenode, 2));
+				double	operand2 = tree_value(treenode_child(treenode, 2));
 				treenode_p	child1 = treenode_child(treenode, 0);
 				switch (center->nodename[0]) {
 				case '^':
-					return pow(treenode_value(child1), operand2);
+					return pow(tree_value(child1), operand2);
 				case '=':
 					{
 						int	r = atoi(child1->nodename);
@@ -260,16 +277,17 @@ double	treenode_factor_value(treenode_p treenode) {
 					fprintf(stderr, "internal error\n");
 				}
 			} else {
-				return treenode_value(center);
+				return tree_value(center);
 			}
 		}
 	}
 	return 0;
 }
 
-#define	T(x)	treenode_value(treenode_child(treenode, x))
+#define	T(x)	tree_value(treenode_child(treenode, x))
+static double	sqr(double x) { return x * x; }
 
-double	treenode_value(treenode_p treenode) {
+double	tree_value(treenode_p treenode) {
 	switch (treenode->nodetype) {
 	case EXPR:	return treenode_expr_value(treenode);
 	case TERM:	return treenode_term_value(treenode);
@@ -291,6 +309,7 @@ double	treenode_value(treenode_p treenode) {
 	case HYPOT:	return hypot(T(2),T(4));
 	case CBRT:	return cbrt(T(2));
 	case SQRT:	return sqrt(T(2));
+	case SQR:	return sqr(T(2));
 	case LOG:	return log(T(2));
 	case LOG10:	return log10(T(2));
 	case LOG2:	return log2(T(2));
@@ -319,7 +338,7 @@ double	treenode_value(treenode_p treenode) {
 
 void	treenode_print_children(FILE *out, treenode_p treenode) {
 	for (treenode_p *p = treenode->children; *p; p++) {
-		treenode_print(out, *p);
+		tree_print(out, *p);
 	}
 }
 
@@ -335,7 +354,7 @@ void	treenode_factor_print(FILE *out, treenode_p treenode) {
 	assert(FACTOR == treenode->nodetype);
 }
 
-void	treenode_print(FILE *out, treenode_p treenode) {
+void	tree_print(FILE *out, treenode_p treenode) {
 	switch (treenode->nodetype) {
 	case TERMINAL:	fprintf(out, "%s", treenode->nodename); break;
 	case EXPR:	
@@ -358,6 +377,7 @@ void	treenode_print(FILE *out, treenode_p treenode) {
 	case HYPOT:
 	case CBRT:
 	case SQRT:
+	case SQR:
 	case LOG:
 	case LOG10:
 	case LOG2:
@@ -376,7 +396,7 @@ void	treenode_print(FILE *out, treenode_p treenode) {
 	case FLOOR:
 	case TRUNC:
 	case RAND:	treenode_print_children(out, treenode); break;
-	case NUMBER:	fprintf(out, "%.*f", tree_precision, treenode->value); break;
+	case NUMBER:	treenode_format_number(out, treenode->value); break;
 	case CONSTANT:	fprintf(out, "%%%s", treenode->nodename); break;
 	case REGISTER:	fprintf(out, "r%s", treenode->nodename); break;
 	}

@@ -4,6 +4,7 @@
  * (c) 2023 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule 
  */
 #include "functions.h"
+#include <stdio.h>
 
 double	binom(double n, double k) {
 	int	_k = 1;

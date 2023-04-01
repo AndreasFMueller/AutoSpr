@@ -18,8 +18,10 @@ void	help() {
 	printf("    tree ...        display the parse tree instead of evaluating\n");
 	printf("    print ...       print the expression instead of evaluating\n");
 	printf("    precision <x>   display <x> digits after the decimal point\n");
+	printf("    format <f>      choose display format ('fixed' or 'float')\n");
 	printf("    history         display all commands history\n");
 	printf("    help            show this help message\n");
+	printf("    exit            exit the calculator\n");
 	printf("functions available (see libm manual pages for details):\n");
 	printf("    abs trunc floor div mod\n");
 	printf("    sqrt cbrt pow\n");
