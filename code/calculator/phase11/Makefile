@@ -15,7 +15,7 @@ grammar.h grammar.c:	grammar.y
 	&& mv grammar.tab.h grammar.h \
 	&& mv grammar.tab.c grammar.c
 
-grammar.o:	grammar.c grammar.h constants.h tree.h
+grammar.o:	grammar.c grammar.h constants.h tree.h help.h
 
 constants.o:	constants.c constants.h
 
@@ -23,10 +23,15 @@ tree.o:	tree.c tree.h
 
 functions.o:	functions.c functions.h
 
+help.o:	help.c help.h
+
+libcalc.a:	tokens.o grammar.o constants.o tree.o functions.o help.o
+	ar r libcalc.a tokens.o grammar.o constants.o tree.o functions.o help.o
+
 calculator.o:	calculator.c
 
-calculator:	calculator.o tokens.o grammar.o constants.o tree.o functions.o
-	gcc calculator.o tokens.o grammar.o constants.o tree.o functions.o -lm -o calculator
+calculator:	calculator.o libcalc.a
+	gcc calculator.o -L. -lcalc -lm -o calculator
 
 clean:
 	rm -f tokens.c grammar.c grammar.h *.o calculator

@@ -6,6 +6,8 @@
 #include "grammar.h"
 %}
 %%
+help	{ return HELP; }
+precision	{ return PRECISION; }
 tree	{ return TREE; }
 print	{ return PRINT; }
 abs	{ return ABS; }

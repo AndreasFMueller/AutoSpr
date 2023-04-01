@@ -30,6 +30,7 @@ treenode_p	treenode_copy(treenode_p treenode);
 void	treenode_free(treenode_p treenode);
 void	treenode_add(treenode_p treenode, treenode_p child);
 extern int	treewide;
+extern int	tree_precision;
 void	treenode_show(FILE *out, char *prefix, treenode_p treenode);
 int	treenode_children(treenode_p treenode);
 treenode_p	treenode_child(treenode_p treenode, int i);

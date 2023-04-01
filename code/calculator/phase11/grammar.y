@@ -5,6 +5,7 @@
  * (c) 2012 Prof Dr Andreas Mueller
  */
 #include "tree.h"
+#include "help.h"
 #include <math.h>
 #include <stdlib.h>
 #include "constants.h"
@@ -65,10 +66,8 @@ static void	previous_save(treenode_p treenode) {
 %token PREVIOUS
 %token PRINT
 %token HISTORYLIST
-%token <treenode>NUMBER
-%token <treenode>REGISTER
-%token <treenode>CONSTANT
-%token <treenode>HISTORY
+%token <treenode>NUMBER REGISTER CONSTANT
+%token <treenode>HISTORY PRECISION HELP
 %type <treenode>expr term factor exprline
 %%
 calculator:
@@ -81,7 +80,7 @@ exprline:
 	|	expr '\n'		{
 						$$ = $1;
 						showoutput(0);
-						printf("%f\n", treenode_value($$));
+						printf("%.*f\n", tree_precision, treenode_value($$));
 						previous_save($$);
 						history_add($$);
 					}
@@ -113,6 +112,14 @@ exprline:
 							}
 							fprintf(stdout, "\n");
 						}
+					}
+	|	PRECISION NUMBER '\n'	{
+						tree_precision = $2->value;
+						$$ = NULL;
+					}
+	|	HELP '\n' 		{
+						help();
+						$$ = NULL;
 					}
 	|	error '\n'		{
 						fprintf(stderr, "error\n");
@@ -160,7 +167,7 @@ factor:		'(' expr ')'		{
 						$$ = $1;
 					}
 	|	REGISTER '=' expr	{
-						$$ = treenode_new("assign", FACTOR, $1, treenode_terminal("="), $3);
+						$$ = treenode_new("assign", FACTOR, $1, treenode_terminal("="), $3, NULL);
 					}
 	|	CONSTANT		{
 						$$ = $1;

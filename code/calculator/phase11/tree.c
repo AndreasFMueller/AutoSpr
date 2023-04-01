@@ -18,6 +18,8 @@
 static int	treedebug = 0;
 static double	registers[100];
 
+int	tree_precision = 2;
+
 treenode_p	treenode_new(char *name, int nodetype,
 			treenode_p children, ...) {
 	treenode_p	result = (treenode_p)malloc(sizeof(treenode_t));
@@ -140,10 +142,13 @@ void	treenode_show(FILE *out, char *prefix, treenode_p treenode) {
 		fprintf(out, "CONSTANT %s\n", treenode->nodename);
 		return;
 	case NUMBER:
-		fprintf(out, "NUMBER %f\n", treenode->value);
+		fprintf(out, "NUMBER %.*f\n", tree_precision, treenode->value);
 		return;
 	case TERMINAL:
 		fprintf(out, "'%s'\n", treenode->nodename);
+		return;
+	case REGISTER:
+		fprintf(out, "r%s\n", treenode->nodename);
 		return;
 	default:
 		fprintf(out, "%s\n",
@@ -371,7 +376,7 @@ void	treenode_print(FILE *out, treenode_p treenode) {
 	case FLOOR:
 	case TRUNC:
 	case RAND:	treenode_print_children(out, treenode); break;
-	case NUMBER:	fprintf(out, "%f", treenode->value); break;
+	case NUMBER:	fprintf(out, "%.*f", tree_precision, treenode->value); break;
 	case CONSTANT:	fprintf(out, "%%%s", treenode->nodename); break;
 	case REGISTER:	fprintf(out, "r%s", treenode->nodename); break;
 	}
