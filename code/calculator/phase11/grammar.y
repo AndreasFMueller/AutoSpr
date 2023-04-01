@@ -309,7 +309,7 @@ factor:		'(' expr ')'		{
 						$$ = treenode_new("factor", FACTOR, $1, treenode_terminal("^"), $3, NULL);
 					}
 	|	factor factor		{
-						$$ = treenode_new("factor * factor", FACTOR, $1, $2, NULL);
+						$$ = treenode_new("factor factor", FACTOR, $1, $2, NULL);
 					}
 	|	PREVIOUS		{
 						$$ = tree_copy(previous);
