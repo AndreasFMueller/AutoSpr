@@ -15,7 +15,7 @@ grammar.h grammar.c:	grammar.y
 	&& mv grammar.tab.h grammar.h \
 	&& mv grammar.tab.c grammar.c
 
-grammar.o:	grammar.c grammar.h constants.h
+grammar.o:	grammar.c grammar.h constants.h tree.h
 
 constants.o:	constants.c constants.h
 

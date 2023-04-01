@@ -7,6 +7,7 @@
 #define _tree_h
 
 #include <stdio.h>
+#include <wchar.h>
 
 #define TERMINAL	300
 #define EXPR		301
@@ -24,11 +25,12 @@ typedef treenode_t	*treenode_p;
 
 treenode_p	treenode_new(char *name, int nodetype,
 			treenode_p children, ...);
-treenode_p	treenode_terminal(char t);
+treenode_p	treenode_terminal(char *t);
 treenode_p	treenode_copy(treenode_p treenode);
 void	treenode_free(treenode_p treenode);
 void	treenode_add(treenode_p treenode, treenode_p child);
-void	treenode_show(FILE *out, int indent, treenode_p treenode);
+extern int	treewide;
+void	treenode_show(FILE *out, char *prefix, treenode_p treenode);
 int	treenode_children(treenode_p treenode);
 treenode_p	treenode_child(treenode_p treenode, int i);
 treenode_p	treenode_copy(treenode_p treenode);

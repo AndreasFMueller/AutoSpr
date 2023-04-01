@@ -77,7 +77,7 @@ calculator:
 	;
 
 exprline:
-		'\n'
+		'\n'			{ $$ = NULL; }
 	|	expr '\n'		{
 						$$ = $1;
 						showoutput(0);
@@ -87,12 +87,12 @@ exprline:
 					}
 	|	TREE PREVIOUS '\n'	{
 						$$ = previous;
-						treenode_show(stdout, showoutput(1), previous);
+						treenode_show(stdout, "", previous);
 						history_add($$);
 					}
 	|	TREE expr '\n' 		{
 						$$ = $2;
-						treenode_show(stdout, showoutput(1), $$);
+						treenode_show(stdout, "", $$);
 						previous_save($$);
 						history_add($$);
 					}
@@ -124,158 +124,154 @@ expr:		term			{
 						$$ = treenode_new("expr ::= term", EXPR, $1, NULL);
 					}
 	|	'-' term		{
-						$$ = treenode_new("expr ::= -expr", EXPR, treenode_terminal('-'), $2, NULL);
+						$$ = treenode_new("expr ::= -expr", EXPR, treenode_terminal("-"), $2, NULL);
 					}
 	|	expr '+' term		{
-						$$ = treenode_new("expr ::= expr + term", EXPR, $1, treenode_terminal('+'), $3, NULL);
+						$$ = treenode_new("expr ::= expr + term", EXPR, $1, treenode_terminal("+"), $3, NULL);
 					}
 	|	expr '-' term		{
-						$$ = treenode_new("expr ::= expr - term", EXPR, $1, treenode_terminal('-'), $3, NULL);
+						$$ = treenode_new("expr ::= expr - term", EXPR, $1, treenode_terminal("-"), $3, NULL);
 					}
 	;
 
 term:		term '*' factor		{
-						$$ = treenode_new("term ::= term * factor", TERM, $1, treenode_terminal('*'), $3, NULL);
+						$$ = treenode_new("term ::= term * factor", TERM, $1, treenode_terminal("*"), $3, NULL);
 					}
 	|	term '/' factor		{
-						$$ = treenode_new("term ::= term / factor", TERM, $1, treenode_terminal('/'), $3, NULL);
+						$$ = treenode_new("term ::= term / factor", TERM, $1, treenode_terminal("/"), $3, NULL);
 					}
 	|	term '%' factor		{
-						$$ = treenode_new("term ::= term % factor", TERM, $1, treenode_terminal('%'), $3, NULL);
+						$$ = treenode_new("term ::= term % factor", TERM, $1, treenode_terminal("%"), $3, NULL);
 					}
 	|	factor			{
 						$$ = treenode_new("term ::= factor", TERM, $1, NULL); $$->value = $1->value; }
 	;
 
 factor:		'(' expr ')'		{
-						$$ = treenode_new("factor", FACTOR, treenode_terminal('('), $2, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", FACTOR, treenode_terminal("("), $2, treenode_terminal(")"), NULL);
 					}
 	|	NUMBER			{
 						$$ = $1;
 					}
 	|	factor '!' 		{
-						$$ = treenode_new("factorial", FACTOR, $1, treenode_terminal('!'), NULL);
+						$$ = treenode_new("factorial", FACTOR, $1, treenode_terminal("!"), NULL);
 					}
 	|	REGISTER		{
 						$$ = $1;
 					}
 	|	REGISTER '=' expr	{
-						$$ = treenode_new("assign", FACTOR, $1, treenode_terminal('='), $3);
+						$$ = treenode_new("assign", FACTOR, $1, treenode_terminal("="), $3);
 					}
 	|	CONSTANT		{
 						$$ = $1;
 					}
 	|	ABS '(' expr ')'	{
-						$$ = treenode_new("abs", ABS, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
-						$$->value = fabs($3->value);
+						$$ = treenode_new("factor", ABS, treenode_terminal("abs"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	SQRT '(' expr ')'	{
-						$$ = treenode_new("sqrt", SQRT, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
-						$$->value = sqrt($3->value);
+						$$ = treenode_new("factor", SQRT, treenode_terminal("sqrt"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	CBRT '(' expr ')'	{
-						$$ = treenode_new("cbrt", CBRT, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
-						$$->value = cbrt($3->value);
+						$$ = treenode_new("factor", CBRT, treenode_terminal("cbrt"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	ASINH '(' expr ')'	{
-						$$ = treenode_new("asinh", ASINH, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
-						$$->value = asinh($3->value);
+						$$ = treenode_new("factor", ASINH, treenode_terminal("asinh"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	ACOSH '(' expr ')'	{
-						$$ = treenode_new("acosh", ACOSH, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", ACOSH, treenode_terminal("acosh"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	ATANH '(' expr ')'	{
-						$$ = treenode_new("atanh", ATANH, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", ATANH, treenode_terminal("atanh"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	SINH '(' expr ')'	{
-						$$ = treenode_new("sinh", SINH, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", SINH, treenode_terminal("sinh"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	COSH '(' expr ')'	{
-						$$ = treenode_new("cosh", COSH, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", COSH, treenode_terminal("cosh"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	TANH '(' expr ')'	{
-						$$ = treenode_new("tanh", TANH, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", TANH, treenode_terminal("tanh"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	ASIN '(' expr ')'	{
-						$$ = treenode_new("asin", ASIN, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", ASIN, treenode_terminal("asin"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	ACOS '(' expr ')'	{
-						$$ = treenode_new("acos", ACOS, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", ACOS, treenode_terminal("acos"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	ATAN '(' expr ')'	{
-						$$ = treenode_new("atan", ATAN, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", ATAN, treenode_terminal("atan"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	SIN '(' expr ')'	{
-						$$ = treenode_new("sin", SIN, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", SIN, treenode_terminal("sin"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	COS '(' expr ')'	{
-						$$ = treenode_new("cos", COS, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", COS, treenode_terminal("cos"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	TAN '(' expr ')'	{
-						$$ = treenode_new("tan", TAN, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", TAN, treenode_terminal("tan"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	LOG '(' expr ')'	{
-						$$ = treenode_new("log", LOG, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", LOG, treenode_terminal("log"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	LOG10 '(' expr ')'	{
-						$$ = treenode_new("log10", LOG10, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", LOG10, treenode_terminal("log10"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	LOG2 '(' expr ')'	{
-						$$ = treenode_new("log2", LOG2, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", LOG2, treenode_terminal("log2"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	EXP '(' expr ')'	{
-						$$ = treenode_new("exp", EXP, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", EXP, treenode_terminal("exp"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	J0 '(' expr ')'		{
-						$$ = treenode_new("j0", J0, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", J0, treenode_terminal("j0"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	J1 '(' expr ')'		{
-						$$ = treenode_new("j1", J1, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", J1, treenode_terminal("j1"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	JN '(' expr ',' expr ')'{
-						$$ = treenode_new("jn", JN, treenode_terminal('('), $3, $5, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", JN, treenode_terminal("jn"), treenode_terminal("("), $3, $5, treenode_terminal(")"), NULL);
 					}
 	|	Y0 '(' expr ')'		{
-						$$ = treenode_new("y0", Y0, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", Y0, treenode_terminal("y0"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	Y1 '(' expr ')'		{
-						$$ = treenode_new("y1", Y1, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", Y1, treenode_terminal("y1"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	YN '(' expr ',' expr ')'{
-						$$ = treenode_new("yn", YN, treenode_terminal('('), $3, treenode_terminal(','), $5, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", YN, treenode_terminal("yn"), treenode_terminal("("), $3, treenode_terminal(","), $5, treenode_terminal(")"), NULL);
 					}
 	|	GAMMA '(' expr ')'	{
-						$$ = treenode_new("tgamma", GAMMA, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", GAMMA, treenode_terminal("tgamma"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	HYPOT '(' expr ',' expr ')' {
-						$$ = treenode_new("hypot", HYPOT, treenode_terminal('('), $3, treenode_terminal(','), $5, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", HYPOT, treenode_terminal("hypot"), treenode_terminal("("), $3, treenode_terminal(","), $5, treenode_terminal(")"), NULL);
 					}
 	|	ATAN2 '(' expr ',' expr ')' {
-						$$ = treenode_new("atan2", ATAN2, treenode_terminal('('), $3, treenode_terminal(','), $5, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", ATAN2, treenode_terminal("atan2"), treenode_terminal("("), $3, treenode_terminal(","), $5, treenode_terminal(")"), NULL);
 					}
 	|	BINOM '(' expr ',' expr ')' {
-						$$ = treenode_new("binom", BINOM, treenode_terminal('('), $3, treenode_terminal(','), $5, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", BINOM, treenode_terminal("binom"), treenode_terminal("("), $3, treenode_terminal(","), $5, treenode_terminal(")"), NULL);
 					}
 	|	MOD '(' expr ',' expr ')' {
-						$$ = treenode_new("binom", MOD, treenode_terminal('('), $3, treenode_terminal(','), $5, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", MOD, treenode_terminal("mod"), treenode_terminal("("), $3, treenode_terminal(","), $5, treenode_terminal(")"), NULL);
 					}
 	|	DIV '(' expr ',' expr ')' {
-						$$ = treenode_new("binom", DIV, treenode_terminal('('), $3, treenode_terminal(','), $5, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", DIV, treenode_terminal("mod"), treenode_terminal("("), $3, treenode_terminal(","), $5, treenode_terminal(")"), NULL);
 					}
 	|	FLOOR '(' expr ')'	{
-						$$ = treenode_new("floor", FLOOR, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", FLOOR, treenode_terminal("floor"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	TRUNC '(' expr ')'	{
-						$$ = treenode_new("trunc", TRUNC, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", TRUNC, treenode_terminal("trunc"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	ERF '(' expr ')'	{
-						$$ = treenode_new("erf", ERF, treenode_terminal('('), $3, treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", ERF, treenode_terminal("erf"), treenode_terminal("("), $3, treenode_terminal(")"), NULL);
 					}
 	|	RAND '(' ')'		{
-						$$ = treenode_new("rand", RAND, treenode_terminal('('), treenode_terminal(')'), NULL);
+						$$ = treenode_new("factor", RAND, treenode_terminal("rand"), treenode_terminal("("), treenode_terminal(")"), NULL);
 					}
 	|	factor '^' factor	{
-						$$ = treenode_new("pow", FACTOR, $1, treenode_terminal('^'), $3, NULL);
+						$$ = treenode_new("factor", FACTOR, $1, treenode_terminal("^"), $3, NULL);
 					}
 	|	factor factor		{
 						$$ = treenode_new("factor * factor", FACTOR, $1, $2, NULL);
