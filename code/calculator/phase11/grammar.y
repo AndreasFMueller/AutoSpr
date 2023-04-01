@@ -180,10 +180,10 @@ term:		term '*' factor		{
 	;
 
 factor:		'(' expr ')'		{
-						$$ = treenode_new("factor", FACTOR, treenode_terminal("("), $2, treenode_terminal(")"), NULL);
+						$$ = treenode_new("factor ::= '(' expr ')'", FACTOR, treenode_terminal("("), $2, treenode_terminal(")"), NULL);
 					}
 	|	NUMBER			{
-						$$ = $1;
+						$$ = treenode_new("factor ::= NUMBER", FACTOR, $1, NULL);
 					}
 	|	factor '!' 		{
 						$$ = treenode_new("factorial", FACTOR, $1, treenode_terminal("!"), NULL);
@@ -306,10 +306,10 @@ factor:		'(' expr ')'		{
 						$$ = treenode_new("factor", RAND, treenode_terminal("rand"), treenode_terminal("("), treenode_terminal(")"), NULL);
 					}
 	|	factor '^' factor	{
-						$$ = treenode_new("factor", FACTOR, $1, treenode_terminal("^"), $3, NULL);
+						$$ = treenode_new("factor ::= factor ^ factor", FACTOR, $1, treenode_terminal("^"), $3, NULL);
 					}
 	|	factor factor		{
-						$$ = treenode_new("factor factor", FACTOR, $1, $2, NULL);
+						$$ = treenode_new("factor ::= factor factor", FACTOR, $1, $2, NULL);
 					}
 	|	PREVIOUS		{
 						$$ = tree_copy(previous);
