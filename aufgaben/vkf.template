@@ -1,0 +1,18 @@
+%
+% vkf.template
+%
+% (c) 2023 Prof. Dr. Andreas Mueller, OST
+%
+\documentclass[a4paper,12pt]{book}
+\input{macros/packages.tex}
+\makeindex
+\begin{document}
+\let\thechapter=KAPITEL
+\input{macros/uebungen.tex}
+\openthemaindex
+\setboolean{loesungen}{true}
+\allowdisplaybreaks
+\aufgabetoplevel{./}
+\setcounter{problemcounter}{NUMMER}
+\aufgabe{AUFGABE}
+\end{document}
