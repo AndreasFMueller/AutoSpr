@@ -248,6 +248,7 @@ double	treenode_term_value(treenode_p treenode) {
 double	treenode_factor_value(treenode_p treenode) {
 	assert(FACTOR == treenode->nodetype);
 	switch (treenode_children(treenode)) {
+	case 1:	return tree_value(treenode_child(treenode, 0));
 	case 2:	{
 			double	operand1 = tree_value(treenode_child(treenode, 0));
 			treenode_p	child2 = treenode_child(treenode, 1);
