@@ -2,4 +2,50 @@ Schreiben Sie die Berechnungsgeschichte der Turing-Maschine von
 Aufgabe~\ref{50000038} auf, die das Wort \texttt{0011} erkennt.
 
 \begin{loesung}
+Die folgende Tabelle enthält in den linken beiden Spalten den aktuellen
+Zustand und den Bandinhalt.
+In der Spalte rechts wird die Berechnungsgeschichte gezeigt, wobei zur
+Verdeutlichung das aktuelle Zeichen auf dem Band rot hervorgehoben ist
+und Leerzeichen weit ausserhalb des Wortes, die man in der Berechnungsgeschichte
+normalerweise nicht unbedingt anzugeben braucht.
+\begin{center}
+\def\b{\phantom{\texttt{0}}}
+\def\r#1{\bgroup\color{red}\texttt{#1}\egroup}
+\begin{tabular}{>{$}c<{$}|cccccc|>{$}l<{$}}
+\text{Zustand}&\multicolumn{6}{c|}{Band}&\text{Berechnungsgeschichte}\\
+\hline
+q_0&\blank&{\color{red}\texttt{0}}&\texttt{1}&\texttt{1}&\texttt{0}&\blank
+	&q_0\r{0}\texttt{011}\\
+q_1&\blank&\blank&{\color{red}\texttt{1}}&\texttt{1}&\texttt{0}&\blank
+	&\b q_1\r{1}\texttt{10}\\
+q_1&\blank&\blank&\texttt{1}&{\color{red}\texttt{1}}&\texttt{0}&\blank
+	&\b \texttt{1}q_1\r{1}\texttt{0}\\
+q_1&\blank&\blank&\texttt{1}&\texttt{1}&{\color{red}\texttt{0}}&\blank
+	&\b \texttt{11}q_1\r{0}\\
+q_1&\blank&\blank&\texttt{1}&\texttt{1}&\texttt{0}&{\color{red}\blank}
+	&\b \texttt{110}q_1{\color{red}\blank}\\
+q_3&\blank&\blank&\texttt{1}&\texttt{1}&{\color{red}\texttt{0}}&\blank
+	&\b \texttt{11}q_3\r{0}\\
+q_5&\blank&\blank&\texttt{1}&{\color{red}\texttt{1}}&\blank&\blank
+	&\b \texttt{1}q_5\r{1}\\
+q_5&\blank&\blank&{\color{red}\texttt{1}}&\texttt{1}&\blank&\blank
+	&\b q_5\r{1}\texttt{1}\\
+q_5&\blank&{\color{red}\blank}&\texttt{1}&\texttt{1}&\blank&\blank
+	&\b a_5{\color{red}\blank}\texttt{11}\\
+q_0&\blank&\blank&{\color{red}\texttt{1}}&\texttt{1}&\blank&\blank
+	&\b q_0\r{1}\texttt{1}\\
+q_2&\blank&\blank&\blank&{\color{red}\texttt{1}}&\blank&\blank
+	&\b \b q_2\r{1}\\
+q_2&\blank&\blank&\blank&\texttt{1}&{\color{red}\blank}&\blank
+	&\b \b \texttt{1}q_2{\color{red}\blank}\\
+q_4&\blank&\blank&\blank&{\color{red}\texttt{1}}&\blank&\blank
+	&\b \b q_4\r{1}\\
+q_5&\blank&\blank&{\color{red}\blank}&\blank&\blank&\blank
+	&\b\b q_5{\color{red}\blank}\\
+q_0&\blank&\blank&\blank&{\color{red}\blank}&\blank&\blank
+	&\b\b\b q_0{\color{red}\blank}\\
+q_{\text{accept}}&\blank&\blank&\blank&\blank&{\color{red}\blank}&\blank
+	&\b\b\b\b q_{\text{accept}}{\color{red}\blank}\\
+\end{tabular}
+\end{center}
 \end{loesung}

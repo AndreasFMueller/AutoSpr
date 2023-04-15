@@ -2,4 +2,93 @@ Zeichnen Sie das Zustandsdiagramm einer Turing-Maschine,
 die Palindrome erkennt.
 
 \begin{loesung}
+Das Zustandsdiagramm ist
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\def\r{2.2}
+\coordinate (q0) at (180:\r);
+\coordinate (q1) at (120:\r);
+\coordinate (q3) at (60:\r);
+\coordinate (q2) at (-120:\r);
+\coordinate (q4) at (-60:\r);
+\coordinate (q5) at (0:\r);
+\coordinate (qa) at (180:{2.5*\r});
+\coordinate (qr) at (0:{2.5*\r});
+\draw (q0) circle[radius=0.3];
+\draw (q1) circle[radius=0.3];
+\draw (q2) circle[radius=0.3];
+\draw (q3) circle[radius=0.3];
+\draw (q4) circle[radius=0.3];
+\draw (q5) circle[radius=0.3];
+\draw (qa) ellipse (0.6cm and 0.3cm);
+\draw (qa) ellipse (0.65cm and 0.35cm);
+\draw (qr) ellipse (0.6cm and 0.3cm);
+\draw (qr) ellipse (0.65cm and 0.35cm);
+\node at (q0) {$q_0$};
+\node at (q1) {$q_1$};
+\node at (q2) {$q_2$};
+\node at (q3) {$q_3$};
+\node at (q4) {$q_4$};
+\node at (q5) {$q_5$};
+\node at (qa) {$q_\text{accept}$};
+\node at (qr) {$q_\text{reject}$};
+\draw[->,shorten >= 0.3cm] ($(q0)+(-1.0,-0.5)$) -- (q0);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (q0) -- (q1);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (q0) -- (q2);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (q1) -- (q3);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (q2) -- (q4);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (q4) -- (q5);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (q3) -- (q5);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(q5) to[out=30,in=-30,distance=1.2cm] (q5);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (q5) -- (q0);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm,distance=1.2cm]
+	(q1) to[out=70,in=110] (q1);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm,distance=1.2cm]
+	(q1) to[out=130,in=170] (q1);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm,distance=1.2cm]
+	(q2) to[out=-70,in=-110] (q2);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm,distance=1.2cm]
+	(q2) to[out=-130,in=-170] (q2);
+\draw[->,shorten >= 0.4cm,shorten <= 0.3cm] (q3) to[out=0,in=120] (qr);
+\draw[->,shorten >= 0.4cm,shorten <= 0.3cm] (q4) to[out=0,in=-120] (qr);
+\draw[->,shorten >= 0.6cm,shorten <= 0.3cm] (q0) -- (qa);
+\draw[->,shorten >= 0.6cm,shorten <= 0.3cm] (q3) to[out=-150,in=30] (qa);
+\draw[->,shorten >= 0.6cm,shorten <= 0.3cm] (q4) to[out=150,in=-30] (qa);
+\node at ($0.5*(q0)+0.5*(q5)$)
+	[above] {$\scriptstyle \blank\to\blank,R$};
+\node at ($(q5)+(0.8,0)$)
+	[above right] {$\scriptstyle \texttt{0}\to\texttt{0},L$};
+\node at ($(q5)+(0.8,0)$)
+	[below right] {$\scriptstyle \texttt{1}\to\texttt{1},L$};
+\node at ($0.5*(q1)+0.5*(q3)$)
+	[above] {$\scriptstyle \blank\to\blank,L$};
+\node at ($0.5*(q2)+0.5*(q4)$)
+	[below] {$\scriptstyle \blank\to\blank,L$};
+\node at ($0.3*(q0)+0.7*(q1)$)
+	[above left] {$\scriptstyle \texttt{0}\to\blank,R$};
+\node at ($0.3*(q0)+0.7*(q2)$)
+	[below left] {$\scriptstyle \texttt{1}\to\blank,R$};
+\node at ($0.5*(q3)+0.5*(q5)$)
+	[above right] {$\scriptstyle \texttt{0}\to\blank,L$};
+\node at ($0.5*(q4)+0.5*(q5)$)
+	[below right] {$\scriptstyle \texttt{1}\to\blank,L$};
+\node at ($(q1)+(0,1)$)
+	[right] {$\scriptstyle \texttt{0}\to\texttt{0},R$};
+\node at ($(q1)+(-0.8,0.4)$)
+	[left] {$\scriptstyle \texttt{1}\to\texttt{1},R$};
+\node at ($(q2)+(0,-1)$)
+	[right] {$\scriptstyle \texttt{0}\to\texttt{0},R$};
+\node at ($(q2)+(-0.8,-0.4)$)
+	[left] {$\scriptstyle \texttt{1}\to\texttt{1},R$};
+\node at ($0.5*(q3)+0.5*(qr)$)
+	[above right] {$\scriptstyle\texttt{1}\to\texttt{1},R$};
+\node at ($0.5*(q4)+0.5*(qr)$)
+	[below right] {$\scriptstyle\texttt{0}\to\texttt{0},R$};
+\node at ($0.5*(q0)+0.5*(qa)$)
+	[above] {$\scriptstyle\blank\to\blank,R$};
+\node at ($0.3*(q3)+0.7*(qa)+(0,0.2)$) [above left] {$\scriptstyle \blank\to\blank,L$};
+\node at ($0.3*(q4)+0.7*(qa)+(0,-0.2)$) [below left] {$\scriptstyle \blank\to\blank,L$};
+\end{tikzpicture}
+\end{center}
 \end{loesung}

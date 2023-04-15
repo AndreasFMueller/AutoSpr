@@ -1,6 +1,49 @@
-Warum ist der folgende Algorithmus kein Entscheider
+Warum ist der folgende Algorithmus kein Entscheider?
 
-TODO: XXX
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (3,0);
+\coordinate (qa) at (0,{-sqrt(3)*1.5});
+\coordinate (qr) at (3,{-sqrt(3)*1.5});
+\draw (q0) circle[radius=0.4];
+\node at (q0) {$q_0$};
+\draw (q1) circle[radius=0.4];
+\node at (q1) {$q_1$};
+\draw (qa) ellipse (0.6cm and 0.3cm);
+\draw (qa) ellipse (0.65cm and 0.35cm);
+\node at (qa) {$q_{\text{accept}}$};
+\draw (qr) ellipse (0.6cm and 0.3cm);
+\draw (qr) ellipse (0.65cm and 0.35cm);
+\node at (qr) {$q_{\text{reject}}$};
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q0) to[out=30,in=150] (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q1) to[out=-150,in=-30] (q0);
+\draw[->,shorten >= 0.4cm] (-1.5,0) -- (q0);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q0) -- (qa);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q1) -- (qr);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q0) to[out=60,in=120,distance=1.5cm] (q0);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=30,in=-30,distance=1.5cm] (q1);
+\node at ($(q1)+(1.1,0)$) [right] {$\texttt{1}\to\texttt{0},L$};
+\node at ($0.5*(q0)+0.5*(q1)+(0,0.4)$) [above] {$\blank\to\blank,L$};
+\node at ($0.5*(q0)+0.5*(q1)-(0,0.4)$) [below] {$\blank\to\blank,R$};
+\node at ($(q0)+(0,1)$) [above] {$\texttt{0}\to\texttt{1},R$};
+
+\node at ($(q0)+(0,{-sqrt(3)*0.75})$) [left] {$\texttt{1}\to\texttt{0},R$};
+\node at ($(q1)+(0,{-sqrt(3)*0.75})$) [right] {$\texttt{0}\to\texttt{1},R$};
+
+\end{tikzpicture}
+\end{center}
 
 \begin{loesung}
+Beim Zustand $q_0$ werden alle Nullen durch Einsen ersetzt.
+Wenn das Wort kein Eins enthält, dann geschieht das, bis der Schreib-/Lesekopf
+am Ende des Wortes ankommt.
+Beim Zustand $q_1$ werden dann alle Einsen wieder durch Nullen
+ersetzt bis der Schreib-/Lese-Kopf am Wortanfang ankommt.
+Die einzige Möglichkeit für die Maschine, anzuhalten ist also, dass
+das Wort eine Eins enthalten muss.
+Enthält das Wort keine Eins, hält die Maschine nicht.
+Daher ist die Maschine kein Entscheider.
 \end{loesung}

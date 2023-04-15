@@ -1,7 +1,28 @@
 Beschreiben Sie den Pseudocode, mit dem nach den vereinbarten
-Spielregeln ein Wort auf dem Band als Palindrom erkennt.
+Spielregeln ein Wort auf dem Band als Palindrom erkannt werden kann.
 
 \begin{loesung}
+\begin{enumerate}
+\item
+Falls das Zeichen unter dem Schreib-/Lesekopf ein Leerzeichen ist,
+akzeptiere (das leere Wort ist ein Palindrom).
+\item
+Merke Dir das Zeichen unter dem Schreib-/Lesekopf, überschreibe es mit
+einem Leerzeichen und fahre nach rechts, bis wieder ein Leer-Zeichen
+unter dem Schreib-/Lesekopf steht, dann fahre nach links.
+\item
+Wenn das Zeichen unter dem Schreib-/Lesekopf dasselbe ist, wie das
+im Schritt 2 gemerkte Zeichen, überschreibe es mit einem Leerzeichen
+und fahre nach links.
+Falls das Zeichen ein Leerzeichen ist, akzeptiere (dies ist der Fall
+eines einzelnen Zeichens in der Mitte des Palindroms).
+Falls das Zeichen ein anderes Zeichen ist, verwerfe, das Wort auf 
+dem Band war kein Palindrom.
+\item
+Fahre nach links bis zum nächsten Leerzeichen, dann ein Zeichen nach rechts.
+Weiter beim Schritt 1.
+\qedhere
+\end{enumerate}
 \end{loesung}
 
 
