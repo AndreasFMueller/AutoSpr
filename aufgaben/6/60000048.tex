@@ -1,0 +1,36 @@
+Ist die Sprache
+\[
+\{
+\langle A\rangle
+\mid
+\text{$A$ ist ein minimaler, deterministischer endlicher Automat}
+\}
+\]
+entscheidbar?
+
+\begin{loesung}
+Entscheidbar heisst, dass es einen Algorithmus zur Entscheidung des
+Problems gibt.
+Der im Kapitel 3 studierte ``Kreuzchenalgorithmus'', mit dem man den
+Minimalautomaten eines deterministischen endlichen Automaten finden
+kann, kann dazu verwendet werden, die Frage zu entscheiden.
+Der folgende Algorithmus mit Input $w$ löst das Problem:
+\begin{enumerate}
+\item
+Wenn $w$ keine Beschreibung eines endlichen Automaten ist, vewerfe $w$.
+\item
+Finde den Automaten $A$, der $w$ als Beschreibung hat: $w=\langle A\rangle$.
+\item
+Wende den Minimalalgorithmus auf $A$ an, dies liefert den
+Minimalautomaten
+$A_\text{min}$
+\item
+Wenn $A=A_{\text{min}}$ ist, war auch $A$ schon minimal, akzeptiere
+$\langle A\rangle$.
+\item
+Andernfalls verwerfe $\langle A\rangle $.
+\end{enumerate}
+Jeder Schritt dieses Algorithmus wird in endlicher Zeit fertig.
+Auch enthält der Algorithmus keine Schleifen, somit wird er immer
+anhalten und ist damit ein Entscheider.
+\end{loesung}

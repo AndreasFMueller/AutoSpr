@@ -1,0 +1,37 @@
+Reduzieren Sie $A_{\text{TM}}$ auf das Problem
+\[
+\textsl{CFL}_{\texttt{TM}}
+=
+\{
+\langle M\rangle
+\mid
+\text{Die TM $M$ akzeptiert eine kontextfreie Sprache}
+\}
+\]
+
+\begin{loesung}
+Nach dem Muster der Reduktionen für $\textsl{REGULAR}_{\text{TM}}$
+muss zu einem Paar $\langle M,w\rangle$ ein neues Programm konstruieren,
+welches genau dann eine kontextfreie Sprache akzeptiert, wenn 
+$M$ das Wort $w$ akzeptiert.
+
+Das Programm $S$ mit Input $u$ funktioniert wie folgt:
+\begin{enumerate}
+\item
+Wenn das Inputwort $u$ von der Form
+$\texttt{a}^n\texttt{b}^n\texttt{c}^n$
+ist, akzeptiere das Wort und halte an.
+\item 
+Lasse die TM $M$ auf $w$ laufen.
+\item
+Wenn $M$ akzeptiert, akzeptiere das Wort $u$ und halte an.
+\item
+Wenn $m$ nicht akzeptiert, verwerfe das Wort und halte an.
+\end{enumerate}
+Wenn $M$ das Wort $w$ akzeptiert, dann akzeptiert $S$ die nicht
+kontextfreie Sprache $\Sigma^*$.
+Wenn $M$ das Wort $w$ nicht akzeptiert, dann akzeptiert $S$ die
+kontextfreie Sprache $\{\texttt{a}^n\texttt{b}^n\texttt{c}^n \mid n\ge 0\}$.
+Damit ist das Problem $A_{\text{TM}}$ auf $\textsl{CFL}_{\text{TM}}$
+reduziert: $A_{\text{TM}}\le \textsl{CFL}_{\text{TM}}$.
+\end{loesung}

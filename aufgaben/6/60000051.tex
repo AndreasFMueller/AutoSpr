@@ -1,0 +1,35 @@
+Zeigen Sie mit Hilfe des Satzes von Rice, dass die Frage, ob eine
+Turing-Maschine eine kontextfreie Sprache akzeptiert, nicht entscheidbar
+ist.
+
+\begin{loesung}
+Ob eine Sprache kontextfreie ist oder nicht ist eine nichttriviale
+Eigenschaft.
+Um dies zu zeigen, muss man zwei Sprachen angeben, von denen die eine
+Kontextfrei ist und die andere nicht.
+Zwei mögliche Sprachen sind
+\begin{align*}
+L_1
+&=
+\Sigma^*&&\text{alle Wörter, kontextfrei:}
+\qquad
+\left\{
+\;
+\begin{aligned}
+S&\to SZ\mid \varepsilon\\
+Z&\to \Sigma
+\end{aligned}
+\right.
+\\
+L_2
+&=
+\{\texttt{a}^n\texttt{b}^n\texttt{c}^n
+\mid
+n\ge 0
+\}
+&&\text{nicht kontextfrei, Standardbeispiel}
+\end{align*}
+Da die Spracheigenschaft, kontextfrei zu sein, eine nichttriviale
+Eigenschaft ist, folgt nach dem Satz von Rice, dass nicht entscheidbar
+ist, ob eine Turing-Maschine eine kontextfreie Sprache akzeptiert.
+\end{loesung}
