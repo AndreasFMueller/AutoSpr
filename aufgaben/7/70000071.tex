@@ -1,0 +1,21 @@
+Das 8-Damen-Problem verlangt vom Spieler, 8 Damen so auf einem Schachfeld
+zu platzieren, dass sie sich gegenseitig nicht schlagen können.
+Eine Dame kann eine andere Figure in der gleichen Zeile, Spalte oder
+in diagonaler Richtung schlagen.
+Formulieren Sie das Problem als Sprachproblem.
+
+\begin{loesung}
+Eine Lösung des $n$-Damen-Problems enthält in jeder Zeile und
+jeder Spalte des $n\times n$-Schachfeldes je genau eine Dame.
+Ausserdem muss sichergestellt sein, dass sich die Damen über
+die Diagonale nicht gegenseitig schlagen können.
+Eine Lösung des $n$-Damen-Problems kann daher geschrieben werden
+als die Zeichenkette
+\[
+(n,c_1,c_2,\dots,c_n) \in \mathbb{N}^{n+1}
+\]
+codiert, wobei die Zahl $c_i$ die Zeilennummer der Dame in Spalte $i$
+ist.
+Nicht alle diese Zeichenketten sind Lösungen, die Zeichenketten, die
+Lösungen beschreiben bilden die Sprache \textit{QUEENS}.
+\end{loesung}

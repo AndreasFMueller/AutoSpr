@@ -1,4 +1,27 @@
-XXX Laufzeit für Algorithmus
+Das 8-Damen-Problem verlangt vom Spieler, 8 Damen so auf einem Schachfeld
+zu platzieren, dass sie sich gegenseitig nicht schlagen können.
+Eine Dame kann eine andere Figure in der gleichen Zeile, Spalte oder
+in diagonaler Richtung schlagen.
+Überlegen Sie sich einen einfachen Algorithmus, mit dem Sie Lösungen
+für das $n$-Damen-Problem finden können, und bestimmen sie die
+Laufzeit in Abhängigkeit von $n$.
 
 \begin{loesung}
+Die Bedingungen des $n$-Damen-Problems besagen, dass man in jede Zeile
+und Spalte des $n\times n$-Schachfeldes genau eine Dame platzieren muss.
+Zusätzlich muss die Bedingung erfüllt sein, dass sich die Damen über die
+Diagonalen auch nicht schlagen können.
+
+Solche Lösungen kann man finden, indem man die Damen 
+der Reihe nach in den Spalten $1$--$n$ platziert.
+Für die Dame in Spalte $1$ hat man $n$ Möglichkeiten, für die Dame
+in Spalte $2$ bleiben $n-1$ Möglichkeiten usw.~bis zur Dame $n$, für
+die nur noch eine Möglichkeit übrig bleibt.
+Insgesamt sind dies $n\cdot (n-1)\cdot\ldots\cdot 3\cdot 2\cdot 1=n!$
+Möglichkeiten.
+Jede dieser Möglichkeiten muss jetzt noch darauf getestet werden,
+ob sich die Damen über die Diagonale gegenseitig schlagen können.
+
+Die Fakultät $n!$ wächst exponentiell mit $n$ an, also wächst die
+Laufzeit für diesen Algorithmus ebenfalls exponentiell an.
 \end{loesung}

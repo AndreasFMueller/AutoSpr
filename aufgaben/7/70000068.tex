@@ -1,4 +1,31 @@
-XXX Verifizierer
+Konstruieren Sie einen polynomiellen Verifizierer für das $n$-Damen-Problem
+von Aufgabe~\ref{70000067}.
 
 \begin{loesung}
+Wir wissen bereits, dass das Problem entscheidbar ist, allerdings
+mit einem Algorithmus von exponentieller Komplexität.
+
+Um einen Verifizierer zu konstruieren, muss zuerst festgelegt
+werden, was als Zertifikat verwendet werden soll.
+Das Wort
+\[
+(n,c_1,c_2,\dots,c_n) \in \textit{QUEENS}
+\]
+ist ein geeignetes Zertifikat.
+
+Der Verifikationsalgorithmus muss folgende Dinge überprüfen:
+\begin{center}
+\begin{tabular}{r|p{10cm}|>{$}r<{$}}
+Schritt&Was&\text{Laufzeit}\\
+\hline
+1&Enthält das Wort genau $n+1$ natürliche Zahlen zwischen $1$ und $n$?&O(n\log n)\\
+2&Sind die Zahlen $c_i$ alle verschieden?&O(n^2\log(n)^2)\\
+3&Sind keine Damen in der gleichen Diagonalen platziert?&O(n^2\log(n)^2)\\
+\hline
+&Total&O(n^2\log(n)^2)\\
+\end{tabular}
+\end{center}
+Die Laufzeit ist schneller als $O(n^3)$, also polynomiell.
+Damit ist der oben beschriebene Algorithmus ein polynomieller
+Verifizierer.
 \end{loesung}

@@ -1,4 +1,39 @@
-XXX Problem als Ausfüllrätsel formulieren
+Formulieren Sie das $n$-Damen-Problem von Aufgabe~\ref{70000067} als
+polynomielles Ausfüllrätsel.
 
 \begin{loesung}
+Das $n$-Damen-Problem verlangt, in einem $n\times n$-Feld
+Zeichen $\times$ einzutragen, welche die Platzierung der Damen
+beschreiben.
+Für jedes Feld, welches ein Zeichen $\times$ enthält, müssen
+folgende Regeln erfüllt sein:
+\begin{enumerate}
+\item Jede Zeile enthält genau ein Zeichen $\times$
+\item Jede Spalte enthält genau ein Zeichen $\times$
+\item In der gleichen Diagonale kann nur ein Zeichen $\times$
+vorhanden sein.
+\end{enumerate}
+Damit ist gezeigt, dass \textit{QUEENS} ein Ausfüllrätsel ist.
+Es muss noch nachgewiesen werden, dass die Regeln 1--3 in 
+polynomieller Zeit überprüft werden können.
+\begin{center}
+\begin{tabular}{r|p{10cm}|>{$}r<{$}}
+Bedingung&Kontrolle&\text{Laufzeit}\\
+\hline
+1&In jeder Zelle, die ein $\times$ enthält, muss die gleiche Zeile
+nach einem weiteren $\times$ durchsucht werden
+&O(n^2) \\
+2&In jeder Zelle, die ein $\times$ enthält, muss die gleiche Spalte
+nach einem weiteren $\times$ durchsucht werden
+&O(n^2) \\
+3&In jeder Zelle, die ein $\times$ enthält, müssen die beiden
+Diaogonalen, die sich in der Zelle kreuzen, nach einem weiteren
+$\times$ durchsucht werden
+&O(n^2)\\
+\hline
+&Total&O(n^2)
+\end{tabular}
+\end{center}
+Der Rechenaufwand hängt somit polynomiell von der Grösse des Problems
+ab, damit liegt ein polynomielles Ausfüllrätsel vor.
 \end{loesung}
