@@ -1,10 +1,21 @@
-Formulieren sie das $n$-Damen-Problem als $k$-\textit{COLORING}-Problem.
+Formulieren Sie das $n$-Damen-Problem als $k$-\textit{CLIQUE}-Problem.
 
 \begin{loesung}
-In einem $k$-\textit{COLORING}-Problem müssen Farben für die Knoten
-eines Graphen gewählt werden, die Kanten beschreiben zusätzliche
-Ausschlussbedingungen.
-Für das Problem \textit{QUEENS} kann man einen Knoten anlegen für
-jedes Feld des $n\times n$-Feldes.
+In einem $k$-\textit{CLIQUE}-Problem müssen Knoten eines Graphen
+ausgewählt werden, die alle miteinander verbunden sind.
+Für das Problem \textit{QUEENS} kann man für jedes Feld des Spielfeldes
+einen Knoten des Graphen anlegen.
+Zwei Knoten werden miteinander verbunden, wenn Damen auf den zugehörigen
+Feldern sich nicht gegenseitig schlagen können.
+So entsteht ein Graph mit $n^2$ Knoten.
+Eine Lösung des $n$-Damen-Problems ist eine Auswahl von $n$ Feldern,
+auf denen Damen platziert werden können, die sich gegenseitig
+nicht schlagen können.
+Dies entspricht der Auswahl von $n$ Knoten des Graphen, die sich
+gegenseitig nicht schlagen können.
+Letzteres ist gleichbedeutend damit, dass die ausgewählten Knoten
+alle miteinander verbunden sind.
 
+Dem $n$-Damen-Problem entspricht daher eine Instanz des
+$n$-\textit{CLIQUE}-Problems.
 \end{loesung}
