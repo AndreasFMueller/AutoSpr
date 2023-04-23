@@ -1,0 +1,51 @@
+In der Vorlesung wurde gezeigt, wie in der Sprache \texttt{LOOP}
+verschiedene einfache Operationen realisiert werden können.
+Zum Beispiel wurde eine Subtraktion $x_a:=x_b-x_c$ realisiert,
+welche allerdings negative Resultate immer in $0$ umwandelt.
+Lösen Sie im gleichen Sinne die folgenden Aufgaben:
+\begin{teilaufgaben}
+\item
+Schreiben Sie ein \texttt{LOOP}-Programm, welches die Werte der
+Variablen $x_i$ und $x_k$ vergleicht und ein Programm $P$ ausführt,
+wenn $x_i \le x_k$ ist.
+\item
+Schreiben Sie ein \texttt{LOOP}-Programm, welches den Rest der Division
+der Zahlenwerte in den Registern $x_i$ und $x_k$ berechnet.
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Das folgende Programm löst das Problem.
+\begin{center}
+\begin{tabular}{>{\bgroup\color{gray}\tiny}r<{:\egroup}>{$}l<{$}l}
+ 1&x_0 := x_i - x_k  &// $x_0=0$ für $x_i\le x_k$\\
+ 2&x_1 := 1          &\\
+ 3&\texttt{LOOP }x_0 &// für $x_i > x_k$ wird $x_1 := 0$ gesetzt\\
+ 4&\quad x_1 := 0    &\\
+ 5&\texttt{END}      &\\
+ 6&\texttt{LOOP }x_1 &// wird ausgeführt für $x_i\le x_k$\\
+ 7&\quad P           &\\
+ 8&\texttt{END}      &\\
+\end{tabular}
+\end{center}
+\item
+Der Algorithmus arbeitet mit einer Kopie des Wertes von $x_i$ in $x_2$.
+Er subtrahiert den Wert von $x_k$ so lange von $x_2$ wie $x_2 \ge x_k$ 
+ist, dazu wird das Programm von Teilaufgabe a) verwendet.
+Da in \texttt{LOOP} die Anzahl Iterationen zu Beginn festgelegt werden
+muss, wird dafür $x_i$ verwendet, da der Quotient nicht grösser als $x_i$
+sein kann.
+\begin{center}
+\begin{tabular}{>{\bgroup\color{gray}\tiny}r<{:\egroup}>{$}l<{$}l}
+ 1&x_2 := x_i                    &\\
+ 2&\texttt{LOOP } x_i            &\\
+ 3&\quad\texttt{IF } x_k \le x_2 &// Bedingtes \texttt{IF} von Teilaufgabe a)\\
+ 4&\quad\quad x_2 := x_2 - x_k   &\\
+ 6&\quad\texttt{END}             &\\
+ 7&\texttt{END}                  &\\
+\end{tabular}
+\end{center}
+Der gesuchte Rest steht in der Variablen $x_2$.
+\end{teilaufgaben}
+\end{loesung}

@@ -1,0 +1,39 @@
+Finden Sie ein NP-vollständiges Problem, welches sich eins zu eins
+auf das folgende Problem \textit{TOURIST} reduzieren lässt.
+\begin{quote}
+Von jedem Aussichtspunkt aus kann man eine endliche Anzahl Sehenswürdigkeiten
+erkennen.
+Ein Tourist, der es sehr eilig hat, möchte mit dem Besuch von nur $k$
+Aussichtspunkten alles sehen, was man an Sehenswürdigkeiten von
+allen Aussichtspunkten aus sehen könnte.
+Warum ist es schwierig, für den Touristen eine Auswahl zu treffen?
+\end{quote}
+
+\begin{loesung}
+Das Problem ist zum bekannten NP-vollständigen Problem
+\textit{SET-COVERING} äquivalent, wie die folgende eins-zu-eins-Reduktion
+zeigt:
+\begin{center}
+\begin{tabular}{r>{$}c<{$}>{$}l<{$}}
+\textit{TOURIST}
+	&
+		&\textit{SET-COVERING}\\
+\hline
+Aussichtspunkt
+	&\leftrightarrow
+		&S_j                \\
+Sichtbare Sehenswürdigkeiten
+	&\leftrightarrow
+		&\displaystyle S = \bigcup_{j=1}^n S_j \\
+Auswahl von Aussichtspunkten
+	&\leftrightarrow
+		&S_{j_1},\dots,S_{j_k}\\
+Bedinung: kann alles sehen
+	&\leftrightarrow
+		&S = \bigcup_{i=1}^k S_{j_i}
+\end{tabular}
+\end{center}
+Das Problem \textit{TOURIST} ist daher auch NP-vollständig und es ist nach
+heutigem Wissen kein polynomieller Algorithmus verfügbar, mit dem eine
+Auswahl der Aussichtspunkte gefunden werden kann.
+\end{loesung}

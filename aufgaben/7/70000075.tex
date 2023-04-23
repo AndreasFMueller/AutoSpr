@@ -21,14 +21,12 @@ Variablen aufgespaltet werden:
 \wedge
 (\overline{z}_1\vee \overline{x}_3\vee z_2)
 \wedge(
-\overline{z}_2\vee\overline{x}_4\vee z_3)
-\wedge
-(\overline{z}_3\vee x_5\vee z_4),
-\intertext{aus}
+\overline{z}_2\vee\overline{x}_4\vee x_5),
+\intertext{und aus}
 &(x_6\vee x_7\vee \overline{x}_8\vee x_9)
 \intertext{wird}
 &
-(x_6\vee x_7\vee z) \wedge(\overline{z}\vee \overline{x}_8\vee x_9).
+(x_6\vee x_7\vee z) \wedge (\overline{z}\vee \overline{x}_8\vee x_9).
 \end{align*}
 Die Terme mit weniger als drei Variablen können durch Wiederholung
 einzelner Variablen passend gemacht werden:
@@ -47,9 +45,7 @@ Alles zusammen gibt die erfüllungsäquivalente Formel
 \wedge
 (\overline{z}_1\vee \overline{x}_3\vee z_2)
 \wedge(
-\overline{z}_2\vee\overline{x}_4\vee z_3)
-\wedge
-(\overline{z}_3\vee x_5\vee z_4)
+\overline{z}_2\vee\overline{x}_4\vee x_5)
 \\
 \mathstrut\wedge\mathstrut
 &(x_6\vee x_7\vee z)
@@ -60,7 +56,7 @@ Alles zusammen gibt die erfüllungsäquivalente Formel
 &(x_{10}\vee \overline{x}_{11} \vee \overline{x}_{11})
 \\
 \mathstrut\wedge\mathstrut
-&(x_{12}\vee x_{12}\vee x_{12}).
-\qedhere
+&(x_{12}\vee x_{12}\vee x_{12}),
 \end{align*}
+welche 3CNF-Form hat.
 \end{loesung}
