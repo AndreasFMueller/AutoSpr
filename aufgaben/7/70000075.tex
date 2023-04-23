@@ -1,0 +1,66 @@
+Verwandeln Sie die Formel
+\[
+(x_1\vee x_2\vee\overline{x}_3\vee\overline{x}_4\vee x_5)
+\wedge
+(x_6\vee x_7\vee \overline{x}_8\vee x_9)
+\wedge
+(x_{10}\vee \overline{x}_{11})
+\wedge
+x_{12}
+\]
+in eine erfüllungsäquivalente 3CNF-Formel.
+
+\begin{loesung}
+Die Terme mit mehr als drei Variablen müssen mit Hilfe zusätzlicher
+Variablen aufgespaltet werden:
+\begin{align*}
+&(x_1\vee x_2\vee\overline{x}_3\vee\overline{x}_4\vee x_5)
+\intertext{wird zu}
+&
+(x_1\vee x_2\vee z_1)
+\wedge
+(\overline{z}_1\vee \overline{x}_3\vee z_2)
+\wedge(
+\overline{z}_2\vee\overline{x}_4\vee z_3)
+\wedge
+(\overline{z}_3\vee x_5\vee z_4),
+\intertext{aus}
+&(x_6\vee x_7\vee \overline{x}_8\vee x_9)
+\intertext{wird}
+&
+(x_6\vee x_7\vee z) \wedge(\overline{z}\vee \overline{x}_8\vee x_9).
+\end{align*}
+Die Terme mit weniger als drei Variablen können durch Wiederholung
+einzelner Variablen passend gemacht werden:
+\begin{align*}
+x_{10}\vee\overline{x}_{11}
+&\rightarrow
+x_{10}\vee \overline{x}_{11} \vee \overline{x}_{11}
+\\
+x_{12}
+&\rightarrow
+x_{12}\vee x_{12}\vee x_{12}.
+\end{align*}
+Alles zusammen gibt die erfüllungsäquivalente Formel
+\begin{align*}
+&(x_1\vee x_2\vee z_1)
+\wedge
+(\overline{z}_1\vee \overline{x}_3\vee z_2)
+\wedge(
+\overline{z}_2\vee\overline{x}_4\vee z_3)
+\wedge
+(\overline{z}_3\vee x_5\vee z_4)
+\\
+\mathstrut\wedge\mathstrut
+&(x_6\vee x_7\vee z)
+\wedge
+(\overline{z}\vee \overline{x}_8\vee x_9)
+\\
+\mathstrut\wedge\mathstrut
+&(x_{10}\vee \overline{x}_{11} \vee \overline{x}_{11})
+\\
+\mathstrut\wedge\mathstrut
+&(x_{12}\vee x_{12}\vee x_{12}).
+\qedhere
+\end{align*}
+\end{loesung}

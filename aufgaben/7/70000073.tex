@@ -1,0 +1,221 @@
+Das untenstehende Zustandsdiagramm gehört zu einer Turingmaschine, die
+die Sprache $\{\texttt{0}^n\texttt{1}^n\}$ entscheidet.
+Gehören die nachstehenden Ausschnitte zu einer korrekten
+Berechnungsgeschichte?
+Wenn ja, können Sie den möglicherweise nicht sichtbaren
+Zustand ermitteln?
+
+\bgroup
+\def\h{0.6}
+\def\punkt#1#2{({(#1)*\h},{-(#2)*\h})}
+\def\zeichen#1#2#3{\node at \punkt{#1}{#2} {$#3\mathstrut$};}
+\newdimen\diagrammbreite
+\diagrammbreite\dimexpr 6.2cm\relax
+\newdimen\punktelaenge
+\punktelaenge\dimexpr .5\textwidth-.5\diagrammbreite\relax
+\hbox to\textwidth{%
+\parbox[t]{0.9\punktelaenge}{
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\fill[color=white] (0,0) rectangle ({0.9\punktelaenge},-3);
+\node at (0,0) [below right] {a)};
+\begin{scope}[xshift=1.3cm,yshift=-4mm]
+\ifthenelse{\boolean{loesungen}}{
+\fill[color=blue!10] \punkt{-0.5}{-0.5} rectangle \punkt{2.5}{1.5};
+}{}
+\draw \punkt{-0.5}{-0.5} rectangle \punkt{2.5}{1.5};
+\zeichen{0}{0}{\texttt{0}}
+\zeichen{1}{0}{q_1}
+\zeichen{2}{0}{\texttt{1}}
+\zeichen{0}{1}{\texttt{0}}
+\zeichen{1}{1}{\texttt{x}}
+\zeichen{2}{1}{q_2}
+\end{scope}
+\node at (0,-1.5) [below right] {c)};
+\begin{scope}[xshift=1.3cm,yshift=-1.9cm]
+\ifthenelse{\boolean{loesungen}}{
+\fill[color=darkgreen!10] \punkt{-0.5}{-0.5} rectangle \punkt{2.5}{1.5};
+}{}
+\draw \punkt{-0.5}{-0.5} rectangle \punkt{2.5}{1.5};
+\zeichen{0}{0}{q_3}
+\zeichen{1}{0}{\texttt{x}}
+\zeichen{2}{0}{\texttt{x}}
+\zeichen{0}{1}{\blank}
+\zeichen{1}{1}{\texttt{x}}
+\zeichen{2}{1}{\texttt{x}}
+\end{scope}
+\end{tikzpicture}
+\end{center}}
+\hfill
+\parbox[t]{0.9\punktelaenge}{
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\fill[color=white] (0,0) rectangle ({0.9\punktelaenge},-3);
+\node at (0,0) [below right] {b)};
+\begin{scope}[xshift=1.3cm,yshift=-4mm]
+\ifthenelse{\boolean{loesungen}}{
+\fill[color=red!10] \punkt{-0.5}{-0.5} rectangle \punkt{2.5}{1.5};
+}{}
+\draw \punkt{-0.5}{-0.5} rectangle \punkt{2.5}{1.5};
+\zeichen{0}{0}{\texttt{1}}
+\zeichen{1}{0}{\texttt{1}}
+\zeichen{2}{0}{\blank}
+\zeichen{0}{1}{q_2}
+\zeichen{1}{1}{\texttt{1}}
+\zeichen{2}{1}{\blank}
+\end{scope}
+\node at (0,-1.5) [below right] {d)};
+\begin{scope}[xshift=1.3cm,yshift=-1.9cm]
+\draw \punkt{-0.5}{-0.5} rectangle \punkt{2.5}{1.5};
+\zeichen{0}{0}{\texttt{x}}
+\zeichen{1}{0}{\texttt{x}}
+\zeichen{2}{0}{q_3}
+\zeichen{0}{1}{\texttt{x}}
+\zeichen{1}{1}{\texttt{x}}
+\zeichen{2}{1}{\blank}
+\end{scope}
+\end{tikzpicture}
+\end{center}}
+\hfill
+\parbox[t]{\diagrammbreite}{
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\begin{scope}
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (1.7,0);
+\coordinate (q2) at (3.4,0);
+\coordinate (q3) at (1.7,-1);
+\coordinate (accept) at (0,1);
+\coordinate (reject) at (3.4,1);
+\node at (q0) {$q_0$};
+\node at (q1) {$q_1$};
+\node at (q2) {$q_2$};
+\node at (q3) {$q_3$};
+\node at (accept) {$q_{\text{accept}}$};
+\node at (reject) {$q_{\text{reject}}$};
+\draw (q0) circle[radius=0.25cm];
+\draw (q1) circle[radius=0.25cm];
+\draw (q2) circle[radius=0.25cm];
+\draw (q3) circle[radius=0.25cm];
+\draw (accept) ellipse (0.6 and 0.25);
+\draw (accept) ellipse (0.65 and 0.3);
+\draw (reject) ellipse (0.6 and 0.25);
+\draw (reject) ellipse (0.65 and 0.3);
+\draw[->,shorten >= 0.65cm,shorten <= 0.25cm] (q0) to[out=60,in=180] (reject);
+\draw[->,shorten >= 0.65cm,shorten <= 0.25cm] (q1) to[out=90,in=180] (reject);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (q2) -- (reject);
+\draw[->,shorten >= 0.25cm] (-1,0)--(q0);
+\node at ($0.5*(q0)+0.5*(q1)+(0,-0.1)$)
+	[above] {\tiny $\texttt{0}\to\texttt{x},R$};
+\node at ($0.5*(q1)+0.5*(q2)+(0,-0.1)$)
+	[above] {\tiny $\texttt{1}\to\texttt{x},R$};
+\node at ($(q0)+(0,0.5)$) [left] {\tiny $\blank \to \blank,R$};
+\node at ($(q3)+(0,0.5)$) {\tiny $.\to.,L$};
+\node at ($(q2)+(-0.5,-0.7)$) [below right] {\tiny $\blank\to\blank,L$};
+\node at ($(q0)+(0.5,-0.7)$) [below left] {\tiny $\blank\to\blank,R$};
+\draw[->,shorten >= 0.3cm,shorten <= 0.25cm] (q0) -- (accept);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (q0) -- (q1);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (q1) -- (q2);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (q2) to[out=-90,in=0] (q3);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (q3) to[out=180,in=-90] (q0);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (q3) to[out=45,in=135,distance=0.6cm] (q3);
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+	(q0) to[out=-100,in=-130,distance=0.8cm] (q0);
+\node at ($(q0)+(-0.2,-0.4)$) [left] {\tiny$\texttt{x}\to\texttt{x},R$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+	(q2) to[out=-50,in=-80,distance=0.8cm] (q2);
+\node at ($(q2)+(0.2,-0.4)$) [right] {\tiny$\texttt{1}\to\texttt{1},R$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+	(q1) to[out=100,in=140,distance=0.7cm] (q1);
+\node at ($(q1)+(0.1,0.4)$) [above left] {\tiny$\texttt{0}\to\texttt{0},R$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
+	(q1) to[out=80,in=40,distance=0.7cm] (q1);
+\node at ($(q1)+(0.1,0.4)$) [above right] {\tiny$\texttt{x}\to\texttt{x},R$};
+\end{scope}
+\end{tikzpicture}%
+\end{center}
+}}
+\egroup
+
+
+\begin{loesung}
+Die Ausschnitte a), b) und c) können in der Berechnungsgesschichte
+für das Wort $\texttt{0}^n\texttt{1}^n$ gefunden werden, sie werden
+durch Rechtecke gleicher Farbe angezeigt:
+\begin{center}
+\def\h{0.5}
+\def\punkt#1#2{({(#1)*\h},{-(#2)*\h})}
+\def\o{\texttt{0}}
+\def\x{\texttt{x}}
+\def\l{\texttt{1}}
+\def\b{\blank}
+\def\zeichen#1#2#3{\node at \punkt{#1}{#2} {$#3\mathstrut$};}
+\def\zeile#1#2#3#4#5#6#7#8{
+	\node[color=gray] at \punkt{-0.1}{#1} [left] {\tiny #1:};
+	\zeichen{1}{#1}{#2}
+	\zeichen{2}{#1}{#3}
+	\zeichen{3}{#1}{#4}
+	\zeichen{4}{#1}{#5}
+	\zeichen{5}{#1}{#6}
+	\zeichen{6}{#1}{#7}
+	\zeichen{7}{#1}{#8}
+}
+\begin{tikzpicture}[>=latex,thick]
+\foreach \x in {0,...,6}{
+	\node[color=gray] at \punkt{\x+1}{-1} {\tiny\x};
+}
+\fill[color=blue!20,opacity=0.5] \punkt{2.5}{1.5} rectangle \punkt{5.5}{3.5};
+\fill[color=red!20,opacity=0.5] \punkt{4.5}{1.5} rectangle \punkt{7.5}{3.5};
+\fill[color=darkgreen!20,opacity=0.5] \punkt{1.5}{17.5} rectangle \punkt{4.5}{19.5};
+\zeile{ 0}{\b }{q_0}{\o }{\o }{\l }{\l }{\b }
+\zeile{ 1}{\b }{\x }{q_1}{\o }{\l }{\l }{\b }
+\zeile{ 2}{\b }{\x }{\o }{q_1}{\l }{\l }{\b }
+\zeile{ 3}{\b }{\x }{\o }{\x }{q_2}{\l }{\b }
+\zeile{ 4}{\b }{\x }{\o }{\x }{\l }{q_2}{\b }
+\zeile{ 5}{\b }{\x }{\o }{\x }{q_3}{\l }{\b }
+\zeile{ 6}{\b }{\x }{\o }{q_3}{\x }{\l }{\b }
+\zeile{ 7}{\b }{\x }{q_3}{\o }{\x }{\l }{\b }
+\zeile{ 8}{\b }{q_3}{\x }{\o }{\x }{\l }{\b }
+\zeile{ 9}{q_3}{\b }{\x }{\o }{\x }{\l }{\b }
+\zeile{10}{\b }{q_0}{\x }{\o }{\x }{\l }{\b }
+\zeile{11}{\b }{\x }{q_0}{\o }{\x }{\l }{\b }
+\zeile{12}{\b }{\x }{\x }{q_1}{\x }{\l }{\b }
+\zeile{13}{\b }{\x }{\x }{\x }{q_1}{\l }{\b }
+\zeile{14}{\b }{\x }{\x }{\x }{\x }{q_1}{\b }
+\zeile{15}{\b }{\x }{\x }{\x }{q_3}{\x }{\b }
+\zeile{16}{\b }{\x }{\x }{q_3}{\x }{\x }{\b }
+\zeile{17}{\b }{\x }{q_3}{\x }{\x }{\x }{\b }
+\zeile{18}{\b }{q_3}{\x }{\x }{\x }{\x }{\b }
+\zeile{19}{q_3}{\b }{\x }{\x }{\x }{\x }{\b }
+\zeile{20}{\b }{q_0}{\x }{\x }{\x }{\x }{\b }
+\zeile{21}{\b }{\x }{q_0}{\x }{\x }{\x }{\b }
+\zeile{22}{\b }{\x }{\x }{q_0}{\x }{\x }{\b }
+\zeile{23}{\b }{\x }{\x }{\x }{q_0}{\x }{\b }
+\zeile{24}{\b }{\x }{\x }{\x }{\x }{q_0}{\b }
+\zeile{25}{\b }{\x }{\x }{\x }{\x }{\b }{q_{\text{a}\rlap{$\scriptstyle\text{ccept}$}}}
+\end{tikzpicture}
+\end{center}
+\begin{teilaufgaben}
+\item
+Beide Zustände sind sichtbar.
+\item
+Der Zustand in der ersten Zeile ist gemäss der Berechnungsgeschichte
+$q_1$, dies ist aber nicht die einzige Möglichkeit.
+Wenn das Wort mehr Einsen hat, könnte sich die Maschine auch bereits
+Auf der ersten Zeile im Zustand $q_2$ befinden, in dem alle Einsen
+und \texttt{x} übersprungen werden.
+\item
+Der Kopf bewegt sich nach links, um den Wortanfang zu finden.
+Gemäss Zustandsdiagramm ändert sich ausgehend von $q_3$ der Zustand
+nur dann, wenn das aktuelle Zeichen ein Leerzeichen ist, was hier
+nicht der Fall ist.
+Der zur zweiten Zeile gehörige Zustand muss daher $q_3$ sein.
+\item
+Der Ausschnitt zeigt eine Kopfbwegung nach rechts, daher muss
+rechts von $q_3$ ein Leerzeichen stehen.
+Der neue, nicht sichtbare Zustand ist $q_0$.
+Der Übergang ist korrekt, kommt aber in keiner Berechnungsgeschichte
+vor.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}

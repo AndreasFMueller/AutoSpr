@@ -1,0 +1,159 @@
+Im $n$-Damen-Problem (Aufgabe~\ref{70000067}) können die Positionen
+der Damen mit einer booleschen Variable $x_{ik}$ für jedes Feld 
+in Zeile $i$ und Spalte $k$ des Spielfeldes codiert werden.
+Ist die Variable \texttt{true}, befindet sich eine Dame auf dem
+Feld, ist sie \texttt{false}, ist das Feld leer.
+\begin{teilaufgaben}
+\item
+Finden Sie eine logische Formel $\varphi_{ik}$, die besagt, dass
+eine Dame im Feld $ik$ steht, aber keine weitere Dame in der
+gleichen Zeile.
+\item
+Ist $\varphi_{ik}$ wahr, wenn die Dame in einem anderen Feld der Zeile $i$
+steht?
+\item
+Finden Sie eine logische Formel, die besagt, dass eine Dame in genau einem
+Feld der Zeile $i$ steht.
+\item
+Finden Sie eine logische Formel, die besagt, dass in jeder Zeile genau
+eine Dame steht.
+\ifthenelse{\boolean{loesungen}}{
+\item
+Formulieren Sie die Bedingungen für eine Lösung des $n$-Damen-Problems
+als logische Formel in den Variablen $x_{ik}$.
+}{}
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Die Variable $x_{ik}$ muss wahr sein und keine der anderen Variablen
+$x_{il}$, $l\ne k$, dürfen wahr sein.
+\begin{align*}
+\varphi_{ik}
+&=
+x_{ik}\wedge \neg x_{i1} \wedge
+\ldots
+\wedge \widehat{\neg x_{ik}}\wedge
+\ldots
+\wedge \neg x_{in}
+\\
+&=
+x_{ik} \wedge \bigwedge_{l\ne k} \neg x_{ik}
+=
+x_{ik} \wedge \neg \bigvee_{l\ne k} x_{ik}.
+\end{align*}
+\item
+Wenn $x_{ik}$ falsch ist, kann die Formel nicht mehr wahr sein, auch wenn 
+eine andere der Variablen $x_{il}$ wahr ist.
+\item
+Da mindestens eine der Formeln $\varphi_{ik}$ wahr sein muss, ist
+die gesuchte Formel
+\begin{equation}
+\varphi_{\text{Zeile}_i}
+=
+\bigvee_{k=1}^n
+\biggl(
+x_{ik} \wedge \neg \bigvee_{l\ne k} x_{il}
+\biggr).
+\label{70000072:zeile}
+\end{equation}
+\item
+Damit auf jeder Zeile genau eine Dame steht, muss $\varphi_{\text{Zeile}_i}$
+für jedes $i=1,\dots,n$ wahr sein:
+\[
+\varphi_{\text{Zeilen}}
+=
+\bigwedge_{i=1}^n
+\varphi_{\text{Zeile}_i}
+=
+\bigwedge_{i=1}^n
+\biggl(
+\bigvee_{k=1}^n
+\biggl(
+x_{ik} \wedge \neg \bigvee_{l\ne k} x_{il}
+\biggr)
+\biggr).
+\]
+\item
+Die Formel $\varphi_{\text{Zeilen}}$ stellt sicher, dass genau
+$n$ Damen auf dem Feld stehen.
+Es ist daher nur noch sicherzustellen, dass in einer Spalte
+keine weiteren Damen stehen, wenn in einem Feld schon eine
+Dame steht.
+Wenn $x_{ik}$ wahr ist, darf keine andere der Variablen $x_{lk}$
+wahr sein, also
+\[
+\varphi_{\text{Spalte}_k}
+=
+\bigwedge_{i=1}^n
+\biggl(
+x_{ik}\Rightarrow \neg \bigvee_{l\ne i}x_{lk}
+\biggr).
+\]
+Für alle Spalten bedeutet das
+\[
+\varphi_{\text{Spalten}}
+=
+\bigwedge_{k=1}^n
+\varphi_{\text{Spalte}_k}
+=
+\bigwedge_{i,k=1}^n
+\biggl(
+x_{ik}\Rightarrow \neg \bigvee_{l\ne i}x_{lk}
+\biggr).
+\]
+Es bleibt noch sicherzustellen, dass sich die Damen nicht gegenseitig
+über die Diagonale schlagen können.
+Falls die Dame in Feld $x_{ik}$ platziert ist, dann darf es auf der
+gleichen Diagonalen keine weitere Dame haben.
+Wir schreiben $ik\sim rs$, wenn die Felder $ik$ und $rs$ auf der 
+gleichen Diagonalen sind.
+Damit 
+\[
+\varphi_{\text{Diagonalen}_{ik}}
+=
+x_{ik}\Rightarrow \neg\bigvee_{rs\sim ik\wedge rs\ne ik}  x_{rs}
+\]
+wahr sein, damit auf den gleichen Diagonalen keine weitere Dame steht.
+
+Diese Formeln kann man jetzt zu einer Formel zusammensetzen, die 
+alle Bedingungen einschliesst:
+\begin{align*}
+\varphi
+&
+\varphi_{\text{Zeilen}}
+\wedge
+\varphi_{\text{Spalten}}
+\wedge
+\varphi_{\text{Diagonalen}}
+\\
+&=
+\bigwedge_{i=1}^n \varphi_{\text{Zeile}_i}
+\wedge
+\bigwedge_{k=1}^n \varphi_{\text{Spalte}_k}
+\wedge
+\bigwedge_{ik} \varphi_{\text{Diagonalen}_{ik}}
+\\
+&=
+\bigwedge_{i=1}^n
+\biggl(
+\bigvee_{k=1}^n 
+\biggl(
+x_{ik}\wedge\neg\bigvee_{l\ne k} x_{il}
+\biggr)
+\biggr)
+\wedge
+\bigwedge_{i,k=1}^n
+\biggl(
+x_{ik}\Rightarrow\neg\bigvee_{l\ne i} x_{lk}
+\biggr)
+\wedge
+\bigwedge_{i,k=1}^n
+\biggl(
+x_{ik}\Rightarrow \neg \bigvee_{rs\sim ik\wedge rs\ne ik}  x_{rs}
+\biggr).
+\qedhere
+\end{align*}
+\end{teilaufgaben}
+\end{loesung}

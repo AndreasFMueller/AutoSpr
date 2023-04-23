@@ -88,6 +88,9 @@ $(workdir)/7.tex:	buildchapter.sh 7/*.tex
 $(workdir)/8.tex:	buildchapter.sh 8/*.tex
 	./buildchapter.sh 8 > $(workdir)/8.tex
 
+wochen:	woche01 woche02 woche03 woche04 woche05 woche06 woche07 woche08	\
+	woche09 woche10 woche11 woche12 woche13
+
 woche01:	woche01.pdf
 woche01.pdf:	$(workdir) $(TEXFILES) woche01.tex
 	$(pdflatex) woche01.tex
@@ -137,6 +140,21 @@ woche10:	woche10.pdf
 woche10.pdf:	$(workdir) $(TEXFILES) woche10.tex
 	$(pdflatex) woche10.tex
 	cp $(workdir)/woche10.pdf .
+
+woche11:	woche11.pdf
+woche11.pdf:	$(workdir) $(TEXFILES) woche11.tex
+	$(pdflatex) woche11.tex
+	cp $(workdir)/woche11.pdf .
+
+woche12:	woche12.pdf
+woche12.pdf:	$(workdir) $(TEXFILES) woche12.tex
+	$(pdflatex) woche12.tex
+	cp $(workdir)/woche12.pdf .
+
+woche13:	woche13.pdf
+woche13.pdf:	$(workdir) $(TEXFILES) woche13.tex
+	$(pdflatex) woche13.tex
+	cp $(workdir)/woche13.pdf .
 
 images:
 	for d in ?/*; \

@@ -1,0 +1,121 @@
+Lösen Sie das \textit{SUBSET-SUM} Problem mit den Zahlen
+\begin{align*}
+y_1&=100100,&
+y_2&=10110,&
+y_3&=1100,&
+g_1&=100,&
+g_2&=10,&
+g_3&=1,
+\\
+z_1&=100011,&
+z_2&=10001,&
+z_3&=1011,&
+h_1&=100,&
+h_2&=10,&
+h_3&=1
+\end{align*}
+und der Summe $t=111333$ und leiten Sie daraus eine Lösung für 
+das \textit{3SAT}-Problem
+\[
+\varphi
+=
+(x_1\vee x_2\vee x_3)
+\wedge
+(\overline{x}_1\vee x_2\vee \overline{x}_3)
+\wedge
+(\overline{x}_1\vee \overline{x}_2\vee \overline{x}_3)
+\]
+ab.
+
+\begin{loesung}
+Eine mögliche Lösung ist
+\begin{align*}
+y_1+z_2+z_3
+&=
+100100+10001+1011
+\\
+&=111112
+\\
+g_1+h_1+g_2+h_2+g_3
+&= \phantom{000}221
+\\
+y_1+z_2+z_3
++
+g_1+h_1+g_2+h_2+g_3
+&=
+111333=t
+\end{align*}
+Nach der Konstruktion der Zahlen $y_i$, $z_i$, $g_i$ und $h_i$ bedeutet
+diese Auswahl, dass $x_1=\texttt{t}$, $x_2=\texttt{f}$ und
+$x_3=\texttt{f}$ gesetzt werden muss.
+Tatsächlich ist
+\begin{align*}
+\varphi
+&=
+(x_1\vee x_2\vee x_3)
+\wedge
+(\overline{x}_1\vee x_2\vee \overline{x}_3)
+\wedge
+(\overline{x}_1\vee \overline{x}_2\vee \overline{x}_3)
+\\
+&=
+(
+\texttt{t}
+\vee
+\texttt{f}
+\vee
+\texttt{f}
+)
+\wedge
+(
+\overline{\texttt{t}}
+\vee
+\texttt{f}
+\vee
+\overline{\texttt{f}}
+)
+\wedge
+(
+\overline{\texttt{t}}
+\vee
+\overline{\texttt{f}}
+\vee
+\overline{\texttt{f}}
+)
+\\
+&=
+(
+\underbrace{
+\texttt{t}
+\vee
+\texttt{f}
+\vee
+\texttt{f}
+}_{\displaystyle \texttt{t}}
+)
+\wedge
+(
+\underbrace{
+\texttt{f}
+\vee
+\texttt{f}
+\vee
+\texttt{t}
+}_{\displaystyle \texttt{t}}
+)
+\wedge
+(
+\underbrace{
+\texttt{f}
+\vee
+\texttt{t}
+\vee
+\texttt{t}
+}_{\displaystyle \texttt{t}}
+)
+=
+\texttt{t}.
+\end{align*}
+Diese Belegung der Variablen $x_i$ mit Wahrheitswerten ist also
+tatsächlich eine Lösung des \textit{3SAT}-Problems.
+\end{loesung}
