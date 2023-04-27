@@ -1,0 +1,62 @@
+Zeigen Sie, dass die Sprache
+\[
+B_{\text{TM}}
+=
+\{
+\langle M\rangle
+\mid
+\text{$M$ beschreibt einen beschränkten Teil des Bandes}
+\}
+\]
+nicht entscheidbar ist.
+
+\begin{loesung}
+Wir verwenden eine Reduktion vom Problem
+$\textit{HALT}\varepsilon_{\text{TM}}$.
+Sei also $M$ eine Turing-Maschine, wir konstruieren eine neue Maschine
+wie folgt.
+Dazu betrachten wir zunächst die Zweibandmaschine $M_1$, die in jedem 
+Schritt auf dem ersten Band einen Schritt der Maschine $M$ ausführt.
+Gleichzeitig führt schreibt Sie ein Zeichen \texttt{1} auf das zweite
+Band und bewegt den Kopf nach rechts.
+
+Die Maschine $S_0$ beschreibt einen Teil des zweiten Bandes, der
+genau so lang ist wie die Laufzeit des Programms.
+Wenn $M$ anhält, ist der beschriebene Teil beider Bänder beschränkt,
+es können höchstens so viele Zeichen geschrieben werden, wie die Laufzeit
+angibt.
+
+Falls die Maschine $M$ nicht anhält, dann kann der beschriebene
+Teil des ersten Bandes immer noch beschränkt sein, zum Beispiel
+wenn die Maschine in eine Endlosschleife wie
+\begin{center}
+\def\h{0.4}
+\def\zustand#1#2{
+	\fill[color=white] #1 circle[radius=\h];
+	\draw #1 circle[radius=\h];
+	\node at #1 {$#2\mathstrut$};
+}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (A) at (0,0);
+\coordinate (B) at (3,0);
+\zustand{(A)}{q_x}
+\zustand{(B)}{q_y}
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (A) to[out=20,in=160] (B);
+\draw[<-,shorten >= 0.4cm,shorten <= 0.4cm] (A) to[out=-20,in=-160] (B);
+\node at ($0.5*(A)+0.5*(B)+(0,0.3)$) [above] {$.\to .,R$};
+\node at ($0.5*(A)+0.5*(B)+(0,-0.3)$) [below] {$.\to .,L$};
+\end{tikzpicture}
+\end{center}
+stecken bleibt.
+Der beschriebene Teil des zweiten Bandes ist aber in jedem Fall unbeschränkt.
+
+Die Maschine $S_0$ kann in eine Standardmaschine $S$ verwandelt werden.
+Die Maschine $S$ hat dann die Eigenschaft, dass sie genau dann einen
+unbeschränkten Bereich des Bandes beschreibt, wenn $M$ auf leerem
+Band anhält.
+
+Die Abbildung $f\colon M\mapsto S$ ist daher eine Reduktion
+$f \colon \textit{HALT}\varepsilon_{\text{TM}}\le B_{\text{TM}}$.
+Da $\textit{HALT}\varepsilon_{\text{TM}}$ nicht entscheidbar ist,
+kann auch $B_{\text{TM}}$ nicht entscheidbar sein.
+\end{loesung}
