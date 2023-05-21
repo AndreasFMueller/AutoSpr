@@ -2,9 +2,16 @@ Das 8-Damen-Problem verlangt vom Spieler, 8 Damen so auf einem Schachfeld
 zu platzieren, dass sie sich gegenseitig nicht schlagen können.
 Eine Dame kann eine andere Figure in der gleichen Zeile, Spalte oder
 in diagonaler Richtung schlagen.
+\begin{teilaufgaben}
+\item
 Formulieren Sie das Problem als Sprachproblem.
+\item
+Ist es entscheidbar?
+\end{teilaufgaben}
 
 \begin{loesung}
+\begin{teilaufgaben}
+\item
 Eine Lösung des $n$-Damen-Problems enthält in jeder Zeile und
 jeder Spalte des $n\times n$-Schachfeldes je genau eine Dame.
 Ausserdem muss sichergestellt sein, dass sich die Damen über
@@ -18,4 +25,12 @@ codiert, wobei die Zahl $r_i$ die Zeilennummer der Dame in Spalte $i$
 ist.
 Nicht alle diese Zeichenketten sind Lösungen, die Zeichenketten, die
 Lösungen beschreiben bilden die Sprache \textit{QUEENS}.
+\item
+Man kann alle möglichen Stellungen von Damen durchprobieren und prüfen,
+ob sie Lösungen sind.
+Da es nur endlich viele sind, nämlich $n^n$, ist dies möglich.
+Die Laufzeit ist bei dieser Vorgehensweise natürlich exponentiell, aber
+bei der Entscheidbarkeit steht dies nicht zur Diskussion.
+\qedhere
+\end{teilaufgaben}
 \end{loesung}
