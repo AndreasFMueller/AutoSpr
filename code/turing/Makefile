@@ -13,10 +13,10 @@ turing:	turing.c Makefile
 	gcc -o turing -g -Wall -O -std=c99 turing.c
 
 subtract:	turing
-	time ./turing -v -o 5 -s 78 -t data/subtracttape pgm/subtract
+	time ./turing -p 100000 -v -o 5 -s 78 -t data/subtracttape pgm/subtract
 
 beaver4:	turing 
-	./turing -o 20 -s 70 pgm/beaver4
+	./turing -p 100000 -v -o 20 -s 70 pgm/beaver4
 
 beaver3:	turing
 	./turing -c -p 100000 -v -o 20 -s 70 pgm/beaver3
