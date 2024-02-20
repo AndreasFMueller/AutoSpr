@@ -147,6 +147,18 @@ Also ist $L$ nicht regulär.
 \end{enumerate}
 \end{loesung}
 
+\begin{diskussion}
+Man kann das Argument auch mit dem Wort $w=\texttt{1}^N\texttt{0}^{f(N)}$
+durchführen.
+Der Teil $y$ wird dann nur  aus $\texttt{1}$ bestehen.
+Beim Pumpen nimmt die Anzahl der \texttt{1} also zu.
+Da $f$ streng monoton wachsen ist, nimmt die Anzahl $f(|w|_{\texttt{1}})$
+der erforderlichen Nullen  noch mehr zu.
+Nach genügend vielen Pumpoperationen reichen die Nullen nicht mehr und
+es entsteht ein Widerspruch, was wieder beweist, dass die Sprache nicht
+regulär ist.
+\end{diskussion}
+
 \begin{bewertung}
 Pumping-Lemma-Beweis: jeder Schritt ein Punkt:
 Annahme regulär ({\bf PL}) 1 Punkt,

@@ -24,9 +24,10 @@ buildchapter () {
 		echo Kapitel: ${kapitel}
 		echo Nummer: ${nummer}
 		echo Aufgabe: ${aufgabe}
-		pdf=vkf/${woche}.${kapitel}.`expr ${nummer} + 1`.pdf
+		nummer1=`expr ${nummer} - 1`
+		pdf=vkf/${woche}.${kapitel}.`expr ${nummer}`.pdf
 		sed 	-e 's/KAPITEL/'"${kapitel}"'/g' \
-			-e 's/NUMMER/'"${nummer}"'/g' \
+			-e 's/NUMMER/'"${nummer1}"'/g' \
 			-e 's/AUFGABE/'"${aufgabe}"'/g' vkf.template > vkf.tex
 		pdflatex --output-directory=work vkf.tex >/dev/null 2>&1
 		if [ -r work/vkf.pdf ]
