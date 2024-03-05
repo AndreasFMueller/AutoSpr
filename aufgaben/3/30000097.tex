@@ -1,0 +1,62 @@
+Konstruieren Sie einen endlichen Automaten, der Wörter gerader Länge
+über dem Alphabet $\Sigma=\{\texttt{0},\texttt{1}\}$ akzeptiert,
+und bereiten Sie ihn auf die Umwandlung in einen regulären Ausdruck vor.
+
+\begin{loesung}
+Wir brauchen zwei Zustände $q_e$ und $q_o$ für Wörter gerader und
+ungerader Länge.
+Startzustand ist $q_e$ für Wörter gerader Länge, denn das leere Wort
+$\varepsilon$ hat gerade Länge.
+Jedes verarbeitete Zeichen wechselt die Parität:
+\def\l{3}
+\def\r{0.4}
+\def\zustand#1#2#3{
+        \draw[color=#3] #1 circle[radius=\r];
+        \node[color=#3] at #1 {$#2\mathstrut$};
+}
+\def\akzeptierzustand#1#2#3{
+        \zustand{#1}{#2}{#3}
+        \draw[color=#3] #1 circle[radius={\r-0.05}];
+}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (qe) at (0,0);
+\coordinate (qo) at (\l,0);
+\draw[->,shorten >= 0.4cm] (-2,0) -- (qe);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (qo) to[out=-150,in=-30] (qe);
+\node at ({0.5*\l},0.8) {$\texttt{0},\texttt{1}$};
+\node at ({0.5*\l},-0.8) {$\texttt{0},\texttt{1}$};
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (qe) to[out=30,in=150] (qo);
+\akzeptierzustand{(qe)}{q_e}{black}
+\zustand{(qo)}{q_o}{black}
+\end{tikzpicture}
+\end{center}
+Dieser Automat muss jetzt umgewandelt werden in einen Automaten, genau
+einen Start- und einen Akzeptierzustand hat, die nicht übereinstimmen,
+und so, dass vom Startzustand nur Pfeile weggehen und im Akzeptierzustand
+nur Pfeile ankommen.
+Wir bezeichnen die neuen Zustände mit $S$ und $E$ und verbinden sie mit
+$\varepsilon$-Übergängen mit dem bisherigen Automaten:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (S) at (-\l,0);
+\coordinate (qe) at (0,0);
+\coordinate (E) at (\l,0);
+\coordinate (qo) at (0,-\l);
+\zustand{(S)}{S}{red}
+\zustand{(qe)}{q_e}{black}
+\zustand{(qo)}{q_o}{black}
+\akzeptierzustand{(E)}{E}{red}
+\draw[->,shorten >= 0.4cm,color=red] ($(S)+(-2,0)$) -- (S);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm,color=red] (S) -- (qe);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm,color=red] (qe) -- (E);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (qe) to[out=-60,in=60] (qo);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (qo) to[out=120,in=-120] (qe);
+\node[color=red] at ($0.5*(S)+0.5*(qe)$) [above] {$\varepsilon$};
+\node[color=red] at ($0.5*(E)+0.5*(qe)$) [above] {$\varepsilon$};
+\node at (-0.5,{-0.5*\l}) [left] {$\texttt{0},\texttt{1}$};
+\node at (0.5,{-0.5*\l}) [right] {$\texttt{0},\texttt{1}$};
+\end{tikzpicture}
+\end{center}
+\end{loesung}
+
