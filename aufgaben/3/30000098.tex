@@ -1,0 +1,20 @@
+Finden Sie reguläre Ausdrücke für die folgenden Sprachen:
+\begin{teilaufgaben}
+\item
+$L=\{w\in\{\texttt{0},\texttt{1}\}^*\mid |w|_{\texttt{0}}=1\}$
+\item
+$L=\{w\in\{\texttt{0},\texttt{1}\}^*\mid |w|_{\texttt{0}}=1\vee |w|_{\texttt{1}}=1\}$
+\item
+$L=\{w\in\{\texttt{0},\texttt{1}\}^*\mid \text{$w$ endet mit zwei Nullen}\}$
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item $\texttt{0}{*}\texttt{1}\texttt{0}*$
+\item $
+(\texttt{0}{*}\texttt{1}\texttt{0}*)|(\texttt{1}{*}\texttt{0}\texttt{1}*)
+$
+\item $(\texttt{0}|\texttt{1}){*}\texttt{00}$
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
