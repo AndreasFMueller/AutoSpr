@@ -16,67 +16,276 @@ Teilaufgaben a)-e) auf einen minimalen DEA.
 \themaL{Mengenoperationen fur regulare Sprachen}{Mengenoperationen für reguläre Sprachen}
 
 \begin{loesung}
+\def\zustand#1#2{
+	\draw #1 circle[radius=0.4];
+	\node at #1 {#2};
+}
+\def\akzeptierzustand#1#2{
+	\zustand{#1}{#2}
+	\draw #1 circle[radius=0.35];
+}
+\def\pfeil#1#2{
+	\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] #1 -- #2;
+}
 \begin{teilaufgaben}
 \item Ein einfacher NEA für $L_1$ ist
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*\txt{}\ar[r]
-        &{q_0} \ar[r]^{\tt 1} \ar@(dr,dl)^{{\tt 0},{\tt 1}}
-                &{q_1} \ar[r]^{\tt 1}
-                        &*++[o][F=]{q_2}\ar@(ur,dr)^{{\tt 0},{\tt 1}}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (s) at (-2,0);
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (2,0);
+\coordinate (q2) at (4,0);
+\zustand{(q0)}{$q_0$}
+\zustand{(q1)}{$q_1$}
+\akzeptierzustand{(q2)}{$q_2$}
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (s) -- (q0);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q0) -- (q1);
+\node at ($0.5*(q0)+0.5*(q1)$) [above] {\texttt{1}};
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q1) -- (q2);
+\node at ($0.5*(q1)+0.5*(q2)$) [above] {\texttt{1}};
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q0) to[out=-45,in=-135,distance=1cm] (q0);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q2) to[out=45,in=-45,distance=1cm] (q2);
+\node at ($(q2)+(1,0)$) {\texttt{0},\texttt{1}};
+\node at ($(q0)+(0,-1)$) {\texttt{0},\texttt{1}};
+\end{tikzpicture}
+\end{center}
 Diesen NEA können wir jetzt mit dem Standardalgorithmus in einen
 DEA umwandeln:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-        &{q_{001}} \ar@(ur,ul)_{\tt 0} \ar@/^/[rdd]^{\tt 1}
-                &*++[o][F=]{q_{110}}\ar[ddl]_{{\tt 0},{\tt 1}}
-\\
-q_{000}\ar@(ul,dl)_{{\tt 0},{\tt 1}}
-        &{q_{010}} \ar[l]^{\tt 0} \ar[d]^{\tt 1}
-                &*++[o][F=]{q_{101}} \ar@(u,ur)^{\tt 0} \ar@/^/[r]^{\tt 1}
-                        &*++[o][F=]{q_{111}} \ar@/^/[l]^{\tt 0}
-                                \ar@(ur,dr)^{\tt 1}
-\\
-*+\txt{}
-        &*++[o][F=]{q_{100}} \ar@(dl,dr)_{{\tt 0},{\tt 1}}
-                &q_{011} \ar@/^/[uul]^{\tt 0} \ar[ur]_{\tt 1}
-}
-\]
+\begin{center}
+\def\l{2.5}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q000) at (0,0);
+\coordinate (q001) at (\l,\l);
+\coordinate (q010) at (\l,0);
+\coordinate (q100) at (\l,-\l);
+\coordinate (q110) at ({2*\l},\l);
+\coordinate (q101) at ({2*\l},0);
+\coordinate (q011) at ({2*\l},-\l);
+\coordinate (q111) at ({3*\l},0);
+\node at (q000) {$\emptyset$};
+\node at (q001) {$\{q_0\}$};
+\node at (q010) {$\{q_1\}$};
+\node at (q100) {$\{q_2\}$};
+\node at (q110) {$\overline{\{q_0\}}$};
+\node at (q101) {$\overline{\{q_1\}}$};
+\node at (q011) {$\overline{\{q_2\}}$};
+\node at (q111) {$Q$};
+\draw (q000) circle[radius=0.5];
+\draw (q001) circle[radius=0.5];
+\draw (q010) circle[radius=0.5];
+\draw (q100) circle[radius=0.5];
+\draw (q100) circle[radius=0.45];
+\draw (q110) circle[radius=0.5];
+\draw (q110) circle[radius=0.45];
+\draw (q101) circle[radius=0.5];
+\draw (q101) circle[radius=0.45];
+\draw (q011) circle[radius=0.5];
+\draw (q111) circle[radius=0.5];
+\draw (q111) circle[radius=0.45];
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(0,\l) -- (q001);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q010) -- (q000);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q010) -- (q100);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q011) -- (q111);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q110) -- (q100);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q101) to[out=20,in=160] (q111);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q111) to[out=-160,in=-20] (q101);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q111) to[out=30,in=-30,distance=1.4cm] (q111);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q101) to[out=30,in=90,distance=1.4cm] (q101);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q001) to[out=60,in=120,distance=1.4cm] (q001);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q000) to[out=150,in=-150,distance=1.4cm] (q000);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q001) to[out=-53.4,in=106.6] (q011);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q011) to[out=126.6,in=-73.4] (q001);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q100) to[out=150,in=-150,distance=1.4cm] (q100);
+\node at ($(q001)+(0.55,0.8)$) {\texttt{0}};
+\node at ($(q101)+(0.75,1.0)$) {\texttt{0}};
+\node at ($0.5*(q000)+0.5*(q010)$) [above] {\texttt{0}};
+\node at ($0.5*(q010)+0.5*(q100)$) [left] {\texttt{1}};
+\node at ($0.5*(q011)+0.5*(q111)$) [below right] {\texttt{1}};
+\node at ($0.5*(q101)+0.5*(q111)+(0,0.5)$) {\texttt{1}};
+\node at ($0.5*(q101)+0.5*(q111)+(0,-0.5)$) {\texttt{0}};
+\node at ($(q100)+(-1.4,0)$) {\texttt{0},\texttt{1}};
+\node at ($(q000)+(-1.4,0)$) {\texttt{0},\texttt{1}};
+\node at ($(q111)+(1.3,0)$) {\texttt{1}};
+\node at ($0.8*(q110)+0.2*(q100)+(0.1,0)$) [above left] {\texttt{0},\texttt{1}};
+\node at ($0.2*(q001)+0.8*(q011)+(0.1,0)$) [right] {\texttt{1}};
+\node at ($0.8*(q001)+0.2*(q011)+(-0.1,0)$) [left] {\texttt{0}};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[r]
+%        &{q_{001}} \ar@(ur,ul)_{\tt 0} \ar@/^/[rdd]^{\tt 1}
+%                &*++[o][F=]{q_{110}}\ar[ddl]_{{\tt 0},{\tt 1}}
+%\\
+%q_{000}\ar@(ul,dl)_{{\tt 0},{\tt 1}}
+%        &{q_{010}} \ar[l]^{\tt 0} \ar[d]^{\tt 1}
+%                &*++[o][F=]{q_{101}} \ar@(u,ur)^{\tt 0} \ar@/^/[r]^{\tt 1}
+%                        &*++[o][F=]{q_{111}} \ar@/^/[l]^{\tt 0}
+%                                \ar@(ur,dr)^{\tt 1}
+%\\
+%*+\txt{}
+%        &*++[o][F=]{q_{100}} \ar@(dl,dr)_{{\tt 0},{\tt 1}}
+%                &q_{011} \ar@/^/[uul]^{\tt 0} \ar[ur]_{\tt 1}
+%}
+%\]
 Eliminieren wir daraus die nicht erreichbaren Zustände, bleibt der
 DEA
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-        &{q_{001}} \ar@(ur,ul)_{\tt 0} \ar@/^/[rdd]^{\tt 1}
-\\
-*+\txt{}
-        &*+\txt{}
-                &*++[o][F=]{q_{101}} \ar@(u,ur)^{\tt 0} \ar@/^/[r]^{\tt 1}
-                        &*++[o][F=]{q_{111}} \ar@/^/[l]^{\tt 0}
-                                \ar@(ur,dr)^{\tt 1}
-\\
-*+\txt{}
-        &*+\txt{}
-                &q_{011} \ar@/^/[uul]^{\tt 0} \ar[ur]_{\tt 1}
-}
-\]
+\begin{center}
+\def\l{2.5}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q000) at (0,0);
+\coordinate (q001) at (\l,\l);
+\coordinate (q010) at (\l,0);
+\coordinate (q100) at (\l,-\l);
+\coordinate (q110) at ({2*\l},\l);
+\coordinate (q101) at ({2*\l},0);
+\coordinate (q011) at ({2*\l},-\l);
+\coordinate (q111) at ({3*\l},0);
+%\node at (q000) {$\emptyset$};
+\node at (q001) {$\{q_0\}$};
+%\node at (q010) {$\{q_1\}$};
+%\node at (q100) {$\{q_2\}$};
+%\node at (q110) {$\overline{\{q_0\}}$};
+\node at (q101) {$\overline{\{q_1\}}$};
+\node at (q011) {$\overline{\{q_2\}}$};
+\node at (q111) {$Q$};
+%\draw (q000) circle[radius=0.5];
+\draw (q001) circle[radius=0.5];
+%\draw (q010) circle[radius=0.5];
+%\draw (q100) circle[radius=0.5];
+%\draw (q100) circle[radius=0.45];
+%\draw (q110) circle[radius=0.5];
+%\draw (q110) circle[radius=0.45];
+\draw (q101) circle[radius=0.5];
+\draw (q101) circle[radius=0.45];
+\draw (q011) circle[radius=0.5];
+\draw (q111) circle[radius=0.5];
+\draw (q111) circle[radius=0.45];
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(0,\l) -- (q001);
+%\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+%	(q010) -- (q000);
+%\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+%	(q010) -- (q100);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q011) -- (q111);
+%\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+%	(q110) -- (q100);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q101) to[out=20,in=160] (q111);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q111) to[out=-160,in=-20] (q101);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q111) to[out=30,in=-30,distance=1.4cm] (q111);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q101) to[out=30,in=90,distance=1.4cm] (q101);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q001) to[out=60,in=120,distance=1.4cm] (q001);
+%\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+%	(q000) to[out=150,in=-150,distance=1.4cm] (q000);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q001) to[out=-53.4,in=106.6] (q011);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+	(q011) to[out=126.6,in=-73.4] (q001);
+%\draw[->,shorten >= 0.5cm,shorten <= 0.5cm]
+%	(q100) to[out=150,in=-150,distance=1.4cm] (q100);
+\node at ($(q001)+(0.55,0.8)$) {\texttt{0}};
+\node at ($(q101)+(0.75,1.0)$) {\texttt{0}};
+%\node at ($0.5*(q000)+0.5*(q010)$) [above] {\texttt{0}};
+%\node at ($0.5*(q010)+0.5*(q100)$) [left] {\texttt{1}};
+\node at ($0.5*(q011)+0.5*(q111)$) [below right] {\texttt{1}};
+\node at ($0.5*(q101)+0.5*(q111)+(0,0.5)$) {\texttt{1}};
+\node at ($0.5*(q101)+0.5*(q111)+(0,-0.5)$) {\texttt{0}};
+%\node at ($(q100)+(-1.4,0)$) {\texttt{0},\texttt{1}};
+%\node at ($(q000)+(-1.4,0)$) {\texttt{0},\texttt{1}};
+\node at ($(q111)+(1.3,0)$) {\texttt{1}};
+%\node at ($0.8*(q110)+0.2*(q100)+(0.1,0)$) [above left] {\texttt{0},\texttt{1}};
+\node at ($0.2*(q001)+0.8*(q011)+(0.1,0)$) [right] {\texttt{1}};
+\node at ($0.8*(q001)+0.2*(q011)+(-0.1,0)$) [left] {\texttt{0}};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[r]
+%        &{q_{001}} \ar@(ur,ul)_{\tt 0} \ar@/^/[rdd]^{\tt 1}
+%\\
+%*+\txt{}
+%        &*+\txt{}
+%                &*++[o][F=]{q_{101}} \ar@(u,ur)^{\tt 0} \ar@/^/[r]^{\tt 1}
+%                        &*++[o][F=]{q_{111}} \ar@/^/[l]^{\tt 0}
+%                                \ar@(ur,dr)^{\tt 1}
+%\\
+%*+\txt{}
+%        &*+\txt{}
+%                &q_{011} \ar@/^/[uul]^{\tt 0} \ar[ur]_{\tt 1}
+%}
+%\]
 Oder etwas kompakter:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-        &{q_{1}} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
-                &{q_{3}} \ar@/^/[l]^{\tt 0} \ar[r]^{\tt 1} 
-                        &*++[o][F=]{q_{7}} \ar@(ur,ul)_{\tt 1} \ar@/^/[r]^{\tt 0}
-                                &*++[o][F=]{q_{5}} \ar@(ur,ul)_{\tt 0} \ar@/^/[l]^{\tt 1}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q1) at (0,0);
+\coordinate (q3) at (2,0);
+\coordinate (q7) at (4,0);
+\coordinate (q5) at (6,0);
+\coordinate (s) at (-2,0);
+\zustand{(q1)}{$q_1$}
+\zustand{(q3)}{$q_3$}
+\akzeptierzustand{(q7)}{$q_7$}
+\akzeptierzustand{(q5)}{$q_5$}
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (s) -- (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q3) -- (q7);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=20,in=160] (q3);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q3) to[out=-160,in=-20] (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q7) to[out=20,in=160] (q5);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q5) to[out=-160,in=-20] (q7);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=60,in=120,distance=1.4cm] (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q5) to[out=60,in=120,distance=1.4cm] (q5);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q7) to[out=60,in=120,distance=1.4cm] (q7);
+\node at ($(q1)+(0,1.25)$) {\texttt{0}};
+\node at ($(q7)+(0,1.25)$) {\texttt{1}};
+\node at ($(q5)+(0,1.25)$) {\texttt{0}};
+\node at ($0.5*(q3)+0.5*(q7)$) [above] {\texttt{1}};
+\node at ($0.5*(q1)+0.5*(q3)+(0,0.5)$) {\texttt{1}};
+\node at ($0.5*(q7)+0.5*(q5)+(0,0.5)$) {\texttt{0}};
+\node at ($0.5*(q1)+0.5*(q3)+(0,-0.5)$) {\texttt{0}};
+\node at ($0.5*(q5)+0.5*(q7)+(0,-0.5)$) {\texttt{1}};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[r]
+%        &{q_{1}} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
+%                &{q_{3}} \ar@/^/[l]^{\tt 0} \ar[r]^{\tt 1} 
+%                        &*++[o][F=]{q_{7}} \ar@(ur,ul)_{\tt 1} \ar@/^/[r]^{\tt 0}
+%                                &*++[o][F=]{q_{5}} \ar@(ur,ul)_{\tt 0} \ar@/^/[l]^{\tt 1}
+%}
+%\]
 Es ist jedoch noch nicht klar, ob dieser DEA minimal ist. Daher wenden
 wir den Algorithmus für den Minimalautomaten an, um möglicherweise
 äquivalente Zustände zu finden. Nach der Markierung von Paaren aus
@@ -109,93 +318,303 @@ $q_5$&$\otimes$&$\otimes$&         &$\equiv$\\
 Da das Paar $(q_5,q_7)$  nicht als nicht-äquivalent
 markiert werden kann, müssen die beiden Zustände äquivalent sein,
 so dass der minimale Automat $A_1$
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-        &{q_{1}} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
-                &{q_{3}} \ar@/^/[l]^{\tt 0} \ar[r]^{\tt 1} 
-                        &*++[o][F=]{q_{7}} \ar@(dr,ur)_{{\tt 0},{\tt 1}}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (s) at (-2,0);
+\coordinate (q1) at (0,0);
+\coordinate (q3) at (2,0);
+\coordinate (q7) at (4,0);
+\zustand{(q1)}{$q_1$}
+\zustand{(q3)}{$q_3$}
+\akzeptierzustand{(q7)}{$q_7$}
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(s) -- (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q3) -- (q7);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=60,in=120,distance=1.4cm] (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q7) to[out=-20,in=30,distance=1.4cm] (q7);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=20,in=160] (q3);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q3) to[out=-160,in=-20] (q1);
+\node at ($(q7)+(1.4,0)$) {\texttt{0},\texttt{1}};
+\node at ($0.5*(q3)+0.5*(q7)$) [above] {\texttt{1}};
+\node at ($0.5*(q1)+0.5*(q3)+(0,0.5)$) {\texttt{1}};
+\node at ($0.5*(q1)+0.5*(q3)+(0,-0.5)$) {\texttt{0}};
+\node at ($(q1)+(0,1.3)$) {\texttt{0}};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[r]
+%        &{q_{1}} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
+%                &{q_{3}} \ar@/^/[l]^{\tt 0} \ar[r]^{\tt 1} 
+%                        &*++[o][F=]{q_{7}} \ar@(dr,ur)_{{\tt 0},{\tt 1}}
+%}
+%\]
 ist.
 \item
 Der Automat $A_2$ für die durch drei teilbaren Binärzahlen wurde in der
 Vorlesung entwickelt:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-        &*++[o][F=]{0} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
-                &{1} \ar@/^/[r]^{\tt 0} \ar@/^/[l]^{\tt 1}
-                        &{2} \ar@/^/[l]^{\tt 0} \ar@(ur,dr)^{\tt 1}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (s) at (0,2);
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (2,0);
+\coordinate (q2) at (4,0);
+\akzeptierzustand{(q0)}{$0$}
+\zustand{(q1)}{$1$}
+\zustand{(q2)}{$2$}
+\pfeil{(s)}{(q0)}
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q0) to[out=150,in=-150,distance=1.4cm] (q0);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q2) to[out=30,in=-30,distance=1.4cm] (q2);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q0) to[out=20,in=160] (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=20,in=160] (q2);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q2) to[out=-160,in=-20] (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=-160,in=-20] (q0);
+\node at ($(q0)+(-1.3,0)$) {\texttt{0}};
+\node at ($(q2)+(1.3,0)$) {\texttt{1}};
+\node at ($0.5*(q0)+0.5*(q1)$) {\texttt{1}};
+\node at ($0.5*(q1)+0.5*(q2)$) {\texttt{0}};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[r]
+%        &*++[o][F=]{0} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
+%                &{1} \ar@/^/[r]^{\tt 0} \ar@/^/[l]^{\tt 1}
+%                        &{2} \ar@/^/[l]^{\tt 0} \ar@(ur,dr)^{\tt 1}
+%}
+%\]
 Für die folgenden Teilaufgaben ist jeweils der Produktautomat
 zu konstruieren. Wir tun dies jeweils so, dass der Automat für
 $L_1$ horizontal, derjenige für $L_2$ vertikal dargestellt wird.
 Daher hier nochmals der Automat für $L_2$ vertikal dargestellt
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-        &*++[o][F=]{0} \ar@(ur,dr)_{\tt 0} \ar@/^/[d]^{\tt 1}
-\\
-*+\txt{}
-        &{1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
-\\
-*+\txt{}
-        &{2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (s) at (-2,0);
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (0,-2);
+\coordinate (q2) at (0,-4);
+\akzeptierzustand{(q0)}{$0$}
+\zustand{(q1)}{$1$}
+\zustand{(q2)}{$2$}
+\pfeil{(s)}{(q0)}
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q0) to[out=60,in=120,distance=1.4cm] (q0);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q2) to[out=-60,in=-120,distance=1.4cm] (q2);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q0) to[out=-70,in=70] (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=-70,in=70] (q2);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q2) to[out=110,in=-110] (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=110,in=-110] (q0);
+\node at ($(q0)+(0,1.3)$) {\texttt{0}};
+\node at ($(q2)+(0,-1.3)$) {\texttt{1}};
+\node at ($0.5*(q0)+0.5*(q1)$) {\texttt{1}};
+\node at ($0.5*(q1)+0.5*(q2)$) {\texttt{0}};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[r]
+%        &*++[o][F=]{0} \ar@(ur,dr)_{\tt 0} \ar@/^/[d]^{\tt 1}
+%\\
+%*+\txt{}
+%        &{1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
+%\\
+%*+\txt{}
+%        &{2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
+%}
+%\]
 Der Produktautomat ohne Akzeptierzustände ist dann:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[dr]
-\\
-*+\txt{}
-        &{q_1/0} \ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
-                &{q_3/0} \ar[l]_{\tt 0} \ar[dr]^{\tt 1}
-                        &{q_7/0} \ar@(ul,ur)^{\tt 0} \ar@/^/[d]^{\tt 1}
-\\
-*+\txt{}
-        &{q_1/1} \ar@/^/[d]^{\tt 0} \ar[ur]^{\tt 1}
-                &{q_3/1} \ar[dl]^{\tt 0} \ar[ur]^{\tt 1}
-                        &{q_7/1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
-\\
-*+\txt{}
-        &{q_1/2} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
-                &{q_3/2} \ar[ul]^{\tt 0} \ar[r]^{\tt 1}
-                        &{q_7/2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
-\\
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (s) at (-2,2);
+\coordinate (q10) at (0,0);
+\coordinate (q30) at (2,0);
+\coordinate (q70) at (4,0);
+\coordinate (q11) at (0,-2);
+\coordinate (q31) at (2,-2);
+\coordinate (q71) at (4,-2);
+\coordinate (q12) at (0,-4);
+\coordinate (q32) at (2,-4);
+\coordinate (q72) at (4,-4);
+\zustand{(q10)}{$\scriptstyle q_1/0$}
+\zustand{(q30)}{$\scriptstyle q_3/0$}
+\zustand{(q70)}{$\scriptstyle q_7/0$}
+\zustand{(q11)}{$\scriptstyle q_1/1$}
+\zustand{(q31)}{$\scriptstyle q_3/1$}
+\zustand{(q71)}{$\scriptstyle q_7/1$}
+\zustand{(q12)}{$\scriptstyle q_1/2$}
+\zustand{(q32)}{$\scriptstyle q_3/2$}
+\zustand{(q72)}{$\scriptstyle q_7/2$}
+\pfeil{(s)}{(q10)}
+\pfeil{(q30)}{(q10)}
+\pfeil{(q10)}{(q31)}
+\pfeil{(q30)}{(q71)}
+\pfeil{(q11)}{(q30)}
+\pfeil{(q31)}{(q70)}
+\pfeil{(q31)}{(q12)}
+\pfeil{(q12)}{(q32)}
+\pfeil{(q32)}{(q11)}
+\pfeil{(q32)}{(q72)}
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q10) to[out=60,in=120,distance=1.4cm] (q10);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q70) to[out=60,in=120,distance=1.4cm] (q70);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q72) to[out=-60,in=-120,distance=1.4cm] (q72);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q70) to[out=-70,in=70] (q71);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q71) to[out=-70,in=70] (q72);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q11) to[out=-70,in=70] (q12);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q71) to[out=110,in=-110] (q70);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q72) to[out=110,in=-110] (q71);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q12) to[out=110,in=-110] (q11);
+\node at ($0.5*(q10)+0.5*(q30)$) [above] {\texttt{0}};
+\node at ($0.5*(q12)+0.5*(q32)$) [below] {\texttt{1}};
+\node at ($0.5*(q32)+0.5*(q72)$) [below] {\texttt{1}};
+\node at ($0.5*(q70)+0.5*(q71)$) {\texttt{1}};
+\node at ($0.5*(q71)+0.5*(q72)$) {\texttt{0}};
+\node at ($0.5*(q11)+0.5*(q12)$) {\texttt{0}};
+\node at ($(q10)+(0,1.3)$) {\texttt{0}};
+\node at ($(q70)+(0,1.3)$) {\texttt{0}};
+\node at ($(q72)+(0,-1.3)$) {\texttt{1}};
+\node at ($0.5*(q12)+0.5*(q31)+(0.5,0)$) {\texttt{0}};
+\node at ($0.5*(q10)+0.5*(q31)+(-0.5,0)$) {\texttt{1}};
+\node at ($0.5*(q30)+0.5*(q71)+(-0.5,0)$) {\texttt{1}};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[dr]
+%\\
+%*+\txt{}
+%        &{q_1/0} \ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
+%                &{q_3/0} \ar[l]_{\tt 0} \ar[dr]^{\tt 1}
+%                        &{q_7/0} \ar@(ul,ur)^{\tt 0} \ar@/^/[d]^{\tt 1}
+%\\
+%*+\txt{}
+%        &{q_1/1} \ar@/^/[d]^{\tt 0} \ar[ur]^{\tt 1}
+%                &{q_3/1} \ar[dl]^{\tt 0} \ar[ur]^{\tt 1}
+%                        &{q_7/1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
+%\\
+%*+\txt{}
+%        &{q_1/2} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
+%                &{q_3/2} \ar[ul]^{\tt 0} \ar[r]^{\tt 1}
+%                        &{q_7/2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
+%\\
+%}
+%\]
 
 \item
 Die Sprache $L_1\cap L_2$ wird von folgendem Produktautomaten akzeptiert:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[dr]
-\\
-*+\txt{}
-        &{q_1/0} \ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
-                &{q_3/0} \ar[l]_{\tt 0} \ar[dr]^{\tt 1}
-                        &*++[o][F=]{q_7/0} \ar@(ul,ur)^{\tt 0} \ar@/^/[d]^{\tt 1}
-\\
-*+\txt{}
-        &{q_1/1} \ar@/^/[d]^{\tt 0} \ar[ur]^{\tt 1}
-                &{q_3/1} \ar[dl]^{\tt 0} \ar[ur]^{\tt 1}
-                        &{q_7/1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
-\\
-*+\txt{}
-        &{q_1/2} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
-                &{q_3/2} \ar[ul]^{\tt 0} \ar[r]^{\tt 1}
-                        &{q_7/2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
-\\
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (s) at (-2,2);
+\coordinate (q10) at (0,0);
+\coordinate (q30) at (2,0);
+\coordinate (q70) at (4,0);
+\coordinate (q11) at (0,-2);
+\coordinate (q31) at (2,-2);
+\coordinate (q71) at (4,-2);
+\coordinate (q12) at (0,-4);
+\coordinate (q32) at (2,-4);
+\coordinate (q72) at (4,-4);
+\zustand{(q10)}{$\scriptstyle q_1/0$}
+\zustand{(q30)}{$\scriptstyle q_3/0$}
+\akzeptierzustand{(q70)}{$\scriptstyle q_7/0$}
+\zustand{(q11)}{$\scriptstyle q_1/1$}
+\zustand{(q31)}{$\scriptstyle q_3/1$}
+\zustand{(q71)}{$\scriptstyle q_7/1$}
+\zustand{(q12)}{$\scriptstyle q_1/2$}
+\zustand{(q32)}{$\scriptstyle q_3/2$}
+\zustand{(q72)}{$\scriptstyle q_7/2$}
+\pfeil{(s)}{(q10)}
+\pfeil{(q30)}{(q10)}
+\pfeil{(q10)}{(q31)}
+\pfeil{(q30)}{(q71)}
+\pfeil{(q11)}{(q30)}
+\pfeil{(q31)}{(q70)}
+\pfeil{(q31)}{(q12)}
+\pfeil{(q12)}{(q32)}
+\pfeil{(q32)}{(q11)}
+\pfeil{(q32)}{(q72)}
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q10) to[out=60,in=120,distance=1.4cm] (q10);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q70) to[out=60,in=120,distance=1.4cm] (q70);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q72) to[out=-60,in=-120,distance=1.4cm] (q72);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q70) to[out=-70,in=70] (q71);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q71) to[out=-70,in=70] (q72);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q11) to[out=-70,in=70] (q12);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q71) to[out=110,in=-110] (q70);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q72) to[out=110,in=-110] (q71);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q12) to[out=110,in=-110] (q11);
+\node at ($0.5*(q10)+0.5*(q30)$) [above] {\texttt{0}};
+\node at ($0.5*(q12)+0.5*(q32)$) [below] {\texttt{1}};
+\node at ($0.5*(q32)+0.5*(q72)$) [below] {\texttt{1}};
+\node at ($0.5*(q70)+0.5*(q71)$) {\texttt{1}};
+\node at ($0.5*(q71)+0.5*(q72)$) {\texttt{0}};
+\node at ($0.5*(q11)+0.5*(q12)$) {\texttt{0}};
+\node at ($(q10)+(0,1.3)$) {\texttt{0}};
+\node at ($(q70)+(0,1.3)$) {\texttt{0}};
+\node at ($(q72)+(0,-1.3)$) {\texttt{1}};
+\node at ($0.5*(q12)+0.5*(q31)+(0.5,0)$) {\texttt{0}};
+\node at ($0.5*(q10)+0.5*(q31)+(-0.5,0)$) {\texttt{1}};
+\node at ($0.5*(q30)+0.5*(q71)+(-0.5,0)$) {\texttt{1}};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[dr]
+%\\
+%*+\txt{}
+%        &{q_1/0} \ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
+%                &{q_3/0} \ar[l]_{\tt 0} \ar[dr]^{\tt 1}
+%                        &*++[o][F=]{q_7/0} \ar@(ul,ur)^{\tt 0} \ar@/^/[d]^{\tt 1}
+%\\
+%*+\txt{}
+%        &{q_1/1} \ar@/^/[d]^{\tt 0} \ar[ur]^{\tt 1}
+%                &{q_3/1} \ar[dl]^{\tt 0} \ar[ur]^{\tt 1}
+%                        &{q_7/1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
+%\\
+%*+\txt{}
+%        &{q_1/2} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
+%                &{q_3/2} \ar[ul]^{\tt 0} \ar[r]^{\tt 1}
+%                        &{q_7/2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
+%\\
+%}
+%\]
 Es ist aber wieder nicht klar, ob dieser Automat minimal ist. Daher
 wenden wir erneut den Algorithmus für den Minimalautomaten an. Im
 ersten Durchgang erhalten wir
@@ -260,28 +679,91 @@ Die Mengendifferenz $L_1\setminus L_2$ wird akzeptiert von dem Automaten,
 der als Akzeptierzustände die Paare von Akzeptierzuständen hat, welche
 aus Akzeptierzuständen von $A_1$ und Nicht-Akzeptierzuständen von $A_2$
 bestehen:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[dr]
-\\
-*+\txt{}
-        &{q_1/0} \ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
-                &{q_3/0} \ar[l]_{\tt 0} \ar[dr]^{\tt 1}
-                        &{q_7/0} \ar@(ul,ur)^{\tt 0} \ar@/^/[d]^{\tt 1}
-\\
-*+\txt{}
-        &{q_1/1} \ar@/^/[d]^{\tt 0} \ar[ur]^{\tt 1}
-                &{q_3/1} \ar[dl]^{\tt 0} \ar[ur]^{\tt 1}
-                        &*++[o][F=]{q_7/1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
-\\
-*+\txt{}
-        &{q_1/2} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
-                &{q_3/2} \ar[ul]^{\tt 0} \ar[r]^{\tt 1}
-                        &*++[o][F=]{q_7/2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
-\\
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (s) at (-2,2);
+\coordinate (q10) at (0,0);
+\coordinate (q30) at (2,0);
+\coordinate (q70) at (4,0);
+\coordinate (q11) at (0,-2);
+\coordinate (q31) at (2,-2);
+\coordinate (q71) at (4,-2);
+\coordinate (q12) at (0,-4);
+\coordinate (q32) at (2,-4);
+\coordinate (q72) at (4,-4);
+\zustand{(q10)}{$\scriptstyle q_1/0$}
+\zustand{(q30)}{$\scriptstyle q_3/0$}
+\zustand{(q70)}{$\scriptstyle q_7/0$}
+\zustand{(q11)}{$\scriptstyle q_1/1$}
+\zustand{(q31)}{$\scriptstyle q_3/1$}
+\akzeptierzustand{(q71)}{$\scriptstyle q_7/1$}
+\zustand{(q12)}{$\scriptstyle q_1/2$}
+\zustand{(q32)}{$\scriptstyle q_3/2$}
+\akzeptierzustand{(q72)}{$\scriptstyle q_7/2$}
+\pfeil{(s)}{(q10)}
+\pfeil{(q30)}{(q10)}
+\pfeil{(q10)}{(q31)}
+\pfeil{(q30)}{(q71)}
+\pfeil{(q11)}{(q30)}
+\pfeil{(q31)}{(q70)}
+\pfeil{(q31)}{(q12)}
+\pfeil{(q12)}{(q32)}
+\pfeil{(q32)}{(q11)}
+\pfeil{(q32)}{(q72)}
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q10) to[out=60,in=120,distance=1.4cm] (q10);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q70) to[out=60,in=120,distance=1.4cm] (q70);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q72) to[out=-60,in=-120,distance=1.4cm] (q72);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q70) to[out=-70,in=70] (q71);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q71) to[out=-70,in=70] (q72);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q11) to[out=-70,in=70] (q12);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q71) to[out=110,in=-110] (q70);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q72) to[out=110,in=-110] (q71);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q12) to[out=110,in=-110] (q11);
+\node at ($0.5*(q10)+0.5*(q30)$) [above] {\texttt{0}};
+\node at ($0.5*(q12)+0.5*(q32)$) [below] {\texttt{1}};
+\node at ($0.5*(q32)+0.5*(q72)$) [below] {\texttt{1}};
+\node at ($0.5*(q70)+0.5*(q71)$) {\texttt{1}};
+\node at ($0.5*(q71)+0.5*(q72)$) {\texttt{0}};
+\node at ($0.5*(q11)+0.5*(q12)$) {\texttt{0}};
+\node at ($(q10)+(0,1.3)$) {\texttt{0}};
+\node at ($(q70)+(0,1.3)$) {\texttt{0}};
+\node at ($(q72)+(0,-1.3)$) {\texttt{1}};
+\node at ($0.5*(q12)+0.5*(q31)+(0.5,0)$) {\texttt{0}};
+\node at ($0.5*(q10)+0.5*(q31)+(-0.5,0)$) {\texttt{1}};
+\node at ($0.5*(q30)+0.5*(q71)+(-0.5,0)$) {\texttt{1}};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[dr]
+%\\
+%*+\txt{}
+%        &{q_1/0} \ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
+%                &{q_3/0} \ar[l]_{\tt 0} \ar[dr]^{\tt 1}
+%                        &{q_7/0} \ar@(ul,ur)^{\tt 0} \ar@/^/[d]^{\tt 1}
+%\\
+%*+\txt{}
+%        &{q_1/1} \ar@/^/[d]^{\tt 0} \ar[ur]^{\tt 1}
+%                &{q_3/1} \ar[dl]^{\tt 0} \ar[ur]^{\tt 1}
+%                        &*++[o][F=]{q_7/1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
+%\\
+%*+\txt{}
+%        &{q_1/2} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
+%                &{q_3/2} \ar[ul]^{\tt 0} \ar[r]^{\tt 1}
+%                        &*++[o][F=]{q_7/2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
+%\\
+%}
+%\]
 Auch hier muss wieder mit Hilfe des Algorithmus für den Minimalautomaten
 sichergestellt werden, dass tatsächlich ein minimaler Automat vorliegt:
 \begin{center}
@@ -342,28 +824,91 @@ Somit sind alle Zustände nicht äquivalent, der Automat ist also minimal.
 Die Vereinigung $L_1\cup L_2$ wird akzeptiert von dem Automaten,
 der als Akzeptierzustände die Paare von Akzeptierzuständen hat, welche
 aus Akzeptierzuständen von $A_1$ oder von $A_2$ bestehen:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[dr]
-\\
-*+\txt{}
-        &*++[o][F=]{q_1/0} \ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
-                &*++[o][F=]{q_3/0} \ar[l]_{\tt 0} \ar[dr]^{\tt 1}
-                        &*++[o][F=]{q_7/0} \ar@(ul,ur)^{\tt 0} \ar@/^/[d]^{\tt 1}
-\\
-*+\txt{}
-        &{q_1/1} \ar@/^/[d]^{\tt 0} \ar[ur]^{\tt 1}
-                &{q_3/1} \ar[dl]^{\tt 0} \ar[ur]^{\tt 1}
-                        &*++[o][F=]{q_7/1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
-\\
-*+\txt{}
-        &{q_1/2} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
-                &{q_3/2} \ar[ul]^{\tt 0} \ar[r]^{\tt 1}
-                        &*++[o][F=]{q_7/2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
-\\
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (s) at (-2,2);
+\coordinate (q10) at (0,0);
+\coordinate (q30) at (2,0);
+\coordinate (q70) at (4,0);
+\coordinate (q11) at (0,-2);
+\coordinate (q31) at (2,-2);
+\coordinate (q71) at (4,-2);
+\coordinate (q12) at (0,-4);
+\coordinate (q32) at (2,-4);
+\coordinate (q72) at (4,-4);
+\akzeptierzustand{(q10)}{$\scriptstyle q_1/0$}
+\akzeptierzustand{(q30)}{$\scriptstyle q_3/0$}
+\akzeptierzustand{(q70)}{$\scriptstyle q_7/0$}
+\zustand{(q11)}{$\scriptstyle q_1/1$}
+\zustand{(q31)}{$\scriptstyle q_3/1$}
+\akzeptierzustand{(q71)}{$\scriptstyle q_7/1$}
+\zustand{(q12)}{$\scriptstyle q_1/2$}
+\zustand{(q32)}{$\scriptstyle q_3/2$}
+\akzeptierzustand{(q72)}{$\scriptstyle q_7/2$}
+\pfeil{(s)}{(q10)}
+\pfeil{(q30)}{(q10)}
+\pfeil{(q10)}{(q31)}
+\pfeil{(q30)}{(q71)}
+\pfeil{(q11)}{(q30)}
+\pfeil{(q31)}{(q70)}
+\pfeil{(q31)}{(q12)}
+\pfeil{(q12)}{(q32)}
+\pfeil{(q32)}{(q11)}
+\pfeil{(q32)}{(q72)}
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q10) to[out=60,in=120,distance=1.4cm] (q10);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q70) to[out=60,in=120,distance=1.4cm] (q70);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q72) to[out=-60,in=-120,distance=1.4cm] (q72);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q70) to[out=-70,in=70] (q71);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q71) to[out=-70,in=70] (q72);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q11) to[out=-70,in=70] (q12);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q71) to[out=110,in=-110] (q70);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q72) to[out=110,in=-110] (q71);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q12) to[out=110,in=-110] (q11);
+\node at ($0.5*(q10)+0.5*(q30)$) [above] {\texttt{0}};
+\node at ($0.5*(q12)+0.5*(q32)$) [below] {\texttt{1}};
+\node at ($0.5*(q32)+0.5*(q72)$) [below] {\texttt{1}};
+\node at ($0.5*(q70)+0.5*(q71)$) {\texttt{1}};
+\node at ($0.5*(q71)+0.5*(q72)$) {\texttt{0}};
+\node at ($0.5*(q11)+0.5*(q12)$) {\texttt{0}};
+\node at ($(q10)+(0,1.3)$) {\texttt{0}};
+\node at ($(q70)+(0,1.3)$) {\texttt{0}};
+\node at ($(q72)+(0,-1.3)$) {\texttt{1}};
+\node at ($0.5*(q12)+0.5*(q31)+(0.5,0)$) {\texttt{0}};
+\node at ($0.5*(q10)+0.5*(q31)+(-0.5,0)$) {\texttt{1}};
+\node at ($0.5*(q30)+0.5*(q71)+(-0.5,0)$) {\texttt{1}};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[dr]
+%\\
+%*+\txt{}
+%        &*++[o][F=]{q_1/0} \ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
+%                &*++[o][F=]{q_3/0} \ar[l]_{\tt 0} \ar[dr]^{\tt 1}
+%                        &*++[o][F=]{q_7/0} \ar@(ul,ur)^{\tt 0} \ar@/^/[d]^{\tt 1}
+%\\
+%*+\txt{}
+%        &{q_1/1} \ar@/^/[d]^{\tt 0} \ar[ur]^{\tt 1}
+%                &{q_3/1} \ar[dl]^{\tt 0} \ar[ur]^{\tt 1}
+%                        &*++[o][F=]{q_7/1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
+%\\
+%*+\txt{}
+%        &{q_1/2} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
+%                &{q_3/2} \ar[ul]^{\tt 0} \ar[r]^{\tt 1}
+%                        &*++[o][F=]{q_7/2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
+%\\
+%}
+%\]
 Auch hier muss wieder mit Hilfe des Algorithmus für den Minimalautomaten
 sichergestellt werden, dass tatsächlich ein minimaler Automat vorliegt:
 \begin{center}
@@ -405,52 +950,179 @@ Die verbleibenden Felder lassen sich nicht mehr als nicht äquivalent
 erkennen, also müss sie äquivalent sein. Man kann also die Zustände
 $q_7/0$, $q_7/1$ und $q_7/2$ zusammenlegen, und erhält so einen DEA
 mit nur noch 7 Zuständen:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-        &*++[o][F=]{10}\ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
-                &*++[o][F=]{30} \ar[l]^{\tt 0} \ar[dr]^{\tt 1}
-\\
-*+\txt{}
-        &{11} \ar[ur]^{\tt 1} \ar@/^/[d]^{\tt 0}
-                &{31} \ar[r]^{\tt 1} \ar[dl]^{\tt 0}
-                        &*++[o][F=]{7}\ar@(ur,dr)^{{\tt 0},{\tt 1}}
-\\
-*+\txt{}
-        &{12} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
-                &{32} \ar[ur]^{\tt 1} \ar[ul]^{\tt 0}
-}
-\]
+\begin{center}
+\def\l{2.0}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (s) at (-\l,0);
+\coordinate (q10) at (0,0);
+\coordinate (q30) at (\l,0);
+\coordinate (q11) at (0,-\l);
+\coordinate (q31) at (\l,-\l);
+\coordinate (q7) at ({2*\l},-\l);
+\coordinate (q12) at (0,{-2*\l});
+\coordinate (q32) at (\l,{-2*\l});
+\akzeptierzustand{(q10)}{$10$}
+\akzeptierzustand{(q30)}{$30$}
+\zustand{(q11)}{$11$}
+\zustand{(q31)}{$31$}
+\akzeptierzustand{(q7)}{$7$}
+\zustand{(q12)}{$12$}
+\zustand{(q32)}{$32$}
+\pfeil{(s)}{(q10)}
+\pfeil{(q10)}{(q31)}
+\pfeil{(q30)}{(q10)}
+\pfeil{(q30)}{(q7)}
+\pfeil{(q11)}{(q30)}
+\pfeil{(q31)}{(q7)}
+\pfeil{(q31)}{(q12)}
+\pfeil{(q12)}{(q32)}
+\pfeil{(q32)}{(q11)}
+\pfeil{(q32)}{(q7)}
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q10) to[out=60,in=120,distance=1.4cm] (q10);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q7) to[out=30,in=-30,distance=1.4cm] (q7);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q11) to[out=-70,in=70] (q12);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q12) to[out=110,in=-110] (q11);
+\node at ($0.5*(q10)+0.5*(q30)$) [above] {\texttt{0}};
+\node at ($0.5*(q30)+0.5*(q7)$) [above right] {\texttt{1}};
+\node at ($0.5*(q31)+0.5*(q7)$) [above] {\texttt{1}};
+\node at ($0.5*(q32)+0.5*(q7)$) [below right] {\texttt{1}};
+\node at ($0.5*(q12)+0.5*(q32)$) [below] {\texttt{1}};
+\node at ($0.5*(q11)+0.5*(q12)$) {\texttt{0}};
+\node at ($0.5*(q31)+0.5*(q32)+(-0.5,0)$) {\texttt{0}};
+\node at ($0.5*(q10)+0.5*(q11)+(0.5,0)$) {\texttt{1}};
+\node at ($(q7)+(1.4,0)$) {\texttt{0},\texttt{1}};
+\node at ($(q10)+(0,1.3)$) {\texttt{0}};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[r]
+%        &*++[o][F=]{10}\ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
+%                &*++[o][F=]{30} \ar[l]^{\tt 0} \ar[dr]^{\tt 1}
+%\\
+%*+\txt{}
+%        &{11} \ar[ur]^{\tt 1} \ar@/^/[d]^{\tt 0}
+%                &{31} \ar[r]^{\tt 1} \ar[dl]^{\tt 0}
+%                        &*++[o][F=]{7}\ar@(ur,dr)^{{\tt 0},{\tt 1}}
+%\\
+%*+\txt{}
+%        &{12} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
+%                &{32} \ar[ur]^{\tt 1} \ar[ul]^{\tt 0}
+%}
+%\]
 \item $L_6$ ist die Verkettung der zwei Sprachen $L_1$ und $L_2$.
 Den zugörigen NEA konstruiert man, indem man die beiden Teilautomaten
 mit einem $\varepsilon$-"Ubergang aneinanderhängt:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-        &{q_{1}} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
-                &{q_{3}} \ar@/^/[l]^{\tt 0} \ar[r]^{\tt 1} 
-                        &{q_7} \ar@(ur,ul)_{{\tt 0},{\tt 1}}
-				\ar[r]^{\varepsilon}
-        &*++[o][F=]{0} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
-                &{1} \ar@/^/[r]^{\tt 0} \ar@/^/[l]^{\tt 1}
-                        &{2} \ar@/^/[l]^{\tt 0} \ar@(ur,dr)^{\tt 1}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (s) at (-2,0);
+\coordinate (q1) at (0,0);
+\coordinate (q3) at (2,0);
+\coordinate (q7) at (4,0);
+\coordinate (r0) at (6,0);
+\coordinate (r1) at (8,0);
+\coordinate (r2) at (10,0);
+\zustand{(q1)}{$q_1$}
+\zustand{(q3)}{$q_3$}
+\zustand{(q7)}{$q_7$}
+\akzeptierzustand{(r0)}{$0$}
+\zustand{(r1)}{$1$}
+\zustand{(r2)}{$2$}
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(s) -- (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q3) -- (q7);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q7) -- (r0);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=20,in=160] (q3);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(r0) to[out=20,in=160] (r1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(r1) to[out=20,in=160] (r2);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(r2) to[out=-160,in=-20] (r1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(r1) to[out=-160,in=-20] (r0);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q3) to[out=-160,in=-20] (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=60,in=120,distance=1.4cm] (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q7) to[out=60,in=120,distance=1.4cm] (q7);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(r0) to[out=60,in=120,distance=1.4cm] (r0);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(r2) to[out=30,in=-30,distance=1.4cm] (r2);
+\node at ($0.5*(q3)+0.5*(q7)+(0,0.3)$) {\texttt{1}};
+\node at ($0.5*(q7)+0.5*(r0)+(0,0.3)$) {$\varepsilon$};
+\node at ($0.5*(q1)+0.5*(q3)+(0,0.5)$) {\texttt{1}};
+\node at ($0.5*(q1)+0.5*(q3)+(0,-0.5)$) {\texttt{0}};
+\node at ($0.5*(r0)+0.5*(r1)+(0,0.5)$) {\texttt{1}};
+\node at ($0.5*(r0)+0.5*(r1)+(0,-0.5)$) {\texttt{1}};
+\node at ($0.5*(r2)+0.5*(r1)+(0,0.5)$) {\texttt{0}};
+\node at ($0.5*(r2)+0.5*(r1)+(0,-0.5)$) {\texttt{0}};
+\node at ($(r2)+(1.2,0)$) {\texttt{1}};
+\node at ($(q7)+(0,1.3)$) {\texttt{0},\texttt{1}};
+\node at ($(r0)+(0,1.3)$) {\texttt{0}};
+\node at ($(q1)+(0,1.3)$) {\texttt{0}};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[r]
+%        &{q_{1}} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
+%                &{q_{3}} \ar@/^/[l]^{\tt 0} \ar[r]^{\tt 1} 
+%                        &{q_7} \ar@(ur,ul)_{{\tt 0},{\tt 1}}
+%				\ar[r]^{\varepsilon}
+%        &*++[o][F=]{0} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
+%                &{1} \ar@/^/[r]^{\tt 0} \ar@/^/[l]^{\tt 1}
+%                        &{2} \ar@/^/[l]^{\tt 0} \ar@(ur,dr)^{\tt 1}
+%}
+%\]
 \item
 Die Stern-Konstruktion liefert den folgenden Automaten für $L_7$
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-	&*++[o][F=]{*} \ar[r]^{\varepsilon}
-        &{q_{1}} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
-                &{q_{3}} \ar@/^/[l]^{\tt 0} \ar[r]^{\tt 1} 
-                        &{q_{7}} \ar@(dr,ur)_{{\tt 0},{\tt 1}}
-				\ar@/^20pt/[lll]^{\varepsilon}
-}
-\qedhere
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (s) at (-2,0);
+\coordinate (S) at (0,0);
+\coordinate (q1) at (2,0);
+\coordinate (q3) at (4,0);
+\coordinate (q7) at (6,0);
+\akzeptierzustand{(S)}{$*$}
+\zustand{(q1)}{$q_1$}
+\zustand{(q3)}{$q_3$}
+\zustand{(q7)}{$q_7$}
+\draw[->,shorten <= 0.4cm,shorten >= 0.4cm]
+	(s) -- (S);
+\draw[->,shorten <= 0.4cm,shorten >= 0.4cm]
+	(S) -- (q1);
+\draw[->,shorten <= 0.4cm,shorten >= 0.4cm]
+	(q3) -- (q7);
+\draw[->,shorten <= 0.4cm,shorten >= 0.4cm]
+	(q1) to[out=20,in=160] (q3);
+\draw[->,shorten <= 0.4cm,shorten >= 0.4cm]
+	(q3) to[out=-160,in=-20] (q1);
+\draw[->,shorten <= 0.4cm,shorten >= 0.4cm]
+	(q7) to[out=-30,in=30,distance=1.4cm] (q7);
+\draw[->,shorten <= 0.4cm,shorten >= 0.4cm]
+	(q1) to[out=60,in=120,distance=1.4cm] (q1);
+\draw[->,shorten <= 0.4cm,shorten >= 0.4cm]
+	(q7) to[out=-120,in=0] ($(q3)+(0,-1)$) -- ($(q1)+(0,-1)$) to[out=-180,in=-60] (S);
+\node at ($0.5*(S)+0.5*(q1)+(0,0.3)$) {$\varepsilon$};
+\node at ($0.5*(q3)+0.5*(q7)+(0,0.3)$) {\texttt{1}};
+\node at ($0.5*(q1)+0.5*(q3)+(0,0.5)$) {\texttt{1}};
+\node at ($0.5*(q1)+0.5*(q3)+(0,-0.5)$) {\texttt{0}};
+\node at ($(q7)+(1.4,0)$) {\texttt{0},\texttt{1}};
+\node at ($(q1)+(0,1.3)$) {\texttt{0}};
+\node at ($(q3)+(0.2,-0.8)$) {$\varepsilon$};
+\end{tikzpicture}
+\end{center}
 \end{teilaufgaben}
 \end{loesung}
