@@ -65,18 +65,6 @@ genau ein ein Zeichen langes Wort akzeptieren:
 \akzeptierzustand{(q5)}
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[r]
-%        &{}\ar[r]^{\tt a}
-%                &\ar[r]^{\varepsilon}
-%                        &{}\ar[r]^{\tt b}
-%                                &\ar[r]^{\varepsilon}
-%                                        &{}\ar[r]^{\tt b}
-%                                                &*++[o][F=]{}
-%}
-%\]
 Für die $*$-Operation braucht man einen zusätzlichen Akzeptierzustand und
 ``Rückwärts''-Pfeile:
 \begin{center}
@@ -104,19 +92,6 @@ Für die $*$-Operation braucht man einen zusätzlichen Akzeptierzustand und
 \akzeptierzustand{(qa)};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[r]
-%        &*++[o][F=]{} \ar[r]^{\varepsilon}
-%                &\ar[r]^{\tt a}
-%                        &\ar[r]^{\varepsilon}
-%                                &\ar[r]^{\tt b}
-%                                        &\ar[r]^{\varepsilon}
-%                                                &{}\ar[r]^{\tt b}
-%                                                        &{}\ar@/^10pt/[llllll]^{\varepsilon}
-%}
-%\]
 Dem $({\tt abb})^*$ muss jetzt noch ein {\tt a} vorangehen:
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
@@ -147,21 +122,6 @@ Dem $({\tt abb})^*$ muss jetzt noch ein {\tt a} vorangehen:
 \zustand{(qc)}
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[r]
-%        &\ar[r]^{\tt a}
-%        &{} \ar[r]^{\varepsilon}
-%        &*++[o][F=]{} \ar[r]^{\varepsilon}
-%                &\ar[r]^{\tt a}
-%                        &\ar[r]^{\varepsilon}
-%                                &\ar[r]^{\tt b}
-%                                        &\ar[r]^{\varepsilon}
-%                                                &{}\ar[r]^{\tt b}
-%                                                        &{}\ar@/^10pt/[llllll]^{\varepsilon}
-%}
-%\]
 Zum Schluss müssen wir eine Alternative zwischen diesem Ausdruck und dem
 Ausdruck {\tt b} bilden:
 \begin{center}
@@ -201,36 +161,6 @@ Ausdruck {\tt b} bilden:
 \node at ($0.5*(z0)+0.5*(qc)+(-0.2,0)$) {$\varepsilon$};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}&*+\txt{}
-%        &\ar[r]^{\tt a}
-%        &{} \ar[r]^{\varepsilon}
-%        &*++[o][F=]{} \ar[r]^{\varepsilon}
-%                &\ar[r]^{\tt a}
-%                        &\ar[r]^{\varepsilon}
-%                                &\ar[r]^{\tt b}
-%                                        &\ar[r]^{\varepsilon}
-%                                                &{}\ar[r]^{\tt b}
-%                                                        &{}\ar@/^10pt/[llllll]^{\varepsilon}
-%\\
-%*+\txt{} \ar[r]
-%        &\ar[ur]^{\varepsilon} \ar[dr]^{\varepsilon}
-%        &*+\txt{}
-%        &*+\txt{}
-%        &*+\txt{}
-%        &*+\txt{}
-%        &*+\txt{}
-%        &*+\txt{}
-%        &*+\txt{}
-%\\
-%*+\txt{}&*+\txt{}
-%                &\ar[r]^{\tt b}
-%                        &*++[o][F=]{}
-%                                &*+\txt{}
-%}
-%\]
 \item
 \def\punkte{
 \coordinate (s) at (-\l,0);
@@ -269,12 +199,8 @@ aus:
 \zustand{(q1)}
 \zustand{(q2)}
 \akzeptierzustand{(q3)}
-%\zustand{(q4)}
-%\zustand{(q5)}
 \pfeil{(q1)}{(q2)}{$\varepsilon$}
 \pfeil{(q2)}{(q3)}{\texttt{a}}
-%\pfeil{(q3)}{(q4)}{$\varepsilon$}
-%\pfeil{(q4)}{(q5)}{\texttt{a}}
 \draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
 	(q3) to[out=-90,in=0]
 	($(q3)+0.5*(-\l,{-\l-0.4})$) --
@@ -294,39 +220,8 @@ aus:
 	($(z5)+0.5*(-\l,{\l+0.4})$) --
 	($(z1)+0.5*(\l,{\l+0.4})$) to[out=180,in=90] (z1);
 \node at ($(z3)+(0,{0.5*\l+0.2})$) [above] {$\varepsilon$};
-%\pfeil{(z5)}{(z6)}{}
-%\pfeil{(z6)}{(z7)}{}
-%\pfeil{(z7)}{(z8)}{}
-%\pfeil{(z8)}{(z9)}{}
-%\zustand{(z6)}
-%\zustand{(z7)}
-%\zustand{(z8)}
-%\zustand{(z9)}
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}
-%        &*+\txt{}
-%%               &*++[o][F=]{} \ar[r]^{\varepsilon}
-%                &{} \ar[r]^{\varepsilon}
-%                        &{} \ar[r]^{\tt a}
-%                                &*++[o][F=]{} \ar@/^10pt/[ll]^{\varepsilon}
-%\\
-%*+\txt{}\ar[r]
-%        &\ar[ur]^{\varepsilon} \ar[dr]^{\varepsilon}
-%\\
-%*+\txt{}
-%        &*+\txt{}
-%%               &*++[o][F=]{} \ar[r]^{\varepsilon}
-%                &{} \ar[r]^{\varepsilon}
-%                        &\ar[r]^{\tt a}
-%                                &\ar[r]^{\varepsilon}
-%                                        &\ar[r]^{\tt b}
-%                                                &*++[o][F=]{}\ar@/^10pt/[llll]^{\varepsilon}
-%}
-%\]
 Man könnte aber auch $r^+=rr^*$ implementieren, also als Verkettung
 eines Automaten, der $r$ akzeptiert mit einer $*$-Konstruktion von $r$.
 Dann sähe der Automat wie folgt aus:
@@ -377,35 +272,6 @@ Dann sähe der Automat wie folgt aus:
 \zustand{(z9)}
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}
-%        &*+\txt{}
-%%               &*++[o][F=]{} \ar[r]^{\varepsilon}
-%                &{}\ar[r]^{\tt a}
-%                        &{}\ar[r]^{\varepsilon}
-%                &*++[o][F=]{} \ar[r]^{\varepsilon}
-%                        &{} \ar[r]^{\tt a}
-%                                &{} \ar@/^10pt/[ll]^{\varepsilon}
-%\\
-%*+\txt{}\ar[r]
-%        &\ar[ur]^{\varepsilon} \ar[dr]^{\varepsilon}
-%\\
-%*+\txt{}
-%        &*+\txt{}
-%%               &*++[o][F=]{} \ar[r]^{\varepsilon}
-%                        &\ar[r]^{\tt a}
-%                                &\ar[r]^{\varepsilon}
-%                                        &\ar[r]^{\tt b}
-%                &{} \ar[r]^{\varepsilon}
-%                        &*++[o][F=]{} \ar[r]^{\varepsilon}
-%                        &\ar[r]^{\tt a}
-%                                &\ar[r]^{\varepsilon}
-%                                        &\ar[r]^{\tt b}
-%                                                &{}\ar@/^10pt/[llll]^{\varepsilon}
-%}
-%\]
 \qedhere
 \end{teilaufgaben}
 \end{loesung}

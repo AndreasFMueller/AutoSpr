@@ -8,89 +8,134 @@ L=\{w\in\Sigma^*\,|\, \text{$|w|_{\texttt{0}}$ ist gerade}\}
 \themaL{regular}{regulär}
 
 \begin{loesung}
-Wir konstruieren zunächst einen DEA für die Sprache $L$:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-        &*++[o][F=]{0}\ar@/^/[r]^{\texttt{0}} \ar@(ur,ul)_{\texttt{1}}
-                &{1} \ar@(ur,dr)^{\texttt{1}} \ar@/^/[l]^{\texttt{0}}
+\def\zustand#1#2{
+	\draw #1 circle[radius=0.3];
+	\node at #1 {#2};
 }
-\]
+\def\akzeptierzustand#1#2{
+	\zustand{#1}{#2}
+	\draw #1 circle[radius=0.25];
+}
+\def\punkte{
+	\def\l{2}
+	\coordinate (s) at ({-2*\l},0);
+	\coordinate (S) at ({-1*\l},0);
+	\coordinate (q0) at ({0*\l},0);
+	\coordinate (q1) at ({1*\l},0);
+	\coordinate (A) at ({0*\l},{-\l});
+}
+\def\pfeil#1#2#3{
+	\draw[->,shorten <= 0.3cm,shorten >= 0.3cm] #1 -- #2;
+	\node at ($0.5*#1+0.5*#2$) [above] {#3};
+}
+Wir konstruieren zunächst einen DEA für die Sprache $L$:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\akzeptierzustand{(q0)}{$0$}
+\zustand{(q1)}{$1$}
+\pfeil{(S)}{(q0)}{}
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(q0) to[out=60,in=120,distance=1.4cm] (q0);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(q1) to[out=30,in=-30,distance=1.4cm] (q1);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] 
+	(q0) to[out=20,in=160] (q1);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(q1) to[out=-160,in=-20] (q0);
+\node at ($(q1)+(1.3,0)$) {\texttt{1}};
+\node at ($(q0)+(0,1.3)$) {\texttt{1}};
+\node at ($0.5*(q0)+0.5*(q1)$) {\texttt{0}};
+\end{tikzpicture}
+\end{center}
 Diesen Automaten müssen wir nun mit separaten Start- und Akzeptierzuständen
 ausstatten:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-	&{S}\ar[r]^{\varepsilon}
-        	&{0}\ar[d]^{\varepsilon}\ar@/^/[r]^{\texttt{0}} \ar@(ur,ul)_{\texttt{1}}
-                	&{1} \ar@(ur,dr)^{\texttt{1}} \ar@/^/[l]^{\texttt{0}}
-\\
-*+\txt{}
-	&*+\txt{}
-		&*++[o][F=]{A}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\zustand{(S)}{$S$}
+\zustand{(q0)}{$0$}
+\zustand{(q1)}{$1$}
+\akzeptierzustand{(A)}{$A$}
+\pfeil{(s)}{(S)}{}
+\pfeil{(S)}{(q0)}{$\varepsilon$}
+\pfeil{(q0)}{(A)}{}
+\node at ($0.5*(q0)+0.5*(A)$) [right] {$\varepsilon$};
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(q0) to[out=60,in=120,distance=1.4cm] (q0);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(q1) to[out=30,in=-30,distance=1.4cm] (q1);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] 
+	(q0) to[out=20,in=160] (q1);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(q1) to[out=-160,in=-20] (q0);
+\node at ($(q1)+(1.3,0)$) {\texttt{1}};
+\node at ($(q0)+(0,1.3)$) {\texttt{1}};
+\node at ($0.5*(q0)+0.5*(q1)$) {\texttt{0}};
+\end{tikzpicture}
+\end{center}
 Jetzt entfernen wir nacheinander die Zwischenzustände, beginnend mit dem
 Zustand $1$:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-	&{S}\ar[r]^{\varepsilon}
-        	&{0}\ar[d]^{\varepsilon}
-			\ar@(ur,dr)^{\texttt{1}|\texttt{01*0}}
-\\
-*+\txt{}
-	&*+\txt{}
-		&*++[o][F=]{A}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\zustand{(S)}{$S$}
+\zustand{(q0)}{$0$}
+\akzeptierzustand{(A)}{$A$}
+\pfeil{(s)}{(S)}{}
+\pfeil{(S)}{(q0)}{$\varepsilon$}
+\pfeil{(q0)}{(A)}{}
+\node at ($0.5*(q0)+0.5*(A)$) [right] {$\varepsilon$};
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(q0) to[out=30,in=-30,distance=1.4cm] (q0);
+\node at ($(q0)+(1.0,0)$) [right] {\texttt{1|01{*}0}};
+\end{tikzpicture}
+\end{center}
 gefolgt vom Zustand $0$:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-	&{S}\ar[dr]^{\texttt{(1|01*0)*}}
-\\
-*+\txt{}
-	&*+\txt{}
-		&*++[o][F=]{A}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\zustand{(S)}{$S$}
+\akzeptierzustand{(A)}{$A$}
+\pfeil{(s)}{(S)}{}
+\pfeil{(S)}{(A)}{}
+\node at ($0.5*(S)+0.5*(A)$) [above right] {\texttt{(1|01{*}0){*}}};
+\end{tikzpicture}
+\end{center}
 Der reguläre Ausdruck besagt, dass ein Wort in $L$ aus Teilen besteht, die
 entweder nur aus Einsen bestehen, oder aus Paaren von Nullen, zwischen
 denen beliebige viel Einsen eingeschoben sein können.
 
 Beginnt man mit dem Enfernen von Zwischenzuständen beim Zustand $0$, wird 
 der reguläre Ausdruck ganz anders aussehen:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-	&{S}\ar[rr]^{\texttt{1*0}} \ar[dr]_{\texttt{1*}}
-		&*+\txt{}
-                	&{1} \ar@(ur,dr)^{\texttt{1|01*0}} \ar[dl]_{\texttt{01*}}
-\\
-*+\txt{}
-	&*+\txt{}
-		&*++[o][F=]{A}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\zustand{(S)}{$S$}
+\zustand{(q1)}{$1$}
+\akzeptierzustand{(A)}{$A$}
+\pfeil{(s)}{(S)}{}
+\pfeil{(S)}{(q1)}{\texttt{1{*}0}}
+\pfeil{(S)}{(A)}{}
+\pfeil{(q1)}{(A)}{}
+\node at ($0.5*(q1)+0.5*(A)$) [below right] {\texttt{01{*}}};
+\node at ($0.5*(S)+0.5*(A)$) [below left] {\texttt{1{*}}};
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(q1) to[out=30,in=-30,distance=1.4cm] (q1);
+\node at ($(q1)+(1.0,0)$) [right] {\texttt{1|01{*}0}};
+\end{tikzpicture}
+\end{center}
 Jetzt entfernt man den Zustand $1$ und erhält
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-	&{S} \ar[dr]^{\texttt{1*}|\texttt{1*0(1|01*0)*01*}}
-		&*+\txt{}
-\\
-*+\txt{}
-	&*+\txt{}
-		&*++[o][F=]{A}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\zustand{(S)}{$S$}
+\akzeptierzustand{(A)}{$A$}
+\pfeil{(s)}{(S)}{}
+\pfeil{(S)}{(A)}{}
+\node at ($0.5*(S)+0.5*(A)$) [above right] {\texttt{1{*}|1{*}0(1|01{*}0){*}01{*}}};
+\end{tikzpicture}
+\end{center}
 Auch dieser reguläre Ausdruck besagt, dass man zusätzliche Nullen immer
 nur paarweise einschieben kann, und dass dazwischen jeweils Einsen stehen
 können.
