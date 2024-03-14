@@ -17,86 +17,239 @@ Das Zeichen {\tt +} bei regulären Ausdrücken bedeutet
 Wir wenden die Standardkonstruktionen für die Umwandlung eines regulären
 Ausdrucks in einen NEA an. Die regulären Ausdrücke werden dabei
 ``von innen nach aussen'' übersetzt.
+\def\zustand#1{
+	\draw #1 circle[radius=0.2];
+}
+\def\akzeptierzustand#1{
+	\zustand{#1}
+	\draw #1 circle[radius=0.15];
+}
+\def\pfeil#1#2#3{
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] #1 -- #2;
+	\node at ($0.5*#1+0.5*#2$) [above] {#3};
+}
 \begin{teilaufgaben}
 \item
+\def\l{1.3}
+\def\punkte{
+	\coordinate (q0) at (0,0);
+	\coordinate (q1) at (\l,0);
+	\coordinate (q2) at ({2*\l},0);
+	\coordinate (q3) at ({3*\l},0);
+	\coordinate (q4) at ({4*\l},0);
+	\coordinate (q5) at ({5*\l},0);
+	\coordinate (qa) at ({-\l},0);
+	\coordinate (qb) at ({-2*\l},0);
+	\coordinate (qc) at ({-3*\l},0);
+	\coordinate (z0) at ({-4*\l},-\l);
+	\coordinate (z1) at ({-3*\l},{-2*\l});
+	\coordinate (z2) at ({-2*\l},{-2*\l});
+}
 Der Teilausdruck {\tt abb} ist eine Verkettung von drei NEAs, die
 genau ein ein Zeichen langes Wort akzeptieren:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-        &{}\ar[r]^{\tt a}
-                &\ar[r]^{\varepsilon}
-                        &{}\ar[r]^{\tt b}
-                                &\ar[r]^{\varepsilon}
-                                        &{}\ar[r]^{\tt b}
-                                                &*++[o][F=]{}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\coordinate (s) at (-\l,0);
+\zustand{(q0)}
+\zustand{(q1)}
+\zustand{(q2)}
+\zustand{(q3)}
+\zustand{(q4)}
+\pfeil{(s)}{(q0)}{}
+\pfeil{(q0)}{(q1)}{\texttt{a}}
+\pfeil{(q1)}{(q2)}{$\varepsilon$}
+\pfeil{(q2)}{(q3)}{\texttt{b}}
+\pfeil{(q3)}{(q4)}{$\varepsilon$}
+\pfeil{(q4)}{(q5)}{\texttt{b}}
+\akzeptierzustand{(q5)}
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[r]
+%        &{}\ar[r]^{\tt a}
+%                &\ar[r]^{\varepsilon}
+%                        &{}\ar[r]^{\tt b}
+%                                &\ar[r]^{\varepsilon}
+%                                        &{}\ar[r]^{\tt b}
+%                                                &*++[o][F=]{}
+%}
+%\]
 Für die $*$-Operation braucht man einen zusätzlichen Akzeptierzustand und
 ``Rückwärts''-Pfeile:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-        &*++[o][F=]{} \ar[r]^{\varepsilon}
-                &\ar[r]^{\tt a}
-                        &\ar[r]^{\varepsilon}
-                                &\ar[r]^{\tt b}
-                                        &\ar[r]^{\varepsilon}
-                                                &{}\ar[r]^{\tt b}
-                                                        &{}\ar@/^10pt/[llllll]^{\varepsilon}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\coordinate (s) at ({-2*\l},0);
+\zustand{(q0)}
+\zustand{(q1)}
+\zustand{(q2)}
+\zustand{(q3)}
+\zustand{(q4)}
+\pfeil{(s)}{(qa)}{}
+\pfeil{(q0)}{(q1)}{\texttt{a}}
+\pfeil{(q1)}{(q2)}{$\varepsilon$}
+\pfeil{(q2)}{(q3)}{\texttt{b}}
+\pfeil{(q3)}{(q4)}{$\varepsilon$}
+\pfeil{(q4)}{(q5)}{\texttt{b}}
+\pfeil{(qa)}{(q0)}{$\varepsilon$}
+\zustand{(q5)}
+\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
+	(q5) to[out=-90,in=0]
+	($(q5)+({-0.5*\l},{-0.5*\l-0.2})$) --
+	($(qa)+({0.5*\l},{-0.5*\l-0.2})$) to[out=180,in=-90] (qa);
+\node at ($(q2)+(0,{-0.5*\l-0.2})$) [above] {$\varepsilon$};
+\akzeptierzustand{(qa)};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[r]
+%        &*++[o][F=]{} \ar[r]^{\varepsilon}
+%                &\ar[r]^{\tt a}
+%                        &\ar[r]^{\varepsilon}
+%                                &\ar[r]^{\tt b}
+%                                        &\ar[r]^{\varepsilon}
+%                                                &{}\ar[r]^{\tt b}
+%                                                        &{}\ar@/^10pt/[llllll]^{\varepsilon}
+%}
+%\]
 Dem $({\tt abb})^*$ muss jetzt noch ein {\tt a} vorangehen:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-        &\ar[r]^{\tt a}
-        &{} \ar[r]^{\varepsilon}
-        &*++[o][F=]{} \ar[r]^{\varepsilon}
-                &\ar[r]^{\tt a}
-                        &\ar[r]^{\varepsilon}
-                                &\ar[r]^{\tt b}
-                                        &\ar[r]^{\varepsilon}
-                                                &{}\ar[r]^{\tt b}
-                                                        &{}\ar@/^10pt/[llllll]^{\varepsilon}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\coordinate (s) at ({-4*\l},0);
+\zustand{(q0)}
+\zustand{(q1)}
+\zustand{(q2)}
+\zustand{(q3)}
+\zustand{(q4)}
+\pfeil{(s)}{(qc)}{}
+\pfeil{(qc)}{(qb)}{\texttt{a}}
+\pfeil{(qb)}{(qa)}{$\varepsilon$}
+\pfeil{(q0)}{(q1)}{\texttt{a}}
+\pfeil{(q1)}{(q2)}{$\varepsilon$}
+\pfeil{(q2)}{(q3)}{\texttt{b}}
+\pfeil{(q3)}{(q4)}{$\varepsilon$}
+\pfeil{(q4)}{(q5)}{\texttt{b}}
+\pfeil{(qa)}{(q0)}{$\varepsilon$}
+\zustand{(q5)}
+\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
+	(q5) to[out=-90,in=0]
+	($(q5)+({-0.5*\l},{-0.5*\l-0.2})$) --
+	($(qa)+({0.5*\l},{-0.5*\l-0.2})$) to[out=180,in=-90] (qa);
+\node at ($(q2)+(0,{-0.5*\l-0.2})$) [above] {$\varepsilon$};
+\akzeptierzustand{(qa)}
+\zustand{(qb)}
+\zustand{(qc)}
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[r]
+%        &\ar[r]^{\tt a}
+%        &{} \ar[r]^{\varepsilon}
+%        &*++[o][F=]{} \ar[r]^{\varepsilon}
+%                &\ar[r]^{\tt a}
+%                        &\ar[r]^{\varepsilon}
+%                                &\ar[r]^{\tt b}
+%                                        &\ar[r]^{\varepsilon}
+%                                                &{}\ar[r]^{\tt b}
+%                                                        &{}\ar@/^10pt/[llllll]^{\varepsilon}
+%}
+%\]
 Zum Schluss müssen wir eine Alternative zwischen diesem Ausdruck und dem
 Ausdruck {\tt b} bilden:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}&*+\txt{}
-        &\ar[r]^{\tt a}
-        &{} \ar[r]^{\varepsilon}
-        &*++[o][F=]{} \ar[r]^{\varepsilon}
-                &\ar[r]^{\tt a}
-                        &\ar[r]^{\varepsilon}
-                                &\ar[r]^{\tt b}
-                                        &\ar[r]^{\varepsilon}
-                                                &{}\ar[r]^{\tt b}
-                                                        &{}\ar@/^10pt/[llllll]^{\varepsilon}
-\\
-*+\txt{} \ar[r]
-        &\ar[ur]^{\varepsilon} \ar[dr]^{\varepsilon}
-        &*+\txt{}
-        &*+\txt{}
-        &*+\txt{}
-        &*+\txt{}
-        &*+\txt{}
-        &*+\txt{}
-        &*+\txt{}
-\\
-*+\txt{}&*+\txt{}
-                &\ar[r]^{\tt b}
-                        &*++[o][F=]{}
-                                &*+\txt{}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\coordinate (s) at ({-5*\l},-\l);
+\zustand{(q0)}
+\zustand{(q1)}
+\zustand{(q2)}
+\zustand{(q3)}
+\zustand{(q4)}
+\pfeil{(s)}{(z0)}{}
+\pfeil{(qc)}{(qb)}{\texttt{a}}
+\pfeil{(qb)}{(qa)}{$\varepsilon$}
+\pfeil{(q0)}{(q1)}{\texttt{a}}
+\pfeil{(q1)}{(q2)}{$\varepsilon$}
+\pfeil{(q2)}{(q3)}{\texttt{b}}
+\pfeil{(q3)}{(q4)}{$\varepsilon$}
+\pfeil{(q4)}{(q5)}{\texttt{b}}
+\pfeil{(qa)}{(q0)}{$\varepsilon$}
+\zustand{(q5)}
+\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
+	(q5) to[out=-90,in=0]
+	($(q5)+({-0.5*\l},{-0.5*\l-0.2})$) --
+	($(qa)+({0.5*\l},{-0.5*\l-0.2})$) to[out=180,in=-90] (qa);
+\node at ($(q2)+(0,{-0.5*\l-0.2})$) [above] {$\varepsilon$};
+\akzeptierzustand{(qa)}
+\zustand{(qb)}
+\zustand{(qc)}
+\zustand{(z0)}
+\zustand{(z1)}
+\akzeptierzustand{(z2)}
+\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (z0) to[out=90,in=180] (qc);
+\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (z0) to[out=-90,in=180] (z1);
+\pfeil{(z1)}{(z2)}{\texttt{b}}
+\node at ($0.5*(z0)+0.5*(z1)+(-0.2,0)$) {$\varepsilon$};
+\node at ($0.5*(z0)+0.5*(qc)+(-0.2,0)$) {$\varepsilon$};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}&*+\txt{}
+%        &\ar[r]^{\tt a}
+%        &{} \ar[r]^{\varepsilon}
+%        &*++[o][F=]{} \ar[r]^{\varepsilon}
+%                &\ar[r]^{\tt a}
+%                        &\ar[r]^{\varepsilon}
+%                                &\ar[r]^{\tt b}
+%                                        &\ar[r]^{\varepsilon}
+%                                                &{}\ar[r]^{\tt b}
+%                                                        &{}\ar@/^10pt/[llllll]^{\varepsilon}
+%\\
+%*+\txt{} \ar[r]
+%        &\ar[ur]^{\varepsilon} \ar[dr]^{\varepsilon}
+%        &*+\txt{}
+%        &*+\txt{}
+%        &*+\txt{}
+%        &*+\txt{}
+%        &*+\txt{}
+%        &*+\txt{}
+%        &*+\txt{}
+%\\
+%*+\txt{}&*+\txt{}
+%                &\ar[r]^{\tt b}
+%                        &*++[o][F=]{}
+%                                &*+\txt{}
+%}
+%\]
 \item
+\def\punkte{
+\coordinate (s) at (-\l,0);
+\coordinate (q) at (0,0);
+\coordinate (q1) at ({1*\l},\l);
+\coordinate (q2) at ({2*\l},\l);
+\coordinate (q3) at ({3*\l},\l);
+\coordinate (q4) at ({4*\l},\l);
+\coordinate (q5) at ({5*\l},\l);
+\coordinate (z1) at ({1*\l},-\l);
+\coordinate (z2) at ({2*\l},-\l);
+\coordinate (z3) at ({3*\l},-\l);
+\coordinate (z4) at ({4*\l},-\l);
+\coordinate (z5) at ({5*\l},-\l);
+\coordinate (z6) at ({6*\l},-\l);
+\coordinate (z7) at ({7*\l},-\l);
+\coordinate (z8) at ({8*\l},-\l);
+\coordinate (z9) at ({9*\l},-\l);
+}
 Es stellt sich die Frage, wie man $r^+$ implementieren will. Man könnte
 $r^+$ als genau wie $r^*$ implementieren, die Konstruktion aber so
 modifizieren, dass aber das leere Wort
@@ -104,61 +257,155 @@ doch nicht akzeptiert wird.  Dazu würde man den neuen Start-/Akzeptierzustand,
 der in der Konstruktion von $r^*$ vorkommt, nur als Startzustand, nicht
 aber als Akzeptierzustand hinzufügen. Dann sähe der Automat wie folgt
 aus:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}
-        &*+\txt{}
-%               &*++[o][F=]{} \ar[r]^{\varepsilon}
-                &{} \ar[r]^{\varepsilon}
-                        &{} \ar[r]^{\tt a}
-                                &*++[o][F=]{} \ar@/^10pt/[ll]^{\varepsilon}
-\\
-*+\txt{}\ar[r]
-        &\ar[ur]^{\varepsilon} \ar[dr]^{\varepsilon}
-\\
-*+\txt{}
-        &*+\txt{}
-%               &*++[o][F=]{} \ar[r]^{\varepsilon}
-                &{} \ar[r]^{\varepsilon}
-                        &\ar[r]^{\tt a}
-                                &\ar[r]^{\varepsilon}
-                                        &\ar[r]^{\tt b}
-                                                &*++[o][F=]{}\ar@/^10pt/[llll]^{\varepsilon}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\zustand{(q)}
+\pfeil{(s)}{(q)}{}
+\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (q) to[out=90,in=180] (q1);
+\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (q) to[out=-90,in=180] (z1);
+\node at ($0.5*(q)+0.5*(q1)+(-0.2,0)$) {$\varepsilon$};
+\node at ($0.5*(q)+0.5*(z1)+(-0.2,0)$) {$\varepsilon$};
+\zustand{(q1)}
+\zustand{(q2)}
+\akzeptierzustand{(q3)}
+%\zustand{(q4)}
+%\zustand{(q5)}
+\pfeil{(q1)}{(q2)}{$\varepsilon$}
+\pfeil{(q2)}{(q3)}{\texttt{a}}
+%\pfeil{(q3)}{(q4)}{$\varepsilon$}
+%\pfeil{(q4)}{(q5)}{\texttt{a}}
+\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
+	(q3) to[out=-90,in=0]
+	($(q3)+0.5*(-\l,{-\l-0.4})$) --
+	($(q1)+0.5*(\l,{-\l-0.4})$) to[out=180,in=-90] (q1);
+\node at ($(q2)+(0,{-0.5*\l-0.2})$) [above] {$\varepsilon$};
+\zustand{(z1)}
+\zustand{(z2)}
+\zustand{(z3)}
+\zustand{(z4)}
+\akzeptierzustand{(z5)}
+\pfeil{(z1)}{(z2)}{$\varepsilon$}
+\pfeil{(z2)}{(z3)}{\texttt{a}}
+\pfeil{(z3)}{(z4)}{$\varepsilon$}
+\pfeil{(z4)}{(z5)}{\texttt{b}}
+\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
+	(z5) to[out=90,in=0]
+	($(z5)+0.5*(-\l,{\l+0.4})$) --
+	($(z1)+0.5*(\l,{\l+0.4})$) to[out=180,in=90] (z1);
+\node at ($(z3)+(0,{0.5*\l+0.2})$) [above] {$\varepsilon$};
+%\pfeil{(z5)}{(z6)}{}
+%\pfeil{(z6)}{(z7)}{}
+%\pfeil{(z7)}{(z8)}{}
+%\pfeil{(z8)}{(z9)}{}
+%\zustand{(z6)}
+%\zustand{(z7)}
+%\zustand{(z8)}
+%\zustand{(z9)}
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}
+%        &*+\txt{}
+%%               &*++[o][F=]{} \ar[r]^{\varepsilon}
+%                &{} \ar[r]^{\varepsilon}
+%                        &{} \ar[r]^{\tt a}
+%                                &*++[o][F=]{} \ar@/^10pt/[ll]^{\varepsilon}
+%\\
+%*+\txt{}\ar[r]
+%        &\ar[ur]^{\varepsilon} \ar[dr]^{\varepsilon}
+%\\
+%*+\txt{}
+%        &*+\txt{}
+%%               &*++[o][F=]{} \ar[r]^{\varepsilon}
+%                &{} \ar[r]^{\varepsilon}
+%                        &\ar[r]^{\tt a}
+%                                &\ar[r]^{\varepsilon}
+%                                        &\ar[r]^{\tt b}
+%                                                &*++[o][F=]{}\ar@/^10pt/[llll]^{\varepsilon}
+%}
+%\]
 Man könnte aber auch $r^+=rr^*$ implementieren, also als Verkettung
 eines Automaten, der $r$ akzeptiert mit einer $*$-Konstruktion von $r$.
 Dann sähe der Automat wie folgt aus:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}
-        &*+\txt{}
-%               &*++[o][F=]{} \ar[r]^{\varepsilon}
-                &{}\ar[r]^{\tt a}
-                        &{}\ar[r]^{\varepsilon}
-                &*++[o][F=]{} \ar[r]^{\varepsilon}
-                        &{} \ar[r]^{\tt a}
-                                &{} \ar@/^10pt/[ll]^{\varepsilon}
-\\
-*+\txt{}\ar[r]
-        &\ar[ur]^{\varepsilon} \ar[dr]^{\varepsilon}
-\\
-*+\txt{}
-        &*+\txt{}
-%               &*++[o][F=]{} \ar[r]^{\varepsilon}
-                        &\ar[r]^{\tt a}
-                                &\ar[r]^{\varepsilon}
-                                        &\ar[r]^{\tt b}
-                &{} \ar[r]^{\varepsilon}
-                        &*++[o][F=]{} \ar[r]^{\varepsilon}
-                        &\ar[r]^{\tt a}
-                                &\ar[r]^{\varepsilon}
-                                        &\ar[r]^{\tt b}
-                                                &{}\ar@/^10pt/[llll]^{\varepsilon}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\punkte
+\zustand{(q)}
+\pfeil{(s)}{(q)}{}
+\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (q) to[out=90,in=180] (q1);
+\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (q) to[out=-90,in=180] (z1);
+\node at ($0.5*(q)+0.5*(q1)+(-0.2,0)$) {$\varepsilon$};
+\node at ($0.5*(q)+0.5*(z1)+(-0.2,0)$) {$\varepsilon$};
+\zustand{(q1)}
+\zustand{(q2)}
+\akzeptierzustand{(q3)}
+\zustand{(q4)}
+\zustand{(q5)}
+\pfeil{(q1)}{(q2)}{\texttt{a}}
+\pfeil{(q2)}{(q3)}{$\varepsilon$}
+\pfeil{(q3)}{(q4)}{$\varepsilon$}
+\pfeil{(q4)}{(q5)}{\texttt{a}}
+\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
+	(q5) to[out=-90,in=0]
+	($(q5)+0.5*(-\l,{-\l-0.4})$) --
+	($(q3)+0.5*(\l,{-\l-0.4})$) to[out=180,in=-90] (q3);
+\node at ($(q4)+(0,{-0.5*\l-0.2})$) [above] {$\varepsilon$};
+\zustand{(z1)}
+\zustand{(z2)}
+\zustand{(z3)}
+\zustand{(z4)}
+\akzeptierzustand{(z5)}
+\pfeil{(z1)}{(z2)}{\texttt{a}}
+\pfeil{(z2)}{(z3)}{$\varepsilon$}
+\pfeil{(z3)}{(z4)}{\texttt{b}}
+\pfeil{(z4)}{(z5)}{$\varepsilon$}
+\draw[->,shorten >= 0.2cm,shorten <= 0.2cm]
+	(z9) to[out=90,in=0]
+	($(z9)+0.5*(-\l,{\l+0.4})$) --
+	($(z5)+0.5*(\l,{\l+0.4})$) to[out=180,in=90] (z5);
+\node at ($(z7)+(0,{0.5*\l+0.2})$) [above] {$\varepsilon$};
+\pfeil{(z5)}{(z6)}{$\varepsilon$}
+\pfeil{(z6)}{(z7)}{\texttt{a}}
+\pfeil{(z7)}{(z8)}{$\varepsilon$}
+\pfeil{(z8)}{(z9)}{\texttt{b}}
+\zustand{(z6)}
+\zustand{(z7)}
+\zustand{(z8)}
+\zustand{(z9)}
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}
+%        &*+\txt{}
+%%               &*++[o][F=]{} \ar[r]^{\varepsilon}
+%                &{}\ar[r]^{\tt a}
+%                        &{}\ar[r]^{\varepsilon}
+%                &*++[o][F=]{} \ar[r]^{\varepsilon}
+%                        &{} \ar[r]^{\tt a}
+%                                &{} \ar@/^10pt/[ll]^{\varepsilon}
+%\\
+%*+\txt{}\ar[r]
+%        &\ar[ur]^{\varepsilon} \ar[dr]^{\varepsilon}
+%\\
+%*+\txt{}
+%        &*+\txt{}
+%%               &*++[o][F=]{} \ar[r]^{\varepsilon}
+%                        &\ar[r]^{\tt a}
+%                                &\ar[r]^{\varepsilon}
+%                                        &\ar[r]^{\tt b}
+%                &{} \ar[r]^{\varepsilon}
+%                        &*++[o][F=]{} \ar[r]^{\varepsilon}
+%                        &\ar[r]^{\tt a}
+%                                &\ar[r]^{\varepsilon}
+%                                        &\ar[r]^{\tt b}
+%                                                &{}\ar@/^10pt/[llll]^{\varepsilon}
+%}
+%\]
 \qedhere
 \end{teilaufgaben}
 \end{loesung}
