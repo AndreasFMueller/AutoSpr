@@ -14,46 +14,71 @@ SS
 gefunden, die sich jedoch als nicht
 eindeutig herausgestellt hat, das Wort \texttt{()} hat zum Beispiel die
 beiden völlig verschiedenen Parse-Trees
-\[
-\xymatrix{
-	&S \ar[dl] \ar[dr]
-		&
-			&
-				&
-					&
-						&
-							&S\ar[dl] \ar[dr]
-\\
-S\ar[d]
-	&
-		&S\ar[dl] \ar[d] \ar[dr]
-			&
-				&
-					&
-						&S\ar[dl] \ar[d] \ar[dr]
-							&
-								&S\ar[d]
-\\
-\varepsilon
-	&\texttt{(}\ar[d]
-		&S\ar[d]
-			&\texttt{)}\ar[d]
-				&
-					&\texttt{(}\ar[d]
-						&S\ar[d]
-							&\texttt{)}\ar[d]
-								&\varepsilon
-\\
-	&\texttt{(}
-		&
-			&\texttt{)}
-				&
-					&\texttt{(}
-						&
-							&\texttt{)}
-								&
+\begin{center}
+\def\l{1.5}
+\def\h{1.2}
+\def\pfeil#1#2{
+	\draw[->,shorten <= 0.24cm,shorten >= 0.24cm] #1 -- #2;
 }
-\]
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (l0) at ({-3*\l},{0*\h});
+\coordinate (r0) at ({3*\l},{0*\h});
+\coordinate (l1) at ({-4*\l},{-1*\h});
+\coordinate (l2) at ({-2*\l},{-1*\h});
+\coordinate (r1) at ({4*\l},{-1*\h});
+\coordinate (r2) at ({2*\l},{-1*\h});
+\coordinate (l3) at ({-4*\l},{-2*\h});
+\coordinate (l4) at ({-3*\l},{-2*\h});
+\coordinate (l5) at ({-2*\l},{-2*\h});
+\coordinate (l6) at ({-1*\l},{-2*\h});
+\coordinate (r3) at ({4*\l},{-2*\h});
+\coordinate (r6) at ({3*\l},{-2*\h});
+\coordinate (r5) at ({2*\l},{-2*\h});
+\coordinate (r4) at ({1*\l},{-2*\h});
+\coordinate (l7) at ({-3*\l},{-3*\h});
+\coordinate (l8) at ({-2*\l},{-3*\h});
+\coordinate (l9) at ({-1*\l},{-3*\h});
+\coordinate (r9) at ({3*\l},{-3*\h});
+\coordinate (r8) at ({2*\l},{-3*\h});
+\coordinate (r7) at ({1*\l},{-3*\h});
+\pfeil{(l0)}{(l1)}
+\pfeil{(l0)}{(l2)}
+\pfeil{(l1)}{(l3)}
+\pfeil{(l2)}{(l4)}
+\pfeil{(l2)}{(l5)}
+\pfeil{(l2)}{(l6)}
+\pfeil{(l4)}{(l7)}
+\pfeil{(l5)}{(l8)}
+\pfeil{(l6)}{(l9)}
+\node at (l0) {$S$};
+\node at (l1) {$S$};
+\node at (l2) {$S$};
+\node at (l5) {$S$};
+\node at (l4) {\texttt{(}};
+\node at (l6) {\texttt{)}};
+\node at (l7) {\texttt{(}};
+\node at (l9) {\texttt{)}};
+\node at (l3) {$\varepsilon$};
+\pfeil{(r0)}{(r1)}
+\pfeil{(r0)}{(r2)}
+\pfeil{(r1)}{(r3)}
+\pfeil{(r2)}{(r4)}
+\pfeil{(r2)}{(r5)}
+\pfeil{(r2)}{(r6)}
+\pfeil{(r4)}{(r7)}
+\pfeil{(r5)}{(r8)}
+\pfeil{(r6)}{(r9)}
+\node at (r0) {$S$};
+\node at (r1) {$S$};
+\node at (r2) {$S$};
+\node at (r5) {$S$};
+\node at (r4) {\texttt{(}};
+\node at (r6) {\texttt{)}};
+\node at (r7) {\texttt{(}};
+\node at (r9) {\texttt{)}};
+\node at (r3) {$\varepsilon$};
+\end{tikzpicture}
+\end{center}
 
 
 Betrachten Sie die Grammatik
@@ -80,23 +105,41 @@ S&\rightarrow \texttt{(} S \texttt{)} S
 \begin{loesung}
 \begin{teilaufgaben}
 \item Der Parse Tree ist
-\[
-\xymatrix{
-	&S \ar[dl] \ar[d] \ar[dr] \ar[drr]
-		&
-			&
-\\
-\texttt{(}\ar[d]
-	&S\ar[d]
-		&\texttt{)}\ar[d]
-			&S\ar[d]
-\\
-\texttt{(}
-	&\varepsilon
-		&\texttt{)}
-			&\varepsilon
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\def\l{1.5}
+\def\h{1.2}
+\def\pfeil#1#2{
+	\draw[->,shorten >= 0.25cm,shorten <= 0.25cm] #1 -- #2;
 }
-\]
+\coordinate (q0) at (0,0);
+\coordinate (q1) at ({-1*\l},{-1*\h});
+\coordinate (q2) at ({0*\l},{-1*\h});
+\coordinate (q3) at ({1*\l},{-1*\h});
+\coordinate (q4) at ({2*\l},{-1*\h});
+\coordinate (q5) at ({-1*\l},{-2*\h});
+\coordinate (q6) at ({0*\l},{-2*\h});
+\coordinate (q7) at ({1*\l},{-2*\h});
+\coordinate (q8) at ({2*\l},{-2*\h});
+\node at (q0) {$S$};
+\node at (q2) {$S$};
+\node at (q4) {$S$};
+\node at (q1) {\texttt{(}};
+\node at (q5) {\texttt{(}};
+\node at (q3) {\texttt{)}};
+\node at (q7) {\texttt{)}};
+\node at (q6) {$\varepsilon$};
+\node at (q8) {$\varepsilon$};
+\pfeil{(q0)}{(q1)}
+\pfeil{(q0)}{(q2)}
+\pfeil{(q0)}{(q3)}
+\pfeil{(q0)}{(q4)}
+\pfeil{(q1)}{(q5)}
+\pfeil{(q2)}{(q6)}
+\pfeil{(q3)}{(q7)}
+\pfeil{(q4)}{(q8)}
+\end{tikzpicture}
+\end{center}
 \item Die Grammatik ist eindeutig, weil für jede öffnende Klammer die erste 
 Regel genau einmal angewendet werden muss. 
 Die Grammatik
