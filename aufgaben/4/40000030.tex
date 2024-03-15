@@ -18,19 +18,48 @@ Notation verwenden wir folgende abgekürzten Schreibweisen:
 \\
 .,&.\to\varepsilon&&\text{bedeutet}&&\text{Nehme ein Zeichen vom Input vom Stack}
 \end{align*}
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix {
-*+\txt{}\ar[r]
-	&{q_0} \ar[r]^{\varepsilon,\varepsilon\to{\tt \$}}
-		&{q_1} \ar@(u,r)^{.,\varepsilon\to .}
-		   \ar@/_/[d]_{.,\varepsilon\to\varepsilon}
-		   \ar@/^/[d]^{\varepsilon,\varepsilon\to\varepsilon}
-\\
-*+\txt{}
-	&*++[o][F=]{q_3}
-		&{q_2} \ar@(r,d)^{.,.\to\varepsilon}
-		    \ar[l]^{\varepsilon,{\tt \$}\to\varepsilon}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (s) at (-2,0);
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (3,0);
+\coordinate (q3) at (0,-3);
+\coordinate (q2) at (3,-3);
+\def\zustand#1#2{
+	\node at #1 {#2};
+	\draw #1 circle[radius=0.4];
 }
-\]
+\def\akzeptierzustand#1#2{
+	\zustand{#1}{#2}
+	\draw #1 circle[radius=0.35];
+}
+\zustand{(q0)}{$q_0$}
+\zustand{(q1)}{$q_1$}
+\zustand{(q2)}{$q_2$}
+\akzeptierzustand{(q3)}{$q_3$}
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (s) -- (q0);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q0) -- (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q2) -- (q3);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=-70,in=70] (q2);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q2) to[out=110,in=-110] (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q1) to[out=30,in=-30,distance=1.4cm] (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q2) to[out=-30,in=30,distance=1.4cm] (q2);
+\node at ($0.5*(q0)+0.5*(q1)$)
+	[above] {$\varepsilon,\varepsilon\to\texttt{\$}$\strut};
+\node at ($0.5*(q2)+0.5*(q3)$)
+	[below] {$\varepsilon,\texttt{\$}\to\varepsilon$\strut};
+\node at ($(q1)+(1.0,0)$)
+	[right] {$\texttt{.},\varepsilon\to\texttt{.}$\strut};
+\node at ($(q2)+(1.0,0)$)
+	[right] {$\texttt{.},\texttt{.}\to\varepsilon$\strut};
+\node at ($0.5*(q1)+0.5*(q2)+(0.3,0)$)
+	[right] {$\varepsilon,\varepsilon\to\varepsilon$\strut};
+\node at ($0.5*(q1)+0.5*(q2)+(-0.3,0)$)
+	[left] {$\texttt{.},\varepsilon\to\varepsilon$\strut};
+\end{tikzpicture}
+\end{center}
 \end{loesung}
