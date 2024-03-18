@@ -2,32 +2,92 @@ Man finde eine Grammatik für die Sprache
 $L=\{ w\in\Sigma^*\,|\, |w|_{\texttt{1}}=|w|_{\texttt{0}}\}$
 über dem Alphabet $\Sigma=\{\texttt{0},\texttt{1}\}$, indem
 man sie aus dem folgenden Stackautomaten ableitet:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix {
-*+\txt{}\ar[r]
-	&{0}\ar[dr]_{\varepsilon,\varepsilon\to\texttt{\$}}
-		&*+\txt{}
-			&{2} \ar[dr]^{\varepsilon,\texttt{\$}\to\varepsilon}
-			    \ar@(u,ul)_{\texttt{0},\varepsilon\to\texttt{0}}
-			    \ar@(u,ur)^{\texttt{1},\texttt{0}\to\varepsilon}
-\\
-*+\txt{}
-	&*+\txt{}
-		&{1}\ar[dl]_{\varepsilon,\texttt{\$}\to\varepsilon}
-		    \ar[ur]^{\texttt{0},\varepsilon\to\texttt{0}}
-		    \ar[dr]_{\texttt{1},\varepsilon\to\texttt{1}}
-			&*+\txt{}
-				&{4}\ar[ll]_{\varepsilon,\varepsilon\to\texttt{\$}}
-\\
-*+\txt{}
-	&*++[o][F=]{5}
-		&*+\txt{}
-			&{3} \ar[ur]_{\varepsilon,\texttt{\$}\to\varepsilon}
-			    \ar@(d,dl)^{\texttt{1},\varepsilon\to\texttt{1}}
-			    \ar@(d,dr)_{\texttt{0},\texttt{1}\to\varepsilon}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\def\l{2}
+\coordinate (s) at ({-\l-2},{\l});
+\coordinate (q0) at ({-\l},{\l});
+\coordinate (q1) at (0,0);
+\coordinate (q2) at ({\l},{\l});
+\coordinate (q3) at ({\l},{-\l});
+\coordinate (q4) at ({2*\l},0);
+\coordinate (q5) at ({-\l},{-\l});
+\def\zustand#1#2{
+	\node at #1 {#2};
+	\draw #1 circle[radius=0.4];
 }
-\]
+\def\akzeptierzustand#1#2{
+	\zustand{#1}{#2}
+	\draw #1 circle[radius=0.35];
+}
+\zustand{(q0)}{$q_0$}
+\zustand{(q1)}{$q_1$}
+\zustand{(q2)}{$q_2$}
+\zustand{(q3)}{$q_3$}
+\zustand{(q4)}{$q_4$}
+\akzeptierzustand{(q5)}{$q_5$}
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (s) -- (q0);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q0) -- (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q1) -- (q2);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q2) -- (q4);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q4) -- (q1);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q1) -- (q3);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q3) -- (q4);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (q1) -- (q5);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q2) to[out=20,in=70,distance=1.4cm] (q2);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q2) to[out=160,in=110,distance=1.4cm] (q2);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q3) to[out=-20,in=-70,distance=1.4cm] (q3);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+	(q3) to[out=-160,in=-110,distance=1.4cm] (q3);
+\node at ($0.5*(q0)+0.5*(q1)$) [below left]
+	{$\varepsilon,\varepsilon\to\texttt{\$}$};
+\node at ($0.5*(q5)+0.5*(q1)$) [above left]
+	{$\varepsilon,\texttt{\$}\to\varepsilon$};
+\node at ($0.5*(q2)+0.5*(q4)$) [above right]
+	{$\varepsilon,\texttt{\$}\to\varepsilon$};
+\node at ($0.5*(q3)+0.5*(q4)$) [below right]
+	{$\varepsilon,\texttt{\$}\to\varepsilon$};
+\node at ($0.5*(q1)+0.5*(q4)$) [above]
+	{$\varepsilon,\varepsilon\to\texttt{\$}$};
+\node at ($0.3*(q1)+0.7*(q2)$) [above left]
+	{$\texttt{0},\varepsilon\to\texttt{0}$};
+\node at ($0.3*(q1)+0.7*(q3)$) [below left]
+	{$\texttt{1},\varepsilon\to\texttt{1}$};
+\node at ($(q2)+(-0.2,1.1)$) [left] {$\texttt{0},\varepsilon\to\texttt{0}$};
+\node at ($(q3)+(-0.2,-1.1)$) [left] {$\texttt{1},\varepsilon\to\texttt{1}$};
+\node at ($(q2)+(0.2,1.1)$) [right] {$\texttt{1},\texttt{0}\to\varepsilon$};
+\node at ($(q3)+(0.2,-1.1)$) [right] {$\texttt{0},\texttt{1}\to\varepsilon$};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix {
+%*+\txt{}\ar[r]
+%	&{0}\ar[dr]_{\varepsilon,\varepsilon\to\texttt{\$}}
+%		&*+\txt{}
+%			&{2} \ar[dr]^{\varepsilon,\texttt{\$}\to\varepsilon}
+%			    \ar@(u,ul)_{\texttt{0},\varepsilon\to\texttt{0}}
+%			    \ar@(u,ur)^{\texttt{1},\texttt{0}\to\varepsilon}
+%\\
+%*+\txt{}
+%	&*+\txt{}
+%		&{1}\ar[dl]_{\varepsilon,\texttt{\$}\to\varepsilon}
+%		    \ar[ur]^{\texttt{0},\varepsilon\to\texttt{0}}
+%		    \ar[dr]_{\texttt{1},\varepsilon\to\texttt{1}}
+%			&*+\txt{}
+%				&{4}\ar[ll]_{\varepsilon,\varepsilon\to\texttt{\$}}
+%\\
+%*+\txt{}
+%	&*++[o][F=]{5}
+%		&*+\txt{}
+%			&{3} \ar[ur]_{\varepsilon,\texttt{\$}\to\varepsilon}
+%			    \ar@(d,dl)^{\texttt{1},\varepsilon\to\texttt{1}}
+%			    \ar@(d,dr)_{\texttt{0},\texttt{1}\to\varepsilon}
+%}
+%\]
 
 \begin{hinweis}
 Dieser Automat wurde im Wesentlichen in der Vorlesung als Bespiel
