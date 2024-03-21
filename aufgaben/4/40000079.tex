@@ -1,14 +1,14 @@
 Die Grammatiken
 \begin{align*}
-S_1 & \to S_1P \mid Z               & S_2 & \to \texttt{0}S_2\texttt{1}    \\
+S_1 & \to S_1P                      & S_2 & \to \texttt{0}S_2\texttt{1}    \\
 P   & \to ZZ                        &     & \to \varepsilon                \\
 Z   & \to \texttt{0}\mid\texttt{1}  &     &                               
 \end{align*}
-erzeugen die Sprachen $L_1=\{w\in\Sigma^*\mid  \text{$|w|$ ungerade}\}$
+erzeugen die Sprachen $L_1=\{w\in\Sigma^*\mid  \text{$|w|$ gerade}\}$
 und $L_2=\{\texttt{0}^n\texttt{1}^n \mid n\ge 0\}$.
 Konstruieren Sie eine Grammatik für
 \begin{teilaufgaben}
-\item Konstruieren Sie eine Grammatik für die Sprache $L=\{
+\item Konstruieren Sie eine Grammatik für die Sprache $L=L_2^*=\{
 \texttt{0}^{n_1}\texttt{1}^{n_1}
 \texttt{0}^{n_2}\texttt{1}^{n_2}
 \dots
@@ -16,10 +16,9 @@ Konstruieren Sie eine Grammatik für
 \mid
 n_i\ge 0\forall i\le l
 \}$
-\item Konstruieren Sie eine Grammatik für die Sprache $L=\{
+\item Konstruieren Sie eine Grammatik für die Sprache $L=L_1L_2=\{
 w\in\Sigma^* \mid
-\text{$|w|$ ungerade und $w$ endet mit $\texttt{0}^n\texttt{1}^n$, $n\ge 0$}
-\}$
+|w|$ gerade und $w$ endet mit $\texttt{0}^n\texttt{1}^n$, $n\ge 0 \}$
 \end{teilaufgaben}
 
 \begin{loesung}
@@ -40,7 +39,7 @@ Somit ist die Sprache $L=L_1L_2$ eine Verkettung.
 Wir müssen also eine Grammatik für die Verkettung produzieren:
 \begin{align*}
 S   & \to S_1S_2                    &     &                                \\
-S_1 & \to S_1P \mid Z               & S_2 & \to \texttt{0}S_2\texttt{1}    \\
+S_1 & \to S_1P                      & S_2 & \to \texttt{0}S_2\texttt{1}    \\
 P   & \to ZZ                        &     & \to \varepsilon                \\
 Z   & \to \texttt{0}\mid\texttt{1}  &     &                               
 \qedhere
