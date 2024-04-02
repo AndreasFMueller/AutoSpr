@@ -1,27 +1,29 @@
-Üben Sie die Regeln zur Reduktion auf CNF an den folgenden Beispielen:
-
+Üben Sie die Regeln zur Reduktion auf CNF an den folgenden Beispielen:\\
 \hbox to\textwidth{%
 \begin{minipage}[t]{0.3\textwidth}%
 \noindent
 a)\;
-Wenden Sie die $\varepsilon$-Regel $A\to\varepsilon$ auf die folgenden
-Regeln an:
+Wenden Sie die $\varepsilon$-Regel {\color{red}$A\to\varepsilon$}
+auf die folgenden Regeln an:
 \begin{align*}
 B&\to AC      \\
  &\to CA      \\
  &\to ACA     \\
-D&\to AAAA    
+D&\to AAAA    \\
+\color{red}
+A&\color{red}\to \varepsilon
 \end{align*}
 \end{minipage}
 \hfill
 \begin{minipage}[t]{0.3\textwidth}%
 \noindent
 b)\;
-Eliminieren Sie die Unit-Rule $A\to B$ aus den folgenden Regeln
+Eliminieren Sie die Unit-Rule {\color{red}$A\to B$} aus den folgenden Regeln
 \begin{align*}
 C &\to AC     \\
 B &\to AB     \\
-  &\to BB \mid C 
+  &\to BB \mid C \\
+\color{red}A &\color{red}\to B
 \end{align*}
 \end{minipage}
 \hfill
@@ -91,5 +93,6 @@ A&\to AA_1 \mid \texttt{e} \\
 A_1&\to BC \\
 C&\to AD
 \end{align*}
+
 \end{teilaufgaben}
 \end{loesung}

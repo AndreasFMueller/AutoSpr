@@ -150,26 +150,16 @@ Gerüst des Automaten
 \node at ($0.5*(q1)+0.5*(R)$)
 	[above] {$\varepsilon,\varepsilon\to S$};
 \node at ($0.5*(R)+0.5*(q2)$)
-	[above] {$\varepsilon,S\to\varepsilon$};
+	[above] {$\varepsilon,\texttt{\$}\to\varepsilon$};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[r]
-%        &{}\ar[r]^{\varepsilon,\varepsilon\to{\tt \$}}
-%                &{}\ar[r]^{\varepsilon,\varepsilon\to S}
-%                        &R\ar[r]^{\varepsilon,{\tt\$}\to\varepsilon}
-%                                &*++[o][F=]{}
-%}
-%\]
 dem Zustand $R$ fügt man jetzt entsprechend der Regeln folgende
 "Ubergänge hinzu.
 Für die Regeln mit $A$ sind es die Übergänge im linken Zustandsdiagramm,
 für die Regeln mit $B$ sind es die im rechten:
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
-\begin{scope}
+\begin{scope}[xshift=-4.3cm]
 \coordinate (R) at (0,0);
 \coordinate (q0) at (-3,0);
 \coordinate (q1) at ({1.5*sqrt(3)},1.5);
@@ -177,7 +167,6 @@ für die Regeln mit $B$ sind es die im rechten:
 \coordinate (q1) at (3.1,1.5);
 \coordinate (q2) at (3.1,-1.5);
 \draw (R) circle[radius=0.35];
-\draw (R) circle[radius=0.3];
 \node at (R) {$R$};
 \draw (q1) circle[radius=0.35];
 \draw (q2) circle[radius=0.35];
@@ -206,7 +195,10 @@ für die Regeln mit $B$ sind es die im rechten:
 \node at ($(R)+(0,1.2)$) {$\varepsilon,S\to A$\strut};
 \node at ($(R)+(0,-1.2)$) {$\varepsilon, A\to\texttt{a}$\strut};
 \end{scope}
-\begin{scope}[xshift=8.6cm]
+\begin{scope}[xshift=0.66cm]
+\draw[color=gray] (0,-2) -- (0,2);
+\end{scope}
+\begin{scope}[xshift=4.3cm]
 \coordinate (R) at (0,0);
 \coordinate (q0) at (-3,0);
 \coordinate (q1) at ({1.5*sqrt(3)},1.5);
@@ -214,7 +206,6 @@ für die Regeln mit $B$ sind es die im rechten:
 \coordinate (q1) at (3.1,1.5);
 \coordinate (q2) at (3.1,-1.5);
 \draw (R) circle[radius=0.35];
-\draw (R) circle[radius=0.3];
 \node at (R) {$R$};
 \draw (q1) circle[radius=0.35];
 \draw (q2) circle[radius=0.35];
@@ -292,12 +283,4 @@ der Eingabezeichen nötig sind:
 \end{tikzpicture}
 \end{center}
 \vspace*{-40pt}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%{R}     \ar@(ul,dl)_{{\tt a},{\tt a}\to\varepsilon}
-%        \ar@(ur,dr)^{{\tt b},{\tt b}\to\varepsilon}
-%}
-%\qedhere
-%\]
 \end{loesung}
