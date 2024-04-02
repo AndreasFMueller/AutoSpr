@@ -203,114 +203,127 @@ hinzufügen:
 
 \draw[shorten <= 0.3cm,shorten >= 0.2cm] (q1) -- (3,3);
 \draw[shorten <= 0.3cm,shorten >= 0.2cm] (q1) -- (0,0);
-\draw[shorten <= 0.3cm,shorten >= 0.2cm] (q1) -- (1,0);
+\draw[shorten <= 0.3cm,shorten >= 0.2cm]
+	(q1) to[out=-54,in=105] (1,0);
 
 \draw[shorten <= 0.3cm,shorten >= 0.2cm] (q2) -- (3,3);
 \draw[shorten <= 0.3cm,shorten >= 0.2cm] (q2) -- (2,3);
-\draw[shorten <= 0.3cm,shorten >= 0.2cm] (q2) -- (1,0);
+\draw[shorten <= 0.3cm,shorten >= 0.2cm]
+	(q2) to[out=-100,in=25] (1,0);
 
 \draw[shorten <= 0.3cm,shorten >= 0.2cm] (q3) -- (0,0);
 \draw[shorten <= 0.3cm,shorten >= 0.2cm] (q3) -- (1,0);
-\draw[shorten <= 0.3cm,shorten >= 0.2cm] (q3) -- (2,3);
+\draw[shorten <= 0.3cm,shorten >= 0.2cm]
+	(q3) to[out=80,in=-155] (2,3);
+\draw[shorten <= 0.3cm,shorten >= 0.2cm]
+	(q3) to[out=32,in=-122] (3,3);
 
 \draw[shorten <= 0.3cm,shorten >= 0.2cm] (q4) -- (0,0);
-\draw[shorten <= 0.3cm,shorten >= 0.2cm] (q4) -- (2,3);
+\draw[shorten <= 0.3cm,shorten >= 0.2cm]
+	(q4) to[out=126,in=-75] (2,3);
 
 
 \end{tikzpicture}
 \label{70000028:vorgaben}
 \end{equation}
-\begin{equation}
-\entrymodifiers={++[o][F]}
-\xymatrix {
-{1}
-	&*+\txt{}
-		&*+\txt{}
-			&*+\txt{}
-				&*+\txt{}
-					&{2}
-\\
-*+\txt{}
-	&{}%\ar@{-}[r] \ar@{-}[d] \ar@{-}[dr]
-		%\ar@/^10pt/@{-}[rr]
-		%\ar@/^15pt/@{-}[rrr]
-		%\ar@/_10pt/@{-}[dd]
-		%\ar@/_15pt/@{-}[ddd]
-		&{} %\ar@{-}[d]
-			%\ar@{-}@/^2pt/[r]
-			%\ar@{-}@/^10pt/[rr]
-			%\ar@/^10pt/@{-}[dd]
-			%\ar@/^15pt/@{-}[ddd]
-			&{}%\ar@{-}[r] \ar@{-}[d] \ar@{-}[dr]
-				%\ar@/_10pt/@{-}[dd]
-				%\ar@/_15pt/@{-}[ddd]
-				\ar@{-}[urr]
-				\ar@{-}@/_9pt/[ddddrr]
-				\ar@{-}@/_25pt/[ddddlll]
-				&{} %\ar@{-}[d]
-					%\ar@/^10pt/@{-}[dd]
-					%\ar@/^15pt/@{-}[ddd]
-					\ar@{-}[ullll]
-					\ar@{-}[ur]
-					\ar@{-}@/^12pt/[ddddllll]
-					&*+\txt{}
-\\
-*+\txt{}
-	&{}%\ar@{-}[r] \ar@{-}[ur]
-		%\ar@/_10pt/@{-}[rr]
-		%\ar@/_15pt/@{-}[rrr]
-		%\ar@{-}@/_2pt/[d]
-		%\ar@{-}@/_10pt/[dd]
-		&{}
-			%\ar@{-}@/^2pt/[d]
-			%\ar@{-}@/^10pt/[dd]
-			%\ar@{-}@/_2pt/[r]
-			%\ar@{-}@/_10pt/[rr]
-			&{}%\ar@{-}[r] \ar@{-}[ur]
-				%\ar@{-}@/_2pt/[d]
-				%\ar@{-}@/_10pt/[dd]
-				&{}
-					%\ar@{-}@/^2pt/[d]
-					%\ar@{-}@/^10pt/[dd]
-					&*+\txt{}
-\\
-*+\txt{}
-	&{}%\ar@{-}[r] \ar@{-}[d] \ar@{-}[dr]
-		%\ar@/^10pt/@{-}[rr]
-		%\ar@/^15pt/@{-}[rrr]
-		&{} %\ar@{-}[d]
-			%\ar@{-}@/^2pt/[r]
-			%\ar@{-}@/^10pt/[rr]
-			&{}%\ar@{-}[r] \ar@{-}[d] \ar@{-}[dr]
-				&{} %\ar@{-}[d]
-					&*+\txt{}
-\\
-*+\txt{}
-	&{}%\ar@{-}[r] \ar@{-}[ur]
-		%\ar@/_10pt/@{-}[rr]
-		%\ar@/_15pt/@{-}[rrr]
-		\ar@{-}[uuuul]
-		\ar@{-}[dl]
-		\ar@{-}[drrrr]
-		&{}
-			%\ar@{-}@/_2pt/[r]
-			%\ar@{-}@/_10pt/[rr]
-			\ar@{-}@/_9pt/[uuuull]
-			\ar@{-}@/_25pt/[uuuurrr]
-			\ar@{-}[dll]
-			&{}%\ar@{-}[r] \ar@{-}[ur]
-				&{}
-					&*+\txt{}
-\\
-{3}
-	&*+\txt{}
-		&*+\txt{}
-			&*+\txt{}
-				&*+\txt{}
-					&{4}
-}
-\label{70000028:vorgaben}
-\end{equation}
+%\begin{equation}
+%\entrymodifiers={++[o][F]}
+%\xymatrix {
+%{1}
+%	&*+\txt{}
+%		&*+\txt{}
+%			&*+\txt{}
+%				&*+\txt{}
+%					&{2}
+%\\
+%*+\txt{}
+%	&{}%\ar@{-}[r] \ar@{-}[d] \ar@{-}[dr]
+%		%\ar@/^10pt/@{-}[rr]
+%		%\ar@/^15pt/@{-}[rrr]
+%		%\ar@/_10pt/@{-}[dd]
+%		%\ar@/_15pt/@{-}[ddd]
+%		&{} %\ar@{-}[d]
+%			%\ar@{-}@/^2pt/[r]
+%			%\ar@{-}@/^10pt/[rr]
+%			%\ar@/^10pt/@{-}[dd]
+%			%\ar@/^15pt/@{-}[ddd]
+%			&{}%\ar@{-}[r] \ar@{-}[d] \ar@{-}[dr]
+%				%\ar@/_10pt/@{-}[dd]
+%				%\ar@/_15pt/@{-}[ddd]
+%				\ar@{-}[urr]
+%				\ar@{-}@/_9pt/[ddddrr]
+%				\ar@{-}@/_25pt/[ddddlll]
+%				&{} %\ar@{-}[d]
+%					%\ar@/^10pt/@{-}[dd]
+%					%\ar@/^15pt/@{-}[ddd]
+%					\ar@{-}[ullll]
+%					\ar@{-}[ur]
+%					\ar@{-}@/^12pt/[ddddllll]
+%					&*+\txt{}
+%\\
+%*+\txt{}
+%	&{}%\ar@{-}[r] \ar@{-}[ur]
+%		%\ar@/_10pt/@{-}[rr]
+%		%\ar@/_15pt/@{-}[rrr]
+%		%\ar@{-}@/_2pt/[d]
+%		%\ar@{-}@/_10pt/[dd]
+%		&{}
+%			%\ar@{-}@/^2pt/[d]
+%			%\ar@{-}@/^10pt/[dd]
+%			%\ar@{-}@/_2pt/[r]
+%			%\ar@{-}@/_10pt/[rr]
+%			&{}%\ar@{-}[r] \ar@{-}[ur]
+%				%\ar@{-}@/_2pt/[d]
+%				%\ar@{-}@/_10pt/[dd]
+%				&{}
+%					%\ar@{-}@/^2pt/[d]
+%					%\ar@{-}@/^10pt/[dd]
+%					&*+\txt{}
+%\\
+%*+\txt{}
+%	&{}%\ar@{-}[r] \ar@{-}[d] \ar@{-}[dr]
+%		%\ar@/^10pt/@{-}[rr]
+%		%\ar@/^15pt/@{-}[rrr]
+%		&{} %\ar@{-}[d]
+%			%\ar@{-}@/^2pt/[r]
+%			%\ar@{-}@/^10pt/[rr]
+%			&{}%\ar@{-}[r] \ar@{-}[d] \ar@{-}[dr]
+%				&{} %\ar@{-}[d]
+%					&*+\txt{}
+%\\
+%*+\txt{}
+%	&{}%\ar@{-}[r] \ar@{-}[ur]
+%		%\ar@/_10pt/@{-}[rr]
+%		%\ar@/_15pt/@{-}[rrr]
+%		\ar@{-}[uuuul]
+%		\ar@{-}[dl]
+%		\ar@{-}[drrrr]
+%		&{}
+%			%\ar@{-}@/_2pt/[r]
+%			%\ar@{-}@/_10pt/[rr]
+%			\ar@{-}@/_9pt/[uuuull]
+%			\ar@{-}@/_25pt/[uuuurrr]
+%			\ar@{-}[dll]
+%			&{}%\ar@{-}[r] \ar@{-}[ur]
+%				&{}
+%					&*+\txt{}
+%\\
+%{3}
+%	&*+\txt{}
+%		&*+\txt{}
+%			&*+\txt{}
+%				&*+\txt{}
+%					&{4}
+%}
+%\label{70000028:vorgaben}
+%\end{equation}
+Die roten Kanten stellen sicher, dass jedes Zeichen in einem Unterquadrat
+nur einmal vorkommt.
+Die grünen Kanten stellen zusätzlich sicher, dass in jeder Zeile jedes
+Zeichen nur einmal vorkommt (die horizontalen roten Kanten sind dazu
+ebenfalls nötig), während die vertikalen blauen Kanten erzwingen, dass
+in jeder Spalte jedes Zeichen nur einmal vorkommt.
+
 Um sicherzustellen, dass diese neuen Knoten verschiedene Farbe erhalten,
 müssen diese untereinander alle verbunden werden, sie müssen also
 einen vollständigen Teilgraphen bilden.
