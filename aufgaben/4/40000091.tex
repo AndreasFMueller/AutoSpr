@@ -222,7 +222,7 @@ Daraus kann man jetzt den Parse-Tree ablesen:
 \draw[->,shorten >= 0.25cm,shorten <= 0.25cm]
 	\punkt{#1}{#2} -- \punkt{#3}{#4};
 }
-\begin{tikzpicture}
+\begin{tikzpicture}[>=latex,thick]
 \node at \punkt{0.5}{0.5} {$K_0$};
 \pfeil{0.5}{0.5}{0.5}{7.5}
 \pfeil{0.5}{0.5}{1.5}{1.5}
