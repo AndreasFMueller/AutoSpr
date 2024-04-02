@@ -45,19 +45,46 @@ durch {\tt 0} und bewege den Kopf nach links.
 steht, ersetze sie durch {\tt 1} und gehe in den Zustand $q_{\text{accept}}$
 \end{enumerate}
 Man kann diese Turing-Maschine auch als Zustandsautomaten darstellen:
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix @+5mm {
-*+\txt{}\ar[r]
-        &q_0\ar@(ur,ul)_{\scriptstyle{\tt 0}\to{\tt 0},R\atop \scriptstyle{\tt 1}\to{\tt 1},R}
-            \ar[r]^{\blank\to\blank,L}
-                &q_1\ar[r]^{{\scriptstyle{\tt 0}\to{\tt 1},R}
-                    \atop {\scriptstyle\blank\to{\tt 1},R}}
-                    \ar@(ur,ul)_{{\tt 1}\to{\tt 0},L}
-                        &*++[o][F=]{q_{\text{accept}}}
-}
-\qedhere
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (3,0);
+\coordinate (qaccept) at (6,0);
+\draw (q0) circle[radius=0.35];
+\node at (q0) {$q_0$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(q0) to[out=60,in=120,distance=1.2cm] (q0);
+\draw (q1) circle[radius=0.35];
+\node at (q1) {$q_1$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(q1) to[out=60,in=120,distance=1.2cm] (q1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q0) -- (q1);
+\node[ellipse,draw,double] (qa) at (qaccept) {$q_\text{accept}$};
+\draw[->,shorten <= 0.35cm] (q1) -- (qa.west);
+\draw[<-,shorten <= 0.35cm] (q0) -- +(-2,0);
+\node at ($(q0)+(0,0.8)$) [above] {$\substack{
+					{\texttt{0}\to\texttt{0},R}\\
+					{\texttt{1}\to\texttt{1},R}}$};
+\node at ($(q1)+(0,0.8)$) [above] {$\substack{{\texttt{1}\to\texttt{0},L}}$};
+\node at ($0.4*(q1)+0.6*(qa.west)$) [above] {$\substack{
+					{\texttt{0}\to\texttt{1},R}\\
+					{\blank\to\texttt{1},R}}$};
+\node at ($0.5*(q0)+0.5*(q1)$) [above] {$\scriptstyle\blank\to\blank,L$};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix @+5mm {
+%*+\txt{}\ar[r]
+%        &q_0\ar@(ur,ul)_{\scriptstyle{\tt 0}\to{\tt 0},R\atop \scriptstyle{\tt 1}\to{\tt 1},R}
+%            \ar[r]^{\blank\to\blank,L}
+%                &q_1\ar[r]^{{\scriptstyle{\tt 0}\to{\tt 1},R}
+%                    \atop {\scriptstyle\blank\to{\tt 1},R}}
+%                    \ar@(ur,ul)_{{\tt 1}\to{\tt 0},L}
+%                        &*++[o][F=]{q_{\text{accept}}}
+%}
+%\qedhere
+%\]
 \end{loesung}
 
 
