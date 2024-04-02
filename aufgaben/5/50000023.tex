@@ -21,34 +21,97 @@ Finden Sie das Zustandsdiagramm einer Turing-Maschine, die $L$ entscheidet.
 Die Turing-Maschine muss die beiden Fälle unterscheiden, dass das Wort 
 mit \texttt{0} oder mit \texttt{1} beginnt, dazu dienen der obere
 und der untere Ast des Diagramms.
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix @+15mm {
-*+\txt{}
-	&*+\txt{}
-		&{q_1}	\ar@/^/[r]^{\texttt{1}\to\texttt{1},R}
-			\ar[dr]^{\texttt{0}\to\texttt{0},R}
-			\ar[d]^{\blank\to\blank,R}
-			&{q_2} \ar@/^/[l]^{\texttt{0}\to\texttt{0},R}
-				\ar[d]^{\texttt{*}}
-\\
-*+\txt{} \ar[r]
-	&{q_0}
-		\ar[r]^{\blank\to\blank,R}
-		\ar[ur]^{\texttt{0}\to\texttt{0},R}
-		\ar[dr]_{\texttt{1}\to\texttt{1},R}
-		&*++[o][F=]{q_{\text{accept}}}
-			&*++[o][F=]{q_{\text{reject}}}
-\\
-*+\txt{}
-	&*+\txt{}
-		&{q_3} \ar@/^/[r]^{\texttt{0}\to\texttt{0},R}
-			\ar[u]_{\blank\to\blank,R}
-			\ar[ur]_{\texttt{1}\to\texttt{1},R}
-			&{q_4} \ar@/^/[l]^{\texttt{1}\to\texttt{1},R}
-				\ar[u]_{\texttt{*}}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\def\l{3}
+\def\zustand#1#2{
+	\draw #1 circle[radius=0.35];
+	\node at #1 {$#2\mathstrut$};
 }
-\]
+\def\pfeil#1#2{
+	\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] #1 -- #2;
+}
+\coordinate (q0) at ({-1.4*\l},0);
+\coordinate (qaccept) at (0,0);
+\coordinate (q1) at (0,\l);
+\coordinate (q2) at ({1.4*\l},\l);
+\coordinate (q3) at (0,-\l);
+\coordinate (q4) at ({1.4*\l},-\l);
+\coordinate (qreject) at ({1.4*\l},0);
+\zustand{(q0)}{q_0}
+\zustand{(q1)}{q_1}
+\zustand{(q2)}{q_2}
+\zustand{(q3)}{q_3}
+\zustand{(q4)}{q_4}
+\node[ellipse,draw,double] (qa) at (qaccept) {$q_{\text{accept}}$};
+\node[ellipse,draw,double] (qr) at (qreject) {$q_{\text{reject}}$};
+\pfeil{(q0)}{(q1)}
+\pfeil{(q0)}{(q3)}
+
+\draw[->,shorten <= 0.35cm] (q1) -- (qr.north west);
+\draw[->,shorten <= 0.35cm] (q2) -- (qr.north);
+\draw[->,shorten <= 0.35cm] (q3) -- (qr.south west);
+\draw[->,shorten <= 0.35cm] (q4) -- (qr.south);
+\draw[->,shorten <= 0.35cm] (q1) -- (qa.north);
+\draw[->,shorten <= 0.35cm] (q0) -- (qa.west);
+\draw[->,shorten <= 0.35cm] (q3) -- (qa.south);
+\draw[<-,shorten <= 0.35cm] (q0) -- +(-1.5,0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q1) to[out=10,in=170] (q2);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q2) to[out=-170,in=-10] (q1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q3) to[out=10,in=170] (q4);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q4) to[out=-170,in=-10] (q3);
+
+\node at ($0.5*(q0)+0.5*(q1)$)
+	[above left] {$\scriptstyle\texttt{0}\to\texttt{0},R$};
+\node at ($0.5*(q0)+0.5*(q3)$)
+	[below left] {$\scriptstyle\texttt{1}\to\texttt{1},R$};
+\node at ($0.5*(q0)+0.5*(qa.west)$) [above] {$\scriptstyle\blank\to\blank,R$};
+\node at ($0.4*(q1)+0.6*(qa.north)$) [right] {$\scriptstyle\blank\to\blank,R$};
+\node at ($0.4*(q3)+0.6*(qa.south)$) [right] {$\scriptstyle\blank\to\blank,R$};
+\node at ($0.5*(q2)+0.5*(qr.north)$) [right] {$*$};
+\node at ($0.5*(q4)+0.5*(qr.south)$) [right] {$*$};
+\node at ($0.4*(q1)+0.6*(qr.north west)$)
+	[above right] {$\scriptstyle\texttt{0}\to\texttt{0},R$};
+\node at ($0.4*(q3)+0.6*(qr.south west)$)
+	[below right] {$\scriptstyle\texttt{0}\to\texttt{0},R$};
+\node at ($0.5*(q1)+0.5*(q2)+(0,0.2)$)
+	[above] {$\scriptstyle\texttt{1}\to\texttt{1},R$};
+\node at ($0.5*(q1)+0.5*(q2)+(0,-0.2)$)
+	[below] {$\scriptstyle\texttt{0}\to\texttt{0},R$};
+\node at ($0.5*(q3)+0.5*(q4)+(0,-0.2)$)
+	[below] {$\scriptstyle\texttt{1}\to\texttt{1},R$};
+\node at ($0.5*(q3)+0.5*(q4)+(0,0.2)$)
+	[above] {$\scriptstyle\texttt{0}\to\texttt{0},R$};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix @+15mm {
+%*+\txt{}
+%	&*+\txt{}
+%		&{q_1}	\ar@/^/[r]^{\texttt{1}\to\texttt{1},R}
+%			\ar[dr]^{\texttt{0}\to\texttt{0},R}
+%			\ar[d]^{\blank\to\blank,R}
+%			&{q_2} \ar@/^/[l]^{\texttt{0}\to\texttt{0},R}
+%				\ar[d]^{\texttt{*}}
+%\\
+%*+\txt{} \ar[r]
+%	&{q_0}
+%		\ar[r]^{\blank\to\blank,R}
+%		\ar[ur]^{\texttt{0}\to\texttt{0},R}
+%		\ar[dr]_{\texttt{1}\to\texttt{1},R}
+%		&*++[o][F=]{q_{\text{accept}}}
+%			&*++[o][F=]{q_{\text{reject}}}
+%\\
+%*+\txt{}
+%	&*+\txt{}
+%		&{q_3} \ar@/^/[r]^{\texttt{0}\to\texttt{0},R}
+%			\ar[u]_{\blank\to\blank,R}
+%			\ar[ur]_{\texttt{1}\to\texttt{1},R}
+%			&{q_4} \ar@/^/[l]^{\texttt{1}\to\texttt{1},R}
+%				\ar[u]_{\texttt{*}}
+%}
+%\]
 Darin bedeuten die mit \texttt{*} bezeichneten Pfeile alle Übergänge, für die
 es ausgehend von diesem Zustand noch keinen Übergang gibt.
 
