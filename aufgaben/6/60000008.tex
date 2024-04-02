@@ -13,13 +13,24 @@ Drei mögliche Lösungen:
 \item
 Der folgende Algorithmus entscheidet: Bilde den minimalen Automaten von
 $A$ und akzeptiere, falls $A$ der Automat
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-        &*++[o][F=]{z}\ar@(ur,dr)^{*}
-}
-\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\draw[->,shorten >= 0.35cm] (-1.5,0) -- (0,0);
+\draw (0,0) circle[radius=0.35];
+\draw (0,0) circle[radius=0.30];
+\node at (0,0) {$z\mathstrut$};
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm]
+	(0,0) to[out=30,in=-30,distance=1.2cm] (0,0);
+\node at (0.9,0) [right] {$\Sigma$};
+\end{tikzpicture}
+\end{center}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[r]
+%        &*++[o][F=]{z}\ar@(ur,dr)^{*}
+%}
+%\]
 ist.
 \item
 Der folgende Algorithmus entscheidet: bilde den Automaten, der
