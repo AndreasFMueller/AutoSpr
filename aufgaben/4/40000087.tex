@@ -72,7 +72,6 @@ Startvariable ist $A_{q_0'q_a'}$.
 A_{q_0'q_a'} & \to \varepsilon A_{q_0q_a}\varepsilon  \\
 A_{q_0q_a}   & \to A_{q_0q_1}A_{q_1q_a} \\
              & \to \texttt{a} A_{q_0q_a}\varepsilon \\
-             & \to A_{q_0q_1} A_{q_1q_a} \\
 A_{q_0q_1}   & \to \varepsilon A_{q_iq_i}\varepsilon  \\
              & \to \texttt{a} A_{q_0q_1} \texttt{b} \\
 A_{q_iq_i}   & \to \varepsilon \\
@@ -86,15 +85,36 @@ A_{q_i'q_i'} & \to \varepsilon \\
 \quad
 \begin{aligned}
 S_0 & \to S \\
+S   & \to AB \\
+    & \to \texttt{a} S  \\
 A   & \to \varepsilon \\
     & \to \texttt{a} A \texttt{b} \\
+    &\mathstrut \\
+B   & \to \varepsilon \\
+    &\mathstrut \\
+\end{aligned}
+\quad
+\right\}
+\qquad\Rightarrow\qquad
+\left\{
+\quad
+\begin{aligned}
+S_0 & \to S \\
 S   & \to A \\
     & \to \texttt{a} S  \\
+A   & \to \varepsilon \\
     & \to \texttt{a} A \texttt{b} \\
+    &\mathstrut \\
+    &\mathstrut \\
+    &\mathstrut \\
 \end{aligned}
 \right.
 \]
-mit den Abkürzungen $S_0=A_{q_0'q_a'}$, $S=A_{q_0q_a}$ und $A=A_{q_0q_1}$.
+mit den Abkürzungen $S_0=A_{q_0'q_a'}$, $S=A_{q_0q_a}$, $A=A_{q_0q_1}$
+und $B=A_{q_1q_a}$.
+Aus den letzten zwei Regeln der linken Grammatik folgt, dass
+nur $B=A_{q_1q_a}\to \varepsilon$ sein kann, diese Variable kann man also
+weglassen.
 \end{loesung}
 
 
