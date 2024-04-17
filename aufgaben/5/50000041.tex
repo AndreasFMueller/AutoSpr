@@ -1,0 +1,47 @@
+Beschreiben Sie die Vorgehensweise einer Turing-Maschine, die Wörter
+über dem Alphabet $\Sigma=\{\texttt{0},\texttt{1}\}$ wie folgt erkennt:
+\begin{teilaufgaben}
+\item Das Wort besteht nur aus Nullen
+\item Das Wort enthält keine Nullen
+\item Das Wort hat die Form $\texttt{0}^n\texttt{1}^m$, $n,m>0$
+\end{teilaufgaben}
+
+\begin{loesung}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{teilaufgaben}
+\item 
+Der folgende Pseudocode arbeitet bis zum Ende des Wortes und verwirft
+das Wort, sobald ein \texttt{1} gefunden wird:
+\begin{enumerate}[1.]
+\item Falls \texttt{1}: {\color{darkred}reject}
+\item Solange \texttt{0}: ein Feld nach rechts
+\item Falls \blank: {\color{darkgreen}accept}
+\item Alle anderen Zeichen: {\color{darkred}reject}
+\end{enumerate}
+\item 
+Dies ist die gleiche Aufgabe wir a) mit vertauschten Rollen von
+\texttt{0} und \texttt{1}:
+\begin{enumerate}[1.]
+\item Falls \texttt{0}: {\color{darkred}reject}
+\item Solange \texttt{1}: ein Feld nach rechts
+\item Falls \blank: {\color{darkgreen}accept}
+\item Alle anderen Zeichen: {\color{darkred}reject}
+\end{enumerate}
+\item
+Zunächst muss geprüft werden, dass das Wort mit \texttt{0} beginnt,
+dann können alle Nullen übersprungen werden.
+Anschliessend muss mindestens ein \texttt{1} kommen, dann können alle
+Einsen übersprüngen werden.
+Dann muss das Wort zu Ende sein.
+Diese Prüfungen führt der folgende Code durch:
+\begin{enumerate}[1.]
+\item Falls \texttt{1}: {\color{darkred}reject}
+\item Solange \texttt{0}: ein Feld nach rechts
+\item Falls \blank: {\color{darkred}reject}
+\item Solange \texttt{1}: ein Feld nach rechts
+\item Falls \blank: {\color{darkgreen}accept}
+\item Alle anderen Zeichen: {\color{darkred}reject}
+\end{enumerate}
+\end{teilaufgaben}
+\end{loesung}
