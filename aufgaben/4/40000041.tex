@@ -69,32 +69,6 @@ man sie aus dem folgenden Stackautomaten ableitet:
 	[below right] {$\scriptstyle\texttt{0},\texttt{1}\to\varepsilon$};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix {
-%*+\txt{}\ar[r]
-%	&{0}\ar[dr]_{\varepsilon,\varepsilon\to\texttt{\$}}
-%		&*+\txt{}
-%			&{2} \ar[dr]^{\varepsilon,\texttt{\$}\to\varepsilon}
-%			    \ar@(u,ul)_{\texttt{0},\varepsilon\to\texttt{0}}
-%			    \ar@(u,ur)^{\texttt{1},\texttt{0}\to\varepsilon}
-%\\
-%*+\txt{}
-%	&*+\txt{}
-%		&{1}\ar[dl]_{\varepsilon,\texttt{\$}\to\varepsilon}
-%		    \ar[ur]^{\texttt{0},\varepsilon\to\texttt{0}}
-%		    \ar[dr]_{\texttt{1},\varepsilon\to\texttt{1}}
-%			&*+\txt{}
-%				&{4}\ar[ll]_{\varepsilon,\varepsilon\to\texttt{\$}}
-%\\
-%*+\txt{}
-%	&*++[o][F=]{5}
-%		&*+\txt{}
-%			&{3} \ar[ur]_{\varepsilon,\texttt{\$}\to\varepsilon}
-%			    \ar@(d,dl)^{\texttt{1},\varepsilon\to\texttt{1}}
-%			    \ar@(d,dr)_{\texttt{0},\texttt{1}\to\varepsilon}
-%}
-%\]
 
 \begin{hinweis}
 Dieser Automat wurde im Wesentlichen in der Vorlesung als Bespiel
@@ -149,11 +123,14 @@ Für die Variable $A_{04}$ gibt es drei Regeln. Eine, die über den
 Zustand $2$ führt, die zweite, die über den Zustand $3$ führt, und
 schliesslich eine, die die Möglichkeit von Zustand $4$ nach $4$ 
 berücksichtigt:
-\begin{align*}
+\begin{equation}
+\begin{aligned}
 A_{04}&\to \varepsilon A_{12}\varepsilon\\
       &\to \varepsilon A_{13}\varepsilon\\
       &\to A_{04}A_{44}
-\end{align*}
+\end{aligned}
+\label{40000041:a04}
+\end{equation}
 Wegen des einzig möglichen Übergangs von $4$ zu $1$ ist die Menge der
 Wörter, die von $0$ zu $4$ führen können mit leerem Stack die gleiche
 ist wie die, die von $4$ zu $4$ führen können mit leerem Stack.
@@ -161,10 +138,13 @@ Die erzeugten Wörter sind also Verkettungen von Wörtern, die
 aus $A_{12}$ oder $A_{13}$ erzeugt werden.
 
 Für $A_{12}$ und $A_{13}$ wiederum bekommt man die Regeln
-\begin{align*}
+\begin{equation}
+\begin{aligned}
 A_{12}&\to\texttt{0} A_{22}\texttt{1} \;|\; A_{12}A_{22}\\
 A_{13}&\to\texttt{1} A_{33}\texttt{0} \;|\; A_{13}A_{33}
-\end{align*}
+\end{aligned}
+\label{40000041:a12a13}
+\end{equation}
 Aus der Variablen $A_{12}$ entstehen immer Wörter, die mit \texttt{0}
 beginnen, aus $A_{13}$ entstehen immer Wörter, die mit \texttt{1}
 beginnen.
@@ -175,10 +155,13 @@ auflösen muss.
 Zusätzlich zu den $\varepsilon$-Regeln für die Variablen $A_{22}$ und $A_{33}$
 findet man die Regeln, die ein Zeichen auf den Stack legen und am
 Schluss wieder abbauen:
-\begin{align*}
+\begin{equation}
+\begin{aligned}
 A_{22}&\to \texttt{0}A_{22}\texttt{1} \;|\; A_{22}A_{22} \;|\; \varepsilon\\
 A_{33}&\to \texttt{1}A_{33}\texttt{0} \;|\; A_{33}A_{33} \;|\; \varepsilon
-\end{align*}
+\end{aligned}
+\label{40000041:a22a33}
+\end{equation}
 Die Regel für $A_{22}$ erzeugt Wörter der Form
 $\texttt{0}^n\texttt{1}^n$,
 Verkettungen davon und sie schachtelt solche Wörter auch wieder zwischen
@@ -204,22 +187,149 @@ A_{44}&\to\varepsilon A_{12}\varepsilon\\
 Diese Regeln drücken aus, dass $A_{45}$ eine Verkettung von Wörtern
 ist, die jeweils aus $A_{44}$ entwickelt werden können.
 
-Man kann diese Grammatik noch etwas abkürzen.
-Wir schreiben $B$ für die Wörter, die aus $A_{44}$ erzeugt werden können.
-Die erzeugten Wörter sind dann Verkettungen von $B$-Wörtern.
-Schreibt man $N$ für die ``Klammerausdrücke'' mit \texttt{0} als ``öffnender 
-Klammer'' und $E$ für die entsprechenden Ausdrücke mit \texttt{1}
-als ``öffnender Klammer, dann wird die Grammatik zu
+Damit ist die Grammatik gefunden, sie ist aber noch nicht sehr übersichtlich.
+Um sie zu vereinfachen, führen wir neue, lesbarere Variablen ein.
+Wir beginnen mit den Regeln \eqref{40000041:a12a13} und \eqref{40000041:a22a33},
+die wir als
+\[
+\left.
+\begin{aligned}
+A_{12}&\to\texttt{0} A_{22}\texttt{1} \;|\; A_{12}A_{22}\\
+A_{13}&\to\texttt{1} A_{33}\texttt{0} \;|\; A_{13}A_{33}\\
+A_{22}&\to \texttt{0}A_{22}\texttt{1} \;|\; A_{22}A_{22} \;|\; \varepsilon\\
+A_{33}&\to \texttt{1}A_{33}\texttt{0} \;|\; A_{33}A_{33} \;|\; \varepsilon
+\end{aligned}
+\quad
+\right\}
+\qquad\Rightarrow\qquad
+\left\{
+\quad
+\begin{aligned}
+A_{12}&\to\texttt{0} N\texttt{1} \;|\; A_{12}N \\
+A_{13}&\to\texttt{1} E\texttt{0} \;|\; A_{13}N \\
+N &\to \texttt{0} N \texttt{1} \;|\; NN \;|\; \varepsilon\\
+E &\to \texttt{1} E \texttt{0} \;|\; EE \;|\; \varepsilon
+\end{aligned}
+\right.
+\]
+Die ersten beiden Regeln auf der rechten Seite sagen, dass die Variablen
+$A_{12}$ und $A_{13}$ das leere Wort nicht erzeugen können.
+Dies ist gleichbedeutend damit, die $\varepsilon$-Regeln in letzten zwei 
+Regeln wegzulassen, so dass 
+\begin{equation}
+\begin{aligned}
+N &\to \texttt{0} N \texttt{1} \;|\; NN \;|\; \texttt{01}\\
+E &\to \texttt{1} E \texttt{0} \;|\; EE \;|\; \texttt{10}
+\end{aligned}
+\label{40000041:NE}
+\end{equation}
+übrig bleiben und wir $A_{12}=N$ und $A_{13}=E$ setzen können.
+
+Die übrigen Regeln der Grammatik reduzieren sich jetzt auf
+\[
+\left.
+\begin{aligned}
+A_{05}&\to \varepsilon \\
+      &\to A_{04}A_{45} \\
+A_{04}&\to N\\
+      &\to E\\
+      &\to A_{04}A_{44} \\
+A_{45}&\to\varepsilon\\
+      &\to A_{44}A_{45}\\
+A_{44}&\to N\\
+      &\to E\\
+      &\to A_{44}A_{44} \\
+      &\to \varepsilon \\
+\end{aligned}
+\quad
+\right\}
+\qquad\Rightarrow\qquad
+\left\{
+\quad
+\begin{aligned}
+S      &\to \varepsilon \\
+       &\to BC \\
+B      &\to N      \\
+       &\to E      \\
+       &\to BD \\
+C      &\to \varepsilon \\
+       &\to DC \\
+D      &\to N \\
+       &\to E \\
+       &\to DD \\
+       &\to\varepsilon
+\end{aligned}
+\right.
+\]
+Die Regeln für $C$ in der mittleren Grammatik sagen, dass $C$ eine Folge
+von $D$ ist, wobei auch das leere Wort zulässig ist.
+Zusammen mit den Regeln für $D$ bedeutet das, dass $C$ beliebige,
+möglicherweise leere Folgen von $N$ oder $E$ sind.
+Die Variable $C$ erzeugt also die gleichen Wörter wie $D$, man kann
+also $C$ durch $D$ ersetzen und die Regeln für $C$ weglassen.
+\[
+\left.
+\quad
+\begin{aligned}
+S      &\to \varepsilon \\
+       &\to BC \\
+B      &\to N      \\
+       &\to E      \\
+       &\to BD \\
+C      &\to \varepsilon \\
+       &\to DC \\
+D      &\to N \\
+       &\to E \\
+       &\to DD \\
+       &\to\varepsilon
+\end{aligned}
+\quad
+\right\}
+\qquad\Rightarrow\qquad
+\left\{
+\quad
+\begin{aligned}
+S      &\to \varepsilon \\
+       &\to BD \\
+B      &\to N      \\
+       &\to E      \\
+       &\to BD \\
+       &\mathstrut \\
+       &\mathstrut \\
+D      &\to N \\
+       &\to E \\
+       &\to DD \\
+       &\to\varepsilon
+\end{aligned}
+\right.
+\]
+Die letzten vier Regeln erlauben, Folgen von $N$ und $E$ zu bilden,
+oder auch das leere Wort.
+Die drei Regeln für $B$ sagen dasselbe, aber da weder $N$ noch $E$
+das leere Wort produzieren können, kann auch $B$ niemals das leere
+Wort erzeugen.
+Die Regel $S\to BD$ sagt dann, dass $S$ einfach eine Folge von $N$
+oder $E$ sein.
+Dies kann man einfacher durch die Regeln
 \begin{align*}
-S&\to SB \;|\; \varepsilon
+S&\to\varepsilon \\
+ &\to SF \\
+F&\to N \\
+ &\to E
+\end{align*}
+ausdrücken.
+Damit bleiben jetzt zusammen mit \eqref{40000041:NE} die Regeln
+\begin{align*}
+S&\to SF \;|\; \varepsilon
 \\
-B&\to N\;|\; E
+F&\to N\;|\; E
 \\
 N&\to NN \;|\; \texttt{0}N\texttt{1} \;|\; \texttt{01}
 \\
-E&\to EE \;|\; \texttt{1}E\texttt{0} \;|\; \texttt{10}.
+E&\to EE \;|\; \texttt{1}E\texttt{0} \;|\; \texttt{10}
 \qedhere
 \end{align*}
+als endgültige Form der Grammatik.
 \end{loesung}
 
 
