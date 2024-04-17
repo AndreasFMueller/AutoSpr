@@ -1,5 +1,5 @@
 In der Vorlesung wurde gezeigt, dass die Sprache
-$\{\texttt{a}^n\texttt{b}^n\texttt{c}^n\;|\;n\ge 0\}$
+$\{\texttt{a}\mathstrut^n\texttt{b}\mathstrut^n\texttt{c}\mathstrut^n\;|\;n\ge 0\}$
 über dem Alphabet $\Sigma=\{\texttt{a},\texttt{b},\texttt{c}\}$
 nicht kontextfrei ist.
 Wenn man die Bedingungen etwas lockert, und nur noch verlangt, dass die
@@ -14,21 +14,107 @@ Ist $L$ kontextfrei?
 \themaL{Pumping Lemma fur kontextfreie Sprachen}{Pumping Lemma für kontextfreie Sprachen}
 
 \begin{loesung}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
 Nein, auch $L$ ist nicht kontextfrei.
 Man kann dies mit dem Pumping-Lemma für kontextfreie Sprachen nachweisen,
 wobei man sogar das gleiche Beispielwort verwenden kann wie im Falle der
-Sprache $\{ \texttt{a}^n \texttt{b}^n \texttt{c}^n\;|\; n \ge 0\}$ .
+Sprache $\{ \texttt{a}\mathstrut^n \texttt{b}\mathstrut^n \texttt{c}\mathstrut^n\;|\; n \ge 0\}$ .
 
 \ding{182}~%
 Man nimmt dazu an, dass $L$ kontextfrei sei.
 \ding{183}~%
 Gemäss Pumping-Lemma gibt es daher die Pumping-Length $N$.
 \ding{184}~%
-Wir konstruieren jetzt ein Wort
-$w=\texttt{a}^N\texttt{b}^N\texttt{c}^N$, welches die Voraussetzungen
+Wir konstruieren jetzt das Wort
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\draw (0,0) rectangle (12,0.6);
+\draw (4,0) -- (4,0.6);
+\draw (8,0) -- (8,0.6);
+\node at (2,0.25) {$\texttt{a}\mathstrut^N$};
+\node at (6,0.25) {$\texttt{b}\mathstrut^N$};
+\node at (10,0.25) {$\texttt{c}\mathstrut^N$};
+\node at (0,0.25) [left] {$w=\mathstrut$};
+\node at (12,0.25) [right] {$,\mathstrut$};
+\node at (4,0.6) [above] {$N$};
+\node at (8,0.6) [above] {$2N$};
+\node at (12,0.6) [above] {$3N$};
+\node at (0,0.25) [left] {\phantom{$
+{\color{blue}u}
+{\color{darkred}v}
+{\color{darkgreen}x}
+{\color{darkred}y}
+{\color{blue}z}
+=\mathstrut$}};
+\end{tikzpicture}
+\end{center}
+welches die Voraussetzungen
 des Pumping-Lemma sicher erfüllt.
 \ding{185}~%
 Es muss also eine Unterteilung $w=uvxyz$ geben, so dass $|vxy|\le N$ ist.
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\draw (0,0) rectangle (12,0.6);
+\draw (4,0) -- (4,0.6);
+\draw (8,0) -- (8,0.6);
+\node at (2,0.25) {$\texttt{a}^N\mathstrut$};
+\node at (6,0.25) {$\texttt{b}^N\mathstrut$};
+\node at (10,0.25) {$\texttt{c}^N\mathstrut$};
+\node at (12,0.25) [right] {$.\mathstrut$};
+\node at (0,0.25) [left] {$
+{\color{blue}u}
+{\color{darkred}v}
+{\color{darkgreen}x}
+{\color{darkred}y}
+{\color{blue}z}
+=\mathstrut$};
+\node at (4,0.6) [above] {$N$};
+\node at (8,0.6) [above] {$2N$};
+\node at (12,0.6) [above] {$3N$};
+\def\v{2.4}
+\def\x{3.8}
+\def\y{4.5}
+\def\z{5.2}
+
+\fill[color=blue!20,opacity=0.5]
+	(0.05,0.05) rectangle ({\v-0.025},0.55);
+\draw[color=blue]
+	(0.05,0.05) rectangle ({\v-0.025},0.55);
+\node[color=blue] at ({0.5*\v},0.3) {$u\mathstrut$};
+
+\fill[color=darkred!20,opacity=0.5]
+	({\v+0.025},0.05) rectangle ({\x-0.025},0.55);
+\draw[color=darkred]
+	({\v+0.025},0.05) rectangle ({\x-0.025},0.55);
+\node[color=darkred] at ({0.5*(\v+\x)},0.3) {$v\mathstrut$};
+
+\fill[color=darkgreen!20,opacity=0.5]
+	({\x+0.025},0.05) rectangle ({\y-0.025},0.55);
+\draw[color=darkgreen]
+	({\x+0.025},0.05) rectangle ({\y-0.025},0.55);
+\node[color=darkgreen] at ({0.5*(\x+\y)},0.3) {$x\mathstrut$};
+
+\fill[color=darkred!20,opacity=0.5]
+	({\y+0.025},0.05) rectangle ({\z-0.025},0.55);
+\draw[color=darkred]
+	({\y+0.025},0.05) rectangle ({\z-0.025},0.55);
+\node[color=darkred] at ({0.5*(\y+\z)},0.3) {$y\mathstrut$};
+
+\fill[color=blue!20,opacity=0.5]
+	({\z+0.025},0.05) rectangle (11.95,0.55);
+\draw[color=blue]
+	({\z+0.025},0.05) rectangle (11.95,0.55);
+\node[color=blue] at ({0.5*(\z+12)},0.3) {$z\mathstrut$};
+
+\draw[line width=0.2pt] (\v,0) -- (\v,-0.4);
+\draw[line width=0.2pt] (\z,0) -- (\z,-0.4);
+\draw[<->] (\v,-0.3) -- (\z,-0.3);
+\node at ({0.5*(\v+\z)},-0.3) [below] {$\le N$};
+\end{tikzpicture}
+\end{center}
+Die Blöcke ${\color{darkred}v}{\color{darkgreen}x}{\color{darkred}y}$
+können auch anderso liegen, dürfen aber zusammen nicht länger als $N$ sein.
 \ding{186}~%
 Diese letzte Bedingung hat zur Folge, dass $v$ und $y$ höchstens in
 zwei der drei Blöcke $\texttt{a}^N$, $\texttt{b}^N$ oder $\texttt{c}^N$
@@ -43,10 +129,15 @@ Daher kann $L$ nicht kontextfrei sein.
 
 \begin{diskussion}
 Es genügt nicht, darauf zu verweisen, dass $L$ die Sprache
-$L'=\{ \texttt{a}^n \texttt{b}^n \texttt{c}^n\;|\; n\ge 0\}$ enthalte,
-und dass daher auch $L'$ nicht kontextfrei sein.  Dann könnte man nämlich auch
-argumentieren, dass $L$ die reguläre Sprache $\emptyset$ enthalte, und daher
-regulär sei!
+$L'
+=
+\{
+\texttt{a}\mathstrut^n \texttt{b}\mathstrut^n \texttt{c}\mathstrut^n
+\mid n\ge 0
+\}$
+enthalte, und dass daher auch $L'$ nicht kontextfrei sein.
+Dann könnte man nämlich auch argumentieren, dass $L$ die kontextfreie Sprache
+$\emptyset$ enthalte, und daher kontextfreie sei!
 
 Wenn man sich den Pumping-Lemma-Beweis genauer anschaut, kann man auch verstehen,
 warum es nicht reicht. Der Beweis beruht ja darauf, dass aufgepumpte Wörter nicht
