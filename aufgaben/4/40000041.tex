@@ -92,11 +92,11 @@ sind immer gleich viele Einsen wie Nullen gelesen worden.
 
 \begin{loesung}
 Dieser Stackautomat erfüllt bereits alle Voraussetzungen, damit
-der Algorithmus aus dem Skript angewendet werden kann. Es gibt nur
+der Algorithmus aus dem Unterricht angewendet werden kann. Es gibt nur
 einen Akzeptierzustand, und der Stack wird vor dem Akzeptieren
 eines Wortes geleert.
 
-Der im Skript besprochene Algorithmus verwendet als Variablen der
+Der im Unterricht besprochene Algorithmus verwendet als Variablen der
 Grammatik die Symbole $A_{pq}$, die für Wörter stehen, die den
 Stackautomaten vom Zustand $p$ in den Zustand $q$ überführen, ohne
 den Stack zu verändern. Die Startvariable der so konstruierten Grammatik
@@ -212,6 +212,7 @@ E &\to \texttt{1} E \texttt{0} \;|\; EE \;|\; \varepsilon
 \end{aligned}
 \right.
 \]
+schreiben können.
 Die ersten beiden Regeln auf der rechten Seite sagen, dass die Variablen
 $A_{12}$ und $A_{13}$ das leere Wort nicht erzeugen können.
 Dies ist gleichbedeutend damit, die $\varepsilon$-Regeln in letzten zwei 
@@ -327,7 +328,6 @@ F&\to N\;|\; E
 N&\to NN \;|\; \texttt{0}N\texttt{1} \;|\; \texttt{01}
 \\
 E&\to EE \;|\; \texttt{1}E\texttt{0} \;|\; \texttt{10}
-\qedhere
 \end{align*}
 als endgültige Form der Grammatik.
 \end{loesung}

@@ -16,26 +16,132 @@ erkennen?
 
 \begin{hinweis}
 Verwenden Sie ein Wort der Form
-$ \texttt{a}^N \texttt{b}^N \texttt{c}^{N^2}$
+$ \texttt{a}\mathstrut^N \texttt{b}\mathstrut^N \texttt{c}\mathstrut^{N^2}$
 \end{hinweis}
 
 \thema{kontextfrei}
 \themaL{Pumping Lemma fur kontextfreie Sprachen}{Pumping Lemma für kontextfreie Sprachen}
 
 \begin{loesung}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
 Dies ist nicht möglich, wie man mit dem Pumping Lemma für kontextfreie
 Sprachen zeigen kann.
 Dazu nehmen wir an, dass die Sprache $L$ kontextfrei ist.
 Die Pumping length sei $N$.
 Wir verwenden das Wort
-\[
-w = \texttt{a}^N\texttt{b}^N\texttt{c}^{N^2}.
-\]
+\(
+w = \texttt{a}^N\texttt{b}^N\texttt{c}^{N^2}
+\),
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\pgfmathparse{sqrt(13)-1}
+\xdef\l{\pgfmathresult}
+\draw (0,0) rectangle (12,0.6);
+\draw (\l,0) -- (\l,0.6);
+\draw ({2*\l},0) -- ({2*\l},0.6);
+\node at ({0.5*\l},0.25) {$\texttt{a}\mathstrut^N$};
+\node at ({1.5*\l},0.25) {$\texttt{b}\mathstrut^N$};
+\node at ({0.5*(2*\l+12)},0.25) {$\texttt{c}\mathstrut^{N^2}$};
+\node at (\l,0.6) [above] {$N\mathstrut$};
+\node at ({2*\l},0.6) [above] {$2N\mathstrut$};
+\node at (12,0.6) [above] {$2N+N^2\mathstrut$};
+\node at (0,0.3) [left] {$w=\mathstrut$};
+\node at (0,0.3) [left] {\phantom{$
+{\color{blue}u}
+{\color{darkred}v}
+{\color{darkgreen}x}
+{\color{darkred}y}
+{\color{blue}z}=\mathstrut$}};
+\node at (12,0.3) [right] {.\strut};
+\end{tikzpicture}
+\end{center}
 Nach dem Pumping-Lemma gibt es eine Aufteilung des Wortes $w$ in fünf
-Teile $w=uvwxy$ mit $|vwx| \le N$ derart, dass alle gepumptent
-Wörter $uv^kwx^ky$ ebenfalls in $L$ sind.
-Wegen der Bedingung $|vwx|\le N$ kann $vwx$ höchstens zwei verschiedene
-Arten von Zeichen enthalten.
+Teile
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\pgfmathparse{sqrt(13)-1}
+\xdef\l{\pgfmathresult}
+\draw (0,0) rectangle (12,0.6);
+\draw (\l,0) -- (\l,0.6);
+\draw ({2*\l},0) -- ({2*\l},0.6);
+\node at ({0.5*\l},0.25) {$\texttt{a}\mathstrut^N$};
+\node at ({1.5*\l},0.25) {$\texttt{b}\mathstrut^N$};
+\node at ({0.5*(2*\l+12)},0.25) {$\texttt{c}\mathstrut^{N^2}$};
+\node at (\l,0.6) [above] {$N\mathstrut$};
+\node at ({2*\l},0.6) [above] {$2N\mathstrut$};
+\node at (12,0.6) [above] {$2N+N^2\mathstrut$};
+\node at (0,0.3) [left] {$
+{\color{blue}u}
+{\color{darkred}v}
+{\color{darkgreen}x}
+{\color{darkred}y}
+{\color{blue}z}=\mathstrut$};
+\node at (12,0.3) [right] {.\strut};
+\def\v{1.6}
+\def\x{2.1}
+\def\y{2.5}
+\def\z{3.5}
+
+\fill[color=blue!20,opacity=0.5]
+	(0.05,0.05) rectangle ({\v-0.025},0.55);
+\draw[color=blue]
+	(0.05,0.05) rectangle ({\v-0.025},0.55);
+\node[color=blue] at ({0.5*\v},0.3) {$u\mathstrut$};
+
+\fill[color=darkred!20,opacity=0.5]
+	({\v+0.025},0.05) rectangle ({\x-0.025},0.55);
+\draw[color=darkred]
+	({\v+0.025},0.05) rectangle ({\x-0.025},0.55);
+\node[color=darkred] at ({0.5*(\v+\x)},0.3) {$v\mathstrut$};
+
+\fill[color=darkgreen!20,opacity=0.5]
+	({\x+0.025},0.05) rectangle ({\y-0.025},0.55);
+\draw[color=darkgreen]
+	({\x+0.025},0.05) rectangle ({\y-0.025},0.55);
+\node[color=darkgreen] at ({0.5*(\x+\y)},0.3) {$x\mathstrut$};
+
+\fill[color=darkred!20,opacity=0.5]
+	({\y+0.025},0.05) rectangle ({\z-0.025},0.55);
+\draw[color=darkred]
+	({\y+0.025},0.05) rectangle ({\z-0.025},0.55);
+\node[color=darkred] at ({0.5*(\y+\z)},0.3) {$y\mathstrut$};
+
+\fill[color=blue!20,opacity=0.5]
+	({\z+0.025},0.05) rectangle (11.95,0.55);
+\draw[color=blue]
+	({\z+0.025},0.05) rectangle (11.95,0.55);
+\node[color=blue] at ({0.5*(\z+12)},0.3) {$z\mathstrut$};
+
+\draw[line width=0.3pt] (\v,0) -- (\v,-0.4);
+\draw[line width=0.3pt] (\z,0) -- (\z,-0.4);
+\draw[<->] (\v,-0.3) -- (\z,-0.3);
+\node at ({0.5*(\v+\z)},-0.3) [below] {$\le N$};
+
+\end{tikzpicture}
+\end{center}
+$w=
+{\color{blue}u}
+{\color{darkred}v}
+{\color{darkgreen}x}
+{\color{darkred}y}
+{\color{blue}z}$
+mit
+$|{\color{darkred}v}
+{\color{darkgreen}x}
+{\color{darkred}y}| \le N$ derart, dass alle gepumptent
+Wörter
+${\color{blue}u}{\color{darkred}v}^k
+{\color{darkgreen}x}{\color{darkred}y}^k{\color{blue}z}$
+ebenfalls in $L$ sind.
+Die Blöcke 
+${\color{darkred}v}{\color{darkgreen}x}{\color{darkred}y}$
+können auch anderswo liegen, dürfen aber zusammen nicht länger
+als $N$ sein.
+Wegen
+$|{\color{darkred}v}{\color{darkgreen}x}{\color{darkred}y}|\le N$
+kann ${\color{darkred}v}{\color{darkgreen}x}{\color{darkred}y}$
+höchstens zwei verschiedene Arten von Zeichen enthalten.
 Somit gibt es zwei mögliche Fälle:
 \begin{enumerate}
 \item
@@ -58,7 +164,8 @@ $
 $
 immer noch erfüllt ist.
 Dazu müsste der Teil $x$ aber mindestens $N$ Zeichen enthalten, 
-also wäre $|vwx|\ge N+1$, was nicht sein darf.
+also wäre $|{\color{darkred}v}{\color{darkgreen}x}{\color{darkred}z}|\ge N+1$,
+was nicht sein darf.
 \end{enumerate}
 Es ist also nicht möglich, das Wort $w$ aufzupumpen, im Widerspruch
 zur Aussage des Pumping Lemma.
