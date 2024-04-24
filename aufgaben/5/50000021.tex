@@ -187,13 +187,18 @@ gestossen ist, der nicht vom Input-Wort initialisiert worden ist.
 Es geht also um die hypothetische Situation, dass man im Input $\blank$-Zeichen
 zulässt, und man möchte wissen, wie die Maschine damit umgeht.
 
-Das erste $\blank$-Zeichen rechts vom Wortanfang kann nur durch die "Ubergänge 
-von $q_1$ nach $q_{\text{reject}}$
-und
+Das erste $\blank$-Zeichen rechts vom Wortanfang kann nur durch die Übergänge 
+von $q_1$ nach $q_{\text{reject}}$,
 von $q_2$ nach $q_{\text{reject}}$
+und
+von $q_0$ nach $q_{\text{accept}}$
 überschritten werden.
-Da die Maschine dann aber anhält, wird der nachfolgende Teil des Bandes nie
-gelesen, und kann daher auch den Ausgang nicht beeinflussen.
+Der Übergang von $q_3$ nach $q_0$ folgt immer auf einen Übergang
+mit Kopfbewegung nach links, das Leerzeichen muss also ein Leerzeichen
+links vom ersten Wort sein.
+Da die Maschine nach allen genannten Übergängen anhält, wird der
+nachfolgende Teil des Bandes nie gelesen, und kann daher auch den
+Ausgang nicht beeinflussen.
 \item
 Die Turingmaschine überschreibt \texttt{0} und \texttt{1} paarweise mit
 \texttt{x} und akzeptiert, wenn am Schluss nur \texttt{x} dastehen.
