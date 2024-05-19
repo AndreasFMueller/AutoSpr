@@ -1,0 +1,170 @@
+{\em Corral} (auch bekannt als {\em Cave} oder {\em Bag}, japanisch
+\begin{CJK}{UTF8}{min}バッグ\end{CJK})
+ist ein Logikrätsel, welches auf einem Gitter mit $n\times n$
+Knoten gespielt wird.
+In einzelne Feldern des Gitters sind Zahlen eingetragen.
+Der Spieler muss einen Rundweg enlang der Rasterlinien einzeichnen, der keinen
+Rasterpunkt mehrfach durchläuft, aber nicht notwendigerweise durch alle
+Rasterpunkte führt.
+Folgende Regeln müssen eingehalten werden:
+\begin{enumerate}
+\item
+Alle Zahlenfelder müssen im Inneren des Rundwegs liegen.
+\item
+Eine Zahl gibt an, wie viele Felder man insgesamt innerhalb des
+Rundwegs sieht, wenn man vom Zahlenfeld ausgehend nach Norden,
+Süden, Osten und Westen blickt.
+Das Feld mit der Zahl zählt dabei einmal mit.
+\item
+Andere Zahlen behindern die Sicht nicht, aber man kann nicht durch
+Felder ausserhalb des Rundwegs in andere Teile des Rundwegs blicken.
+\end{enumerate}
+Hier ein Corral-Rätsel (links) mit Lösung (rechts):
+\begin{center}
+\begin{tikzpicture}[>=latex,thick,scale=0.7]
+
+\def\vorgabe#1#2#3{
+	\node at ({#1+0.5},{#2+0.5}) {$#3$};
+}
+
+\def\vorgaben{
+	\vorgabe{0}{3}{3}
+	\vorgabe{0}{6}{3}
+	\vorgabe{1}{0}{9}
+	\vorgabe{1}{4}{15}
+	\vorgabe{2}{1}{2}
+	\vorgabe{2}{5}{3}
+	\vorgabe{3}{7}{7}
+	\vorgabe{4}{2}{3}
+	\vorgabe{4}{6}{3}
+	\vorgabe{5}{0}{4}
+	\vorgabe{6}{2}{4}
+	\vorgabe{7}{3}{10}
+}
+
+\def\spielfeld{
+	\foreach \x in {0,...,8}{
+		\draw[line width=0.3pt] (\x,0) -- (\x,8);
+		\draw[line width=0.3pt] (0,\x) -- (8,\x);
+		\foreach \y in {0,...,8}{
+			\fill (\x,\y) circle[radius=0.08];
+		}
+	}
+}
+
+\def\loesungspfad{
+	   (0,0) -- (2,0) -- (2,1) -- (3,1) -- (3,2) -- (2,2) -- (2,4)
+	-- (3,4) -- (3,3) -- (4,3) -- (4,2) -- (5,2) -- (5,3) -- (6,3)
+	-- (6,2) -- (7,2) -- (7,1) -- (4,1) -- (4,0) -- (8,0) -- (8,6)
+	-- (7,6) -- (7,5) -- (3,5) -- (3,6) -- (2,6) -- (2,7) -- (4,7)
+	-- (4,6) -- (6,6) -- (6,7) -- (7,7) -- (7,8) -- (0,8) -- (0,6)
+	-- (1,6) -- (1,5) -- (0,5) -- (0,3) -- (1,3) -- (1,1) -- (0,1)
+	-- cycle
+}
+
+\def\kreuz#1{
+	\node at ($#1+(0.5,0.5)$) {$\times$};
+}
+
+\def\loesung{
+	\fill[color=gray!50] \loesungspfad;
+	\draw[line width=2.0pt] \loesungspfad;
+	\kreuz{(2,0)}
+	\kreuz{(3,0)}
+
+	\kreuz{(0,1)}
+	\kreuz{(3,1)}
+	\kreuz{(4,1)}
+	\kreuz{(5,1)}
+	\kreuz{(6,1)}
+
+	\kreuz{(0,2)}
+	\kreuz{(2,2)}
+	\kreuz{(3,2)}
+	\kreuz{(5,2)}
+
+	\kreuz{(2,3)}
+
+	\kreuz{(0,5)}
+	\kreuz{(3,5)}
+	\kreuz{(4,5)}
+	\kreuz{(5,5)}
+	\kreuz{(6,5)}
+
+	\kreuz{(2,6)}
+	\kreuz{(3,6)}
+	\kreuz{(6,6)}
+	\kreuz{(7,6)}
+
+	\kreuz{(7,7)}
+}
+
+\begin{scope}[xshift=-6cm]
+\spielfeld
+\vorgaben
+\end{scope}
+
+\begin{scope}[xshift=6cm]
+\spielfeld
+\loesung
+\vorgaben
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
+Kann eine nichtdeterministische Turing-Maschine in polynomieller Zeit
+entscheiden, ob ein Corral-Rätsel eine Lösung hat?
+
+\thema{NP}
+\thema{polynomieller Verifizierer}
+
+\begin{loesung}
+Das Problem ist sicher entscheidbar, da man alle endlich vielen Abfolgen
+von Gitterpunkten daraufhin testen kann, ob sie einen geschlossenen Pfad
+entlang von Gitterlinien bilden und die drei Regeln einhalten.
+
+Das Problem ist durch eine nichtdeterministische Turing-Maschine in 
+polynomieller Zeit entscheidbar, wenn es einen polynomiellen Verifizierer
+gibt.
+Ein solcher verlangt als Zertifikat den Pfad von Gitterpunkten,
+von denen es $n^2$ gibt und führt damit folgende Verifikationen durch:
+\begin{center}
+\begin{tabular}{>{$}c<{$}|p{8cm}|>{$}c<{$}}
+\text{Regel}&Verifikation&\text{Laufzeit}\\
+\hline
+0
+&Entlang des Pfades überprüfen, ob aufeinanderfolgende Punkte des
+Pfades auf dem Gitter benachbart sind
+&O(n^2)
+\\
+1
+&Mit einem der bekannten Algorithmen für das Problem, ob ein Punkt
+im Inneren eines Pfades liegt, überprüfen, ob jede der maximal $n^2$
+Zahlen im Inneren des Pfades liegt.
+&O(n^2\cdot n^2)
+\\
+2
+&Die Felder in der Zeile und Spalte jeder Zahl bis zu einem Pfadsegment
+auszählen und mit der Zahl vergleichen.
+Regel 3 ist damit automatisch auch überprüft.
+&O(n^2\cdot 2n)
+\\
+\hline
+&Total&O(n^4)
+\end{tabular}
+\end{center}
+Damit ist gezeigt, dass der Verifizierer polynomielle Laufzeit hat.
+Somit ist Corral in NP.
+\end{loesung}
+
+\begin{bewertung}
+Entscheidbarkeit ({\bf E}) 1 Punkt,
+Prinzip Verifizierer ({\bf V}) 1 Punkt,
+Zertifikat spezifiziert ({\bf Z}) 1 Punkt,
+Laufzeitschätzung ({\bf L}) 2 Punkte,
+Schlussfolgerung polynomieller Verifizierer ({\bf S}) 1 Punkt.
+\end{bewertung}
+
+\begin{diskussion}
+Erich Friedmann hat beweisen, dass Corral NP-vollständig ist.
+\end{diskussion}
