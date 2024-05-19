@@ -1,0 +1,49 @@
+Betrachten Sie eine Sprache $L$ über dem Alphabet $\Sigma=\{\texttt{1}\}$.
+Die Wörter sind durch ihre Länge vollständig beschrieben, sie können also
+der Länge nach sortiert werden.
+Zusätzlich sei bekannt, dass jedes Wort $w\in L$ weniger als halb so lang
+ist wie das nächstlängere Wort in $L$.
+Für das längere Wort $w_1$ gilt also $|w| < \frac12|w_1|$ oder gleichbedeutend 
+$2|w| < |w_1|$.
+Warum ist diese Sprache nicht regulär?
+
+\begin{hinweis}
+Überlegen Sie, wie sich die Länge eines Wortes beim Aufpumpen ändert.
+\end{hinweis}
+
+\themaL{Pumping Lemma fur regulare Sprachen}{Pumping Lemma für reguläre Sprachen}
+\themaL{regular}{regulär}
+
+\begin{loesung}
+Nein, wie man mit dem Pumping-Lemma zeigen kann.
+\begin{enumerate}
+\item
+Wir nehmen an, die Sprache $L$ sei regulär.
+\item
+Nach dem Pumping-Lemma gibt es die Pumping Length $N$
+\item
+Wir wählen das kürzeste Wort $w\in L$, welches Länge $|w|\ge N$ hat.
+\item
+Nach dem Pumping-Lemma lässt sich das Wort in drei Teile $xyz$ aufteilen,
+die natürlich alle aus \texttt{1} besteht.
+\item
+Beim Pumpen wird das Wort um den Teil $y$ länger, also um eine Länge
+$|y|\le N$.
+Die Länge des gepumpten Wortes ist daher $|w|+|y|\le 2|w|$.
+In der Beschreibung des Wortes steht aber auch, dass das gepumpte Wort
+eine Länge $>2|w|$ haben muss, ein Widerspruch.
+\item
+Dieser Widerspruch zeigt, dass die Sprache $L$ nicht regulär sein kann.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+6 Schritte des Pumping-Lemma-Beweises:
+Annahme ({\bf A}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+Wort ({\bf W}) 1 Punkt,
+Unterteilung ({\bf U}) 1 Punkt,
+Widerspruch beim Pumpen ({\bf P}) 1 Punkt,
+Folgerung ({\bf F}) 1 Punkt.
+\end{bewertung}
