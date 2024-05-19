@@ -1,0 +1,60 @@
+Ein Formattierprogramm für Wordle-Lösungen nimmt eine Spezifikation
+der Lösung als Zeichenketten entgegen, in der jeweils ein Buchstabe
+gefolgt wird von einem Zeichen {\blank} falls, das Zeichen nicht 
+vorkommt, \texttt{+} wenn es vorkommt und \texttt{*} wenn es am richtigen
+Platz steht.
+Am Ende jeder Zeile wird ein \texttt{|} platziert.
+Die Zeilen werden unmittelbar hintereinander geschrieben, natürlich
+müssen Sie alle die gleiche Länge haben, die aber auch verschieden
+von den üblichen 5 Zeichen sein kann.
+Bevor mit der Formattierung begonnen wird, soll mit einem regulären
+Ausdruck geprüft werden, ob das Format stimmt.
+Ist dies möglich?
+
+\themaL{Pumping Lemma fur regulare Sprachen}{Pumping Lemma für reguläre Sprachen}
+\themaL{regular}{regulär}
+
+\begin{loesung}
+Nein, denn der zugehörige endliche Automat müsste immer wieder ``nachzählen''
+können, ob die Zeilen die richtige Länge haben.
+Beweisen kann man es mit dem Pumping Lemma für reguläre Sprachen.
+\begin{enumerate}
+\item Die Sprache wird mit $L$ bezeichnet und wir nehmen an, dass sie
+regulär ist.
+\item
+Das Pumping Lemma garantiert, dass es die Pumping Length $N$ gibt.
+\item
+Wir konstruieren das Wort
+\begin{equation*}
+w
+=
+\underbrace{\texttt{A\blank A\blank\dots A\blank}}_N\texttt{|}%
+\underbrace{\texttt{A\blank A\blank\dots A\blank}}_N\texttt{|}
+\end{equation*}
+welches sicher in der Sprache $L$ liegt,
+den es repräsentiert zwei Zeilen der Länge $N$ aus Zeichen \texttt{A},
+die im gesuchten Wort nicht vorkommen.
+\item
+Nach dem Pumping-Lemma muss es eine Unterteilung geben, deren
+aufpumpbarer Teil $y$ vollständig im ersten Block aus
+``$\texttt{A\blank}$'' liegen muss.
+\item
+Beim Pumpen des Teils $y$ wird die Anzahl der \texttt{A} in diesem
+ersten Block erhöht, die Anzahl im zweiten Block bleibt gleich, somit
+liegt keine korrekte Spezifikation mehr vor, das gepumpte Wort ist
+nicht mehr in $L$, im Widerspruch zur Aussage des Pumping Lemma.
+\item
+Dieser Widerspruch zeigt, dass $L$ nicht regulär sein kann.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+6 Schritte des Pumping-Lemma-Beweises:
+Annahme ({\bf A}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+Wort ({\bf W}) 1 Punkt,
+Unterteilung ({\bf U}) 1 Punkt,
+Widerspruch beim Pumpen ({\bf P}) 1 Punkt,
+Folgerung ({\bf F}) 1 Punkt.
+\end{bewertung}

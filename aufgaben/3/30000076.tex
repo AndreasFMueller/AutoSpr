@@ -1,0 +1,173 @@
+Im Jahr 2022 erlangte das Spiel Wordle von Josh Wardle grosse Popularität.
+Obwohl es erst 2021 veröffentlich wurde, spielten es im Januar 2022
+bereits Millionen von Spielern jeden Tag.
+
+Der Spieler muss ein Wort mit vorgegebener Länge erraten.
+Nach jedem Versuch wird ihm angezeigt, welche Buchstaben er bereits
+richtig erraten hat und welche Buchstaben zwar im Wort vorkommen,
+aber noch nicht am richtigen Platz stehen.
+%Richtig platzierte Buchstaben werden grün angezeigt,
+%Buchstaben, die zwar im Wort vorkommen, aber nicht am richtigen Platz stehen,
+%werden oliv angezeigt.
+Ausserdem müssen die Wörter, die man eingebend darf, in einer
+natürlichen Sprache enthalten sein, man kann also nicht mit
+beliebigen, Zeichenkombinationen probieren und so möglichst effizient
+die vorkommenden Buchstaben ermitteln.
+
+\strut\hbox to\textwidth{%
+\begin{minipage}[t]{10.8cm}
+\strut
+Im nebenstehenden Beispiel wurden im ersten Schritt gefunden,
+dass der Buchstabe \texttt{A} zwar im Wort vorkommt, aber an einer
+anderen Stelle, dies wird mit oliver Farbe angezeigt.
+Im fünften Schritt waren dann alle Buchstaben an der richtigen Stelle,
+angezeigt durch die grüne Farbe.
+Nach Schritt 4 war klar, welche Zeichen vorkommen (das Zeichen \texttt{H}
+muss gemäss Zeile 2 vorkommen, ausserdem die vier richtigen Zeichen
+von Zeile 4), aber der Spieler
+musste noch ein Wort aus diesen Zeichen zusammenstellen.
+Dies ist jedoch nicht so einfach, 
+insbesondere wenn der Spieler nicht englischer Muttersprache ist.
+Natürlich macht dies einen Teil des Reizes dieses Spiels aus.
+\end{minipage}%
+\hfill
+\raisebox{-5.7cm}{\includeagraphics[]{wordle.pdf}}%
+}
+
+\smallskip
+
+Ein Wörterbuch, in welchem man nach nur teilweise bekannten Wörtern
+suchen könnte, wäre dazu hilfreich.
+Files mit Wortlisten sind für fast jede Sprache verfügbar und mit
+einer Suchfunktionen basierend auf regulären Ausdrücken könnte man
+sie auch sehr schnell durchsuchen, diese Funktion wird zum Beispiel
+vom Unix-Befehl \texttt{grep} realisiert.
+Man kann sie jedoch nur nutzen, wenn man in der Lage ist, die
+bereits bekannten Bedingungen an die vorkommenden Buchstaben
+in Form eines regulären Ausdruckes zu formulieren.
+
+% XXX Beispiel
+
+\begin{teilaufgaben}
+\item Finden Sie einen endlichen Automaten, der genau Wörter der
+Länge $5$ akzeptiert.
+\item Finden Sie einen regulären Ausdruck, der Wörter findet, die
+den Buchstaben \texttt{A} an der vierten Stelle enthalten.
+\item Finden Sie einen deterministischen endlichen Automaten,
+der Wörter findet, die den Buchstaben \texttt{A} enthalten.
+\item Skizzieren Sie einen Algorithmus, der einen regulären Ausdruck
+erzeugt, der alle in den Teilaufgaben a)--c) genannten Bedingungen erfüllt.
+\end{teilaufgaben}
+
+\begin{hinweis}
+Es wird in Teilaufgabe d) nicht ein regulärer Ausdruck verlangt, sondern
+eine Methode, wie man solche reguläre Ausdrücke gewinnen kan.
+Die Idee ist, dass man damit das im Spiel bereits erlangte Wissen 
+als regulären Ausdruck codieren und so die Suche für den nächsten
+Versuch durchführen kann.
+\end{hinweis}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Der Ausdruck $r=\texttt{.....}$ erfüllt dies, doch es ist ein endlicher
+Automat gefragt.
+Ein NEA, der dies leistet, ist
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (S) at (0,0);
+\coordinate (A) at (2,0);
+\coordinate (B) at (4,0);
+\coordinate (C) at (6,0);
+\coordinate (D) at (8,0);
+\coordinate (E) at (10,0);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (-2,0) -- (S);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (S) -- (A);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (A) -- (B);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (B) -- (C);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (C) -- (D);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (D) -- (E);
+\node at (S) {$0$};
+\node at (A) {$1$};
+\node at (B) {$2$};
+\node at (C) {$3$};
+\node at (D) {$4$};
+\node at (E) {$5$};
+\draw (S) circle[radius=0.3];
+\draw (A) circle[radius=0.3];
+\draw (B) circle[radius=0.3];
+\draw (C) circle[radius=0.3];
+\draw (D) circle[radius=0.3];
+\draw (E) circle[radius=0.3];
+\draw (E) circle[radius=0.25];
+\node at ($0.5*(S)+0.5*(A)$) [above] {$\Sigma$};
+\node at ($0.5*(A)+0.5*(B)$) [above] {$\Sigma$};
+\node at ($0.5*(B)+0.5*(C)$) [above] {$\Sigma$};
+\node at ($0.5*(C)+0.5*(D)$) [above] {$\Sigma$};
+\node at ($0.5*(D)+0.5*(E)$) [above] {$\Sigma$};
+\end{tikzpicture}
+\end{center}
+\item
+Der reguläre Ausdruck $r=\texttt{...A.}$ leistet dies.
+\item Der folgende Automat ist ein deterministischer Automat, der die
+Bedingung erfüllt.
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (S) at (-2,0);
+\coordinate (A) at (0,0);
+\coordinate (B) at (2,0);
+\coordinate (C) at (4,0);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (S) -- (A);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (A) -- (B);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(A) to[out=60,in=120,distance=1.5cm] (A);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(B) to[out=60,in=120,distance=1.5cm] (B);
+\draw (A) circle[radius=0.3];
+\draw (B) circle[radius=0.3];
+\draw (B) circle[radius=0.25];
+\node at ($(A)+(0,1.2)$) [above,distance=1.3cm]
+	{$\Sigma\setminus\{\texttt{A}\}\mathstrut$};
+\node at ($(B)+(0,1.2)$) [above,distance=1.3cm]
+	{$\Sigma\mathstrut$};
+\node at ($0.5*(A)+0.5*(B)$) [above] {$\texttt{A}$};
+\end{tikzpicture}
+\end{center}
+\item
+Der folgende Algorithmus liefert einen regulären Ausdruck der
+verlangten Art:
+\begin{enumerate}[1.]
+\item
+Für die vorgegebene Wortlänge, verwende den analog zu Teilaufgabe~a)
+gefundenen regulären Ausdruck und erzeuge daraus einen DEA.
+\item
+Für jedes Zeichen mit bekannter Position erzeuge nach dem Muster von
+Teilaufgabe~b) einen DEA, der genau die Wörter akzeptiert, die diese
+Bedingung erfüllen.
+\item
+Für jedes Zeichen, das vorkommt, erzeuge nach dem Muster von
+Teilaufgabe~c) einen DE, der genau die Wörter akzeptiert, die diese
+Bedingung erfüllen.
+\item
+Aus den DEAs der Schritte~1--3 erzeuge den Produktautomaten, einen DEA,
+der genau die Wörter akzeptiert, die alle Bedingungen erfüllen.
+\item
+Wandle den DEA von Schritt~4 mit dem in der Vorlesung dargestellten
+Algorithmus in einen regulären Ausdruck um.
+\qedhere
+\end{enumerate}
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{diskussion}
+Das Spiel ist übrigens nicht neu, ein Spiel mit dem gleichen Prinzip
+wurde schon in den 1980er-Jahren in der Fernsehshow {\em Lingo} gespielt.
+\end{diskussion}
+
+\begin{bewertung}
+Teilaufgaben a)--c) je ein Punkt ({\bf A}), ({\bf B}) bzw.~({\bf C}),
+Produktautomat ({\bf P}) 1 Punkt,
+Umwandlung eines regulären Ausdrucks in einen DEA ({\bf R}) 1 Punkt,
+Umwandlung eines VNEA in einer regulären Ausdruck ({\bf V}) 1 Punkt.
+\end{bewertung}
+
