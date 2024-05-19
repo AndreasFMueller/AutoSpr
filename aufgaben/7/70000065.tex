@@ -1,0 +1,106 @@
+Moderne massenproduzierte Puzzles setzen sich zusammen aus ungefähr
+quadratischen Teilen, die an allen vier Seiten vorspringende {\em Nasen} oder
+einspringende {\em Löcher} haben.
+Die Grösse der Nasen und Löcher ist bei jedem Teil anders.
+Die Teile lassen sich aber auf einem $n\times m$-Gitter so anordnen,
+dass die Kanten der Teile zusammenpassen und so ein rechteckiges Bild
+vom Format $n\times m$ ergeben.
+
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\clip (-3,-2.1) rectangle (3,2.1);
+%\node at (0,0) {\includeagraphics[width=6cm]{puzzle-mit-fehlendem-stueck-fehlende-puzzleteile.jpg}};
+\node at (0,0) {\includeagraphics[width=6cm]{puzzle.jpg}};
+\node[color=white] at (3.1,-2.1) [above left] {\tiny Bild von jcomp auf Freepik};
+\end{tikzpicture}
+\end{center}
+
+In einem Sack befinden sich Teile für eine grosse Zahl von Puzzles der
+selben Grösse $n\times m$.
+Die Puzzles sind alle verschieden, keines ist vollständig.
+Besonders an den Teilen ist, dass sie alle mit der Position beschriftet
+sind, an der sie auf dem $n\times m$-Gitter platziert werden müssen.
+Für jede Gitter-Position findet man mindestens ein Teil in dem Sack.
+Die Teile sind zum Teil zwischen den Puzzles austauschbar, d.~h.~einzelne
+Teile passen an der angegebenen Position in mehr als eines der Puzzles,
+aber nicht unbedingt alle.
+
+Man möchte herausfinden, ob man aus den Teilen ein Puzzle auswählen kann,
+welches das $n\times m$-Bild vollständig bedeckt.
+Die aufgedruckten Bilder müssen dabei nicht zusammenpassen.
+Es stellt sich heraus, dass dies ziemlich zeitaufwendig ist.
+Gibt es dafür eine Erklärung?
+
+\begin{loesung}
+Wir nennen das Problem, aus einem Sack zusammengemischter Puzzles
+ein vollständiges Puzzle auszuwählen, {\em MIXED-PUZZLE-SELECTION}-Problem.
+Man möchte ein bekanntes NP-vollständiges Problem darauf reduzieren.
+Es muss sich um ein Problem handeln, welches von Mengen spricht, die eine
+Menge überdecken.
+Zur Auswahl stehen
+\begin{itemize}
+\item
+{\em SET-COVERING}: Mengen überdecken das ganze Gebiet.
+Das trägt dem Wunsch Rechnung, dass das ganze Puzzlefeld gefüllt werden
+soll.
+In {\em SET-COVERING} dürfen sich die Mengen überschneiden, die
+Puzzle-Teile müssen aber passen.
+{\em SET-COVERING} passt also nicht.
+\item
+{\em SET-PACKING}: Hier wird sichergestellt, dass sich die
+Mengen nicht überschneiden, aber es ist nicht mehr garantiert,
+dass die Mengen alles überdecken.
+{\em SET-PACKING} passt also auch nicht.
+\item
+{\em EXACT-COVER}: Dieses Problem vereint die beiden Bedingungen,
+dass alles abgedeckt werden muss und dass sich die Puzzle-Teile
+nicht im Weg sein dürfen.
+Dies ist das Problem, von dem man aus eine Reduktion versuchen kann.
+\end{itemize}
+
+Die folgende Eins-zu-Eins Reduktion zeigt, dass {\em MIXED-PUZZLE-SELECTION}
+reduziert werden kann, das Problem {\em EXACT-COVER}:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{r>{$}c<{$}l}
+{\em EXACT-COVER}&&{\em MIXED-PUZZLE-SELECTION}
+\\
+\hline
+Teilmenge $S_j\subset U$
+&\leftrightarrow&
+Puzzleteil
+\\
+Familie $(S_j)_{1\le j\le n}$ von Teilmengen
+&\leftrightarrow&
+alle Puzzleteile
+\\
+Unterfamilie $(S_{j_i})_{1\le i\le m}$
+&\leftrightarrow&
+Auswahl von Puzzleteilen
+\\
+Vereinigung $\bigcup_{j=1}^n S_j$
+&\leftrightarrow&
+Auswahl ergibt ein vollständiges Puzzle
+\\
+Keine Überlappung: $S_{j_i}\cap S_{j_k}=\emptyset$
+&\leftrightarrow&
+ausgewählte Teile passen exakt zusammen
+\end{tabular}
+\end{center}
+Da {\em EXACT-COVER} NP-vollständig ist, zeigt die Reduktion, dass
+auch {\em MIXED-PUZZLE-SELECTION} NP-vollständig ist.
+Nach aktuellem Wissen gibt es dafür also keinen polynomiellen
+Algorithmus, was den hohen Zeitaufwand für einen grossen
+Sack mit Puzzleteilen erklärt.
+\end{loesung}
+
+\begin{bewertung}
+NP-Vollständigkeit ({\bf N}) 1 Punkt,
+Reduktionsprinzip ({\bf R}) 1 Punkt,
+eines der oben diskutierten Vergleichsprobleme wählen ({\bf V}) 1 Punkt,
+Familie $(S_j)$ ({\bf S}) 1 Punkt,
+Teilfamilie $(S_{j_i})_i$ ({\bf T}) 1 Punkt,
+Überdeckungsbedingung und Überlappungsverbot ({\bf U}) 1 Punkt.
+\end{bewertung}
+
+
