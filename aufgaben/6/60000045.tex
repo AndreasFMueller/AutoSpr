@@ -1,0 +1,62 @@
+Eine {\em endliche} Sprache hat nur endlich viele Wörter.
+\begin{teilaufgaben}
+\item
+Wie kann man entscheiden, ob ein regulärer Ausdruck eine endliche
+Sprache akzeptiert?
+\item
+Wie kann man mit einem Algorithmus entscheiden, ob ein DEA
+eine endliche Sprache akzeptiert?
+\item
+Man nennt eine Turing-Maschine {\em endlich}, wenn sie eine endliche
+Sprache akzeptiert.
+Können Sie einen Algorithmus konstruieren, der entscheidet, ob eine
+Turingmaschine $M$ endlich ist, d.~h.~eine endliche Sprache akzeptiert?
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Ein regulärer Ausdruck akzeptiert genau dann eine endliche Sprache, 
+wenn er keinen Stern enthält.
+\item
+Ist $r$ der reguläre Ausdruck, der die gleiche Sprache akzeptiert
+wie der DEA $A$, dann ist die Sprache $L(r)=L(A)$ genau dann endlich,
+wenn der Ausdruck $r$ keinen Stern enthält.
+\item
+Nein, dies ist wegen des Satzes von Rice nicht möglich.
+Die Eigenschaft, endlich zu sein, ist eine nichttriviale Eigenschaft
+von Sprachen.
+Die leere Sprache $L_1=\emptyset$ ist endlich, die Sprache $L_2=\Sigma^*$
+ist unendlich.
+Nach dem Satz von Rice ist die Eigenschaft, eine endliche Sprache zu
+akzeptieren, nicht entscheidbar, es kann also keinen Algorithmus der
+verlangten Art geben.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item
+Detektieren von ``Sternen'' ({\bf S}) 1 Punkt.
+\item
+Umwandlung in einen regulären Ausdruck ({\bf R}) 1 Punkt.
+\item
+Satz von Rice ({\bf R}) 1 Punkt,
+nichttriviale Eigenschaft ({\bf T}) 1 Punkt,
+zwei Beispiele für Sprachen ({\bf L}) 1 Punkte,
+Nichtentscheidbarkeit ({\bf N}) 1 Punkt.
+\end{teilaufgaben}
+In der Prüfung haben viele Studenten die Aufgabe anders interpretiert.
+Sie haben angenommen, dass es z.~B.~in a) darum geht, herauszufinden,
+ob der reguläre Ausdruck $r$ eine andere, endliche Sprache $L$ akzeptiert,
+also ob $L(r) \supset L$ gilt.
+Dies kann man natürlich sehr leicht entscheiden, indem man alle Wörter
+der Sprache $L$ ausprobiert.
+Da die Sprache $L$ nur endlich viele Wörter hat, ist das ein
+Algorithmus, der terminiert, also ein Entscheider.
+Das gleiche gilt für b).
+Falls aus der Lösung erkennbar war, dass die Aufgabe so verstanden wurde,
+wurde in a) und b) je maximal ein Punkt gegeben und mit ({\bf X})
+gekennzeichnet.
+\end{bewertung}
