@@ -1,0 +1,431 @@
+Auf der Website des {\em Deutschen Forschungszentrums für Künstliche
+Intelligenz} wurde eine Präsentation über kontextfreie 
+Grammatiken gefunden, die die folgende Grammatik enthält
+\begin{align*}
+E&\to S\,\texttt{+}\,S\\
+ &\to S\,\texttt{*}\,S\\
+S&\to \texttt{(}\, E \, \texttt{)} \\
+ &\to I\\
+I&\to D\\ 
+ &\to I D\\
+D&\to
+\texttt{0}
+\,|\,
+\texttt{1}
+\,|\,
+\texttt{2}
+\,|\,
+\texttt{3}
+\,|\,
+\texttt{4}
+\,|\,
+\texttt{5}
+\,|\,
+\texttt{6}
+\,|\,
+\texttt{7}
+\,|\,
+\texttt{8}
+\,|\,
+\texttt{9}
+\end{align*}
+mit den Ziffern, Klammern und Operationszeichen als Terminalsymbolen,
+$\Sigma = \{\texttt{0},\texttt{1},\dots,\texttt{9},\texttt{(},\texttt{)},\texttt{+},\texttt{*}\}$.
+\begin{teilaufgaben}
+\item
+Bringen Sie die Grammatik in Chomsky-Normalform.
+\item
+Welche der folgenden Zeichenketten können von dieser Grammatik
+erzeugt werden:
+\begin{center}
+\texttt{1}
+\qquad
+\texttt{1+1}
+\qquad
+\texttt{1+1*1}
+\qquad
+\texttt{1+(1*1)}
+\qquad
+\texttt{1+1+1}
+\qquad
+\texttt{1+(1)+1}
+\qquad
+\texttt{(1+1+1)}
+\end{center}
+\item 
+Ist die Grammatik eindeutig?
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item 
+Zunächst muss sichergestellt werden, dass die Startvariable auf der rechten
+Seite nicht vorkommt, dazu wird die Regel $S_0\to E$ hinzugefügt:
+\begin{align*}
+S_0&\to E \\
+E&\to S\texttt{+}S \;|\; S\texttt{*}S \\
+S&\to \texttt{(}E\texttt{)} \;|\; I \\
+I&\to D \;|\; I D \\
+D&\to
+\texttt{0}
+\;|\;
+\texttt{1}
+\;|\;
+\texttt{2}
+\;|\;
+\texttt{3}
+\;|\;
+\texttt{4}
+\;|\;
+\texttt{5}
+\;|\;
+\texttt{6}
+\;|\;
+\texttt{7}
+\;|\;
+\texttt{8}
+\;|\;
+\texttt{9}
+\end{align*}
+Das leere Wort $\varepsilon$ kommt nirgends vor, also ist diesbezüglich
+nichts zu unternehmen.
+
+In der Grammatik kommen drei Unit-Rules vor, wir entfernen zunächst die
+Regel $S_0\to E$ und erhalten
+\begin{align*}
+S_0&\to S\texttt{+}S \;|\; S\texttt{*}S \\
+E&\to S\texttt{+}S \;|\; S\texttt{*}S \\
+S&\to \texttt{(}E\texttt{)} \;|\; I \\
+I&\to D \;|\; I D \\
+D&\to
+\texttt{0}
+\;|\;
+\texttt{1}
+\;|\;
+\texttt{2}
+\;|\;
+\texttt{3}
+\;|\;
+\texttt{4}
+\;|\;
+\texttt{5}
+\;|\;
+\texttt{6}
+\;|\;
+\texttt{7}
+\;|\;
+\texttt{8}
+\;|\;
+\texttt{9}
+\end{align*}
+Jetzt wird die Regel $S\to I$ entfernt, was
+\begin{align*}
+S_0&\to S\texttt{+}S \;|\; S\texttt{*}S \\
+E&\to S\texttt{+}S \;|\; S\texttt{*}S \\
+S&\to \texttt{(}E\texttt{)} \;|\; I \\
+I&\to 
+\texttt{0}
+\;|\;
+\texttt{1}
+\;|\;
+\texttt{2}
+\;|\;
+\texttt{3}
+\;|\;
+\texttt{4}
+\;|\;
+\texttt{5}
+\;|\;
+\texttt{6}
+\;|\;
+\texttt{7}
+\;|\;
+\texttt{8}
+\;|\;
+\texttt{9}
+\;|\; I D \\
+D&\to
+\texttt{0}
+\;|\;
+\texttt{1}
+\;|\;
+\texttt{2}
+\;|\;
+\texttt{3}
+\;|\;
+\texttt{4}
+\;|\;
+\texttt{5}
+\;|\;
+\texttt{6}
+\;|\;
+\texttt{7}
+\;|\;
+\texttt{8}
+\;|\;
+\texttt{9}
+\end{align*}
+ergibt.
+Schliesslich muss noch die Regel $S\to I$ entfernt werden, so dass noch
+\begin{align*}
+S_0&\to S\texttt{+}S \;|\; S\texttt{*}S \\
+E&\to S\texttt{+}S \;|\; S\texttt{*}S \\
+S&\to \texttt{(}E\texttt{)} \;|\;
+\texttt{0}
+\;|\;
+\texttt{1}
+\;|\;
+\texttt{2}
+\;|\;
+\texttt{3}
+\;|\;
+\texttt{4}
+\;|\;
+\texttt{5}
+\;|\;
+\texttt{6}
+\;|\;
+\texttt{7}
+\;|\;
+\texttt{8}
+\;|\;
+\texttt{9}
+\;|\; I D \\
+I&\to 
+\texttt{0}
+\;|\;
+\texttt{1}
+\;|\;
+\texttt{2}
+\;|\;
+\texttt{3}
+\;|\;
+\texttt{4}
+\;|\;
+\texttt{5}
+\;|\;
+\texttt{6}
+\;|\;
+\texttt{7}
+\;|\;
+\texttt{8}
+\;|\;
+\texttt{9}
+\;|\; I D \\
+D&\to
+\texttt{0}
+\;|\;
+\texttt{1}
+\;|\;
+\texttt{2}
+\;|\;
+\texttt{3}
+\;|\;
+\texttt{4}
+\;|\;
+\texttt{5}
+\;|\;
+\texttt{6}
+\;|\;
+\texttt{7}
+\;|\;
+\texttt{8}
+\;|\;
+\texttt{9}
+\end{align*}
+bleibt.
+
+Im letzten Schritt müssen die ``Dreier''-Regeln entfernt werden
+und die darin enthaltenen Terminalsymbole in separate Regeln ausgelagert
+werden.
+Die Ersetzung der Terminalsymbole ergibt:
+\begin{align*}
+S_0&\to SPS \;|\; SMS \\
+E&\to SPS \;|\; SMS \\
+S&\to AEZ \;|\;
+\texttt{0}
+\;|\;
+\texttt{1}
+\;|\;
+\texttt{2}
+\;|\;
+\texttt{3}
+\;|\;
+\texttt{4}
+\;|\;
+\texttt{5}
+\;|\;
+\texttt{6}
+\;|\;
+\texttt{7}
+\;|\;
+\texttt{8}
+\;|\;
+\texttt{9}
+\;|\; I D \\
+I&\to 
+\texttt{0}
+\;|\;
+\texttt{1}
+\;|\;
+\texttt{2}
+\;|\;
+\texttt{3}
+\;|\;
+\texttt{4}
+\;|\;
+\texttt{5}
+\;|\;
+\texttt{6}
+\;|\;
+\texttt{7}
+\;|\;
+\texttt{8}
+\;|\;
+\texttt{9}
+\;|\; I D \\
+D&\to
+\texttt{0}
+\;|\;
+\texttt{1}
+\;|\;
+\texttt{2}
+\;|\;
+\texttt{3}
+\;|\;
+\texttt{4}
+\;|\;
+\texttt{5}
+\;|\;
+\texttt{6}
+\;|\;
+\texttt{7}
+\;|\;
+\texttt{8}
+\;|\;
+\texttt{9}
+\\
+M&\to \texttt{*}\\
+P&\to \texttt{+}\\
+A&\to \texttt{(}\\
+Z&\to \texttt{)}
+\end{align*}
+Die Aufspaltung der Dreier-Regeln schliesslich ergibt
+\begin{align*}
+S_0&\to SU_1 \;|\; SU_2 \\
+U_1&\to PS \\
+U_2&\to MS \\
+E&\to SU_1 \;|\; SU_2 \\
+S&\to AU_3 \;|\; 
+\texttt{0}
+\;|\;
+\texttt{1}
+\;|\;
+\texttt{2}
+\;|\;
+\texttt{3}
+\;|\;
+\texttt{4}
+\;|\;
+\texttt{5}
+\;|\;
+\texttt{6}
+\;|\;
+\texttt{7}
+\;|\;
+\texttt{8}
+\;|\;
+\texttt{9}
+\;|\; I D \\
+U_3&\to EZ\\
+I&\to 
+\texttt{0}
+\;|\;
+\texttt{1}
+\;|\;
+\texttt{2}
+\;|\;
+\texttt{3}
+\;|\;
+\texttt{4}
+\;|\;
+\texttt{5}
+\;|\;
+\texttt{6}
+\;|\;
+\texttt{7}
+\;|\;
+\texttt{8}
+\;|\;
+\texttt{9}
+\;|\; I D \\
+D&\to
+\texttt{0}
+\;|\;
+\texttt{1}
+\;|\;
+\texttt{2}
+\;|\;
+\texttt{3}
+\;|\;
+\texttt{4}
+\;|\;
+\texttt{5}
+\;|\;
+\texttt{6}
+\;|\;
+\texttt{7}
+\;|\;
+\texttt{8}
+\;|\;
+\texttt{9}
+\\
+M&\to \texttt{*}\\
+P&\to \texttt{+}\\
+A&\to \texttt{(}\\
+Z&\to \texttt{)}
+\end{align*}
+Damit ist Chomsky-Normalform erreicht.
+\item
+Innerhalb einer Klammer muss sich immer ein Ausdruck mit genau einem
+nicht eingeklammerten Operationszeichen befinden, was die letzten zwei
+Ausdrücke ausschliesst.
+Schachtelung ist nur möglich, wenn Ausdrücke auch eingeklammert werden,
+was den drittletzten und den dritten Ausdruck auschliesst.
+Es bleiben also nur der zweite und vierte Ausdruck, die von der
+Grammatik erzeugt werden können.
+\item
+Die Grammatik ist eindeutig, weil Schachtelung immer nur mit Klammern
+möglich ist.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{diskussion}
+Möglicherweise hat das {\em Deutsche Forschungszentrumg für künstliche
+Intelligenz} gemeint, $S$ sei die Startvariable.
+Dann entsteht etwas, leicht weniger unsinniges.
+Auch wenn man $S$ als Startvariable nimmt, ist zum Beispiel der
+Operator-Vorrang nicht geregelt, Punkt vor Strich wird nicht
+eingehalten.
+Keine wirklich intelligente Grammatik, die das Forschungszentrum
+für künstliche Intelligenz da produziert hat.
+Vielleicht von einer KI produziert?
+\end{diskussion}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item Startvariable ({\bf S}) 1 Punkt,
+Unit Rules ({\bf U}) 1 Punkt,
+Ersetzung der Terminalsymbole ({\bf T}) 1 Punkt,
+lange Regeln ({\bf L}) 1 Punkt.
+\item
+Akzeptable Ausdrücke ({\bf A}) 1 Punkt.
+\item
+Eindeutigkeit ({\bf E}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
+
+
+
+

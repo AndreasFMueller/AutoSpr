@@ -1,0 +1,204 @@
+Vor der Wordle-Craze des Jahres 2022 gabe es als sehr erfolgreichen
+Vorläufer das 1970 erfundene Spiel Mastermind, welches in den 1970er-Jahren
+eines der erfolgreichsten Spiele war.
+\begin{center}
+\includeagraphics[width=6cm]{Mastermind.jpeg}
+\end{center}
+Der eine Spieler, der Codierer, gibt verdeckt einen Code aus
+vier farbigen Stiften vor.
+Der andere Spieler, der Rater, versucht jetzt, diesen Farbcode zu ermitteln.
+Er schlägt eine mögliche Lösung vor, indem er farbige Stifte in die 
+Lochplatte steckt (siehe Abbildung).
+Der Codierer antwortet dann, indem er mit kleinen Stiften bekannt gibt,
+wieviele der farbigen Stifte am richtigen Ort (schwarzer kleiner Stift)
+sind oder nur die richtige Farbe haben (weisser kleiner Stift).
+Im Gegensatz zu Wordle erfährt der Rater also nicht, an welcher Position
+sich die Stifte mit der richtigen Farbe befinden.
+Der Rater versucht dann die nächste Kombination, wobei er natürlich das
+bereits gewonnene Wissen über den Farbcode wird berücksichtigen wollen.
+
+Jede Antwort des Codierers definiert eine Einschränkung für die noch
+möglichen Wörter.
+Sie definiert damit eine Sprache von Farbcodes über dem Alphabet
+der verfügbaren Farben.
+
+\begin{teilaufgaben}
+\item
+Ist die Sprache regulär?
+\item
+Nehmen Sie an, dass der Rater die Farbkombination \texttt{RRGB}
+versucht hat und der Codierer die Antwort \texttt{ss} gegeben hat,
+was bedeuten soll, dass zwei Stifte mit der richtigen Farbe am richtigen
+Ort sind.
+Konstruieren Sie einen endlichen Automaten, der
+genau die Wörter akzeptiert, die die Bedingung erfüllen.
+\item
+Nehmen Sie an, dass Sie wie in Teilaufgabe b)
+auch für die weissen kleinen Stifte (eine Antwort \texttt{w} zum Beispiel)
+einen endlichen Automaten konstruieren können (Sie müssen diesen Automaten
+nicht finden).
+Gibt es eine Möglichkeit,
+aus diesen beiden Automaten (dem von Teilaufgabe b) und dem neuen für die
+Bedingung \texttt{w}) einen Automaten zu konstruieren, der genau
+diejenigen Wörter akzeptiert, die die kombinierte Bedingung \texttt{ssw}
+akzeptiert?
+\end{teilaufgaben}
+
+\begin{hinweis}
+Sie dürfen zur Vereinfachung annehmen, dass es nur drei Farben
+$\Sigma=\{\texttt{R},\texttt{G},\texttt{B}\}$ gibt.
+\end{hinweis}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Die Sprache ist endlich und daher auch regulär.
+Alternativ kann auch aus der Konstruktion der nachfolgenden Teilaufgaben
+schliessen, dass es einen endlichen Automaten gibt, der die Sprache
+akzeptiert.
+Damit ist sie ebenfalls als regulär nachgewiesen.
+\item
+Man kann einen NEA in ``Baum-Form'' aufbauen, in dem alle Wörter mit Länge
+vier vorkommen  und dann Akzeptierzuständ dorthin setzen, wo ein Wort
+hinführt, welches auf die Bedingung passt.
+Dies sind die Wörter, die genau zwei Farben am richtigen Ort haben.
+Alle Wörter, die Farben nicht am richtigen Ort haben, zeichnen wir gar
+nicht erst ein, da es sich ja um einen NEA handelt.
+
+Man könnte, da die Sprache endlich ist, auch eine Liste der Wörter machen,
+die passen.
+Dazu überlegt man sich, dass es sechs Möglichkeiten gibt, wo die beiden
+richtigen Farben sind:
+\[
+\texttt{RR\blank\blank}
+\quad
+\texttt{R\blank G\blank}
+\quad
+\texttt{R\blank\blank B}
+\quad
+\texttt{\blank RG\blank}
+\quad
+\texttt{\blank R\blank B}
+\quad
+\texttt{\blank \blank GB}
+\]
+Die übrigen Plätze kann man jetzt mit Zeichen ausstatten, die falsch sind aber auch
+kein \texttt{w} auslösen:
+\begin{center}
+\def\b{\blank}
+\begin{tabular}{|cccccc|}
+\hline
+\texttt{RR\b\b}&\texttt{R\b G\b}&\texttt{R\b\b B}&\texttt{\b RG\b}&\texttt{\b R\b B}&\texttt{\b\b GB}\\
+\hline
+\texttt{RRRR}&\texttt{RGGG}&\texttt{RBBB}&\texttt{GRGG}&\texttt{BRBB}&\texttt{GGGB}\\
+             &             &             &             &             &\texttt{BBGB}\\
+             &             &             &             &             &\texttt{BGGB}\\
+             &             &             &             &             &\texttt{GBGB}\\
+\hline
+\end{tabular}
+\end{center}
+Man kann zum Beispiel in den ersten 5 Fällen kein weitere $\texttt{R}$ platzieren,
+weil dies zu einem \texttt{w} führen würde.
+Für diese Wörter kann man einen endlichen Automaten angeben:
+\begin{center}
+\def\zustand#1{\draw #1 circle[radius=0.2];}
+\def\azustand#1{\draw #1 circle[radius=0.2]; \draw #1 circle[radius=0.13];}
+\def\pfeil#1#2#3{
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] #1 -- #2;
+	\node at ($0.5*#1+0.5*#2$) [above] {\texttt{#3}};
+}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (S) at (0,0);	\zustand{(S)} \pfeil{(-2,0)}{(S)}{}
+
+\coordinate (R) at (2,3);	\zustand{(R)} \pfeil{(S)}{(R)}{R}
+\coordinate (RR) at (4,4);	\zustand{(RR)} \pfeil{(R)}{(RR)}{R}
+\coordinate (RRR) at (6,4);	\zustand{(RRR)} \pfeil{(RR)}{(RRR)}{R}
+\coordinate (RRRR) at (8,4);	\azustand{(RRRR)} \pfeil{(RRR)}{(RRRR)}{R}
+\coordinate (RG) at (4,3);	\zustand{(RG)} \pfeil{(R)}{(RG)}{G}
+\coordinate (RGG) at (6,3);	\zustand{(RGG)} \pfeil{(RG)}{(RGG)}{G}
+\coordinate (RGGG) at (8,3);	\azustand{(RGGG)} \pfeil{(RGG)}{(RGGG)}{G}
+\coordinate (RB) at (4,2);	\zustand{(RB)} \pfeil{(R)}{(RB)}{B}
+\coordinate (RBB) at (6,2);	\zustand{(RBB)} \pfeil{(RB)}{(RBB)}{B}
+\coordinate (RBBB) at (8,2);	\azustand{(RBBB)} \pfeil{(RBB)}{(RBBB)}{B}
+
+\coordinate (G) at (2,0);	\zustand{(G)} \pfeil{(S)}{(G)}{G}
+\coordinate (GR) at (4,1);	\zustand{(GR)} \pfeil{(G)}{(GR)}{R}
+\coordinate (GRG) at (6,1);	\zustand{(GRG)} \pfeil{(GR)}{(GRG)}{G}
+\coordinate (GRGG) at (8,1);	\azustand{(GRGG)} \pfeil{(GRG)}{(GRGG)}{G}
+\coordinate (GG) at (4,0);	\zustand{(GG)} \pfeil{(G)}{(GG)}{G}
+\coordinate (GGG) at (6,0);	\zustand{(GGG)} \pfeil{(GG)}{(GGG)}{G}
+\coordinate (GGGB) at (8,0);	\azustand{(GGGB)} \pfeil{(GGG)}{(GGGB)}{B}
+\coordinate (GB) at (4,-1);	\zustand{(GB)} \pfeil{(G)}{(GB)}{B}
+\coordinate (GBG) at (6,-1);	\zustand{(GBG)} \pfeil{(GB)}{(GBG)}{G}
+\coordinate (GBGB) at (8,-1);	\azustand{(GBGB)} \pfeil{(GBG)}{(GBGB)}{B}
+
+\coordinate (B) at (2,-3);	\zustand{(B)} \pfeil{(S)}{(B)}{B}
+\coordinate (BR) at (4,-2);	\zustand{(BR)} \pfeil{(B)}{(BR)}{R}
+\coordinate (BRB) at (6,-2);	\zustand{(BRB)} \pfeil{(BR)}{(BRB)}{B}
+\coordinate (BRBB) at (8,-2);	\azustand{(BRBB)} \pfeil{(BRB)}{(BRBB)}{B}
+\coordinate (BG) at (4,-3);	\zustand{(BG)} \pfeil{(B)}{(BG)}{G}
+\coordinate (BGG) at (6,-3);	\zustand{(BGG)} \pfeil{(BG)}{(BGG)}{G}
+\coordinate (BGGB) at (8,-3);	\azustand{(BGGB)} \pfeil{(BGG)}{(BGGB)}{B}
+\coordinate (BB) at (4,-4);	\zustand{(BB)} \pfeil{(B)}{(BB)}{B}
+\coordinate (BBG) at (6,-4);	\zustand{(BBG)} \pfeil{(BB)}{(BBG)}{G}
+\coordinate (BBGB) at (8,-4);	\azustand{(BBGB)} \pfeil{(BBG)}{(BBGB)}{B}
+\end{tikzpicture}
+\end{center}
+\item
+Mit Hilfe des Produktautomaten können die beiden Automaten so kombiniert
+werden, dass genau diejenigen Wörter akzeptiert werden, die beide 
+Bedingungen erfüllen.
+Dies interpretiert die Fragestellung als Anforderung an eine UND-Verknüpfung.
+
+Dies ist jedoch nicht ganz richtig, dazu muss man aber etwas vertrauter sein
+mit dem Spiel als man in einer Prüfung erwarten kann.
+Der Grund ist, dass eine Farbe an einem falschen Ort nicht mehr als \texttt{w}
+zählt, wenn ein dieselbe Farbe schon am richtigen Ort platziert worden ist.
+Im Beispiel: zwei \texttt{R} am Anfang erzeugen die beiden \texttt{s}, aber ein
+weiteres \texttt{R} erzeugt kein \texttt{w} mehr.
+Man kann natürlich wieder hingehen und die Wörter zusammenstellen, die die
+kombinierte Bedingung erfüllen:
+\begin{center}
+\def\b{\blank}
+\begin{tabular}{|cccccc|}
+\hline
+\texttt{RR\b\b}&\texttt{R\b G\b}&\texttt{R\b\b B}&\texttt{\b RG\b}&\texttt{\b R\b B}&\texttt{\b\b GB}\\
+\hline
+\texttt{RRRG}&\texttt{RBGR}&\texttt{RBRB}&\texttt{BRGG}&\texttt{GRBB}&             \\
+\texttt{RRBR}&\texttt{RBGG}&\texttt{RGBB}&\texttt{GRGR}&\texttt{BRRB}&             \\
+\hline
+\end{tabular}
+\end{center}
+Aus dieser Tabelle lässt sich dann wieder nach obigem Muster ein
+Automat erzeugen.
+
+Ein weiteres Indiz, dass die Erzeugung eines DEA etwas schwieriger
+ist, ist die Tatsache, dass es den in der Aufgabe postulierten
+Automaten für \texttt{w} gar nicht gibt, wenn nur die drei Farben
+\texttt{R}, \texttt{G} und \texttt{B} möglich sind.
+Da man nicht alle Positionen mit nur einer Farbe belegen kann,
+kommen mindestens zwei Farben am falschen Ort vor, es muss also
+mindestens zwei \texttt{w} haben.
+\end{teilaufgaben}
+\end{loesung}
+
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item
+Endlichkeit oder anderes Regularitätsargument ({\bf R}) 1 Punkt,
+\item
+Konstruktion eines Automaten für Teilaufgabe b):
+Startzustand vorhanden ({\bf S}) 1 Punkt,
+Zwei Farben am richtigen Platz ({\bf Z}) 1 Punkt,
+keine richtigen Farben am falschen Platz ({\bf F}) 1 Punkt,
+Akzeptierzustände vorhanden ({\bf A}) 1 Punkt.
+\item
+Produktautomat oder ähnliches Argument ({\bf C}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
+
+
+
+
+

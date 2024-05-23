@@ -1,0 +1,133 @@
+Im Spiel {\em Corral} (vergleiche auch Aufgabe~\ref{70000060})
+muss ein geschlossener Pfad beschrieben werden.
+Eine Möglichkeit, einen solchen Pfad zu spezifizieren, ist, zunächst
+die Koordinaten des Startpunkts anzugeben und anschliessend eine
+Folge von Buchstaben aus der Mengen
+$\Sigma=\{\texttt{u},\texttt{d},\texttt{l},\texttt{r}\}$,
+wobei jeder Buchstabe für ein Segment des Pfades steht, welches 
+nach oben (\texttt{u}),
+unten (\texttt{d}),
+links (\texttt{l})
+bzw.~rechts (\texttt{r})
+zeigt.
+Sie $L$ die Sprache
+\[
+L
+=
+\{
+w\in \Sigma^*
+\;|\;
+\text{$w$ beschreibt einen geschlossenen Pfad}
+\}
+\]
+der Wörter, die geschlossene Pfade beschreiben.
+Können Sie eine kontextfreie Grammatik für $L$ angeben?
+
+\begin{loesung}
+\definecolor{darkgreen}{rgb}{0,0.8,0}
+Damit ein Pfad geschlossen ist, müssen gleich viele 
+\texttt{u} wie
+\texttt{d} und
+gleichviele
+\texttt{l} wie \texttt{r} 
+in $w$ vorkommen, die Sprache $L$ ist also auch
+\begin{equation}
+L=\{
+w\in\Sigma^*
+\;|\;
+|w|_{\texttt{u}} = |w|_{\texttt{d}}
+\wedge
+|w|_{\texttt{l}} = |w|_{\texttt{r}}
+\}
+\label{40000073:cond}
+\end{equation}
+Eine kontextfreie Grammatik für $L$ gibt es aber nicht, denn
+$L$ ist nicht kontextfrei, wie man mit dem Pumping Lemma für kontextfreie
+Sprachen zeigen kann.
+
+\begin{enumerate}
+\item
+Wir nehmen an, dass $L$ kontextfrei ist.
+\item
+Nach dem Pumping Lemma für kontextfreie Sprachen gibt es die
+Pumping Length $N$
+\item
+Wir nehmen das Wort
+$w= \texttt{u}^N \texttt{l}^N \texttt{d}^N \texttt{r}^N $,
+es beschreibt ein im Gegenuhrzeigersinn durchlaufenes Quadrat mit
+Seitenlänge $N$.
+\item
+Nach dem Pumping-Lemma gibt es eine Aufteilung des Wortes in
+fünf Teile
+$w=
+{\color{blue}u}
+{\color{red}v}
+{\color{darkgreen}x}
+{\color{red}y}
+{\color{blue}z}$
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\def\xa{0}
+\def\xb{3.5}
+\def\xc{7}
+\def\xd{10.5}
+\def\xe{14}
+\def\y{0.7}
+\draw (0,0) rectangle (\xe,\y);
+\draw (\xb,0) -- (\xb,\y);
+\draw (\xc,0) -- (\xc,\y);
+\draw (\xd,0) -- (\xd,\y);
+\node[color=gray] at ({0.5*(\xa+\xb)},{0.5*\y}) {$\texttt{u}\mathstrut^N$};
+\node[color=gray] at ({0.5*(\xb+\xc)},{0.5*\y}) {$\texttt{l}\mathstrut^N$};
+\node[color=gray] at ({0.5*(\xc+\xd)},{0.5*\y}) {$\texttt{d}\mathstrut^N$};
+\node[color=gray] at ({0.5*(\xd+\xe)},{0.5*\y}) {$\texttt{r}\mathstrut^N$};
+\def\s{0.05}
+\def\Xb{5}
+\pgfmathparse{\Xb+1.1}
+\xdef\Xc{\pgfmathresult}
+\pgfmathparse{\Xc+0.6}
+\xdef\Xd{\pgfmathresult}
+\pgfmathparse{\Xd+1.3}
+\xdef\Xe{\pgfmathresult}
+
+
+\def\rechteck#1#2#3#4{
+	\fill[color=#3!20,opacity=0.5]
+		({#1+\s},\s) rectangle ({#2-\s},{\y-\s});
+	\draw[color=#3] ({#1+\s},\s) rectangle ({#2-\s},{\y-\s});
+	\node[color=#3] at ({0.5*(#1+#2)},{0.5*\y}) {$#4\mathstrut$};
+}
+
+\rechteck{\xa}{\Xb}{blue}{u}
+\rechteck{\Xb}{\Xc}{red}{v}
+\rechteck{\Xc}{\Xd}{darkgreen}{x}
+\rechteck{\Xd}{\Xe}{red}{y}
+\rechteck{\Xe}{\xe}{blue}{z}
+
+\draw[line width=0.3pt] (\Xb,\y) -- (\Xb,-1);
+\draw[line width=0.3pt] (\Xe,\y) -- (\Xe,-1);
+\draw[<->] (\Xb,-0.8) -- (\Xe,-0.8);
+\node at ({0.5*(\Xb+\Xe)},-0.8) [above] {$\le N$};
+
+\end{tikzpicture}
+\end{center}
+mit $|x|>0$ und $|vxy|\le N$ derart,
+dass auch die aufgepumpten Wörter $uv^kxy^kz\in L$ sind.
+\item
+Wegen $|vxy|\le N$ kann sich beim Pumpen höchstens die Anzahl von
+zwei der Buchstaben ändern, niemals aber die Anzahl beider Buchstaben
+gleichzeitig, die jeweils gleich sein sollte.
+\item
+Dieser Widerspruch zeigt, dass $L$ nicht kontextfrei sein kann.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+Bedingung \eqref{40000073:cond} ({\bf B}) 1 Punkt,
+Pumping Lemma und Pumping Length ({\bf N}) 1 Punkt,
+Wahl des Wortes ({\bf W}) 1 Punkt,
+Unterteilung ({\bf U}) 1 Punkt,
+Widerspruch beim Pumpen ({\bf P}) 1 Punkt,
+Schlussfolgerung $L$ nicht kontextfrei ({\bf S}) 1 Punkt.
+\end{bewertung}

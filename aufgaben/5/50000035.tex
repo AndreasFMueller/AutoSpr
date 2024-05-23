@@ -1,0 +1,234 @@
+\bgroup
+\definecolor{wordlegreen}{rgb}{0.32,0.55,0.30}
+\definecolor{wordleolive}{rgb}{0.71,0.62,0.23}
+\def\schwarz#1{{\texttt{#1}}}
+\def\gruen#1{{\color{wordlegreen}\texttt{#1}}}
+\def\oliv#1{{\color{wordleolive}\texttt{#1}}}
+
+Gegeben ist das Alphabet $\Sigma$ bestehend aus den Buchstaben
+\texttt{A}--\texttt{Z}
+in den Farben schwarz, grün und oliv, so wie sie im Spiel {\em Wordle}
+verwendet werden (siehe auch Aufgabe~\ref{30000076}).
+\begin{teilaufgaben}
+\item
+Zeichnen Sie das Zustandsdiagramm einer Turing-Maschine, die 
+ein auf dem Band eingegebenes, fünf Zeichen langes Wort von links
+nach rechts liest,
+ähnlich wie im Spiel mit dem Wort \texttt{OCHSE}\footnote{Das Rätselwort im
+offiziellen Wördl von \url{https://wordle.at} vom 31.~Mai 2022.}
+vergleicht und dabei die Zeichen genau wie folgt modifiziert:
+\begin{itemize}
+\item
+Hat ein Zeichen bereits eine der Farben grün oder oliv, wird der Input
+verworfen.
+\item
+Ist das Zeichen richtig, soll es grün werden.
+\item
+Ist das Zeichen an dieser Stelle falsch, kommt aber an einer anderen Stelle im 
+Wort vor, wird es oliv.
+\end{itemize}
+Falls das Wort auf dem Band nicht exakt fünf Zeichen hat, wird es verworfen.
+\item
+Schreiben Sie die Berechnungsgeschichte für das Eingabewort \texttt{WOCHE}
+auf.
+\item
+Der in a) beschriebene Algorithmus weicht von dem tatsächlich verwendeten
+Algorithmus ab (Aufgabe~\ref{30000076}).
+Zeigen Sie den Unterschied mit Hilfe des Wortes \texttt{ECHSE}.
+\end{teilaufgaben}
+
+\begin{loesung}
+Das Alphabet besteht aus den Zeichen
+\[
+\Sigma
+=
+\{
+\texttt{A},\texttt{B},\dots,\texttt{Z},
+{\color{wordlegreen}\texttt{A}},{\color{wordlegreen}\texttt{B}},
+	\dots,{\color{wordlegreen}\texttt{Z}},
+{\color{wordleolive}\texttt{A}},{\color{wordleolive}\texttt{B}},
+	\dots,{\color{wordleolive}\texttt{Z}},
+\blank
+\}.
+\]
+\begin{teilaufgaben}
+\item Das folgende Zustandsdiagramm löst die Aufgabe:
+\begin{center}
+\def\s{1.4}
+
+\begin{tikzpicture}[>=latex,thick]
+
+\coordinate (A1) at (0,0);
+\coordinate (A2) at (2.2,0);
+\coordinate (A3) at (4.4,0);
+\coordinate (A4) at (6.6,0);
+\coordinate (A5) at (8.8,0);
+\coordinate (A6) at (11,0);
+\coordinate (A) at (13.6,0);
+\coordinate (R) at (4.4,-2.5);
+
+\draw (A1) circle[radius=0.3]; \node at (A1) {$q_0$};
+\draw (A2) circle[radius=0.3]; \node at (A2) {$q_1$};
+\draw (A3) circle[radius=0.3]; \node at (A3) {$q_2$};
+\draw (A4) circle[radius=0.3]; \node at (A4) {$q_3$};
+\draw (A5) circle[radius=0.3]; \node at (A5) {$q_4$};
+\draw (A6) circle[radius=0.3]; \node at (A6) {$q_5$};
+
+\draw (A) ellipse(0.55 and 0.3);
+\draw (A) ellipse(0.6 and 0.35);
+\node at (A) {$q_\text{accept}$};
+
+\draw (R) ellipse(0.5 and 0.3);
+\draw (R) ellipse(0.55 and 0.35);
+\node at (R) {$q_\text{reject}$};
+
+\draw[->,shorten >= 0.3cm] (-1.5,0) -- (A1);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (A1) -- (A2);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (A2) -- (A3);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (A3) -- (A4);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (A4) -- (A5);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (A5) -- (A6);
+\draw[->,shorten >= 0.6cm,shorten <= 0.3cm] (A6) -- (A);
+
+\node at ($0.5*(A1)+0.5*(A2)+(0,0.3)$) {$\otimes$};
+\node at ($0.5*(A1)+0.5*(A2)+(0,0.7)$)
+	{$\texttt{E}\rightarrow{\color{wordleolive}\texttt{E}},R$};
+\node at ($0.5*(A1)+0.5*(A2)+(0,1.1)$)
+	{$\texttt{S}\rightarrow{\color{wordleolive}\texttt{S}},R$};
+\node at ($0.5*(A1)+0.5*(A2)+(0,1.5)$)
+	{$\texttt{H}\rightarrow{\color{wordleolive}\texttt{H}},R$};
+\node at ($0.5*(A1)+0.5*(A2)+(0,1.9)$)
+	{$\texttt{C}\rightarrow{\color{wordleolive}\texttt{C}},R$};
+\node at ($0.5*(A1)+0.5*(A2)+(0,2.3)$)
+	{$\texttt{O}\rightarrow{\color{wordlegreen}\texttt{O}},R$};
+
+\node at ($0.5*(A2)+0.5*(A3)+(0,0.3)$) {$\otimes$};
+\node at ($0.5*(A2)+0.5*(A3)+(0,0.7)$)
+	{$\texttt{E}\rightarrow{\color{wordleolive}\texttt{E}},R$};
+\node at ($0.5*(A2)+0.5*(A3)+(0,1.1)$)
+	{$\texttt{S}\rightarrow{\color{wordleolive}\texttt{S}},R$};
+\node at ($0.5*(A2)+0.5*(A3)+(0,1.5)$)
+	{$\texttt{H}\rightarrow{\color{wordleolive}\texttt{H}},R$};
+\node at ($0.5*(A2)+0.5*(A3)+(0,1.9)$)
+	{$\texttt{C}\rightarrow{\color{wordlegreen}\texttt{C}},R$};
+\node at ($0.5*(A2)+0.5*(A3)+(0,2.3)$)
+	{$\texttt{O}\rightarrow{\color{wordleolive}\texttt{O}},R$};
+
+\node at ($0.5*(A3)+0.5*(A4)+(0,0.3)$) {$\otimes$};
+\node at ($0.5*(A3)+0.5*(A4)+(0,0.7)$)
+	{$\texttt{E}\rightarrow{\color{wordleolive}\texttt{E}},R$};
+\node at ($0.5*(A3)+0.5*(A4)+(0,1.1)$)
+	{$\texttt{S}\rightarrow{\color{wordleolive}\texttt{S}},R$};
+\node at ($0.5*(A3)+0.5*(A4)+(0,1.5)$)
+	{$\texttt{H}\rightarrow{\color{wordlegreen}\texttt{H}},R$};
+\node at ($0.5*(A3)+0.5*(A4)+(0,1.9)$)
+	{$\texttt{C}\rightarrow{\color{wordleolive}\texttt{C}},R$};
+\node at ($0.5*(A3)+0.5*(A4)+(0,2.3)$)
+	{$\texttt{O}\rightarrow{\color{wordleolive}\texttt{O}},R$};
+
+\node at ($0.5*(A4)+0.5*(A5)+(0,0.3)$) {$\otimes$};
+\node at ($0.5*(A4)+0.5*(A5)+(0,0.7)$)
+	{$\texttt{E}\rightarrow{\color{wordleolive}\texttt{E}},R$};
+\node at ($0.5*(A4)+0.5*(A5)+(0,1.1)$)
+	{$\texttt{S}\rightarrow{\color{wordlegreen}\texttt{S}},R$};
+\node at ($0.5*(A4)+0.5*(A5)+(0,1.5)$)
+	{$\texttt{H}\rightarrow{\color{wordleolive}\texttt{H}},R$};
+\node at ($0.5*(A4)+0.5*(A5)+(0,1.9)$)
+	{$\texttt{C}\rightarrow{\color{wordleolive}\texttt{C}},R$};
+\node at ($0.5*(A4)+0.5*(A5)+(0,2.3)$)
+	{$\texttt{O}\rightarrow{\color{wordleolive}\texttt{O}},R$};
+
+\node at ($0.5*(A5)+0.5*(A6)+(0,0.3)$) {$\otimes$};
+\node at ($0.5*(A5)+0.5*(A6)+(0,0.7)$)
+	{$\texttt{E}\rightarrow{\color{wordlegreen}\texttt{E}},R$};
+\node at ($0.5*(A5)+0.5*(A6)+(0,1.1)$)
+	{$\texttt{S}\rightarrow{\color{wordleolive}\texttt{S}},R$};
+\node at ($0.5*(A5)+0.5*(A6)+(0,1.5)$)
+	{$\texttt{H}\rightarrow{\color{wordleolive}\texttt{H}},R$};
+\node at ($0.5*(A5)+0.5*(A6)+(0,1.9)$)
+	{$\texttt{C}\rightarrow{\color{wordleolive}\texttt{C}},R$};
+\node at ($0.5*(A5)+0.5*(A6)+(0,2.3)$)
+	{$\texttt{O}\rightarrow{\color{wordleolive}\texttt{O}},R$};
+
+\node at ($0.5*(A6)+0.5*(A)+(-0.2,0.3)$) {$\blank\to\blank,R$};
+
+\draw[->,shorten >= 0.45cm,shorten <= 0.3cm] (A1) -- (R);
+\draw[->,shorten >= 0.4cm,shorten <= 0.3cm] (A2) -- (R);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (A3) -- (R);
+\draw[->,shorten >= 0.4cm,shorten <= 0.3cm] (A4) -- (R);
+\draw[->,shorten >= 0.45cm,shorten <= 0.3cm] (A5) -- (R);
+
+\fill[color=gray!20] ($(A3)+(-4,-1.4)$) rectangle ($(A3)+(4,-1.0)$);
+\node at ($(A3)+(0,-1.2)$) {$\blank \to \blank,R
+\qquad
+{\color{wordlegreen}x}\to{\color{wordlegreen}x},R
+\qquad
+{\color{wordleolive}x}\to{\color{wordleolive}x},R
+$};
+
+\draw[->,shorten <= 0.3cm,shorten >= 0.6cm] (A6) to[out=-90,in=0] (R);
+\node at ($(A6)+(-0.3,-1.5)$) [right] {$\texttt{.}\to \texttt{.},R$};
+
+\end{tikzpicture}
+\end{center}
+Dabei bedeutet das Zeichen $\otimes$ den Übergang $x\to x,R$ für jedes
+schwarze Zeichen $x$, welches nicht in 
+$\{
+\texttt{O},
+\texttt{C},
+\texttt{H},
+\texttt{S},
+\texttt{E}
+\}$ ist.
+Im grauen Balken sind ausserdem mit ${\color{wordlegreen}x}$ und 
+${\color{wordleolive}x}$ alle farbigen Zeichen gemeint.
+Im Übergang vom Zustand $q_5$ in den Zustand $q_\text{reject}$
+bedeutet der Punkt \texttt{.} alle Zeichen ausser dem \blank.
+\item
+Die Berechnungsgeschichte des Wortes \texttt{WOCHE} ist
+\[
+\begin{array}{ccccccc}
+q_0        &\schwarz{W}&\schwarz{O}&\schwarz{C}&\schwarz{H}&\schwarz{E}&\blank\\
+\schwarz{W}&q_1        &\schwarz{O}&\schwarz{C}&\schwarz{H}&\schwarz{E}&\blank\\
+\schwarz{W}&\oliv{O}&q_2        &\schwarz{C}&\schwarz{H}&\schwarz{E}&\blank\\
+\schwarz{W}&\oliv{O}&\oliv{C}&q_3        &\schwarz{H}&\schwarz{E}&\blank\\
+\schwarz{W}&\oliv{O}&\oliv{C}&\oliv{H}&q_4        &\schwarz{E}&\blank\\
+\schwarz{W}&\oliv{O}&\oliv{C}&\oliv{H}&\gruen{E}&q_5        &\blank\\
+\schwarz{W}&\oliv{O}&\oliv{C}&\oliv{H}&\gruen{E}&\blank     &q_{\text{accept}}\\
+\end{array}
+\]
+\item
+Die Berechnungsgeschichte zur Verarbeitung des Wortes
+\texttt{ECHSE} 
+ist
+\[
+\begin{array}{ccccccc}
+q_0        &\schwarz{E}&\schwarz{C}&\schwarz{H}&\schwarz{S}&\schwarz{E}&\blank\\
+\oliv{E}&q_1        &\schwarz{C}&\schwarz{H}&\schwarz{S}&\schwarz{E}&\blank\\
+\oliv{E}&\gruen{C}&q_2        &\schwarz{H}&\schwarz{S}&\schwarz{E}&\blank\\
+\oliv{E}&\gruen{C}&\gruen{H}&q_3        &\schwarz{S}&\schwarz{E}&\blank\\
+\oliv{E}&\gruen{C}&\gruen{H}&\gruen{S}&q_4        &\schwarz{E}&\blank\\
+\oliv{E}&\gruen{C}&\gruen{H}&\gruen{S}&\gruen{E}&q_5        &\blank\\
+\oliv{E}&\gruen{C}&\gruen{H}&\gruen{S}&\gruen{E}&\blank     &q_{\text{accept}}\\
+\end{array}
+\]
+Dieses Resultat deutet im richtigen Wordle an, dass das Wort
+zwei Zeichen \texttt{E} enthält, was aber hier nicht der Fall ist.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+\begin{teilaufgaben}
+\item
+Zustandsdiagramm mit Farbübergängen ({\bf F}) 1 Punkt,
+korrekt erkannter Länge ({\bf L}) 1 Punkt,
+farbige Zeichen werden verworfen ({\bf V}) 1 Punkt,
+nicht passende Zeichen bleiben schwarz ({\bf S}) 1 Punkt.
+\item
+Berechnungsgeschichte ({\bf B}) 1 Punkt.
+\item
+Abweichung ({\bf A}) 1 Punkt.
+\end{teilaufgaben}
+\end{bewertung}
+\egroup

@@ -1,0 +1,31 @@
+Bei der Übertragung von Zeichen könnte man den Ausfall einzelner
+Zeichen erkennen, wenn man sich darauf einigt, dass immer eine ungerade
+Anzahl von Zeichen übermittelt wird.
+Wird eine gerade Zahl von Zeichen empfangen, bedeutet dies, dass mindestens
+ein Zeichen, vielleicht aber auch ein grössere, ungerade Zahl von Zeichen,
+nicht übermittelt worden sind.
+Ein Empfängerprogramm darf also nur Meldungen akzeptieren, welche eine
+ungerade Länge haben.
+
+Man möchte ein Testprogramm schreiben, welches Empfängerprogramme
+zertifizieren kann.
+Es soll genau jene Empfängerprogramme akzeptieren, die in allen Fällen
+korrekt arbeiten.
+Ist so ein Testprogramm möglich?
+
+\begin{loesung}
+Das Empfängerprogramm muss eine Sprache akzeptieren, welche die Eigenschaft
+{\em ODD} hat, d.~h.~sie enthält nur Wörter ungerader Länge.
+Diese Eigenschaft ist nichttrivial, denn die Sprache $L_1=\{\texttt{00}\}$
+hat die Eigenschaft nicht, $L_2=\{\texttt{0}\}$ hat sie.
+Nach dem Satz von Rice ist daher nicht entscheidbar, ob eine Turing-Maschine
+eine Sprache mit der Eigenschaftt {\em ODD} akzeptiert.
+Die Sprache $\text{\em ODD}_{\text{TM}}$ ist nicht entscheidbar.
+\end{loesung}
+
+\begin{bewertung}
+Satz von Rice ({\bf R}) 2 Punkt,
+Zwei Beispiele von Sprachen ({\bf L}) 2 Punkt,
+Schlussfolgerung ({\bf S}) 2 Punkte.
+\end{bewertung}
+

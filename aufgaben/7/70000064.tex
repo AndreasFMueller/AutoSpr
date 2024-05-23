@@ -1,0 +1,57 @@
+% NP-vollständiges Problem
+Ein Youtube-Fan hat eine lange Playlist von Videos gesammelt, die er
+gerne ansehen möchte.
+Er hasst es aber, wenn er beim Ansehen eines Videos unterbrochen wird.
+Vor einer längeren Zugfahrt macht er sich daher Gedanken darüber,
+welche Videos er sich ansehen soll.
+Zu diesem Zweck stellt er eine neue Playlist zusammenzustellen,
+in die er diejenigen Videos aus der ursprünglichen Liste kopiert,
+die er auf der Zugfahrt ansehen will.
+Natürlich will er die ganze zur Verfügung stehende Zeit vollständig
+ausnutzen, aber das letzte Video soll nicht von der Ankunft am Ziel
+unterbrochen werden.
+Das stellt sich als schwieriger heraus als erwartet. Warum?
+
+\begin{loesung}
+Wir nennen das beschriebene Problem {\em TRAIN-RIDE-PLAYLIST} und 
+zeigen, dass es sich eins zu eins auf das Problem {\em SUBSET-SUM}
+reduzieren lässt.
+Eine solche Reduktion ist
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{r>{$}c<{$}p{8cm}}
+{\em SUBSET-SUM}&&{\em TRAIN-RIDE-PLAYLIST}\\
+\hline
+Liste $S$ von Zahlen
+&\leftrightarrow&
+Playlist mit Videos bekannter Länge
+\\
+Wert $t$
+&\leftrightarrow&
+Dauer der Zugfahrt
+\\
+Teilliste $T\subset S$
+&\leftrightarrow&
+Playlist für die Zugfahrt
+\\
+Summenbedingung $\displaystyle\sum_{s\in S} s = t$
+&\leftrightarrow&
+Gesamtdauer der Zugfahrt-Playlist ist gleich lang wie die Zugfahrt
+\end{tabular}
+\end{center}
+Die Reduktion auf {\em SUBSET-SUM} zeigt, dass {\em TRAIN-RIDE-PLAYLIST}
+ein NP-vollständiges Problem ist.
+Nach aktuellem Wissen gibt es dafür keinen polynomiellen Algorithmus,
+es skaliert daher nicht auf lange Playlists, wie sie in der Aufgabe
+vorliegt.
+\end{loesung}
+
+\begin{bewertung}
+NP-Vollständigkeit ({\bf N}) 1 Punkt,
+Reduktionsprinzip ({\bf R}) 1 Punkt,
+Vergleichsproblem wählen ({\bf V}) 1 Punkt,
+Abbildung von $S$ ({\bf S}) 1 Punkt,
+Abbildung von $T$ ({\bf T}) 1 Punkt,
+Abbildung der Summenbedingung ({\bf B}) 1 Punkt.
+\end{bewertung}
+

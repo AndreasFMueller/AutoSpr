@@ -1,0 +1,78 @@
+%
+% wordl.tex -- Wordle-Beispiel
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\documentclass[tikz,12pt]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\definecolor{wordlegreen}{rgb}{0.32,0.55,0.30}
+\definecolor{wordleolive}{rgb}{0.71,0.62,0.23}
+\def\h{1}
+\def\s{0.05}
+\def\emptyblock#1#2{
+	\fill[color=gray]
+		({#1*\h+\s},{-#2*\h+\s})
+		rectangle
+		({(#1+1)*\h-\s},{(-#2+1)*\h-\s});
+	\fill[color=black]
+		({#1*\h+2*\s},{-#2*\h+2*\s})
+		rectangle
+		({(#1+1)*\h-2*\s},{(-#2+1)*\h-2*\s});
+}
+\def\block#1#2#3#4{
+	\fill[color=#4]
+		({#1*\h+\s},{-#2*\h+\s})
+		rectangle
+		({(#1+1)*\h-\s},{(-#2+1)*\h-\s});
+	\node[color=white] at ({(#1+0.5)*\h},{(-#2+0.5)*\h-0.04})
+		{\Large\texttt{#3}\strut};
+}
+\begin{tikzpicture}[>=latex,thick]
+
+\block{1}{1}{B}{gray}
+\block{2}{1}{R}{gray}
+\block{3}{1}{E}{gray}
+\block{4}{1}{A}{wordleolive}
+\block{5}{1}{K}{gray}
+
+\block{1}{2}{M}{gray}
+\block{2}{2}{O}{gray}
+\block{3}{2}{U}{gray}
+\block{4}{2}{T}{wordleolive}
+\block{5}{2}{H}{wordleolive}
+
+\block{1}{3}{P}{gray}
+\block{2}{3}{A}{wordleolive}
+\block{3}{3}{S}{gray}
+\block{4}{3}{T}{wordleolive}
+\block{5}{3}{A}{gray}
+
+\block{1}{4}{A}{wordleolive}
+\block{2}{4}{N}{wordleolive}
+\block{3}{4}{T}{wordleolive}
+\block{4}{4}{I}{gray}
+\block{5}{4}{C}{wordleolive}
+
+\block{1}{5}{C}{wordlegreen}
+\block{2}{5}{H}{wordlegreen}
+\block{3}{5}{A}{wordlegreen}
+\block{4}{5}{N}{wordlegreen}
+\block{5}{5}{T}{wordlegreen}
+
+\foreach \x in {1,2,3,4,5}{
+	\emptyblock{\x}{6}
+}
+
+\foreach \y in {1,2,3,4,5,6}{
+	\node at ({0.5*\h},{(0.5-\y)*\h}) {$\mathstrut\scriptstyle \y$};
+}
+
+\end{tikzpicture}
+\end{document}
+
