@@ -64,8 +64,13 @@ public class regex {
 			String	r = s2 + s1;
 			writer.print(prefix.substring(i));
 			writer.print(s1);
+			boolean	doesmatch = false;
+			int	counter = (i < 20) ? 1000 : 1;
 			long	current = System.currentTimeMillis();
-			if (match.matches(s1, r)) {
+			while (counter-- > 0) {
+				doesmatch = match.matches(s1, r);
+			}
+			if (doesmatch) {
 				writer.print(" matches ");
 			} else {
 				writer.print(" doesn't match ");
@@ -76,8 +81,10 @@ public class regex {
 			writer.print(prefix.substring(i));
 			writer.print(prefix.substring(i));
 			writer.print(prefix.substring(i));
-			writer.print(String.format("%6.3f", 0.001 * runtime));
+			counter = (i < 20) ? 1000 : 1;
+			writer.print(String.format("%6.6f", (0.001 * runtime) / counter));
 			writer.println();
+			writer.flush();
 		}
 	}
 

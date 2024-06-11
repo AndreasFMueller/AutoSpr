@@ -37,7 +37,7 @@ for ($i = 1; $i <= 29; $i++) {
 	$start = time;
 	if ($string =~ m/$r/) {
 		$end = time;
-		printf("%29s matches %s %*s %.4f\n", $string, $r, 3*(29-$i), "", $end - $start);
+		printf("%29s matches %s %*s %.6f\n", $string, $r, 3*(29-$i), "", $end - $start);
 	} else {
 		printf("%29s does not match %s\n", $string, $r);
 	}

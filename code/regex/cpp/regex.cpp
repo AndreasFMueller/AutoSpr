@@ -14,7 +14,7 @@
 
 namespace Regex {
 
-void test(std::ostream & out, std::size_t const & numberOfRounds) {
+void test(std::ostream & out, std::size_t const & numberOfRounds, int repetitions, bool measure) {
 	std::string regexString { };
 	std::string searchString { };
 
@@ -28,9 +28,13 @@ void test(std::ostream & out, std::size_t const & numberOfRounds) {
 
 
 		// perform matching
-		auto beginonce = std::chrono::high_resolution_clock::now();
 		std::regex regex { pattern };
-		bool	matches = std::regex_match(searchString, regex);
+		auto beginonce = std::chrono::high_resolution_clock::now();
+		bool	matches;
+		int	counter = (measure) ? repetitions : 1;
+		while (counter-- > 0) {
+			matches = std::regex_match(searchString, regex);
+		}
 		auto endonce = std::chrono::high_resolution_clock::now();
 
 		// right aligned string
@@ -46,8 +50,10 @@ void test(std::ostream & out, std::size_t const & numberOfRounds) {
 
 
 		// left aligned 
-		out << std::right << std::setw(10);
-		out << (std::chrono::duration_cast<std::chrono::nanoseconds>(endonce - beginonce).count() / 1000000) << " ms";
+		out << std::right << std::setw(10) << std::setprecision(6);
+		counter = (measure) ? repetitions : 1;
+		double	t = std::chrono::duration_cast<std::chrono::nanoseconds>(endonce - beginonce).count() * 1e-3 / counter; 
+		out << t << " ms";
 
 		out << std::endl;
 	}
