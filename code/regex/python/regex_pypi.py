@@ -13,7 +13,7 @@ while i < maxi:
 	start = time.time()
 	if regex.match(r, r2):
 		end = time.time()
-		print("%*s matches %*s %*.3f s" % (maxi, r2, -3*maxi, r, 10, end-start))
+		print("%*s matches %*s %*.6f s" % (maxi, r2, -3*maxi, r, 10, end-start))
 	else:
 		print("matching failure\n")
 
