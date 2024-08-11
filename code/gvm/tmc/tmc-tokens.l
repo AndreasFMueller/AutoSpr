@@ -1,8 +1,8 @@
 %{
 /*
- * lexer definition for the Turing machine compiler
+ * tmc-tokens.l -- lexer definition for the Turing machine compiler
  *
- * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
+ * (c) 2012-2024 Prof Dr Andreas Mueller
  */
 #include "tmc.h"
 #include <includes.h>

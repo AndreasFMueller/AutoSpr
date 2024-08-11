@@ -1,7 +1,7 @@
 /*
  * gvm.h -- goto virtual machine declarations
  *
- * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
+ * (c) 2012-2024 Prof Dr Andreas Mueller
  */
 #ifndef _gvm_h
 #define _gvm_h

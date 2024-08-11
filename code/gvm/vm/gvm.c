@@ -1,7 +1,7 @@
 /*
  * gmv.c -- the goto virtual machine
  *
- * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
+ * (c) 2012-2024 Prof Dr Andreas Mueller
  */
 #define _DEFAULT_SOURCE
 #include <includes.h>

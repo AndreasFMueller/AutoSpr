@@ -1,8 +1,7 @@
 #
 # Makefile.am -- makefile to include the documentation in the package
 #
-# (c) 2012 Prof Dr Andreas Mueller
-# $Id$
+# (c) 2012-2024 Prof Dr Andreas Mueller
 #
 EXTRA_DIST = \
 	gvm.tex \

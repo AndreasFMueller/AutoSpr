@@ -1,8 +1,8 @@
 %{
 /*
- * lexer definition for the basic GVM language
+ * tokens.l -- lexer definition for the basic GVM language
  *
- * (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
+ * (c) 2012-2024 Prof Dr Andreas Mueller
  */
 #define _DEFAULT_SOURCE
 #include <gvm.h>

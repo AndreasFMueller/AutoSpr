@@ -1,8 +1,7 @@
 #
 # makefile for the turing machine compiler
 #
-# (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
-# $Id$
+# (c) 2012-2024 Prof Dr Andreas Mueller
 #
 SUBDIRS = pgm data
 

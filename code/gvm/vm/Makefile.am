@@ -1,8 +1,7 @@
 #
 # Makefile.am -- build the Makefile for the gvm project
 #
-# (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
-# $Id$
+# (c) 2012-2024 Prof Dr Andreas Mueller
 #
 EXTRA_DIST = test.goto gvm.h utils.h tokens.l grammar.y
 

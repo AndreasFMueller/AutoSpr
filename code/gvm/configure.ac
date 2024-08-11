@@ -1,24 +1,21 @@
 #
 # configure.ac -- create the configure script for the gvm project
 #
-# (c) 2012 Prof Dr Andreas Mueller, Hochschule Rapperswil
-# $Id$
+# (c) 2012-2024 Prof Dr Andreas Mueller
 #
-AC_PREREQ([2.57])
+AC_PREREQ([2.72])
 AC_REVISION([1.0])dnl
-AC_INIT
+AC_INIT([gvm],[1.0],[andreas.mueller@othello.ch])
 AC_CONFIG_SRCDIR([vm/gvm.c])
 AC_CANONICAL_TARGET([])
-AM_INIT_AUTOMAKE(gvm, 1.0)
-AM_CONFIG_HEADER(common/config.h)
+AM_INIT_AUTOMAKE
+AC_CONFIG_HEADERS(common/config.h)
 
 # Programs
 AC_PROG_CC
-AC_PROG_LEX
+AC_PROG_LEX(noyywrap)
 AC_PROG_YACC
 
-AC_HEADER_STDC
-AC_CHECK_HEADERS(errno.h stdio.h getopt.h fcntl.h time.h sys/time.h sys/types.h sys/select.h getopt.h)
 AC_CHECK_FUNC(nanosleep, AC_DEFINE(HAVE_NANOSLEEP, [], [Define if nanosleep(2) function is present]), )
 
 AC_CHECK_HEADERS([gmp.h])
