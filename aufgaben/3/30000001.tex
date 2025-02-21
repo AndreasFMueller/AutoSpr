@@ -30,20 +30,65 @@ der Automat akzeptiert.
 \begin{loesung}
 \begin{teilaufgaben}
 \item
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix @-1mm {
-*+\txt{}&{q_1}\ar@/^/[d]^{\tt d} \ar@(ul,ur)^{\tt u}
-\\
-*+\txt{}&{q_2}\ar@/^/[u]^{\tt u}\ar@/^/[d]^{\tt d}
-\\
-*+\txt{}\ar[r]&*++[o][F=]{q_3}\ar@/^/[u]^{\tt u}\ar@/^/[d]^{\tt d}
-\\
-*+\txt{}&{q_4}\ar@/^/[u]^{\tt u}\ar@/^/[d]^{\tt d}
-\\
-*+\txt{}&{q_5}\ar@/^/[u]^{\tt u} \ar@(dr,dl)^{\tt d}
-}
-\]
+Das Zustandsdiagramm des Automaten ist
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix @-1mm {
+%*+\txt{}&{q_1}\ar@/^/[d]^{\tt d} \ar@(ul,ur)^{\tt u}
+%\\
+%*+\txt{}&{q_2}\ar@/^/[u]^{\tt u}\ar@/^/[d]^{\tt d}
+%\\
+%*+\txt{}\ar[r]&*++[o][F=]{q_3}\ar@/^/[u]^{\tt u}\ar@/^/[d]^{\tt d}
+%\\
+%*+\txt{}&{q_4}\ar@/^/[u]^{\tt u}\ar@/^/[d]^{\tt d}
+%\\
+%*+\txt{}&{q_5}\ar@/^/[u]^{\tt u} \ar@(dr,dl)^{\tt d}
+%}
+%\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\def\l{1.5}
+\coordinate (q1) at (0,{2*\l});
+\coordinate (q2) at (0,{1*\l});
+\coordinate (q3) at (0,{0*\l});
+\coordinate (q4) at (0,{-1*\l});
+\coordinate (q5) at (0,{-2*\l});
+\draw (q1) circle[radius=0.35];
+\draw (q2) circle[radius=0.35];
+\draw (q3) circle[radius=0.35];
+\draw (q3) circle[radius=0.30];
+\draw (q4) circle[radius=0.35];
+\draw (q5) circle[radius=0.35];
+\node at (q1) {$q_1$};
+\node at (q2) {$q_2$};
+\node at (q3) {$q_3$};
+\node at (q4) {$q_4$};
+\node at (q5) {$q_5$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q5) to[out=120,in=-120] (q4);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q4) to[out=120,in=-120] (q3);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q3) to[out=120,in=-120] (q2);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q2) to[out=120,in=-120] (q1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q1) to[out=-60,in=60] (q2);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q2) to[out=-60,in=60] (q3);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q3) to[out=-60,in=60] (q4);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q4) to[out=-60,in=60] (q5);
+\node at ($0.5*(q1)+0.5*(q2)+(-0.5,0)$) {\texttt{u}};
+\node at ($0.5*(q2)+0.5*(q3)+(-0.5,0)$) {\texttt{u}};
+\node at ($0.5*(q3)+0.5*(q4)+(-0.5,0)$) {\texttt{u}};
+\node at ($0.5*(q4)+0.5*(q5)+(-0.5,0)$) {\texttt{u}};
+\node at ($0.5*(q1)+0.5*(q2)+(0.5,0)$) {\texttt{d}};
+\node at ($0.5*(q2)+0.5*(q3)+(0.5,0)$) {\texttt{d}};
+\node at ($0.5*(q3)+0.5*(q4)+(0.5,0)$) {\texttt{d}};
+\node at ($0.5*(q4)+0.5*(q5)+(0.5,0)$) {\texttt{d}};
+\draw[->,shorten >= 0.35cm] (-\l,0) -- (q3);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(q1) to[out=60,in=120,distance=1.2cm] (q1);
+\node at ($(q1)+(0,1.1)$) {\texttt{u}};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(q5) to[out=-60,in=-120,distance=1.2cm] (q5);
+\node at ($(q5)+(0,-1.1)$) {\texttt{d}};
+\end{tikzpicture}
+\end{center}
 \item
 Das leere Wort überführt den Startzustand $q_3$ in den Zustand
 $q_3\in \{q_3\}$, also einen Akzeptierzustand, somit ist

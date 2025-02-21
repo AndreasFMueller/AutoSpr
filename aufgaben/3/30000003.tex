@@ -1,15 +1,45 @@
 Untersuchen Sie, welche der Zustände im Automaten
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-        &{z_0}\ar[r]^{\tt 1} \ar@(ur,ul)_{\tt 0}
-                &*++[o][F=]{z_1} \ar@/^/[dl]^{\tt 0} \ar@(dr,ur)_{\tt 1}
-\\
-*+\txt{}
-        &{z_2} \ar@/^/[ur]^{\tt 1} \ar[u]^{\tt 0}
-}
-\]
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[r]
+%        &{z_0}\ar[r]^{\tt 1} \ar@(ur,ul)_{\tt 0}
+%                &*++[o][F=]{z_1} \ar@/^/[dl]^{\tt 0} \ar@(dr,ur)_{\tt 1}
+%\\
+%*+\txt{}
+%        &{z_2} \ar@/^/[ur]^{\tt 1} \ar[u]^{\tt 0}
+%}
+%\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\def\l{1.8}
+\coordinate (z0) at (0,0);
+\coordinate (z1) at (\l,0);
+\coordinate (z2) at (0,-\l);
+\draw (z0) circle[radius=0.35];
+\draw (z1) circle[radius=0.35];
+\draw (z1) circle[radius=0.30];
+\draw (z2) circle[radius=0.35];
+\node at (z0) {$z_0$};
+\node at (z1) {$z_1$};
+\node at (z2) {$z_2$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (-\l,0) -- (z0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (z0) -- (z1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (z2) -- (z0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (z2) -- (z1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (z1) to[out=-100,in=10] (z2);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(z1) to[out=30,in=-30,distance=1.2cm] (z1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(z0) to[out=60,in=120,distance=1.2cm] (z0);
+\node at ($0.5*(z0)+0.5*(z1)$) [above] {\texttt{1}};
+\node at ($0.5*(z0)+0.5*(z2)$) [left] {\texttt{0}};
+\node at ($(z0)+(0,1.1)$) {\texttt{0}};
+\node at ($(z1)+(1.1,0)$) {\texttt{1}};
+\node at ($0.5*(z1)+0.5*(z2)+(0.05,-0.05)$) [above left] {\texttt{1}};
+\node at ($0.5*(z1)+0.5*(z2)+(0.25,-0.25)$) [below right] {\texttt{0}};
+\end{tikzpicture}
+\end{center}
 äquivalent sind, und finden Sie den minimalen Automaten.
 
 \thema{minimaler Automat}
@@ -42,15 +72,38 @@ kein neues Kreuz im Feld $(z_0,z_2)$ machen, der Algorithmus endet.
 Man schliesst, dass $z_0$ und $z_2$ äquivalent sein müssen.
 
 Legt man $z_0$ und $z_2$ zusammen, wird der Automat vereinfacht zu
-\[
-\entrymodifiers={++[o][F]}
-\xymatrix{
-*+\txt{}\ar[r]
-        &{z_0,z_2}\ar@/^/[r]^{\tt 1} \ar@(ur,ul)_{\tt 0}
-                &*++[o][F=]{z_1} \ar@/^/[l]^{\tt 0} \ar@(dr,ur)_{\tt 1}
-}
+%\[
+%\entrymodifiers={++[o][F]}
+%\xymatrix{
+%*+\txt{}\ar[r]
+%        &{z_0,z_2}\ar@/^/[r]^{\tt 1} \ar@(ur,ul)_{\tt 0}
+%                &*++[o][F=]{z_1} \ar@/^/[l]^{\tt 0} \ar@(dr,ur)_{\tt 1}
+%}
+%\qedhere
+%\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (z0) at (0,0);
+\coordinate (z1) at (2.4,0);
+\draw (z1) circle[radius=0.35];
+\draw (z1) circle[radius=0.30];
+\draw (z0) ellipse (0.6 and 0.35);
+\node at (z0) {$z_0,z_2$};
+\node at (z1) {$z_1$};
+\draw[->,shorten <= 0.55cm,shorten >= 0.35cm] (z0) to[out=20,in=160] (z1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.55cm] (z1) to[out=-160,in=-20] (z0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.65cm] (-1.9,0) -- (z0);
+\draw[->,shorten <= 0.40cm,shorten >= 0.40cm]
+	(z0) to[out=60,in=120,distance=1.2cm] (z0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(z1) to[out=-30,in=30,distance=1.2cm] (z1);
+\node at ($(z0)+(0,1.15)$) {\texttt{0}};
+\node at ($(z1)+(1.1,0)$) {\texttt{1}};
+\node at ($0.5*(z0)+0.5*(z1)+(0,0.55)$) {\texttt{1}};
+\node at ($0.5*(z0)+0.5*(z1)+(0,-0.55)$) {\texttt{0}};
+\end{tikzpicture}
+\end{center}
 \qedhere
-\]
 \end{loesung}
 
 

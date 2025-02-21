@@ -22,3 +22,6 @@ calculator:	calculator.o tokens.o grammar.o
 
 clean:
 	rm -f tokens.c grammar.c grammar.h *.o calculator
+
+log:	calculator
+	echo '(1+3)*7' | ./calculator -d 2>&1 | egrep -ie 'shift|reduc'
