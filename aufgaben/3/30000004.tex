@@ -22,25 +22,78 @@ zugehörigen minimalen Automaten.
 
 \begin{loesung}
 Das folgende Zustandsdiagramm beschreibt den DEA:
-\[
-\UseTips
-\entrymodifiers={++[o][F]}
-\xymatrix @-1mm {
-*+\txt{}
-        &*+\txt{}
-                &*+\txt{}
-                        &z_2 \ar@/_/[d]^{\tt 1} \ar@/^/[dl]_{\tt 0}
-\\
-*+\txt{}\ar[r]
-        &z \ar[r]^{1} \ar[d]_{\tt 0}
-                &z_1 \ar@/_/[d]_{\tt 1}  \ar@/^/[ur]^{\tt 0}
-                        &z_3 \ar[l]^{\tt 0} \ar@/_/[u]_{\tt 1}
-\\
-*+\txt{}
-        &e \ar@(dr,dl)^{{\tt 0},{\tt 1}}
-                &*++[o][F=]{z_0} \ar@(dr,dl)^{\tt 0} \ar@/_/[u]_{\tt 1}
-}
-\]
+%\[
+%\UseTips
+%\entrymodifiers={++[o][F]}
+%\xymatrix @-1mm {
+%*+\txt{}
+%        &*+\txt{}
+%                &*+\txt{}
+%                        &z_2 \ar@/_/[d]^{\tt 1} \ar@/^/[dl]_{\tt 0}
+%\\
+%*+\txt{}\ar[r]
+%        &z \ar[r]^{1} \ar[d]_{\tt 0}
+%                &z_1 \ar@/_/[d]_{\tt 1}  \ar@/^/[ur]^{\tt 0}
+%                        &z_3 \ar[l]^{\tt 0} \ar@/_/[u]_{\tt 1}
+%\\
+%*+\txt{}
+%        &e \ar@(dr,dl)^{{\tt 0},{\tt 1}}
+%                &*++[o][F=]{z_0} \ar@(dr,dl)^{\tt 0} \ar@/_/[u]_{\tt 1}
+%}
+%\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\def\l{1.6}
+\coordinate (z) at (0,0);
+\coordinate (z1) at (\l,0);
+\coordinate (z3) at ({2*\l},0);
+\coordinate (z2) at ({2*\l},\l);
+\coordinate (e) at (0,-\l);
+\coordinate (z0) at (\l,-\l);
+\node at (z) {$z$};
+\node at (z0) {$z_0$};
+\node at (z1) {$z_1$};
+\node at (z2) {$z_2$};
+\node at (z3) {$z_3$};
+\node at (e) {$e$};
+\draw (z) circle[radius=0.35];
+\draw (z0) circle[radius=0.35];
+\draw (z0) circle[radius=0.30];
+\draw (z1) circle[radius=0.35];
+\draw (z2) circle[radius=0.35];
+\draw (z3) circle[radius=0.35];
+\draw (e) circle[radius=0.35];
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (-\l,0) -- (z);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (z) -- (z1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (z3) -- (z1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (z) -- (e);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(e) to[out=-60,in=-120,distance=1.2cm] (e);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(z0) to[out=-60,in=-120,distance=1.2cm] (z0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(z1) to[out=-70,in=70] (z0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(z0) to[out=110,in=-110] (z1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(z2) to[out=-70,in=70] (z3);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(z3) to[out=110,in=-110] (z2);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(z2) -- (z1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(z1) to[out=80,in=-165] (z2);
+\node at ($0.5*(z2)+0.5*(z3)$) {\texttt{1}};
+\node at ($0.5*(z0)+0.5*(z1)$) {\texttt{1}};
+\node at ($0.5*(z)+0.5*(z1)$) [above] {\texttt{1}};
+\node at ($0.5*(z1)+0.5*(z2)+(-0.15,0.15)$) {\texttt{0}};
+\node at ($0.5*(z1)+0.5*(z3)$) [below] {\texttt{0}};
+\node at ($0.5*(z)+0.5*(e)$) [left] {\texttt{0}};
+\node at ($(z0)+(0,-1.1)$) {\texttt{0}};
+\node at ($(e)+(0,-1.1)$) {\texttt{0},\texttt{1}};
+
+\end{tikzpicture}
+\end{center}
 Für die Bestimmung der äquivalenten Zustände bauen wir die Tabellen
 der nicht äquivalenten Zustände auf. Im ersten Schritt werden die
 Paare aus einem Akzeptierzustand und einem Nicht-Akzeptierzustand markiert:
@@ -111,20 +164,64 @@ $e$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\equiv$\\
 \end{center}
 Durch Zusammenlegen im Zustandsdiagramm erhält man jetzt als
 kleinsmöglichen Automaten:
-\[
-\UseTips
-\entrymodifiers={++[o][F]}
-\xymatrix @-1mm {
-*+\txt{}\ar[r]
-        &z \ar[r]^{1} \ar[d]_{\tt 0}
-                &z_1 \ar@/_/[d]_{\tt 1}  \ar@/^/[r]^{\tt 0}
-                        &z_2,z_3 \ar@/^/[l]^{\tt 0} \ar@(dr,dl)^{\tt 1}
-\\
-*+\txt{}
-        &e \ar@(dr,dl)^{{\tt 0},{\tt 1}}
-                &*++[o][F=]{z_0} \ar@(dr,dl)_{\tt 0} \ar@/_/[u]_{\tt 1}
-}
+%\[
+%\UseTips
+%\entrymodifiers={++[o][F]}
+%\xymatrix @-1mm {
+%*+\txt{}\ar[r]
+%        &z \ar[r]^{1} \ar[d]_{\tt 0}
+%                &z_1 \ar@/_/[d]_{\tt 1}  \ar@/^/[r]^{\tt 0}
+%                        &z_2,z_3 \ar@/^/[l]^{\tt 0} \ar@(dr,dl)^{\tt 1}
+%\\
+%*+\txt{}
+%        &e \ar@(dr,dl)^{{\tt 0},{\tt 1}}
+%                &*++[o][F=]{z_0} \ar@(dr,dl)_{\tt 0} \ar@/_/[u]_{\tt 1}
+%}
+%\qedhere
+%\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\def\l{1.8}
+\coordinate (z) at (0,0);
+\coordinate (z1) at (\l,0);
+\coordinate (z2) at ({2.4*\l},0);
+\coordinate (e) at (0,-\l);
+\coordinate (z0) at (\l,-\l);
+\node at (z) {$z$};
+\node at (z0) {$z_0$};
+\node at (z1) {$z_1$};
+\node at (z2) {$z_2,z_3$};
+\node at (e) {$e$};
+\draw (z) circle[radius=0.35];
+\draw (z0) circle[radius=0.35];
+\draw (z0) circle[radius=0.30];
+\draw (z1) circle[radius=0.35];
+\draw (z2) ellipse (0.65 and 0.35);
+\draw (e) circle[radius=0.35];
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (-\l,0) -- (z);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (z) -- (e);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (z) -- (z1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (z1) to[out=-60,in=60] (z0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (z0) to[out=120,in=-120] (z1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(e) to[out=-60,in=-120,distance=1.2cm] (e);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(z0) to[out=-60,in=-120,distance=1.2cm] (z0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.59cm]
+	(z1) to[out=30,in=160] (z2);
+\draw[->,shorten <= 0.59cm,shorten >= 0.35cm]
+	(z2) to[out=-160,in=-30] (z1);
+\draw[->,shorten <= 0.50cm,shorten >= 0.50cm]
+	(z2) to[out=-30,in=30,distance=1.6cm] (z2);
+\node at ($0.5*(z1)+0.5*(z0)$) {\texttt{1}};
+\node at ($0.5*(z1)+0.5*(z2)$) {\texttt{0}};
+\node at ($(z0)+(0,-1.1)$) {\texttt{0}};
+\node at ($(e)+(0,-1.1)$) {\texttt{0},\texttt{1}};
+\node at ($0.5*(e)+0.5*(z)$) [left] {\texttt{0}};
+\node at ($0.5*(z)+0.5*(z1)$) [above] {\texttt{1}};
+\node at ($(z2)+(1.4,0)$) {\texttt{1}};
+\end{tikzpicture}
+\end{center}
 \qedhere
-\]
 \end{loesung}
 
