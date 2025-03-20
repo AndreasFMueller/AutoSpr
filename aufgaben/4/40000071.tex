@@ -63,15 +63,15 @@ S&\to N'\, V'
 Bringen Sie die
 Grammatik in Chomsky-Normalform.
 \item
-Finden Sie zwei verschiedene Parse-Trees für den Satz
+Finden Sie zwei verschiedene Parse Trees für den Satz
 \begin{center}
 \texttt{john saw the girl in a car}
 \end{center}
-\item Was ist der Bedeutungsunterschied zwischen den beiden Parse-Trees?
+\item Was ist der Bedeutungsunterschied zwischen den beiden Parse Trees?
 \end{teilaufgaben}
 Diese Aufgabe zeigt, dass die genaue Bedeutung des Satzes aus der
 syntaktischen Analyse alleine nicht erschlossen werden kann.
-Zusätzlicher Kontext ist nötig, um die beiden Parse-Trees zu unterscheiden.
+Zusätzlicher Kontext ist nötig, um die beiden Parse Trees zu unterscheiden.
 Dies illustriert, dass maschinelles Verstehen einer natürlichen
 Sprache ein nicht triviales Problem ist.
 
@@ -83,11 +83,11 @@ denn sie enthält nur Regeln der From $A\to BC$, oder $A\to\texttt{a}$
 für Terminalsymbole, die Startvariable und das leere Wort $\varepsilon$
 kommen nirgends auf der rechten Seite vor.
 \item
-Bei der Aufstellung der Parse-Trees kann man verwenden, dass die unterste
-Ebene der Parse-Trees durch die Terminalsymbolregeln bereits eindeutig
+Bei der Aufstellung der Parse Trees kann man verwenden, dass die unterste
+Ebene der Parse Trees durch die Terminalsymbolregeln bereits eindeutig
 festgelegt ist.
 Auch lässt sich die Kombinationen $DN$ nur aus $N'$ ableiten.
-Damit sind die unteren Ebenen des Parse-Trees bis zu dem Wort
+Damit sind die unteren Ebenen des Parse Trees bis zu dem Wort
 $NVN'P'$
 bereits festgelegt, weiter unten in {\color{blue}blau} dargestellt.
 
@@ -95,7 +95,7 @@ Die Regel $S\to NV$ darf man aber zur Produktion der ersten beiden Variablen
 verwenden, denn damit wäre der Satz schon fertig. 
 Man muss also entscheiden, ob man mit einer Regel $VN'$ oder $N'P'$
 produzieren will.
-Beides ist möglich und führt auf die folgenden beiden Parse-Trees:
+Beides ist möglich und führt auf die folgenden beiden Parse Trees:
 \begin{center}
 
 \begin{tikzpicture}[>=latex,thick]
@@ -313,14 +313,14 @@ Beides ist möglich und führt auf die folgenden beiden Parse-Trees:
 
 \end{tikzpicture}
 \end{center}
-Die Wahlmöglichkeit, die zu den beiden Parse-Trees geführt hat, ist
+Die Wahlmöglichkeit, die zu den beiden Parse Trees geführt hat, ist
 {\color{red}rot}
 hervorgehoben.
 \item
-Im linken Parse-Tree gehört der Teil \texttt{in a car} zu dem
+Im linken Parse Tree gehört der Teil \texttt{in a car} zu dem
 \texttt{girl}, das gesehen worden ist, die Bedeutung ist also, dass
 das \texttt{girl} sich im \texttt{car} befunden hat.
-Im rechten Parse-Tree dagegen beschreibt der Teil \texttt{in a car}
+Im rechten Parse Tree dagegen beschreibt der Teil \texttt{in a car}
 die Tätigkeit von \texttt{john} näher, er sass also im \texttt{car}, als
 er das \texttt{girl} gesehen hat.
 \qedhere
@@ -333,7 +333,7 @@ er das \texttt{girl} gesehen hat.
 Chomsky-Normalform ({\bf C}) 1 Punkt,
 Begründung ({\bf B}) 1 Punkt.
 \item
-Parse-Trees ({\bf P}) 3 Punkte.
+Parse Trees ({\bf P}) 3 Punkte.
 \item
 Bedeutungsunterschied ({\bf U}) 1 Punkt.
 \end{teilaufgaben}
