@@ -11,7 +11,6 @@ extern int	yylex(void);
 %%
 exprline:	expr '\n'
 	|	expr ';'
-	
 	;
 expr:		term
 	|	expr '+' term

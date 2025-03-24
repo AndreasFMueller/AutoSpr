@@ -16,7 +16,6 @@ extern int      yylex(void);
 %%
 exprline:	expr '\n'		{ printf("%f\n", $1); }
 	|	expr ';'		{ printf("%f;\n", $1); }
-	
 	;
 expr:		term			{ $$ = $1; }
 	|	expr '+' term		{ $$ = $1 + $3; }
