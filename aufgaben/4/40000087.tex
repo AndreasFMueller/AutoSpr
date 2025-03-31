@@ -115,6 +115,18 @@ und $B=A_{q_1q_a}$.
 Aus den letzten zwei Regeln der linken Grammatik folgt, dass
 nur $B=A_{q_1q_a}\to \varepsilon$ sein kann, diese Variable kann man also
 weglassen.
+
+Der folgende Fehler wird häufig gemacht: Warum gibt es keine Regel
+$A_{q_1A_a} \to \texttt{b}A_{q_1a_q}\varepsilon$?
+Diese Regel würde die beiden Schleifen bei $q_1$ und $q_a$ verwenden.
+Der Fehler ist ein Leserfehler für den Übergang
+$\texttt{b},\texttt{a}\to\varepsilon$.
+Dieser besagt, dass für den Übergang bereits ein $\texttt{a}$ auf dem Stack
+liegen muss, welches beim Übergang entfernt wird.
+Dies ist aber nicht zulässig.
+Es liegt eine Verwechslung mit dem Übergang 
+$\texttt{b},\varepsilon\to\texttt{a}$,
+der tatsächlich zu einer Regel der genannten Form führen würde.
 \end{loesung}
 
 
