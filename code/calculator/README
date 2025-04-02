@@ -30,7 +30,7 @@ phase6  Syntax und Implementation fuer die Potenzfunktion in der Form
 phase7  Syntax und Implementation von Registern fuer die Zwischenspeicherung
         von Resultaten
 
-phase8  Syntax on Implementation von Konstanten
+phase8  Syntax zur Implementation von Konstanten
 
 phase9  Syntax fuer eine primitive History-Funktion: Zugriff auf das letzte
         Rechenresultat
