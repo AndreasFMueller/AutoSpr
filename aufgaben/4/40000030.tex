@@ -18,6 +18,8 @@ Notation verwenden wir folgende abgekürzten Schreibweisen:
 \\
 .,&.\to\varepsilon&&\text{bedeutet}&&\text{Nehme das gleiche Zeichen vom Input und vom Stack}
 \end{align*}
+Der Punkt steht also für ein beliebiges Zeichen, wenn aber zwei Punkte in einem
+Übergang verwendet werden, ist der gleiche Buchstabe gemeint.
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \coordinate (s) at (-2,0);
@@ -62,4 +64,12 @@ Notation verwenden wir folgende abgekürzten Schreibweisen:
 	[left] {$\texttt{.},\varepsilon\to\varepsilon$\strut};
 \end{tikzpicture}
 \end{center}
+Der Stackautomat legt beim Zustand $q_1$ jedes Inputzeichen auf
+den Stack.
+Beim Zustand $q_2$ werden dieses später wieder abgebaut, wenn die
+gleichen Zeichen im Input gefunden werden.
+So werden Palindrome gerader Länge akzeptiert.
+Der Übergang $\texttt{.},\varepsilon\to\varepsilon$ von $q_1$
+zu $q_2$ wird benötigt, um bei Palindromen ungerader Länge das
+alleinstehende mittlere Zeichen zu verarbeiten.
 \end{loesung}
