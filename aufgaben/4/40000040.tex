@@ -56,17 +56,71 @@ Dieser Widerspruch zeigt, dass $L$ nicht kontextfrei sein kann.
 \begin{diskussion}
 Es gibt in diesem Beweis noch einen etwas subtilen Schritt, der einer
 besonderen Diskussion würdig ist. Es ist nämlich eine Aufteilung
-$w={\color{blue}u}{\color{red}v}{\color{green}x}yz$ denkbar,
+$w={\color{blue}u}{\color{red}v}{\color{darkgreen}x}yz$ denkbar,
 die möglicherweise doch aufpumpbar ist:
 \begin{center}
-\includeagraphics[width=315pt]{p-1.pdf}
+\def\h{0.5}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\begin{tikzpicture}[>=latex,thick]
+\draw[color=white] (0,0) rectangle ({27*\h},\h);
+\fill[color=blue!10] (0,0) rectangle ({10.5*\h},\h);
+\fill[color=darkred!10] ({10.5*\h},0) rectangle ({17.5*\h},\h);
+\fill[color=darkgreen!10] ({17.5*\h},0) rectangle ({20*\h},\h);
+\draw (0,0) rectangle ({20*\h},\h);
+\draw ({6*\h},0) -- ++(0,\h);
+\draw ({7*\h},0) -- ++(0,\h);
+\draw ({13*\h},0) -- ++(0,\h);
+\draw ({14*\h},0) -- ++(0,\h);
+\node at ({0.5*\h},{0.5*\h}) {\texttt{x}\strut};
+\node at ({3*\h},{0.5*\h}) {$\dots$\strut};
+\node at ({5.5*\h},{0.5*\h}) {\texttt{x}\strut};
+\node at ({6.5*\h},{0.5*\h}) {\texttt{+}\strut};
+\node at ({7.5*\h},{0.5*\h}) {\texttt{y}\strut};
+\node at ({10*\h},{0.5*\h}) {$\dots$\strut};
+\node at ({12.5*\h},{0.5*\h}) {\texttt{y}\strut};
+\node at ({13.5*\h},{0.5*\h}) {\texttt{+}\strut};
+\node at ({14.5*\h},{0.5*\h}) {\texttt{z}\strut};
+\node at ({17*\h},{0.5*\h}) {$\dots$\strut};
+\node at ({19.5*\h},{0.5*\h}) {\texttt{z}\strut};
+\end{tikzpicture}
 \end{center}
 In dieser Aufteilung besteht $\color{red}v$ aus je einem Teilstück
 aus dem zweiten Monom und einem aus dem dritten Monom. Beim
 Aufpumpen ändert sich also nicht nur die Anzahl der
 Variablen, sondern auch die Anzahl der Monome:
 \begin{center}
-\includeagraphics[width=405pt]{p-2.pdf}
+\def\h{0.5}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\begin{tikzpicture}[>=latex,thick]
+\fill[color=blue!10] (0,0) rectangle ({10.5*\h},\h);
+\fill[color=darkred!10] ({10.5*\h},0) rectangle ({17.5*\h},\h);
+\fill[color=darkred!10] ({17.5*\h},0) rectangle ({24.5*\h},\h);
+\fill[color=darkgreen!10] ({24.5*\h},0) rectangle ({27*\h},\h);
+\draw[color=darkred] ({17.5*\h},0) -- ++(0,\h);
+\draw (0,0) rectangle ({27*\h},\h);
+\draw ({6*\h},0) -- ++(0,\h);
+\draw ({7*\h},0) -- ++(0,\h);
+\draw ({13*\h},0) -- ++(0,\h);
+\draw ({14*\h},0) -- ++(0,\h);
+\draw ({20*\h},0) -- ++(0,\h);
+\draw ({21*\h},0) -- ++(0,\h);
+\node at ({0.5*\h},{0.5*\h}) {\texttt{x}\strut};
+\node at ({3*\h},{0.5*\h}) {$\dots$\strut};
+\node at ({5.5*\h},{0.5*\h}) {\texttt{x}\strut};
+\node at ({6.5*\h},{0.5*\h}) {\texttt{+}\strut};
+\node at ({7.5*\h},{0.5*\h}) {\texttt{y}\strut};
+\node at ({10*\h},{0.5*\h}) {$\dots$\strut};
+\node at ({12.5*\h},{0.5*\h}) {\texttt{y}\strut};
+\node at ({13.5*\h},{0.5*\h}) {\texttt{+}\strut};
+\node at ({14.5*\h},{0.5*\h}) {\texttt{z}\strut};
+\node at ({17*\h},{0.5*\h}) {$\dots$\strut};
+\node at ({19.5*\h},{0.5*\h}) {\texttt{y}\strut};
+\node at ({20.5*\h},{0.5*\h}) {\texttt{+}\strut};
+\node at ({21.5*\h},{0.5*\h}) {\texttt{z}\strut};
+\node at ({24*\h},{0.5*\h}) {$\dots$\strut};
+\node at ({26.5*\h},{0.5*\h}) {\texttt{z}\strut};
+\end{tikzpicture}
+%\includeagraphics[width=405pt]{p-2.pdf}
 \end{center}
 Dies funktioniert
 aber nur, wenn das neu entstehende Monom wieder die richtige
