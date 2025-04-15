@@ -12,9 +12,83 @@ Ziel ist, das Gebiet der linken oberen Ecke in möglichst wenigen
 Farbwechseln so anwachsen zu lassen, dass es das ganze Spielfeld überdeckt.
 
 Im folgenden Bild sind vier Schritte des Spiels dargestellt, das Gebiet
-des Feldes in der linken oberen Ecke ist jeweisl fett ausgezogen.
+des Feldes in der linken oberen Ecke ist jeweils fett ausgezogen.
 \begin{center}
-\includeagraphics[width=\hsize]{floodit-1.pdf}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\def\h{0.4}
+\def\farbfeld#1#2#3{
+	\fill[color=#3!40] ({(#1-1)*\h},{(#2-1)*\h}) rectangle ++(\h,\h);
+}
+\def\r#1#2{\farbfeld{#1}{#2}{darkred}}
+\def\g#1#2{\farbfeld{#1}{#2}{darkgreen}}
+\def\b#1#2{\farbfeld{#1}{#2}{blue}}
+\begin{tikzpicture}[>=latex,thick]
+\begin{scope}
+\r{1}{6} \g{2}{6} \r{3}{6} \b{4}{6} \r{5}{6} \g{6}{6}
+\b{1}{5} \r{2}{5} \b{3}{5} \g{4}{5} \b{5}{5} \g{6}{5}
+\b{1}{4} \b{2}{4} \g{3}{4} \b{4}{4} \b{5}{4} \b{6}{4}
+\b{1}{3} \g{2}{3} \r{3}{3} \b{4}{3} \r{5}{3} \g{6}{3}
+\b{1}{2} \g{2}{2} \r{3}{2} \g{4}{2} \g{5}{2} \g{6}{2}
+\r{1}{1} \b{2}{1} \r{3}{1} \g{4}{1} \b{5}{1} \r{6}{1}
+\draw (0,0) rectangle ++({6*\h},{6*\h});
+\draw[line width=1pt] (0,{5*\h}) rectangle ++(\h,\h);
+\draw[->] ({6.2*\h},{3*\h}) -- ++({1.3*\h},0);
+\end{scope}
+\begin{scope}[xshift=3.1cm]
+\b{1}{6} \g{2}{6} \r{3}{6} \b{4}{6} \r{5}{6} \g{6}{6}
+\b{1}{5} \r{2}{5} \b{3}{5} \g{4}{5} \b{5}{5} \g{6}{5}
+\b{1}{4} \b{2}{4} \g{3}{4} \b{4}{4} \b{5}{4} \b{6}{4}
+\b{1}{3} \g{2}{3} \r{3}{3} \b{4}{3} \r{5}{3} \g{6}{3}
+\b{1}{2} \g{2}{2} \r{3}{2} \g{4}{2} \g{5}{2} \g{6}{2}
+\r{1}{1} \b{2}{1} \r{3}{1} \g{4}{1} \b{5}{1} \r{6}{1}
+\draw (0,0) rectangle ++({6*\h},{6*\h});
+\draw[line width=1pt] (0,{6*\h}) -- ++(\h,0) -- ++(0,{-2*\h})
+	-- ++(\h,0) -- ++(0,-\h) -- ++(-\h,0) -- ++(0,{-2*\h})
+	-- ++(-\h,0) -- cycle;
+\draw[->] ({6.2*\h},{3*\h}) -- ++({1.3*\h},0);
+\end{scope}
+\begin{scope}[xshift=6.2cm]
+\g{1}{6} \g{2}{6} \r{3}{6} \b{4}{6} \r{5}{6} \g{6}{6}
+\g{1}{5} \r{2}{5} \b{3}{5} \g{4}{5} \b{5}{5} \g{6}{5}
+\g{1}{4} \g{2}{4} \g{3}{4} \b{4}{4} \b{5}{4} \b{6}{4}
+\g{1}{3} \g{2}{3} \r{3}{3} \b{4}{3} \r{5}{3} \g{6}{3}
+\g{1}{2} \g{2}{2} \r{3}{2} \g{4}{2} \g{5}{2} \g{6}{2}
+\r{1}{1} \b{2}{1} \r{3}{1} \g{4}{1} \b{5}{1} \r{6}{1}
+\draw (0,0) rectangle ++({6*\h},{6*\h});
+\draw[line width=1pt] (0,{6*\h}) -- ++({2*\h},0) -- ++(0,{-1*\h})
+	-- ++(-\h,0) -- ++(0,-\h) -- ++({2*\h},0) -- ++(0,{-1*\h})
+	-- ++(-\h,0) -- ++(0,{-2*\h}) -- ++({-2*\h},0) -- cycle;
+\draw[->] ({6.2*\h},{3*\h}) -- ++({1.3*\h},0);
+\end{scope}
+\begin{scope}[xshift=9.3cm]
+\r{1}{6} \r{2}{6} \r{3}{6} \b{4}{6} \r{5}{6} \g{6}{6}
+\r{1}{5} \r{2}{5} \b{3}{5} \g{4}{5} \b{5}{5} \g{6}{5}
+\r{1}{4} \r{2}{4} \r{3}{4} \b{4}{4} \b{5}{4} \b{6}{4}
+\r{1}{3} \r{2}{3} \r{3}{3} \b{4}{3} \r{5}{3} \g{6}{3}
+\r{1}{2} \r{2}{2} \r{3}{2} \g{4}{2} \g{5}{2} \g{6}{2}
+\r{1}{1} \b{2}{1} \r{3}{1} \g{4}{1} \b{5}{1} \r{6}{1}
+\draw (0,0) rectangle ++({6*\h},{6*\h});
+\draw[line width=1pt] (0,{6*\h}) -- ++({3*\h},0) -- ++(0,{-1*\h})
+	-- ++(-\h,0) -- ++(0,-\h) -- ++({1*\h},0) -- ++(0,{-4*\h})
+	-- ++(-\h,0) -- ++(0,{1*\h}) -- ++({-1*\h},0) -- ++(0,-\h)
+	-- ++(-\h,0) -- cycle;
+\draw[->] ({6.2*\h},{3*\h}) -- ++({1.3*\h},0);
+\end{scope}
+\begin{scope}[xshift=12.4cm]
+\b{1}{6} \b{2}{6} \b{3}{6} \b{4}{6} \r{5}{6} \g{6}{6}
+\b{1}{5} \b{2}{5} \b{3}{5} \g{4}{5} \b{5}{5} \g{6}{5}
+\b{1}{4} \b{2}{4} \b{3}{4} \b{4}{4} \b{5}{4} \b{6}{4}
+\b{1}{3} \b{2}{3} \b{3}{3} \b{4}{3} \r{5}{3} \g{6}{3}
+\b{1}{2} \b{2}{2} \b{3}{2} \g{4}{2} \g{5}{2} \g{6}{2}
+\b{1}{1} \b{2}{1} \b{3}{1} \g{4}{1} \b{5}{1} \r{6}{1}
+\draw (0,0) rectangle ++({6*\h},{6*\h});
+\draw[line width=1pt] (0,{6*\h}) -- ++({4*\h},0) -- ++(0,{-1*\h})
+	-- ++(-\h,0) -- ++(0,-\h) -- ++(\h,0) -- ++(0,\h)
+	-- ++(\h,0) -- ++(0,-\h) -- ++(\h,0) -- ++(0,{-1*\h})
+	-- ++({-2*\h},0) -- ++(0,-\h) -- ++(-\h,0) -- ++(0,{-2*\h})
+	-- ++({-3*\h},0) -- cycle;
+\end{scope}
+\end{tikzpicture}
 \end{center}
 Kann eine nichtdeterministische Turing-Maschine in polynomieller Zeit 
 herausfinden, ob zu einer vorgegeben Zahl $k$ ein Flood-It
