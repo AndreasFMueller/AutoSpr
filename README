@@ -1,4 +1,4 @@
-Skript zur Vorlesung Automaten und Sprachen
+Materialien zur Vorlesung Automaten und Sprachen
 an der OST Ostscheizer Fachhochschule, Campus Rapperswil
 
 Die Unterverzeichnisse enthalten die folgenden, von einander unabhaengigen
@@ -7,71 +7,12 @@ Teile:
 aufgaben    Eine Sammlung von Aufgaben, entstanden aus Uebungsaufgaben und
             Pruefungen frueherer Jahre
 
-skript      Source Code und Bilder fuer das Skript
+code        Beispiele von Anwendungen der Theorie. Dieser Code findet sich
+	    auch auf https://autospr.ch/code
 
-code        Beispiele von Anwendungen der Theorie
-
-
-Skript
-------
-
-Zum Bauen dieses Skripts ist eine vollstaendige LaTeX Installation
-erforderlich, wie sie jeder typischen Linux Distribution beiliegt.
-
-Mit folgender Liste von TeX-Packages konnte das Skript auf einer
-Ubuntu 14.04 LTS Installation kompiliert werden:
-
-    texlive-base
-    texlive-bibtex-extra
-    texlive-binaries
-    texlive-extra-utils
-    texlive-font-utils
-    texlive-fonts-extra
-    texlive-fonts-extra-doc
-    texlive-fonts-recommended
-    texlive-fonts-recommended-doc
-    texlive-generic-recommended
-    texlive-lang-english
-    texlive-lang-european
-    texlive-lang-german
-    texlive-latex-base
-    texlive-latex-base-doc
-    texlive-latex-extra
-    texlive-latex-extra-doc
-    texlive-latex-recommended
-    texlive-latex-recommended-doc
-    texlive-luatex
-    texlive-metapost
-    texlive-metapost-doc
-    texlive-pictures
-    texlive-pictures-doc
-    texlive-pstricks
-    texlive-pstricks-doc
-    texlive-science
-    texlive-science-doc
-    latexmk
-
-Auf anderen Ubuntu-Distributionen können die Package-Namen leicht
-abweichen.  Der Output von "apt-cache search texlive" kann helfen,
-die richtigen Namen zu ermitteln.
-
-Bei Ubuntu 12.04 scheint jemand auf die Idee gekommen zu sein, dass das
-Programm mptopdf nicht mehr nötig sei, seit latex den Metapost-Output
-direkt lesen kann. Das ist natürlich Unsinn, da es auch andere
-Konsumenten von Metapost-Output gibt. Aber gegen inkompetente Package
-Maintainer ist halt kein Kraut gewachsen.
-
-Sofern alle Abhängigkeiten erfüllt sind, kann das Skript folgendermassen
-gebaut werden:
-
-    $ cd skript
-    $ make
-
-Schlägt der Build fehl weil Packages fehlen, kann es passieren, dass
-die Dependencies im Makefile nicht korrekt behandelt werden. In solchen
-Fällen hilft es, die Files skript.ind und skript.toc zu löschen. Bei
-Problemen mit den Metapost-Bildern im Unterverzeichnis skript/images
-hilft, das Timestamp-File skript/images/timestamp zu löschen.
+Vor dem Erscheinen des Buches "Automaten und Sprachen: Theoretische
+Informatik für die Praxis" enthielt dieses Modul auch das Skript zur
+Vorlesung.
 
 Aufgabensammlung
 ----------------
