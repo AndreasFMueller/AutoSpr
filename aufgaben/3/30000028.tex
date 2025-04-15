@@ -48,15 +48,6 @@ ist regulär, denn sie wird von dem Automaten
 \node at ($(z2)+(1.5,0)$) {\texttt{0},\texttt{1}};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[r]
-%        &*++[o][F=]{z_0}\ar[r]^{\texttt{1}} \ar@(ur,ul)_{\texttt{0}}
-%                &*++[o][F=]{z_1} \ar[r]^{\texttt{0}} \ar@(ur,ul)_{\texttt{1}}
-%			& {z_2}\ar@(ur,dr)^{\texttt{0},\texttt{1}}
-%}
-%\]
 akzeptiert.
 Wäre $L$ regulär, müsste auch $L'\setminus L$ regulär sein.
 Doch $L'\setminus L$ ist die Sprache
@@ -99,7 +90,79 @@ Teilwort $v$ lang ist, das Wort $uv^2w$ beginnt also mit $N+|v|$ Nullen.
 Damit $uv^2w$ nicht mehr in der Sprache ist, müssen gleich viele Nullen
 wie Einsen vorhanden sein, es muss also $N+|v|=N+b$ gelten.
 \begin{center}
-\includeagraphics[]{pl-1.pdf}
+\def\h{0.7}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\begin{tikzpicture}[>=latex,thick]
+\begin{scope}
+\draw (0,0) rectangle ({19*\h},\h);
+\draw ({8*\h},0) -- ++(0,\h);
+\draw[line width=0.3pt] ({16*\h},0) -- ++(0,\h);
+\node at ({4*\h},{0.5*\h}) {\texttt{0}};
+\node at ({13.5*\h},{0.5*\h}) {\texttt{1}};
+\node at ({8*\h},\h) [above] {$N$};
+\node at ({16*\h},\h) [above] {$2N$};
+\node at ({19*\h},\h) [above] {$2N+b$};
+\end{scope}
+\begin{scope}[yshift=-1.8cm]
+\draw (0,0) rectangle ({19*\h},\h);
+\draw ({8*\h},0) -- ++(0,\h);
+\draw[line width=0.3pt] ({16*\h},0) -- ++(0,\h);
+\fill[color=darkgreen!30,opacity=0.5] ({0.07*\h},{0.07*\h})
+	rectangle ({1.965*\h},{0.93*\h});
+\draw[color=darkgreen] ({0.07*\h},{0.07*\h})
+	rectangle ({1.965*\h},{0.93*\h});
+\node[color=darkgreen] at ({\h},{0.5*\h}) {$u\mathstrut$};
+\fill[color=darkred!30,opacity=0.5] ({2.035*\h},{0.07*\h})
+	rectangle ({4.965*\h},{0.93*\h});
+\draw[color=darkred] ({2.035*\h},{0.07*\h})
+	rectangle ({4.965*\h},{0.93*\h});
+\node[color=darkred] at ({3.5*\h},{0.5*\h}) {$v\mathstrut$};
+\fill[color=blue!30,opacity=0.5] ({5.035*\h},{0.07*\h})
+	rectangle ({18.93*\h},{0.93*\h});
+\draw[color=blue] ({5.035*\h},{0.07*\h})
+	rectangle ({18.93*\h},{0.93*\h});
+\node[color=blue] at ({12*\h},{0.5*\h}) {$w\mathstrut$};
+\node[color=gray!40] at ({4*\h},{0.5*\h}) {\texttt{0}};
+\node[color=gray!20] at ({13.5*\h},{0.5*\h}) {\texttt{1}};
+\node at ({8*\h},\h) [above] {$N$};
+\node at ({16*\h},\h) [above] {$2N$};
+\node at ({19*\h},\h) [above] {$2N+b$};
+\end{scope}
+\begin{scope}[yshift=-3.6cm]
+\draw (0,0) rectangle ({22*\h},\h);
+\draw ({11*\h},0) -- ++(0,\h);
+\draw[line width=0.3pt] ({19*\h},0) -- ++(0,\h);
+\draw[line width=0.2pt] (0,0) -- ++(0,-0.9);
+\draw[line width=0.2pt] ({11*\h},0) -- ++(0,-0.9);
+\draw[line width=0.2pt] ({22*\h},0) -- ++(0,-0.9);
+\draw[<->,line width=0.7pt] (0,-0.8) -- ++({11*\h},0);
+\node at ({5.5*\h},-0.9) [above] {$N+|v|\mathstrut$};
+\draw[<->,line width=0.7pt] ({11*\h},-0.8) -- ++({11*\h},0);
+\node at ({16.5*\h},-0.9) [above] {$N+b\mathstrut$};
+\fill[color=darkgreen!30,opacity=0.5] ({0.07*\h},{0.07*\h})
+	rectangle ({1.965*\h},{0.93*\h});
+\draw[color=darkgreen] ({0.07*\h},{0.07*\h})
+	rectangle ({1.965*\h},{0.93*\h});
+\node[color=darkgreen] at ({\h},{0.5*\h}) {$u\mathstrut$};
+\fill[color=darkred!30,opacity=0.5] ({2.035*\h},{0.07*\h})
+	rectangle ({4.965*\h},{0.93*\h});
+\draw[color=darkred] ({2.035*\h},{0.07*\h})
+	rectangle ({4.965*\h},{0.93*\h});
+\node[color=darkred] at ({3.5*\h},{0.5*\h}) {$v\mathstrut$};
+\fill[color=darkred!30,opacity=0.5] ({5.035*\h},{0.07*\h})
+	rectangle ({7.965*\h},{0.93*\h});
+\draw[color=darkred] ({5.035*\h},{0.07*\h})
+	rectangle ({7.965*\h},{0.93*\h});
+\node[color=darkred] at ({6.5*\h},{0.5*\h}) {$v\mathstrut$};
+\fill[color=blue!30,opacity=0.5] ({8.035*\h},{0.07*\h})
+	rectangle ({21.93*\h},{0.93*\h});
+\draw[color=blue] ({8.035*\h},{0.07*\h})
+	rectangle ({21.93*\h},{0.93*\h});
+\node[color=blue] at ({15*\h},{0.5*\h}) {$w\mathstrut$};
+\node[color=gray!40] at ({5.5*\h},{0.5*\h}) {\texttt{0}};
+\node[color=gray!20] at ({16.5*\h},{0.5*\h}) {\texttt{1}};
+\end{scope}
+\end{tikzpicture}
 \end{center}
 Wenn man also $b=|v|$ wählt, ist das einmal aufgepumpte Wort nicht
 mehr in $L$, im Widerspruch zur Behauptung des Pumping Lemma.

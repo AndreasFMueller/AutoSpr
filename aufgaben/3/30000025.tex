@@ -49,16 +49,16 @@ mit $|xy|\le N$ und $|y|>0$:
 \begin{center}
 \definecolor{darkred}{rgb}{0.8,0,0}
 \begin{tikzpicture}[>=latex,thick]
-\def\h{0.6}
+\def\h{0.7}
 \node at ({4.7*\h},{1.0*\h}) [above] {$N\mathstrut$};
 \draw[line width=0.3pt] ({4.7*\h},{1.1*\h}) -- ++(0,{-4.1*\h});
 \begin{scope}
-\fill[color=white] ({-\h/2},{-\h/2}) rectangle ++({13*\h},\h);
-\draw ({-\h/2},{-\h/2}) rectangle ++({13*\h},\h);
-\draw ({\h/2},{-\h/2}) -- ++(0,\h);
-\draw ({5.5*\h},{-\h/2}) -- ++(0,\h);
-\draw ({6.5*\h},{-\h/2}) -- ++(0,\h);
-\draw ({7.5*\h},{-\h/2}) -- ++(0,\h);
+\fill[color=white] ({-0.5*\h},{-0.5*\h}) rectangle ++({13*\h},\h);
+\draw ({-0.5*\h},{-0.5*\h}) rectangle ++({13*\h},\h);
+\draw ({0.5*\h},{-0.5*\h}) -- ++(0,\h);
+\draw ({5.5*\h},{-0.5*\h}) -- ++(0,\h);
+\draw ({6.5*\h},{-0.5*\h}) -- ++(0,\h);
+\draw ({7.5*\h},{-0.5*\h}) -- ++(0,\h);
 \node at ({0*\h},0) {\texttt{1}\strut};
 \node at ({3*\h},0) {\texttt{0}\strut};
 \node at ({6*\h},0) {\texttt{=}\strut};
@@ -66,15 +66,18 @@ mit $|xy|\le N$ und $|y|>0$:
 \node at ({10*\h},0) {\texttt{0}\strut};
 \end{scope}
 \begin{scope}[yshift=-1.2cm]
-\fill[color=white] ({-\h/2},{-\h/2}) rectangle ++({13*\h},\h);
-\fill[color=darkgreen!20] ({-0.5*\h},{-0.5*\h}) rectangle ({2.5*\h},{0.5*\h});
-\fill[color=darkred!20] ({2.5*\h},{-0.5*\h}) rectangle ({4.5*\h},{0.5*\h});
-\fill[color=blue!20] ({4.5*\h},{-0.5*\h}) rectangle ({12.5*\h},{0.5*\h});
-\draw[color=gray!40] ({\h/2},{-\h/2}) -- ++(0,\h);
-\draw[color=gray!20] ({5.5*\h},{-\h/2}) -- ++(0,\h);
-\draw[color=gray!20] ({6.5*\h},{-\h/2}) -- ++(0,\h);
-\draw[color=gray!20] ({7.5*\h},{-\h/2}) -- ++(0,\h);
-\draw ({-\h/2},{-\h/2}) rectangle ++({13*\h},\h);
+\fill[color=white] ({-0.5*\h},{-0.5*\h}) rectangle ++({13*\h},\h);
+\draw[color=gray!40] ({0.5*\h},{-0.5*\h}) -- ++(0,\h);
+\draw[color=gray!40] ({5.5*\h},{-0.5*\h}) -- ++(0,\h);
+\draw[color=gray!40] ({6.5*\h},{-0.5*\h}) -- ++(0,\h);
+\draw[color=gray!40] ({7.5*\h},{-0.5*\h}) -- ++(0,\h);
+\draw ({-0.5*\h},{-0.5*\h}) rectangle ++({13*\h},\h);
+\fill[color=darkgreen!40,opacity=0.5] ({-0.43*\h},{-0.43*\h}) rectangle ({2.465*\h},{0.43*\h});
+\draw[color=darkgreen] ({-0.43*\h},{-0.43*\h}) rectangle ({2.465*\h},{0.43*\h});
+\fill[color=darkred!40,opacity=0.5] ({2.545*\h},{-0.43*\h}) rectangle ({4.465*\h},{0.43*\h});
+\draw[color=darkred] ({2.545*\h},{-0.43*\h}) rectangle ({4.465*\h},{0.43*\h});
+\fill[color=blue!40,opacity=0.5] ({4.535*\h},{-0.43*\h}) rectangle ({12.43*\h},{0.43*\h});
+\draw[color=blue] ({4.535*\h},{-0.43*\h}) rectangle ({12.43*\h},{0.43*\h});
 \node[color=gray!40] at ({0*\h},0) {\texttt{1}\strut};
 \node[color=gray!40] at ({3*\h},0) {\texttt{0}\strut};
 \node[color=gray!20] at ({6*\h},0) {\texttt{=}\strut};

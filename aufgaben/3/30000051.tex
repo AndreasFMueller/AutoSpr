@@ -68,7 +68,48 @@ f&= v_b(z),
 die zusammen die Summe $p$ haben, $d+e+f=p$.
 Dies lässt sich auch graphisch verdeutlichen:
 \begin{center}
-\includeagraphics[]{pl-1.pdf}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\def\u{0.5}
+\pgfmathparse{1.5*\u}
+\xdef\v{\pgfmathresult}
+\begin{tikzpicture}[>=latex,thick]
+
+\fill[color=darkgreen!20] (0,0) rectangle ++({4*\u},\u);
+\draw (0,0) rectangle ({12*\u},\u);
+\draw ({4*\u},0) -- ++(0,\u);
+\node[color=darkgreen] at ({2*\u},{0.5*\u}) {$x\mathstrut$};
+\node at ({12*\u},{0.5*\u}) [right] {$=d\mathstrut$};
+\node at ({7*\u},{0.5*\u}) {\texttt{0}\strut};
+
+\node at (0,{-\v+0.5*\u}) [left] {$\mathstrut+\mathstrut$};
+\fill[color=darkred!20] ({4*\u},{-\v}) rectangle ++({3*\u},\u);
+\draw ({4*\u},{-\v}) rectangle ++({8*\u},\u);
+\draw ({7*\u},{-\v}) -- ++(0,\u);
+\node[color=darkred] at ({5.5*\u},{-\v+0.5*\u}) {$y\mathstrut$};
+\node at ({12*\u},{-\v+0.5*\u}) [right] {$=e\mathstrut$};
+\node at ({9.5*\u},{-\v+0.5*\u}) {\texttt{0}\strut};
+
+\node at (0,{-2*\v+0.5*\u}) [left] {$\mathstrut+\mathstrut$};
+\fill[color=blue!20] ({7*\u},{-2*\v}) rectangle ++({5*\u},\u);
+\draw ({7*\u},{-2*\v}) rectangle ++({5*\u},\u);
+\node[color=blue] at ({9.5*\u},{-2*\v+0.5*\u}) {$z\mathstrut$};
+\node at ({12*\u},{-2*\v+0.5*\u}) [right] {$=f\mathstrut$};
+
+\draw[line width=1pt] ({-\u},{-2.400*\v}) -- ++({14.6*\u},0);
+
+\node at (0,{-3.5*\v+0.5*\u}) [left] {$\mathstrut=\mathstrut$};
+\fill[color=darkgreen!20] (0,{-3.5*\v}) rectangle ++({4*\u},\u);
+\fill[color=darkred!20] ({4*\u},{-3.5*\v}) rectangle ++({3*\u},\u);
+\fill[color=blue!20] ({7*\u},{-3.5*\v}) rectangle ++({5*\u},\u);
+\node[color=darkgreen] at ({2*\u},{-3.5*\v+0.5*\u}) {$x\mathstrut$};
+\node[color=darkred] at ({5.5*\u},{-3.5*\v+0.5*\u}) {$y\mathstrut$};
+\node[color=blue] at ({9.5*\u},{-3.5*\v+0.5*\u}) {$z\mathstrut$};
+\draw ({4*\u},{-3.5*\v}) -- ++(0,\u);
+\draw ({7*\u},{-3.5*\v}) -- ++(0,\u);
+\draw (0,{-3.5*\v}) rectangle ++({12*\u},\u);
+\node at ({12*\u},{-3.5*\v+0.5*\u}) [right] {$=p\mathstrut$};
+
+\end{tikzpicture}
 \end{center}
 
 Die Pumpoperation kann jetzt algebraisch ausgedrückt werden.
@@ -84,7 +125,60 @@ ds^{k-1} + e(s^{k-1}+s^{k-2}+\dots+s+1) + f.
 \end{equation}
 wie man auch aus der graphischen Darstellung
 \begin{center}
-\includeagraphics[]{pl-2.pdf}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\def\u{0.5}
+\pgfmathparse{1.5*\u}
+\xdef\v{\pgfmathresult}
+\begin{tikzpicture}[>=latex,thick]
+
+\fill[color=darkgreen!20] (0,0) rectangle ++({4*\u},\u);
+\draw (0,0) rectangle ({20*\u},\u);
+\draw ({4*\u},0) -- ++(0,\u);
+\node[color=darkgreen] at ({2*\u},{0.5*\u}) {$x\mathstrut$};
+\node at ({20*\u},{0.5*\u}) [right] {$=ds^{k-1}\mathstrut$};
+\node at ({12*\u},{0.5*\u}) {\texttt{0}\strut};
+
+\node at (0,{-\v+0.5*\u}) [left] {$\mathstrut+\mathstrut$};
+\fill[color=darkred!20] ({4*\u},{-\v}) rectangle ++({11*\u},\u);
+\draw ({4*\u},{-\v}) rectangle ++({16*\u},\u);
+\draw ({7*\u},{-\v}) -- ++(0,\u);
+\draw ({9*\u},{-\v}) -- ++(0,\u);
+\draw ({12*\u},{-\v}) -- ++(0,\u);
+\draw ({15*\u},{-\v}) -- ++(0,\u);
+\node[color=darkred] at ({5.5*\u},{-\v+0.5*\u}) {$y\mathstrut$};
+\node[color=darkred] at ({8*\u},{-\v+0.5*\u}) {$\dots\mathstrut$};
+\node[color=darkred] at ({10.5*\u},{-\v+0.5*\u}) {$y\mathstrut$};
+\node[color=darkred] at ({13.5*\u},{-\v+0.5*\u}) {$y\mathstrut$};
+\node at ({20*\u},{-\v+0.5*\u}) [right] {$=es^{k-1}+\dots+es+e\mathstrut$};
+\node at ({17.5*\u},{-\v+0.5*\u}) {\texttt{0}\strut};
+
+\node at (0,{-2*\v+0.5*\u}) [left] {$\mathstrut+\mathstrut$};
+\fill[color=blue!20] ({15*\u},{-2*\v}) rectangle ++({5*\u},\u);
+\draw ({15*\u},{-2*\v}) rectangle ++({5*\u},\u);
+\node[color=blue] at ({17.5*\u},{-2*\v+0.5*\u}) {$z\mathstrut$};
+\node at ({20*\u},{-2*\v+0.5*\u}) [right] {$=f\mathstrut$};
+
+\draw[line width=1pt] ({-\u},{-2.400*\v}) -- ++({22.6*\u},0);
+
+\node at (0,{-3.5*\v+0.5*\u}) [left] {$\mathstrut=\mathstrut$};
+\fill[color=darkgreen!20] (0,{-3.5*\v}) rectangle ++({4*\u},\u);
+\fill[color=darkred!20] ({4*\u},{-3.5*\v}) rectangle ++({11*\u},\u);
+\fill[color=blue!20] ({15*\u},{-3.5*\v}) rectangle ++({5*\u},\u);
+\node[color=darkgreen] at ({2*\u},{-3.5*\v+0.5*\u}) {$x\mathstrut$};
+\node[color=darkred] at ({5.5*\u},{-3.5*\v+0.5*\u}) {$y\mathstrut$};
+\node[color=darkred] at ({8*\u},{-3.5*\v+0.5*\u}) {$\dots\mathstrut$};
+\node[color=darkred] at ({10.5*\u},{-3.5*\v+0.5*\u}) {$y\mathstrut$};
+\node[color=darkred] at ({13.5*\u},{-3.5*\v+0.5*\u}) {$y\mathstrut$};
+\node[color=blue] at ({17.5*\u},{-3.5*\v+0.5*\u}) {$z\mathstrut$};
+\draw ({4*\u},{-3.5*\v}) -- ++(0,\u);
+\draw ({7*\u},{-3.5*\v}) -- ++(0,\u);
+\draw ({9*\u},{-3.5*\v}) -- ++(0,\u);
+\draw ({12*\u},{-3.5*\v}) -- ++(0,\u);
+\draw ({15*\u},{-3.5*\v}) -- ++(0,\u);
+\draw (0,{-3.5*\v}) rectangle ++({20*\u},\u);
+\node at ({20*\u},{-3.5*\v+0.5*\u}) [right] {$=v_b(w_k)\mathstrut$};
+
+\end{tikzpicture}
 \end{center}
 ablesen kann.
 Wir möchten dies für den Fall $k=p$ berechnen, allerdings
@@ -129,6 +223,6 @@ Damit ist der Satz bewiesen.
 \renewcommand{\qedsymbol}{$\square$}
 \end{proof}
 
-Die Aufgabe ist der Spezialfall $b=2$, und mit Satz~\ref{30000051:satz}
+Die Aufgabe ist der Spezialfall $b=2$ und daher mit Satz~\ref{30000051:satz}
 auch beantwortet.
 \end{loesung}
