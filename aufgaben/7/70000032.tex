@@ -91,7 +91,17 @@ Feldern eingeschlossen sind.
 Das folgende Feld erfüllt die Bedingung, trotzdem sind die weissen
 Felder nicht zusammenhängend:
 \begin{center}
-\includeagraphics[]{feld-1.pdf}
+\def\h{1}
+\begin{tikzpicture}
+\fill[color=gray!40] (0,0) rectangle (\h,-\h);
+\fill[color=gray!40] (\h,-\h) rectangle ++(\h,-\h);
+\fill[color=gray!40] ({2*\h},{-2*\h}) rectangle ++(\h,-\h);
+\draw[line width=0.8pt] (\h,0) -- ++(0,{-3*\h});
+\draw[line width=0.8pt] ({2*\h},0) -- ++(0,{-3*\h});
+\draw[line width=0.8pt] (0,-\h) -- ++({3*\h},0);
+\draw[line width=0.8pt] (0,{-2*\h}) -- ++({3*\h},0);
+\draw[line width=1pt] (0,0) rectangle ({3*\h},{-3*\h});
+\end{tikzpicture}
 \end{center}
 
 Man könnte versucht sein, den Färbealgorithmus zur Feststellung des
