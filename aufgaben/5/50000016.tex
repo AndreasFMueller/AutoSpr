@@ -36,18 +36,6 @@ ein endlicher Automat gezeigt:
 \node at ($(q2)+(0.8,0)$) [right] {$\scriptstyle\texttt{1}$};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix @-1mm {
-%*+\txt{}\ar[r]
-%	&*++[o][F=]{0}	\ar@(ur,ul)_{\tt 0}
-%			\ar@/^/[r]^{\tt 1}
-%		&{1}	\ar@/^/[r]^{\tt 0}
-%			\ar@/^/[l]^{\tt 1}
-%			&{2}	\ar@/^/[l]^{\tt 0}
-%				\ar@(ur,ul)_{\tt 1}
-%}
-%\]
 Die gesuchte Turing-Maschine muss also genau diesen endlichen Automaten
 implementieren, was mit dem folgenden Zustandsdiagramm möglich ist:
 \begin{center}
@@ -60,7 +48,6 @@ implementieren, was mit dem folgenden Zustandsdiagramm möglich ist:
 \coordinate (qaccept) at (0,-\l);
 \coordinate (qreject) at ({2*\l},-\l);
 \draw (q0) circle[radius=0.35cm];
-\draw (q0) circle[radius=0.3cm];
 \node at (q0) {$0\mathstrut$};
 \draw (q1) circle[radius=0.35cm];
 \node at (q1) {$1\mathstrut$};
@@ -97,26 +84,6 @@ implementieren, was mit dem folgenden Zustandsdiagramm möglich ist:
 \node at ($0.4*(q1)+0.6*(qr.north west)$) [below left] {$\scriptstyle\blank\to\blank,R$};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix @-1mm {
-%*+\txt{}\ar[r]
-%	&{0}	\ar@(ur,ul)_{{\tt 0}\to{\tt 0},\text{R}}
-%		\ar@/^/[r]^{{\tt 1}\to{\tt 1},\text{R}}
-%		\ar[d]_{\blank\to\blank,\text{R}}
-%		&{1}	\ar@/^/[r]^{{\tt 0}\to{\tt 0},\text{R}}
-%			\ar@/^/[l]^{{\tt 1}\to{\tt 1},\text{R}}
-%			\ar@/_/[dr]_{\blank\to\blank,\text{R}}
-%			&{2}	\ar@/^/[l]^{{\tt 0}\to{\tt 0},\text{R}}
-%				\ar@(ur,ul)_{{\tt 1}\to{\tt 1},\text{R}}
-%				\ar[d]^{\blank\to\blank,\text{R}}
-%\\
-%*+\txt{}
-%	&*++[o][F=]{q_{\text{accept}}}
-%		&*+\txt{}
-%			&*++[o][F=]{q_{\text{reject}}}
-%}
-%\]
 
 Eine andere Lösung könnte man dadurch erhalten, dass man die TM
 auf dem Band von der Zahl 3 (binär 11) subtrahieren lässt. Dies
