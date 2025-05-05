@@ -1,7 +1,10 @@
-Das 8-Damen-Problem verlangt vom Spieler, 8 Damen so auf einem Schachfeld
+Das 8-Damenproblem verlangt vom Spieler, 8 Damen so auf einem Schachfeld
 zu platzieren, dass sie sich gegenseitig nicht schlagen können.
 Eine Dame kann eine andere Figure in der gleichen Zeile, Spalte oder
 in diagonaler Richtung schlagen.
+Es kann aufwendig sein, eine Platzierung der Damen zu finden.
+Daher wird in dieser Aufgabe nur das Problem studiert, eine Platzierung
+der Damen zu codieren und zu entscheiden, ob sie eine Lösung ist.
 \begin{teilaufgaben}
 \item
 Formulieren Sie das Problem als Sprachproblem.
@@ -12,11 +15,11 @@ Ist es entscheidbar?
 \begin{loesung}
 \begin{teilaufgaben}
 \item
-Eine Lösung des $n$-Damen-Problems enthält in jeder Zeile und
+Eine Lösung des $n$-Damenproblems enthält in jeder Zeile und
 jeder Spalte des $n\times n$-Schachfeldes je genau eine Dame.
 Ausserdem muss sichergestellt sein, dass sich die Damen über
 die Diagonale nicht gegenseitig schlagen können.
-Eine Lösung des $n$-Damen-Problems kann daher geschrieben werden
+Eine Lösung des $n$-Damenproblems kann daher geschrieben werden
 als die Zeichenkette
 \[
 (n,r_1,r_2,\dots,r_n) \in \mathbb{N}^{n+1}

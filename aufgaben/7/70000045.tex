@@ -1,20 +1,21 @@
 Das Heron-Verfahren zur numerischen Berechnung der Quadratwurzel einer Zahl
-$a$ wird im Wikipedia-Artikel
+$a$ mit $n$ signifikanten Stellen wird im Wikipedia-Artikel
 \url{https://de.wikipedia.org/wiki/Heron-Verfahren}
 beschrieben.
 Er beruht auf der Iteration
 \[
-x_{n+1}= \frac12\biggl(x_n+\frac{a}{x_n}\biggr),\qquad x_0=1.
+x_{k+1}= \frac12\biggl(x_k+\frac{a}{x_k}\biggr),\qquad x_0=1.
 \]
 Im Wikipedia-Artikel findet man auch Information darüber, wieviele
-Iterationen notwendig sind, um eine bestimmte Genauigkeit zu erreichen.
+Iterationen notwendig sind, um eine bestimmte Genauigkeit von $n$ signifikanten
+Stellen zu erreichen.
 Ist dieser Algorithmus in P?
 
 \thema{Berechenbarkeit}
 
 \begin{loesung}
 Im Wikipedia-Artikel steht, dass für eine Zahl mit Länge $n$ etwa $n$
-Iterationen notwendig sind, um $n$ Signifkante Stellen zu finden.
+Iterationen notwendig sind, um $n$ signifkante Stellen zu finden.
 Danach mögen zusätzliche Iterationen nötig sein, um die volle Genauigkeit
 zu erhalten, doch deren Anzahl ist geringer.
 Für die Abschätzung des Aufwandes reicht es daher, davon auszugehen, dass

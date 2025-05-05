@@ -1,13 +1,25 @@
-%Das 8-Damen-Problem verlangt vom Spieler, 8 Damen so auf einem Schachfeld
-%zu platzieren, dass sie sich gegenseitig nicht schlagen können.
-%Eine Dame kann eine andere Figure in der gleichen Zeile, Spalte oder
-%in diagonaler Richtung schlagen.
+Das $n$-Damenproblem ist die Aufgabe, eine Platzierung von $n$ Damen auf
+einem $n\times n$-Schachfeld zu finden, so dass sich die Damen nicht
+gegenseitig schlagen können.
+\begin{teilaufgaben}
+\item
+Überlegen Sie sich einen einfachen Algrithmus, mit dem Sie entscheiden
+können, ob die Codierung einer Lösung wie in Aufgabe 7.70 tatsächlich
+eine Lösung ist.
+\item
 Überlegen Sie sich einen einfachen Algorithmus, mit dem Sie Lösungen
-für das $n$-Damen-Problem finden können, und bestimmen sie die
+für das $n$-Damen\-problem finden können, und bestimmen sie die
 Laufzeit in Abhängigkeit von $n$.
+\end{teilaufgaben}
 
 \begin{loesung}
-Die Bedingungen des $n$-Damen-Problems besagen, dass man in jede Zeile
+\begin{teilaufgaben}
+\item
+Der Algorithmus, der $(n,r_1,\dots,r_n)\in\textit{QUEENS}$ entscheiden
+soll, muss zuächst prüfen, ob alle $r_i$ verschieden sind und
+ob keine zwei Damen auf einer gemeinsamen Diagonalen sind.
+\item
+Die Bedingungen des $n$-Damenproblems besagen, dass man in jede Zeile
 und Spalte des $n\times n$-Schachfeldes genau eine Dame platzieren muss.
 Zusätzlich muss die Bedingung erfüllt sein, dass sich die Damen über die
 Diagonalen auch nicht schlagen können.
@@ -24,4 +36,6 @@ ob sich die Damen über die Diagonale gegenseitig schlagen können.
 
 Die Fakultät $n!$ wächst exponentiell mit $n$ an, also wächst die
 Laufzeit für diesen Algorithmus ebenfalls exponentiell an.
+\qedhere
+\end{teilaufgaben}
 \end{loesung}
