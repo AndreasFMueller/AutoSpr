@@ -10,12 +10,50 @@ Reduzieren Sie $A_{\text{TM}}$ auf das Problem
 \]
 
 \begin{loesung}
-Nach dem Muster der Reduktionen für $\textsl{REGULAR}_{\text{TM}}$
+Nach dem Muster der Reduktion für $\textsl{REGULAR}_{\text{TM}}$
 muss zu einem Paar $\langle M,w\rangle$ ein neues Programm konstruieren,
 welches genau dann eine kontextfreie Sprache akzeptiert, wenn 
-$M$ das Wort $w$ akzeptiert.
+$M$ das Wort $w$ akzeptiert (oder nicht).
+Statt der nicht regulären Sprache $\{\texttt{0}^n\texttt{1}^n\mid n\ge 0\}$
+wird die nicht kontextfreie Sprache
+$\{\texttt{a}^n\texttt{b}^n\texttt{c}^n\mid n\ge 0\}$ verwendet.
 
 Das Programm $S$ mit Input $u$ funktioniert wie folgt:
+\begin{enumerate}
+\item
+$u\not\in \{\texttt{a}^n\texttt{b}^n\texttt{c}^n\mid n\ge 0\}
+\rightarrow
+q_{\text{reject}}$
+\item
+$M$ auf $w$ laufen lassen
+\item
+$M$ akzeptiert $w$: $q_{\text{accept}}$
+\item
+$q_{\text{reject}}$
+\end{enumerate}
+Die akzeptierte Sprache von $S$ ist 
+\begin{align*}
+L(S) &= \{\texttt{a}^n\texttt{b}^n\texttt{c}^n\mid n\ge 0\}
+&&\Leftrightarrow&
+&\text{$L(S)$ nicht kontextfrei}
+&&\Leftrightarrow&
+&\text{$M$ akzeptiert $w$}
+\\
+L(S) &= \emptyset
+&&\Leftrightarrow&
+&\text{$L(S)$ kontextfrei}
+&&\Leftrightarrow&
+&\text{$M$ akzeptiert $w$ nicht.}
+\end{align*}
+Mit der Reduktionsabbildung $\langle M,w\rangle\mapsto \langle S\rangle$
+kann aus einem Entscheider für $\textit{CFL}_{\text{TM}}$ ein
+Entscheider für $A_{\text{TM}}$ gemacht werden, im Widerspruch zur 
+Nichtentscheidbarkeit von $A_{\text{TM}}$.
+
+Alternativ kann man das Programm $S$ auch so konstruieren, dass es
+eine kontextfreie Sprache akzeptiert, wenn
+$\langle M,w\rangle\in A_{\text{TM}}$.
+Das Programm $S$ mit Input $u$ funktioniert in diesem Fall wie folgt:
 \begin{enumerate}
 \item
 Wenn das Inputwort $u$ von der Form
@@ -31,7 +69,8 @@ Wenn $M$ nicht akzeptiert, verwerfe das Wort und halte an.
 Wenn $M$ das Wort $w$ akzeptiert, dann akzeptiert $S$ die
 kontextfreie Sprache $\Sigma^*$.
 Wenn $M$ das Wort $w$ nicht akzeptiert, dann akzeptiert $S$ die
-nicht kontextfreie Sprache $\{\texttt{a}^n\texttt{b}^n\texttt{c}^n \mid n\ge 0\}$.
+nicht kontextfreie Sprache
+$\{\texttt{a}^n\texttt{b}^n\texttt{c}^n \mid n\ge 0\}$.
 Damit ist das Problem $A_{\text{TM}}$ auf $\textsl{CFL}_{\text{TM}}$
 reduziert: $A_{\text{TM}}\le \textsl{CFL}_{\text{TM}}$.
 \end{loesung}
