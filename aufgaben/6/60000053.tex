@@ -1,0 +1,32 @@
+Ein häufig wiederkehrende Aufgabe in der Softwareentwicklung ist die
+Beurteilung, ob eine Zeichenkette ein gültiges Datum ist.
+Daher könnte es nützlich sein, ein Tool zur Verfügung zu haben,
+welches ein Programm analysieren kann und eine Aussage liefern kann,
+ob das Programm nur korrekte Daten akzeptiert.
+Gibt es ein solches Tool?
+
+\begin{loesung}
+Nein.
+Dies ist das Entscheidungsproblem für die Eigenschaft
+$\textit{DATES}_{\text{TM}}$, wobei die Eigenschaft \textit{DATES}
+besagt, dass die Sprache nur aus korrekten Daten besteht.
+Diese Eigenschaft ist nicht trivial, denn 
+\[
+\begin{aligned}
+L_1&=\{\texttt{2024-07-19}\}&&\text{hat die Eigenschaft \textit{DATES},}\\
+L_2&=\{\texttt{blubb}\}&&\text{hat die Eigenschaft nicht.}
+\end{aligned}
+\]
+Beide Sprachen können von einer Turing-Maschine erkannt werden.
+Nach dem Satz von Rice ist $\textit{DATES}_{\text{TM}}$ nicht
+entscheidbar.
+\end{loesung}
+
+\begin{bewertung}
+Eigenschaft \textit{DATES} ({\bf P}) 1 Punkt,
+zwei Sprachen ({\bf L}) 1 Punkt,
+Eigenschaft ist nicht trivial ({\bf T}) 1 Punkt,
+Anwendung des Satzes von Rice ({\bf R}) 2 Punkte.
+\end{bewertung}
+
+

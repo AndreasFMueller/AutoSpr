@@ -1,0 +1,51 @@
+Im Skigebiet Arosa Lenzerheide fand folgende Challenge statt.
+Wer schafft es am genausten, mit den 34 zur Verfügung stehenden
+Liften und Bahnen ingesamt 8888 Höhenmeter zu fahren?
+Auf dem Weg zur Talstation entscheidet sich eine Informatik-Studentin
+der OST zu versuchen, das Problem exakt zu lösen, also die Anlagen
+so zu wählen, dass der zurückgelegte Höhenunterschied genau
+$8888\,\text{m}$ wird.
+Doch trotz intensiven Nachdenkens während des unvermeidlichen Anstehens und
+der ersten Bahnfahrt weiss sie noch nicht einmal, ob es überhaupt möglich
+ist, eine solche Lösung zu finden.
+Warum ist dieses Problem so schwierig?
+
+\begin{hinweis}
+Nehmen Sie der Einfachheit halber an, dass man jede Bahn nach jeder
+anderen Bahn fahren kann.
+In der Realität kann man nicht jede Talstation von jeder Bergstation aus
+erreichen, was das Problem verkompliziert.
+Nehmen Sie also an, dass dies möglich ist.
+\end{hinweis}
+
+\begin{loesung}
+Wir nennen das gestellte Problem das \textit{8888-CHALLENGE}-Problem.
+Es ist gleichbedeutend mit dem \textit{SUBSET-SUM}-Problem, wie die folgende
+Eins-zu-eins-Reduktion zeigt:
+\begin{center}
+\begin{tabular}{rcl}	
+\textit{SUBSET-SUM}&&\textit{8888-CHALLENGE}\\
+\hline
+Zahl             & $\leftrightarrow$ &Höhenunterschied eines Liftes\\
+Liste von Zahlen & $\leftrightarrow$ &Lifte (mehrmals)\\
+Summe $t$        & $\leftrightarrow$ &$8888$, der zu erreichende Höhenunterschied
+\end{tabular}
+\end{center}
+Die Lifte bzw.~ihr Höhenunterschied müssen mehrfach in der Liste der
+Zahlen vertreten sein, da es ja auch möglich ist, einen Lift mehrmals
+zu fahren.
+Das \textit{SUBSET-SUM}-Problem erlaubt aber nur, jede Zahl der Liste
+genau einmal zu verwenden.
+
+Da \textit{SUBSET-SUM} NP-vollständig ist, gibt es nach heutigem Wissen
+keinen polynomiell skalierenden Algorithmus zu seiner Lösung.
+\end{loesung}
+
+\begin{bewertung}
+Reduktionsprinzip ({\bf R}) 1 Punkt,
+Vergleichsproblem \textit{SUBSET-SUM} ({\bf V}) 1 Punkt,
+Reduktionsabbildung für Zahlen ({\bf Z}) 1 Punkt,
+Total ({\bf T}) 1 Punkt und
+Auswahl mit Summenbedingung ({\bf S}) 1 Punkt.
+NP-Vollständigkeit ({\bf N}) 1 Punkt.
+\end{bewertung}
