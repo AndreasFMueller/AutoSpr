@@ -1,0 +1,125 @@
+Ist die Sprache
+\[
+L
+=
+\{
+wuw^t
+\mid
+w,u\in\Sigma^*\wedge |u|\le 3
+\}
+\]
+über dem Alphabet $\Sigma=\{\texttt{a},\texttt{b}\}$ kontextfrei?
+Dabei bezeichnet $w^t$ das gespiegelte Wort von $w$.
+Die Sprache $L$ besteht aus Wörtern, die bis auf einen Block der Länge
+$\le 3$ genau in der Mitte spiegelsymmetrisch ist.
+
+\begin{loesung}
+Die Sprache ist kontextfrei, weil die folgende kontextfreie Grammatik
+die Sprache erzeugen kann:
+\begin{align*}
+S&\to \texttt{a} S \texttt{a} \mid \texttt{b} S \texttt{b} \mid U\\
+U&\to \varepsilon \mid A \mid AA \mid AAA \\
+A&\to \texttt{a} \mid \texttt{b}
+\end{align*}
+Die Variable $U$ steht für den Teil $u$ des Wortes.
+
+Alternativ kann man auch einen Stackautomaten angeben, der die Sprache
+akzeptiert.
+Im Zustandsdiagramm
+\begin{center}
+\def\l{2.5}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q0) at ({0*\l},{1*\l});
+\coordinate (q1) at ({1*\l},{1*\l});
+\coordinate (q2) at ({1*\l},{-1*\l});
+\coordinate (q3) at ({0*\l},{-1*\l});
+\coordinate (u0) at ({1*\l},{0*\l});
+\coordinate (u1) at ({2*\l},{0*\l});
+\coordinate (u2) at ({3*\l},{0*\l});
+\coordinate (u3) at ({4*\l},{0*\l});
+\draw (q0) circle[radius=0.35];
+\draw (q1) circle[radius=0.35];
+\draw (q2) circle[radius=0.35];
+\draw (q3) circle[radius=0.35];
+\draw (q3) circle[radius=0.30];
+\draw (u0) circle[radius=0.35];
+\draw (u1) circle[radius=0.35];
+\draw (u2) circle[radius=0.35];
+\draw (u3) circle[radius=0.35];
+\node at (q0) {$q_0$};
+\node at (q1) {$q_1$};
+\node at (q2) {$q_2$};
+\node at (q3) {$q_3$};
+\node at (u0) {$u_0$};
+\node at (u1) {$u_1$};
+\node at (u2) {$u_2$};
+\node at (u3) {$u_3$};
+\draw[->,shorten >= 0.35cm] ($(q0)+(-1.5,0)$) -- (q0);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q0) -- (q1);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q1) -- (u0);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q1) -- (u1);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q1) -- (u2);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q1) -- (u3);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (u1) -- (u0);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (u2) -- (u1);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (u3) -- (u2);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (u0) -- (q2);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q2) -- (q3);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm]
+	(q1) to[out=0,in=60,distance=1.5cm] (q1);
+\node at ($(q1)+(1,0.4)$) [right] {$
+\displaystyle
+\texttt{a},\varepsilon\to\texttt{a}
+\atop
+\displaystyle
+\texttt{b},\varepsilon\to\texttt{b}
+$};
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm]
+	(q2) to[out=0,in=60,distance=1.5cm] (q2);
+\node at ($(q2)+(1,0.4)$) [right] {$
+\displaystyle
+\texttt{a},\texttt{a}\to\varepsilon
+\atop
+\displaystyle
+\texttt{b},\texttt{b}\to\varepsilon
+$};
+
+\node at ($0.5*(q0)+0.5*(q1)$)
+	[above] {$\varepsilon,\varepsilon\to\texttt{\$}$};
+\node at ($0.5*(q2)+0.5*(q3)$)
+	[above] {$\varepsilon,\texttt{\$}\to\varepsilon$};
+\node at ($0.5*(u0)+0.5*(u1)$) [below] {$
+\displaystyle
+\texttt{a},\varepsilon\to\varepsilon
+\atop
+\displaystyle
+\texttt{b},\varepsilon\to\varepsilon
+$};
+\node at ($0.5*(u1)+0.5*(u2)$) [below] {$
+\displaystyle
+\texttt{a},\varepsilon\to\varepsilon
+\atop
+\displaystyle
+\texttt{b},\varepsilon\to\varepsilon
+$};
+\node at ($0.5*(u2)+0.5*(u3)$) [below] {$
+\displaystyle
+\texttt{a},\varepsilon\to\varepsilon
+\atop
+\displaystyle
+\texttt{b},\varepsilon\to\varepsilon
+$};
+\end{tikzpicture}
+\end{center}
+nicht beschriftete Zustandsübergänge als $\varepsilon$-Übergänge der
+Form $\varepsilon,\varepsilon\to\varepsilon$ zu lesen.
+\end{loesung}
+
+\begin{bewertung}
+Grammatik für $A$ ({\bf A}) 1 Punkt,
+Schachtelungsidee ({\bf S}) 2 Punkt,
+der mittlere Teil kann leer sein ({\bf U}) 1 Punkt,
+der mittlere Teil kann aus \texttt{a} und \texttt{b} bestehen ({\bf B}) 1 Punkt,
+Schlussfolgerung kontextfrei ({\bf K}) 1 Punkt.
+\end{bewertung}
+

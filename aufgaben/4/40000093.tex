@@ -1,0 +1,200 @@
+Ist die Sprache
+\[
+L
+=
+\{
+wuw^t
+\mid
+w,u\in\Sigma^*,
+|u| = |w| +1
+\}
+\]
+über dem Alphabet $\Sigma=\{\texttt{a},\texttt{b}\}$ kontextfrei?
+Dabei bedeutet $w^t$ das gespiegelte Wort von $w$.
+
+\begin{loesung}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\def\h{0.6}
+\def\laenge{
+	\node at ({5*\h},{\h}) [above] {$N\mathstrut$};
+	\node at ({11*\h},{\h}) [above] {$2N+1\mathstrut$};
+	\node at ({16*\h},{\h}) [above] {$3N+1\mathstrut$};
+}
+\def\wort{
+	\draw (0,0) rectangle ({16*\h},\h);
+	\draw ({5*\h},0) -- ++(0,\h);
+	\draw ({11*\h},0) -- ++(0,\h);
+	\node at ({0.5*\h},{0.5*\h}) {\texttt{a}\strut};
+	\node at ({4.5*\h},{0.5*\h}) {\texttt{a}\strut};
+	\node at ({5.5*\h},{0.5*\h}) {\texttt{b}\strut};
+	\node at ({10.5*\h},{0.5*\h}) {\texttt{b}\strut};
+	\node at ({11.5*\h},{0.5*\h}) {\texttt{a}\strut};
+	\node at ({15.5*\h},{0.5*\h}) {\texttt{a}\strut};
+}
+\def\aufteilung#1#2#3#4{
+	\fill[color=blue!30,opacity=0.7]
+		({0*\h+0.05},0.05) rectangle ({(#1)*\h-0.025},{\h-0.05});
+	\draw[color=blue]
+		({0*\h+0.05},0.05) rectangle ({(#1)*\h-0.025},{\h-0.05});
+	\fill[color=darkred!30,opacity=0.7]
+		({(#1)*\h+0.025},0.05) rectangle ({(#2)*\h-0.025},{\h-0.05});
+	\draw[color=darkred]
+		({(#1)*\h+0.025},0.05) rectangle ({(#2)*\h-0.025},{\h-0.05});
+	\fill[color=darkgreen!30,opacity=0.7]
+		({(#2)*\h+0.025},0.05) rectangle ({(#3)*\h-0.025},{\h-0.05});
+	\draw[color=darkgreen]
+		({(#2)*\h+0.025},0.05) rectangle ({(#3)*\h-0.025},{\h-0.05});
+	\fill[color=darkred!30,opacity=0.7]
+		({(#3)*\h+0.025},0.05) rectangle ({(#4)*\h-0.025},{\h-0.05});
+	\draw[color=darkred]
+		({(#3)*\h+0.025},0.05) rectangle ({(#4)*\h-0.025},{\h-0.05});
+	\fill[color=blue!30,opacity=0.7]
+		({(#4)*\h+0.025},0.05) rectangle ({16*\h-0.05},{\h-0.05});
+	\draw[color=blue]
+		({(#4)*\h+0.025},0.05) rectangle ({16*\h-0.05},{\h-0.05});
+	\node[color=blue] at ({0.5*(#1)*\h},{0.5*\h}) {$x$};
+	\node[color=darkred] at ({0.5*((#1)+(#2))*\h},{0.5*\h}) {$y$};
+	\node[color=darkgreen] at ({0.5*((#2)+(#3))*\h},{0.5*\h}) {$z$};
+	\node[color=darkred] at ({0.5*((#3)+(#4))*\h},{0.5*\h}) {$u$};
+	\node[color=blue] at ({0.5*(16+(#4))*\h},{0.5*\h}) {$v$};
+}
+\def\nummer#1{
+\node at (-0.5,{0.5*\h}) [left] {#1.\strut};
+}
+Die Sprache ist nicht kontextfrei, wie man mit dem Pumpinglemma für
+kontextfreie Sprachen beweisen kann.
+Dazu versuchen wir den Beweis wie folgt:
+\begin{enumerate}
+\item
+Annahme: $L$ ist kontextfrei
+\item
+Nach dem Pumping Lemma  gibt es die Pumping Length $N$.
+\item
+Wähle das Wort $w=\texttt{a}^N\texttt{b}^{N+1}\texttt{a}^N$
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\wort
+\laenge
+\end{tikzpicture}
+\end{center}
+\item
+Nach dem Pumping-Lemma gibt es eine Aufteilung
+$
+w=
+{\color{blue}u}
+{\color{darkred}v}
+{\color{darkgreen}x}
+{\color{darkred}y}
+{\color{blue}z}
+$
+mit $
+|{\color{darkred}v}
+{\color{darkgreen}x}
+{\color{darkred}y}|
+\le N$
+und
+$|{\color{darkred}vy}| > 0$:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\begin{scope}
+\wort
+\laenge
+\aufteilung{0.8}{1.8}{3}{3.8}
+\nummer{1}
+\end{scope}
+\begin{scope}[yshift=-1cm]
+\wort
+\aufteilung{3.8}{4.8}{5.4}{6.8}
+\nummer{2}
+\end{scope}
+\begin{scope}[yshift=-2cm]
+\wort
+\aufteilung{6.8}{7.8}{8.4}{9.8}
+\nummer{3}
+\end{scope}
+\begin{scope}[yshift=-3cm]
+\wort
+\aufteilung{8.8}{9.8}{11.4}{12.8}
+\nummer{4}
+\end{scope}
+\begin{scope}[yshift=-4cm]
+\wort
+\aufteilung{11.8}{12.8}{13.4}{14.8}
+\nummer{5}
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\item
+Die roten Teile können in höchstens zwei der Blöcke liegen, nicht in
+dreien.
+Wenn beim Pumpen die Anzahl der \texttt{b} ändert, passt die Länge nicht
+mehr zum Block von \texttt{a}s, der vom Pumpen unberührt ist.
+Es bleibt daher nur die Möglichkeit, dass nur einer der Blöcke von
+\texttt{a}s gepumpt wird, dann passt aber die Länge der beiden Blöcke von
+\texttt{a}s nicht mehr zusammen.
+Das gepumpte Wort ist also nicht mehr in $L$.
+\item
+Dieser Widerspruch zeigt, dass die Sprache $L$ nicht kontextfrei sein kann.
+\end{enumerate}
+Mit diesem Beweis gibt es aber ein Problem.
+Für das Wort gibt es nämlich eine Aufteilung, die pumpbar ist.
+Der Grund ist, dass die \texttt{b} auch Teil von $w$ sein könnten.
+Man muss nur sicherstellen, dass nur der Mittelteil $u$ wachsen kann.
+Dies ist möglich, wenn ${\color{darkred}y}$ und  ${\color{darkred}v}$
+beide im Mittelteil drin liegen und ausserdem zusammen eine durch drei
+teilbare Länge haben.
+Wächst der Mittelteil um 3 Zeichen, dann müssen die äussersten
+beiden Zeichen des Mittelteils jetzt neu zu $w$ bzw.~$w^t$ gezählt
+werden.
+
+Aus diesem Gegenbeispiel zum Beweis kann man jetzt aber ableiten, wie
+man das Wort verbessern kann, damit es auch das Gegenbeispiel abdeckt.
+Die beiden Zeichen am Ende des Mittelteils müssen verschieden sein.
+Wenn der Mittelteil grösser wird, dann geht die Symmetrie der Teile
+$w$ und $w^t$ verloren.
+Im Wort
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\fill[color=gray] (0,0) rectangle ({25*\h},\h);
+\fill[color=gray!20] (0,0) rectangle ({4*\h},\h);
+\fill[color=gray!20] ({8*\h},0) rectangle ({(8+1)*\h},\h);
+\fill[color=gray!20] ({21*\h},0) rectangle ({25*\h},\h);
+\fill[color=gray!20] ({15*\h},0) rectangle ({16*\h},\h);
+\draw (0,0) rectangle ({25*\h},\h);
+\draw ({4*\h},0) -- ++(0,\h);
+\draw ({8*\h},0) -- ++(0,\h);
+\draw ({9*\h},0) -- ++(0,\h);
+\draw ({10*\h},0) -- ++(0,\h);
+\draw ({15*\h},0) -- ++(0,\h);
+\draw ({16*\h},0) -- ++(0,\h);
+\draw ({17*\h},0) -- ++(0,\h);
+\draw ({21*\h},0) -- ++(0,\h);
+\draw[line width=0.3pt] ({8\h},\h) ++ (0,0.2);
+\draw[line width=0.3pt] ({17\h},\h) ++ (0,0.2);
+\node at ({8*\h},\h) [above] {$n\mathstrut$};
+\node at ({17*\h},\h) [above] {$2n+1\mathstrut$};
+\node at ({25*\h},\h) [above] {$3n+1\mathstrut$};
+\draw[->,color=orange,line width=3pt] ({8*\h},-\h) -- ++({-8*\h},0);
+\draw[->,color=orange,line width=3pt] ({17*\h},-\h) -- ++({8*\h},0);
+\draw[->,color=magenta,line width=3pt] ({8*\h},-\h) -- ++({9*\h},0);
+\end{tikzpicture}
+\end{center}
+sind die orangen Teile spiegelsymmetrisch, der magenta Teil aber nicht.
+Wenn die Pumpoperation den Mittelteil vergrössert, dann müssen auch
+die Teile $w$ und $w^t$ vergrössert werden, wodurch sie in den
+nichtsymmetrischen Teil hineinragen.
+Und wenn die anderen Teile gepumpt werden, geht dies Symmetrie ebenfalls
+verloren.
+\qedhere
+\end{loesung}
+
+\begin{bewertung}
+Annahme $L$ kontextfrei ({\bf PL}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+geeignetes Wort wählen ({\bf W}) 1 Punkt,
+Unterteilung des Wortes ({\bf U}) 1 Punkt,
+Widerspruch beim Pumpen ({\bf P}) 1 Punkt,
+Schlussfolgerung ({\bf S}) 1 Punkt.
+\end{bewertung}
+
