@@ -1,0 +1,173 @@
+Betrachten Sie die Sprache
+\[
+L
+=
+\{
+wxw^t
+\mid
+w,x\in\Sigma^*
+\wedge
+|w|\le 2
+\}
+\]
+über dem Alphabet $\Sigma=\{\texttt{a},\texttt{b}\}$.
+Das Wort $w^t$ ist die gespiegelte Version des Wortes $w$.
+Ist die Sprache $L$ regulär?
+
+\themaL{regular}{regulär}
+
+\begin{loesung}
+Die schnellste Begründung ist, dass $w=\varepsilon$ sein darf und daher
+$w=x\in\Sigma^*$ sein kann.
+Es folgt $L=\Sigma^*$, diese Sprache ist regulär.
+
+Wenn man das nicht unmittelbar sieht, und das betraff die meisten
+Prüfungsteilnehmer, dann kann man einen NEA konstruieren, der genau
+die Bedingungen in der Sprachedefinition implementiert.
+Der folgende NEA akzeptiert die Sprache $L$.
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\def\h{0.7}
+
+\coordinate (S) at (-4.5,0);
+\coordinate (A) at (-3,0);
+
+\coordinate (B1) at (-1.5,{-4*\h});
+\coordinate (B2) at (-1.5,{4*\h});
+
+\coordinate (C0) at (0,{-6*\h});
+\coordinate (C1) at (0,{-4*\h});
+\coordinate (C2) at (0,{-2.5*\h});
+\coordinate (C3) at (0,0);
+\coordinate (C4) at (0,{2.5*\h});
+\coordinate (C5) at (0,{4*\h});
+\coordinate (C6) at (0,{6*\h});
+
+\coordinate (D1) at (1.5,{-4*\h});
+\coordinate (D2) at (1.5,{4*\h});
+
+\coordinate (E) at (3,0);
+
+\draw (A) circle[radius=0.3];
+
+\draw (B1) circle[radius=0.3];
+\draw (B2) circle[radius=0.3];
+
+\draw (C0) circle[radius=0.3];
+\draw (C1) circle[radius=0.3];
+\draw (C2) circle[radius=0.3];
+\draw (C3) circle[radius=0.3];
+\draw (C4) circle[radius=0.3];
+\draw (C5) circle[radius=0.3];
+\draw (C6) circle[radius=0.3];
+
+\draw (D1) circle[radius=0.3];
+\draw (D2) circle[radius=0.3];
+
+\draw (E) circle[radius=0.3];
+\draw (E) circle[radius=0.25];
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (S) -- (A);
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (A) -- (B1);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (A) -- (B2);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (A) -- (C3);
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (B1) -- (C0);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (B1) -- (C1);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (B1) -- (C2);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (B2) -- (C4);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (B2) -- (C5);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (B2) -- (C6);
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (C0) -- (D1);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (C1) -- (D1);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (C2) -- (D1);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (C4) -- (D2);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (C5) -- (D2);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (C6) -- (D2);
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (C3) -- (E);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (D1) -- (E);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (D2) -- (E);
+
+\node at ($0.5*(A)+0.5*(B1)$) [left] {\texttt{a}};
+\node at ($0.5*(A)+0.5*(B2)$) [left] {\texttt{b}};
+
+
+\node at ($0.5*(B1)+0.5*(C0)$) [below left] {\texttt{a}};
+\node at ($0.5*(B1)+0.5*(C2)$) [above left] {\texttt{b}};
+\node at ($0.5*(B2)+0.5*(C4)$) [below left] {\texttt{a}};
+\node at ($0.5*(B2)+0.5*(C6)$) [above left] {\texttt{b}};
+
+\node at ($0.5*(D1)+0.5*(C0)$) [below right] {\texttt{a}};
+\node at ($0.5*(D1)+0.5*(C2)$) [above right] {\texttt{b}};
+\node at ($0.5*(D2)+0.5*(C4)$) [below right] {\texttt{a}};
+\node at ($0.5*(D2)+0.5*(C6)$) [above right] {\texttt{b}};
+
+\node at ($0.5*(E)+0.5*(D1)$) [right] {\texttt{a}};
+\node at ($0.5*(E)+0.5*(D2)$) [right] {\texttt{b}};
+
+\node at ($0.5*(A)+0.5*(C3)$) [above] {$\varepsilon$};
+\node at ($0.5*(E)+0.5*(C3)$) [above] {$\varepsilon$};
+
+\node at ($0.5*(B1)+0.5*(C1)$) [above] {$\varepsilon$};
+\node at ($0.5*(D1)+0.5*(C1)$) [above] {$\varepsilon$};
+\node at ($0.5*(B2)+0.5*(C5)$) [above] {$\varepsilon$};
+\node at ($0.5*(D2)+0.5*(C5)$) [above] {$\varepsilon$};
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(C0) to[out=-60,in=-120,distance=0.8cm] (C0);
+\node at ($(C0)+(0,-0.5)$) [below] {$*$};
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(C1) to[out=-60,in=-120,distance=0.8cm] (C1);
+\node at ($(C1)+(0,-0.5)$) [below] {$*$};
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(C2) to[out=60,in=120,distance=0.8cm] (C2);
+\node at ($(C2)+(0,0.5)$) [above] {$*$};
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(C3) to[out=60,in=120,distance=0.8cm] (C3);
+\node at ($(C3)+(0,0.5)$) [above] {$*$};
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(C4) to[out=-60,in=-120,distance=0.8cm] (C4);
+\node at ($(C4)+(0,-0.5)$) [below] {$*$};
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(C5) to[out=60,in=120,distance=0.8cm] (C5);
+\node at ($(C5)+(0,0.5)$) [above] {$*$};
+
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm]
+	(C6) to[out=60,in=120,distance=0.8cm] (C6);
+\node at ($(C6)+(0,0.5)$) [above] {$*$};
+
+\end{tikzpicture}
+\end{center}
+Es gibt genau $7$ Wörter $w$ der Länge $\le 2$, die Zustände in der
+vertikalen Symmetrieachse des Automaten repräsentieren diese Wörter.
+Die Schleifen bei den Zuständen stellen den Teil $x$ des Wortes dar.
+
+Die horizontale Achse des Diagramms zeigt aber auch, dass jedes beliebige
+Wort akzeptiert werden kann.
+Es ist also $L=\Sigma^*$, und diese Sprache ist auch regulär.
+
+Man kann auch direkt einen regulären Ausdruck angeben
+\[
+\def\x{\texttt{.*}}
+r=
+\texttt{aa}\x\texttt{aa|ab}\x\texttt{ba|ba}\x\texttt{ab|bb}\x\texttt{bb|a}\x\texttt{a|b}\x\texttt{b}|\x
+\]
+Dies zeigt ebenfalls, dass die Sprache regulär ist.
+\end{loesung}
+
+\begin{bewertung}
+Endlicher Automat ({\bf E}) 1 Punkt,
+syntaktisch korrektes Zustandsdiagramm ({\bf D}) 1 Punkt,
+erstes und letztes Zeichen gleich ({\bf G}) 1 Punkt,
+zweites und zweitletzes Zeichen gleich ({\bf Z}) 1 Punkt,
+beliebig langes Zwischenstück $x$ ({\bf X}) 1 Punkt,
+Schlussfolgerung regulär ({\bf R}) 1 Punkt.
+\end{bewertung}
