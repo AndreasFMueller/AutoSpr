@@ -1,0 +1,59 @@
+Betrachten Sie die Sprache
+\[
+L
+=
+\{
+wuw^t
+\mid
+w,u\in\Sigma^*\wedge |u|\le 3
+\}
+\]
+über dem Alphabet $\Sigma=\{\texttt{a},\texttt{b}\}$.
+Dabei bezeichnet $w^t$ das gespiegelte Wort von $w$.
+Die Sprache $L$ besteht also aus Wörtern, die bis auf einen Block
+der Länge $\le 3$ genau in der Mitte spiegelsymmetrisch sind.
+Ist $L$ regulär?
+
+\begin{loesung}
+Diese Sprache ist nicht regulär, da sich der endliche Automat an das
+beliebig lange Wort $w$ erinnern müsste.
+Mit dem Pumping Lemma kann man dieses heuristische Argument auch streng
+beweisen.
+\begin{enumerate}
+\item
+Wir nehmen an, die Sprache $L$ sei regulär.
+\item
+Nach dem Pumping Lemma gibt es dann die Pumping Length $N$.
+\item
+Wir wählen das Wort
+$v=\texttt{a}^N\texttt{b}^3\texttt{a}^N\in L$.
+Der Vergleich mit der Spezifikation der Sprache zeigt, dass der erste
+Block aus Buchstaen \texttt{a} der Teil $w$ sein muss und der Block aus 
+Buchstaben \texttt{b} muss $u$ sein.
+\item
+Nach dem Pumping Length lässt sich das Wort aufteilen in drei Teile
+$v=xyz$ derart, dass $|xy|\le N$ und $|y|>0$.
+\item
+Der Teil $y$ besteht ausschliesslich aus \texttt{a}.
+Beim Pumpen nimmt die Anzahl \texttt{a} im ersten Block zu, nicht
+aber im zweiten.
+Der Teil $u$ muss genau in der Mitte des gepumpten Wortes sein,
+der Teil aus \texttt{b} verschiebt sich beim Pumpen aber weg von
+der Mitte des Wortes, das Wort hat daher nicht mehr die verlangte
+Symmetrie und ist damit nicht mehr in $L$.
+\item
+Der Widerspruch zeigt, dass die Sprache $L$ nicht regulär sein kann.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+6 Schritte des Pumping-Lemma-Beweises:
+Annahme ({\bf A}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+Wort ({\bf W}) 1 Punkt,
+Unterteilung ({\bf U}) 1 Punkt,
+Widerspruch beim Pumpen ({\bf P}) 1 Punkt,
+Folgerung ({\bf F}) 1 Punkt.
+\end{bewertung}
+
