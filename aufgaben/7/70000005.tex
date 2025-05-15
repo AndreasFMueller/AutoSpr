@@ -1,9 +1,9 @@
 Job-Planungs-Problem:
 Gegeben sei eine Menge von $n$ Jobs $J_1,\dots,J_n$, welche zu ihrer
-Ausführung einige der $m$ Resourcen $r_1,\dots,r_m$ für sich reservieren
+Ausführung einige der $m$ Ressourcen $r_1,\dots,r_m$ für sich reservieren
 müssen. Jeder Task hat die gleiche Laufzeit $1$, jeweils zu ganzzahligen
 Zeitpunkten können Jobs gestartet werden. Zeigen Sie, dass die
-Aufgabe, die Jobs ohne Resourcenkonflikte so zu planen, dass innerhalb
+Aufgabe, die Jobs ohne Ressourcenkonflikte so zu planen, dass innerhalb
 gegebener Zeit $N$ alle Jobs abgearbeitet werden, ein NP-vollständiges Problem
 ist.
 
@@ -14,9 +14,9 @@ ist.
 Wir zeigen, dass das Problem äquivalent ist zum Einfärbe-Problem für
 einen Graphen. Wir müssen für jeden Job ein Zeitinterval $I_k=[k,k+1]$
 auswählen, während dem er laufen soll. Dabei dürfen zwei Jobs nicht
-gleichzeitig laufen, wenn Sie auf die gleiche Resource angewiesen sind.
+gleichzeitig laufen, wenn Sie auf die gleiche Ressource angewiesen sind.
 Wir konstruieren daher einen Graphen $G$ mit den Jobs als Ecken. Falls
-zwei Jobs die gleiche Resource beanspruchen, fügen wir eine Kante
+zwei Jobs die gleiche Ressource beanspruchen, fügen wir eine Kante
 zwischen diesen beiden Jobs hinzu. Gesucht ist jetzt eine Zuteilung
 von Intervallen $I_k$ mit $0\le k< N$ zu jeder Ecke, so dass keine
 zwei benachbarten Ecken dem gleichen Interval zugeteilt sind. Bezeichnen
@@ -25,8 +25,8 @@ ein Färbeproblem hergestellt.
 
 Ist umgekehrt ein Graph und eine Menge von Farben vorgegeben, können
 wir daraus wie folgt ein Planungs-Problem konstruieren. Die Ecken
-des Graphen nennen wir Jobs, die Kanten nennen wir Resourcen. Die
-mit einer Ecke inzidenten Kanten stellen die Resourcen dar, die ein
+des Graphen nennen wir Jobs, die Kanten nennen wir Ressourcen. Die
+mit einer Ecke inzidenten Kanten stellen die Ressourcen dar, die ein
 Job braucht, um laufen zu können. Der Graph kann mit $N$ Farben
 eingefärbt werden, wenn das Planungsproblem in Zeit $N$ lösbar ist.
 
