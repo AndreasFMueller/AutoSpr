@@ -1,0 +1,33 @@
+In einer Firma mit $n$ Mitarbeitern nutzen viele Mitarbeiter die
+Möglichkeit des Home Office und kommen nur an wenigen Tagen ins Büro.
+Daher steht auch nicht für jeden Mitarbeiter ein Arbeitsplatz zur
+Verfügung.
+Die Mitarbeiter haben aber feste Wochentage, an denen sie ins Büro
+kommen.
+Es soll jetzt eine Zuordnung von Mitarbeitern zu Arbeitsplätzen
+vorgenommen werden, die einem Mitarbeiter ermöglicht, jeweils am
+gleichen Arbeitsplatz zu arbeiten.
+Mehrere Mitarbeiter können sich einen Arbeitsplatz teilen, was möglich
+ist, wenn sie nie am gleichen Tag im Büro sind.
+Der CEO möchte wissen, ob die $k$ zur Verfügung stehenden Arbeitsplätze
+ausreichen.
+Warum ist es schwierig, ihm rasch eine Antwort zu geben?
+
+\begin{loesung}
+Das Arbeitsplatzproblem \textit{WORKPLACE} lässt sich wie folgt eins-zu-eins
+auf das bekanntermassen NP-vollständige Problem $k$-\textit{VERTEX-COLORING}
+reduzieren:
+\begin{center}
+\begin{tabular}{r>{$}c<{$}l}
+\textit{WORKPLACE} && \textit{$k$-VERTEX-COLORING}  \\
+\hline
+Mitarbeiter                   &\leftrightarrow& Knoten \\
+am gleichen Wochentag im Büro &\leftrightarrow& Kante \\
+Arbeitsplatz                  &\leftrightarrow& Farbe \\
+Anzahl $k$ der Arbeitsplätze  &\leftrightarrow& Anzahl $k$ der Farben \\
+\end{tabular}
+\end{center}
+Dies zeigt, dass \textit{WORKPLACE} ein NP-vollständiges Problem ist.
+Ein aktuellem Stand des Wissens gibt es keinen polynomiellen Algorithmus,
+der die Frage des CEO beantworten könnte.
+\end{loesung}
