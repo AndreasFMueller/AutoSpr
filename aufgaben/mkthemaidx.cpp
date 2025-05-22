@@ -174,7 +174,9 @@ int	main(int argc, char *argv[]) {
 		out << i->chapter() << "." << i->problem();
 		out << "}";
 	}
-	out << "}" << std::endl;
+	if (thema.size() != 0) {
+		out << "}" << std::endl;
+	}
 	out.close();
 	
 	return EXIT_SUCCESS;
