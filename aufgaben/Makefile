@@ -51,11 +51,11 @@ $(workdir)/aufgabensammlung.idx:	$(workdir) $(TEXILES) \
 	$(touch) $(workdir)/aufgabensammlung.ind
 	$(pdflatex) aufgabensammlung.tex
 
-thema.tex:      thema.tix mkthemaidx
-	iconv -f ISO-8859-1 -t UTF-8 thema.tix > thema.tix2
+thema.tex:      work/thema.tix mkthemaidx
+	iconv -f ISO-8859-1 -t UTF-8 work/thema.tix > thema.tix2
 	./mkthemaidx thema.tix2 thema.tex
 
-thema.tix:      $(TEXFILES)
+work/thema.tix:      $(TEXFILES)
 	$(pdflatex) aufgabensammlung.tex
 
 mkthemaidx:     mkthemaidx.cpp
