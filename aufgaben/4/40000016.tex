@@ -16,31 +16,31 @@ in Chomsky-Normalform.
 \begin{loesung}
 Die Ausgangsgrammatik ist
 \begin{align*}
-S&\to A\;|\;B{\tt c}\\
-A&\to AB\;|\;ABC\;|\;{\tt a}\\
+S&\to A\mid B{\tt c}\\
+A&\to AB\mid ABC\mid {\tt a}\\
 B&\to {\tt b}\\
 C&\to {\tt cc}
 \end{align*}
 Elimination der Unit rule $S\to A$:
 \begin{align*}
-S&\to B{\tt c}\;|\;AB\;|\;ABC\;|\;{\tt a}\\
-A&\to AB\;|\;ABC\;|\;{\tt a}\\
+S&\to B{\tt c}\mid AB\mid ABC\mid {\tt a}\\
+A&\to AB\mid ABC\mid {\tt a}\\
 B&\to {\tt b}\\
 C&\to {\tt cc}
 \end{align*}
 Ersetzung der $ABC$-Regeln mit Hilfe einer zusätzlichen
 Variablen $U$:
 \begin{align*}
-S&\to B{\tt c}\;|\;AB\;|\;AU\;|\;{\tt a}\\
-A&\to AB\;|\;AU\;|\;{\tt a}\\
+S&\to B{\tt c}\mid AB\mid AU\mid {\tt a}\\
+A&\to AB\mid AU\mid {\tt a}\\
 U&\to BC\\
 B&\to {\tt b}\\
 C&\to {\tt cc}
 \end{align*}
 Elimination der Terminal-Symbole
 \begin{align*}
-S&\to BC'\;|\;AB\;|\;AU\;|\;{\tt a}\\
-A&\to AB\;|\;AU\;|\;{\tt a}\\
+S&\to BC'\mid AB\mid AU\mid {\tt a}\\
+A&\to AB\mid AU\mid {\tt a}\\
 U&\to BC\\
 B&\to {\tt b}\\
 C&\to C'C'\\

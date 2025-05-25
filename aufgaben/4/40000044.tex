@@ -2,7 +2,7 @@ Sei $\Sigma=\{\texttt{a},\texttt{b},\dots,\texttt{z}\}$ das Alphabet
 bestehend aus den Kleinbuchstaben.
 Die Sprache
 \[
-L_{ab}=\{w\in\Sigma^*\;|\; |w|_a=|w|_b\}
+L_{ab}=\{w\in\Sigma^*\mid  |w|_a=|w|_b\}
 \]
 besteht aus den Wörtern, die die Buchstaben $a\in \Sigma$ und $b\in\Sigma$
 mehr als einmal enthalten, aber beide gleich oft.
@@ -23,7 +23,7 @@ Bringen Sie die Grammatik von a) in Chomsky-Normalform.
 %\item
 %Können Sie daraus eine Aussage darüber ableiten, ob die Sprache 
 %\[
-%L=\{w\in\Sigma^*\;|\;\text{es gibt zwei verschiedene Buchstaben
+%L=\{w\in\Sigma^*\mid \text{es gibt zwei verschiedene Buchstaben
 %$a,b\in\Sigma$ mit $|w|_a=|w|_b > 1$}\}
 %\]
 %(siehe auch Aufgabe~\ref{30000047}) kontextfrei ist?
@@ -40,8 +40,8 @@ Grammatik angeben lässt.
 Die Grammatik fügt die Buchstaben $a$ und $b$ jeweils paarweise
 hinzu, während sie andere Buchstaben einzeln hinzufügt:
 \begin{align}
-S&\rightarrow aSb\;|\; bSa \label{40000044:1}\\
- &\rightarrow SU \;|\; US  \label{40000044:2}\\
+S&\rightarrow aSb\mid  bSa \label{40000044:1}\\
+ &\rightarrow SU \mid  US  \label{40000044:2}\\
  &\rightarrow \varepsilon  \label{40000044:3}\\
 U&\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$} \label{40000044:4}
 \end{align}
@@ -55,36 +55,36 @@ Zunächst kommt die Startvariable auch rechts vor, was wir durch eine
 zusätzliche Startvariable erreichen können:
 \begin{align*}
 S_0&\rightarrow S\\
-S  &\rightarrow aSb\;|\; bSa\\
-   &\rightarrow SU \;|\; US\\
+S  &\rightarrow aSb\mid  bSa\\
+   &\rightarrow SU \mid  US\\
    &\rightarrow \varepsilon\\
 U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}
 \end{align*}
 Jetzt ist aber eine unzulässige $\varepsilon$-Regel vorhanden, die entfernt
 werden muss:
 \begin{align*}
-S_0&\rightarrow S\;|\;\varepsilon\\
-S  &\rightarrow aSb\;|\; bSa\;|\;ab\;|\;ba\\
-   &\rightarrow SU \;|\; US\;|\;U\;\\
+S_0&\rightarrow S\mid \varepsilon\\
+S  &\rightarrow aSb\mid  bSa\mid ab\mid ba\\
+   &\rightarrow SU \mid  US\mid U\;\\
 U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}
 \end{align*}
 Jetzt hat man aber zwei Unit-Rules, die entfernt werden müssen.
 Zuerst $S\rightarrow U$:
 \begin{align*}
-S_0&\rightarrow S\;|\;\varepsilon\\
-S  &\rightarrow aSb\;|\; bSa\;|\;ab\;|\;ba\\
-   &\rightarrow SU \;|\; US\\
+S_0&\rightarrow S\mid \varepsilon\\
+S  &\rightarrow aSb\mid  bSa\mid ab\mid ba\\
+   &\rightarrow SU \mid  US\\
    &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
 U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}
 \end{align*}
 Nun $S_0\rightarrow S$:
 \begin{align*}
-S_0&\rightarrow aSb\;|\; bSa\;|\;ab\;|\;ba\\
-   &\rightarrow SU \;|\; US\\
+S_0&\rightarrow aSb\mid  bSa\mid ab\mid ba\\
+   &\rightarrow SU \mid  US\\
    &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
    &\rightarrow \varepsilon\\
-S  &\rightarrow aSb\;|\; bSa\;|\;ab\;|\;ba\\
-   &\rightarrow SU \;|\; US\\
+S  &\rightarrow aSb\mid  bSa\mid ab\mid ba\\
+   &\rightarrow SU \mid  US\\
    &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
 U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}
 \end{align*}
@@ -92,14 +92,14 @@ Jetzt sind nur noch die Regeln, die $a$ oder $b$ auf der rechten
 Seite enthalten nicht gemäss der Chomsky-Normalform.
 Dazu brauchen wir zusätzliche Variablen:
 \begin{align*}
-S_0&\rightarrow AC\;|\; DA \\
-   &\rightarrow AB\;|\;BA\\
-   &\rightarrow SU \;|\; US\\
+S_0&\rightarrow AC\mid  DA \\
+   &\rightarrow AB\mid BA\\
+   &\rightarrow SU \mid  US\\
    &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
    &\rightarrow \varepsilon\\
-S  &\rightarrow AC\;|\; DA \\
-   &\rightarrow AB\;|\;BA\\
-   &\rightarrow SU \;|\; US\\
+S  &\rightarrow AC\mid  DA \\
+   &\rightarrow AB\mid BA\\
+   &\rightarrow SU \mid  US\\
    &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
 U  &\rightarrow \text{alle Terminalsymbole ausser $a$ und $b$}\\
 A  &\rightarrow a \\

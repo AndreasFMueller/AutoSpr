@@ -54,33 +54,33 @@ erlauben, dass Listen und Strings leer sind.
 \text{listenelemente}\;
 {\text{'{\tt )}'}}}
 \\
-\text{listenelemente}&\rightarrow {\color{green}\varepsilon} \;|\; \text{listenelemente}\;\text{element}
+\text{listenelemente}&\rightarrow {\color{green}\varepsilon} \mid  \text{listenelemente}\;\text{element}
 \\
-\text{element}&\rightarrow {\color{red}\text{liste}} \;|\; {\color{red}\text{atom}}
+\text{element}&\rightarrow {\color{red}\text{liste}} \mid  {\color{red}\text{atom}}
 \\
-\text{atom}&\rightarrow {\color{red}\text{zahl}}\;|\;{\color{red}\text{string}}\;|\;{\color{red}\text{symbol}}
+\text{atom}&\rightarrow {\color{red}\text{zahl}}\mid {\color{red}\text{string}}\mid {\color{red}\text{symbol}}
 \\
-\text{zahl}&\rightarrow {\color{red}\text{ziffer}}\;|\;\text{zahl}\;\text{ziffer}
+\text{zahl}&\rightarrow {\color{red}\text{ziffer}}\mid \text{zahl}\;\text{ziffer}
 \\
-\text{symbol}&\rightarrow {\color{red}\text{buchstabe}} \;|\; \text{symbol}\;\text{buchstabe}
+\text{symbol}&\rightarrow {\color{red}\text{buchstabe}} \mid  \text{symbol}\;\text{buchstabe}
 \\
 \text{string}&\rightarrow {\color{blue}
 \text{'{\tt\textquotedblright}'}\; \text{stringinhalt}\;
 \text{'{\tt\textquotedblright}'}}
 \\
-\text{stringinhalt}&\rightarrow {\color{green}\varepsilon} \;|\; \text{stringinhalt}\;\text{zeichen}
+\text{stringinhalt}&\rightarrow {\color{green}\varepsilon} \mid  \text{stringinhalt}\;\text{zeichen}
 \\
 \text{ziffer}&\rightarrow
-{\text{'{\tt 0}'}} \;|\;
-{\text{'{\tt 1}'}} \;|\;
-{\text{'{\tt 2}'}} \;|\;
-\dots \;|\;
+{\text{'{\tt 0}'}} \mid 
+{\text{'{\tt 1}'}} \mid 
+{\text{'{\tt 2}'}} \mid 
+\dots \mid 
 {\text{'{\tt 9}'}}
 \\
 \text{buchstabe}&\rightarrow
-{\text{'{\tt a}'}} \;|\;
-{\text{'{\tt b}'}} \;|\;
-\dots \;|\;
+{\text{'{\tt a}'}} \mid 
+{\text{'{\tt b}'}} \mid 
+\dots \mid 
 {\text{'{\tt z}'}}
 \\
 \text{zeichen}&\rightarrow {\color{red}\text{ziffer}}\; |\; {\color{red}\text{buchstabe}}

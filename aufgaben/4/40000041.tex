@@ -140,8 +140,8 @@ aus $A_{12}$ oder $A_{13}$ erzeugt werden.
 Für $A_{12}$ und $A_{13}$ wiederum bekommt man die Regeln
 \begin{equation}
 \begin{aligned}
-A_{12}&\to\texttt{0} A_{22}\texttt{1} \;|\; A_{12}A_{22}\\
-A_{13}&\to\texttt{1} A_{33}\texttt{0} \;|\; A_{13}A_{33}
+A_{12}&\to\texttt{0} A_{22}\texttt{1} \mid  A_{12}A_{22}\\
+A_{13}&\to\texttt{1} A_{33}\texttt{0} \mid  A_{13}A_{33}
 \end{aligned}
 \label{40000041:a12a13}
 \end{equation}
@@ -157,8 +157,8 @@ findet man die Regeln, die ein Zeichen auf den Stack legen und am
 Schluss wieder abbauen:
 \begin{equation}
 \begin{aligned}
-A_{22}&\to \texttt{0}A_{22}\texttt{1} \;|\; A_{22}A_{22} \;|\; \varepsilon\\
-A_{33}&\to \texttt{1}A_{33}\texttt{0} \;|\; A_{33}A_{33} \;|\; \varepsilon
+A_{22}&\to \texttt{0}A_{22}\texttt{1} \mid  A_{22}A_{22} \mid  \varepsilon\\
+A_{33}&\to \texttt{1}A_{33}\texttt{0} \mid  A_{33}A_{33} \mid  \varepsilon
 \end{aligned}
 \label{40000041:a22a33}
 \end{equation}
@@ -195,10 +195,10 @@ die wir als
 \[
 \left.
 \begin{aligned}
-A_{12}&\to\texttt{0} A_{22}\texttt{1} \;|\; A_{12}A_{22}\\
-A_{13}&\to\texttt{1} A_{33}\texttt{0} \;|\; A_{13}A_{33}\\
-A_{22}&\to \texttt{0}A_{22}\texttt{1} \;|\; A_{22}A_{22} \;|\; \varepsilon\\
-A_{33}&\to \texttt{1}A_{33}\texttt{0} \;|\; A_{33}A_{33} \;|\; \varepsilon
+A_{12}&\to\texttt{0} A_{22}\texttt{1} \mid  A_{12}A_{22}\\
+A_{13}&\to\texttt{1} A_{33}\texttt{0} \mid  A_{13}A_{33}\\
+A_{22}&\to \texttt{0}A_{22}\texttt{1} \mid  A_{22}A_{22} \mid  \varepsilon\\
+A_{33}&\to \texttt{1}A_{33}\texttt{0} \mid  A_{33}A_{33} \mid  \varepsilon
 \end{aligned}
 \quad
 \right\}
@@ -206,10 +206,10 @@ A_{33}&\to \texttt{1}A_{33}\texttt{0} \;|\; A_{33}A_{33} \;|\; \varepsilon
 \left\{
 \quad
 \begin{aligned}
-A_{12}&\to\texttt{0} N\texttt{1} \;|\; A_{12}N \\
-A_{13}&\to\texttt{1} E\texttt{0} \;|\; A_{13}N \\
-N &\to \texttt{0} N \texttt{1} \;|\; NN \;|\; \varepsilon\\
-E &\to \texttt{1} E \texttt{0} \;|\; EE \;|\; \varepsilon
+A_{12}&\to\texttt{0} N\texttt{1} \mid  A_{12}N \\
+A_{13}&\to\texttt{1} E\texttt{0} \mid  A_{13}N \\
+N &\to \texttt{0} N \texttt{1} \mid  NN \mid  \varepsilon\\
+E &\to \texttt{1} E \texttt{0} \mid  EE \mid  \varepsilon
 \end{aligned}
 \right.
 \]
@@ -220,8 +220,8 @@ Dies ist gleichbedeutend damit, die $\varepsilon$-Regeln in letzten zwei
 Regeln wegzulassen, so dass 
 \begin{equation}
 \begin{aligned}
-N &\to \texttt{0} N \texttt{1} \;|\; NN \;|\; \texttt{01}\\
-E &\to \texttt{1} E \texttt{0} \;|\; EE \;|\; \texttt{10}
+N &\to \texttt{0} N \texttt{1} \mid  NN \mid  \texttt{01}\\
+E &\to \texttt{1} E \texttt{0} \mid  EE \mid  \texttt{10}
 \end{aligned}
 \label{40000041:NE}
 \end{equation}
@@ -322,13 +322,13 @@ F&\to N \\
 ausdrücken.
 Damit bleiben jetzt zusammen mit \eqref{40000041:NE} die Regeln
 \begin{align*}
-S&\to SF \;|\; \varepsilon
+S&\to SF \mid  \varepsilon
 \\
-F&\to N\;|\; E
+F&\to N\mid  E
 \\
-N&\to NN \;|\; \texttt{0}N\texttt{1} \;|\; \texttt{01}
+N&\to NN \mid  \texttt{0}N\texttt{1} \mid  \texttt{01}
 \\
-E&\to EE \;|\; \texttt{1}E\texttt{0} \;|\; \texttt{10}
+E&\to EE \mid  \texttt{1}E\texttt{0} \mid  \texttt{10}
 \end{align*}
 als endgültige Form der Grammatik.
 \end{loesung}

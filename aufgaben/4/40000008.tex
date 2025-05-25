@@ -1,9 +1,9 @@
 In der Vorlesung wurde die folgende Grammatik $G$ für arithmetische
 Ausdrücke vorgestellt
 \begin{align*}
-E&\to E{\tt +}T\;|\; T\\
-T&\to T{\tt \times}F\;|\;F\\
-F&\to {\tt (}\,E\,{\tt )}\;|\; {\tt a}
+E&\to E{\tt +}T\mid  T\\
+T&\to T{\tt \times}F\mid F\\
+F&\to {\tt (}\,E\,{\tt )}\mid  {\tt a}
 \end{align*}
 Verwandeln Sie diese Grammatik in einen Stackautomaten, der die gleiche
 Sprache akzeptiert.
@@ -23,7 +23,7 @@ Das Gerüst des Automaten ist
 }
 \]
 Dem Zustand fügen wir jetzt Schrittweise die den Regeln
-entsprechenden "Ubergänge hinzu. Zuerst $E\to E{\tt +}T\;|\; T$:
+entsprechenden "Ubergänge hinzu. Zuerst $E\to E{\tt +}T\mid  T$:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -33,7 +33,7 @@ R       \ar[r]^{\varepsilon,E\to T}
                 &{}     \ar@/^10pt/[ll]^{\varepsilon,\varepsilon\to E}
 }
 \]
-Dann $T\to T{\tt \times}F\;|\;F$:
+Dann $T\to T{\tt \times}F\mid F$:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{
@@ -43,7 +43,7 @@ R       \ar[r]^{\varepsilon,T\to F}
                 &{}     \ar@/^10pt/[ll]^{\varepsilon,\varepsilon\to T}
 }
 \]
-Und zum Schluss $F\to {\tt (}\,E\,{\tt )}\;|\; {\tt a}$:
+Und zum Schluss $F\to {\tt (}\,E\,{\tt )}\mid  {\tt a}$:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix{

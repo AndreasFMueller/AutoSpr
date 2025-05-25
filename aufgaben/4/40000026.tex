@@ -30,20 +30,20 @@ folgende Grammatikregeln postuliert:
 \text{number}&\rightarrow\text{digit}\\
 &\rightarrow\text{number}\;\text{digit}\\
 \text{digit}&\rightarrow 0
-\;|\;1
-\;|\;2
-\;|\;3
-\;|\;4
-\;|\;5
-\;|\;6
-\;|\;7
-\;|\;8
-\;|\;9
+\mid 1
+\mid 2
+\mid 3
+\mid 4
+\mid 5
+\mid 6
+\mid 7
+\mid 8
+\mid 9
 \\
 \end{align*}
 Dazu braucht es noch eine Startvariable, von der aus man entweder einen
 Minimum- oder einen Maximum-Ausdruck generieren kann, also
-$$S\rightarrow \text{min}\;|\;\text{max}$$
+$$S\rightarrow \text{min}\mid \text{max}$$
 Offenbar ist diese Grammatik kontextfrei.
 (Dies ist nicht die einzige mögliche Lösung).
 \end{loesung}

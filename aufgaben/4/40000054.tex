@@ -39,14 +39,14 @@ und
 können beliebig verwendet werden.
 Daraus können wir folgende Grammatik ableiten:
 \begin{align*}
-P&\rightarrow P C\;|\;\varepsilon
+P&\rightarrow P C\mid \varepsilon
 \\
 C&\rightarrow
-\texttt{.} \;|\;
-\texttt{,} \;|\;
-\texttt{>} \;|\;
-\texttt{<} \;|\;
-\texttt{+} \;|\;
+\texttt{.} \mid 
+\texttt{,} \mid 
+\texttt{>} \mid 
+\texttt{<} \mid 
+\texttt{+} \mid 
 \texttt{-}
 \\
 &\rightarrow \texttt{[} \; P \; \texttt{]}
@@ -58,14 +58,14 @@ zu machen.
 Im ersten Schritt erzeugen wir eine neue Startvariable:
 \begin{align*}
 S&\rightarrow P\\
-P&\rightarrow P C\;|\;\varepsilon
+P&\rightarrow P C\mid \varepsilon
 \\
 C&\rightarrow
-\texttt{.} \;|\;
-\texttt{,} \;|\;
-\texttt{>} \;|\;
-\texttt{<} \;|\;
-\texttt{+} \;|\;
+\texttt{.} \mid 
+\texttt{,} \mid 
+\texttt{>} \mid 
+\texttt{<} \mid 
+\texttt{+} \mid 
 \texttt{-}
 \\
 &\rightarrow \texttt{[} \; P \; \texttt{]}
@@ -75,16 +75,16 @@ C&\rightarrow
 Im zweiten Schritt werden $\varepsilon$-Regeln entfernt.
 \begin{align*}
 S&\rightarrow P
-\;|\;\varepsilon
+\mid \varepsilon
 \\
-P&\rightarrow P C \;|\; C
+P&\rightarrow P C \mid  C
 \\
 C&\rightarrow
-\texttt{.} \;|\;
-\texttt{,} \;|\;
-\texttt{>} \;|\;
-\texttt{<} \;|\;
-\texttt{+} \;|\;
+\texttt{.} \mid 
+\texttt{,} \mid 
+\texttt{>} \mid 
+\texttt{<} \mid 
+\texttt{+} \mid 
 \texttt{-}
 \\
 &\rightarrow \texttt{[} \; P \; \texttt{]}
@@ -96,16 +96,16 @@ Im dritten Schritt entfernen wir die Unit-Rules.
 Wir beginnen mit $P\to C$:
 \begin{align*}
 S&\rightarrow P
-\;|\;\varepsilon
+\mid \varepsilon
 \\
 P&\rightarrow P C
 \\
 P&\rightarrow
-\texttt{.} \;|\;
-\texttt{,} \;|\;
-\texttt{>} \;|\;
-\texttt{<} \;|\;
-\texttt{+} \;|\;
+\texttt{.} \mid 
+\texttt{,} \mid 
+\texttt{>} \mid 
+\texttt{<} \mid 
+\texttt{+} \mid 
 \texttt{-}
 \\
 &\rightarrow \texttt{[} \; P \; \texttt{]}
@@ -113,11 +113,11 @@ P&\rightarrow
 &\rightarrow \texttt{[} \; \texttt{]}
 \\
 C&\rightarrow
-\texttt{.} \;|\;
-\texttt{,} \;|\;
-\texttt{>} \;|\;
-\texttt{<} \;|\;
-\texttt{+} \;|\;
+\texttt{.} \mid 
+\texttt{,} \mid 
+\texttt{>} \mid 
+\texttt{<} \mid 
+\texttt{+} \mid 
 \texttt{-}
 \\
 &\rightarrow \texttt{[} \; P \; \texttt{]}
@@ -131,11 +131,11 @@ S&\rightarrow\varepsilon
 &\rightarrow P C
 \\
 &\rightarrow
-\texttt{.} \;|\;
-\texttt{,} \;|\;
-\texttt{>} \;|\;
-\texttt{<} \;|\;
-\texttt{+} \;|\;
+\texttt{.} \mid 
+\texttt{,} \mid 
+\texttt{>} \mid 
+\texttt{<} \mid 
+\texttt{+} \mid 
 \texttt{-}
 \\
 &\rightarrow \texttt{[} \; P \; \texttt{]}
@@ -145,11 +145,11 @@ S&\rightarrow\varepsilon
 P&\rightarrow P C
 \\
 &\rightarrow
-\texttt{.} \;|\;
-\texttt{,} \;|\;
-\texttt{>} \;|\;
-\texttt{<} \;|\;
-\texttt{+} \;|\;
+\texttt{.} \mid 
+\texttt{,} \mid 
+\texttt{>} \mid 
+\texttt{<} \mid 
+\texttt{+} \mid 
 \texttt{-}
 \\
 &\rightarrow \texttt{[} \; P \; \texttt{]}
@@ -157,11 +157,11 @@ P&\rightarrow P C
 &\rightarrow \texttt{[} \; \texttt{]}
 \\
 C&\rightarrow
-\texttt{.} \;|\;
-\texttt{,} \;|\;
-\texttt{>} \;|\;
-\texttt{<} \;|\;
-\texttt{+} \;|\;
+\texttt{.} \mid 
+\texttt{,} \mid 
+\texttt{>} \mid 
+\texttt{<} \mid 
+\texttt{+} \mid 
 \texttt{-}
 \\
 &\rightarrow \texttt{[} \; P \; \texttt{]}
@@ -177,11 +177,11 @@ S&\rightarrow\varepsilon
 &\rightarrow P C
 \\
 &\rightarrow
-\texttt{.} \;|\;
-\texttt{,} \;|\;
-\texttt{>} \;|\;
-\texttt{<} \;|\;
-\texttt{+} \;|\;
+\texttt{.} \mid 
+\texttt{,} \mid 
+\texttt{>} \mid 
+\texttt{<} \mid 
+\texttt{+} \mid 
 \texttt{-}
 \\
 &\rightarrow AE
@@ -191,11 +191,11 @@ S&\rightarrow\varepsilon
 P&\rightarrow P C
 \\
 &\rightarrow
-\texttt{.} \;|\;
-\texttt{,} \;|\;
-\texttt{>} \;|\;
-\texttt{<} \;|\;
-\texttt{+} \;|\;
+\texttt{.} \mid 
+\texttt{,} \mid 
+\texttt{>} \mid 
+\texttt{<} \mid 
+\texttt{+} \mid 
 \texttt{-}
 \\
 &\rightarrow AE
@@ -203,11 +203,11 @@ P&\rightarrow P C
 &\rightarrow WE
 \\
 C&\rightarrow
-\texttt{.} \;|\;
-\texttt{,} \;|\;
-\texttt{>} \;|\;
-\texttt{<} \;|\;
-\texttt{+} \;|\;
+\texttt{.} \mid 
+\texttt{,} \mid 
+\texttt{>} \mid 
+\texttt{<} \mid 
+\texttt{+} \mid 
 \texttt{-}
 \\
 &\rightarrow AE

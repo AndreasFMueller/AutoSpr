@@ -1,6 +1,6 @@
 Ist die Sprache
 \[
-L=\{\texttt{0}^i\texttt{1}^j\texttt{0}^i\;|\; j>0\wedge i\ge 0\}
+L=\{\texttt{0}^i\texttt{1}^j\texttt{0}^i\mid  j>0\wedge i\ge 0\}
 \]
 kontextfrei?
 Wenn ja, geben Sie eine Grammatik in Chomsky-Normalform dafür an.
@@ -94,9 +94,9 @@ Neue Startvariable:
 \begin{align*}
 S_0&\to S
 \\
-S&\to \texttt{0}S\texttt{0} \;|\; E
+S&\to \texttt{0}S\texttt{0} \mid  E
 \\
-E&\to E\texttt{1} \;|\; \texttt{1}
+E&\to E\texttt{1} \mid  \texttt{1}
 \end{align*}
 Es kommen keine $\varepsilon$-Regeln vor, um die wir uns kümmern müssten,
 wir können daher gleich zur Entfernung der Unit-Rules übergehen.
@@ -104,27 +104,27 @@ Entfernung der Regel $S\to E$:
 \begin{align*}
 S_0&\to S
 \\
-S&\to \texttt{0}S\texttt{0} \;|\; E\texttt{1} \;|\; \texttt{1}
+S&\to \texttt{0}S\texttt{0} \mid  E\texttt{1} \mid  \texttt{1}
 \\
-E&\to E\texttt{1} \;|\;  \texttt{1}
+E&\to E\texttt{1} \mid   \texttt{1}
 \end{align*}
 Entfernung der Unit-Rue $S_0\to S$:
 \begin{align*}
-S_0&\to \texttt{0}S\texttt{0} \;|\; E\texttt{1} \;|\; \texttt{1}
+S_0&\to \texttt{0}S\texttt{0} \mid  E\texttt{1} \mid  \texttt{1}
 \\
-S&\to \texttt{0}S\texttt{0} \;|\; E\texttt{1} \;|\; \texttt{1}
+S&\to \texttt{0}S\texttt{0} \mid  E\texttt{1} \mid  \texttt{1}
 \\
-E&\to E\texttt{1} \;|\; \texttt{1}
+E&\to E\texttt{1} \mid  \texttt{1}
 \end{align*}
 Jetzt müssen die Dreierregeln und die Terminalsymbole noch aufgeräumt werden:
 \begin{align*}
-S_0&\to ZA \;|\; EU \;|\; \texttt{1}
+S_0&\to ZA \mid  EU \mid  \texttt{1}
 \\
-S&\to ZA \;|\; EU \;|\; \texttt{1}
+S&\to ZA \mid  EU \mid  \texttt{1}
 \\
 A&\to SZ
 \\
-E&\to EU \;|\; \texttt{1}
+E&\to EU \mid  \texttt{1}
 \\
 U&\to \texttt{1}
 \\

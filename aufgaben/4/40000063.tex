@@ -1,8 +1,8 @@
 Betrachten Sie die kontextfreie Grammatik
 \begin{align*}
-S&\to \texttt{a} S \texttt{c} \;|\; X
+S&\to \texttt{a} S \texttt{c} \mid  X
 \\
-X&\to \texttt{b}X\texttt{c} \;|\; \varepsilon
+X&\to \texttt{b}X\texttt{c} \mid  \varepsilon
 \end{align*}
 \begin{teilaufgaben}
 \item
@@ -30,7 +30,7 @@ Die Sprache ist also
 \[
 L=\{
 w\in\{\texttt{a},\texttt{b},\texttt{c}\}^*
-\;|\;
+\mid 
 \text{$
 w=
 \texttt{a}^m \texttt{b}^n \texttt{c}^{k}$
@@ -44,9 +44,9 @@ $n+m=k$
 \begin{align*}
 S_0 & \to S
 \\
-S & \to \texttt{a} S \texttt{c} \;|\; X
+S & \to \texttt{a} S \texttt{c} \mid  X
 \\
-X & \to \texttt{b}X\texttt{c} \;|\; \varepsilon
+X & \to \texttt{b}X\texttt{c} \mid  \varepsilon
 \end{align*}
 2. Schritt: $\varepsilon$-Regel entfernen.
 Die $\varepsilon$-Regel $X\to\varepsilon$ bedeuetet, dass $X$ weggelassen
@@ -54,68 +54,68 @@ werden kann:
 \begin{align*}
 S_0 & \to S
 \\
-S & \to \texttt{a} S \texttt{c} \;|\; X \;|\; \varepsilon
+S & \to \texttt{a} S \texttt{c} \mid  X \mid  \varepsilon
 \\
-X & \to \texttt{b}X\texttt{c} \;|\; \texttt{bc}
+X & \to \texttt{b}X\texttt{c} \mid  \texttt{bc}
 \end{align*}
 Dadurch ist eine neue $\varepsilon$-Regel $S\to\varepsilon$ entstanden,
 welche bedeutet, dass $S$ ebenfalls weggelassen werden kann:
 \begin{align*}
-S_0 & \to S \;|\; \varepsilon
+S_0 & \to S \mid  \varepsilon
 \\
 S & \to
-\texttt{a} S \texttt{c} \;|\; \texttt{ac} \;|\; X
+\texttt{a} S \texttt{c} \mid  \texttt{ac} \mid  X
 \\
-X & \to \texttt{b}X\texttt{c} \;|\; \texttt{bc}
+X & \to \texttt{b}X\texttt{c} \mid  \texttt{bc}
 \end{align*}
 3. Schritt: Unit rules entfernen.
 Zunächst die Regel $S_0\to S$:
 \begin{align*}
 S_0 & \to
-\texttt{a} S \texttt{c} \;|\; \texttt{ac} \;|\; X \;|\; \varepsilon
+\texttt{a} S \texttt{c} \mid  \texttt{ac} \mid  X \mid  \varepsilon
 \\
 S & \to
-\texttt{a} S \texttt{c} \;|\; \texttt{ac} \;|\; X
+\texttt{a} S \texttt{c} \mid  \texttt{ac} \mid  X
 \\
-X & \to \texttt{b}X\texttt{c} \;|\; \texttt{bc}
+X & \to \texttt{b}X\texttt{c} \mid  \texttt{bc}
 \end{align*}
 Es ist eine neue Regel $S_0\to X$ entstanden:
 \begin{align*}
 S_0 & \to
-\texttt{a} S \texttt{c} \;|\; \texttt{ac} \;|\;
-\texttt{b}X\texttt{c} \;|\; \texttt{bc}
-\;|\; \varepsilon
+\texttt{a} S \texttt{c} \mid  \texttt{ac} \mid 
+\texttt{b}X\texttt{c} \mid  \texttt{bc}
+\mid  \varepsilon
 \\
 S & \to
-\texttt{a} S \texttt{c} \;|\; \texttt{ac} \;|\; X
+\texttt{a} S \texttt{c} \mid  \texttt{ac} \mid  X
 \\
-X & \to \texttt{b}X\texttt{c} \;|\; \texttt{bc}
+X & \to \texttt{b}X\texttt{c} \mid  \texttt{bc}
 \end{align*}
 Schliesslich bleibt $S\to X$:
 \begin{align*}
 S_0 & \to
-\texttt{a} S \texttt{c} \;|\; \texttt{ac} \;|\;
-\texttt{b}X\texttt{c} \;|\; \texttt{bc}
-\;|\; \varepsilon
+\texttt{a} S \texttt{c} \mid  \texttt{ac} \mid 
+\texttt{b}X\texttt{c} \mid  \texttt{bc}
+\mid  \varepsilon
 \\
 S & \to
-\texttt{a} S \texttt{c} \;|\; \texttt{ac} \;|\;
-\texttt{b}X\texttt{c} \;|\; \texttt{bc}
+\texttt{a} S \texttt{c} \mid  \texttt{ac} \mid 
+\texttt{b}X\texttt{c} \mid  \texttt{bc}
 \\
-X & \to \texttt{b}X\texttt{c} \;|\; \texttt{bc}
+X & \to \texttt{b}X\texttt{c} \mid  \texttt{bc}
 \end{align*}
 4. Schritt: Terminalsymbole müssen separat umgesetzt werden:
 \begin{align*}
 S_0 & \to
-ASC \;|\; AC \;|\;
-BXC \;|\; BC
-\;|\; \varepsilon
+ASC \mid  AC \mid 
+BXC \mid  BC
+\mid  \varepsilon
 \\
 S & \to
-A S C \;|\; AC \;|\;
-BXC \;|\; BC
+A S C \mid  AC \mid 
+BXC \mid  BC
 \\
-X & \to BXC \;|\; BC
+X & \to BXC \mid  BC
 \\
 A&\to \texttt{a} \\
 B&\to \texttt{b} \\
@@ -123,11 +123,11 @@ C&\to \texttt{c}
 \end{align*}
 und Tripel müssen in zwei Schritten aufgebaut werden:
 \begin{align*}
-S_0 & \to AU \;|\; AC \;|\; BV \;|\; BC \;|\; \varepsilon
+S_0 & \to AU \mid  AC \mid  BV \mid  BC \mid  \varepsilon
 \\
-S & \to AU \;|\; AC \;|\; BV \;|\; BC
+S & \to AU \mid  AC \mid  BV \mid  BC
 \\
-X & \to BV \;|\; BC
+X & \to BV \mid  BC
 \\
 U&\to SC
 \\

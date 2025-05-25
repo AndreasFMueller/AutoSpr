@@ -1,7 +1,7 @@
 Betrachten Sie die Grammatik
 \begin{align*}
 S & \to X \texttt{1} X \texttt{1} X \\
-X & \to \texttt{0} X  \;|\; \texttt{1} X \;|\; \varepsilon
+X & \to \texttt{0} X  \mid  \texttt{1} X \mid  \varepsilon
 \end{align*}
 \begin{teilaufgaben}
 \item
@@ -25,7 +25,7 @@ Die erzeugte Sprache ist also
 \[
 L=\{
 w\in\{\texttt{0},\texttt{1}\}^*
-\;|\;
+\mid 
 |w|_{\texttt{1}} \ge 2\}.
 \]
 \item
@@ -37,28 +37,28 @@ so dass der erste Schritt des Algorithmus entfällt.
 \begin{align*}
 S & \to
 X \texttt{1} X \texttt{1} X
-\;|\;
+\mid 
 X \texttt{1} X \texttt{1} 
-\;|\;
+\mid 
 X \texttt{1}   \texttt{1} X
-\;|\;
+\mid 
 X \texttt{1}   \texttt{1} 
-\;|\;
+\mid 
   \texttt{1} X \texttt{1} X
-\;|\;
+\mid 
   \texttt{1} X \texttt{1}  
-\;|\;
+\mid 
   \texttt{1}   \texttt{1} X
-\;|\;
+\mid 
   \texttt{1}   \texttt{1}  
 \\
 X & \to
 \texttt{0} X
-\;|\;
+\mid 
 \texttt{0}
-\;|\;
+\mid 
 \texttt{1} X
-\;|\;
+\mid 
 \texttt{1}
 \end{align*}
 Es gibt keine Unit-Rules, so dass der 3.~Schritt entfallen kann.
@@ -67,24 +67,24 @@ Es gibt keine Unit-Rules, so dass der 3.~Schritt entfallen kann.
 ersetzt werden, ebenso die \texttt{0} und \texttt{1} in den Zweierregeln
 $X\to\texttt{0}X$ und $X\to\texttt{1}X$.
 \begin{align*}
-S & \to XAXAX \;|\; XAXA \;|\; XAAX \;|\; XAA \;|\; AXAX \;|\; AXA  \;|\; AAX \;|\; AA  
+S & \to XAXAX \mid  XAXA \mid  XAAX \mid  XAA \mid  AXAX \mid  AXA  \mid  AAX \mid  AA  
 \\
 X & \to
 BX
-\;|\;
+\mid 
 \texttt{0}
-\;|\;
+\mid 
 BX
-\;|\;
+\mid 
 \texttt{1}
 \\
 A&\to \texttt{1}
 \\
-B&\to \texttt{0} \;|\; \texttt{1}
+B&\to \texttt{0} \mid  \texttt{1}
 \end{align*}
 Die langen Regeln in der ersten Regel müssen schrittweise aufgebaut werden:
 \begin{align*}
-S & \to WU \;|\; WA \;|\; VU \;|\; VA \;|\; UU \;|\; UA  \;|\; AU \;|\; AA  
+S & \to WU \mid  WA \mid  VU \mid  VA \mid  UU \mid  UA  \mid  AU \mid  AA  
 \\
 U & \to AX
 \\
@@ -94,16 +94,16 @@ W & \to XU
 \\
 X & \to
 BX
-\;|\;
+\mid 
 \texttt{0}
-\;|\;
+\mid 
 BX
-\;|\;
+\mid 
 \texttt{1}
 \\
 A&\to \texttt{1}
 \\
-B&\to \texttt{0} \;|\; \texttt{1}
+B&\to \texttt{0} \mid  \texttt{1}
 \end{align*}
 Damit ist Chomsky-Normalform erreicht.
 \qedhere

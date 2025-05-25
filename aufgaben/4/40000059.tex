@@ -5,7 +5,7 @@ Finden Sie das Zustandsdiagramm eines Stackautomaten, der die Sprache
 \[
 L
 =
-\{ \texttt{a}^n \texttt{b}^l \texttt{c}^{n+l}\;|\; n,l\ge 0\}
+\{ \texttt{a}^n \texttt{b}^l \texttt{c}^{n+l}\mid  n,l\ge 0\}
 \]
 akzeptiert.
 \item
@@ -65,7 +65,7 @@ Daraus kann man bereits ablesen, wie man die Grammatik aufbauen kann.
 Man baut erst ein Wort der Form $\texttt{b}^l \texttt{c}^l$ und
 ``klammert'' es dann mit Paaren von \texttt{a} und \texttt{c} ein.
 Für ein Wort der Form $\texttt{b}^l \texttt{c}^l$ kann man die von der
-Sprache $\{\texttt{0}^n \texttt{1}^n\;|\; n\le 0\}$ inspirierte Grammatik
+Sprache $\{\texttt{0}^n \texttt{1}^n\mid  n\le 0\}$ inspirierte Grammatik
 \begin{align*}
 B&\rightarrow \varepsilon \\
  &\rightarrow \texttt{b} B \texttt{c}
@@ -102,52 +102,52 @@ B&\rightarrow \varepsilon \\
 Im zweiten Schritt wird die $\varepsilon$-Regel $B\to\varepsilon$ entfernt:
 \begin{align*}
 S&\rightarrow A\\
-A&\rightarrow B \;|\; \varepsilon\\
+A&\rightarrow B \mid  \varepsilon\\
  &\rightarrow \texttt{a} A \texttt{c} \\
-B&\rightarrow \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
+B&\rightarrow \texttt{b} B \texttt{c} \mid  \texttt{b} \texttt{c}
 \end{align*}
 Da die neue $\varepsilon$-Regel $A\to\varepsilon$ entstanden ist, muss
 dieser Schritt wiederholt werden:
 \begin{align*}
-S&\rightarrow A \;|\; \varepsilon\\
+S&\rightarrow A \mid  \varepsilon\\
 A&\rightarrow B \\
- &\rightarrow \texttt{a} A \texttt{c} \;|\; \texttt{ac}\\
-B&\rightarrow \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
+ &\rightarrow \texttt{a} A \texttt{c} \mid  \texttt{ac}\\
+B&\rightarrow \texttt{b} B \texttt{c} \mid  \texttt{b} \texttt{c}
 \end{align*}
 Die verbleibende $\varepsilon$-Regel $S\to\varepsilon$ ist erlaubt.
 
 Im dritten Schritt werden Unit-Rules eliminiert.
 Wir beginnen mit $S\to A$:
 \begin{align*}
-S&\rightarrow \varepsilon \;|\; B \;|\; \texttt{a}A\texttt{c} \;|\;\texttt{ac}\\
-A&\rightarrow B \;|\; \texttt{a} A \texttt{c} \;|\; \texttt{ac}\\
-B&\rightarrow \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
+S&\rightarrow \varepsilon \mid  B \mid  \texttt{a}A\texttt{c} \mid \texttt{ac}\\
+A&\rightarrow B \mid  \texttt{a} A \texttt{c} \mid  \texttt{ac}\\
+B&\rightarrow \texttt{b} B \texttt{c} \mid  \texttt{b} \texttt{c}
 \end{align*}
 Es ist eine neue Unit-rule $S\to B$ enstanden, welche als nächste eliminiert
 werden muss:
 \begin{align*}
-S&\rightarrow \varepsilon \;|\; \texttt{a}A\texttt{c} \;|\;\texttt{ac}
-\;|\; \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
+S&\rightarrow \varepsilon \mid  \texttt{a}A\texttt{c} \mid \texttt{ac}
+\mid  \texttt{b} B \texttt{c} \mid  \texttt{b} \texttt{c}
 \\
-A&\rightarrow B \;|\; \texttt{a} A \texttt{c} \;|\; \texttt{ac}\\
-B&\rightarrow \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
+A&\rightarrow B \mid  \texttt{a} A \texttt{c} \mid  \texttt{ac}\\
+B&\rightarrow \texttt{b} B \texttt{c} \mid  \texttt{b} \texttt{c}
 \end{align*}
 Es bleibt die Regel $A\to B$, welche wie folgt eliminiert werden kann:
 \begin{align*}
-S&\rightarrow \varepsilon \;|\; \texttt{a}A\texttt{c} \;|\;\texttt{ac}
-\;|\; \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
+S&\rightarrow \varepsilon \mid  \texttt{a}A\texttt{c} \mid \texttt{ac}
+\mid  \texttt{b} B \texttt{c} \mid  \texttt{b} \texttt{c}
 \\
-A&\rightarrow \texttt{a} A \texttt{c} \;|\; \texttt{ac} \;|\;
- \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c} \\
-B&\rightarrow \texttt{b} B \texttt{c} \;|\; \texttt{b} \texttt{c}
+A&\rightarrow \texttt{a} A \texttt{c} \mid  \texttt{ac} \mid 
+ \texttt{b} B \texttt{c} \mid  \texttt{b} \texttt{c} \\
+B&\rightarrow \texttt{b} B \texttt{c} \mid  \texttt{b} \texttt{c}
 \end{align*}
 
 Im vierten Schritt müssen jetzt noch die Terminalsymbole und die 
 Dreier-Regeln aufgelöst werden:
 \begin{align*}
-S&\rightarrow \varepsilon \;|\; XW \;|\; UW \;|\; YW \;|\; VW \\
-A&\rightarrow X W \;|\; UW \;|\; YW \;|\; VW \\
-B&\rightarrow YW \;|\; VW \\
+S&\rightarrow \varepsilon \mid  XW \mid  UW \mid  YW \mid  VW \\
+A&\rightarrow X W \mid  UW \mid  YW \mid  VW \\
+B&\rightarrow YW \mid  VW \\
 X&\rightarrow UA \\
 Y&\rightarrow VB \\
 U&\rightarrow \texttt{a} \\

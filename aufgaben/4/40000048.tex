@@ -23,30 +23,30 @@ S&\rightarrow \texttt{(}S\texttt{)}S
 \item
 $\varepsilon$-Regeln entfernen:
 \begin{align*}
-S_0&\rightarrow S \;|\; \varepsilon
+S_0&\rightarrow S \mid  \varepsilon
 \\
-S&\rightarrow \texttt{(}S\texttt{)}S \;|\; \texttt{(}\texttt{)}S \;|\;
+S&\rightarrow \texttt{(}S\texttt{)}S \mid  \texttt{(}\texttt{)}S \mid 
   \texttt{(}S\texttt{)} \texttt{(}\texttt{)}
 \end{align*}
 \item
 Unit-Rules entfernen: Es muss nur die Unit-Rule $S_0\to S$ entfernt
 werden:
 \begin{align*}
-S_0& \rightarrow \texttt{(}S)S \;|\; \texttt{(})S \;|\; \texttt{(}S) \;|\;
+S_0& \rightarrow \texttt{(}S)S \mid  \texttt{(})S \mid  \texttt{(}S) \mid 
 	\texttt{(})
 \\
    &\rightarrow \varepsilon
 \\
-S&\rightarrow \texttt{(}S\texttt{)}S \;|\; \texttt{(}\texttt{)}S \;|\;
-	\texttt{(}S\texttt{)} \;|\; \texttt{(}\texttt{)}
+S&\rightarrow \texttt{(}S\texttt{)}S \mid  \texttt{(}\texttt{)}S \mid 
+	\texttt{(}S\texttt{)} \mid  \texttt{(}\texttt{)}
 \end{align*}
 \item Terminalsymbole in eigene Regeln auslagern:
 \begin{align*}
-S_0& \rightarrow ASBS \;|\; ABS \;|\; ASB \;|\; AB
+S_0& \rightarrow ASBS \mid  ABS \mid  ASB \mid  AB
 \\
    &\rightarrow \varepsilon
 \\
-S&\rightarrow ASBS \;|\; ABS \;|\; ASB \;|\; AB
+S&\rightarrow ASBS \mid  ABS \mid  ASB \mid  AB
 \\
 A&\rightarrow \texttt{(}
 \\
@@ -55,11 +55,11 @@ B&\rightarrow \texttt{)}
 Die rechten Seiten mit mehr als zwei Symbolen müssen nun noch Schrittweise
 aufgebaut werden:
 \begin{align*}
-S_0& \rightarrow AU_1 \;|\; AU_2 \;|\; AV \;|\; AB
+S_0& \rightarrow AU_1 \mid  AU_2 \mid  AV \mid  AB
 \\
    &\rightarrow \varepsilon
 \\
-S&\rightarrow AU_1 \;|\; AU_2 \;|\; AV \;|\; AB
+S&\rightarrow AU_1 \mid  AU_2 \mid  AV \mid  AB
 \\
 A&\rightarrow \texttt{(}
 \\

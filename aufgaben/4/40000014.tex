@@ -34,62 +34,62 @@ die Unit rules.
 Dies war nicht verlangt, aber man kann Chomsky-Normalform mit dem
 üblichen Algorithmus erreichen: Elimination von $S_0\to S$:
 \begin{align*}
-S_0&\to \varepsilon\;|\;A\;|\;SA\\
-S  &\to A\;|\;SA\\
-A  &\to W\;|\;A{\tt 1}\\
-W  &\to {\tt 01}\;|\; {\tt 0}W{\tt 1}
+S_0&\to \varepsilon\mid A\mid SA\\
+S  &\to A\mid SA\\
+A  &\to W\mid A{\tt 1}\\
+W  &\to {\tt 01}\mid  {\tt 0}W{\tt 1}
 \end{align*}
 Elimination von $S_0\to A$:
 \begin{align*}
-S_0&\to \varepsilon\;|\;SA\;|\;W\;|\;A{\tt 1}\\
-S  &\to A\;|\;SA\\
-A  &\to W\;|\;A{\tt 1}\\
-W  &\to {\tt 01}\;|\; {\tt 0}W{\tt 1}
+S_0&\to \varepsilon\mid SA\mid W\mid A{\tt 1}\\
+S  &\to A\mid SA\\
+A  &\to W\mid A{\tt 1}\\
+W  &\to {\tt 01}\mid  {\tt 0}W{\tt 1}
 \end{align*}
 Elimination von $S_0\to W$:
 \begin{align*}
-S_0&\to \varepsilon\;|\;SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}W{\tt 1}\\
-S  &\to A\;|\;SA\\
-A  &\to W\;|\;A{\tt 1}\\
-W  &\to {\tt 01}\;|\; {\tt 0}W{\tt 1}
+S_0&\to \varepsilon\mid SA\mid A{\tt 1}\mid {\tt 01}\mid {\tt 0}W{\tt 1}\\
+S  &\to A\mid SA\\
+A  &\to W\mid A{\tt 1}\\
+W  &\to {\tt 01}\mid  {\tt 0}W{\tt 1}
 \end{align*}
 Elimination von $S\to A$:
 \begin{align*}
-S_0&\to \varepsilon\;|\;SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}W{\tt 1}\\
-S  &\to SA\;|\;W\;|\;A{\tt 1}\\
-A  &\to W\;|\;A{\tt 1}\\
-W  &\to {\tt 01}\;|\; {\tt 0}W{\tt 1}
+S_0&\to \varepsilon\mid SA\mid A{\tt 1}\mid {\tt 01}\mid {\tt 0}W{\tt 1}\\
+S  &\to SA\mid W\mid A{\tt 1}\\
+A  &\to W\mid A{\tt 1}\\
+W  &\to {\tt 01}\mid  {\tt 0}W{\tt 1}
 \end{align*}
 Elimination von $S\to W$:
 \begin{align*}
-S_0&\to \varepsilon\;|\;SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}W{\tt 1}\\
-S  &\to SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}W{\tt 1}\\
-A  &\to W\;|\;A{\tt 1}\\
-W  &\to {\tt 01}\;|\; {\tt 0}W{\tt 1}
+S_0&\to \varepsilon\mid SA\mid A{\tt 1}\mid {\tt 01}\mid {\tt 0}W{\tt 1}\\
+S  &\to SA\mid A{\tt 1}\mid {\tt 01}\mid {\tt 0}W{\tt 1}\\
+A  &\to W\mid A{\tt 1}\\
+W  &\to {\tt 01}\mid  {\tt 0}W{\tt 1}
 \end{align*}
 Elimination von $A\to W$:
 \begin{align*}
-S_0&\to \varepsilon\;|\;SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}W{\tt 1}\\
-S  &\to SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}W{\tt 1}\\
-A  &\to A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}W{\tt 1}\\
-W  &\to {\tt 01}\;|\; {\tt 0}W{\tt 1}
+S_0&\to \varepsilon\mid SA\mid A{\tt 1}\mid {\tt 01}\mid {\tt 0}W{\tt 1}\\
+S  &\to SA\mid A{\tt 1}\mid {\tt 01}\mid {\tt 0}W{\tt 1}\\
+A  &\to A{\tt 1}\mid {\tt 01}\mid {\tt 0}W{\tt 1}\\
+W  &\to {\tt 01}\mid  {\tt 0}W{\tt 1}
 \end{align*}
 Auflösung der Regeln mit rechter Seite ${\tt 0}W{\tt 1}$:
 \begin{align*}
-S_0&\to \varepsilon\;|\;SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}B\\
+S_0&\to \varepsilon\mid SA\mid A{\tt 1}\mid {\tt 01}\mid {\tt 0}B\\
 B  &\to W{\tt 1}\\
-S  &\to SA\;|\;A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}B\\
-A  &\to A{\tt 1}\;|\;{\tt 01}\;|\;{\tt 0}B\\
-W  &\to {\tt 01}\;|\; {\tt 0}B
+S  &\to SA\mid A{\tt 1}\mid {\tt 01}\mid {\tt 0}B\\
+A  &\to A{\tt 1}\mid {\tt 01}\mid {\tt 0}B\\
+W  &\to {\tt 01}\mid  {\tt 0}B
 \end{align*}
 Entfernung der Terminale {\tt 0} und {\tt 1} aus Regeln mit zwei Symbolen
 auf der rechten Seite:
 \begin{align*}
-S_0&\to \varepsilon\;|\;SA\;|\;AE\;|\;NE\;|\;NB\\
+S_0&\to \varepsilon\mid SA\mid AE\mid NE\mid NB\\
 B  &\to BE\\
-S  &\to SA\;|\;AE\;|\;NE\;|\;NB\\
-A  &\to AE\;|\;NE\;|\;NB\\
-W  &\to NE\;|\; NB\\
+S  &\to SA\mid AE\mid NE\mid NB\\
+A  &\to AE\mid NE\mid NB\\
+W  &\to NE\mid  NB\\
 N  &\to {\tt 0}\\
 E  &\to {\tt 1}
 \qedhere

@@ -4,9 +4,9 @@ Vorlesung die Grammatik
 \begin{aligned}
 S\rightarrow
 \texttt{(}S\texttt{)}
-\;|\;
+\mid 
 SS
-\;|\;
+\mid 
 \varepsilon
 \label{40000052:grammar1}
 \end{aligned}
@@ -150,51 +150,51 @@ der rechten Seite nicht vorkommt:
 \begin{align*}
 S_0&\rightarrow S
 \\
-S&\rightarrow \texttt{(} S \texttt{)} S \;|\; \varepsilon
+S&\rightarrow \texttt{(} S \texttt{)} S \mid  \varepsilon
 \end{align*}
 Jetzt müssen $\varepsilon$-Regeln entfernt werden:
 \begin{align*}
 S_0&\rightarrow
 S
-\;|\;
+\mid 
 \varepsilon
 \\
 S&\rightarrow
-\texttt{(} S \texttt{)} S \;|\;
-\texttt{(}  \texttt{)} S \;|\;
-\texttt{(} S \texttt{)}  \;|\;
+\texttt{(} S \texttt{)} S \mid 
+\texttt{(}  \texttt{)} S \mid 
+\texttt{(} S \texttt{)}  \mid 
 \texttt{(}  \texttt{)} 
 \end{align*}
 Jetzt müssen Unit-Rules entfernt werden:
 \begin{align*}
 S_0&\rightarrow
-\texttt{(} S \texttt{)} S \;|\;
-\texttt{(}  \texttt{)} S \;|\;
-\texttt{(} S \texttt{)}  \;|\;
+\texttt{(} S \texttt{)} S \mid 
+\texttt{(}  \texttt{)} S \mid 
+\texttt{(} S \texttt{)}  \mid 
 \texttt{(}  \texttt{)} 
-\;|\;
+\mid 
 \varepsilon
 \\
 S&\rightarrow
-\texttt{(} S \texttt{)} S \;|\;
-\texttt{(}  \texttt{)} S \;|\;
-\texttt{(} S \texttt{)}  \;|\;
+\texttt{(} S \texttt{)} S \mid 
+\texttt{(}  \texttt{)} S \mid 
+\texttt{(} S \texttt{)}  \mid 
 \texttt{(}  \texttt{)} 
 \end{align*}
 Jetzt müssen nur noch die verbleibenden Sequenzen aufgeteilt werden:
 \begin{align*}
 S_0&\rightarrow
-AX \;|\;
-AY \;|\;
-AZ  \;|\;
+AX \mid 
+AY \mid 
+AZ  \mid 
 AB 
-\;|\;
+\mid 
 \varepsilon
 \\
 S&\rightarrow
-AX \;|\;
-AY \;|\;
-AZ  \;|\;
+AX \mid 
+AY \mid 
+AZ  \mid 
 AB 
 \\
 A&\rightarrow \texttt{(}\\

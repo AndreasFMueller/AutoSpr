@@ -21,14 +21,14 @@ K  &\to \texttt{(}K\texttt{)}K \\
 \end{align*}
 Die $\varepsilon$-Regel $K\to\varepsilon$ muss entfernt werden:
 \begin{align*}
-K_0&\to K \;|\; \varepsilon\\
-K  &\to \texttt{(}K\texttt{)}K \;|\; \texttt{()}K \;|\; \texttt{(}K\texttt{)} \;|\; \texttt{()}\\
+K_0&\to K \mid  \varepsilon\\
+K  &\to \texttt{(}K\texttt{)}K \mid  \texttt{()}K \mid  \texttt{(}K\texttt{)} \mid  \texttt{()}\\
 \end{align*}
 Die einzige Unit-Rule ist $K_0\to K$, sie kann entfernt werden:
 \begin{align*}
-K_0&\to \texttt{(}K\texttt{)}K \;|\; \texttt{()}K \;|\; \texttt{(}K\texttt{)} \;|\; \texttt{()}
-\;|\; \varepsilon\\
-K  &\to \texttt{(}K\texttt{)}K \;|\; \texttt{()}K \;|\; \texttt{(}K\texttt{)} \;|\; \texttt{()}\\
+K_0&\to \texttt{(}K\texttt{)}K \mid  \texttt{()}K \mid  \texttt{(}K\texttt{)} \mid  \texttt{()}
+\mid  \varepsilon\\
+K  &\to \texttt{(}K\texttt{)}K \mid  \texttt{()}K \mid  \texttt{(}K\texttt{)} \mid  \texttt{()}\\
 \end{align*}
 Es bleibt nur noch, die Regeln mit mehr als 2 Variablen auf der rechten
 Seite zu vereinfachen:
@@ -36,11 +36,11 @@ Seite zu vereinfachen:
 K_0
 &\to
 OA_1
-\;|\;
+\mid 
 OA_2
-\;|\;
+\mid 
 OB
-\;|\;
+\mid 
 OS
 \\
 K_0&\to
@@ -49,11 +49,11 @@ K_0&\to
 K
 &\to
 OA_1
-\;|\;
+\mid 
 OA_2
-\;|\;
+\mid 
 OB
-\;|\;
+\mid 
 OS
 \\
 A_1&\to KA_2 \\

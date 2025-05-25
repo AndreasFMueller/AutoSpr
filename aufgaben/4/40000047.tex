@@ -2,7 +2,7 @@ Finden Sie eine Grammatik in Chomsky-Normalform für die Sprache
 \[
 L=\{
 \texttt{a}^n\texttt{b}^m\texttt{a}^n
-\;|\;
+\mid 
 n\ge 0, m\ge 1
 \}.
 \]
@@ -35,36 +35,36 @@ Wir wenden den Standardalgorithmus an:
 \item Startvariable: 
 \begin{align*}
 S_0&\rightarrow S                      \\
-S  &\rightarrow R  \;|\; \texttt{a} S \texttt{a}\\
-R  &\rightarrow \texttt{b} \;|\; R\texttt{b}
+S  &\rightarrow R  \mid  \texttt{a} S \texttt{a}\\
+R  &\rightarrow \texttt{b} \mid  R\texttt{b}
 \end{align*}
 \item $\varepsilon$-Regeln: es gibt keine $\varepsilon$-Regeln, damit
 entfällt dieser Schritt.
 \item Unit-Rules: Wir beginnen mit der Regel $S_0\rightarrow S$:
 \begin{align*}
-S_0&\rightarrow \color{red} R  \;|\; \texttt{a} S \texttt{a}\\
-S  &\rightarrow R  \;|\; \texttt{a} S \texttt{a}\\
-R  &\rightarrow \texttt{b} \;|\; R\texttt{b}
+S_0&\rightarrow \color{red} R  \mid  \texttt{a} S \texttt{a}\\
+S  &\rightarrow R  \mid  \texttt{a} S \texttt{a}\\
+R  &\rightarrow \texttt{b} \mid  R\texttt{b}
 \end{align*}
 Regel $S_0\rightarrow R$:
 \begin{align*}
-S_0&\rightarrow \texttt{a} S \texttt{a} \;|\; \color{red}\texttt{b} \;|\; R\texttt{b} \\
-S  &\rightarrow R  \;|\; \texttt{a} S \texttt{a}\\
-R  &\rightarrow \texttt{b} \;|\; R\texttt{b}
+S_0&\rightarrow \texttt{a} S \texttt{a} \mid  \color{red}\texttt{b} \mid  R\texttt{b} \\
+S  &\rightarrow R  \mid  \texttt{a} S \texttt{a}\\
+R  &\rightarrow \texttt{b} \mid  R\texttt{b}
 \end{align*}
 Regel $S\rightarrow R$:
 \begin{align*}
-S_0&\rightarrow \texttt{a} S \texttt{a} \;|\; \texttt{b} \;|\; R\texttt{b} \\
-S  &\rightarrow \texttt{a} S \texttt{a} \;|\; \color{red} \texttt{b} \;|\; R\texttt{b}\\
-R  &\rightarrow \texttt{b} \;|\; R\texttt{b}
+S_0&\rightarrow \texttt{a} S \texttt{a} \mid  \texttt{b} \mid  R\texttt{b} \\
+S  &\rightarrow \texttt{a} S \texttt{a} \mid  \color{red} \texttt{b} \mid  R\texttt{b}\\
+R  &\rightarrow \texttt{b} \mid  R\texttt{b}
 \end{align*}
 Damit sind alle Unit-Rules entfernt.
 \item Verkettungsregeln: Zunächst fügen wir zwei Regeln für die
 Terminalsymbole \texttt{a} und \texttt{b} hinzu:
 \begin{align*}
-S_0&\rightarrow {\color{red}A}S{\color{red}A} \;|\; \texttt{b} \;|\; R{\color{red}B} \\
-S  &\rightarrow {\color{red}A}S{\color{red}A} \;|\; \texttt{b} \;|\; R{\color{red}B} \\
-R  &\rightarrow \texttt{b} \;|\; R{\color{red}B} \\
+S_0&\rightarrow {\color{red}A}S{\color{red}A} \mid  \texttt{b} \mid  R{\color{red}B} \\
+S  &\rightarrow {\color{red}A}S{\color{red}A} \mid  \texttt{b} \mid  R{\color{red}B} \\
+R  &\rightarrow \texttt{b} \mid  R{\color{red}B} \\
 \color{red}A  &\color{red}\rightarrow \texttt{a} \\
 \color{red}B  &\color{red}\rightarrow \texttt{b}
 \end{align*}
@@ -72,9 +72,9 @@ Damit entsprechen jetzt nur noch die Regeln $S\rightarrow ASA$ und
 $S_0\rightarrow ASA$ nicht der Chomsky-Normalform.
 Wir können das aber durch eine neue Variable $U$ erreichen:
 \begin{align*}
-S_0&\rightarrow {\color{red}U}A \;|\; \texttt{b} \;|\; RB \\
-S  &\rightarrow {\color{red}U}A \;|\; \texttt{b} \;|\; RB \\
-R  &\rightarrow \texttt{b} \;|\; RB \\
+S_0&\rightarrow {\color{red}U}A \mid  \texttt{b} \mid  RB \\
+S  &\rightarrow {\color{red}U}A \mid  \texttt{b} \mid  RB \\
+R  &\rightarrow \texttt{b} \mid  RB \\
 A  &\rightarrow \texttt{a} \\
 B  &\rightarrow \texttt{b} \\
 \color{red}U  &\color{red}\rightarrow AS

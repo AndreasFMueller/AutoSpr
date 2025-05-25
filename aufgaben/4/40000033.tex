@@ -19,41 +19,41 @@ Markierungen.
 \begin{align*}
 \text{\textsl{praefix}}
 &\rightarrow
-\text{\color{red}\textsl{kantonskuerzel}}\;|\;
+\text{\color{red}\textsl{kantonskuerzel}}\mid 
 \text{\color{red}\textsl{adminpraefix}}\\
 \text{\textsl{kantonskuerzel}}
 &\rightarrow
-{\color{blue}\tt AG}\;|\;
-{\color{blue}\tt AR}\;|\;
-{\color{blue}\tt AI}\;|\;
-{\color{blue}\tt BL}\;|\;
-{\color{blue}\tt BS}\;|\;
-{\color{blue}\tt BE}\;|\;
-{\color{blue}\tt FR}\;|\;
-{\color{blue}\tt GE}\;|\;
-{\color{blue}\tt GL}\;|\;
-{\color{blue}\tt GR}\;|\;
-{\color{blue}\tt JU}\;|\;
-{\color{blue}\tt LU}\;|\;
+{\color{blue}\tt AG}\mid 
+{\color{blue}\tt AR}\mid 
+{\color{blue}\tt AI}\mid 
+{\color{blue}\tt BL}\mid 
+{\color{blue}\tt BS}\mid 
+{\color{blue}\tt BE}\mid 
+{\color{blue}\tt FR}\mid 
+{\color{blue}\tt GE}\mid 
+{\color{blue}\tt GL}\mid 
+{\color{blue}\tt GR}\mid 
+{\color{blue}\tt JU}\mid 
+{\color{blue}\tt LU}\mid 
 {\color{blue}\tt NE}
 \\
 &\rightarrow
-{\color{blue}\tt NW}\;|\;
-{\color{blue}\tt OW}\;|\;
-{\color{blue}\tt SH}\;|\;
-{\color{blue}\tt SZ}\;|\;
-{\color{blue}\tt SO}\;|\;
-{\color{blue}\tt SG}\;|\;
-{\color{blue}\tt TI}\;|\;
-{\color{blue}\tt TG}\;|\;
-{\color{blue}\tt UR}\;|\;
-{\color{blue}\tt VD}\;|\;
-{\color{blue}\tt VS}\;|\;
-{\color{blue}\tt ZG}\;|\;
+{\color{blue}\tt NW}\mid 
+{\color{blue}\tt OW}\mid 
+{\color{blue}\tt SH}\mid 
+{\color{blue}\tt SZ}\mid 
+{\color{blue}\tt SO}\mid 
+{\color{blue}\tt SG}\mid 
+{\color{blue}\tt TI}\mid 
+{\color{blue}\tt TG}\mid 
+{\color{blue}\tt UR}\mid 
+{\color{blue}\tt VD}\mid 
+{\color{blue}\tt VS}\mid 
+{\color{blue}\tt ZG}\mid 
 {\color{blue}\tt ZH}\\
 \text{\textsl{adminpraefix}}
-&\rightarrow {\tt A}\;|\;
-{\tt P}\;|\;
+&\rightarrow {\tt A}\mid 
+{\tt P}\mid 
 {\tt M}
 \end{align*}
 Dann brauchen wir Regeln für eine maximal sechsstellige Zahl
@@ -95,36 +95,36 @@ Dann brauchen wir Regeln für eine maximal sechsstellige Zahl
 \\
 \text{\textsl{ziffer}}
 &\rightarrow
-{\tt 0}\;|\;
-{\tt 1}\;|\;
-{\tt 2}\;|\;
-{\tt 3}\;|\;
-{\tt 4}\;|\;
-{\tt 5}\;|\;
-{\tt 6}\;|\;
-{\tt 7}\;|\;
-{\tt 8}\;|\;
+{\tt 0}\mid 
+{\tt 1}\mid 
+{\tt 2}\mid 
+{\tt 3}\mid 
+{\tt 4}\mid 
+{\tt 5}\mid 
+{\tt 6}\mid 
+{\tt 7}\mid 
+{\tt 8}\mid 
 {\tt 9}
 \\
 \text{\textsl{positiveziffer}}
 &\rightarrow
-{\tt 1}\;|\;
-{\tt 2}\;|\;
-{\tt 3}\;|\;
-{\tt 4}\;|\;
-{\tt 5}\;|\;
-{\tt 6}\;|\;
-{\tt 7}\;|\;
-{\tt 8}\;|\;
+{\tt 1}\mid 
+{\tt 2}\mid 
+{\tt 3}\mid 
+{\tt 4}\mid 
+{\tt 5}\mid 
+{\tt 6}\mid 
+{\tt 7}\mid 
+{\tt 8}\mid 
 {\tt 9}
 \\
 \end{align*}
 Schliesslich brauchen wir noch Regeln für das optionale Suffix:
 \begin{align*}
 \text{\textsl{suffix}}
-&\rightarrow{\color{green}\varepsilon} \;|\;
-{\tt U} \;|\;
-{\tt V} \;|\;
+&\rightarrow{\color{green}\varepsilon} \mid 
+{\tt U} \mid 
+{\tt V} \mid 
 {\tt Z}
 \end{align*}
 Diese Regeln können wir jetzt mit Hilfe einer Startregel zu einer

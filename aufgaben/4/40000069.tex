@@ -2,7 +2,7 @@ Ist die Sprache
 \[
 L=
 \{
-\texttt{0}^i \texttt{1}^j\texttt{0}^k\;|\; j> i>0\wedge k>0\}
+\texttt{0}^i \texttt{1}^j\texttt{0}^k\mid  j> i>0\wedge k>0\}
 \}
 \]
 kontextfrei?
@@ -18,20 +18,20 @@ Die Grammatik muss Wörter der Form $\texttt{0}^i\texttt{1}^i$, $i>0$, mit
 Wörtern der Form $\texttt{1}^l\texttt{0}^k$, $l>0\wedge k>0$, verketten.
 Für Wörter der ersten Art haben wir die Grammatik
 \begin{align*}
-A&\to \texttt{0}A\texttt{1} \;|\; \texttt{01},
+A&\to \texttt{0}A\texttt{1} \mid  \texttt{01},
 \end{align*}
 für die Wörter der zweiten Art können wir
 \begin{align*}
-B&\to \texttt{1} B \;|\; B\texttt{0} \;|\; \texttt{10}
+B&\to \texttt{1} B \mid  B\texttt{0} \mid  \texttt{10}
 \end{align*}
 verwenden.
 Damit finden wir die Grammatik
 \begin{align*}
 S&\to AB
 \\
-A&\to \texttt{0}A\texttt{1} \;|\; \texttt{01}
+A&\to \texttt{0}A\texttt{1} \mid  \texttt{01}
 \\ 
-B&\to \texttt{1}B \;|\; B\texttt{0} \;|\; \texttt{10}
+B&\to \texttt{1}B \mid  B\texttt{0} \mid  \texttt{10}
 \end{align*}
 Diese Grammatik hat nicht Chomsky-Normalform.
 Aber ihre Startvariable kommt auf der rechten Seite nicht vor und
@@ -41,11 +41,11 @@ zu ``flicken'':
 \begin{align*}
 S&\to AB
 \\
-A&\to NU \;|\; NE
+A&\to NU \mid  NE
 \\
 U&\to AE
 \\ 
-B&\to EB \;|\; BN \;|\; EN
+B&\to EB \mid  BN \mid  EN
 \\
 N&\to \texttt{0}
 \\
