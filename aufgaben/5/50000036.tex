@@ -1,4 +1,4 @@
-Zeichnen Sie Zustandsdiagramme für die Turingmaschinen
+Zeichnen Sie Zustandsdiagramme für die Turing-Maschinen
 mit dem Alphabet $\Sigma=\{\texttt{0},\texttt{1}\}$, die die folgenden
 Sprachen akzeptieren.
 \begin{teilaufgaben}
@@ -46,6 +46,8 @@ L_3
 L_1\cap L_2
 \)
 \end{teilaufgaben}
+
+\thema{Turing-Maschine}
 
 \begin{loesung}
 In Teilaufgabe c) müssen beide Bedingungen von Teilaufgaben a) und b)
@@ -167,7 +169,7 @@ zurück zum Anfang des Wortes, dies wird für Teilaufgabe c) nützlich werden.
 \item
 Ein Wort hat genau dann gleich viele \texttt{0} wie \texttt{1} modulo 2,
 wenn die Anzahl der Zeichen gerade ist.
-Das folgende Zustandsdiagramm beschreibt eine Turingmaschine, die genau
+Das folgende Zustandsdiagramm beschreibt eine Turing-Maschine, die genau
 die Wörter der Sprache $L_2$ akzeptiert.
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
@@ -215,10 +217,10 @@ die Wörter der Sprache $L_2$ akzeptiert.
 \end{tikzpicture}
 \end{center}
 \item
-Die Turingmaschine von Teilaufgabe ist so aufgebaut, dass im Falle,
+Die Turing-Maschine von Teilaufgabe ist so aufgebaut, dass im Falle,
 dass das Wort akzeptiert wird, der Schreib-/Lesekopf wieder auf dem
 ersten Zeichen steht.
-Man kann daher ein Turingmaschine für die Sprache $L_3$ bekommen,
+Man kann daher ein Turing-Maschine für die Sprache $L_3$ bekommen,
 indem man man die beiden Zustandsdiagramme der Teilaufgaben a) und b)
 verkettet, indem man den $q_{\text{accept}}$ von a) zum Startzustand
 von b) macht.
