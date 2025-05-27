@@ -5,7 +5,7 @@
 #
 AC_PREREQ([2.72])
 AC_REVISION([1.0])dnl
-AC_INIT([gvm],[1.0],[andreas.mueller@othello.ch])
+AC_INIT([gvm],[1.1],[andreas.mueller@othello.ch])
 AC_CONFIG_SRCDIR([vm/gvm.c])
 AC_CANONICAL_TARGET([])
 AM_INIT_AUTOMAKE

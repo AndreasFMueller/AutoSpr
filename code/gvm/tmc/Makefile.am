@@ -9,9 +9,10 @@ sleepinterval = 100
 
 EXTRA_DIST = tmc.h tmc-tokens.l tmc-grammar.y
 
-bin_PROGRAMS = tmc
+bin_PROGRAMS = tmc gmptest
 
 tmc_SOURCES = tmc.c tmc-tokens.c tmc-grammar.c
+gmptest_SOURCES = gmptest.c
 
 tmc-tokens.c:	tmc-tokens.l tmc-grammar.h
 	$(LEX) $< && mv lex.yy.c tmc-tokens.c
@@ -62,8 +63,8 @@ b4:	tmp/beaver4.goto
 	../vm/gvm -s $(sleepinterval) tmp/beaver4.goto
 
 tmp/beaver5.goto:	tmc tmp pgm/beaver5
-	./tmc -p 20 -o tmp/beaver5.goto pgm/beaver5
+	./tmc -p 15000 -o tmp/beaver5.goto pgm/beaver5
 
 b5:	tmp/beaver5.goto
-	../vm/gvm -s $(sleepinterval) tmp/beaver5.goto
+	../vm/gvm tmp/beaver5.goto
 

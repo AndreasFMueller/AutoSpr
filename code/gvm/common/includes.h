@@ -13,11 +13,7 @@
 
 #include <errno.h>
 #include <fcntl.h>
-
-#ifdef HAVE_GMP_H
 #include <gmp.h>
-#endif /* HAVE_GMP_H */
-
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>

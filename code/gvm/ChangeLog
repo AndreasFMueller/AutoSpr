@@ -1,5 +1,8 @@
 ChangeLog for gvm
 
+20250527:
+	* work around a segmentation fault in gmp_fprintf
+
 20220517:
 	* add some more statistics output
 
@@ -9,5 +12,4 @@ ChangeLog for gvm
 20120525:
 	* create project
 
---
-$Id$
+

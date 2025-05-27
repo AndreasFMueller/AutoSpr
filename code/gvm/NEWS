@@ -1,4 +1,5 @@
-no news
+Release 1.1 works around a bug in GMP 6.3 on Macos (as installed using
+the brew package manager). The function gmp_fprintf causes a segmentation
+fault. By writing the output string to a local buffer first, and only then
+sending it to the output FILE, the segmentation fault is avoided.
 
---
-$Id$

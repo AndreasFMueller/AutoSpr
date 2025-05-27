@@ -59,12 +59,19 @@ int	get_charcode(char c) {
 void	tmc_compile(FILE *output, tm_t *tmp) {
 	int	lineno = 1;
 	if (tmp->initialtape) {
+		if (yydebug)
+			fprintf(stderr, "%s:%d: converting initialtape at %p\n",
+				__FILE__, __LINE__, tmp->initialtape);
 		// create a copy in reverse order
 		char	*tapestring = strdup(tmp->initialtape);
 		int	l = strlen(tapestring);
 		for (int i = 0; i < l; i++) {
 			tapestring[i] = tmp->initialtape[l - 1 - i];
 		}
+		if (yydebug)
+			fprintf(stderr, "%s:%d: reversed initial string: "
+				"'%s'\n", __FILE__, __LINE__, tapestring);
+
 		// convert to standard encoding
 		char	*p = tapestring;
 		while (*p) {
@@ -76,15 +83,43 @@ void	tmc_compile(FILE *output, tm_t *tmp) {
 			}
 			p++;
 		}
-		// convert the tape into a number
+		if (yydebug)
+			fprintf(stderr, "%s:%d: converted to standard "
+				"encoding: '%s'\n", __FILE__, __LINE__,
+				tapestring);
+		
+		// convert the tape into a number.
 		mpz_t	tape;
 		mpz_init_set_str(tape, tapestring, 4);
-		gmp_fprintf(output, "%d: v0 := %Zd\n", lineno++, tape);
+		if (0) {
+			gmp_fprintf(output, "%d: v0 := %Zd ", lineno++, tape);
+		} else {
+			// the following is a workaround for a bad bug in
+			// gmp_fprintf in gmp-6.3 on Macos, causing a
+			// segmentation fault. Instead the code below writes
+			// the number to an in memory buffer and write the
+			// converted string to the file
+			char	*buf = NULL;
+			int	s = gmp_snprintf(buf, 0, "%d: v0 := %Zd ",
+					lineno, tape);
+			buf = (char *)alloca(s);
+			gmp_snprintf(buf, s, "%d: v0 := %Zd ", lineno++, tape);
+			fprintf(output, "%s\n", buf);
+			if (yydebug)
+				fprintf(stderr, "%s:%d: tape written: %s\n",
+					__FILE__, __LINE__, buf);
+		}
 		mpz_clear(tape);
 		free(tapestring);
 	} else {
+		if (yydebug)
+			fprintf(stderr, "%s:%d: writing empty tape\n",
+				__FILE__, __LINE__);
 		fprintf(output, "%d: v0 := 0\n", lineno++); // tape
 	}
+	if (yydebug)
+		fprintf(stderr, "%s:%d: writing preamble\n",
+			__FILE__, __LINE__);
 	// initial state
 	fprintf(output, "%d: v1 := %d\n", lineno++, tmp->initialstate);
 	// initial head position
@@ -107,6 +142,9 @@ void	tmc_compile(FILE *output, tm_t *tmp) {
 	fprintf(output, "%d: v3 := v3 %% 4\n", lineno++);
 	int	endline = lineno + tmp->nnodes * 7 + 26;
 	for (int i = 0; i < tmp->nnodes; i++) {
+		if (yydebug)
+			fprintf(stderr, "%s:%d: compiling node %d of %d\n",
+				__FILE__, __LINE__, i, tmp->nnodes);
 		int	next = lineno + 7;
 		fprintf(output, "%d: IF v1 = %d GOTO %d\n", lineno,
 			tmp->nodes[i].from_state, lineno + 2);
@@ -114,11 +152,13 @@ void	tmc_compile(FILE *output, tm_t *tmp) {
 		fprintf(output, "%d: GOTO %d\n", lineno, next);
 		lineno++;
 		int	charcode = get_charcode(tmp->nodes[i].from_tapechar);
-		fprintf(output, "%d: IF v3 = %d GOTO %d\n", lineno, charcode, lineno + 2);
+		fprintf(output, "%d: IF v3 = %d GOTO %d\n", lineno, charcode,
+			lineno + 2);
 		lineno++;
 		fprintf(output, "%d: GOTO %d\n", lineno++, next);
 		// remember new state in variable v7
-		fprintf(output, "%d: v7 := %d\n", lineno++, tmp->nodes[i].to_state);
+		fprintf(output, "%d: v7 := %d\n", lineno++,
+			tmp->nodes[i].to_state);
 		// remember the new tape character in v6
 		charcode = get_charcode(tmp->nodes[i].to_tapechar);
 		fprintf(output, "%d: v6 := %d\n", lineno++, charcode);
@@ -288,14 +328,28 @@ int	main(int argc, char *argv[]) {
 	/* display the parsed program */
 	tmc_display(&tm);
 
-	/* compile */
+	/* opening output file for GOTO program */
+	if (yydebug) {
+		fprintf(stderr, "%s:%d: trying to open output file %s\n",
+			__FILE__, __LINE__, outfilename);
+	}
 	FILE	*output = fopen(outfilename, "w");
 	if (NULL == output) {
 		fprintf(stderr, "cannot open output file %s for writing: %s\n",
 			outfilename, strerror(errno));
 		exit(EXIT_FAILURE);
 	}
+
+	/* compile */
+	if (yydebug) {
+		fprintf(stderr, "%s:%d: starting the compiler\n",
+			__FILE__, __LINE__);
+	}
 	tmc_compile(output, &tm);
+	if (yydebug) {
+		fprintf(stderr, "%s:%d: compile complete, closing file\n",
+			__FILE__, __LINE__);
+	}
 	fclose(output);
 	
 	exit(EXIT_SUCCESS);
