@@ -78,42 +78,14 @@ können gelesen werden, ohne dass der Stack modifiziert wird.
 	[above right] {$\texttt{b},\texttt{\$}\to\varepsilon$};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix @+5mm{
-%*+\txt{}
-%        &*+\txt{}
-%                &*+\txt{}
-%                        &*+\txt{}
-%                                &{q_3}\ar@(ur,ul)_{\varepsilon, {\tt a}\to\varepsilon}
-%                                 \ar[r]^{\varepsilon,{\tt \$}\to\varepsilon}
-%                                        &*++[o][F=]{q_4}
-%\\
-%*+\txt{}\ar[r]
-%        &{q_0}\ar[r]^{\varepsilon,\varepsilon\to{\tt \$}}
-%                &{q_1}\ar@(ur,ul)_{{\tt a},\varepsilon\to{\tt a}}
-%                   \ar[r]^{\varepsilon,\varepsilon\to\varepsilon}
-%                        &{q_2}\ar@(ur,ul)_{{\tt b},{\tt a}\to\varepsilon}
-%                           \ar[ur]_{\varepsilon,{\tt a}\to\varepsilon}
-%                           \ar[dr]^{{\tt b},{\tt \$}\to\varepsilon}
-%\\
-%*+\txt{}
-%        &*+\txt{}
-%                &*+\txt{}
-%                        &*+\txt{}
-%                                &{q_5}\ar@(dr,dl)^{{\tt b},\varepsilon\to\varepsilon}
-%                                       \ar[r]^{\varepsilon,\varepsilon\to\varepsilon}
-%                                        &*++[o][F=]{q_6}
-%}
-%\]
 
 Alternativ könnte man den Stackautomaten dadurch finden, dass man
 zuerst eine Grammatik konstruiert, und die dann mit Hilfe des Algorithmus
 aus der Vorlesung in einen Stackautomaten umwandelt. Die Grammatik
-muss Wörter mit einem "Uberschuss an {\tt a} oder {\tt b}
+muss Wörter mit einem Überschuss an {\tt a} oder {\tt b}
 produzieren, wir schreiben die Variable $A$ für Wörter mit einem
-"Uberschuss an {\tt a} und $B$ für Wörter mit einem "Uberschuss an
-{\tt b}. Wörter mit einem "Uberschuss an {\tt a} entstehen, in dem man
+Überschuss an {\tt a} und $B$ für Wörter mit einem Überschuss an
+{\tt b}. Wörter mit einem Überschuss an {\tt a} entstehen, in dem man
 solche Wörter immer im {\tt a} links wachsen lässt oder wenn man
 ein {\tt b} rechts anfügt auch ein {\tt b} links hinzufügt. Die Grammatik
 wird damit
@@ -154,7 +126,7 @@ Gerüst des Automaten
 \end{tikzpicture}
 \end{center}
 dem Zustand $R$ fügt man jetzt entsprechend der Regeln folgende
-"Ubergänge hinzu.
+Übergänge hinzu.
 Für die Regeln mit $A$ sind es die Übergänge im linken Zustandsdiagramm,
 für die Regeln mit $B$ sind es die im rechten:
 \begin{center}
@@ -236,37 +208,6 @@ für die Regeln mit $B$ sind es die im rechten:
 \end{scope}
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}
-%        &\ar@/^/[d]^{\varepsilon,\varepsilon\to {\tt a}}
-%\\
-%*+\txt{}
-%        &{R}    \ar[r]^{\varepsilon,A\to{\tt b}}
-%                \ar@/^/[u]^{\varepsilon,A\to A}
-%                \ar@(d,dl)^{\varepsilon,A\to{\tt a}}
-%                \ar@(l,dl)_{\varepsilon,S\to A}
-%                &{}     \ar[r]^{\varepsilon,\varepsilon\to A}
-%                        &{}     \ar@/^10pt/[ll]^{\varepsilon,\varepsilon\to{\tt a}}
-%}
-%\]
-%Und für die Regeln mit $B$:
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}
-%        &\ar@/^/[d]^{\varepsilon,\varepsilon\to B}
-%\\
-%*+\txt{}
-%        &{R}    \ar[r]^{\varepsilon,B\to{\tt b}}
-%                \ar@/^/[u]^{\varepsilon,B\to {\tt b}}
-%                \ar@(d,dl)^{\varepsilon,B\to{\tt b}}
-%                \ar@(l,dl)_{\varepsilon,S\to B}
-%                &{}     \ar[r]^{\varepsilon,\varepsilon\to B}
-%                        &{}     \ar@/^10pt/[ll]^{\varepsilon,\varepsilon\to{\tt a}}
-%}
-%\]
 Zusätzlich braucht es noch die Regeln, die zur Verarbeitung
 der Eingabezeichen nötig sind:
 \begin{center}

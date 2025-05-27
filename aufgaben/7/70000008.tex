@@ -1,25 +1,25 @@
 Auf einem weit entfernten, aber technologisch sehr fortgeschrittenen
-Planeten wird der den Planeten regierende "Altestenrat
+Planeten wird der den Planeten regierende Ältestenrat
 nicht durch Volkswahl bestimmt, sondern durch einen Algorithmus.
 In der Vergangenheit gab es eine grosse Zahl rivalisierender
 Stämme, die sich auch zu grösseren ``Nationen'' verbündet haben
 und wiederholt blutige Kriege gegeneinander geführt haben.
 Um diesem Unheil ein Ende zu setzen, kamen die Stämme überein,
-den "Altestenrat zu bilden, in dem wenn auch nicht jeder Stamm direkt,
+den Ältestenrat zu bilden, in dem wenn auch nicht jeder Stamm direkt,
 so doch mindestens das ``Blut'' jedes Stammes vertreten sein musste.
 Damit trug man der Tatsache Rechnung, dass Mobiltät und planetenweiter
 Handel mittlerweile zu einer weitgehenden Durchmischung in der
 Bevölkerung geführt hatte. Ausgeprägtes Traditionsbewusstsein hatten
 jedoch sichergestellt, dass von jedem Bürger bekannt war, aus welchen
 Stämmen er ``Blut'' in sich trug. Warum ist trotzdem eine weit entwickelte
-Technologie nötig, um herauszufinden, ob sich ein "Altestenrat
+Technologie nötig, um herauszufinden, ob sich ein Ältestenrat
 mit $k$ Mitgliedern überhaupt bilden lässt?
 
 \themaL{NP-vollstandig}{NP-vollständig}
 \thema{polynomielle Reduktion}
 
 \begin{loesung}
-Das Problem, einen "Altestenrat mit $k$  Mitgliedern zu bilden, ist
+Das Problem, einen Ältestenrat mit $k$  Mitgliedern zu bilden, ist
 äquivalent zum Set-Covering Problem. Zu jedem Bürger $i$
 ist die Menge $S_i$ aller Stämme bekannt, von denen er ``Blut''
 in sich trägt. Die Vereinigung aller $S_i$ ist die Menge $U$ aller
@@ -28,12 +28,12 @@ dass die $S_{i_1},\dots S_{i_k}$ bereits alle Stämme abdecken, also
 \[
 \bigcup_i S_i=U.
 \]
-Die "Ubersetzung von Set-Covering auf des "Altestenratsproblem ist also
+Die Übersetzung von Set-Covering auf des Ältestenratsproblem ist also
 \begin{align*}
 U&\leftrightarrow\text{Menge aller Stämme}\\
 i&\leftrightarrow\text{Bürger}\\
 S_i&\leftrightarrow\text{Menge der Stämme, die durch $i$ vertreten werden können}\\
-\text{Unterfamilie}&\leftrightarrow\text{"Altestenrat}
+\text{Unterfamilie}&\leftrightarrow\text{Ältestenrat}
 \end{align*}
 Da Set-Covering ein NP-vollständiges Problem ist, ist es mit unserer
 Technologie nach allem, was wir wissen, nicht effizient lösbar. Der

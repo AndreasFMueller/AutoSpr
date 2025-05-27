@@ -22,25 +22,6 @@ zugehörigen minimalen Automaten.
 
 \begin{loesung}
 Das folgende Zustandsdiagramm beschreibt den DEA:
-%\[
-%\UseTips
-%\entrymodifiers={++[o][F]}
-%\xymatrix @-1mm {
-%*+\txt{}
-%        &*+\txt{}
-%                &*+\txt{}
-%                        &z_2 \ar@/_/[d]^{\tt 1} \ar@/^/[dl]_{\tt 0}
-%\\
-%*+\txt{}\ar[r]
-%        &z \ar[r]^{1} \ar[d]_{\tt 0}
-%                &z_1 \ar@/_/[d]_{\tt 1}  \ar@/^/[ur]^{\tt 0}
-%                        &z_3 \ar[l]^{\tt 0} \ar@/_/[u]_{\tt 1}
-%\\
-%*+\txt{}
-%        &e \ar@(dr,dl)^{{\tt 0},{\tt 1}}
-%                &*++[o][F=]{z_0} \ar@(dr,dl)^{\tt 0} \ar@/_/[u]_{\tt 1}
-%}
-%\]
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \def\l{1.6}
@@ -112,7 +93,7 @@ $e$&&$\times$&&&&$\equiv$\\
 \end{tabular}
 \end{center}
 In den folgenden Schritten prüft man jedes noch nicht markierte Paar
-von Zuständen, ob sie sich durch Anwendung der "Ubergangsfunktion
+von Zuständen, ob sie sich durch Anwendung der Übergangsfunktion
 in ein Paar überführen lassen, welches bereits markiert ist. Ist dies
 der Fall, wird das entsprechende Feld ebenfalls markiert. In den folgenden
 Tabellen sind die jeweils bereits bekannten Markierungen mit dem Zeichen
@@ -164,21 +145,6 @@ $e$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\otimes$&$\equiv$\\
 \end{center}
 Durch Zusammenlegen im Zustandsdiagramm erhält man jetzt als
 kleinsmöglichen Automaten:
-%\[
-%\UseTips
-%\entrymodifiers={++[o][F]}
-%\xymatrix @-1mm {
-%*+\txt{}\ar[r]
-%        &z \ar[r]^{1} \ar[d]_{\tt 0}
-%                &z_1 \ar@/_/[d]_{\tt 1}  \ar@/^/[r]^{\tt 0}
-%                        &z_2,z_3 \ar@/^/[l]^{\tt 0} \ar@(dr,dl)^{\tt 1}
-%\\
-%*+\txt{}
-%        &e \ar@(dr,dl)^{{\tt 0},{\tt 1}}
-%                &*++[o][F=]{z_0} \ar@(dr,dl)_{\tt 0} \ar@/_/[u]_{\tt 1}
-%}
-%\qedhere
-%\]
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \def\l{1.8}

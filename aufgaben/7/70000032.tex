@@ -53,7 +53,7 @@ Regel&Arbeit&\text{Aufwand}\\
 &$c$ ist Lösung des Heyawake-Rätsels&O(n^2m^2)
 \end{tabular}
 \end{center}
-Nur die "Uberprüfung des Zusammenhangs ist etwas anspruchsvoller.
+Nur die Überprüfung des Zusammenhangs ist etwas anspruchsvoller.
 Man kann dazu einen Einfärbe-Algorithmus verwenden:
 \begin{enumerate}
 \item Markiere das erste weisse Feld {\color{red}rot}.
@@ -69,10 +69,10 @@ Der Färbealgorithmus besucht in jedem Durchgang jedes Feld höchstens einmal,
 braucht also für einen Durchgang die Zeit $O(nm)$.
 Im schlimmsten Fall ändert in jedem Durchgang nur ein einziges Feld seine
 Farbe, es braucht also $O(nm)$ Durchgänge.
-Der gesamte Zeitaufwand für die "Uberprüfung des Zusammenhangs
+Der gesamte Zeitaufwand für die Überprüfung des Zusammenhangs
 ist daher $O(n^2m^2)$.
 
-Die "Uberprüfung der Regel~5 muss in jedem der $nm$-Felder höchstens $n$
+Die Überprüfung der Regel~5 muss in jedem der $nm$-Felder höchstens $n$
 vertikale und $m$ vertikale Felder überprüfen, dafür ist Zeit
 $O(nm(n+m))$ nötig.
 
@@ -82,7 +82,7 @@ in polynomieller Zeit lösen kann.
 \end{loesung}
 
 \begin{diskussion}
-Der schwierigste Schritt im Verifikationsalgorithmus ist die "Uberprüfung
+Der schwierigste Schritt im Verifikationsalgorithmus ist die Überprüfung
 des Zusammenhangs der weissen Felder.
 Es reicht leider nicht, nur zu prüfen, ob jedes weisse Feld auch einen
 weissen Nachbarn hat.

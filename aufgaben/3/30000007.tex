@@ -127,24 +127,6 @@ DEA umwandeln:
 \node at ($0.8*(q001)+0.2*(q011)+(-0.1,0)$) [left] {\texttt{0}};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[r]
-%        &{q_{001}} \ar@(ur,ul)_{\tt 0} \ar@/^/[rdd]^{\tt 1}
-%                &*++[o][F=]{q_{110}}\ar[ddl]_{{\tt 0},{\tt 1}}
-%\\
-%q_{000}\ar@(ul,dl)_{{\tt 0},{\tt 1}}
-%        &{q_{010}} \ar[l]^{\tt 0} \ar[d]^{\tt 1}
-%                &*++[o][F=]{q_{101}} \ar@(u,ur)^{\tt 0} \ar@/^/[r]^{\tt 1}
-%                        &*++[o][F=]{q_{111}} \ar@/^/[l]^{\tt 0}
-%                                \ar@(ur,dr)^{\tt 1}
-%\\
-%*+\txt{}
-%        &*++[o][F=]{q_{100}} \ar@(dl,dr)_{{\tt 0},{\tt 1}}
-%                &q_{011} \ar@/^/[uul]^{\tt 0} \ar[ur]_{\tt 1}
-%}
-%\]
 Eliminieren wir daraus die nicht erreichbaren Zustände, bleibt der
 DEA
 \begin{center}
@@ -221,23 +203,6 @@ DEA
 \node at ($0.8*(q001)+0.2*(q011)+(-0.1,0)$) [left] {\texttt{0}};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[r]
-%        &{q_{001}} \ar@(ur,ul)_{\tt 0} \ar@/^/[rdd]^{\tt 1}
-%\\
-%*+\txt{}
-%        &*+\txt{}
-%                &*++[o][F=]{q_{101}} \ar@(u,ur)^{\tt 0} \ar@/^/[r]^{\tt 1}
-%                        &*++[o][F=]{q_{111}} \ar@/^/[l]^{\tt 0}
-%                                \ar@(ur,dr)^{\tt 1}
-%\\
-%*+\txt{}
-%        &*+\txt{}
-%                &q_{011} \ar@/^/[uul]^{\tt 0} \ar[ur]_{\tt 1}
-%}
-%\]
 Oder etwas kompakter:
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
@@ -276,16 +241,6 @@ Oder etwas kompakter:
 \node at ($0.5*(q5)+0.5*(q7)+(0,-0.5)$) {\texttt{1}};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[r]
-%        &{q_{1}} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
-%                &{q_{3}} \ar@/^/[l]^{\tt 0} \ar[r]^{\tt 1} 
-%                        &*++[o][F=]{q_{7}} \ar@(ur,ul)_{\tt 1} \ar@/^/[r]^{\tt 0}
-%                                &*++[o][F=]{q_{5}} \ar@(ur,ul)_{\tt 0} \ar@/^/[l]^{\tt 1}
-%}
-%\]
 Es ist jedoch noch nicht klar, ob dieser DEA minimal ist. Daher wenden
 wir den Algorithmus für den Minimalautomaten an, um möglicherweise
 äquivalente Zustände zu finden. Nach der Markierung von Paaren aus
@@ -346,15 +301,6 @@ so dass der minimale Automat $A_1$
 \node at ($(q1)+(0,1.3)$) {\texttt{0}};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[r]
-%        &{q_{1}} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
-%                &{q_{3}} \ar@/^/[l]^{\tt 0} \ar[r]^{\tt 1} 
-%                        &*++[o][F=]{q_{7}} \ar@(dr,ur)_{{\tt 0},{\tt 1}}
-%}
-%\]
 ist.
 \item
 Der Automat $A_2$ für die durch drei teilbaren Binärzahlen wurde in der
@@ -387,15 +333,6 @@ Vorlesung entwickelt:
 \node at ($0.5*(q1)+0.5*(q2)$) {\texttt{0}};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[r]
-%        &*++[o][F=]{0} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
-%                &{1} \ar@/^/[r]^{\tt 0} \ar@/^/[l]^{\tt 1}
-%                        &{2} \ar@/^/[l]^{\tt 0} \ar@(ur,dr)^{\tt 1}
-%}
-%\]
 Für die folgenden Teilaufgaben ist jeweils der Produktautomat
 zu konstruieren. Wir tun dies jeweils so, dass der Automat für
 $L_1$ horizontal, derjenige für $L_2$ vertikal dargestellt wird.
@@ -428,19 +365,6 @@ Daher hier nochmals der Automat für $L_2$ vertikal dargestellt
 \node at ($0.5*(q1)+0.5*(q2)$) {\texttt{0}};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[r]
-%        &*++[o][F=]{0} \ar@(ur,dr)_{\tt 0} \ar@/^/[d]^{\tt 1}
-%\\
-%*+\txt{}
-%        &{1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
-%\\
-%*+\txt{}
-%        &{2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
-%}
-%\]
 Der Produktautomat ohne Akzeptierzustände ist dann:
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
@@ -505,28 +429,6 @@ Der Produktautomat ohne Akzeptierzustände ist dann:
 \node at ($0.5*(q30)+0.5*(q71)+(-0.5,0)$) {\texttt{1}};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[dr]
-%\\
-%*+\txt{}
-%        &{q_1/0} \ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
-%                &{q_3/0} \ar[l]_{\tt 0} \ar[dr]^{\tt 1}
-%                        &{q_7/0} \ar@(ul,ur)^{\tt 0} \ar@/^/[d]^{\tt 1}
-%\\
-%*+\txt{}
-%        &{q_1/1} \ar@/^/[d]^{\tt 0} \ar[ur]^{\tt 1}
-%                &{q_3/1} \ar[dl]^{\tt 0} \ar[ur]^{\tt 1}
-%                        &{q_7/1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
-%\\
-%*+\txt{}
-%        &{q_1/2} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
-%                &{q_3/2} \ar[ul]^{\tt 0} \ar[r]^{\tt 1}
-%                        &{q_7/2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
-%\\
-%}
-%\]
 
 \item
 Die Sprache $L_1\cap L_2$ wird von folgendem Produktautomaten akzeptiert:
@@ -593,28 +495,6 @@ Die Sprache $L_1\cap L_2$ wird von folgendem Produktautomaten akzeptiert:
 \node at ($0.5*(q30)+0.5*(q71)+(-0.5,0)$) {\texttt{1}};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[dr]
-%\\
-%*+\txt{}
-%        &{q_1/0} \ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
-%                &{q_3/0} \ar[l]_{\tt 0} \ar[dr]^{\tt 1}
-%                        &*++[o][F=]{q_7/0} \ar@(ul,ur)^{\tt 0} \ar@/^/[d]^{\tt 1}
-%\\
-%*+\txt{}
-%        &{q_1/1} \ar@/^/[d]^{\tt 0} \ar[ur]^{\tt 1}
-%                &{q_3/1} \ar[dl]^{\tt 0} \ar[ur]^{\tt 1}
-%                        &{q_7/1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
-%\\
-%*+\txt{}
-%        &{q_1/2} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
-%                &{q_3/2} \ar[ul]^{\tt 0} \ar[r]^{\tt 1}
-%                        &{q_7/2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
-%\\
-%}
-%\]
 Es ist aber wieder nicht klar, ob dieser Automat minimal ist. Daher
 wenden wir erneut den Algorithmus für den Minimalautomaten an. Im
 ersten Durchgang erhalten wir
@@ -742,28 +622,6 @@ bestehen:
 \node at ($0.5*(q30)+0.5*(q71)+(-0.5,0)$) {\texttt{1}};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[dr]
-%\\
-%*+\txt{}
-%        &{q_1/0} \ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
-%                &{q_3/0} \ar[l]_{\tt 0} \ar[dr]^{\tt 1}
-%                        &{q_7/0} \ar@(ul,ur)^{\tt 0} \ar@/^/[d]^{\tt 1}
-%\\
-%*+\txt{}
-%        &{q_1/1} \ar@/^/[d]^{\tt 0} \ar[ur]^{\tt 1}
-%                &{q_3/1} \ar[dl]^{\tt 0} \ar[ur]^{\tt 1}
-%                        &*++[o][F=]{q_7/1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
-%\\
-%*+\txt{}
-%        &{q_1/2} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
-%                &{q_3/2} \ar[ul]^{\tt 0} \ar[r]^{\tt 1}
-%                        &*++[o][F=]{q_7/2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
-%\\
-%}
-%\]
 Auch hier muss wieder mit Hilfe des Algorithmus für den Minimalautomaten
 sichergestellt werden, dass tatsächlich ein minimaler Automat vorliegt:
 \begin{center}
@@ -887,28 +745,6 @@ aus Akzeptierzuständen von $A_1$ oder von $A_2$ bestehen:
 \node at ($0.5*(q30)+0.5*(q71)+(-0.5,0)$) {\texttt{1}};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[dr]
-%\\
-%*+\txt{}
-%        &*++[o][F=]{q_1/0} \ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
-%                &*++[o][F=]{q_3/0} \ar[l]_{\tt 0} \ar[dr]^{\tt 1}
-%                        &*++[o][F=]{q_7/0} \ar@(ul,ur)^{\tt 0} \ar@/^/[d]^{\tt 1}
-%\\
-%*+\txt{}
-%        &{q_1/1} \ar@/^/[d]^{\tt 0} \ar[ur]^{\tt 1}
-%                &{q_3/1} \ar[dl]^{\tt 0} \ar[ur]^{\tt 1}
-%                        &*++[o][F=]{q_7/1} \ar@/^/[d]^{\tt 0} \ar@/^/[u]^{\tt 1}
-%\\
-%*+\txt{}
-%        &{q_1/2} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
-%                &{q_3/2} \ar[ul]^{\tt 0} \ar[r]^{\tt 1}
-%                        &*++[o][F=]{q_7/2} \ar@/^/[u]^{\tt 0} \ar@(dr,dl)^{\tt 1}
-%\\
-%}
-%\]
 Auch hier muss wieder mit Hilfe des Algorithmus für den Minimalautomaten
 sichergestellt werden, dass tatsächlich ein minimaler Automat vorliegt:
 \begin{center}
@@ -998,26 +834,9 @@ mit nur noch 7 Zuständen:
 \node at ($(q10)+(0,1.3)$) {\texttt{0}};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[r]
-%        &*++[o][F=]{10}\ar@(ul,ur)^{\tt 0} \ar[dr]^{\tt 1}
-%                &*++[o][F=]{30} \ar[l]^{\tt 0} \ar[dr]^{\tt 1}
-%\\
-%*+\txt{}
-%        &{11} \ar[ur]^{\tt 1} \ar@/^/[d]^{\tt 0}
-%                &{31} \ar[r]^{\tt 1} \ar[dl]^{\tt 0}
-%                        &*++[o][F=]{7}\ar@(ur,dr)^{{\tt 0},{\tt 1}}
-%\\
-%*+\txt{}
-%        &{12} \ar@/^/[u]^{\tt 0} \ar[r]^{\tt 1}
-%                &{32} \ar[ur]^{\tt 1} \ar[ul]^{\tt 0}
-%}
-%\]
 \item $L_6$ ist die Verkettung der zwei Sprachen $L_1$ und $L_2$.
 Den zugörigen NEA konstruiert man, indem man die beiden Teilautomaten
-mit einem $\varepsilon$-"Ubergang aneinanderhängt:
+mit einem $\varepsilon$-Übergang aneinanderhängt:
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \coordinate (s) at (-2,0);
@@ -1073,19 +892,6 @@ mit einem $\varepsilon$-"Ubergang aneinanderhängt:
 \node at ($(q1)+(0,1.3)$) {\texttt{0}};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[r]
-%        &{q_{1}} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
-%                &{q_{3}} \ar@/^/[l]^{\tt 0} \ar[r]^{\tt 1} 
-%                        &{q_7} \ar@(ur,ul)_{{\tt 0},{\tt 1}}
-%				\ar[r]^{\varepsilon}
-%        &*++[o][F=]{0} \ar@(ur,ul)_{\tt 0} \ar@/^/[r]^{\tt 1}
-%                &{1} \ar@/^/[r]^{\tt 0} \ar@/^/[l]^{\tt 1}
-%                        &{2} \ar@/^/[l]^{\tt 0} \ar@(ur,dr)^{\tt 1}
-%}
-%\]
 \item
 Die Stern-Konstruktion liefert den folgenden Automaten für $L_7$
 \begin{center}

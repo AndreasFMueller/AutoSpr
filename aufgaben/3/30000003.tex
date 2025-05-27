@@ -1,15 +1,4 @@
 Untersuchen Sie, welche der Zustände im Automaten
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[r]
-%        &{z_0}\ar[r]^{\tt 1} \ar@(ur,ul)_{\tt 0}
-%                &*++[o][F=]{z_1} \ar@/^/[dl]^{\tt 0} \ar@(dr,ur)_{\tt 1}
-%\\
-%*+\txt{}
-%        &{z_2} \ar@/^/[ur]^{\tt 1} \ar[u]^{\tt 0}
-%}
-%\]
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \def\l{1.8}
@@ -66,21 +55,12 @@ z_2           &       &\times        &\equiv \\
 \hline
 \end{tabular}
 \end{center}
-Der \texttt{0}-"Ubergang von $z_0$ und $z_2$ führt zu $z_0$, der
-\texttt{1}-"Ubergang zu $z_1$, in beiden Fällen kann man also
+Der \texttt{0}-Übergang von $z_0$ und $z_2$ führt zu $z_0$, der
+\texttt{1}-Übergang zu $z_1$, in beiden Fällen kann man also
 kein neues Kreuz im Feld $(z_0,z_2)$ machen, der Algorithmus endet.
 Man schliesst, dass $z_0$ und $z_2$ äquivalent sein müssen.
 
 Legt man $z_0$ und $z_2$ zusammen, wird der Automat vereinfacht zu
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix{
-%*+\txt{}\ar[r]
-%        &{z_0,z_2}\ar@/^/[r]^{\tt 1} \ar@(ur,ul)_{\tt 0}
-%                &*++[o][F=]{z_1} \ar@/^/[l]^{\tt 0} \ar@(dr,ur)_{\tt 1}
-%}
-%\qedhere
-%\]
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \coordinate (z0) at (0,0);

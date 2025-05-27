@@ -56,10 +56,10 @@ also alle Wörter, die gleich viele Konsonanten wie Vokale enthalten.
 Wir brauchen also nur einen Pushdown-Automaten, der feststellen kann,
 ob die gleiche Anzahl Vokale wie Konsonanten gelesen worden sind. Dazu
 verwenden wir als Stackalphabet $\Gamma = \{{\tt \$}, {\tt +}\}$,
-wobei die {\tt +} einen "Uberschuss von Konsonanten oder Vokalen
-anzeigen. Welches Zeichen gerade im "Uberfluss vorhanden ist,
-zeigt der aktuelle Zustand, der entweder $V$ ("Uberschuss an
-Vokalen) oder $K$ ("Uberschuss an Konsonanten) sein kann.
+wobei die {\tt +} einen Überschuss von Konsonanten oder Vokalen
+anzeigen. Welches Zeichen gerade im Überfluss vorhanden ist,
+zeigt der aktuelle Zustand, der entweder $V$ (Überschuss an
+Vokalen) oder $K$ (Überschuss an Konsonanten) sein kann.
 Der Automat ist im Zustand $Z$, wenn gleich viele Vokale wie
 Konsonanten gelesen wurden:
 \begin{center}

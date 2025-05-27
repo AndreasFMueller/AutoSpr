@@ -56,18 +56,6 @@ $z_3$&beginnt mit {\tt b} oder mehr als ein {\tt b}
 \\
 \end{tabular}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix @-1mm {
-%*+\txt{} \ar[r]
-%        &{z_0} \ar[r]^{\tt a} \ar[d]^{\tt b}
-%                &*++[o][F=]{z_1} \ar[d]^{\tt b} \ar@(dr,ur)_{\tt a}
-%\\
-%*+\txt{}
-%        &{z_3} \ar@(dr,dl)^{{\tt a},{\tt b}}
-%                &*++[o][F=]{z_2} \ar@(dr,dl)^{\tt a} \ar[l]^{\tt b}
-%}
-%\]
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \def\l{1.6}
@@ -127,7 +115,7 @@ $\vdots$&$\vdots$&\\
 \end{center}
 Offenbar gibt es vier verschiedene Mengen, also kommt der DEA von $L$
 mit 4 Zuständen aus. $L(\texttt{a})$ und $L(\texttt{ab})$ enthälten das
-leere Wort, sind als Akzeptierzustände. Die "Ubergänge können ebenfalls
+leere Wort, sind als Akzeptierzustände. Die Übergänge können ebenfalls
 aus der Tabelle abgelesen werden, es ergibt sich der gleiche Automat.
 
 %
@@ -136,22 +124,6 @@ aus der Tabelle abgelesen werden, es ergibt sich der gleiche Automat.
 \item Die Zeilen zählen die Anzahl \texttt{b}, die bereits gelesen
 wurden, die Spalten führen Buch über den Zweierrest der Anzahl
 \texttt{a}.
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix @-1mm {
-%*+\txt{} \ar[r]
-%        &{z_0}\ar@/^/[r]^{\tt a} \ar[d]^{\tt b}
-%                &{z_1}\ar@/^/[l]^{\tt a} \ar[d]^{\tt b}
-%\\
-%*+\txt{}
-%        &{z_2}\ar@/^/[r]^{\tt a} \ar[d]^{\tt b}
-%                &{z_3}\ar@/^/[l]^{\tt a} \ar[d]^{\tt b}
-%\\
-%*+\txt{}
-%        &*++[o][F=]{z_4}\ar@/^/[r]^{\tt a} \ar@(dr,dl)^{\tt b}
-%                &{z_5}\ar@/^/[l]^{\tt a} \ar@(dr,dl)^{\tt b}
-%}
-%\]
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \def\l{1.6}
@@ -235,18 +207,6 @@ Die Zustände $L_i$ entsprechen den $z_i$ im Zustandsdiagramm.
 %
 \item Die Zeilen codieren den Zweierrest der Anzahl {\tt b}s,
 die Spalten den Zweierrest der Länge von $w$.
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix @-1mm {
-%*+\txt{} \ar[r]
-%        &{z_0} \ar@/^/[r]^{\tt a} \ar@/^/[dr]_{\tt b}
-%                &{z_1} \ar@/^/[l]_{\tt a}\ar@/^/[dl]%^{\tt b}
-%\\
-%*+\txt{}
-%        &*++[o][F=]{z_2}\ar@/^/[r]_{\tt a}\ar@/^/[ur]
-%                &{z_3} \ar@/^/[l]^{\tt a}\ar@/^/[ul]
-%}
-%\]
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \def\l{1.8}
@@ -301,16 +261,6 @@ Die Zustande $L_i$ entsprechen wieder den $z_i$ von vorhin.
 \item
 In den Zuständen $z_i,i <3$ hat das Worte genau $i$ {\tt a}s,
 im Zustand $z_3$ hat das Wort 3 oder mehr {\tt a}s.
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix @-1mm {
-%*+\txt{} \ar[r]
-%        &*++[o][F=]{z_0}\ar[r]^{\tt a} \ar@(dr,dl)^{\tt b}
-%                &*++[o][F=]{z_1}\ar[r]^{\tt a} \ar@(dr,dl)^{\tt b}
-%                        &{z_2} \ar@(dr,dl)^{\tt b} \ar[r]^{\tt a}
-%                                &*++[o][F=]{z_3} \ar@(dr,dl)^{{\tt a},{\tt b}}
-%}
-%\]
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \def\l{1.6}
@@ -384,18 +334,6 @@ $z_1$&ungerades Zeichen war eine {\tt 1}\\
 $z_2$&{\tt 0} an ungerader Stelle\\
 \end{tabular}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix @-1mm {
-%*+\txt{} \ar[r]
-%        &*++[o][F=]{z_0}\ar@/^/[r]^{{\tt 1}} \ar[d]^{\tt 0}
-%                &*++[o][F=]{z_1} \ar@/^/[l]^{{\tt 0},{\tt 1}}
-%\\
-%*+\txt{}
-%        &{z_2}\ar@(ur,dr)^{{\tt 0},{\tt 1}}
-%                &*+\txt{}
-%}
-%\]
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \def\l{1.6}
@@ -448,19 +386,6 @@ $\varepsilon$&$L$&$=L_0$&ja\\
 \item Zustand $z_i, i <6$ bedeutet, dass das Wort genau $i$
 Zeichen lang ist. Zustand $z_6$ bedeutet, dass das Wort mindestens
 $6$ Zeichen lang ist.
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix @-1mm {
-%*+\txt{} \ar[r]
-%        &*++[o][F=]{z_0}\ar[r]^{{\tt 0},{\tt 1}}
-%        &*++[o][F=]{z_1}\ar[r]^{{\tt 0},{\tt 1}}
-%        &*++[o][F=]{z_2}\ar[r]^{{\tt 0},{\tt 1}}
-%        &*++[o][F=]{z_3}\ar[r]^{{\tt 0},{\tt 1}}
-%        &*++[o][F=]{z_4}\ar[r]^{{\tt 0},{\tt 1}}
-%        &*++[o][F=]{z_5}\ar[r]^{{\tt 0},{\tt 1}}
-%        &{z_6}\ar@(dr,ur)_{{\tt 0},{\tt 1}}
-%}
-%\]
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \def\l{1.6}
@@ -511,14 +436,7 @@ $6$ Zeichen lang ist.
 \end{center}
 \item Kein Wort darf akzeptiert werden, d.~h.~die Menge der Akzeptierzustände
 ist leer. Der einfachste Automat, der dies erfüllt, hat genau einen
-Zustand und eine triviale "Ubergangsfunktion:
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix @-1mm {
-%*+\txt{} \ar[r]
-%        &{z_0}\ar@(dr,ur)_{{\tt 0},{\tt 1}}
-%}
-%\]
+Zustand und eine triviale Übergangsfunktion:
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 \draw (0,0) circle[radius=0.35];

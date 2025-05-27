@@ -11,7 +11,7 @@ drei Zuständen haben notwendigerweise ein Zustandsdiagramm der Form
 	&*++[o][F=]{q_{\text{reject}}}
 }
 \]
-Hier fehlen nur noch die "Ubergänge, die von der Art
+Hier fehlen nur noch die Übergänge, die von der Art
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @+5mm {
@@ -20,15 +20,15 @@ Hier fehlen nur noch die "Ubergänge, die von der Art
 \]
 sein müssen, wobei $q$ irgend ein Zustand ist, $a$ und $b$ Bandalphabetzeichen
 und $d$ die Bewegungsrichtung des Schreibe-/Lesekopfes aus $\{\text{L},\text{R}\}$.
-Für "Ubergänge in einen Akzeptierzustand spielen die Werte von $b$ und $d$
-keine Rolle, "Ubergänge in einen Akzeptierzustand, die sich nur durch die
+Für Übergänge in einen Akzeptierzustand spielen die Werte von $b$ und $d$
+keine Rolle, Übergänge in einen Akzeptierzustand, die sich nur durch die
 Werte von $b$ und $d$ unterscheiden, sind im Wesentlichen gleich.
 \begin{teilaufgaben}
 \item
-Welche "Ubergängen müssen Sie wählen, damit die Turing-Maschine
+Welche Übergängen müssen Sie wählen, damit die Turing-Maschine
 die Sprache $\Sigma^*$ erkennt?
 \item
-Welche "Ubergänge müssen Sie wählen, damit die Turing-Maschine
+Welche Übergänge müssen Sie wählen, damit die Turing-Maschine
 die Sprache $\emptyset$ erkennt?
 \item
 Kann man eine Turing-Maschine mit drei Zuständen bauen, welche die
@@ -45,17 +45,17 @@ gibt es?
 \thema{Turing-Maschine}
 
 \begin{loesung}
-Für "Ubergänge, die in einem Akzeptierzustand enden, sind die Werte
-von $b$ und $d$ nicht relevant. Nur die "Ubergänge, die in $q_0$ enden
+Für Übergänge, die in einem Akzeptierzustand enden, sind die Werte
+von $b$ und $d$ nicht relevant. Nur die Übergänge, die in $q_0$ enden
 führen zu tatsächlich verschiedenen Turing-Maschinen. Für die drei
 Bandalphabet-Zeichen $\Gamma =\{\texttt{0},\texttt{1},\blank\}$ muss 
 also nur entscheiden werden, zu welchem Zustand sie führen, und welche
 Werte für $b$ und $d$ gegebenenfalls verwendet werden sollen.
-Zu jedem Zeichen für $a$ gibt es also zwei "Ubergänge, die in
-einem Akzeptierzustand enden, eine Anzahl von "Ubergängen, die in $q_0$
-enden. Solche "Ubergänge gibt es mit drei verschiedenen Zeichen auf
-dem Band nach dem "Ubergang, und zwei Bewegungsrichtungen, also insgesamt
-6 mögliche "Ubergänge:
+Zu jedem Zeichen für $a$ gibt es also zwei Übergänge, die in
+einem Akzeptierzustand enden, eine Anzahl von Übergängen, die in $q_0$
+enden. Solche Übergänge gibt es mit drei verschiedenen Zeichen auf
+dem Band nach dem Übergang, und zwei Bewegungsrichtungen, also insgesamt
+6 mögliche Übergänge:
 \[
 \entrymodifiers={++[o][F]}
 \xymatrix @+5mm{
@@ -83,7 +83,7 @@ Die Turing-Maschine
 	&*++[o][F=]{q_{\text{reject}}}
 }
 \]
-mit einem "Ubergang nach $q_{\text{accept}}$ für jedes Zeichen in $\Gamma$
+mit einem Übergang nach $q_{\text{accept}}$ für jedes Zeichen in $\Gamma$
 akzeptiert alle Wörter, also die Sprache $\Sigma^*$.
 Alternativ könnte man auch alle Zeichen \texttt{0} und \texttt{1}
 überlesen und akzeptieren, sobald man einen $\blank$ findet:
@@ -114,7 +114,7 @@ Die Turing-Maschine
 	&*++[o][F=]{q_{\text{reject}}}
 }
 \]
-mit einem "Ubergang nach $q_{\text{reject}}$ für jedes Zeichen in $\Gamma$
+mit einem Übergang nach $q_{\text{reject}}$ für jedes Zeichen in $\Gamma$
 akzeptiert nur die leere Sprache. Wie in Teilaufgabe a) kann man natürlich
 die Maschine auch noch etwas länger arbeiten lassen, bevor man in den
 Zustand $q_\text{reject}$ geht:
@@ -155,7 +155,7 @@ Sie erkennt also genau die Wörter, die aus lauter \texttt{0} zusammengesetzt
 sind, dies entspricht der Spezifikation von $L$.
 \item
 Damit kann man jetzt die möglichen Turing-Maschinen aufzählen.
-Da für jedes Zeichen in $\Gamma$ einer von $8$ "Ubergängen
+Da für jedes Zeichen in $\Gamma$ einer von $8$ Übergängen
 gewählt werden muss, gibt es $8^3=512$ wesentlich verschiedene
 Zustandsdiagramme.
 \qedhere
