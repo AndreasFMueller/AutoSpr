@@ -1,0 +1,97 @@
+Über dem Alphabet $\Sigma=\{\texttt{0},\texttt{1}\}$ ist die Sprache
+\[
+L
+=
+\{
+w\in\Sigma^*
+\mid
+|w|_{\texttt{0}}
+-
+|w|_{\texttt{1}}
+= \pm2
+\}
+\]
+gegben.
+Ist die Sprache $L$ regulär?
+
+\begin{loesung}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+Die Definition der Sprache verlangt, dass die Anzahl der Einsen und
+der Anzahl der Nullen sich um genau $2$ unterscheiden.
+Diese Sprache ist nicht regulär, wie man mit dem Pumping Lemma für
+reguläre Sprachen beweisen kann:
+\begin{enumerate}
+\item Annahme: $L$ ist regulär
+\item Nach dem Pumping-Lemma gibt es die Pumping Length $N$
+\item Wähle das Wort $w=\texttt{0}^N\texttt{1}^{N+2}\in L$
+\begin{center}
+\def\h{0.6}
+\begin{tikzpicture}[>=latex,thick]
+\draw (0,0) rectangle ({18*\h},\h);
+\draw ({8*\h},0) -- ++(0,\h);
+\node at ({4*\h},{0.5*\h}) {\texttt{0}};
+\node at ({13*\h},{0.5*\h}) {\texttt{1}};
+\node at ({8*\h},\h) [above] {$N$};
+\node at ({18*\h},\h) [above] {$2N+2$};
+\end{tikzpicture}
+\end{center}
+\item Nach dem Pumping Lemma gibt es eine Aufteilung des Wortes in
+drei Teile
+$w=
+{\color{darkgreen}x}
+{\color{darkred}y}
+{\color{blue}z}
+$,
+wobei 
+$|{\color{darkgreen}x}|\le N$ und
+$|{\color{darkred}y}|>0$.
+\begin{center}
+\def\h{0.6}
+\begin{tikzpicture}[>=latex,thick]
+\draw (0,0) rectangle ({18*\h},\h);
+\draw ({8*\h},0) -- ++(0,\h);
+\node at ({4*\h},{0.5*\h}) {\texttt{0}};
+\node at ({13*\h},{0.5*\h}) {\texttt{1}};
+\fill[color=darkgreen!20,opacity=0.7]
+	(0.05,0.05) rectangle ({3*\h-0.025},{\h-0.05});
+\draw[color=darkgreen]
+	(0.05,0.05) rectangle ({3*\h-0.025},{\h-0.05});
+\fill[color=darkred!20,opacity=0.7]
+	({3*\h+0.025},0.05) rectangle ({7*\h-0.025},{\h-0.05});
+\draw[color=darkred]
+	({3*\h+0.025},0.05) rectangle ({7*\h-0.025},{\h-0.05});
+\fill[color=blue!20,opacity=0.7]
+	({7*\h+0.025},0.05) rectangle ({18*\h-0.05},{\h-0.05});
+\draw[color=blue]
+	({7*\h+0.025},0.05) rectangle ({18*\h-0.05},{\h-0.05});
+\node[color=darkgreen] at ({1.5*\h},{0.5*\h}) {$x\mathstrut$};
+\node[color=darkred] at ({5*\h},{0.5*\h}) {$y\mathstrut$};
+\node[color=blue] at ({12.5*\h},{0.5*\h}) {$z\mathstrut$};
+\node at ({8*\h},\h) [above] {$N$};
+\node at ({18*\h},\h) [above] {$2N+2$};
+\end{tikzpicture}
+\end{center}
+\item Da $|{\color{darkred}y}|$ nur aus Nullen bestehen kann, hat das Wort
+$v={\color{darkgreen}x}{\color{blue}z}$, aus dem der Teil
+$|{\color{darkred}y}|$ abgepumpt worden ist, weniger Nullen.
+Die Anzahl der Nullen ist daher mindestens um $3$ geringer als die
+Anzahl der Einsen, das abgepumpte Wort $v$ ist nicht mehr in der Sprache
+$L$: $v\ne L$.
+\item
+Nach dem Pumping-Lemma müsste $v\in L$ sein, dieser Widerspruch zeigt, dass
+die Annahme, $L$ sei regulär, nicht zutreffen kann.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+6 Schritte des Pumping-Lemma-Beweises:
+Annahme ({\bf A}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+Wort ({\bf W}) 1 Punkt,
+Unterteilung ({\bf U}) 1 Punkt,
+Widerspruch beim Pumpen ({\bf P}) 1 Punkt,
+Folgerung ({\bf F}) 1 Punkt.
+\end{bewertung}
+

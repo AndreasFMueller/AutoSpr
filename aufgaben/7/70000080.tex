@@ -1,0 +1,54 @@
+Eine Firma will ihr kränkelndes Produkt mit einer
+Social-Media-Marketing-Initative retten.
+Dazu sollen einige Influencer gesponsort werden, die dann das Produkt
+ihren Followern bekannt machen sollen.
+Da nicht mehr allzu viel Geld vorhanden ist, ist die Anzahl der
+Influencer, die unter Vertrag genommen werden können, limitiert.
+Es müssen daher möglichst schnell diese Influencer
+auf eine Art bestimmt werden, dass jede Person der Zielgruppe erreicht wird.
+Die mit der Auswahl betraute Beratungsfirma mahnt, dass dieses
+Problem nicht so leicht zu lösen sei.
+Warum?
+
+\begin{loesung}
+Das Problem \textit{MARKETING} ist äquivalent zum \textit{SET-COVERING}.
+Um dies einzusehen, konstruieren wir eine Eins-zu-eins-Reduktioin wie
+folgt.
+Sei $J=\{1,\dots,n\}$ die Menge aller Influencer,
+die zusammen die Zielgruppe $Z$ erreichen können.
+Sei weiter $S_j$, $1\le j\le n$ die Menge der Personen, die Influencer $j$
+erreichen kann.
+Gesucht wird eine Auswahl $S_{i_1},\dots,S_{i_k}$ von $k$ Influencern
+derart, dass die ausgewählten Influencer ebenfalls alle Personen der
+Zielgruppe
+\[
+\bigcup_{j=1}^n S_j
+= 
+\bigcup_{i=1}^k S_{j_i}
+\]
+erreichen können.
+\begin{center}
+\begin{tabular}{r>{$}c<{$}l}
+\textit{MARKETING}&\leftrightarrow&\textit{SET-COVERING} \\
+\hline
+Influencer&\leftrightarrow&Nummern $1\le j\le n$ der Mengen \\
+Menge der vom Influencer erreichten Personen&\leftrightarrow&Menge $S_j$ \\
+Auswahl der Influencer&\leftrightarrow&Unterfamilie $(S_{j_i})_{1\le i\le k}$ \\
+Bedingung ganze Zielgruppe erreicht&\leftrightarrow&
+$\bigcup_{j=1}^n S_j = \bigcup_{i=1}^k S_{j_i}$
+\end{tabular}
+\end{center}
+Da \textit{SET-COVERING} ein NP-vollständiges Problem ist, ist dafür kein 
+polynomieller Algorithmus bekannt und damit das Problem tatsächlich 
+für grosse Zielgruppen nur sehr schwer lösbar.
+\end{loesung}
+
+\begin{bewertung}
+Reduktionsprinzip ({\bf R}) 1 Punkt,
+Wahl eines geeigneten Vergleichsprobleme wählen ({\bf V}) 1 Punkt,
+Abbildung für Influencer ({\bf I}) 1 Punkt,
+Menge der erreichten Personen ({\bf S}) 1 Punkt,
+und Zielgruppenbedingung ({\bf Z}) 1 Punkt.
+NP-Vollständigkeit und Konsequenzen ({\bf N}) 1 Punkt.
+\end{bewertung}
+

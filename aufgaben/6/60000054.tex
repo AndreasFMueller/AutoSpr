@@ -1,0 +1,41 @@
+Im Comedy-Sketch ``Seven words you can't say on TV''\footnote{\url{https://youtu.be/5ssJtD08vCc}} erklärt George Carlin,
+welche Wörter man im Fernsehen niemals verwenden kann\footnote{Es sind die
+Wörter \texttt{shit}, \texttt{piss}, \texttt{fuck}, \texttt{cunt}, 
+\texttt{cocksucker}, \texttt{motherfucker} und \texttt{tits}.}.
+Da heutzutage Medieninhalte auch von Software erzeugt werden, wird es nötig,
+Prüfprogramme zu haben, welche zuverlässig erkennen können, ob ein Programm
+einen Text generieren wird, welcher verbotene Wörter enthält.
+Ein Medienunternehmen verlangt daher nach einem Tool, mit dem man
+beliebige Programme scannen kann.
+Das Tool soll herausfinden, ob das gescannte Programm verbotene Wörter
+generieren wird.
+Das Medienunternehmen hat allerdings Mühe, einen Anbieter für ein
+solches Tool zu finden.
+Woran könnte das liegen?
+
+\begin{loesung}
+Sie \textit{FORBIDDEN} die Eigenschaft einer Sprache, dass eines der 
+verbotenen Wörter als Teilkette in einem Wort der Sprache vorkommt.
+Diese Eigenschaft ist nicht trivial, denn 
+\[
+\begin{aligned}
+L_1&=\{\texttt{motherfucker}\} &&\text{hat die Eigenschaft \textit{FORBIDDEN},}
+\\
+L_2&=\{\}&&\text{hat die Eigenschaft nicht.}
+\end{aligned}
+\]
+Die beiden Sprachen können von einem Programm erkannt werden.
+Die Eigenschaft \textit{FORBIDDEN} ist daher nicht trivial.
+Nach dem Satz von Rice ist $\textit{FORBIDDEN}_{\text{TM}}$ nicht
+entscheidbar, aber genau nach einem Entscheider dafür hat das
+Medienunternehmen verlangt.
+\end{loesung}
+
+\begin{bewertung}
+Eigenschaft \textit{FORBIDDEN} ({\bf P}) 1 Punkt,
+zwei Sprachen ({\bf L}) 2 Punkte,
+Eigenschaft ist nicht trivial ({\bf T}) 1 Punkt,
+Anwendung des Satzes von Rice ({\bf R}) 2 Punkte.
+\end{bewertung}
+
+

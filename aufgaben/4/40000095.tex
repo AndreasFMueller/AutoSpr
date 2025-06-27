@@ -1,0 +1,193 @@
+Ist die Sprache
+\[
+L
+=
+\{
+\texttt{a}^i
+\texttt{b}^j
+\texttt{c}^k
+\texttt{d}^l
+\mid
+i=k\wedge j=l
+\}
+\]
+über dem Alphabet $\Sigma=\{\texttt{a},\texttt{b},\texttt{c},\texttt{d}\}$
+kontextfrei?
+
+\begin{loesung}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+Die Sprache ist nicht kontextfrei, wie man mit dem Pumping Lemma für
+kontextfreie Sprachen beweisen kann.
+Dazu gehen wir wie folgt vor:
+\begin{enumerate}
+\item
+Annahme: $L$ ist kontextfrei.
+\item
+Nach dem Pumping Lemma gibt es die Pumping Length $N$.
+\item
+Wir wählen das Wort $w=
+\texttt{a}^N
+\texttt{b}^N
+\texttt{c}^N
+\texttt{d}^N
+$.
+\begin{center}
+\def\h{0.6}
+\begin{tikzpicture}[>=latex,thick]
+\draw (0,0) rectangle ({20*\h},\h);
+\draw ({5*\h},0) -- ++(0,\h);
+\draw ({10*\h},0) -- ++(0,\h);
+\draw ({15*\h},0) -- ++(0,\h);
+\node at ({5*\h},{\h-0.1}) [above] {$N\mathstrut$};
+\node at ({10*\h},{\h-0.1}) [above] {$2N\mathstrut$};
+\node at ({15*\h},{\h-0.1}) [above] {$3N\mathstrut$};
+\node at ({20*\h},{\h-0.1}) [above] {$4N\mathstrut$};
+\node at ({2.5*\h},{0.5*\h}) {\texttt{a}\strut};
+\node at ({7.5*\h},{0.5*\h}) {\texttt{b}\strut};
+\node at ({12.5*\h},{0.5*\h}) {\texttt{c}\strut};
+\node at ({17.5*\h},{0.5*\h}) {\texttt{d}\strut};
+\end{tikzpicture}
+\end{center}
+\item
+Nach dem Pumping Lemma gibt es eine Aufteilung von $w$ in fünf Teile
+$w
+=
+{\color{blue}u}
+{\color{darkred}v}
+{\color{darkgreen}x}
+{\color{darkred}y}
+{\color{blue}z}
+$, mit
+$|{\color{darkred}v} {\color{darkgreen}x} {\color{darkred}y}| \le N$
+und
+$
+|{\color{darkred}v}
+{\color{darkred}y}|> 0$
+\begin{center}
+\def\h{0.6}
+\begin{tikzpicture}[>=latex,thick]
+\draw (0,0) rectangle ({20*\h},\h);
+\draw ({5*\h},0) -- ++(0,\h);
+\draw ({10*\h},0) -- ++(0,\h);
+\draw ({15*\h},0) -- ++(0,\h);
+\node at ({5*\h},{\h-0.1}) [above] {$N\mathstrut$};
+\node at ({10*\h},{\h-0.1}) [above] {$2N\mathstrut$};
+\node at ({15*\h},{\h-0.1}) [above] {$3N\mathstrut$};
+\node at ({20*\h},{\h-0.1}) [above] {$4N\mathstrut$};
+\node at ({2.5*\h},{0.5*\h}) {\texttt{a}\strut};
+\node at ({7.5*\h},{0.5*\h}) {\texttt{b}\strut};
+\node at ({12.5*\h},{0.5*\h}) {\texttt{c}\strut};
+\node at ({17.5*\h},{0.5*\h}) {\texttt{d}\strut};
+\fill[color=blue!20,opacity=0.7]
+	(0.05,0.05) rectangle ({3.5*\h-0.025},{\h-0.05});
+\draw[color=blue]
+	(0.05,0.05) rectangle ({3.5*\h-0.025},{\h-0.05});
+\node[color=blue] at ({1.75*\h},{0.5*\h}) {$u\mathstrut$};
+
+\fill[color=darkred!20,opacity=0.7]
+	({3.5*\h+0.025},0.05) rectangle ({4.5*\h-0.025},{\h-0.05});
+\draw[color=darkred]
+	({3.5*\h+0.025},0.05) rectangle ({4.5*\h-0.025},{\h-0.05});
+\node[color=darkred] at ({4*\h},{0.5*\h}) {$v\mathstrut$};
+
+\fill[color=darkgreen!20,opacity=0.7]
+	({4.5*\h+0.025},0.05) rectangle ({6*\h-0.025},{\h-0.05});
+\draw[color=darkgreen]
+	({4.5*\h+0.025},0.05) rectangle ({6*\h-0.025},{\h-0.05});
+\node[color=darkgreen] at ({5.25*\h},{0.5*\h}) {$x\mathstrut$};
+
+\fill[color=darkred!20,opacity=0.7]
+	({6*\h+0.025},0.05) rectangle ({8*\h-0.025},{\h-0.05});
+\draw[color=darkred]
+	({6*\h+0.025},0.05) rectangle ({8*\h-0.025},{\h-0.05});
+\node[color=darkred] at ({7*\h},{0.5*\h}) {$y\mathstrut$};
+
+\fill[color=blue!20,opacity=0.7]
+	({8*\h+0.025},0.05) rectangle ({20*\h-0.05},{\h-0.05});
+\draw[color=blue]
+	({8*\h+0.025},0.05) rectangle ({20*\h-0.05},{\h-0.05});
+\node[color=blue] at ({14*\h},{0.5*\h}) {$z\mathstrut$};
+
+\draw[line width=0.3pt] ({3.5*\h},0) -- ++(0,-0.3);
+\draw[line width=0.3pt] ({8*\h},0) -- ++(0,-0.3);
+\draw[<->] ({3.5*\h},-0.2) -- ({8*\h},-0.2);
+\node at ({5.75*\h},-0.2) [below] {$\le N$};
+
+\begin{scope}[yshift=-2.0cm]
+	\draw (0,0) rectangle ({20*\h},\h);
+	\draw ({5*\h},0) -- ++(0,\h);
+	\draw ({10*\h},0) -- ++(0,\h);
+	\draw ({15*\h},0) -- ++(0,\h);
+	\node at ({5*\h},{\h-0.1}) [above] {$N\mathstrut$};
+	\node at ({10*\h},{\h-0.1}) [above] {$2N\mathstrut$};
+	\node at ({15*\h},{\h-0.1}) [above] {$3N\mathstrut$};
+	\node at ({20*\h},{\h-0.1}) [above] {$4N\mathstrut$};
+	\node at ({2.5*\h},{0.5*\h}) {\texttt{a}\strut};
+	\node at ({7.5*\h},{0.5*\h}) {\texttt{b}\strut};
+	\node at ({12.5*\h},{0.5*\h}) {\texttt{c}\strut};
+	\node at ({17.5*\h},{0.5*\h}) {\texttt{d}\strut};
+	\fill[color=blue!20,opacity=0.7]
+		(0.05,0.05) rectangle ({8*\h-0.025},{\h-0.05});
+	\draw[color=blue]
+		(0.05,0.05) rectangle ({8*\h-0.025},{\h-0.05});
+	\node[color=blue] at ({4*\h},{0.5*\h}) {$u\mathstrut$};
+
+	\fill[color=darkred!20,opacity=0.7]
+		({8*\h+0.025},0.05) rectangle ({9*\h-0.025},{\h-0.05});
+	\draw[color=darkred]
+		({8*\h+0.025},0.05) rectangle ({9*\h-0.025},{\h-0.05});
+	\node[color=darkred] at ({8.5*\h},{0.5*\h}) {$v\mathstrut$};
+
+	\fill[color=darkgreen!20,opacity=0.7]
+		({9*\h+0.025},0.05) rectangle ({10.5*\h-0.025},{\h-0.05});
+	\draw[color=darkgreen]
+		({9*\h+0.025},0.05) rectangle ({10.5*\h-0.025},{\h-0.05});
+	\node[color=darkgreen] at ({9.75*\h},{0.5*\h}) {$x\mathstrut$};
+
+	\fill[color=darkred!20,opacity=0.7]
+		({10.5*\h+0.025},0.05) rectangle ({12.5*\h-0.025},{\h-0.05});
+	\draw[color=darkred]
+		({10.5*\h+0.025},0.05) rectangle ({12.5*\h-0.025},{\h-0.05});
+	\node[color=darkred] at ({11.5*\h},{0.5*\h}) {$y\mathstrut$};
+
+	\fill[color=blue!20,opacity=0.7]
+		({12.5*\h+0.025},0.05) rectangle ({20*\h-0.05},{\h-0.05});
+	\draw[color=blue]
+		({12.5*\h+0.025},0.05) rectangle ({20*\h-0.05},{\h-0.05});
+	\node[color=blue] at ({16.25*\h},{0.5*\h}) {$z\mathstrut$};
+
+	\draw[line width=0.3pt] ({8*\h},0) -- ++(0,-0.3);
+	\draw[line width=0.3pt] ({12.5*\h},0) -- ++(0,-0.3);
+	\draw[<->] ({8*\h},-0.2) -- ({12.5*\h},-0.2);
+	\node at ({10.25*\h},-0.2) [below] {$\le N$};
+
+\end{scope}
+\end{tikzpicture}
+\end{center}
+Weitere Aufteilungen sind möglich, solange die roten Teile sich über nicht
+mehr als $N$ Zeichen erstrecken.
+\item
+Wegen
+$|{\color{darkred}v} {\color{darkgreen}x} {\color{darkred}y}| \le N$
+können $\color{darkred}v$ und $\color{darkred}y$ Zeichen aus höchstens
+zwei der vier Blöcke enthalten.
+Beim Pumpen werden sich daher die Anzahlen von zwei benachbarten Arten
+von Zeichen ändern, nicht aber der anderen Zeichen, die in gleicher
+Zahl vorhanden sein sollten.
+Damit ist ein gepumptes Wort nicht mehr in $L$.
+\item
+Dieser Widerspruch zeigt, dass $L$ nicht kontextfrei sein kann.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+Annahme $L$ kontextfrei ({\bf PL}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+geeignetes Wort wählen ({\bf W}) 1 Punkt,
+Unterteilung des Wortes ({\bf U}) 1 Punkt,
+Widerspruch beim Pumpen ({\bf P}) 1 Punkt,
+Schlussfolgerung ({\bf S}) 1 Punkt.
+\end{bewertung}
+

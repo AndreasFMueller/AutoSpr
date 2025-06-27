@@ -1,0 +1,194 @@
+Ist die Sprache
+\[
+L
+=
+\{
+\texttt{a}^i
+\texttt{b}^j
+\texttt{c}^k
+\texttt{d}^l
+\mid
+i=k\vee j=l
+\}
+\]
+über dem Alphabet $\Sigma=\{\texttt{a},\texttt{b},\texttt{c},\texttt{d}\}$
+kontextfrei?
+
+\begin{loesung}
+Die Sprache ist die Vereinigung der Sprachen
+\[
+\left.
+\begin{aligned}
+L_1
+&=
+\{
+\texttt{a}^i
+\texttt{b}^j
+\texttt{c}^k
+\texttt{d}^l
+\mid
+i=k
+\}
+\\
+L_2
+&=
+\{
+\texttt{a}^i
+\texttt{b}^j
+\texttt{c}^k
+\texttt{d}^l
+\mid
+j=l
+\}
+\end{aligned}
+\quad
+\right\}
+\qquad
+\Rightarrow
+\qquad
+L = L_1\cup L_2.
+\]
+Jede der Sprachen ist kontextfrei, denn man kann dafür die
+Grammatiken
+\begin{align*}
+S_1 &\to K D                           & S_2 &\to AL
+\\
+K   &\to \texttt{a}K\texttt{c} \mid B  & L   &\to \texttt{b}L\texttt{d} \mid C
+\\
+B   &\to B\texttt{b} \mid \varepsilon  & A   &\to A\texttt{a} \mid \varepsilon
+\\
+D   &\to D\texttt{d} \mid \varepsilon  & C   &\to C\texttt{c} \mid \varepsilon
+\end{align*}
+verwenden.
+Also ist auch die Vereinigung kontextfrei.
+
+Alternativ kann man auch einen Stackautomaten konstruieren:
+\begin{center}
+\def\l{2}
+\pgfmathparse{\l*sqrt(3)/2}
+\xdef\h{\pgfmathresult}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (s) at ({-2*\l},0);
+\coordinate (q0) at ({-\l},0);
+\coordinate (q1) at (0,0);
+\coordinate (p0) at ({0.5*\l},\h);
+\coordinate (p1) at ({1.5*\l},\h);
+\coordinate (p2) at ({2.5*\l},\h);
+\coordinate (p3) at ({3.5*\l},\h);
+\coordinate (r0) at ({0.5*\l},{-\h});
+\coordinate (r1) at ({1.5*\l},{-\h});
+\coordinate (r2) at ({2.5*\l},{-\h});
+\coordinate (r3) at ({3.5*\l},{-\h});
+\coordinate (e) at ({4*\l},0);
+\node at (q0) {$q_0$};
+\node at (q1) {$q_1$};
+\node at (p0) {$p_0$};
+\node at (p1) {$p_1$};
+\node at (p2) {$p_2$};
+\node at (p3) {$p_3$};
+\node at (r0) {$r_0$};
+\node at (r1) {$r_1$};
+\node at (r2) {$r_2$};
+\node at (r3) {$r_3$};
+\node at (e) {$e$};
+\draw (q0) circle[radius=0.35];
+\draw (q1) circle[radius=0.35];
+\draw (p0) circle[radius=0.35];
+\draw (p1) circle[radius=0.35];
+\draw (p2) circle[radius=0.35];
+\draw (p3) circle[radius=0.35];
+\draw (r0) circle[radius=0.35];
+\draw (r1) circle[radius=0.35];
+\draw (r2) circle[radius=0.35];
+\draw (r3) circle[radius=0.35];
+\draw (e) circle[radius=0.30];
+\draw (e) circle[radius=0.35];
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (s) -- (q0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q0) -- (q1);
+\node at ($0.5*(q0)+0.5*(q1)$) [above]
+	{$\scriptstyle\varepsilon,\varepsilon\to\texttt{\$}$};
+
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q1) -- (p0);
+\node at ($0.5*(q1)+0.5*(p0)$) [above left]
+	{$\scriptstyle\varepsilon\to\varepsilon,\varepsilon$};
+
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(p0) to[out=60,in=120,distance=1cm] (p0);
+\node at ($(p0)+(0,0.9)$) {$\scriptstyle\texttt{a},\varepsilon\to\texttt{a}$};
+
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(p1) to[out=60,in=120,distance=1cm] (p1);
+\node at ($(p1)+(0,0.9)$) {$\scriptstyle\texttt{b},\varepsilon\to\varepsilon$};
+
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(p2) to[out=60,in=120,distance=1cm] (p2);
+\node at ($(p2)+(0,0.9)$) {$\scriptstyle\texttt{c},\texttt{a}\to\varepsilon$};
+
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(p3) to[out=60,in=120,distance=1cm] (p3);
+\node at ($(p3)+(0,0.9)$) {$\scriptstyle\texttt{d},\varepsilon\to\varepsilon$};
+
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (p0) -- (p1);
+\node at ($0.5*(p0)+0.5*(p1)$) [above]
+	{$\scriptstyle\varepsilon,\varepsilon\to\varepsilon$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (p1) -- (p2);
+\node at ($0.5*(p1)+0.5*(p2)$) [above]
+	{$\scriptstyle\varepsilon,\varepsilon\to\varepsilon$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (p2) -- (p3);
+\node at ($0.5*(p2)+0.5*(p3)$) [above]
+	{$\scriptstyle\varepsilon,\varepsilon\to\varepsilon$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (p3) -- (e);
+\node at ($0.5*(p3)+0.5*(e)$) [above right]
+	{$\scriptstyle\varepsilon,\texttt{\$}\to\varepsilon$};
+
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q1) -- (r0);
+\node at ($0.5*(q1)+0.5*(r0)$) [below left]
+	{$\scriptstyle\varepsilon\to\varepsilon,\varepsilon$};
+
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(r0) to[out=-60,in=-120,distance=1cm] (r0);
+\node at ($(r0)+(0,-0.9)$) {$\scriptstyle\texttt{a},\varepsilon\to\varepsilon$};
+
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(r1) to[out=-60,in=-120,distance=1cm] (r1);
+\node at ($(r1)+(0,-0.9)$) {$\scriptstyle\texttt{b},\varepsilon\to\texttt{b}$};
+
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(r2) to[out=-60,in=-120,distance=1cm] (r2);
+\node at ($(r2)+(0,-0.9)$) {$\scriptstyle\texttt{c},\varepsilon\to\varepsilon$};
+
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(r3) to[out=-60,in=-120,distance=1cm] (r3);
+\node at ($(r3)+(0,-0.9)$) {$\scriptstyle\texttt{d},\texttt{b}\to\varepsilon$};
+
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (r0) -- (r1);
+\node at ($0.5*(r0)+0.5*(r1)$) [below]
+	{$\scriptstyle\varepsilon,\varepsilon\to\varepsilon$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (r1) -- (r2);
+\node at ($0.5*(r1)+0.5*(r2)$) [below]
+	{$\scriptstyle\varepsilon,\varepsilon\to\varepsilon$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (r2) -- (r3);
+\node at ($0.5*(r2)+0.5*(r3)$) [below]
+	{$\scriptstyle\varepsilon,\varepsilon\to\varepsilon$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (r3) -- (e);
+\node at ($0.5*(r3)+0.5*(e)$) [below right]
+	{$\scriptstyle\varepsilon,\texttt{\$}\to\varepsilon$};
+
+\end{tikzpicture}
+\end{center}
+Auf dem oberen Weg wird sichergestellt, dass die Anzahl der \texttt{a} und
+die Anzahl der \texttt{c} gleich gross ist, dass also $i=k$ ist.
+Auf dem unteren Weg werden \texttt{b} und \texttt{d} verglichen, es wird
+also $j=l$ sichergestellt.
+\end{loesung}
+
+\begin{bewertung}
+Vereinigung von zwei Grammatiken ({\bf V}) 1 Punkt,
+Schachtelungsidee in beiden Grammatiken ({\bf S}) 1 Punkt,
+paarweises hinzufügen von \texttt{a} und \texttt{c} bzw.~\texttt{b} und
+\texttt{d} ({\bf P}) 1 Punkt,
+andere Teilstücke können leer sein ({\bf L}) 1 Punkt,
+andere Teilstücke bestehen aus den korrekten Buchstaben ({\bf B}) 1 Punkt,
+Schlussfolgerung kontextfrei ({\bf K}) 1 Punkt.
+\end{bewertung}
+

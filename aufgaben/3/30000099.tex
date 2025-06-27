@@ -1,0 +1,129 @@
+Über dem Alphabet $\Sigma=\{\texttt{0},\texttt{1}\}$ ist die Sprache
+\[
+L
+=
+\{
+w\in\Sigma^*
+\mid
+|w|_{\texttt{0}}
+-
+|w|_{\texttt{1}}
+\equiv
+0
+\mod 2
+\}
+\]
+gegben.
+Ist sie regulär?
+Wenn ja, bestimmen Sie einen regulären Ausdruck dafür.
+
+\begin{loesung}
+Der endliche Automat 
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (2,0);
+\node at (q0) {$q_0$};
+\node at (q1) {$q_1$};
+\draw (q0) circle[radius=0.35];
+\draw (q0) circle[radius=0.30];
+\draw (q1) circle[radius=0.35];
+\draw[->,shorten >= 0.35cm] ($(q0)+(-2,0)$) -- (q0);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q0) to[out=30,in=150] (q1);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q1) to[out=-150,in=-30] (q0);
+\node at ($0.5*(q0)+0.5*(q1)+(0,0.3)$) [above] {\texttt{0},\texttt{1}};
+\node at ($0.5*(q0)+0.5*(q1)+(0,-0.3)$) [below] {\texttt{0},\texttt{1}};
+\end{tikzpicture}
+\end{center}
+akzeptiert die Sprache $L$, was beweist, dass $L$ regulär ist.
+
+Ein regulärer Ausdruck kann nach dem Standardverfahren konstruiert werden.
+Dazu wird der Automat erst in den folgenden VNEA standardisiert:
+\begin{equation}
+\raisebox{-1.3cm}{%
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (s) at (-2,0);
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (2,0);
+\coordinate (e) at (0,-2);
+\node at (q0) {$q_0$};
+\node at (q1) {$q_1$};
+\node at (e) {$e$};
+\node at (s) {$s$};
+\draw (s) circle[radius=0.35];
+\draw (q0) circle[radius=0.35];
+\draw (q1) circle[radius=0.35];
+\draw (e) circle[radius=0.35];
+\draw (e) circle[radius=0.30];
+\draw[->,shorten >= 0.35cm] ($(s)+(-2,0)$) -- (s);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (s) -- (q0);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q0) -- (e);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q0) to[out=30,in=150] (q1);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q1) to[out=-150,in=-30] (q0);
+\node at ($0.5*(q0)+0.5*(q1)+(0,0.3)$) [above] {\texttt{0},\texttt{1}};
+\node at ($0.5*(q0)+0.5*(q1)+(0,-0.3)$) [below] {\texttt{0},\texttt{1}};
+\node at ($0.5*(s)+0.5*(q0)$) [above] {$\varepsilon$};
+\node at ($0.5*(e)+0.5*(q0)$) [left] {$\varepsilon$};
+\end{tikzpicture}}
+\label{30000099:dea}
+\end{equation}
+Jetzt müssen die Zwischenzustände in der Reihenfolge $q_1,q_0$ entfernt werden,
+es ergibt sich
+\begin{center}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\begin{tikzpicture}[>=latex,thick]
+\begin{scope}
+\coordinate (s) at (-2,0);
+\coordinate (q0) at (0,0);
+\coordinate (e) at (0,-2);
+\node at (q0) {$q_0$};
+\node at (e) {$e$};
+\node at (s) {$s$};
+\draw (s) circle[radius=0.35];
+\draw (q0) circle[radius=0.35];
+\draw (e) circle[radius=0.35];
+\draw (e) circle[radius=0.30];
+\draw[->,shorten >= 0.35cm] ($(s)+(-2,0)$) -- (s);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (s) -- (q0);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q0) -- (e);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm]
+	(q0) to[out=30,in=-30,distance=1.5cm] (q0);
+\node at ($0.5*(s)+0.5*(q0)$) [above] {$\varepsilon$};
+\node at ($0.5*(e)+0.5*(q0)$) [left] {$\varepsilon$};
+\node at ($(q0)+(1.0,0.0)$) [right] {$\texttt{(0|1)(0|1)}$};
+\end{scope}
+\draw[->] (3.7,-1) -- +(1,0);
+\begin{scope}[xshift=9cm]
+\coordinate (s) at (-2,0);
+\coordinate (e) at (0,-2);
+\node at (e) {$e$};
+\node at (s) {$s$};
+\draw (s) circle[radius=0.35];
+\draw (e) circle[radius=0.35];
+\draw (e) circle[radius=0.30];
+\draw[->,shorten >= 0.35cm] ($(s)+(-2,0)$) -- (s);
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (s) -- (e);
+\node at ($0.5*(s)+0.5*(e)$) [above right] {$\texttt{((0|1)(0|1))*}$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+Der gesuchte reguläre Ausdruck ist $r= \texttt{((0|1)(0|1))*}$.
+Er kann kompakter auch $\texttt{(..)*}$ geschrieben werden.
+
+Man kann auch direkt auf einen regulären Ausdruck für $L$ kommen.
+Dazu beachtet man, dass die Bedingung bedeutet, dass das Wort $w\in L$
+gerade Länge haben muss.
+Dies ist auch, was der Automat \eqref{30000099:dea} ausdrückt.
+Die Wörter gerader Länge werden aber auch vom regulären Ausdruck
+$r=\texttt{(..)*}$ akzeptiert.
+\end{loesung}
+
+\begin{bewertung}
+Endlicher Automat ({\bf E}) 1 Punkt,
+Standardisierung ({\bf S}) 1 Punkt,
+Entfernung von Zwischenzuständen ({\bf Z}) 2 Punkte,
+finaler regulärer regulärer Ausdruck ({\bf R}) 1 Punkt,
+Schlussfolgerung regulär ({\bf R}) 1 Punkt.
+Bei Teillösungen: Idee, dass die Wortlänge gerade sein muss ({\bf G})
+1--2 Punkte.
+\end{bewertung}
