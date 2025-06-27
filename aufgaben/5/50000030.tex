@@ -58,6 +58,9 @@ drei Zeichen weiter links stehen.
 Die Verarbeitung des Wortes \texttt{01} ändert den Bandinhalt wie folgt.
 Die aktuelle Kopfposition ist durch rote Zeichen angedeutet.
 \begin{center}
+\def\b{\phantom{q_0}}
+\def\r#1{\bgroup\color{red}\texttt{#1}\egroup}
+\def\s#1{\texttt{#1}}
 \def\R{\color{red}}
 \begin{tabular}{>{$}c<{$}|
 >{$}c<{$}
@@ -65,22 +68,24 @@ Die aktuelle Kopfposition ist durch rote Zeichen angedeutet.
 >{$}c<{$}
 >{$}c<{$}
 >{$}c<{$}
->{$}c<{$}}
-\\
-q_0              &\blank&\blank    &\blank    &\R\texttt{0}&\texttt{1}&\blank\\
-q_1              &\blank&\blank    &\R\blank    &\texttt{0}&\texttt{1}&\blank\\
-q_2              &\blank&\R\blank    &\blank    &\texttt{0}&\texttt{1}&\blank\\
-q_5              &\blank&\texttt{0}&\R\blank    &\texttt{0}&\texttt{1}&\blank\\
-q_6              &\blank&\texttt{0}&\blank    &\R\texttt{0}&\texttt{1}&\blank\\
-q_0              &\blank&\texttt{0}&\blank    &\texttt{0}&\R\texttt{1}&\blank\\
-q_3              &\blank&\texttt{0}&\blank    &\R\texttt{0}&\texttt{1}&\blank\\
-q_4              &\blank&\texttt{0}&\R\blank    &\texttt{0}&\texttt{1}&\blank\\
-q_5              &\blank&\texttt{0}&\texttt{1}&\R\texttt{0}&\texttt{1}&\blank\\
-q_6              &\blank&\texttt{0}&\texttt{1}&\texttt{0}&\R\texttt{1}&\blank\\
-q_0              &\blank&\texttt{0}&\texttt{1}&\texttt{0}&\texttt{1}&\R\blank\\
-q_7              &\blank&\texttt{0}&\texttt{1}&\texttt{0}&\R\texttt{1}&\blank\\
-q_8              &\blank&\texttt{0}&\texttt{1}&\R\texttt{0}&\blank    &\blank\\
-q_{\text{accept}}&\blank&\texttt{0}&\R\texttt{1}&\blank    &\blank    &\blank\\
+>{$}c<{$}|>{$}l<{$}}
+\text{Zustand}&\multicolumn{6}{l|}{Band}&\text{Berechnungsgeschichte}\\
+\hline
+q_0              &\blank&\blank    &\blank    &\R\texttt{0}&\texttt{1}&\blank&\blank\blank\blank q_0\r{0}\s{1}\blank\\
+q_1              &\blank&\blank    &\R\blank    &\texttt{0}&\texttt{1}&\blank&\blank\blank q_1\r{\blank}\s{01}\blank\\
+q_2              &\blank&\R\blank    &\blank    &\texttt{0}&\texttt{1}&\blank&\blank q_2\r{\blank}\blank\s{01}\blank\\
+q_5              &\blank&\texttt{0}&\R\blank    &\texttt{0}&\texttt{1}&\blank&\blank\s{0}q_5\r{\blank}\s{01}\blank\\
+q_6              &\blank&\texttt{0}&\blank    &\R\texttt{0}&\texttt{1}&\blank&\blank\s{0}\blank q_0\r{0}\s{1}\blank\\
+q_0              &\blank&\texttt{0}&\blank    &\texttt{0}&\R\texttt{1}&\blank&\blank\s{0}\blank\s{0}q_0\r{1}\blank\\
+q_3              &\blank&\texttt{0}&\blank    &\R\texttt{0}&\texttt{1}&\blank&\blank\s{0}\blank q_3\r{0}\s{1}\blank\\
+q_4              &\blank&\texttt{0}&\R\blank    &\texttt{0}&\texttt{1}&\blank&\blank\s{0}q_4\r{\blank}\s{01}\blank\\
+q_5              &\blank&\texttt{0}&\texttt{1}&\R\texttt{0}&\texttt{1}&\blank&\blank\s{01}q_5\r{0}\s{1}\blank\\
+q_6              &\blank&\texttt{0}&\texttt{1}&\texttt{0}&\R\texttt{1}&\blank&\blank\s{010}q_6\r{1}\blank\\
+q_0              &\blank&\texttt{0}&\texttt{1}&\texttt{0}&\texttt{1}&\R\blank&\blank\s{0101}q_0\r{\blank}\\
+q_7              &\blank&\texttt{0}&\texttt{1}&\texttt{0}&\R\texttt{1}&\blank&\blank\s{010}q_7\r{1}\blank\\
+q_8              &\blank&\texttt{0}&\texttt{1}&\R\texttt{0}&\blank    &\blank&\blank\s{01}q_8\r{0}\blank\blank\\
+q_{\text{accept}}&\blank&\texttt{0}&\R\texttt{1}&\blank    &\blank    &\blank&\blank\s{0}q_a\r{1}\blank\blank\blank\\
+\hline
 \end{tabular}
 \end{center}
 \item

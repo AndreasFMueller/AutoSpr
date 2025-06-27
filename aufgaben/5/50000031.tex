@@ -46,16 +46,22 @@ Welche Sprache wird von der Turing-Maschine akzeptiert?
 \item
 Die folgende Tabelle beschreibt die Berechnung
 \begin{center}
-\begin{tabular}{>{$}r<{$}|>{$}l<{$}>{$}l<{$}>{$}l<{$}>{$}l<{$}>{$}l<{$}}
-q_0 & \blank & \color{red}\texttt{0} & \texttt{1} & \texttt{0} & \blank \\
-q_1 & \blank & \texttt{0} & \color{red}\texttt{1} & \texttt{0} & \blank \\
-q_1 & \blank & \texttt{0} & \texttt{1} & \color{red}\texttt{0} & \blank \\
-q_0 & \blank & \texttt{0} & \texttt{1} & \texttt{0} & \color{red}\blank \\
-q_2 & \blank & \texttt{0} & \texttt{1} & \color{red}\texttt{0} & \blank \\
-q_2 & \blank & \texttt{0} & \color{red}\texttt{1} & \texttt{0} & \blank \\
-q_3 & \blank & \color{red}\texttt{0} & \texttt{1} & \texttt{0} & \blank \\
-q_3 & \color{red}\blank & \texttt{0} & \texttt{1} & \texttt{0} & \blank \\
-q_{\text{reject}} & &&&&
+\def\b{\phantom{q_0}}
+\def\r#1{\bgroup\color{red}\texttt{#1}\egroup}
+\def\s#1{\texttt{#1}}
+\begin{tabular}{>{$}r<{$}|>{$}l<{$}>{$}l<{$}>{$}l<{$}>{$}l<{$}>{$}l<{$}>{$}l<{$}|>{$}l<{$}}
+\text{Zustand}&\multicolumn{6}{l|}{Band}&\text{Berechnungsgeschichte}\\
+\hline
+q_0 & \blank & \blank & \color{red}\texttt{0} & \texttt{1} & \texttt{0} & \blank &\blank\blank q_0\r{0}\s{10}\blank\\
+q_1 & \blank & \blank & \texttt{0} & \color{red}\texttt{1} & \texttt{0} & \blank &\blank\blank\s{0}q_1\r{1}\s{0}\blank\\
+q_1 & \blank & \blank & \texttt{0} & \texttt{1} & \color{red}\texttt{0} & \blank &\blank\blank\s{01}q_1\r{0}\blank\\
+q_0 & \blank & \blank & \texttt{0} & \texttt{1} & \texttt{0} & \color{red}\blank &\blank\blank\s{010}q_0\r{\blank}\\
+q_2 & \blank & \blank & \texttt{0} & \texttt{1} & \color{red}\texttt{0} & \blank &\blank\blank\s{01}q_2\r{0}\blank\\
+q_2 & \blank & \blank & \texttt{0} & \color{red}\texttt{1} & \texttt{0} & \blank &\blank\blank\s{0}q_2\r{1}\s{0}\blank\\
+q_3 & \blank & \blank & \color{red}\texttt{0} & \texttt{1} & \texttt{0} & \blank &\blank\blank q_3\r{0}\s{10}\blank\\
+q_3 & \blank & \color{red}\blank & \texttt{0} & \texttt{1} & \texttt{0} & \blank &\blank q_3\r{\blank}\s{010}\blank\\
+q_{\text{reject}} & \color{red}\blank & \blank & \s{0} & \s{1} & \s{0} & \blank &q_r\r{\blank}\blank\s{010}\blank\\
+\hline
 \end{tabular}
 \end{center}
 Das Wort \texttt{010} wird nicht akzeptiert.
