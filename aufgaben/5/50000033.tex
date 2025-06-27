@@ -106,34 +106,37 @@ $\texttt{001}$?
 \begin{teilaufgaben}
 \item Die folgende Tabelle zeigt die Verarbeitung des Wortes \texttt{0011}
 \begin{center}
-\begin{tabular}{>{$}c<{$}|cccccc}
-\text{Zustand}&&&&&&\\
+\def\b{\phantom{\texttt{0}}}
+\def\r#1{\bgroup\color{red}\texttt{#1}\egroup}
+\def\s#1{\texttt{#1}}
+\begin{tabular}{>{$}c<{$}|cccccc|>{$}l<{$}}
+\text{Zustand}&\multicolumn{6}{l|}{Band}&\text{Berechnungsgeschichte}\\
 \hline
-q_0& \blank & \rot{0} & \schwarz{0} & \schwarz{1} & \schwarz{1} & \blank \\
-q_0& \blank & \schwarz{0} & \rot{0} & \schwarz{1} & \schwarz{1} & \blank \\
-q_0& \blank & \schwarz{0} & \schwarz{0} & \rot{1} & \schwarz{1} & \blank \\
-q_1& \blank & \schwarz{0} & \rot{0} & \schwarz{x} & \schwarz{1} & \blank \\
-q_2& \blank & \schwarz{0} & \schwarz{x} & \rot{x} & \schwarz{1} & \blank \\
-q_2& \blank & \schwarz{0} & \schwarz{x} & \schwarz{x} & \rot{1} & \blank \\
-q_1& \blank & \schwarz{0} & \schwarz{x} & \rot{x} & \schwarz{x} & \blank \\
-q_1& \blank & \schwarz{0} & \rot{x} & \schwarz{x} & \schwarz{x} & \blank \\
-q_1& \blank & \rot{0} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank \\
-q_2& \blank & \schwarz{x} & \rot{x} & \schwarz{x} & \schwarz{x} & \blank \\
-q_2& \blank & \schwarz{x} & \schwarz{x} & \rot{x} & \schwarz{x} & \blank \\
-q_2& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rot{x} & \blank \\
-q_2& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rotb \\
-q_3& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rot{x} & \blank \\
-q_3& \blank & \schwarz{x} & \schwarz{x} & \rot{x} & \schwarz{x} & \blank \\
-q_3& \blank & \schwarz{x} & \rot{x} & \schwarz{x} & \schwarz{x} & \blank \\
-q_3& \blank & \rot{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank \\
-q_3& \rotb & \schwarz{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank \\
-q_4& \blank & \rot{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank \\
-q_4& \blank & \schwarz{x} & \rot{x} & \schwarz{x} & \schwarz{x} & \blank \\
-q_4& \blank & \schwarz{x} & \schwarz{x} & \rot{x} & \schwarz{x} & \blank \\
-q_4& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rot{x} & \blank \\
-q_4& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rotb \\
+q_0& \blank & \rot{0} & \schwarz{0} & \schwarz{1} & \schwarz{1} & \blank & \blank q_0\r{0}\s{011}\blank\blank\\
+q_0& \blank & \schwarz{0} & \rot{0} & \schwarz{1} & \schwarz{1} & \blank & \blank \s{0}q_0\r{0}\s{11}\blank\blank\\
+q_0& \blank & \schwarz{0} & \schwarz{0} & \rot{1} & \schwarz{1} & \blank & \blank \s{00}q_0\r{1}\s{1}\blank\blank\\
+q_1& \blank & \schwarz{0} & \rot{0} & \schwarz{x} & \schwarz{1} & \blank & \blank \s{0}q_1\r{0}\s{x1}\blank\blank\\
+q_2& \blank & \schwarz{0} & \schwarz{x} & \rot{x} & \schwarz{1} & \blank & \blank \s{0x}q_2\r{x}\s{1}\blank\blank\\
+q_2& \blank & \schwarz{0} & \schwarz{x} & \schwarz{x} & \rot{1} & \blank & \blank \s{0xx}q_2\r{1}\blank\blank\\
+q_1& \blank & \schwarz{0} & \schwarz{x} & \rot{x} & \schwarz{x} & \blank & \blank \s{0x}q_1\r{x}\s{x}\blank\blank\\
+q_1& \blank & \schwarz{0} & \rot{x} & \schwarz{x} & \schwarz{x} & \blank & \blank \s{0}q_1\r{x}\s{xx}\blank\blank\\
+q_1& \blank & \rot{0} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank & \blank q_1\r{0}\s{xxx}\blank\blank\\
+q_2& \blank & \schwarz{x} & \rot{x} & \schwarz{x} & \schwarz{x} & \blank & \blank \s{x}q_2\r{x}\s{xx}\blank\blank\\
+q_2& \blank & \schwarz{x} & \schwarz{x} & \rot{x} & \schwarz{x} & \blank & \blank \s{xx}q_2\r{x}\s{x}\blank\blank\\
+q_2& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rot{x} & \blank & \blank \s{xxx}q_2\r{x}\blank\blank\\
+q_2& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rotb & \blank \s{xxxx}q_2\r{\blank}\blank\\
+q_3& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rot{x} & \blank & \blank \s{xxx}q_3\r{x}\blank\blank\\
+q_3& \blank & \schwarz{x} & \schwarz{x} & \rot{x} & \schwarz{x} & \blank & \blank \s{xx}q_3\r{x}\s{x}\blank\blank\\
+q_3& \blank & \schwarz{x} & \rot{x} & \schwarz{x} & \schwarz{x} & \blank & \blank \s{x}q_3\r{x}\s{xx}\blank\blank\\
+q_3& \blank & \rot{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank & \blank q_3\r{x}\s{xxx}\blank\blank\\
+q_3& \rotb & \schwarz{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank & q_3\r{\blank}\s{xxxx}\blank\blank\\
+q_4& \blank & \rot{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank & \blank q_4\r{x}\s{xxx}\blank\blank\\
+q_4& \blank & \schwarz{x} & \rot{x} & \schwarz{x} & \schwarz{x} & \blank & \blank \s{x}q_4\r{x}\s{xx}\blank\blank\\
+q_4& \blank & \schwarz{x} & \schwarz{x} & \rot{x} & \schwarz{x} & \blank & \blank \s{xx}q_4\r{x}\s{x}\blank\blank\\
+q_4& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rot{x} & \blank & \blank \s{xxx}q_4\r{x}\blank\blank\\
+q_4& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rotb & \blank \s{xxxx}q_4\r{\blank}\blank\\
 q_{\text{accept}}&
- \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank \\
+ \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank & \blank \s{xxxx}\blank q_a\r{\blank}\\
 \hline
 \end{tabular}
 \end{center}
@@ -142,60 +145,59 @@ Die folgenden Berechnungsgeschichten zeigen, dass \texttt{01}
 und \texttt{011} akzeptiert werden, dass aber \texttt{001}
 verworfen wird:
 \begin{center}
-\begin{tabular}{>{$}c<{$}|cccc}
-\text{Zustand}&&&&\\
+\def\b{\phantom{\texttt{0}}}
+\def\r#1{\bgroup\color{red}\texttt{#1}\egroup}
+\def\s#1{\texttt{#1}}
+\begin{tabular}{>{$}c<{$}|cccc|>{$}l<{$}}
+\text{Zustand}&\multicolumn{4}{l|}{Band}&\text{Berechnungsgeschichte}\\
 \hline
-q_0& \blank & \rot{0} & \schwarz{1} & \blank \\
-q_0& \blank & \schwarz{0} & \rot{1} & \blank \\
-q_1& \blank & \rot{0} & \schwarz{x} & \blank \\
-q_1& \blank & \schwarz{x} & \rot{x} & \blank \\
-q_2& \blank & \schwarz{x} & \schwarz{x} & \rotb \\
-q_3& \blank & \schwarz{x} & \rot{x} & \blank \\
-q_3& \blank & \rot{x} & \schwarz{x} & \blank \\
-q_3& \rotb & \schwarz{x} & \schwarz{x} & \blank \\
-q_4& \blank & \rot{x} & \schwarz{x} & \blank \\
-q_4& \blank & \schwarz{x} & \rot{x} & \blank \\
-q_4& \blank & \schwarz{x} & \schwarz{x} & \rotb \\
-q_{\text{accept}}& \blank & \schwarz{x} & \schwarz{x} & \blank \\
-\\
-\hline
-\end{tabular}
-\quad
-\begin{tabular}{>{$}c<{$}|ccccc}
-\text{Zustand}&&&&&\\
-\hline
-q_0& \blank & \rot{0} & \schwarz{1} & \schwarz{1} & \blank \\
-q_0& \blank & \schwarz{0} & \rot{1} & \schwarz{1} & \blank \\
-q_1& \blank & \rot{0} & \schwarz{x} & \schwarz{1} & \blank \\
-q_2& \blank & \schwarz{x} & \rot{x} & \schwarz{1} & \blank \\
-q_2& \blank & \schwarz{x} & \schwarz{x} & \rot{1} & \blank \\
-q_1& \blank & \schwarz{x} & \rot{x} & \schwarz{x} & \blank \\
-q_1& \blank & \rot{x} & \schwarz{x} & \schwarz{x} & \blank \\
-q_1& \rotb & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank \\
-q_4& \blank & \rot{x} & \schwarz{x} & \schwarz{x} & \blank \\
-q_4& \blank & \schwarz{x} & \rot{x} & \schwarz{x} & \blank \\
-q_4& \blank & \schwarz{x} & \schwarz{x} & \rot{x} & \blank \\
-q_4& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rotb \\
-q_{\text{accept}}& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank \\
+q_0& \blank & \rot{0} & \schwarz{1} & \blank & \blank q_0\r{0}\s{1}\blank\blank\\
+q_0& \blank & \schwarz{0} & \rot{1} & \blank & \blank \s{0}q_0\r{1}\blank\blank\\
+q_1& \blank & \rot{0} & \schwarz{x} & \blank & \blank q_1\r{0}\s{x}\blank\blank\\
+q_1& \blank & \schwarz{x} & \rot{x} & \blank & \blank \s{x}q_1\r{x}\blank\blank\\
+q_2& \blank & \schwarz{x} & \schwarz{x} & \rotb & \blank \s{x}{x}q_2\r{\blank}\blank\\
+q_3& \blank & \schwarz{x} & \rot{x} & \blank & \blank \s{x}q_3\r{x}\blank\blank\\
+q_3& \blank & \rot{x} & \schwarz{x} & \blank & \blank q_3\r{x}\s{x}\blank\blank\\
+q_3& \rotb & \schwarz{x} & \schwarz{x} & \blank & q_3\r{\blank}\s{xx}\blank\blank\\
+q_4& \blank & \rot{x} & \schwarz{x} & \blank & \blank q_4\r{x}\s{x}\blank\blank\\
+q_4& \blank & \schwarz{x} & \rot{x} & \blank & \blank\s{x}q_4\r{x}\blank\blank\\
+q_4& \blank & \schwarz{x} & \schwarz{x} & \rotb & \blank\s{xx}q_4\r{\blank}\blank\\
+q_{\text{accept}}& \blank & \schwarz{x} & \schwarz{x} & \blank & \blank\s{xx}\blank q_a\r{\blank}\\
 \hline
 \end{tabular}
-\quad
-\begin{tabular}{>{$}c<{$}|ccccc}
-\text{Zustand}&&&&&\\
+\\[10pt]
+\begin{tabular}{>{$}c<{$}|ccccc|>{$}l<{$}}
+\text{Zustand}&\multicolumn{5}{l|}{Band}&\text{Berechnungsgeschichte}\\
 \hline
-q_0& \blank & \rot{0} & \schwarz{0} & \schwarz{1} & \blank \\
-q_0& \blank & \schwarz{0} & \rot{0} & \schwarz{1} & \blank \\
-q_0& \blank & \schwarz{0} & \schwarz{0} & \rot{1} & \blank \\
-q_1& \blank & \schwarz{0} & \rot{0} & \schwarz{x} & \blank \\
-q_2& \blank & \schwarz{0} & \schwarz{x} & \rot{x} & \blank \\
-q_2& \blank & \schwarz{0} & \schwarz{x} & \schwarz{x} & \rotb \\
-q_3& \blank & \schwarz{0} & \schwarz{x} & \rot{x} & \blank \\
-q_3& \blank & \schwarz{0} & \rot{x} & \schwarz{x} & \blank \\
-q_3& \blank & \rot{0} & \schwarz{x} & \schwarz{x} & \blank \\
-q_{\text{reject}}& \blank & \schwarz{0} & \schwarz{x} & \schwarz{x} & \blank \\
-\\
-\\
-\\
+q_0& \blank & \rot{0} & \schwarz{1} & \schwarz{1} & \blank & \blank\blank q_0\r{0}\s{01}\blank\blank\\
+q_0& \blank & \schwarz{0} & \rot{1} & \schwarz{1} & \blank & \blank\blank \s{0}q_0\r{1}\s{1}\blank\blank\\
+q_1& \blank & \rot{0} & \schwarz{x} & \schwarz{1} & \blank & \blank\blank  q_1\r{0}\s{x1}\blank\blank \\
+q_2& \blank & \schwarz{x} & \rot{x} & \schwarz{1} & \blank & \blank\blank \s{x}q_2\r{x}\s{1}\blank\blank\\
+q_2& \blank & \schwarz{x} & \schwarz{x} & \rot{1} & \blank & \blank\blank \s{xx}q_2\r{1}\blank\blank\\
+q_1& \blank & \schwarz{x} & \rot{x} & \schwarz{x} & \blank & \blank\blank \s{x}q_1\r{x}\s{x}\blank\blank\\
+q_1& \blank & \rot{x} & \schwarz{x} & \schwarz{x} & \blank & \blank\blank q_1\r{x}\s{xx}\blank\blank\\
+q_1& \rotb & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank & \blank q_1\r{\blank}\s{xxx}\blank\blank\\
+q_4& \blank & \rot{x} & \schwarz{x} & \schwarz{x} & \blank & \blank\blank q_4\r{x}\s{xx}\blank\blank\\
+q_4& \blank & \schwarz{x} & \rot{x} & \schwarz{x} & \blank & \blank\blank \s{x}q_4\r{x}\s{x}\blank\blank\\
+q_4& \blank & \schwarz{x} & \schwarz{x} & \rot{x} & \blank & \blank\blank \s{xx}q_4\r{x}\blank\blank\\
+q_4& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \rotb & \blank\blank\s{xxx}q_4\r{\blank}\blank\\
+q_{\text{accept}}& \blank & \schwarz{x} & \schwarz{x} & \schwarz{x} & \blank & \blank\blank\s{xxx}\blank q_a\r{\blank}\\
+\hline
+\end{tabular}
+\\[10pt]
+\begin{tabular}{>{$}c<{$}|ccccc|>{$}l<{$}}
+\text{Zustand}&\multicolumn{5}{l|}{Band}&\text{Berechnungsgeschichte}\\
+\hline
+q_0& \blank & \rot{0} & \schwarz{0} & \schwarz{1} & \blank & \blank q_0\r{0}\s{01}\blank\\
+q_0& \blank & \schwarz{0} & \rot{0} & \schwarz{1} & \blank & \blank \s{0}q_0\r{0}\s{1}\blank\\
+q_0& \blank & \schwarz{0} & \schwarz{0} & \rot{1} & \blank & \blank \s{00}q_0\r{1}\blank\\
+q_1& \blank & \schwarz{0} & \rot{0} & \schwarz{x} & \blank & \blank \s{0}q_1\r{0}\s{x}\blank\\
+q_2& \blank & \schwarz{0} & \schwarz{x} & \rot{x} & \blank & \blank \s{0x}q_2\r{x}\blank\\
+q_2& \blank & \schwarz{0} & \schwarz{x} & \schwarz{x} & \rotb & \blank\s{0xx}q_2\r{\blank}\\
+q_3& \blank & \schwarz{0} & \schwarz{x} & \rot{x} & \blank & \blank\s{0x}q_3\r{x}\blank\\
+q_3& \blank & \schwarz{0} & \rot{x} & \schwarz{x} & \blank & \blank\s{0}q_3\r{x}\s{x}\blank\\
+q_3& \blank & \rot{0} & \schwarz{x} & \schwarz{x} & \blank & \blank q_3\r{0}\s{xx}\blank\\
+q_{\text{reject}}& \blank & \schwarz{0} & \schwarz{x} & \schwarz{x} &  & q_r\r{\blank}\s{0xx}\blank\\
 \hline
 \end{tabular}
 \end{center}
