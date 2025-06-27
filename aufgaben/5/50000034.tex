@@ -91,18 +91,21 @@ werden akzeptiert?
 \item  Die Berechnungsgeschichte für das Wort $w = \texttt{001011}$
 ist
 \begin{center}
-\begin{tabular}{>{$}c<{$}|cccccccc}
-\text{Zustand}&&&&&&&&\\
+\def\b{\phantom{\texttt{0}}}
+\def\r#1{\bgroup\color{red}\texttt{#1}\egroup}
+\def\s#1{\texttt{#1}}
+\begin{tabular}{>{$}c<{$}|cccccccc|>{$}l<{$}}
+\text{Zustand}&\multicolumn{8}{l|}{Band}&\text{Berechnungsgeschichte}\\
 \hline
-q_0& \blank & \r{0} & \s{0} & \s{1} & \s{0} & \s{1} & \s{1} & \blank \\
-q_1& \blank & \s{0} & \r{0} & \s{1} & \s{0} & \s{1} & \s{1} & \blank \\
-q_2& \blank & \s{0} & \s{0} & \r{1} & \s{0} & \s{1} & \s{1} & \blank \\
-q_1& \blank & \s{0} & \s{0} & \s{1} & \r{0} & \s{1} & \s{1} & \blank \\
-q_2& \blank & \s{0} & \s{0} & \s{1} & \s{0} & \r{1} & \s{1} & \blank \\
-q_1& \blank & \s{0} & \s{0} & \s{1} & \s{0} & \s{1} & \r{1} & \blank \\
-q_0& \blank & \s{0} & \s{0} & \s{1} & \s{0} & \s{1} & \s{1} & \brank \\
+q_0& \blank & \r{0} & \s{0} & \s{1} & \s{0} & \s{1} & \s{1} & \blank &q_0\r{0}\s{01011}\blank\blank\\
+q_1& \blank & \s{0} & \r{0} & \s{1} & \s{0} & \s{1} & \s{1} & \blank &\s{0}q_1\r{0}\s{1011}\blank\blank\\
+q_2& \blank & \s{0} & \s{0} & \r{1} & \s{0} & \s{1} & \s{1} & \blank &\s{00}q_2\r{1}\s{011}\blank\blank\\
+q_1& \blank & \s{0} & \s{0} & \s{1} & \r{0} & \s{1} & \s{1} & \blank &\s{001}q_1\r{0}\s{11}\blank\blank\\
+q_2& \blank & \s{0} & \s{0} & \s{1} & \s{0} & \r{1} & \s{1} & \blank &\s{0010}q_2\r{1}\s{1}\blank\blank\\
+q_1& \blank & \s{0} & \s{0} & \s{1} & \s{0} & \s{1} & \r{1} & \blank &\s{00101}q_1\r{1}\blank\blank\\
+q_0& \blank & \s{0} & \s{0} & \s{1} & \s{0} & \s{1} & \s{1} & \brank &\s{001011}q_0\r{\blank}\blank\\
 q_{\text{accept}} 
-   & \blank & \s{0} & \s{0} & \s{1} & \s{0} & \s{1} & \s{1} & \blank \\
+   & \blank & \s{0} & \s{0} & \s{1} & \s{0} & \s{1} & \s{1} & \blank &\s{001011}\blank q_a\r{\blank}\\
 \hline
 \end{tabular}
 \end{center}
@@ -152,7 +155,8 @@ w\in\Sigma^*
 Berechnungsgeschichte ({\bf G}) 1 Punkt,
 akzeptiert ({\bf A}) 1 Punkt.
 \item
-Drei Punkte ({\bf B}) 3 Punkte.
+Ist $a$ die Anzahl korrekt eingeordneter Wörter, dann ist die Punktzahl
+$B=\max\bigl(\lfloor \frac{a}2\rfloor-1,0\bigr)$.
 \item
 Dreierrestbedingung ({\bf R}) 1 Punkt.
 \end{teilaufgaben}
