@@ -20,32 +20,32 @@ L'=\{\texttt{0}^n\texttt{1}^m\,|\,n,m\ge 0\}
 ist regulär, denn sie wird von dem Automaten
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
-\coordinate (s) at (-2,0);
-\coordinate (z0) at (0,0);
-\coordinate (z1) at (2,0);
-\coordinate (z2) at (4,0);
-\node at (z0) {$z_0$};
-\node at (z1) {$z_1$};
-\node at (z2) {$z_2$};
-\draw (z0) circle[radius=0.4];
-\draw (z0) circle[radius=0.35];
-\draw (z1) circle[radius=0.4];
-\draw (z1) circle[radius=0.35];
-\draw (z2) circle[radius=0.4];
-\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (s) -- (z0);
-\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (z0) -- (z1);
-\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (z1) -- (z2);
-\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
-	(z0) to[out=60,in=120,distance=1.4cm] (z0);
-\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
-	(z1) to[out=60,in=120,distance=1.4cm] (z1);
-\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
-	(z2) to[out=30,in=-30,distance=1.4cm] (z2);
-\node at ($0.5*(z0)+0.5*(z1)$) [above] {\texttt{1}};
-\node at ($0.5*(z1)+0.5*(z2)$) [above] {\texttt{0}};
-\node at ($(z0)+(0,1.3)$) {\texttt{0}};
-\node at ($(z1)+(0,1.3)$) {\texttt{1}};
-\node at ($(z2)+(1.5,0)$) {\texttt{0},\texttt{1}};
+	\coordinate (s) at (-2,0);
+	\coordinate (z0) at (0,0);
+	\coordinate (z1) at (2,0);
+	\coordinate (z2) at (4,0);
+	\node at (z0) {$z_0$};
+	\node at (z1) {$z_1$};
+	\node at (z2) {$z_2$};
+	\draw (z0) circle[radius=0.4];
+	\draw (z0) circle[radius=0.35];
+	\draw (z1) circle[radius=0.4];
+	\draw (z1) circle[radius=0.35];
+	\draw (z2) circle[radius=0.4];
+	\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (s) -- (z0);
+	\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (z0) -- (z1);
+	\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (z1) -- (z2);
+	\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+		(z0) to[out=60,in=120,distance=1.4cm] (z0);
+	\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+		(z1) to[out=60,in=120,distance=1.4cm] (z1);
+	\draw[->,shorten >= 0.4cm,shorten <= 0.4cm]
+		(z2) to[out=30,in=-30,distance=1.4cm] (z2);
+	\node at ($0.5*(z0)+0.5*(z1)$) [above] {\texttt{1}};
+	\node at ($0.5*(z1)+0.5*(z2)$) [above] {\texttt{0}};
+	\node at ($(z0)+(0,1.3)$) {\texttt{0}};
+	\node at ($(z1)+(0,1.3)$) {\texttt{1}};
+	\node at ($(z2)+(1.5,0)$) {\texttt{0},\texttt{1}};
 \end{tikzpicture}
 \end{center}
 akzeptiert.
@@ -94,73 +94,73 @@ wie Einsen vorhanden sein, es muss also $N+|v|=N+b$ gelten.
 \definecolor{darkred}{rgb}{0.8,0,0}
 \begin{tikzpicture}[>=latex,thick]
 \begin{scope}
-\draw (0,0) rectangle ({19*\h},\h);
-\draw ({8*\h},0) -- ++(0,\h);
-\draw[line width=0.3pt] ({16*\h},0) -- ++(0,\h);
-\node at ({4*\h},{0.5*\h}) {\texttt{0}};
-\node at ({13.5*\h},{0.5*\h}) {\texttt{1}};
-\node at ({8*\h},\h) [above] {$N$};
-\node at ({16*\h},\h) [above] {$2N$};
-\node at ({19*\h},\h) [above] {$2N+b$};
+	\draw (0,0) rectangle ({19*\h},\h);
+	\draw ({8*\h},0) -- ++(0,\h);
+	\draw[line width=0.3pt] ({16*\h},0) -- ++(0,\h);
+	\node at ({4*\h},{0.5*\h}) {\texttt{0}};
+	\node at ({13.5*\h},{0.5*\h}) {\texttt{1}};
+	\node at ({8*\h},\h) [above] {$N\mathstrut$};
+	\node at ({16*\h},\h) [above] {$2N\mathstrut$};
+	\node at ({19*\h},\h) [above] {$2N+b\mathstrut$};
 \end{scope}
 \begin{scope}[yshift=-1.8cm]
-\draw (0,0) rectangle ({19*\h},\h);
-\draw ({8*\h},0) -- ++(0,\h);
-\draw[line width=0.3pt] ({16*\h},0) -- ++(0,\h);
-\fill[color=darkgreen!30,opacity=0.5] ({0.07*\h},{0.07*\h})
-	rectangle ({1.965*\h},{0.93*\h});
-\draw[color=darkgreen] ({0.07*\h},{0.07*\h})
-	rectangle ({1.965*\h},{0.93*\h});
-\node[color=darkgreen] at ({\h},{0.5*\h}) {$u\mathstrut$};
-\fill[color=darkred!30,opacity=0.5] ({2.035*\h},{0.07*\h})
-	rectangle ({4.965*\h},{0.93*\h});
-\draw[color=darkred] ({2.035*\h},{0.07*\h})
-	rectangle ({4.965*\h},{0.93*\h});
-\node[color=darkred] at ({3.5*\h},{0.5*\h}) {$v\mathstrut$};
-\fill[color=blue!30,opacity=0.5] ({5.035*\h},{0.07*\h})
-	rectangle ({18.93*\h},{0.93*\h});
-\draw[color=blue] ({5.035*\h},{0.07*\h})
-	rectangle ({18.93*\h},{0.93*\h});
-\node[color=blue] at ({12*\h},{0.5*\h}) {$w\mathstrut$};
-\node[color=gray!40] at ({4*\h},{0.5*\h}) {\texttt{0}};
-\node[color=gray!20] at ({13.5*\h},{0.5*\h}) {\texttt{1}};
-\node at ({8*\h},\h) [above] {$N$};
-\node at ({16*\h},\h) [above] {$2N$};
-\node at ({19*\h},\h) [above] {$2N+b$};
+	\draw (0,0) rectangle ({19*\h},\h);
+	\draw ({8*\h},0) -- ++(0,\h);
+	\draw[line width=0.3pt] ({16*\h},0) -- ++(0,\h);
+	\fill[color=darkgreen!30,opacity=0.5] ({0.07*\h},{0.07*\h})
+		rectangle ({1.965*\h},{0.93*\h});
+	\draw[color=darkgreen] ({0.07*\h},{0.07*\h})
+		rectangle ({1.965*\h},{0.93*\h});
+	\node[color=darkgreen] at ({\h},{0.5*\h}) {$u\mathstrut$};
+	\fill[color=darkred!30,opacity=0.5] ({2.035*\h},{0.07*\h})
+		rectangle ({4.965*\h},{0.93*\h});
+	\draw[color=darkred] ({2.035*\h},{0.07*\h})
+		rectangle ({4.965*\h},{0.93*\h});
+	\node[color=darkred] at ({3.5*\h},{0.5*\h}) {$v\mathstrut$};
+	\fill[color=blue!30,opacity=0.5] ({5.035*\h},{0.07*\h})
+		rectangle ({18.93*\h},{0.93*\h});
+	\draw[color=blue] ({5.035*\h},{0.07*\h})
+		rectangle ({18.93*\h},{0.93*\h});
+	\node[color=blue] at ({12*\h},{0.5*\h}) {$w\mathstrut$};
+	\node[color=gray!40] at ({4*\h},{0.5*\h}) {\texttt{0}};
+	\node[color=gray!20] at ({13.5*\h},{0.5*\h}) {\texttt{1}};
+	\node at ({8*\h},\h) [above] {$N\mathstrut$};
+	\node at ({16*\h},\h) [above] {$2N\mathstrut$};
+	\node at ({19*\h},\h) [above] {$2N+b\mathstrut$};
 \end{scope}
 \begin{scope}[yshift=-3.6cm]
-\draw (0,0) rectangle ({22*\h},\h);
-\draw ({11*\h},0) -- ++(0,\h);
-\draw[line width=0.3pt] ({19*\h},0) -- ++(0,\h);
-\draw[line width=0.2pt] (0,0) -- ++(0,-0.9);
-\draw[line width=0.2pt] ({11*\h},0) -- ++(0,-0.9);
-\draw[line width=0.2pt] ({22*\h},0) -- ++(0,-0.9);
-\draw[<->,line width=0.7pt] (0,-0.8) -- ++({11*\h},0);
-\node at ({5.5*\h},-0.9) [above] {$N+|v|\mathstrut$};
-\draw[<->,line width=0.7pt] ({11*\h},-0.8) -- ++({11*\h},0);
-\node at ({16.5*\h},-0.9) [above] {$N+b\mathstrut$};
-\fill[color=darkgreen!30,opacity=0.5] ({0.07*\h},{0.07*\h})
-	rectangle ({1.965*\h},{0.93*\h});
-\draw[color=darkgreen] ({0.07*\h},{0.07*\h})
-	rectangle ({1.965*\h},{0.93*\h});
-\node[color=darkgreen] at ({\h},{0.5*\h}) {$u\mathstrut$};
-\fill[color=darkred!30,opacity=0.5] ({2.035*\h},{0.07*\h})
-	rectangle ({4.965*\h},{0.93*\h});
-\draw[color=darkred] ({2.035*\h},{0.07*\h})
-	rectangle ({4.965*\h},{0.93*\h});
-\node[color=darkred] at ({3.5*\h},{0.5*\h}) {$v\mathstrut$};
-\fill[color=darkred!30,opacity=0.5] ({5.035*\h},{0.07*\h})
-	rectangle ({7.965*\h},{0.93*\h});
-\draw[color=darkred] ({5.035*\h},{0.07*\h})
-	rectangle ({7.965*\h},{0.93*\h});
-\node[color=darkred] at ({6.5*\h},{0.5*\h}) {$v\mathstrut$};
-\fill[color=blue!30,opacity=0.5] ({8.035*\h},{0.07*\h})
-	rectangle ({21.93*\h},{0.93*\h});
-\draw[color=blue] ({8.035*\h},{0.07*\h})
-	rectangle ({21.93*\h},{0.93*\h});
-\node[color=blue] at ({15*\h},{0.5*\h}) {$w\mathstrut$};
-\node[color=gray!40] at ({5.5*\h},{0.5*\h}) {\texttt{0}};
-\node[color=gray!20] at ({16.5*\h},{0.5*\h}) {\texttt{1}};
+	\draw (0,0) rectangle ({22*\h},\h);
+	\draw ({11*\h},0) -- ++(0,\h);
+	\draw[line width=0.3pt] ({19*\h},0) -- ++(0,\h);
+	\draw[line width=0.2pt] (0,0) -- ++(0,-0.9);
+	\draw[line width=0.2pt] ({11*\h},0) -- ++(0,-0.9);
+	\draw[line width=0.2pt] ({22*\h},0) -- ++(0,-0.9);
+	\draw[<->,line width=0.7pt] (0,-0.8) -- ++({11*\h},0);
+	\node at ({5.5*\h},-0.9) [above] {$N+|v|\mathstrut$};
+	\draw[<->,line width=0.7pt] ({11*\h},-0.8) -- ++({11*\h},0);
+	\node at ({16.5*\h},-0.9) [above] {$N+b\mathstrut$};
+	\fill[color=darkgreen!30,opacity=0.5] ({0.07*\h},{0.07*\h})
+		rectangle ({1.965*\h},{0.93*\h});
+	\draw[color=darkgreen] ({0.07*\h},{0.07*\h})
+		rectangle ({1.965*\h},{0.93*\h});
+	\node[color=darkgreen] at ({\h},{0.5*\h}) {$u\mathstrut$};
+	\fill[color=darkred!30,opacity=0.5] ({2.035*\h},{0.07*\h})
+		rectangle ({4.965*\h},{0.93*\h});
+	\draw[color=darkred] ({2.035*\h},{0.07*\h})
+		rectangle ({4.965*\h},{0.93*\h});
+	\node[color=darkred] at ({3.5*\h},{0.5*\h}) {$v\mathstrut$};
+	\fill[color=darkred!30,opacity=0.5] ({5.035*\h},{0.07*\h})
+		rectangle ({7.965*\h},{0.93*\h});
+	\draw[color=darkred] ({5.035*\h},{0.07*\h})
+		rectangle ({7.965*\h},{0.93*\h});
+	\node[color=darkred] at ({6.5*\h},{0.5*\h}) {$v\mathstrut$};
+	\fill[color=blue!30,opacity=0.5] ({8.035*\h},{0.07*\h})
+		rectangle ({21.93*\h},{0.93*\h});
+	\draw[color=blue] ({8.035*\h},{0.07*\h})
+		rectangle ({21.93*\h},{0.93*\h});
+	\node[color=blue] at ({15*\h},{0.5*\h}) {$w\mathstrut$};
+	\node[color=gray!40] at ({5.5*\h},{0.5*\h}) {\texttt{0}};
+	\node[color=gray!20] at ({16.5*\h},{0.5*\h}) {\texttt{1}};
 \end{scope}
 \end{tikzpicture}
 \end{center}
