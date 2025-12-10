@@ -4,13 +4,15 @@ L
 =
 \left\{
 w\in\Sigma^*
-\;\left|\;
+\thickspace
+\left|
+\thickspace
 \begin{minipage}{0.5\hsize}
 $w$ besteht abwechselnd aus \texttt{0} und \texttt{1} und hört mit
 dem gleichen Zeichen auf wie es beginnt
 \end{minipage}
 \right.
-\right\}.
+\right\} .
 \]
 Finden Sie das Zustandsdiagramm einer Turing-Maschine, die $L$ entscheidet.
 
@@ -84,34 +86,6 @@ und der untere Ast des Diagramms.
 	[above] {$\scriptstyle\texttt{0}\to\texttt{0},R$};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix @+15mm {
-%*+\txt{}
-%	&*+\txt{}
-%		&{q_1}	\ar@/^/[r]^{\texttt{1}\to\texttt{1},R}
-%			\ar[dr]^{\texttt{0}\to\texttt{0},R}
-%			\ar[d]^{\blank\to\blank,R}
-%			&{q_2} \ar@/^/[l]^{\texttt{0}\to\texttt{0},R}
-%				\ar[d]^{\texttt{*}}
-%\\
-%*+\txt{} \ar[r]
-%	&{q_0}
-%		\ar[r]^{\blank\to\blank,R}
-%		\ar[ur]^{\texttt{0}\to\texttt{0},R}
-%		\ar[dr]_{\texttt{1}\to\texttt{1},R}
-%		&*++[o][F=]{q_{\text{accept}}}
-%			&*++[o][F=]{q_{\text{reject}}}
-%\\
-%*+\txt{}
-%	&*+\txt{}
-%		&{q_3} \ar@/^/[r]^{\texttt{0}\to\texttt{0},R}
-%			\ar[u]_{\blank\to\blank,R}
-%			\ar[ur]_{\texttt{1}\to\texttt{1},R}
-%			&{q_4} \ar@/^/[l]^{\texttt{1}\to\texttt{1},R}
-%				\ar[u]_{\texttt{*}}
-%}
-%\]
 Darin bedeuten die mit \texttt{*} bezeichneten Pfeile alle Übergänge, für die
 es ausgehend von diesem Zustand noch keinen Übergang gibt.
 
