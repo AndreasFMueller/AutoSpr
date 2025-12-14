@@ -3,15 +3,15 @@ Für arithmetische Ausdrücke mit den Grundoperationen
 zur Auswahl. Einerseits eine leicht abgewandelte Variante
 der in der Vorlesung besprochenen Grammatik:
 \begin{align*}
-\text{Ausdruck}&\rightarrow \text{Zahl}\;\text{'{\tt +}'}\;\text{Ausdruck} \\
-               &\rightarrow \text{Zahl}\;\text{'{\tt -}'}\;\text{Ausdruck} \\
+\text{Ausdruck}&\rightarrow \text{Zahl}\thickspace\text{'{\tt +}'}\thickspace\text{Ausdruck} \\
+               &\rightarrow \text{Zahl}\thickspace\text{'{\tt -}'}\thickspace\text{Ausdruck} \\
                &\rightarrow \text{Zahl}
 \end{align*}
 Andererseits die folgende Grammatik:
 \begin{align*}
-\text{Ausdruck}&\rightarrow \text{Term}\;\text{Termsequenz}\\
-\text{Termsequenz}&\rightarrow \text{'{\tt +}'}\; \text{Term}\; \text{Termsequenz}\\
-                  &\rightarrow \text{'{\tt -}'}\; \text{Term}\; \text{Termsequenz}\\
+\text{Ausdruck}&\rightarrow \text{Term}\thickspace\text{Termsequenz}\\
+\text{Termsequenz}&\rightarrow \text{'{\tt +}'}\thickspace \text{Term}\thickspace \text{Termsequenz}\\
+                  &\rightarrow \text{'{\tt -}'}\thickspace \text{Term}\thickspace \text{Termsequenz}\\
                   &\rightarrow \varepsilon\\
  \text{Term}&\rightarrow \text{Zahl}
 \end{align*}
