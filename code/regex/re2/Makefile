@@ -10,3 +10,6 @@ regex:	regex.cpp
 	g++ --std=c++17 -Wall -g -O2 -o regex regex.cpp			\
 		$$(pkg-config --cflags re2)				\
 		$$(pkg-config --libs re2)
+
+test:	regex
+	./regex
