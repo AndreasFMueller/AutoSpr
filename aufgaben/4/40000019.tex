@@ -118,30 +118,6 @@ Konsonanten gelesen wurden:
 \node at ($(K)+(0.7,-0.7)$) [right] {$V,\texttt{+}\to\varepsilon$\strut};
 \end{tikzpicture}
 \end{center}
-%\[
-%\entrymodifiers={++[o][F]}
-%\xymatrix @+10mm {
-%*+\txt{}\ar[r]
-%        &{s}\ar[d]^{\varepsilon,\varepsilon\to{\tt \$}}
-%\\
-%{V} \ar@(ul,dl)_{\scriptsize    \begin{gathered}
-%                                        V,\varepsilon\to {\tt +}\\
-%                                        K,{\tt +}\to\varepsilon
-%                                \end{gathered}}
-%    \ar@/_/[r]_{\varepsilon,{\tt \$}\to{\tt \$}}
-%        &{Z} \ar@/^/[r]^{K,\varepsilon\to {\tt +}}
-%             \ar@/_/[l]_{V,\varepsilon\to {\tt +}}
-%             \ar[d]^{\varepsilon,{\tt\$}\to\varepsilon}
-%                &{K} \ar@(ur,dr)^{\scriptsize   \begin{gathered}
-%                                                        K,\varepsilon\to {\tt +}\\
-%                                                        V,{\tt +}\to\varepsilon
-%                                                \end{gathered}}
-%                     \ar@/^/[l]^{\varepsilon,{\tt \$}\to{\tt\$}}
-%\\
-%*+\txt{}
-%        &*++[o][F=]{E}
-%}
-%\]
 Dabei stehen die Variablen $V$ und $K$ in den Übergängen für 
 die Terminalsymbole, in die sie gemäss der Regeln der Grammatik
 verwandelt werden können.
@@ -199,6 +175,21 @@ Die möglichen Parse Trees sind:
 \draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (v1) -- (w4);
 \draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (k2) -- (w5);
 \draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (v2) -- (w6);
+
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm,color=gray]
+	(s3) -- ++(0,-\s);
+\node[color=gray] at ($0.5*(k2)+0.5*(v2)$) {$S$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm,color=gray]
+	($0.5*(k2)+0.5*(v2)$) -- ++(0,{-2*\s});
+\node[color=gray] at ($0.5*(w5)+0.5*(w6)$) {$\varepsilon$\strut};
+
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm,color=gray]
+	(s4) -- ++(0,-\s);
+\node[color=gray] at ($0.5*(k3)+0.5*(v3)$) {$S$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm,color=gray]
+	($0.5*(k3)+0.5*(v3)$) -- ++(0,-\s);
+\node[color=gray] at ($0.5*(w2)+0.5*(w3)$) {$\varepsilon$\strut};
+
 \end{scope}
 \begin{scope}[xshift=8cm]
 \coordinate (s1) at ({0.5*\l},0);
@@ -248,72 +239,24 @@ Die möglichen Parse Trees sind:
 \draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (v3) -- (w4);
 \draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (k3) -- (w5);
 \draw[->,shorten >= 0.25cm,shorten <= 0.25cm] (v1) -- (w6);
+
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm,color=gray]
+	(s3) -- ++(0,-\s);
+\node[color=gray] at ($0.5*(k2)+0.5*(v2)$) {$S$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm,color=gray]
+	($0.5*(k2)+0.5*(v2)$) -- ++(0,-\s);
+\node[color=gray] at ($0.5*(w2)+0.5*(w3)$) {$\varepsilon$};
+
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm,color=gray]
+	(s4) -- ++(0,-\s);
+\node[color=gray] at ($0.5*(k3)+0.5*(v3)$) {$S$};
+\draw[->,shorten >= 0.25cm,shorten <= 0.25cm,color=gray]
+	($0.5*(k3)+0.5*(v3)$) -- ++(0,-\s);
+\node[color=gray] at ($0.5*(w4)+0.5*(w5)$) {$\varepsilon$};
+
 \end{scope}
 \end{tikzpicture}
 \end{center}
-%\[
-%\xymatrix{
-%        &
-%                &S\ar[dl] \ar[drr]
-%\\
-%        &S\ar[dl] \ar[d] \ar[drr]
-%                &
-%                        &
-%                                &S\ar[d] \ar[dr]
-%\\
-%K\ar[dd]
-%        &S\ar[d] \ar[dr]
-%                &
-%                        &V\ar[dd]
-%                                &K\ar[dd]
-%					&V\ar[dd]
-%\\
-%	&K\ar[d]
-%		&V\ar[d]
-%			&
-%				&
-%					&
-%\\
-%{\tt f}
-%        &{\tt r}
-%                &{\tt e}
-%                        &{\tt u}
-%                                &{\tt d}
-%                                        &{\tt e}
-%}
-%\]
-%
-%\[
-%\xymatrix{
-%        &
-%                &S\ar[dll] \ar[d] \ar[drrr]
-%\\
-%K\ar[ddd]
-%        &
-%                &S\ar[dl] \ar[dr]
-%                        &
-%                                &
-%                                        &V\ar[ddd]
-%\\
-%        &S\ar[d] \ar[dr]
-%                &
-%                        &S\ar[d] \ar[dr]
-%                                &
-%\\
-%	&K\ar[d]
-%		&V\ar[d]
-%			&V\ar[d]
-%				&K\ar[d]
-%					&
-%\\
-%{\tt f}
-%        &{\tt r}
-%                &{\tt e}
-%                        &{\tt u}
-%                                &{\tt d}
-%                                        &{\tt e}
-%}
-%\]
 Darin haben wir zur Abkürzung die Produktionsregeln
 $S\to KV$ und $S\to VK$ verwendet, welche sich durch
 zusammensetzen von $S\to KSV$ bzw.~$S\to VSK$ mit $S\to\varepsilon$
