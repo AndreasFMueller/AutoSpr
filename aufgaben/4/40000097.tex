@@ -1,0 +1,167 @@
+Sei
+$\Sigma = \{\texttt{a},\texttt{b}\}$
+und
+$\Sigma_1 = \{\texttt{a},\texttt{b},\texttt{\#}\}= \Sigma\cup\{\texttt{\#}\}$.
+Ist die Sprache
+\[
+L
+=
+\{
+v\texttt{\#}t
+\mid
+\text{$t$ ist Teilzeichenkette von $v$}
+\}
+\]
+kontextfrei?
+
+\begin{hinweis}
+Betrachten Sie Wörter der Form
+$\texttt{a}\mathstrut^n\texttt{b}\mathstrut^n\texttt{\#}\texttt{a}\mathstrut^n\texttt{b}\mathstrut^n$.
+\end{hinweis}
+
+\begin{loesung}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+Die Sprache ist nicht kontextfrei, wie man mit dem Pumping Lemma für
+kontextfreie Sprachen beweisen kann.
+\def\h{0.6}
+\def\unterteilung#1{
+	\fill[color=blue!20,opacity=0.7]
+		({0*\h+0.05},0.05) rectangle ({(#1)*\h-0.025},{\h-0.05});
+	\draw[color=blue]
+		({0*\h+0.05},0.05) rectangle ({(#1)*\h-0.025},{\h-0.05});
+	\node[color=blue] at ({0.5*(#1)*\h},{0.5*\h}) {$u\mathstrut$};
+
+	\fill[color=darkred!20,opacity=0.7]
+		({(#1)*\h+0.025},0.05) rectangle ({(#1+1)*\h-0.025},{\h-0.05});
+	\draw[color=darkred]
+		({(#1)*\h+0.025},0.05) rectangle ({(#1+1)*\h-0.025},{\h-0.05});
+	\node[color=darkred] at ({(#1+0.5)*\h},{0.5*\h}) {$v\mathstrut$};
+
+	\fill[color=darkgreen!20,opacity=0.7]
+		({(#1+1)*\h+0.025},0.05)
+			rectangle ({(#1+2.5)*\h-0.025},{\h-0.05});
+	\draw[color=darkgreen]
+		({(#1+1)*\h+0.025},0.05)
+			rectangle ({(#1+2.5)*\h-0.025},{\h-0.05});
+	\node[color=darkgreen] at ({(#1+1.75)*\h},{0.5*\h}) {$x\mathstrut$};
+
+	\fill[color=darkred!20,opacity=0.7]
+		({(#1+2.5)*\h+0.025},0.05)
+			rectangle ({(#1+3.5)*\h-0.025},{\h-0.05});
+	\draw[color=darkred]
+		({(#1+2.5)*\h+0.025},0.05)
+			rectangle ({(#1+3.5)*\h-0.025},{\h-0.05});
+	\node[color=darkred] at ({(#1+3)*\h},{0.5*\h}) {$y\mathstrut$};
+
+	\fill[color=blue!20,opacity=0.7]
+		({(#1+3.5)*\h+0.025},0.05) rectangle ({21*\h-0.05},{\h-0.05});
+	\draw[color=blue]
+		({(#1+3.5)*\h+0.025},0.05) rectangle ({21*\h-0.05},{\h-0.05});
+	\node[color=blue] at ({0.5*(#1+24.5)*\h},{0.5*\h}) {$u\mathstrut$};
+
+	\draw[line width=0.2pt] ({(#1)*\h},0) -- ++(0,-0.3);
+	\draw[line width=0.2pt] ({(#1+3)*\h},0) -- ++(0,-0.3);
+	\draw[<->] ({(#1)*\h},-0.2) -- ({(#1+3)*\h},-0.2);
+	\node at ({(#1+1.5)*\h},-0.2) [below] {$\le N\mathstrut$};
+}
+\def\hintergrund{
+	\draw (0,0) rectangle ({21*\h},\h);
+	\draw ({5*\h},0) -- ++(0,\h);
+	\draw ({10*\h},0) -- ++(0,\h);
+	\draw ({11*\h},0) -- ++(0,\h);
+	\draw ({16*\h},0) -- ++(0,\h);
+	\node at ({2.5*\h},{0.5*\h}) {\texttt{a}\strut};
+	\node at ({7.5*\h},{0.5*\h}) {\texttt{b}\strut};
+	\node at ({10.5*\h},{0.5*\h}) {\texttt{\#}\strut};
+	\node at ({13.5*\h},{0.5*\h}) {\texttt{a}\strut};
+	\node at ({18.5*\h},{0.5*\h}) {\texttt{b}\strut};
+	\node at ({5*\h},{\h-0.1}) [above] {$N\mathstrut$};
+	\node at ({10.5*\h},{\h-0.1}) [above left] {$2N\mathstrut$};
+	\node at ({10.5*\h},{\h-0.1}) [above right] {$2N+1\mathstrut$};
+	\node at ({16*\h},{\h-0.1}) [above] {$3N+1\mathstrut$};
+	\node at ({21*\h},{\h-0.1}) [above] {$4N+1\mathstrut$};
+}
+\begin{enumerate}
+\item
+Annahme: $L$ ist kontextfrei
+\item
+Nach dem Pumping Lemma gibt es die Pumping Length $N$
+\item
+Wir wählen das Wort
+$\texttt{a}\mathstrut^N\texttt{b}\mathstrut^N\texttt{\#}\texttt{a}\mathstrut^N\texttt{b}\mathstrut^N$.
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\hintergrund
+\end{tikzpicture}
+\end{center}
+\item
+Nach dem Pumping Lemma gibt es eine Aufteilung
+\(
+w=
+{\color{blue}u}
+{\color{darkred}v}
+{\color{darkgreen}x}
+{\color{darkred}y}
+{\color{blue}z}
+\)
+mit
+$| {\color{darkred}v} {\color{darkgreen}x} {\color{darkred}y} |\le N$
+und
+$| {\color{darkred}v} {\color{darkred}y} |>0$
+\item
+Es gibt drei Fälle:
+\begin{enumerate}[a)]
+\item
+Die roten Teile liegen beide vor dem \texttt{\#}-Zeichen.
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\hintergrund
+\unterteilung{1.75}
+\end{tikzpicture}
+\end{center}
+Abpumpen führt dazu, dass der Teil links vom \texttt{\#} jetzt kürzer ist
+und damit den Teil rechts davon nicht mehr als Teilstring enthalten kann.
+\item
+Die roten Teile liegen beide nach dem \texttt{\#}-Zeichen.
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\hintergrund
+\unterteilung{14.75}
+\end{tikzpicture}
+\end{center}
+Aufpumpten führt dazu, dass der Teil rechts vom \texttt{\#} nun grösser
+ist, also nicht mehr Teilstring sein kann.
+\item
+Die beiden Teile roten Teile liegen im Block von \texttt{b} vor dem
+\texttt{\#} und/oder im Block von \texttt{a} nach dem \texttt{\#}.
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\hintergrund
+\unterteilung{8.75}
+\end{tikzpicture}
+\end{center}
+Durch Abpumpen wird die Anzahl der \texttt{b} links vom \texttt{\#}
+kleiner und kann daher das Wort rechts von \texttt{\#} nicht mehr erhalten.
+Durch Aufpumpen wird die Anzahl der \texttt{a} rechts vom \texttt{\#}
+grösser und kann daher nicht mehr im Wort links von \texttt{\#} enthalten
+sein.
+\end{enumerate}
+Das gepumpte Wort ist also nicht mehr in $L$ im Widerspruch zur
+Aussage des Pumping-Lemma.
+\item
+Dieser Widerspruch zeigt, dass $L$ nicht kontextfrei sein kann.
+\qedhere
+\end{enumerate}
+\end{loesung}
+
+\begin{bewertung}
+Annahme $L$ kontextfrei ({\bf PL}) 1 Punkt,
+Pumping Length ({\bf N}) 1 Punkt,
+geeignetes Wort wählen ({\bf W}) 1 Punkt,
+Unterteilung des Wortes ({\bf U}) 1 Punkt,
+Widerspruch beim Pumpen ({\bf P}) 1 Punkt, dieser Punkte wurde nicht
+gegeben, wenn die Teilzeichenketteneigenschaft nicht untersucht wurde,
+Schlussfolgerung ({\bf S}) 1 Punkt.
+\end{bewertung}
+

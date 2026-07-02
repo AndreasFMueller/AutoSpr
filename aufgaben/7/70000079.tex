@@ -1,0 +1,160 @@
+Das Rätselspiel Tatamibari (japanisch
+\begin{CJK}{UTF8}{min}タタミバリ\end{CJK}, von
+\begin{CJK}{UTF8}{min}畳\end{CJK}
+(\begin{CJK}{UTF8}{min}たたみ\end{CJK}, Tatami), japanische Reisstrohmatte
+und \begin{CJK}{UTF8}{min}張り\end{CJK}
+(\begin{CJK}{UTF8}{min}ばり\end{CJK}, bari)
+mit der Bedeutung von ``im Stil von'')
+wird auf einem $n\times m$-Spielfeld gespielt, in dem in einzelnen Feldern
+die Symbole aus $\Sigma=\{\texttt{+}, \texttt{-}, \texttt{|}\}$ eingetragen
+sind.
+Der Spieler muss das Spielfeld entlang der Kanten zwischen den Feldern
+in Rechtecke aufteilen und dabei die folgenden Regeln einhalten:
+\begin{enumerate}
+\item
+In jedem Rechteck findet man genau ein Feld mit einem Symbol aus $\Sigma$.
+\item
+Enthält ein Rechteck ein \texttt{-}, ist es breiter als hoch.
+\item
+Enthält ein Rechteck ein \texttt{|}, ist es höher als breit.
+\item
+Enthält ein Rechteck ein \texttt{+}, ist es ein Quadrat.
+\item
+Vier Rechtecke dürfen nicht an einer gemeinsamen Ecke zusammentreffen.
+\end{enumerate}
+Die Abbildung zeigt ein Tatamibari-Rätsel (links) mit Lösung (rechts, die
+Farben sind nur zur besseren Sichtbarkeit der Rechteck der Unterteilung).
+\begin{center}
+\def\punkt#1#2{({0.7*(#1)},{0.7*(#2)})}
+\def\horizontal#1#2{
+	\draw[line width=1.4pt] \punkt{#1+0.2}{#2+0.5} -- \punkt{#1+0.8}{#2+0.5};
+}
+\def\vertikal#1#2{
+	\draw[line width=1.4pt] \punkt{#1+0.5}{#2+0.2} -- \punkt{#1+0.5}{#2+0.8};
+}
+\def\kreuz#1#2{
+	\horizontal{#1}{#2}
+	\vertikal{#1}{#2}
+}
+\def\feld{
+	\draw \punkt{0}{0} rectangle \punkt{7}{7};
+	\foreach \i in {1,...,6}{
+		\draw \punkt{\i}{0} -- \punkt{\i}{7};
+		\draw \punkt{0}{\i} -- \punkt{7}{\i};
+	}
+	\vertikal{1}{4}
+	\kreuz{2}{1}
+	\horizontal{2}{5}
+	\vertikal{4}{1}
+	\horizontal{4}{3}
+	\horizontal{4}{6}
+	\kreuz{5}{0}
+	\vertikal{5}{5}
+}
+\definecolor{farbeeins}{rgb}{1.0,0.6,0.8}
+\definecolor{farbezwei}{rgb}{0.8,0.6,1.0}
+\definecolor{farbedrei}{rgb}{0.6,0.8,1.0}
+\definecolor{farbevier}{rgb}{0.6,1.0,0.8}
+\definecolor{farbefuenf}{rgb}{0.8,1.0,0.6}
+\definecolor{farbesechs}{rgb}{1.0,0.8,0.6}
+\definecolor{farbesieben}{rgb}{0.8,0.8,0.8}
+\definecolor{farbeacht}{rgb}{1.0,1.0,0.8}
+\begin{tikzpicture}[>=latex,thick]
+\begin{scope}[xshift=-3cm]
+\feld
+\end{scope}
+\begin{scope}[xshift=3cm]
+\fill[color=farbeeins!40] \punkt{0}{0} rectangle \punkt{3}{3};
+\fill[color=farbezwei!40] \punkt{3}{0} rectangle \punkt{5}{3};
+\fill[color=farbedrei!40] \punkt{5}{0} rectangle \punkt{7}{2};
+\fill[color=farbevier!40] \punkt{5}{2} rectangle \punkt{7}{6};
+\fill[color=farbefuenf!40] \punkt{0}{3} rectangle \punkt{2}{7};
+\fill[color=farbesechs!40] \punkt{2}{3} rectangle \punkt{5}{5};
+\fill[color=farbesieben!40] \punkt{2}{5} rectangle \punkt{5}{6};
+\fill[color=farbeacht] \punkt{2}{6} rectangle \punkt{7}{7};
+\feld
+\draw[line width=2pt] \punkt{2}{3} -- \punkt{2}{7};
+\draw[line width=2pt] \punkt{3}{0} -- \punkt{3}{3};
+\draw[line width=2pt] \punkt{5}{0} -- \punkt{5}{6};
+\draw[line width=2pt] \punkt{5}{2} -- \punkt{7}{2};
+\draw[line width=2pt] \punkt{0}{3} -- \punkt{5}{3};
+\draw[line width=2pt] \punkt{2}{5} -- \punkt{5}{5};
+\draw[line width=2pt] \punkt{2}{6} -- \punkt{7}{6};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+Kann eine nichtdeterministische Turing-Maschine in polynomieller
+Zeit entscheiden, ob ein Tatamibari-Rätsel eine Lösung hat?
+
+\begin{loesung}
+Die Frage ist gleichbedeutend damit, ob Tatamibari in NP liegt.
+
+In einem Tatamibari-Spielfeld gibt es $N=(n-1)m+n(m-1)=2nm-n-m$
+Liniensegmente, aus denen man Unterteilungen erzeugen kann.
+Indem man alle $2^N$ möglichen Auswahlen von Liniensegmenten
+durchprobiert und auf die Einhaltung der genannten Regeln prüft.
+
+Tatamibari liegt genau dann in NP, wenn es einen polynomiellen
+Verifizierer dafür gibt.
+Als Lösungszertifikat wird die Unterteilung des Spielfelds
+verlangt.
+Zusätzlich sollen alle Felder eines Teils mit der gleichen Farbe
+einfärbt sein, die jedoch für kein anderes Teil des Feldes verwendet
+wird.
+Damit wird dann die folgende Verifikation durchgeführt.
+Wir nennen dabei ein Feld berandet auf einer Seite berandet, wenn
+entweder die Kante Teil einer Berandungslinie oder des Rands
+des Spielfelds ist.
+\begin{center}
+\begin{tabular}{|c|p{11cm}|>{$}c<{$}|}
+\hline
+Schritt&Verifikation&\text{Aufwand}\\
+\hline
+1&
+Für jedes Feld, welches links und oben berandet ist, folge den von der linken
+oberen Ecke ausgehenden Randsegmenten nach unten, wähle jeweils Abzweigungen
+nach links wenn vorhanden, niemals aber nach rechts, und überprüfe, ob 
+die vierte Richtungsänderung im ursprünglichen Eckpunkt erfolgt.
+&O(n^2m^2)\\
+2&
+Für jedes Feld, welches ein \texttt{-} enthält, zähle die
+horizontal und vertikal benachbarten Felder gleicher Farbe und
+überprüfe, dass die horizontale Anzahl grösser ist als die vertikale.
+&O(nm)\\
+3&
+Für jedes Feld, welches ein \texttt{|} enthält, zähle die
+horizontal und vertikal benachbarten Felder gleicher Farbe und
+überprüfe, dass die vertikale Anzahl grösser ist als die horizontale.
+&O(nm)\\
+4&
+Für jedes Feld, welches ein \texttt{+} enthält, zähle die
+horizontal und vertikal benachbarten Felder gleicher Farbe und
+überprüfe, dass beide Anzahlen gleich sind.
+&O(nm)\\
+5&
+Für jede Ecken kontrolliere, dass die an dieser Ecke zustammenstossenden
+Felder nicht vier verschiedene Farben haben.
+&O(nm)\\
+\hline
+&Total&O(n^2m^2)\\
+\hline
+\end{tabular}
+\end{center}
+Offenbar ist die Verifikation in polynomieller Zeit ausführbar, es gibt
+also einen polynomiellen Verifizierer und damit ist gezeigt,
+dass Tatamibari in NP ist.
+\end{loesung}
+
+\begin{diskussion}
+Tatamibari ist NP-vollständig: \url{https://arxiv.org/pdf/2003.08331}.
+\end{diskussion}
+
+
+\begin{bewertung}
+Entscheidbarkeit ({\bf E}) 1 Punkt,
+Prinzip Verifizierer ({\bf V}) 1 Punkt,
+Zertifikat spezifiziert ({\bf Z}) 1 Punkt,
+Laufzeitschätzung ({\bf L}) 2 Punkte,
+Schlussfolgerung polynomieller Verifizierer ({\bf S}) 1 Punkt.
+\end{bewertung}
+

@@ -1,0 +1,191 @@
+Betrachten Sie die Turing-Maschine über dem Bandalphabet
+$\Gamma=\{\blank,\texttt{0},\texttt{1}\}$ mit dem Zustandsdiagramm
+\begin{center}
+\def\l{3}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (\l,0);
+\coordinate (q2) at ({2*\l},0);
+\coordinate (q3) at ({3*\l},0);
+\coordinate (q4) at ({1.5*\l},{0.5*\l});
+\coordinate (qa) at ({0.5*\l},{-0.5*\l});
+\coordinate (qr) at ({2.5*\l},{-0.5*\l});
+\node at (q0) {$q_0$};
+\node at (q1) {$q_1$};
+\node at (q2) {$q_2$};
+\node at (q3) {$q_3$};
+\node at (q4) {$q_4$};
+\node at (qa) {$q_{\text{accept}}$};
+\node at (qr) {$q_{\text{reject}}$};
+\draw (q0) circle[radius=0.35cm];
+\draw (q1) circle[radius=0.35cm];
+\draw (q2) circle[radius=0.35cm];
+\draw (q3) circle[radius=0.35cm];
+\draw (q4) circle[radius=0.35cm];
+\draw (qa) ellipse(0.65cm and 0.35cm);
+\draw (qa) ellipse(0.60cm and 0.30cm);
+\draw (qr) ellipse(0.65cm and 0.35cm);
+\draw (qr) ellipse(0.60cm and 0.30cm);
+\draw[->,shorten >= 0.35cm] ($(q0)+(-1.5,0)$) -- (q0);
+
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm]
+	(q0) to[out=60,in=120,distance=1cm] (q0);
+\node at ($(q0)+(0,1)$) {$\scriptstyle \texttt{0}\to\texttt{0},R$};
+
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q0) -- (q1);
+\node at ($0.5*(q0)+0.5*(q1)$) [above]
+	{$\scriptstyle\texttt{1}\to\texttt{1},R$};
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm]
+	(q1) to[out=60,in=120,distance=1cm] (q1);
+\node at ($(q1)+(0,1)$) {$\scriptstyle \texttt{1}\to\texttt{1},R$};
+
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q1) -- (q2);
+\node at ($0.5*(q1)+0.5*(q2)$) [above]
+	{$\scriptstyle\texttt{0}\to\texttt{0},L$};
+
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q2) -- (q3);
+\node at ($0.5*(q2)+0.5*(q3)$) [above]
+	{$\scriptstyle\texttt{1}\to\texttt{0},R$};
+
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm] (q3) to[out=135,in=0] (q4);
+\node at ($(q2)+(0.5,1.5)$) [above] {$\scriptstyle\texttt{0}\to\texttt{1},L$};
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm]
+	(q4) to[out=60,in=120,distance=1cm] (q4);
+\node at ($(q4)+(0,1.1)$)
+	{$\texttt{0}\to\texttt{0},L\atop\texttt{1}\to\texttt{1},L$};
+
+\draw[->,shorten >= 0.35cm,shorten <= 0.35cm]
+	(q4) to[out=180,in=45] (q0);
+\node at ($(q1)+(-0.5,1.5)$) [above] {$\scriptstyle\blank\to\blank,R$};
+
+\draw[->,shorten >= 0.65cm,shorten <= 0.35cm]
+	(q0) to[out=-90,in=180] (qa);
+\draw[->,shorten >= 0.65cm,shorten <= 0.35cm]
+	(q1) to[out=-90,in=0] (qa);
+\node at ($(q0)+(0.2,{-0.35*\l})$) [left] {$\scriptstyle\blank\to\blank,R$};
+\node at ($(q1)+(-0.2,{-0.35*\l})$) [right] {$\scriptstyle\blank\to\blank,R$};
+
+\draw[->,shorten >= 0.65cm,shorten <= 0.35cm]
+	(q2) to[out=-90,in=180] (qr);
+\draw[->,shorten >= 0.65cm,shorten <= 0.35cm]
+	(q3) to[out=-90,in=0] (qr);
+\node at ($(q2)+(0.2,{-0.35*\l})$) [left] {$
+\texttt{0}\to\texttt{0},R
+\atop
+\ifthenelse{\boolean{loesungen}}{
+{\color{red}\blank\to\blank,R}
+}{}
+$};
+\node at ($(q3)+(-0.2,{-0.35*\l})$) [right] {$
+\texttt{1}\to\texttt{1},R
+\atop
+\ifthenelse{\boolean{loesungen}}{
+{\color{red}\blank\to\blank,R}
+}{}$};
+
+\end{tikzpicture}
+\end{center}
+\begin{teilaufgaben}
+\item
+Im Zustandsdiagramm fehlen ein paar Übergänge für eine deterministische
+Turing-Maschine.
+Ergänzen Sie wo nötig Übergänge, die den Bandinhalt nicht verändern und
+nach $q_{\text{reject}}$ führen.
+\item
+Bestimmen Sie die Berechnungsgeschichte für die Verarbeitung des Wortes
+\texttt{1010}.
+\item
+Was steht nach der Verarbeitung des Wortes \texttt{0101} auf dem Band?
+\item
+Gibt es Wörter aus $\Sigma^*$ mit $\Sigma = \{\texttt{0},\texttt{1}\}$, die
+von dieser Turing-Maschine nicht akzeptiert werden?
+\item
+Was macht die Turing-Maschine mit einem beliebigen Wort?
+\end{teilaufgaben}
+
+\begin{loesung}
+\allowdisplaybreaks
+\def\z#1{\hbox to0.4cm{\hfill\clap{$#1$}\hfill}}
+\def\zb{\hbox to0.4cm{\hfill\clap{\blank}\hfill}}
+\def\zt#1{\hbox to0.4cm{\hfill\clap{\texttt{#1}}\hfill}}
+\begin{teilaufgaben}
+\item
+Es fehlen die Übergängen von $q_2$ und $q_3$ für das Bandzeichen \blank:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q2) at (-3,0);
+\coordinate (q3) at (3,0);
+\coordinate (qr) at (0,0);
+\draw (q2) circle[radius=0.35];
+\draw (q3) circle[radius=0.35];
+\draw (qr) ellipse(0.65cm and 0.35cm);
+\draw (qr) ellipse(0.60cm and 0.30cm);
+\node at (q2) {$q_2$};
+\node at (q3) {$q_3$};
+\node at (qr) {$q_{\text{reject}}$};
+\draw[->,shorten >= 0.65cm,shorten <= 0.35cm] (q2) -- (qr);
+\draw[->,shorten >= 0.65cm,shorten <= 0.35cm] (q3) -- (qr);
+\node at ($0.6*(q2)+0.4*(qr)$) [above] {$\scriptstyle\blank\blank,R$};
+\node at ($0.6*(q3)+0.4*(qr)$) [above] {$\scriptstyle\blank\blank,R$};
+\end{tikzpicture}
+\end{center}
+Sie sind im Zustandsdiagramm {\color{red}rot} ergänzt worden.
+\item
+Die Berechnungsgeschichte lautet:
+\begin{align*}
+&\zb   \zb     \z{q_0} \zt{1}  \zt{0}  \zt{1}  \zt{0}  \zb     \zb\\
+&\zb   \zb     \zt{1}  \z{q_1} \zt{0}  \zt{1}  \zt{0}  \zb     \zb\\
+&\zb   \zb     \z{q_2} \zt{1}  \zt{0}  \zt{1}  \zt{0}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \z{q_3} \zt{0}  \zt{1}  \zt{0}  \zb     \zb\\
+&\zb   \zb     \z{q_4} \zt{0}  \zt{1}  \zt{1}  \zt{0}  \zb     \zb\\
+&\zb   \z{q_4} \zb     \zt{0}  \zt{1}  \zt{1}  \zt{0}  \zb     \zb\\
+&\zb   \zb     \z{q_0} \zt{0}  \zt{1}  \zt{1}  \zt{0}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \z{q_0} \zt{1}  \zt{1}  \zt{0}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \zt{1}  \z{q_1} \zt{1}  \zt{0}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \zt{1}  \zt{1}  \z{q_1} \zt{0}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \zt{1}  \z{q_2} \zt{1}  \zt{0}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \zt{1}  \zt{0}  \z{q_3} \zt{0}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \zt{1}  \z{q_4} \zt{0}  \zt{1}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \z{q_4} \zt{1}  \zt{0}  \zt{1}  \zb     \zb\\
+&\zb   \zb     \z{q_4} \zt{0}  \zt{1}  \zt{0}  \zt{1}  \zb     \zb\\
+&\zb   \z{q_4} \zb     \zt{0}  \zt{1}  \zt{0}  \zt{1}  \zb     \zb\\
+&\zb   \zb     \z{q_0} \zt{0}  \zt{1}  \zt{0}  \zt{1}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \z{q_0} \zt{1}  \zt{0}  \zt{1}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \zt{1}  \z{q_1} \zt{0}  \zt{1}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \z{q_2} \zt{1}  \zt{0}  \zt{1}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \zt{0}  \z{q_3} \zt{0}  \zt{1}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \z{q_4} \zt{0}  \zt{1}  \zt{1}  \zb     \zb\\
+&\zb   \zb     \z{q_4} \zt{0}  \zt{0}  \zt{1}  \zt{1}  \zb     \zb\\
+&\zb   \z{q_4} \zb     \zt{0}  \zt{0}  \zt{1}  \zt{1}  \zb     \zb\\
+&\zb   \zb     \z{q_0} \zt{0}  \zt{0}  \zt{1}  \zt{1}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \z{q_0} \zt{0}  \zt{1}  \zt{1}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \zt{0}  \z{q_0} \zt{1}  \zt{1}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \zt{0}  \zt{1}  \z{q_1} \zt{1}  \zb     \zb\\
+&\zb   \zb     \zt{0}  \zt{0}  \zt{1}  \zt{1}  \z{q_1} \zb     \zb\\
+&\zb   \zb     \zt{0}  \zt{0}  \zt{1}  \zt{1}  \zb     \z{q_a} \zb\\
+\end{align*}
+\item
+Am Ende der Berechnung steht das Wort \texttt{0011} auf dem Band.
+\item
+Nein.
+Die Übergänge nach $q_{\text{reject}}$ können gar nicht vorkommen.
+Der Übergang von $q_2$ könnte nur stattfinden, wenn das Zeichen vor
+der Null auch eine Null wäre, aber damit wäre die Maschine gar nicht
+erst in den Zustand $q_1$ gekommen.
+Der Übergang aus $q_3$ ist unmöglich, weil der Übergang nach $q_2$
+sichergestellt hat, dass an der aktuellen Stelle eine \texttt{0}
+sein muss.
+\item
+Die Turing-Maschine implementiert einen Sortieralgorithmus für die
+Ziffern des Wortes.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+
+\begin{bewertung}
+Fehlende Übergänge ({\bf F}) 1 Punkt,
+Berechnungsgeschichte ({\bf B}) 2 Punkte,
+Resultatwort ({\bf R}) 1 Punkt,
+Begründung dafür, dass alle Wörter akzeptiert werden ({\bf A}) 1 Punkt,
+Sortieralgorithmus (gilt auch als Begründung für {\bf A}) ({\bf S}) 1 Punkt.
+\end{bewertung}

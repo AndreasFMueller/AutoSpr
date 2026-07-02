@@ -1,0 +1,256 @@
+% reguläre Sprache
+Über dem Alphabet $\Sigma=\{\texttt{0},\texttt{1}\}$ ist die Sprache
+\[
+L
+=
+\{
+w\in\Sigma^*
+\mid
+|w|_{\texttt{0}}
+-
+|w|_{\texttt{1}}
+\not\equiv 0
+\mod 3
+\}
+\]
+gegeben.
+Sie wird vom endlichen Automaten
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (3,{sqrt(3)});
+\coordinate (q2) at (3,{-sqrt(3)});
+\node at (q0) {$q_0$};
+\node at (q1) {$q_1$};
+\node at (q2) {$q_2$};
+\draw (q0) circle[radius=0.35];
+\draw (q1) circle[radius=0.35];
+\draw (q1) circle[radius=0.30];
+\draw (q2) circle[radius=0.35];
+\draw (q2) circle[radius=0.30];
+\draw[->,shorten >= 0.35cm] ($(q0)+(-1.5,0)$) -- (q0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q0) -- (q1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q1) -- (q2);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q2) -- (q0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q0) to[out=-50,in=180] (q2);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q2) to[out=60,in=-60] (q1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q1) to[out=180,in=60] (q0);
+\node at ($0.5*(q0)+0.5*(q1)$) [below right] {\texttt{0}};
+\node at ($0.5*(q1)+0.5*(q2)$) [left] {\texttt{0}};
+\node at ($0.5*(q2)+0.5*(q0)$) [above right] {\texttt{0}};
+
+\node at ($0.65*(q0)+0.65*(q1)-0.3*(q2)$) {\texttt{1}};
+\node at ($0.65*(q1)+0.65*(q2)-0.3*(q0)$) {\texttt{1}};
+\node at ($0.65*(q2)+0.65*(q0)-0.3*(q1)$) {\texttt{1}};
+\end{tikzpicture}
+\end{center}
+akzeptiert.
+Finden Sie einen regulären Ausruck, der $L$ akzeptiert.
+
+\begin{loesung}
+\definecolor{darkred}{rgb}{0.8,0,0}
+Dazu wird der endliche Automat erst zum folgenden VNEA standardisiert:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (3,{sqrt(3)});
+\coordinate (q2) at (3,{-sqrt(3)});
+\coordinate (e) at (6,0);
+\coordinate (s) at (-3,0);
+\node at (s) {$s$};
+\node at (q0) {$q_0$};
+\node at (q1) {$q_1$};
+\node at (q2) {$q_2$};
+\node at (e) {$e$};
+\draw (s) circle[radius=0.35];
+\draw (q0) circle[radius=0.35];
+\draw (q1) circle[radius=0.35];
+\draw (q2) circle[radius=0.35];
+\draw (e) circle[radius=0.30];
+\draw (e) circle[radius=0.35];
+\draw[->,shorten >= 0.35cm] ($(s)+(-1.5,0)$) -- (s);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (s) -- (q0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q0) -- (q1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q1) -- (q2);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q2) -- (q0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q1) -- (e);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q2) -- (e);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q0) to[out=-50,in=180] (q2);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q2) to[out=60,in=-60] (q1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q1) to[out=180,in=60] (q0);
+\node at ($0.5*(q0)+0.5*(q1)$) [below right] {\texttt{0}};
+\node at ($0.5*(q1)+0.5*(q2)$) [left] {\texttt{0}};
+\node at ($0.5*(q2)+0.5*(q0)$) [above right] {\texttt{0}};
+\node at ($0.5*(s)+0.5*(q0)$) [above] {$\varepsilon$};
+\node at ($0.65*(q0)+0.65*(q1)-0.3*(q2)$) {\texttt{1}};
+\node at ($0.65*(q1)+0.65*(q2)-0.3*(q0)$) {\texttt{1}};
+\node at ($0.65*(q2)+0.65*(q0)-0.3*(q1)$) {\texttt{1}};
+\node at ($0.5*(q1)+0.5*(e)$) [above right] {$\varepsilon$};
+\node at ($0.5*(q2)+0.5*(e)$) [below right] {$\varepsilon$};
+\end{tikzpicture}
+\end{center}
+Jetzt werden die Zwischenzustände in der Reihenfolge $q_2$, $q_1$, $q_0$
+entfernt.
+Zuerst $q_2$:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (3,{sqrt(3)});
+\coordinate (q2) at (3,{-sqrt(3)});
+\coordinate (e) at (6,0);
+\coordinate (s) at (-3,0);
+\node at (s) {$s$};
+\node at (q0) {$q_0$};
+\node at (q1) {$q_1$};
+\node at (e) {$e$};
+\draw (s) circle[radius=0.35];
+\draw (q0) circle[radius=0.35];
+\draw (q1) circle[radius=0.35];
+\draw (e) circle[radius=0.30];
+\draw (e) circle[radius=0.35];
+\draw[->,shorten >= 0.35cm] ($(s)+(-1.5,0)$) -- (s);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (s) -- (q0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q0) -- (q1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q1) -- (e);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q1) to[out=180,in=60] (q0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm,color=darkred] (q0) -- (e);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm,color=darkred]
+	(q0) to[out=-60,in=-120,distance=1cm] (q0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm,color=darkred]
+	(q1) to[out=60,in=120,distance=1cm] (q1);
+\node[color=darkred] at ($(q1)+(0,1)$) {\texttt{01}};
+\node[color=darkred] at ($(q0)+(0,-1)$) {\texttt{10}};
+\node at ($0.5*(q0)+0.5*(q1)$) [below right] {\texttt{0{\color{darkred}|11}}};
+\node at ($0.5*(s)+0.5*(q0)$) [above] {$\varepsilon$};
+\node at ($0.65*(q0)+0.65*(q1)-0.3*(q2)$) {\texttt{1{\color{darkred}|00}}};
+\node at ($0.5*(q1)+0.5*(e)$) [above right] {$\varepsilon$\texttt{\color{darkred}|0}};
+\node[color=darkred] at ($0.5*(q0)+0.5*(e)$) [below] {$\texttt{1}$};
+\end{tikzpicture}
+\end{center}
+Dann $q_1$:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q0) at (0,0);
+\coordinate (e) at (6,0);
+\coordinate (s) at (-3,0);
+\node at (s) {$s$};
+\node at (q0) {$q_0$};
+\node at (e) {$e$};
+\draw (s) circle[radius=0.35];
+\draw (q0) circle[radius=0.35];
+\draw (e) circle[radius=0.30];
+\draw (e) circle[radius=0.35];
+\draw[->,shorten >= 0.35cm] ($(s)+(-1.5,0)$) -- (s);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (s) -- (q0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q0) -- (e);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(q0) to[out=-60,in=-120,distance=1cm] (q0);
+\node at ($(q0)+(0,-1)$)
+	{\texttt{10{\color{darkred}|((0|11)(01)*(1|00))}}};
+\node at ($0.5*(s)+0.5*(q0)$) [above] {$\varepsilon$};
+\node at ($0.5*(q0)+0.5*(e)$) [below]
+	{$\texttt{1{\color{darkred}|(0|11)(01)*($\varepsilon$|0)}}$};
+\end{tikzpicture}
+\end{center}
+Im letzten Schritt wird $q_0$ entfernt, jetzt kann man den regulären
+Ausdruck direkt ablesen, er ist
+\[
+r
+=
+\texttt{(10|((0|11)(01)*(1|00)))*(1|(0|11)(01)*(|0))}.
+\qedhere
+\]
+\end{loesung}
+
+\begin{diskussion}
+\definecolor{darkred}{rgb}{0.8,0,0}
+Natürlich kann man auch eine andere Reihenfolge für die Entfernung der
+Zwischenzustände wählen.
+Beginnt man mit $q_0$, entsteht nach dem ersten Schritt der Automat
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (3,{sqrt(3)});
+\coordinate (q2) at (3,{-sqrt(3)});
+\coordinate (e) at (6,0);
+\coordinate (s) at (-3,0);
+\node at (s) {$s$};
+\node at (q1) {$q_1$};
+\node at (q2) {$q_2$};
+\node at (e) {$e$};
+\draw (s) circle[radius=0.35];
+\draw (q1) circle[radius=0.35];
+\draw (q2) circle[radius=0.35];
+\draw (e) circle[radius=0.30];
+\draw (e) circle[radius=0.35];
+\draw[->,shorten >= 0.35cm] ($(s)+(-1.5,0)$) -- (s);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm,color=darkred] (s) -- (q1);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm,color=darkred] (s) -- (q2);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q1) -- (q2);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q1) -- (e);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q2) -- (e);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q2) to[out=60,in=-60] (q1);
+\node[color=darkred] at ($0.5*(s)+0.5*(q1)$) [above left] {\texttt{0}};
+\node[color=darkred] at ($0.5*(s)+0.5*(q2)$) [below left] {\texttt{1}};
+\node at ($0.5*(q1)+0.5*(q2)$) [left]
+	{\texttt{0}{\color{darkred}\texttt{|11}}};
+\node at ($0.60*(q1)+0.60*(q2)-0.3*(q0)$) [right]
+	{\texttt{1}{\color{darkred}\texttt{|00}}};
+\node at ($0.5*(q1)+0.5*(e)$) [above right] {$\varepsilon$};
+\node at ($0.5*(q2)+0.5*(e)$) [below right] {$\varepsilon$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm,color=darkred]
+	(q1) to[out=60,in=120,distance=1cm] (q1);
+\node[color=darkred] at ($(q1)+(0,1)$) {\texttt{10}};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm,color=darkred]
+	(q2) to[out=-60,in=-120,distance=1cm] (q2);
+\node[color=darkred] at ($(q2)+(0,-1)$) {\texttt{01}};
+\end{tikzpicture}
+\end{center}
+Entfernung von $q_1$:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (q0) at (0,0);
+\coordinate (q1) at (3,{sqrt(3)});
+\coordinate (q2) at (3,{-sqrt(3)});
+\coordinate (e) at (6,0);
+\coordinate (s) at (-3,0);
+\node at (s) {$s$};
+\node at (q2) {$q_2$};
+\node at (e) {$e$};
+\draw (s) circle[radius=0.35];
+\draw (q2) circle[radius=0.35];
+\draw (e) circle[radius=0.30];
+\draw (e) circle[radius=0.35];
+\draw[->,shorten >= 0.35cm] ($(s)+(-1.5,0)$) -- (s);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm,color=darkred] (s) -- (e);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (s) -- (q2);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q2) -- (e);
+\node[color=darkred] at ($0.5*(s)+0.5*(e)$) [above]
+	{\texttt{0(10)*}};
+\node at ($0.3*(s)+0.7*(q2)$) [below left]
+	{\texttt{1}\color{darkred}\texttt{|0(10)*(0|11)}};
+\node at ($0.5*(q2)+0.5*(e)$) [below right]
+	{$\varepsilon${\color{darkred}\texttt{|(1|00)(10)*)}}};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm,color=darkred]
+	(q2) to[out=-60,in=-120,distance=1cm] (q2);
+\node at ($(q2)+(0,-1)$)
+	{\texttt{01}{\color{darkred}\texttt{|(1|00)(10)*(0|11)}}};
+\end{tikzpicture}
+\end{center}
+Im letzten Schritt, der Entfernung von $q_2$, kann man den resultierenden
+regulären Ausdruck direkt hinschreiben:
+\[
+r=
+\texttt{0(10)*|((1|0(10)*(0|11))(01|(1|00)(10)*(0|11))*(|(1|00)(10)*))}
+\]
+\end{diskussion}
+
+\begin{bewertung}
+Neuer Startzustand ({\bf S}) 1 Punkt,
+neuer Akzeptierzustand ({\bf A}) 1 Punkt,
+Idee Zwischenzustände entfernen ({\bf E}) 1 Punkt,
+Regel für Entfernung eines Zwischenzustands ({\bf Z}) 1 Punkt,
+Entstehung neuer Schleifen ({\bf L}) 1 Punkt,
+regulärer Ausdruck ({\bf R}) 1 Punkt.
+\end{bewertung}
+

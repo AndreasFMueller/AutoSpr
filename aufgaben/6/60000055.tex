@@ -1,0 +1,72 @@
+Die Schulbehörden einer Provinz möchten einen Service anbieten,
+über den Schulkinder individuelle Rechenaufgaben zum Üben generiert
+bekommen können.
+Wegen eines verbreiteten Aberglaubens sollen die Rechenaufgaben
+aber niemals ein Resultat haben, welches eine Unglückszahl ist.
+
+Da es sich dabei um eine relativ einfache Programmieraufgabe handelt,
+glauben die Behörden zwei Fliegen mit einer Klappe schlagen zu können,
+indem Sie die Programmierung eines solchen Dienstes als Informatik-Challenge 
+an den Mittelschulen der Provinz ausschreiben.
+Etwas überrascht vom vielfältigen Echo auf die Ausschreibung suchen sie
+jetzt nach einem Tool, mit dem Sie die Eingaben filtern können, so dass
+nur noch Programme genauer untersucht und bewertet werden müssen, welche
+nur korrekte Aufgaben ohne Unglückszahlresultate produzieren.
+Wie stehen die Chancen, ein solches Tool zu finden?
+
+\begin{loesung}
+Es geht um die Eigenschaft \textit{LUCKY} einer Sprache.
+Eine Sprache $L$ hat diese Eigenschaft, wenn $L$ nur aus syntaktisch
+korrekten arithmetischen Ausdrücken besteht, deren Wert verschieden
+ist von $4$ (die vor allem in Japan als Unglückszahl gilt).
+Die Sprache
+\[
+\begin{aligned}
+L_1&=\{\texttt{1+3}\}&&\text{hat die Eigenschaft \textit{LUCKY} nicht,}\\
+L_2&=\{\texttt{3+3+3}\}&&\text{hat die Eigenschaft \textit{LUCKY}.}
+\end{aligned}
+\]
+Die beiden Sprachen sind von einem Programm erkennbar.
+Somit ist \textit{LUCKY} eine nichttriviale Eigenschaft.
+Nach dem Satz von Rice ist $\textit{LUCKY}_{\text{TM}}$ nicht
+entscheidbar, ein Tool der verlangten Art kann es daher nicht geben.
+\end{loesung}
+
+\begin{diskussion}
+Die Tetraphobie ist in Asien weit verbreitet, in Japan z.~B.~weil das
+Kanji-Zeichen
+\begin{CJK}{UTF8}{min}四\end{CJK}
+für \textit{vier} und das Zeichen
+\begin{CJK}{UTF8}{min}死\end{CJK}
+für \textit{Tod}
+in der On-Lesung gleich als
+\textesh i (phonetisch) oder 
+\begin{CJK}{UTF8}{min}し\end{CJK} (Hiragana) 
+ausgesprochen werden.
+Die Unglückszahl war in der Aufgabe nicht spezifiziert, daher wurden 
+in der Prüfung viele verschiedene Unglückszahlen gewählt:
+\begin{center}
+\begin{tabular}{lr}
+\hline
+Unglückszahl       & Anzahl\raisebox{2pt}{\strut}\\
+\hline
+4                  &      3\raisebox{2pt}{\strut}\\
+7                  &      3\\
+13                 &     29\\
+666                &      2\\
+nicht spezifiziert &     11\\
+\hline
+\end{tabular}
+\end{center}
+Die Statistik zeigt die kulturelle Dominanz der Unglückszahl 13
+in Westeuropa.
+\end{diskussion}
+
+\begin{bewertung}
+Eigenschaft \textit{LUCKY} ({\bf P}) 1 Punkt,
+zwei Sprachen ({\bf L}) je 1 Punkt,
+Eigenschaft ist nicht trivial ({\bf T}) 1 Punkt,
+Anwendung des Satzes von Rice ({\bf R}) 2 Punkte.
+\end{bewertung}
+
+

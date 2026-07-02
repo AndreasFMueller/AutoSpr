@@ -1,0 +1,51 @@
+Der Organisator eines Weiterbildungsevents einer grossen Firma muss für
+die Mitarbeiter eine Gruppeneinteilung in eine gegebene Anzahl Gruppen
+vornehmen.
+Da sich das Management Sorgen darüber macht, dass unnötiges Palaver
+die Kosteneffizienz des Events gefährden könnte, soll die Gruppeneinteilung
+so gestaltet sein, dass die Gruppenmitglieder paarweise bereits in mindestens
+einem Projekt zusammengearbeitet haben, sich also gegenseitig kennen.
+Damit können die endlosen Vorstellungsrunden zu Beginn des Events
+eingespart werden und es kann gleich mit der produktiven Arbeit begonnen
+werden, so die Argumentation der Erbsenzähler im Management.
+Nach längerem Nachdenken fragt sich der Organisator frustriert, warum
+es so schwierig ist, eine solche Gruppeneinteilung zu finden.
+
+\begin{loesung}
+Das Problem \textit{GRUPPENEINTEILUNG} ist äquivalent zum Problem
+\textit{CLIQUE-COVER}, wie die folgende Eins-zu-Eins-Reduktion
+zeigt.
+Die Mitarbeiter der Firma bilden die Knoten eines Graphen, eine
+Kante bedeutet, dass die beiden Mitarbeiter bereits einmal zusammengearbeitet
+haben.
+Eine Gruppe soll aus Mitarbeitern bestehen, die sich alle kennen,
+sie bilden eine Clique.
+Die Gruppeneinteilung verlangt, dass $k$ Cliques gefunden werden 
+müssen, so dass jeder Mitarbeiter in genau einer Clique ist.
+\begin{center}
+\begin{tabular}{r>{$}c<{$}l}
+\textit{GRUPPENEINTEILUNG}&\leftrightarrow&\textit{CLIQUE-COVER}\\
+\hline
+Mitarbeiter&\leftrightarrow&Knoten\\
+frühere Zusammenarbeit&\leftrightarrow&Kanten\\
+Gruppe&\leftrightarrow&Clique\\
+Anzahl $k$ der Gruppen&\leftrightarrow&Anzahl $k$ der Cliques\\
+Jeder Mitarbeiter in genau einer Gruppe&\leftrightarrow&Jeder Knoten in genau einer CLIQUE
+\end{tabular}
+\end{center}
+Da \textit{CLIQUE-COVER} NP-vollständig ist, ist auch
+\textit{GRUPPENEINTEILUNG} NP-vollständig und es gibt nach aktuellem
+Wissen keinen polynomiellen Algorithmus zur Bestimmung einer Gruppeneinteilung
+nach den spezifizierten Regeln.
+Jeder bekannte Algorithmus skaliert exponentiell mit der Grösse der
+Firma, was zu den beobachteten langen Zeiten für die Lösung führt.
+\end{loesung}
+
+\begin{bewertung}
+Reduktionsprinzip ({\bf R}) 1 Punkt,
+Wahl eines geeigneten Vergleichsprobleme wählen ({\bf V}) 1 Punkt,
+Abbildung für Mitarbeiter ({\bf M}) 1 Punkt,
+Zusammenarbeit ({\bf Z}) 1 Punkt, und Gruppen ({\bf G}) 1 Punkt,
+NP-Vollständigkeit ({\bf N}) 1 Punkt.
+\end{bewertung}
+

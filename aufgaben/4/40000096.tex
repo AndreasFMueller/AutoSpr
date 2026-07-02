@@ -1,0 +1,98 @@
+Ist die Sprache
+\[
+L
+=
+\{
+\texttt{a}^n
+\texttt{b}^m
+\texttt{c}^m
+\texttt{d}^n
+\mid
+n>0\wedge m>0
+\}
+\]
+über dem Alphabet
+$\Sigma = \{
+\texttt{a},
+\texttt{b},
+\texttt{c},
+\texttt{d}\}$
+kontextfrei?
+
+\begin{loesung}
+Die Sprache ist kontextfrei, denn Sie kann mit der Grammatik
+\begin{align*}
+S&\to \texttt{a}S\texttt{d} \mid T \\
+T&\to \texttt{b}T\texttt{c} \mid \texttt{bc}
+\end{align*}
+erzeugt wird.
+
+Alternativ kann man sie auch mit dem Stackautomaten
+\begin{center}
+\def\l{2.8}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (s) at ({-\l+0.5},0);
+\coordinate (q0) at (0,0);
+\coordinate (q1) at ({1*\l},0);
+\coordinate (q2) at ({2*\l},0);
+\coordinate (q3) at ({3*\l},0);
+\coordinate (q4) at ({4*\l},0);
+\coordinate (e) at ({5*\l},0);
+\node at (q0) {$q_0$};
+\node at (q1) {$q_1$};
+\node at (q2) {$q_2$};
+\node at (q3) {$q_3$};
+\node at (q4) {$q_4$};
+\node at (e) {$e$};
+\draw (q0) circle[radius=0.35];
+\draw (q1) circle[radius=0.35];
+\draw (q2) circle[radius=0.35];
+\draw (q3) circle[radius=0.35];
+\draw (q4) circle[radius=0.35];
+\draw (e) circle[radius=0.35];
+\draw (e) circle[radius=0.30];
+\draw[->,shorten >= 0.35cm] (s) -- (q0);
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q0) -- (q1);
+\node at ($0.5*(q0)+0.5*(q1)$) [above]
+	{$\varepsilon,\varepsilon\to\texttt{\$}\mathstrut$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q1) -- (q2);
+\node at ($0.5*(q1)+0.5*(q2)$) [above]
+	{$\texttt{a},\varepsilon\to\texttt{a}\mathstrut$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q2) -- (q3);
+\node at ($0.5*(q2)+0.5*(q3)$) [above]
+	{$\texttt{b},\varepsilon\to\texttt{b}\mathstrut$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q3) -- (q4);
+\node at ($0.5*(q3)+0.5*(q4)$) [above]
+	{$\varepsilon,\varepsilon\to\varepsilon\mathstrut$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm] (q4) -- (e);
+\node at ($0.5*(q4)+0.5*(e)$) [above]
+	{$\varepsilon,\texttt{\$}\to\varepsilon\mathstrut$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(q1) to[out=60,in=120,distance=1.2cm] (q1);
+\node at ($(q1)+(0,0.8)$) [above] {$\texttt{a},\varepsilon\to\texttt{a}\mathstrut$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(q2) to[out=60,in=120,distance=1.2cm] (q2);
+\node at ($(q2)+(0,0.8)$) [above] {$\texttt{b},\varepsilon\to\texttt{b}\mathstrut$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(q3) to[out=60,in=120,distance=1.2cm] (q3);
+\node at ($(q3)+(0,0.8)$) [above] {$\texttt{c},\texttt{b}\to\varepsilon\mathstrut$};
+\draw[->,shorten <= 0.35cm,shorten >= 0.35cm]
+	(q4) to[out=60,in=120,distance=1.2cm] (q4);
+\node at ($(q4)+(0,0.8)$) [above] {$\texttt{d},\texttt{a}\to\varepsilon\mathstrut$};
+\end{tikzpicture}
+\end{center}
+akzeptieren.
+Die Übergänge von $q_1$ nach $q_2$ und von $q_2$ nach $q_3$ stellen sicher,
+dass mindestens ein \texttt{a} bzw.~mindestens ein \texttt{b} auf den
+Stack gelegt wird.
+\end{loesung}
+
+\begin{bewertung}
+Teilgrammatik für die Teile aus \texttt{a} und \texttt{d} ({\bf A}) 1 Punkt,
+Schachtelungstrategie ({\bf S}) 1 Punkt,
+Verkettung der Grammatiken ({\bf V}) 1 Punkt,
+Teilgrammatik für die Teile aus \texttt{b} und \texttt{c} ({\bf B}) 1 Punkt,
+Terminierung mit \texttt{bc} ({\bf T}) 1 Punkt,
+Schlussfolgerung kontextfrei ({\bf K}) 1 Punkt.
+\end{bewertung}
+
